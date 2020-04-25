@@ -1,6 +1,6 @@
 ## [Máster en Ingeniería Web por la Universidad Politécnica de Madrid (miw-upm)](http://miw.etsisi.upm.es)
-## Arquitectura y Patrones para Aplicaciones Web (APAW). Aplicación Web con Arquitectura Exagonal
-> Este proyecto es un apoyo docente de la asignatura y un ejemplo práctico en del desarrollo de una aplicación Web siguiendo una Arquitectura Exagonal
+## Arquitectura y Patrones para Aplicaciones Web (APAW)
+> Este proyecto es un apoyo docente de la asignatura y un ejemplo práctico del desarrollo de una aplicación Web siguiendo una Arquitectura Exagonal
 
 ### Estado del código
 [![Build Status](https://travis-ci.org/miw-upm/apaw-practice.svg?branch=develop)](https://travis-ci.org/miw-upm/apaw-practice)
@@ -24,3 +24,4 @@
 
 ### :book: Más información...
 * [github.com/miw-upm/apaw](https://github.com/miw-upm/apaw)   
+
