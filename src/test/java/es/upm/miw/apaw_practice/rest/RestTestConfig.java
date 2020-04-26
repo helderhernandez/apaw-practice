@@ -1,4 +1,4 @@
-package es.upm.miw.apaw_practice.rest_adapter;
+package es.upm.miw.apaw_practice.rest;
 
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.boot.test.autoconfigure.web.reactive.AutoConfigureWebTestClient;
