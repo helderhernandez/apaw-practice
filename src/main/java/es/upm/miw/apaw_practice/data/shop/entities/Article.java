@@ -1,27 +1,32 @@
-package es.upm.miw.apaw_practice.data_adapter.shop;
+package es.upm.miw.apaw_practice.data.shop.entities;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.UUID;
 
 @Document
 public class Article {
     @Id
     private String id;
+    @Indexed(unique = true)
+    private String code;
     private String description;
     private LocalDate registrationDate;
     private BigDecimal price;
     private String provider;
 
     public Article() {
+        this.id = UUID.randomUUID().toString();
         this.registrationDate = LocalDate.now();
     }
 
-    public Article(String id, String description, BigDecimal price, String provider) {
+    public Article(String code, String description, BigDecimal price, String provider) {
         this();
-        this.id = id;
+        this.code = code;
         this.description = description;
         this.price = price;
         this.provider = provider;
@@ -29,6 +34,14 @@ public class Article {
 
     public String getId() {
         return id;
+    }
+
+    public String getCode() {
+        return code;
+    }
+
+    public void setCode(String code) {
+        this.code = code;
     }
 
     public String getDescription() {
@@ -73,6 +86,7 @@ public class Article {
     public String toString() {
         return "Article{" +
                 "id='" + id + '\'' +
+                ", code='" + code + '\'' +
                 ", description='" + description + '\'' +
                 ", registrationDate=" + registrationDate +
                 ", price=" + price +

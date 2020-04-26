@@ -1,17 +1,17 @@
-package es.upm.miw.apaw_practice.data_adapter.shop;
+package es.upm.miw.apaw_practice.data.shop.entities;
 
 import java.math.BigDecimal;
 
-public class Item {
+public class ArticleItem {
     private Article article;
     private Integer amount;
     private BigDecimal discount;
 
-    public Item() {
+    public ArticleItem() {
         //empty for framework
     }
 
-    public Item(Article article, Integer amount, BigDecimal discount) {
+    public ArticleItem(Article article, Integer amount, BigDecimal discount) {
         this.article = article;
         this.amount = amount;
         this.discount = discount;
@@ -39,7 +39,7 @@ public class Item {
 
     @Override
     public String toString() {
-        return "Item{" +
+        return "ArticleItem{" +
                 "article=" + article +
                 ", amount=" + amount +
                 ", discount=" + discount +

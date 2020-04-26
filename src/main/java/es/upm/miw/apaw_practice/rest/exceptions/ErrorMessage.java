@@ -1,4 +1,4 @@
-package es.upm.miw.apaw_practice.rest_adapter.exceptions;
+package es.upm.miw.apaw_practice.rest.exceptions;
 
 public class ErrorMessage {
 

@@ -1,26 +1,28 @@
-package es.upm.miw.apaw_practice.data_adapter.shop;
+package es.upm.miw.apaw_practice.data.shop.entities;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
+import java.util.UUID;
 
 @Document
 public class Tag {
     @Id
     private String id;
+    @Indexed(unique = true)
     private String description;
     @DBRef
     private List<Article> articles;
     private Boolean favourite;
 
     public Tag() {
-        //empty for framework
+        this.id = UUID.randomUUID().toString();
     }
 
-    public Tag(String id, String description, List<Article> articles, Boolean favourite) {
-        this.id = id;
+    public Tag(String description, List<Article> articles, Boolean favourite) {
         this.description = description;
         this.articles = articles;
         this.favourite = favourite;
@@ -56,12 +58,12 @@ public class Tag {
 
     @Override
     public int hashCode() {
-        return this.id.hashCode();
+        return this.description.hashCode();
     }
 
     @Override
     public boolean equals(Object obj) {
-        return this == obj || obj != null && getClass() == obj.getClass() && (id.equals(((Tag) obj).id));
+        return this == obj || obj != null && getClass() == obj.getClass() && (description.equals(((Tag) obj).description));
     }
 
     @Override

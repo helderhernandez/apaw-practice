@@ -1,4 +1,4 @@
-package es.upm.miw.apaw_practice.rest_adapter;
+package es.upm.miw.apaw_practice.rest;
 
 import org.junit.jupiter.api.Test;
 
