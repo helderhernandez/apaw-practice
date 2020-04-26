@@ -1,8 +1,11 @@
 package es.upm.miw.apaw_practice.data.shop.entities;
 
+import org.springframework.data.mongodb.core.mapping.DBRef;
+
 import java.math.BigDecimal;
 
 public class ArticleItem {
+    @DBRef
     private Article article;
     private Integer amount;
     private BigDecimal discount;
