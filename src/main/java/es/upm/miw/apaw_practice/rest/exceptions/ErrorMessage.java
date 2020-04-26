@@ -6,12 +6,9 @@ public class ErrorMessage {
 
     private final String message;
 
-    private final String path;
-
-    public ErrorMessage(Exception exception, String path) {
+    public ErrorMessage(Exception exception) {
         this.error = exception.getClass().getSimpleName();
         this.message = exception.getMessage();
-        this.path = path;
     }
 
     public String getError() {
@@ -22,13 +19,11 @@ public class ErrorMessage {
         return message;
     }
 
-    public String getPath() {
-        return path;
-    }
-
     @Override
     public String toString() {
-        return "ErrorMessage [error=" + error + ", message=" + message + ", path=" + path + "]";
+        return "ErrorMessage{" +
+                "error='" + error + '\'' +
+                ", message='" + message + '\'' +
+                '}';
     }
-
 }

@@ -16,8 +16,8 @@ public class ApiExceptionHandler {
             NotFoundException.class
     })
     @ResponseBody
-    public ErrorMessage notFoundRequest(HttpServletRequest request, Exception exception) {
-        return new ErrorMessage(exception, request.getRequestURI());
+    public ErrorMessage notFoundRequest(Exception exception) {
+        return new ErrorMessage(exception);
     }
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
@@ -29,8 +29,8 @@ public class ApiExceptionHandler {
             org.springframework.http.converter.HttpMessageNotReadableException.class
     })
     @ResponseBody
-    public ErrorMessage badRequest(HttpServletRequest request, Exception exception) {
-        return new ErrorMessage(exception, request.getRequestURI());
+    public ErrorMessage badRequest(Exception exception) {
+        return new ErrorMessage(exception);
     }
 
     @ResponseStatus(HttpStatus.CONFLICT)
@@ -38,8 +38,8 @@ public class ApiExceptionHandler {
             ConflictException.class
     })
     @ResponseBody
-    public ErrorMessage conflict(HttpServletRequest request, Exception exception) {
-        return new ErrorMessage(exception, request.getRequestURI());
+    public ErrorMessage conflict(Exception exception) {
+        return new ErrorMessage(exception);
     }
 
     @ResponseStatus(HttpStatus.INTERNAL_SERVER_ERROR)
@@ -49,7 +49,7 @@ public class ApiExceptionHandler {
     @ResponseBody
     public ErrorMessage exception(HttpServletRequest request, Exception exception) {
         exception.printStackTrace();
-        return new ErrorMessage(exception, request.getRequestURI());
+        return new ErrorMessage(exception);
     }
 
 }
