@@ -1,39 +1,34 @@
-package es.upm.miw.apaw_practice.data.shop.entities;
+package es.upm.miw.apaw_practice.rest.shop;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.index.Indexed;
-import org.springframework.data.mongodb.core.mapping.Document;
+import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import es.upm.miw.apaw_practice.data.shop.entities.Article;
+import org.springframework.beans.BeanUtils;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.UUID;
 
-@Document
-public class Article {
-    @Id
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class ArticleDto {
     private String id;
-    @Indexed(unique = true)
     private Long barcode;
     private String description;
+    //@JsonFormat(pattern="dd-MM-yyyy")
     private LocalDate registrationDate;
     private BigDecimal price;
     private String provider;
 
-    public Article() {
-        this.id = UUID.randomUUID().toString();
-        this.registrationDate = LocalDate.now();
-    }
-
-    public Article(Long barcode, String description, BigDecimal price, String provider) {
-        this();
-        this.barcode = barcode;
-        this.description = description;
-        this.price = price;
-        this.provider = provider;
+    ArticleDto fromArticle(Article article){
+        BeanUtils.copyProperties(article, this);
+        return this;
     }
 
     public String getId() {
         return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public Long getBarcode() {
@@ -56,6 +51,10 @@ public class Article {
         return registrationDate;
     }
 
+    public void setRegistrationDate(LocalDate registrationDate) {
+        this.registrationDate = registrationDate;
+    }
+
     public BigDecimal getPrice() {
         return price;
     }
@@ -73,20 +72,10 @@ public class Article {
     }
 
     @Override
-    public int hashCode() {
-        return barcode.hashCode();
-    }
-
-    //@Override
-    public boolean equals(Object obj) {
-        return this == obj || obj != null && getClass() == obj.getClass() && (barcode.equals(((Article) obj).barcode));
-    }
-
-    @Override
     public String toString() {
-        return "Article{" +
+        return "ArticleDto{" +
                 "id='" + id + '\'' +
-                ", barcode='" + barcode + '\'' +
+                ", barcode=" + barcode +
                 ", description='" + description + '\'' +
                 ", registrationDate=" + registrationDate +
                 ", price=" + price +

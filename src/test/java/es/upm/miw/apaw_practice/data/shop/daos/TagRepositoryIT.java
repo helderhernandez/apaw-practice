@@ -17,7 +17,7 @@ public class TagRepositoryIT {
         assertTrue(this.tagRepository.findAll().stream()
                 .anyMatch(tag -> "tag2".equals(tag.getDescription()) &&
                         2 == tag.getArticles().size() &&
-                        "84001".equals(tag.getArticles().get(0).getCode()) &&
+                        84001L==tag.getArticles().get(0).getBarcode() &&
                         tag.getFavourite()
                 ));
     }

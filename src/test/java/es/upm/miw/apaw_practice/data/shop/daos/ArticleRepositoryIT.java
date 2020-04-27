@@ -17,7 +17,7 @@ class ArticleRepositoryIT {
     @Test
     void testCreateAndRead() {
         assertTrue(this.articleRepository.findAll().stream()
-                .anyMatch(article -> "84003".equals(article.getCode()) &&
+                .anyMatch(article -> 84003L==article.getBarcode() &&
                         "art 003".equals(article.getDescription()) &&
                         0 == new BigDecimal("12.13").compareTo(article.getPrice()) &&
                         "prov 3".equals(article.getProvider())
