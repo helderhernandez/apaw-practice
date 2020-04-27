@@ -13,7 +13,13 @@ import org.springframework.stereotype.Component;
 @Aspect
 public class ApiLogs {
 
-    private StringBuilder log = new StringBuilder();
+    private ObjectMapper jacksonObjectMapper;
+    private StringBuilder log;
+
+    public ApiLogs(ObjectMapper jacksonObjectMapper) {
+        this.jacksonObjectMapper = jacksonObjectMapper;
+        this.log = new StringBuilder();
+    }
 
     @Pointcut("@within(org.springframework.web.bind.annotation.RestController)")
     public void allResources() {
@@ -59,7 +65,7 @@ public class ApiLogs {
                 this.addLog(className);
             } else {
                 try {
-                    this.addLog(new ObjectMapper().writeValueAsString(returnValue));
+                    this.addLog(jacksonObjectMapper.writeValueAsString(returnValue));
                 } catch (JsonProcessingException e) {
                     this.addLog(returnValue.toString());
                 }

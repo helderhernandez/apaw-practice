@@ -23,18 +23,19 @@ class ArticleResourceIT {
     private String contextPath;
 
     @Test
-    void testCreate(){
-        Article articleDto =  new Article(666004L, "art rest", new BigDecimal("3.00"), null);
+    void testCreate() {
+        Article article =
+                new Article(666004L, "art rest", new BigDecimal("3.00"), null);
         this.webTestClient
                 .post()
                 .uri(this.contextPath + ArticleResource.BASE_PATH)
-                .body(BodyInserters.fromValue(articleDto))
+                .body(BodyInserters.fromValue(article))
                 .exchange()
                 .expectStatus().isOk()
                 .expectBody(Article.class)
                 .value(Assertions::assertNotNull)
-                .value(article -> assertNotNull(article.getId()));
-    }
+                .value(articleData -> assertNotNull(article.getId()));
 
+    }
 
 }

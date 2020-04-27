@@ -15,7 +15,7 @@ public class ArticleService {
         this.articleRepository = articleRepository;
     }
 
-    public Article create(Article article){
+    public Article create(Article article) {
         return this.articleRepository.save(article);
     }
 }

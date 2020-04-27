@@ -34,9 +34,9 @@ public class ShopSeederService {
         };
         this.articleRepository.saveAll(Arrays.asList(articles));
         Tag[] tags = {
-                new Tag("tag1", Arrays.asList(articles[0], articles[1]), false),
-                new Tag("tag2", Arrays.asList(articles[0], articles[3]), true),
-                new Tag("tag3", Arrays.asList(articles[1]), false),
+                new Tag("tag1", "tag 1", Arrays.asList(articles[0], articles[1]), false),
+                new Tag("tag2", "tag 2", Arrays.asList(articles[0], articles[3]), true),
+                new Tag("tag3", "tag 3", Arrays.asList(articles[1]), false),
         };
         this.tagRepository.saveAll(Arrays.asList(tags));
         ArticleItem[] articleItems = {
