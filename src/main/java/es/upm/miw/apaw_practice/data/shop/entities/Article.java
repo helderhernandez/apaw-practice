@@ -13,7 +13,7 @@ public class Article {
     @Id
     private String id;
     @Indexed(unique = true)
-    private String code;
+    private Long barcode;
     private String description;
     private LocalDate registrationDate;
     private BigDecimal price;
@@ -24,9 +24,9 @@ public class Article {
         this.registrationDate = LocalDate.now();
     }
 
-    public Article(String code, String description, BigDecimal price, String provider) {
+    public Article(Long barcode, String description, BigDecimal price, String provider) {
         this();
-        this.code = code;
+        this.barcode = barcode;
         this.description = description;
         this.price = price;
         this.provider = provider;
@@ -36,12 +36,12 @@ public class Article {
         return id;
     }
 
-    public String getCode() {
-        return code;
+    public Long getBarcode() {
+        return barcode;
     }
 
-    public void setCode(String code) {
-        this.code = code;
+    public void setBarcode(Long barcode) {
+        this.barcode = barcode;
     }
 
     public String getDescription() {
@@ -74,19 +74,19 @@ public class Article {
 
     @Override
     public int hashCode() {
-        return this.id.hashCode();
+        return barcode.hashCode();
     }
 
-    @Override
+    //@Override
     public boolean equals(Object obj) {
-        return this == obj || obj != null && getClass() == obj.getClass() && (id.equals(((Article) obj).id));
+        return this == obj || obj != null && getClass() == obj.getClass() && (barcode.equals(((Article) obj).barcode));
     }
 
     @Override
     public String toString() {
         return "Article{" +
                 "id='" + id + '\'' +
-                ", code='" + code + '\'' +
+                ", barcode='" + barcode + '\'' +
                 ", description='" + description + '\'' +
                 ", registrationDate=" + registrationDate +
                 ", price=" + price +
