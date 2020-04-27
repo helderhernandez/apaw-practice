@@ -1,6 +1,7 @@
 package es.upm.miw.apaw_practice.rest.shop;
 
 import es.upm.miw.apaw_practice.business.shop.ArticleService;
+import es.upm.miw.apaw_practice.data.shop.dtos.ArticleCreationDto;
 import es.upm.miw.apaw_practice.data.shop.entities.Article;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -11,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping(ArticleResource.BASE_PATH)
 public class ArticleResource {
-    static final String BASE_PATH = "/articles";
+    public static final String BASE_PATH = "/articles";
 
     private ArticleService articleService;
 
@@ -21,8 +22,8 @@ public class ArticleResource {
     }
 
     @PostMapping
-    public Article createArticle(@RequestBody Article article) {
-        return this.articleService.create(article);
+    public Article createArticle(@RequestBody ArticleCreationDto articleCreationDto) {
+        return this.articleService.create(articleCreationDto);
     }
 
 }

@@ -1,6 +1,7 @@
 package es.upm.miw.apaw_practice.business.shop;
 
 import es.upm.miw.apaw_practice.data.shop.daos.ArticleRepository;
+import es.upm.miw.apaw_practice.data.shop.dtos.ArticleCreationDto;
 import es.upm.miw.apaw_practice.data.shop.entities.Article;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,7 +16,7 @@ public class ArticleService {
         this.articleRepository = articleRepository;
     }
 
-    public Article create(Article article) {
-        return this.articleRepository.save(article);
+    public Article create(ArticleCreationDto articleCreationDto) {
+        return this.articleRepository.save(articleCreationDto.toArticle());
     }
 }
