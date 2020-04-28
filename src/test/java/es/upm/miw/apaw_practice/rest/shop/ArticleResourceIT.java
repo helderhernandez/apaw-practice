@@ -34,7 +34,7 @@ class ArticleResourceIT {
                 .expectStatus().isOk()
                 .expectBody(Article.class)
                 .value(Assertions::assertNotNull)
-                .value(articleData -> assertNotNull(article.getId()));
+                .value(articleData -> assertNotNull(articleData.getId()));
 
     }
 
