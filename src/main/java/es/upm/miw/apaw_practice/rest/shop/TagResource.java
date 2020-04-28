@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(TagResource.BASE_PATH)
 public class TagResource {
     static final String BASE_PATH = "/tags";
-    static final String ID_ID="/{id}";
+    static final String ID_ID = "/{id}";
 
     private TagService tagService;
 
@@ -20,7 +20,7 @@ public class TagResource {
     }
 
     @GetMapping(TagResource.ID_ID)
-    public Tag read(@PathVariable String id){
+    public Tag read(@PathVariable String id) {
         return this.tagService.read(id);
     }
 }
