@@ -4,7 +4,7 @@
 
 ### Estado del código
 [![Build Status](https://travis-ci.org/miw-upm/apaw-practice.svg?branch=develop)](https://travis-ci.org/miw-upm/apaw-practice)
-[![Maintainability Rating](https://sonarcloud.io/api/project_badges/measure?project=es.upm.miw%3Aapaw-practice&metric=sqale_rating)](https://sonarcloud.io/dashboard?id=es.upm.miw%3Aapaw-practice)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=es.upm.miw%3Aapaw-practice&metric=alert_status)](https://sonarcloud.io/dashboard?id=es.upm.miw%3Aapaw-practice)
 [![BCH compliance](https://bettercodehub.com/edge/badge/miw-upm/apaw-practice?branch=develop)](https://bettercodehub.com/results/miw-upm/apaw-practice)
 [![Heroku broken](https://apaw-practice.herokuapp.com/api/v0/system/version-badge)](https://apaw-practice.herokuapp.com/api/v0/swagger-ui.html)
 
