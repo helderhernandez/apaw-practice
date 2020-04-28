@@ -1,5 +1,6 @@
 package es.upm.miw.apaw_practice.rest.shop;
 
+import es.upm.miw.apaw_practice.data.shop.dtos.TagDto;
 import es.upm.miw.apaw_practice.data.shop.entities.Tag;
 import es.upm.miw.apaw_practice.rest.RestTestConfig;
 import org.junit.jupiter.api.Assertions;
@@ -29,12 +30,12 @@ class TagResourceIT {
                 .uri(this.contextPath + TAGS + ID_ID, "tag3")
                 .exchange()
                 .expectStatus().isOk()
-                .expectBody(Tag.class)
+                .expectBody(TagDto.class)
                 .value(Assertions::assertNotNull)
                 .value(tagData -> {
                     assertEquals("tag 3", tagData.getDescription());
-                    assertEquals(1, tagData.getArticles().size());
-                    assertEquals("art 002", tagData.getArticles().get(0).getDescription());
+                    assertEquals(1, tagData.getArticlesBarcode().size());
+                    assertEquals(84002L, tagData.getArticlesBarcode().get(0));
                     assertFalse(tagData.getFavourite());
                 });
     }

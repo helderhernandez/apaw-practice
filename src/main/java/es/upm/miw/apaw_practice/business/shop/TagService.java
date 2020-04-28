@@ -1,7 +1,7 @@
 package es.upm.miw.apaw_practice.business.shop;
 
 import es.upm.miw.apaw_practice.data.shop.daos.TagRepository;
-import es.upm.miw.apaw_practice.data.shop.entities.Tag;
+import es.upm.miw.apaw_practice.data.shop.dtos.TagDto;
 import es.upm.miw.apaw_practice.rest.exceptions.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,9 +16,10 @@ public class TagService {
         this.tagRepository = tagRepository;
     }
 
-    public Tag read(String id) {
-        return this.tagRepository.findById(id)
-                .orElseThrow(() -> new NotFoundException("Tag id: " + id));
+    public TagDto read(String id) {
+        return new TagDto(this.tagRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException("Tag id: " + id))
+        );
     }
 
     public void delete(String id) {
