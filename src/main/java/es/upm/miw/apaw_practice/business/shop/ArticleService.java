@@ -9,6 +9,7 @@ import es.upm.miw.apaw_practice.rest.exceptions.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -39,5 +40,12 @@ public class ArticleService {
                     return article;
                 }).collect(Collectors.toList());
         this.articleRepository.saveAll(articles);
+    }
+
+    public List<Article> findByProviderAndPriceGreaterThan(String provider, BigDecimal price) {
+        return this.articleRepository.findAll().stream()
+                .filter(article -> provider.equals(article.getProvider()))
+                .filter(article -> price.compareTo(article.getPrice()) < 0)
+                .collect(Collectors.toList());
     }
 }
