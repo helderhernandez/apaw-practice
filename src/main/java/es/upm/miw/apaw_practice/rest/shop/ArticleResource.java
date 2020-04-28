@@ -25,5 +25,4 @@ public class ArticleResource {
     public Article createArticle(@RequestBody ArticleCreationDto articleCreationDto) {
         return this.articleService.create(articleCreationDto);
     }
-
 }
