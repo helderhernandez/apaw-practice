@@ -10,9 +10,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(ArticleResource.BASE_PATH)
+@RequestMapping(ArticleResource.ARTICLES)
 public class ArticleResource {
-    static final String BASE_PATH = "/articles";
+    static final String ARTICLES = "/articles";
 
     private ArticleService articleService;
 
