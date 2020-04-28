@@ -16,12 +16,12 @@ public class TagResource {
         this.tagService = tagService;
     }
 
-    @GetMapping(TagResource.ID_ID)
+    @GetMapping(ID_ID)
     public TagDto read(@PathVariable String id) {
         return this.tagService.read(id);
     }
 
-    @DeleteMapping(TagResource.ID_ID)
+    @DeleteMapping(ID_ID)
     public void delete(@PathVariable String id) {
         this.tagService.delete(id);
     }

@@ -15,7 +15,7 @@ import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 @RestTestConfig
 class ArticleResourceIT {
@@ -64,5 +64,33 @@ class ArticleResourceIT {
                 .body(BodyInserters.fromValue(articlePriceUpdatingDtoList))
                 .exchange()
                 .expectStatus().isNotFound();
+    }
+
+    @Test
+    void testSearchByProviderAndPrice() {
+        this.webTestClient
+                .get()
+                .uri(uriBuilder ->
+                        uriBuilder.path(this.contextPath + ArticleResource.ARTICLES + ArticleResource.SEARCH)
+                                .queryParam("q", "provider:prov 1;price:1.02")
+                                .build())
+                .exchange()
+                .expectStatus().isOk()
+                .expectBodyList(Article.class)
+                .value(articles -> assertTrue(articles.size() > 0))
+                .value(articles -> assertEquals("prov 1", articles.get(0).getProvider()))
+                .value(articles -> assertTrue(new BigDecimal("1.02").compareTo(articles.get(0).getPrice()) < 0));
+    }
+
+    @Test
+    void testSearchByProviderAndPriceBadRequest() {
+        this.webTestClient
+                .get()
+                .uri(uriBuilder ->
+                        uriBuilder.path(this.contextPath + ArticleResource.ARTICLES + ArticleResource.SEARCH)
+                                .queryParam("q", "kk:prov 1;price:1.02")
+                                .build())
+                .exchange()
+                .expectStatus().isBadRequest();
     }
 }

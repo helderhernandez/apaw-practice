@@ -23,7 +23,7 @@ public class ShoppingCartResource {
         this.shoppingCartService = shoppingCartService;
     }
 
-    @PutMapping(ShoppingCartResource.ID_ID + ShoppingCartResource.ARTICLE_ITEMS)
+    @PutMapping(ID_ID + ARTICLE_ITEMS)
     public ShoppingCart updateArticleItems(@PathVariable String id, @RequestBody List<ArticleItemDto> articleItemDtoList) {
         return this.shoppingCartService.updateArticleItems(id, articleItemDtoList);
     }

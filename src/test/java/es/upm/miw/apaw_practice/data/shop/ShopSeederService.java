@@ -30,7 +30,8 @@ public class ShopSeederService {
                 new Article(84001L, "art 001", new BigDecimal("1.23"), "prov 1"),
                 new Article(84002L, "art 002", new BigDecimal("0.27"), "prov 2"),
                 new Article(84003L, "art 003", new BigDecimal("12.13"), "prov 3"),
-                new Article(84004L, "art 004", new BigDecimal("4.00"), "prov 4")
+                new Article(84004L, "art 004", new BigDecimal("4.00"), "prov 4"),
+                new Article(84005L, "art 005", new BigDecimal("0.45"), "prov 1"),
         };
         this.articleRepository.saveAll(Arrays.asList(articles));
         Tag[] tags = {
