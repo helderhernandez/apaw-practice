@@ -9,7 +9,7 @@ import java.math.BigDecimal;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @TestConfig
-public class ShoppingCartRepositoryIT {
+class ShoppingCartRepositoryIT {
 
     @Autowired
     private ShoppingCartRepository shoppingCartRepository;
@@ -17,7 +17,7 @@ public class ShoppingCartRepositoryIT {
     @Test
     void testCreateAndRead() {
         assertTrue(this.shoppingCartRepository.findAll().stream()
-                .anyMatch(cart -> "user 1".equals(cart.getUser()) &&
+                .anyMatch(cart -> "user1".equals(cart.getUser()) &&
                         "address 1".equals(cart.getAddress()) &&
                         2 == cart.getArticleItems().size() &&
                         84001L == cart.getArticleItems().get(0).getArticle().getBarcode() &&

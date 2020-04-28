@@ -36,7 +36,6 @@ class ArticleResourceIT {
                 .expectBody(Article.class)
                 .value(Assertions::assertNotNull)
                 .value(articleData -> assertNotNull(articleData.getId()));
-
     }
 
     @Test
@@ -49,6 +48,5 @@ class ArticleResourceIT {
                 .body(BodyInserters.fromValue(article))
                 .exchange()
                 .expectStatus().isEqualTo(HttpStatus.CONFLICT);
-
     }
 }
