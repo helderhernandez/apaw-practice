@@ -8,8 +8,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.test.web.reactive.server.WebTestClient;
 
-import static es.upm.miw.apaw_practice.rest.shop.TagResource.TAGS;
 import static es.upm.miw.apaw_practice.rest.shop.TagResource.ID_ID;
+import static es.upm.miw.apaw_practice.rest.shop.TagResource.TAGS;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
@@ -46,5 +46,14 @@ class TagResourceIT {
                 .uri(this.contextPath + TAGS + ID_ID, "kk")
                 .exchange()
                 .expectStatus().isNotFound();
+    }
+
+    @Test
+    void testDelete() {
+        this.webTestClient
+                .delete()
+                .uri(this.contextPath + TAGS + ID_ID, "kk")
+                .exchange()
+                .expectStatus().isOk();
     }
 }

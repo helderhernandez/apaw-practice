@@ -20,4 +20,8 @@ public class TagService {
         return this.tagRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("Tag id: " + id));
     }
+
+    public void delete(String id) {
+        this.tagRepository.deleteById(id);
+    }
 }
