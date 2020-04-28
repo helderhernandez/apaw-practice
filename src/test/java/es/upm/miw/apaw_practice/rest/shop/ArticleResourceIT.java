@@ -29,7 +29,7 @@ class ArticleResourceIT {
                 new Article(666004L, "art rest", new BigDecimal("3.00"), null);
         this.webTestClient
                 .post()
-                .uri(this.contextPath + ArticleResource.BASE_PATH)
+                .uri(this.contextPath + ArticleResource.ARTICLES)
                 .body(BodyInserters.fromValue(article))
                 .exchange()
                 .expectStatus().isOk()
@@ -44,7 +44,7 @@ class ArticleResourceIT {
                 new Article(84001L, "repeated", new BigDecimal("3.00"), null);
         this.webTestClient
                 .post()
-                .uri(this.contextPath + ArticleResource.BASE_PATH)
+                .uri(this.contextPath + ArticleResource.ARTICLES)
                 .body(BodyInserters.fromValue(article))
                 .exchange()
                 .expectStatus().isEqualTo(HttpStatus.CONFLICT);

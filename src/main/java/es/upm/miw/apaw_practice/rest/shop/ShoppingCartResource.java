@@ -9,9 +9,9 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping(ShoppingCartResource.BASE_PATH)
+@RequestMapping(ShoppingCartResource.SHOPPING_CARTS)
 public class ShoppingCartResource {
-    static final String BASE_PATH = "/shopping-cart";
+    static final String SHOPPING_CARTS = "/shopping-carts";
     static final String ID_ID = "/{id}";
     static final String ARTICLE_ITEMS = "/article-items";
 

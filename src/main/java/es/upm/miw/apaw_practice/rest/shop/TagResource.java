@@ -8,9 +8,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(TagResource.BASE_PATH)
+@RequestMapping(TagResource.TAGS)
 public class TagResource {
-    static final String BASE_PATH = "/tags";
+    static final String TAGS = "/tags";
     static final String ID_ID = "/{id}";
 
     private TagService tagService;

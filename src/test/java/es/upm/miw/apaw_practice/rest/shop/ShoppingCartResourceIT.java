@@ -31,7 +31,7 @@ class ShoppingCartResourceIT {
         );
         this.webTestClient
                 .put()
-                .uri(this.contextPath + BASE_PATH + ID_ID + ARTICLE_ITEMS, "kk")
+                .uri(this.contextPath + SHOPPING_CARTS + ID_ID + ARTICLE_ITEMS, "kk")
                 .body(BodyInserters.fromValue(articleItemArray))
                 .exchange()
                 .expectStatus().isNotFound();
