@@ -25,7 +25,7 @@ public class ShoppingCartService {
         this.articleRepository = articleRepository;
     }
 
-    public ShoppingCart update(String id, List<ArticleItemDto> articleItemDtoList) {
+    public ShoppingCart updateArticleItems(String id, List<ArticleItemDto> articleItemDtoList) {
         ShoppingCart shoppingCart = this.shoppingCartRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("ShoppingCart id: " + id));
         List<ArticleItem> articleItemList = articleItemDtoList.stream()

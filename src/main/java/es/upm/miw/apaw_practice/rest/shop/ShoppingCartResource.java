@@ -24,7 +24,7 @@ public class ShoppingCartResource {
     }
 
     @PutMapping(ShoppingCartResource.ID_ID + ShoppingCartResource.ARTICLE_ITEMS)
-    public ShoppingCart update(@PathVariable String id, @RequestBody List<ArticleItemDto> articleItemDtoList) {
-        return this.shoppingCartService.update(id, articleItemDtoList);
+    public ShoppingCart updateArticleItems(@PathVariable String id, @RequestBody List<ArticleItemDto> articleItemDtoList) {
+        return this.shoppingCartService.updateArticleItems(id, articleItemDtoList);
     }
 }
