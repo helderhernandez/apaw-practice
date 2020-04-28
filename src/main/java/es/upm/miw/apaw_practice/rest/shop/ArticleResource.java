@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping(ArticleResource.BASE_PATH)
 public class ArticleResource {
-    public static final String BASE_PATH = "/articles";
+    static final String BASE_PATH = "/articles";
 
     private ArticleService articleService;
 
