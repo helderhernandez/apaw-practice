@@ -1,5 +1,6 @@
 package es.upm.miw.apaw_practice.rest.shop;
 
+import es.upm.miw.apaw_practice.data.shop.dtos.ArticlePriceUpdatingDto;
 import es.upm.miw.apaw_practice.data.shop.entities.Article;
 import es.upm.miw.apaw_practice.rest.RestTestConfig;
 import org.junit.jupiter.api.Assertions;
@@ -11,6 +12,8 @@ import org.springframework.test.web.reactive.server.WebTestClient;
 import org.springframework.web.reactive.function.BodyInserters;
 
 import java.math.BigDecimal;
+import java.util.Arrays;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
@@ -48,5 +51,18 @@ class ArticleResourceIT {
                 .body(BodyInserters.fromValue(article))
                 .exchange()
                 .expectStatus().isEqualTo(HttpStatus.CONFLICT);
+    }
+
+    @Test
+    void testUpdatePricesNotFound() {
+        List<ArticlePriceUpdatingDto> articlePriceUpdatingDtoList = Arrays.asList(
+                new ArticlePriceUpdatingDto(0L, BigDecimal.ONE)
+        );
+        this.webTestClient
+                .patch()
+                .uri(this.contextPath + ArticleResource.ARTICLES)
+                .body(BodyInserters.fromValue(articlePriceUpdatingDtoList))
+                .exchange()
+                .expectStatus().isNotFound();
     }
 }

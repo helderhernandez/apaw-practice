@@ -2,7 +2,6 @@ package es.upm.miw.apaw_practice.rest.shop;
 
 import es.upm.miw.apaw_practice.business.shop.TagService;
 import es.upm.miw.apaw_practice.data.shop.dtos.TagDto;
-import es.upm.miw.apaw_practice.data.shop.entities.Tag;
 import org.springframework.web.bind.annotation.*;
 
 @RestController

@@ -1,7 +1,6 @@
 package es.upm.miw.apaw_practice.rest.shop;
 
 import es.upm.miw.apaw_practice.data.shop.dtos.TagDto;
-import es.upm.miw.apaw_practice.data.shop.entities.Tag;
 import es.upm.miw.apaw_practice.rest.RestTestConfig;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
