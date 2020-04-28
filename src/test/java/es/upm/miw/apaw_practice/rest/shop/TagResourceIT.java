@@ -10,7 +10,8 @@ import org.springframework.test.web.reactive.server.WebTestClient;
 
 import static es.upm.miw.apaw_practice.rest.shop.TagResource.BASE_PATH;
 import static es.upm.miw.apaw_practice.rest.shop.TagResource.ID_ID;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 @RestTestConfig
 class TagResourceIT {
@@ -22,7 +23,7 @@ class TagResourceIT {
     private String contextPath;
 
     @Test
-    void testRead(){
+    void testRead() {
         this.webTestClient
                 .get()
                 .uri(this.contextPath + BASE_PATH + ID_ID, "tag3")
@@ -32,14 +33,14 @@ class TagResourceIT {
                 .value(Assertions::assertNotNull)
                 .value(tagData -> {
                     assertEquals("tag 3", tagData.getDescription());
-                    assertEquals(1,tagData.getArticles().size());
-                    assertEquals("art 002",tagData.getArticles().get(0).getDescription());
+                    assertEquals(1, tagData.getArticles().size());
+                    assertEquals("art 002", tagData.getArticles().get(0).getDescription());
                     assertFalse(tagData.getFavourite());
                 });
     }
 
     @Test
-    void testReadNotFound(){
+    void testReadNotFound() {
         this.webTestClient
                 .get()
                 .uri(this.contextPath + BASE_PATH + ID_ID, "kk")

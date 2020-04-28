@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
+import org.springframework.http.HttpStatus;
 import org.springframework.test.web.reactive.server.WebTestClient;
 import org.springframework.web.reactive.function.BodyInserters;
 
@@ -38,4 +39,16 @@ class ArticleResourceIT {
 
     }
 
+    @Test
+    void testCreateConflict() {
+        Article article =
+                new Article(84001L, "repeated", new BigDecimal("3.00"), null);
+        this.webTestClient
+                .post()
+                .uri(this.contextPath + ArticleResource.BASE_PATH)
+                .body(BodyInserters.fromValue(article))
+                .exchange()
+                .expectStatus().isEqualTo(HttpStatus.CONFLICT);
+
+    }
 }
