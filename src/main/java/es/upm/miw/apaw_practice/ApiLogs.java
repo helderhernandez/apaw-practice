@@ -31,7 +31,8 @@ public class ApiLogs {
         int length = this.log.length();
         if (length > 1000) {
             this.log.delete(900, length);
-            this.log.append(log.length()).append(" characters");
+            this.log.append(" ++ ").append(length)
+                    .append(" characters");
         }
         return this.log.toString();
     }

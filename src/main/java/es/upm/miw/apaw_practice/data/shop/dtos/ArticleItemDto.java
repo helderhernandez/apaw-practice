@@ -1,27 +1,28 @@
-package es.upm.miw.apaw_practice.data.shop.entities;
-
-import org.springframework.data.mongodb.core.mapping.DBRef;
+package es.upm.miw.apaw_practice.data.shop.dtos;
 
 import java.math.BigDecimal;
 
-public class ArticleItem {
-    @DBRef
-    private Article article;
+public class ArticleItemDto {
+    private Long barcode;
     private Integer amount;
     private BigDecimal discount;
 
-    public ArticleItem() {
+    public ArticleItemDto() {
         //empty for framework
     }
 
-    public ArticleItem(Article article, Integer amount, BigDecimal discount) {
-        this.article = article;
+    public ArticleItemDto(Long barcode, Integer amount, BigDecimal discount) {
+        this.barcode = barcode;
         this.amount = amount;
         this.discount = discount;
     }
 
-    public Article getArticle() {
-        return article;
+    public Long getBarcode() {
+        return barcode;
+    }
+
+    public void setBarcode(Long barcode) {
+        this.barcode = barcode;
     }
 
     public Integer getAmount() {
@@ -43,7 +44,7 @@ public class ArticleItem {
     @Override
     public String toString() {
         return "ArticleItemDto{" +
-                "article=" + article +
+                "barcode=" + barcode +
                 ", amount=" + amount +
                 ", discount=" + discount +
                 '}';

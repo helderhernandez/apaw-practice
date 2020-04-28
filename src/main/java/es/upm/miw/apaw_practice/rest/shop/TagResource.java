@@ -2,16 +2,13 @@ package es.upm.miw.apaw_practice.rest.shop;
 
 import es.upm.miw.apaw_practice.business.shop.TagService;
 import es.upm.miw.apaw_practice.data.shop.entities.Tag;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
-@RequestMapping(TagResource.BASE_PATH)
+@RequestMapping(TagResource.TAGS)
 public class TagResource {
-    static final String BASE_PATH = "/tags";
-    static final String ID_ID="/{id}";
+    static final String TAGS = "/tags";
+    static final String ID_ID = "/{id}";
 
     private TagService tagService;
 
@@ -20,7 +17,12 @@ public class TagResource {
     }
 
     @GetMapping(TagResource.ID_ID)
-    public Tag read(@PathVariable String id){
+    public Tag read(@PathVariable String id) {
         return this.tagService.read(id);
+    }
+
+    @DeleteMapping(TagResource.ID_ID)
+    public void delete(@PathVariable String id) {
+        this.tagService.delete(id);
     }
 }

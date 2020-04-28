@@ -46,8 +46,8 @@ public class ShopSeederService {
                 new ArticleItem(articles[2], 4, BigDecimal.ONE)
         };
         ShoppingCart[] carts = {
-                new ShoppingCart(Arrays.asList(articleItems[0], articleItems[1]), "user 1", "address 1"),
-                new ShoppingCart(Arrays.asList(articleItems[2], articleItems[3]), "user 2", "address 2")
+                new ShoppingCart(Arrays.asList(articleItems[0], articleItems[1]), "user1", "address 1"),
+                new ShoppingCart(Arrays.asList(articleItems[2], articleItems[3]), "user2", "address 2")
         };
         this.shoppingCartRepository.saveAll(Arrays.asList(carts));
     }
