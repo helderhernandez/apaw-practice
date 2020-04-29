@@ -35,7 +35,8 @@ public class ShoppingCartService {
                     Article article = this.articleRepository.findByBarcode(articleItemDto.getBarcode())
                             .orElseThrow(() -> new NotFoundException("Article barcode: " + articleItemDto.getBarcode()));
                     return new ArticleItem(article, articleItemDto.getAmount(), articleItemDto.getDiscount());
-                }).collect(Collectors.toList());
+                })
+                .collect(Collectors.toList());
         shoppingCart.setArticleItems(articleItemList);
         return this.shoppingCartRepository.save(shoppingCart);
     }

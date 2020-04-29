@@ -11,8 +11,8 @@ public class ArticleCreationDto {
     private BigDecimal price;
     private String provider;
 
-    public ArticleCreationDto(Long barcode) {
-        this.barcode = barcode;
+    public ArticleCreationDto() {
+        //empty for framework
     }
 
     public ArticleCreationDto(Long barcode, String description, BigDecimal price, String provider) {

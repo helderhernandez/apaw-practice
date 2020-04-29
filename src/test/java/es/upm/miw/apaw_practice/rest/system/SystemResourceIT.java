@@ -1,13 +1,14 @@
-package es.upm.miw.apaw_practice.rest;
+package es.upm.miw.apaw_practice.rest.system;
 
+import es.upm.miw.apaw_practice.rest.RestTestConfig;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.test.web.reactive.server.WebTestClient;
 
-import static es.upm.miw.apaw_practice.rest.SystemResource.SYSTEM;
-import static es.upm.miw.apaw_practice.rest.SystemResource.VERSION_BADGE;
+import static es.upm.miw.apaw_practice.rest.system.SystemResource.SYSTEM;
+import static es.upm.miw.apaw_practice.rest.system.SystemResource.VERSION_BADGE;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 

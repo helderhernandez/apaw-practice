@@ -2,7 +2,7 @@ package es.upm.miw.apaw_practice.rest.shop;
 
 import es.upm.miw.apaw_practice.business.shop.TagService;
 import es.upm.miw.apaw_practice.data.shop.dtos.TagDto;
-import es.upm.miw.apaw_practice.rest.Search;
+import es.upm.miw.apaw_practice.rest.LexicalAnalyzer;
 import es.upm.miw.apaw_practice.rest.exceptions.BadRequestException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -35,8 +35,8 @@ public class TagResource {
 
     @GetMapping(SEARCH)
     public List<TagDto> findByArticlesInShoppingCarts(@RequestParam String q) {
-        if (!"in".equals(new Search().extract(q, "shopping-carts"))) {
-            throw new BadRequestException("q incorrect");
+        if (!"in".equals(new LexicalAnalyzer().extractAssured(q, "shopping-carts"))) {
+            throw new BadRequestException("q incorrect, expected in");
         }
         return this.tagService.findByArticlesInShoppingCarts();
     }
