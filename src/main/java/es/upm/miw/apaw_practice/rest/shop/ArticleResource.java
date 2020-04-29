@@ -34,21 +34,12 @@ public class ArticleResource {
         this.articleService.updatePrices(articlePriceUpdatingDtoList);
     }
 
-    private String extract(String q, String key) {
-        int start = q.contains(key) ? q.indexOf(key) + key.length() + 1 : -1;
-        if (start == -1) {
-            throw new BadRequestException("q incorrect");
-        }
-        int end = q.indexOf(";", start) == -1 ? q.length() : q.indexOf(";", start);
-        return q.substring(start, end);
-    }
-
     @GetMapping(SEARCH)
-    public List<Article> find(@RequestParam String q) {
-        String provider = this.extract(q, "provider");
+    public List<Article> findByProviderAndPriceGreaterThan(@RequestParam String q) {
+        String provider = new Search().extract(q, "provider");
         BigDecimal price;
         try {
-            price = new BigDecimal(this.extract(q, "price"));
+            price = new BigDecimal(new Search().extract(q, "price"));
         } catch (Exception e) {
             throw new BadRequestException("q incorrect price");
         }

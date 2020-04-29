@@ -3,6 +3,7 @@ package es.upm.miw.apaw_practice.business.shop;
 import es.upm.miw.apaw_practice.data.shop.daos.ArticleRepository;
 import es.upm.miw.apaw_practice.data.shop.daos.ShoppingCartRepository;
 import es.upm.miw.apaw_practice.data.shop.dtos.ArticleItemDto;
+import es.upm.miw.apaw_practice.data.shop.dtos.ShoppingCartReferenceDto;
 import es.upm.miw.apaw_practice.data.shop.entities.Article;
 import es.upm.miw.apaw_practice.data.shop.entities.ArticleItem;
 import es.upm.miw.apaw_practice.data.shop.entities.ShoppingCart;
@@ -10,6 +11,7 @@ import es.upm.miw.apaw_practice.rest.exceptions.NotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -36,5 +38,12 @@ public class ShoppingCartService {
                 }).collect(Collectors.toList());
         shoppingCart.setArticleItems(articleItemList);
         return this.shoppingCartRepository.save(shoppingCart);
+    }
+
+    public List<ShoppingCartReferenceDto> findByPriceGreaterThan(BigDecimal price) {
+        return this.shoppingCartRepository.findAll().stream()
+                .filter(shoppingCart -> price.compareTo(shoppingCart.total())>0)
+                .map(ShoppingCartReferenceDto::new)
+                .collect(Collectors.toList());
     }
 }

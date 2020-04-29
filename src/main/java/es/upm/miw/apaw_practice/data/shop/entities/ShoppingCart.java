@@ -3,6 +3,7 @@ package es.upm.miw.apaw_practice.data.shop.entities;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
@@ -59,6 +60,21 @@ public class ShoppingCart {
     public void setAddress(String address) {
         this.address = address;
     }
+
+    public BigDecimal total() {
+        return this.articleItems.stream()
+                .map(articleItem -> {
+                            BigDecimal discount = BigDecimal.ONE
+                                    .subtract(articleItem.getDiscount()
+                                            .divide(new BigDecimal(100), 4, BigDecimal.ROUND_HALF_UP));
+                            return articleItem.getArticle().getPrice()
+                                    .multiply(BigDecimal.valueOf(articleItem.getAmount())
+                                            .multiply(discount)
+                                    );
+                        }
+                ).reduce(BigDecimal.ZERO, BigDecimal::add);
+    }
+
 
     @Override
     public int hashCode() {
