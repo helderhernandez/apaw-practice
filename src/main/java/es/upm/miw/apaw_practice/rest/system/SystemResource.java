@@ -1,4 +1,4 @@
-package es.upm.miw.apaw_practice.rest;
+package es.upm.miw.apaw_practice.rest.system;
 
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -8,10 +8,10 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping(SystemResource.SYSTEM)
 public class SystemResource {
-    public static final String SYSTEM = "/system";
+    static final String SYSTEM = "/system";
 
-    public static final String APP_INFO = "/app-info";
-    public static final String VERSION_BADGE = "/version-badge";
+    static final String APP_INFO = "/app-info";
+    static final String VERSION_BADGE = "/version-badge";
 
     @Value("${miw.application.name}")
     private String applicationName;

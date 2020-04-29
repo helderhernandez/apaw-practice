@@ -38,7 +38,8 @@ public class ArticleService {
                             .orElseThrow(() -> new NotFoundException("Article barcode: " + articleNewPrice.getBarcode()));
                     article.setPrice(articleNewPrice.getPrice());
                     return article;
-                }).collect(Collectors.toList());
+                })
+                .collect(Collectors.toList());
         this.articleRepository.saveAll(articles);
     }
 

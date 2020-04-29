@@ -1,4 +1,4 @@
-package es.upm.miw.apaw_practice.rest;
+package es.upm.miw.apaw_practice.rest.system;
 
 public class Badge {
 

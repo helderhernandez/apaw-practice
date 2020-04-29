@@ -67,7 +67,7 @@ class ArticleResourceIT {
     }
 
     @Test
-    void testSearchByProviderAndPrice() {
+    void testSearchByProviderAndPriceGreaterThan() {
         this.webTestClient
                 .get()
                 .uri(uriBuilder ->
@@ -83,7 +83,7 @@ class ArticleResourceIT {
     }
 
     @Test
-    void testSearchByProviderAndPriceBadRequest() {
+    void testSearchByProviderAndPriceGreaterThanBadRequest() {
         this.webTestClient
                 .get()
                 .uri(uriBuilder ->

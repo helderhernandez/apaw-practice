@@ -4,7 +4,8 @@ import es.upm.miw.apaw_practice.business.shop.ShoppingCartService;
 import es.upm.miw.apaw_practice.data.shop.dtos.ArticleItemDto;
 import es.upm.miw.apaw_practice.data.shop.dtos.ShoppingCartReferenceDto;
 import es.upm.miw.apaw_practice.data.shop.entities.ShoppingCart;
-import es.upm.miw.apaw_practice.rest.Search;
+import es.upm.miw.apaw_practice.rest.LexicalAnalyzer;
+import es.upm.miw.apaw_practice.rest.exceptions.BadRequestException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -34,7 +35,13 @@ public class ShoppingCartResource {
 
     @GetMapping(SEARCH)
     public List<ShoppingCartReferenceDto> findByPriceGreaterThan(@RequestParam String q) {
-        BigDecimal price = new BigDecimal(new Search().extract(q, "price"));
+        String priceString = new LexicalAnalyzer().extractAssured(q, "price");
+        BigDecimal price;
+        try {
+            price = new BigDecimal(priceString);
+        } catch (Exception e) {
+            throw new BadRequestException("q: incorrect price: " + priceString);
+        }
         return this.shoppingCartService.findByPriceGreaterThan(price);
     }
 }
