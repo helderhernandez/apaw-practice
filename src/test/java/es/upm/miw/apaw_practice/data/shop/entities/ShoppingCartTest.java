@@ -10,7 +10,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 class ShoppingCartTest {
 
     @Test
-    void testTotal(){
+    void testTotal() {
         Article[] articles = {
                 new Article(84001L, "art 001", new BigDecimal("1.23"), "prov 1"),
                 new Article(84002L, "art 002", new BigDecimal("0.27"), "prov 2"),
@@ -23,6 +23,6 @@ class ShoppingCartTest {
         };
         BigDecimal total = new ShoppingCart(Arrays.asList(articleItems[0], articleItems[1], articleItems[2]),
                 "user1", "address 1").total();
-        assertEquals(0,new BigDecimal("30.64605").compareTo(total));
+        assertEquals(0, new BigDecimal("30.64605").compareTo(total));
     }
 }

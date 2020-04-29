@@ -42,7 +42,7 @@ public class ShoppingCartService {
 
     public List<ShoppingCartReferenceDto> findByPriceGreaterThan(BigDecimal price) {
         return this.shoppingCartRepository.findAll().stream()
-                .filter(shoppingCart -> price.compareTo(shoppingCart.total())>0)
+                .filter(shoppingCart -> price.compareTo(shoppingCart.total()) < 0)
                 .map(ShoppingCartReferenceDto::new)
                 .collect(Collectors.toList());
     }
