@@ -4,6 +4,7 @@ import es.upm.miw.apaw_practice.business.shop.ShoppingCartService;
 import es.upm.miw.apaw_practice.data.shop.dtos.ArticleItemDto;
 import es.upm.miw.apaw_practice.data.shop.dtos.ShoppingCartReferenceDto;
 import es.upm.miw.apaw_practice.data.shop.entities.ShoppingCart;
+import es.upm.miw.apaw_practice.rest.Search;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
