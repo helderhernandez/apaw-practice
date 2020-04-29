@@ -8,8 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.test.web.reactive.server.WebTestClient;
 
-import static es.upm.miw.apaw_practice.rest.shop.TagResource.ID_ID;
-import static es.upm.miw.apaw_practice.rest.shop.TagResource.TAGS;
+import static es.upm.miw.apaw_practice.rest.shop.TagResource.*;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
@@ -55,5 +54,31 @@ class TagResourceIT {
                 .uri(this.contextPath + TAGS + ID_ID, "kk")
                 .exchange()
                 .expectStatus().isOk();
+    }
+
+    @Test
+    void testFindByArticlesInShoppingCarts() {
+        this.webTestClient
+                .get()
+                .uri(uriBuilder ->
+                        uriBuilder.path(this.contextPath + TAGS + SEARCH)
+                                .queryParam("q", "shopping-carts:in")
+                                .build())
+                .exchange()
+                .expectStatus().isOk()
+                .expectBodyList(TagDto.class)
+                .value(System.out::println);
+    }
+
+    @Test
+    void testFindByArticlesInShoppingCartsBadRequest() {
+        this.webTestClient
+                .get()
+                .uri(uriBuilder ->
+                        uriBuilder.path(this.contextPath + TAGS + SEARCH)
+                                .queryParam("q", "shopping-carts:kk")
+                                .build())
+                .exchange()
+                .expectStatus().isBadRequest();
     }
 }

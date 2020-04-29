@@ -2,16 +2,23 @@ package es.upm.miw.apaw_practice.rest.shop;
 
 import es.upm.miw.apaw_practice.business.shop.TagService;
 import es.upm.miw.apaw_practice.data.shop.dtos.TagDto;
+import es.upm.miw.apaw_practice.rest.Search;
+import es.upm.miw.apaw_practice.rest.exceptions.BadRequestException;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping(TagResource.TAGS)
 public class TagResource {
     static final String TAGS = "/tags";
     static final String ID_ID = "/{id}";
+    static final String SEARCH = "/search";
 
     private TagService tagService;
 
+    @Autowired
     public TagResource(TagService tagService) {
         this.tagService = tagService;
     }
@@ -24,5 +31,13 @@ public class TagResource {
     @DeleteMapping(ID_ID)
     public void delete(@PathVariable String id) {
         this.tagService.delete(id);
+    }
+
+    @GetMapping(SEARCH)
+    public List<TagDto> findByArticlesInShoppingCarts(@RequestParam String q) {
+        if (!"in".equals(new Search().extract(q, "shopping-carts"))) {
+            throw new BadRequestException("q incorrect");
+        }
+        return this.tagService.findByArticlesInShoppingCarts();
     }
 }
