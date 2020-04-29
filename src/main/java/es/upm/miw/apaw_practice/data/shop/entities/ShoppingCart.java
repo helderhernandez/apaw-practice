@@ -4,6 +4,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
@@ -66,7 +67,7 @@ public class ShoppingCart {
                 .map(articleItem -> {
                             BigDecimal discount = BigDecimal.ONE
                                     .subtract(articleItem.getDiscount()
-                                            .divide(new BigDecimal(100), 4, BigDecimal.ROUND_HALF_UP));
+                                            .divide(new BigDecimal(100), 4, RoundingMode.HALF_UP));
                             return articleItem.getArticle().getPrice()
                                     .multiply(BigDecimal.valueOf(articleItem.getAmount())
                                             .multiply(discount)
