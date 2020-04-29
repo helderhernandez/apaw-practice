@@ -1,4 +1,4 @@
-package es.upm.miw.apaw_practice.rest.shop;
+package es.upm.miw.apaw_practice.rest;
 
 import es.upm.miw.apaw_practice.rest.exceptions.BadRequestException;
 
@@ -8,7 +8,7 @@ public class Search {
         if (start == -1) {
             throw new BadRequestException("q incorrect");
         }
-        int end = q.indexOf(";", start) == -1 ? q.length() : q.indexOf(";", start);
+        int end = q.indexOf(';', start) == -1 ? q.length() : q.indexOf(';', start);
         return q.substring(start, end);
     }
 }

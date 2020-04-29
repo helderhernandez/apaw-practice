@@ -4,6 +4,7 @@ import es.upm.miw.apaw_practice.business.shop.ArticleService;
 import es.upm.miw.apaw_practice.data.shop.dtos.ArticleCreationDto;
 import es.upm.miw.apaw_practice.data.shop.dtos.ArticlePriceUpdatingDto;
 import es.upm.miw.apaw_practice.data.shop.entities.Article;
+import es.upm.miw.apaw_practice.rest.Search;
 import es.upm.miw.apaw_practice.rest.exceptions.BadRequestException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
