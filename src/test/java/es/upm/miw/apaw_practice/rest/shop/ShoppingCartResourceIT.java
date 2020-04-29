@@ -1,7 +1,9 @@
 package es.upm.miw.apaw_practice.rest.shop;
 
 import es.upm.miw.apaw_practice.data.shop.dtos.ArticleItemDto;
+import es.upm.miw.apaw_practice.data.shop.dtos.ShoppingCartReferenceDto;
 import es.upm.miw.apaw_practice.rest.RestTestConfig;
+import org.hamcrest.Matcher;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -13,6 +15,8 @@ import java.util.Arrays;
 import java.util.List;
 
 import static es.upm.miw.apaw_practice.rest.shop.ShoppingCartResource.*;
+import static org.hamcrest.CoreMatchers.equalTo;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @RestTestConfig
 class ShoppingCartResourceIT {
@@ -35,5 +39,21 @@ class ShoppingCartResourceIT {
                 .body(BodyInserters.fromValue(articleItemArray))
                 .exchange()
                 .expectStatus().isNotFound();
+    }
+
+    @Test
+    void testFindByPriceGreaterThan() {
+        Matcher<String> x;
+        this.webTestClient
+                .get()
+                .uri(uriBuilder ->
+                        uriBuilder.path(this.contextPath + SHOPPING_CARTS + SEARCH)
+                                .queryParam("q", "price:5.0")
+                                .build())
+                .exchange()
+                .expectStatus().isOk()
+                .expectBodyList(ShoppingCartReferenceDto.class)
+                .value(shoppingCartReferenceDtoList -> shoppingCartReferenceDtoList.get(0).getUser(), equalTo("user2"))
+                .value(shoppingCartReferenceDtoList -> assertTrue(shoppingCartReferenceDtoList.size() > 0));
     }
 }
