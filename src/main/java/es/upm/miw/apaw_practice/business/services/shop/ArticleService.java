@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Service
 public class ArticleService {
@@ -26,7 +27,7 @@ public class ArticleService {
     public Article create(ArticleCreationDto articleCreationDto) {
         this.articleRepository.findByBarcode(articleCreationDto.getBarcode())
                 .ifPresent(article -> {
-                    throw new ConflictException("Barcode exist: " + articleCreationDto.getBarcode());
+                    throw new ConflictException("Barcode exist: " + article.getBarcode());
                 });
         return this.articleRepository.save(articleCreationDto.toArticle());
     }
@@ -43,10 +44,9 @@ public class ArticleService {
         this.articleRepository.saveAll(articles);
     }
 
-    public List<Article> findByProviderAndPriceGreaterThan(String provider, BigDecimal price) {
+    public Stream<Article> findByProviderAndPriceGreaterThan(String provider, BigDecimal price) {
         return this.articleRepository.findAll().stream()
                 .filter(article -> provider.equals(article.getProvider()))
-                .filter(article -> price.compareTo(article.getPrice()) < 0)
-                .collect(Collectors.toList());
+                .filter(article -> price.compareTo(article.getPrice()) < 0);
     }
 }

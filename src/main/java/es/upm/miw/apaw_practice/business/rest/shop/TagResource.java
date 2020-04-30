@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Stream;
 
 @RestController
 @RequestMapping(TagResource.TAGS)
@@ -34,7 +35,7 @@ public class TagResource {
     }
 
     @GetMapping(SEARCH)
-    public List<TagDto> findByArticlesInShoppingCarts(@RequestParam String q) {
+    public Stream<TagDto> findByArticlesInShoppingCarts(@RequestParam String q) {
         if (!"in".equals(new LexicalAnalyzer().extractAssured(q, "shopping-carts"))) {
             throw new BadRequestException("q incorrect, expected in");
         }

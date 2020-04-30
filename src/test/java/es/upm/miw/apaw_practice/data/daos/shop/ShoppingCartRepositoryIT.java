@@ -17,12 +17,13 @@ class ShoppingCartRepositoryIT {
     @Test
     void testCreateAndRead() {
         assertTrue(this.shoppingCartRepository.findAll().stream()
-                .anyMatch(cart -> "user1".equals(cart.getUser()) &&
-                        "address 1".equals(cart.getAddress()) &&
-                        2 == cart.getArticleItems().size() &&
-                        84001L == cart.getArticleItems().get(0).getArticle().getBarcode() &&
-                        1 == cart.getArticleItems().get(0).getAmount() &&
-                        0 == BigDecimal.ZERO.compareTo(cart.getArticleItems().get(0).getDiscount())
+                .anyMatch(cart ->
+                        "user1".equals(cart.getUser()) &&
+                                "address 1".equals(cart.getAddress()) &&
+                                2 == cart.getArticleItems().size() &&
+                                84001L == cart.getArticleItems().get(0).getArticle().getBarcode() &&
+                                1 == cart.getArticleItems().get(0).getAmount() &&
+                                0 == BigDecimal.ZERO.compareTo(cart.getArticleItems().get(0).getDiscount())
                 ));
     }
 }
