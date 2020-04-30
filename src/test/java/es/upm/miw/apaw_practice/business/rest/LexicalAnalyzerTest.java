@@ -39,7 +39,7 @@ class LexicalAnalyzerTest {
     @Test
     void testExtractConvertedAssured() {
         BigDecimal price = new LexicalAnalyzer().extractAssured("price:10.12", "price", BigDecimal::new);
-        assertEquals(0,new BigDecimal("10.12").compareTo(price));
+        assertEquals(0, new BigDecimal("10.12").compareTo(price));
     }
 
     @Test
