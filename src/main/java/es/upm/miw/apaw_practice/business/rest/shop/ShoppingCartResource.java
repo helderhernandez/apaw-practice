@@ -5,7 +5,6 @@ import es.upm.miw.apaw_practice.business.services.shop.ShoppingCartService;
 import es.upm.miw.apaw_practice.data.model.dtos.shop.ArticleItemDto;
 import es.upm.miw.apaw_practice.data.model.dtos.shop.ShoppingCartReferenceDto;
 import es.upm.miw.apaw_practice.data.model.entities.shop.ShoppingCart;
-import es.upm.miw.apaw_practice.exceptions.BadRequestException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 

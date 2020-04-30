@@ -5,7 +5,6 @@ import es.upm.miw.apaw_practice.business.services.shop.ArticleService;
 import es.upm.miw.apaw_practice.data.model.dtos.shop.ArticleCreationDto;
 import es.upm.miw.apaw_practice.data.model.dtos.shop.ArticlePriceUpdatingDto;
 import es.upm.miw.apaw_practice.data.model.entities.shop.Article;
-import es.upm.miw.apaw_practice.exceptions.BadRequestException;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -38,7 +37,7 @@ public class ArticleResource {
     @GetMapping(SEARCH)
     public List<Article> findByProviderAndPriceGreaterThan(@RequestParam String q) {
         String provider = new LexicalAnalyzer().extractAssured(q, "provider");
-        BigDecimal price = new LexicalAnalyzer().extractAssured(q, "price",BigDecimal::new);
+        BigDecimal price = new LexicalAnalyzer().extractAssured(q, "price", BigDecimal::new);
         return this.articleService.findByProviderAndPriceGreaterThan(provider, price);
     }
 
