@@ -3,6 +3,8 @@ package es.upm.miw.apaw_practice.business.rest;
 import es.upm.miw.apaw_practice.exceptions.BadRequestException;
 import org.junit.jupiter.api.Test;
 
+import java.math.BigDecimal;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
@@ -33,4 +35,17 @@ class LexicalAnalyzerTest {
         assertThrows(BadRequestException.class, () ->
                 new LexicalAnalyzer().extractAssured("", "name"));
     }
+
+    @Test
+    void testExtractConvertedAssured() {
+        BigDecimal price = new LexicalAnalyzer().extractAssured("price:10.12", "price", BigDecimal::new);
+        assertEquals(0,new BigDecimal("10.12").compareTo(price));
+    }
+
+    @Test
+    void testExtractConvertedAssuredError() {
+        assertThrows(BadRequestException.class, () ->
+                new LexicalAnalyzer().extractAssured("price:kk", "price", BigDecimal::new));
+    }
+
 }
