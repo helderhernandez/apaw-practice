@@ -35,13 +35,7 @@ public class ShoppingCartResource {
 
     @GetMapping(SEARCH)
     public List<ShoppingCartReferenceDto> findByPriceGreaterThan(@RequestParam String q) {
-        String priceString = new LexicalAnalyzer().extractAssured(q, "price");
-        BigDecimal price;
-        try {
-            price = new BigDecimal(priceString);
-        } catch (Exception e) {
-            throw new BadRequestException("q: incorrect price: " + priceString);
-        }
+        BigDecimal price = new LexicalAnalyzer().extractAssured(q, "price", BigDecimal::new);
         return this.shoppingCartService.findByPriceGreaterThan(price);
     }
 }

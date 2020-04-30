@@ -38,13 +38,7 @@ public class ArticleResource {
     @GetMapping(SEARCH)
     public List<Article> findByProviderAndPriceGreaterThan(@RequestParam String q) {
         String provider = new LexicalAnalyzer().extractAssured(q, "provider");
-        String priceString = new LexicalAnalyzer().extractAssured(q, "price");
-        BigDecimal price;
-        try {
-            price = new BigDecimal(priceString);
-        } catch (Exception e) {
-            throw new BadRequestException("q: incorrect price: " + priceString);
-        }
+        BigDecimal price = new LexicalAnalyzer().extractAssured(q, "price",BigDecimal::new);
         return this.articleService.findByProviderAndPriceGreaterThan(provider, price);
     }
 
