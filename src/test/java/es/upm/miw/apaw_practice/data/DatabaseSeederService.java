@@ -1,6 +1,5 @@
 package es.upm.miw.apaw_practice.data;
 
-import es.upm.miw.apaw_practice.data.shop.ShopSeederService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
