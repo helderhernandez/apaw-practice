@@ -48,10 +48,9 @@
         <project.reporting.outputEncoding>${encoding}</project.reporting.outputEncoding>
         <project.resources.sourceEncoding>${encoding}</project.resources.sourceEncoding>
         <!-- Java -->
-        <jdk.version>1.8</jdk.version>
+        <java.version>11</java.version>
         <deploy>${project.artifactId}-${project.version}</deploy>
         <!-- Maven -->
-        <maven.compiler.version>3.6.2</maven.compiler.version>
         <maven.build.timestamp.format>yyyy-MM-dd HH:mm:ss</maven.build.timestamp.format>
         <!-- Maven. integration test -->
         <maven-surefire-plugin.version>2.21.0</maven-surefire-plugin.version>
@@ -128,15 +127,6 @@
             <plugin>
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>${maven.compiler.version}</version>
-                <configuration>
-                    <source>${jdk.version}</source>
-                    <target>${jdk.version}</target>
-                </configuration>
             </plugin>
             <plugin>
                 <groupId>org.jacoco</groupId>

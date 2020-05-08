@@ -5,7 +5,6 @@ import es.upm.miw.apaw_practice.business.services.shop.ArticleService;
 import es.upm.miw.apaw_practice.data.model.dtos.shop.ArticleCreationDto;
 import es.upm.miw.apaw_practice.data.model.dtos.shop.ArticlePriceUpdatingDto;
 import es.upm.miw.apaw_practice.data.model.entities.shop.Article;
-import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
