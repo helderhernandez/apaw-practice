@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Service
 public class ShoppingCartService {
@@ -41,10 +42,9 @@ public class ShoppingCartService {
         return this.shoppingCartRepository.save(shoppingCart);
     }
 
-    public List<ShoppingCartReferenceDto> findByPriceGreaterThan(BigDecimal price) {
+    public Stream<ShoppingCartReferenceDto> findByPriceGreaterThan(BigDecimal price) {
         return this.shoppingCartRepository.findAll().stream()
                 .filter(shoppingCart -> price.compareTo(shoppingCart.total()) < 0)
-                .map(ShoppingCartReferenceDto::new)
-                .collect(Collectors.toList());
+                .map(ShoppingCartReferenceDto::new);
     }
 }

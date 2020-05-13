@@ -1,18 +1,19 @@
 language: java
 branches:
   only:
-  - develop
-  - "/^release-[0-999].[0-999]$/"
-  - master
+    - develop
+    - "/^release-[0-999].[0-999]$/"
+    - master
 notifications:
   email:
     recipients:
-    - j.bernal@upm.es
+      - j.bernal@upm.es
   slack:
     secure: SsCPUzcFMMhnP2vUvyFhDh+2V4xYl9pD8GVnRXFxxKTUDDwrUs4QUTtuI9tMrxvU49H6bwCZsHCqZNVM56uiwUD/RPyBIg5197uBt82uhbqI5XVAyuYgGBpcJedadAAZsODFjXtBvYWgsVBVsUaXZWFTHgbN48KXbxA3A3p3vXrckP5QZLZ85gYJBdSKyj9X3I0uJPv5c/IYuk3lHda/Db7/lZqRKlvnXzX10b/9AbUIPuunTm75pMtMT7RAe5ZZc1FLhoiYM8d7fa9QexfgCX4DSnLuUblQU/5YmaOYOQBjeqzZJlDVBb3wiEA+xafFNTzG/+llp5GoukNnhKGxGn41MbNYtsyKYXZNrQQosWLFvG2IHx7c4XReWGW+u2xQkIHEn4r7vMo4QASqhGt82V8C2pnjMpNrAfYkHmRvMxL21ss2zGl2D63D7bh1bhKNOMvbNcQFN+snHUZJ15ZAonaGpBqRK0osF3PN8drV3BRgf9p2rBKosRWvhjD618V1UesXJptswMsD7SxVetGGWEkez5yX/mZNG1GB9TPIx1gaXsrlrvRWswwfQf/cTFGZ9v6b4/VyFXall6w7TtswN1B/C6vFudJM2088/YG+jBYqzrNvFV2wzpxOHm5N+YdXBajq6Uk9s49sm3KsUifGJy5sCXBSJFNnvH5ltUorJ1g=
+install:
+  - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
 script:
-- mvn verify sonar:sonar -Dsonar.host.url=https://sonarcloud.io -Dsonar.organization=miw-upm-github
-  -Dsonar.login=$SONAR
+  - mvn verify sonar:sonar -Dsonar.host.url=https://sonarcloud.io -Dsonar.organization=miw-upm-github -Dsonar.login=$SONAR
 deploy:
   provider: heroku
   api_key: $HEROKU

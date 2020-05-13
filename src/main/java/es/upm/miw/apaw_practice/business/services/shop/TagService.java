@@ -11,6 +11,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Service
 public class TagService {
@@ -35,14 +36,13 @@ public class TagService {
         this.tagRepository.deleteById(id);
     }
 
-    public List<TagDto> findByArticlesInShoppingCarts() {
+    public Stream<TagDto> findByArticlesInShoppingCarts() {
         List<Article> articles = this.shoppingCartRepository.findAll().stream()
                 .flatMap(shoppingCart -> shoppingCart.getArticleItems().stream())
                 .map(ArticleItem::getArticle)
                 .collect(Collectors.toList());
         return this.tagRepository.findAll().stream()
                 .filter(tag -> tag.getArticles().stream().anyMatch(articles::contains))
-                .map(TagDto::new)
-                .collect(Collectors.toList());
+                .map(TagDto::new);
     }
 }

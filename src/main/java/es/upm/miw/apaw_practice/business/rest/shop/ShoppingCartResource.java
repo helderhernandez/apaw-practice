@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.stream.Stream;
 
 @RestController
 @RequestMapping(ShoppingCartResource.SHOPPING_CARTS)
@@ -33,7 +34,7 @@ public class ShoppingCartResource {
     }
 
     @GetMapping(SEARCH)
-    public List<ShoppingCartReferenceDto> findByPriceGreaterThan(@RequestParam String q) {
+    public Stream<ShoppingCartReferenceDto> findByPriceGreaterThan(@RequestParam String q) {
         BigDecimal price = new LexicalAnalyzer().extractAssured(q, "price", BigDecimal::new);
         return this.shoppingCartService.findByPriceGreaterThan(price);
     }

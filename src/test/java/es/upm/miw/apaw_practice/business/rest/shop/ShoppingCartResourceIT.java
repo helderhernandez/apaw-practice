@@ -3,7 +3,6 @@ package es.upm.miw.apaw_practice.business.rest.shop;
 import es.upm.miw.apaw_practice.business.rest.RestTestConfig;
 import es.upm.miw.apaw_practice.data.model.dtos.shop.ArticleItemDto;
 import es.upm.miw.apaw_practice.data.model.dtos.shop.ShoppingCartReferenceDto;
-import org.hamcrest.Matcher;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -43,7 +42,6 @@ class ShoppingCartResourceIT {
 
     @Test
     void testFindByPriceGreaterThan() {
-        Matcher<String> x;
         this.webTestClient
                 .get()
                 .uri(uriBuilder ->
