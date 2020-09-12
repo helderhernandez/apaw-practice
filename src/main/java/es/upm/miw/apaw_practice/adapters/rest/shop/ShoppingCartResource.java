@@ -35,7 +35,7 @@ public class ShoppingCartResource {
 
     @GetMapping(SEARCH)
     public Stream<ShoppingCartReference> findByPriceGreaterThan(@RequestParam String q) {
-        BigDecimal price = new LexicalAnalyzer().extractAssured(q, "price", BigDecimal::new);
+        BigDecimal price = new LexicalAnalyzer().extractWithAssure(q, "price", BigDecimal::new);
         return this.shoppingCartService.findByPriceGreaterThan(price);
     }
 }

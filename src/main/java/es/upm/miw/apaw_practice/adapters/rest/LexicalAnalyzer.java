@@ -9,18 +9,19 @@ public class LexicalAnalyzer {
 
     private static final String ASSIGNMENT = ":";
     private static final String BOOKMARK = ";";
+    private static final int keyIndex = 1;
 
-    public String extractAssured(String q, String key) {
+    public String extractWithAssure(String q, String key) {
         String[] token = Stream.of(q.split(BOOKMARK))
                 .filter(item -> item.startsWith(key))
                 .map(item -> item.split(ASSIGNMENT))
                 .findFirst()
                 .orElseThrow(() -> new BadRequestException("Key not found: " + key));
-        return token.length > 1 ? token[1] : "";
+        return token.length > keyIndex ? token[keyIndex] : "";
     }
 
-    public <T> T extractAssured(String q, String key, Function<String, T> convert) {
-        String value = this.extractAssured(q, key);
+    public <T> T extractWithAssure(String q, String key, Function<String, T> convert) {
+        String value = this.extractWithAssure(q, key);
         try {
             return convert.apply(value);
         } catch (Exception e) {

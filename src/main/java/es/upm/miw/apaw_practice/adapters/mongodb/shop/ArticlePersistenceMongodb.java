@@ -21,7 +21,7 @@ public class ArticlePersistenceMongodb implements ArticlePersistence {
     }
 
     @Override
-    public Article readByBarcode(Long barcode) {
+    public Article readByBarcodeAssure(Long barcode) {
         return this.articleRepository
                 .findByBarcode(barcode)
                 .orElseThrow(() -> new NotFoundException("Article barcode: " + barcode))
@@ -29,19 +29,12 @@ public class ArticlePersistenceMongodb implements ArticlePersistence {
     }
 
     @Override
-    public void barcodeNotExist(Long barcode) {
+    public void assertBarcodeNotExist(Long barcode) {
         this.articleRepository
                 .findByBarcode(barcode)
                 .ifPresent(article -> {
                     throw new ConflictException("Barcode exist: " + barcode);
                 });
-    }
-
-    @Override
-    public void barcodeExist(Long barcode) {
-        this.articleRepository
-                .findByBarcode(barcode)
-                .orElseThrow(() -> new NotFoundException("Article barcode: " + barcode));
     }
 
     @Override
@@ -61,7 +54,7 @@ public class ArticlePersistenceMongodb implements ArticlePersistence {
 
     @Override
     public Article create(Article article) {
-        this.barcodeNotExist(article.getBarcode());
+        this.assertBarcodeNotExist(article.getBarcode());
         return this.articleRepository
                 .save(new ArticleEntity(article))
                 .toArticle();

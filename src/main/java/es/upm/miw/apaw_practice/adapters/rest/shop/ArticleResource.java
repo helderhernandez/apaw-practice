@@ -37,8 +37,8 @@ public class ArticleResource {
 
     @GetMapping(SEARCH)
     public Stream<Article> findByProviderAndPriceGreaterThan(@RequestParam String q) {
-        String provider = new LexicalAnalyzer().extractAssured(q, "provider");
-        BigDecimal price = new LexicalAnalyzer().extractAssured(q, "price", BigDecimal::new);
+        String provider = new LexicalAnalyzer().extractWithAssure(q, "provider");
+        BigDecimal price = new LexicalAnalyzer().extractWithAssure(q, "price", BigDecimal::new);
         return this.articleService.findByProviderAndPriceGreaterThan(provider, price);
     }
 

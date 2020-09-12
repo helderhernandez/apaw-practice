@@ -27,8 +27,8 @@ class ArticleServiceIT {
                 new ArticlePriceUpdating(84003L, BigDecimal.TEN)
         );
         this.articleService.updatePrices(articlePriceUpdatingList);
-        assertEquals(0, BigDecimal.ONE.compareTo(this.articlePersistence.readByBarcode(84002L).getPrice()));
-        assertEquals(0, BigDecimal.TEN.compareTo(this.articlePersistence.readByBarcode(84003L).getPrice()));
+        assertEquals(0, BigDecimal.ONE.compareTo(this.articlePersistence.readByBarcodeAssure(84002L).getPrice()));
+        assertEquals(0, BigDecimal.TEN.compareTo(this.articlePersistence.readByBarcodeAssure(84003L).getPrice()));
         articlePriceUpdatingList = List.of(
                 new ArticlePriceUpdating(84002L, new BigDecimal("0.27")),
                 new ArticlePriceUpdating(84003L, new BigDecimal("12.13"))

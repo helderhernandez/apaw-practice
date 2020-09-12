@@ -35,7 +35,7 @@ public class TagResource {
 
     @GetMapping(SEARCH)
     public Stream<Tag> findByArticlesInShoppingCarts(@RequestParam String q) {
-        if (!"in".equals(new LexicalAnalyzer().extractAssured(q, "shopping-carts"))) {
+        if (!"in".equals(new LexicalAnalyzer().extractWithAssure(q, "shopping-carts"))) {
             throw new BadRequestException("q incorrect, expected in");
         }
         return this.tagService.findByArticlesInShoppingCarts();

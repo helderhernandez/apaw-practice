@@ -11,41 +11,41 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 class LexicalAnalyzerTest {
 
     @Test
-    void testExtractAssuredFirst() {
-        assertEquals("ana", new LexicalAnalyzer().extractAssured("name:ana", "name"));
-        assertEquals("ana", new LexicalAnalyzer().extractAssured("name:ana;surname:gil", "name"));
-        assertEquals("", new LexicalAnalyzer().extractAssured("name", "name"));
-        assertEquals("", new LexicalAnalyzer().extractAssured("name;surname:gil", "name"));
+    void testExtractWithAssureFirst() {
+        assertEquals("ana", new LexicalAnalyzer().extractWithAssure("name:ana", "name"));
+        assertEquals("ana", new LexicalAnalyzer().extractWithAssure("name:ana;surname:gil", "name"));
+        assertEquals("", new LexicalAnalyzer().extractWithAssure("name", "name"));
+        assertEquals("", new LexicalAnalyzer().extractWithAssure("name;surname:gil", "name"));
     }
 
     @Test
-    void testExtractAssuredSecond() {
-        assertEquals("gil", new LexicalAnalyzer().extractAssured("name:ana;surname:gil", "surname"));
-        assertEquals("", new LexicalAnalyzer().extractAssured("name:ana;surname", "surname"));
+    void testExtractWithAssureSecond() {
+        assertEquals("gil", new LexicalAnalyzer().extractWithAssure("name:ana;surname:gil", "surname"));
+        assertEquals("", new LexicalAnalyzer().extractWithAssure("name:ana;surname", "surname"));
     }
 
     @Test
-    void testExtractAssuredBadRequestKeyNotFound() {
+    void testExtractWithAssureBadRequestKeyNotFound() {
         assertThrows(BadRequestException.class, () ->
-                new LexicalAnalyzer().extractAssured("name:ana;surname:gil", "ana"));
+                new LexicalAnalyzer().extractWithAssure("name:ana;surname:gil", "ana"));
     }
 
     @Test
-    void testExtractAssuredBadRequestEmpty() {
+    void testExtractWithAssureBadRequestEmpty() {
         assertThrows(BadRequestException.class, () ->
-                new LexicalAnalyzer().extractAssured("", "name"));
+                new LexicalAnalyzer().extractWithAssure("", "name"));
     }
 
     @Test
-    void testExtractConvertedAssured() {
-        BigDecimal price = new LexicalAnalyzer().extractAssured("price:10.12", "price", BigDecimal::new);
+    void testExtractWithAssureConverting() {
+        BigDecimal price = new LexicalAnalyzer().extractWithAssure("price:10.12", "price", BigDecimal::new);
         assertEquals(0, new BigDecimal("10.12").compareTo(price));
     }
 
     @Test
-    void testExtractConvertedAssuredError() {
+    void testExtractWithAssureConvertingError() {
         assertThrows(BadRequestException.class, () ->
-                new LexicalAnalyzer().extractAssured("price:kk", "price", BigDecimal::new));
+                new LexicalAnalyzer().extractWithAssure("price:kk", "price", BigDecimal::new));
     }
 
 }
