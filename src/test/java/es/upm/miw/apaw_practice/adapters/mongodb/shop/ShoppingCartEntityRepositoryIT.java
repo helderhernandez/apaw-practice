@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -20,6 +21,9 @@ class ShoppingCartEntityRepositoryIT {
                 .anyMatch(cart ->
                         "user1".equals(cart.getUser()) &&
                                 "address 1".equals(cart.getAddress()) &&
+                                cart.getId()!=null &&
+                                cart.getCreationDate().isBefore(LocalDateTime.now()) &&
+                                cart.getCreationDate()!=null &&
                                 2 == cart.getArticleItemEntities().size() &&
                                 84001L == cart.getArticleItemEntities().get(0).getArticleEntity().getBarcode() &&
                                 1 == cart.getArticleItemEntities().get(0).getAmount() &&

@@ -8,8 +8,7 @@ public class Tag {
     private List<Long> articlesBarcode;
     private Boolean favourite;
 
-    public Tag() {
-        //empty for framework;
+    public Tag() { // empty for framework;
     }
 
     public Tag(String id, String description, List<Long> articlesBarcode, Boolean favourite) {
