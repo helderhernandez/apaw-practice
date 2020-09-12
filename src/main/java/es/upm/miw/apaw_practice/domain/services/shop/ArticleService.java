@@ -28,7 +28,7 @@ public class ArticleService {
     public void updatePrices(List<ArticlePriceUpdating> articlePriceUpdatingList) {
         articlePriceUpdatingList
                 .forEach(articleNewPrice -> {
-                    Article article = this.articlePersistence.readByBarcodeAssure(articleNewPrice.getBarcode());
+                    Article article = this.articlePersistence.readByBarcode(articleNewPrice.getBarcode());
                     article.setPrice(articleNewPrice.getPrice());
                     this.articlePersistence.update(article);
                 });

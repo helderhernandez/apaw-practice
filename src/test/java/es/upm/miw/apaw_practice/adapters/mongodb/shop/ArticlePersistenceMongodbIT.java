@@ -20,7 +20,7 @@ class ArticlePersistenceMongodbIT {
 
     @Test
     void testReadByBarcodeNotFound() {
-        assertThrows(NotFoundException.class, () -> this.articlePersistence.readByBarcodeAssure(0L));
+        assertThrows(NotFoundException.class, () -> this.articlePersistence.readByBarcode(0L));
     }
 
     @Test
@@ -38,7 +38,7 @@ class ArticlePersistenceMongodbIT {
         Article article =
                 new Article(6661001L, "art per", new BigDecimal("3.00"), "prov per");
         this.articlePersistence.create(article);
-        Article articleBD = this.articlePersistence.readByBarcodeAssure(6661001L);
+        Article articleBD = this.articlePersistence.readByBarcode(6661001L);
         assertEquals("art per", articleBD.getDescription());
         assertEquals(0, new BigDecimal("3.00").compareTo(articleBD.getPrice()));
         assertEquals("prov per", articleBD.getProvider());
@@ -53,7 +53,7 @@ class ArticlePersistenceMongodbIT {
         Article articleBD = this.articlePersistence.create(article);
         articleBD.setPrice(BigDecimal.TEN);
         this.articlePersistence.update(articleBD);
-        articleBD = this.articlePersistence.readByBarcodeAssure(6661002L);
+        articleBD = this.articlePersistence.readByBarcode(6661002L);
         assertEquals(0, BigDecimal.TEN.compareTo(articleBD.getPrice()));
     }
 

@@ -37,7 +37,7 @@ public class ShoppingCartService {
                     BigDecimal discount = BigDecimal.ONE.subtract(
                             articleItem.getDiscount().divide(new BigDecimal(100), 4, RoundingMode.HALF_UP)
                     );
-                    BigDecimal articlePrice = this.articlePersistence.readByBarcodeAssure(articleItem.getBarcode()).getPrice();
+                    BigDecimal articlePrice = this.articlePersistence.readByBarcode(articleItem.getBarcode()).getPrice();
                     return articlePrice.multiply(BigDecimal.valueOf(articleItem.getAmount())
                             .multiply(discount)
                     );

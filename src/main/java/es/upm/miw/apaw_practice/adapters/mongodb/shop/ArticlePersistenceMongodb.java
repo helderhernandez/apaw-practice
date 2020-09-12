@@ -21,7 +21,7 @@ public class ArticlePersistenceMongodb implements ArticlePersistence {
     }
 
     @Override
-    public Article readByBarcodeAssure(Long barcode) {
+    public Article readByBarcode(Long barcode) {
         return this.articleRepository
                 .findByBarcode(barcode)
                 .orElseThrow(() -> new NotFoundException("Article barcode: " + barcode))

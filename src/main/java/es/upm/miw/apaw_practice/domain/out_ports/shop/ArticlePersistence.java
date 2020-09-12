@@ -15,7 +15,7 @@ public interface ArticlePersistence {
 
     Article update(Article article);
 
-    Article readByBarcodeAssure(Long barcode);
+    Article readByBarcode(Long barcode);
 
     void assertBarcodeNotExist(Long barcode);
 

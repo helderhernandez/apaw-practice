@@ -96,7 +96,6 @@ public class ArticleEntity {
         return article;
     }
 
-
     @Override
     public int hashCode() {
         return barcode.hashCode();
