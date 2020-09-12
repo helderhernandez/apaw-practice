@@ -18,7 +18,9 @@ class TagEntityRepositoryIT {
 
     @Test
     void testCreateAndRead() {
+        assertTrue(this.tagRepository.findById("tag2").isPresent());
         TagEntity tag = this.tagRepository.findById("tag2").get();
+        assertEquals("tag2", tag.getId());
         assertEquals("tag 2", tag.getDescription());
         assertTrue(tag.getArticleEntities().stream()
                 .map(ArticleEntity::getBarcode)

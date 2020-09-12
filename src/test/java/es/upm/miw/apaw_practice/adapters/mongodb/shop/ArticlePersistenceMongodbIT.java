@@ -25,7 +25,7 @@ class ArticlePersistenceMongodbIT {
 
     @Test
     void testBarcodeNotExist() {
-        this.articlePersistence.assertBarcodeNotExist(0L);
+        assertDoesNotThrow(() -> this.articlePersistence.assertBarcodeNotExist(0L));
     }
 
     @Test
