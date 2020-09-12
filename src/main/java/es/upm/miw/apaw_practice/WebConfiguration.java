@@ -1,11 +1,13 @@
 package es.upm.miw.apaw_practice;
 
 import org.springframework.context.annotation.Configuration;
-import org.springframework.web.servlet.config.annotation.CorsRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import org.springframework.web.reactive.config.CorsRegistry;
+import org.springframework.web.reactive.config.EnableWebFlux;
+import org.springframework.web.reactive.config.WebFluxConfigurer;
 
 @Configuration
-public class WebConfiguration implements WebMvcConfigurer {
+@EnableWebFlux
+public class WebConfiguration implements WebFluxConfigurer {
 
     @Override
     public void addCorsMappings(CorsRegistry registry) {
