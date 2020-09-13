@@ -25,13 +25,25 @@ class LexicalAnalyzerTest {
     }
 
     @Test
-    void testExtractWithAssureBadRequest() {
+    void testExtractWithAssureBadRequestConverting() {
         LexicalAnalyzer lexicalAnalyzer = new LexicalAnalyzer();
-        assertThrows(BadRequestException.class, () -> {
-            lexicalAnalyzer.extractWithAssure("name:ana;surname:gil", "ana");
-            lexicalAnalyzer.extractWithAssure("", "name");
-            lexicalAnalyzer.extractWithAssure("price:kk", "price", BigDecimal::new);
-        });
+        assertThrows(BadRequestException.class, () ->
+                lexicalAnalyzer.extractWithAssure("price:kk", "price", BigDecimal::new)
+        );
+    }
+
+    @Test
+    void testExtractWithAssureBadRequestNoKey() {
+        LexicalAnalyzer lexicalAnalyzer = new LexicalAnalyzer();
+        assertThrows(BadRequestException.class, () ->
+                lexicalAnalyzer.extractWithAssure("name:ana;surname:gil", "ana")
+        );
+    }
+
+    @Test
+    void testExtractWithAssureBadRequestEmpty() {
+        LexicalAnalyzer lexicalAnalyzer = new LexicalAnalyzer();
+        assertThrows(BadRequestException.class, () -> lexicalAnalyzer.extractWithAssure("", "name"));
     }
 
     @Test
