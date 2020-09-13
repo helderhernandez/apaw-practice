@@ -8,7 +8,8 @@ public class ArticleCreation {
     private BigDecimal price;
     private String provider;
 
-    public ArticleCreation() { //empty for framework
+    public ArticleCreation() {
+        //empty for framework
     }
 
     public ArticleCreation(Long barcode, String description, BigDecimal price, String provider) {

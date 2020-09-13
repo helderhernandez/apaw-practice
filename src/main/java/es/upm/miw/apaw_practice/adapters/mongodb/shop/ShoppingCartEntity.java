@@ -20,7 +20,8 @@ public class ShoppingCartEntity {
     private String user;
     private String address;
 
-    public ShoppingCartEntity() { //empty from framework
+    public ShoppingCartEntity() {
+        //empty from framework
     }
 
     public ShoppingCartEntity(List<ArticleItemEntity> articleItemEntities, String user, String address) {

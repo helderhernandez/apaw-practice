@@ -10,13 +10,8 @@ public class ShoppingCart {
     private String user;
     private String address;
 
-    public ShoppingCart() { //empty from framework
-    }
-
-    public ShoppingCart(List<ArticleItem> articleItems, String user, String address) {
-        this.articleItems = articleItems;
-        this.user = user;
-        this.address = address;
+    public ShoppingCart() {
+        //empty from framework
     }
 
     public String getId() {

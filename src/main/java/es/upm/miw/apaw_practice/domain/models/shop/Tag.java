@@ -8,7 +8,8 @@ public class Tag {
     private List<Long> articlesBarcode;
     private Boolean favourite;
 
-    public Tag() { // empty for framework;
+    public Tag() {
+        //empty for framework
     }
 
     public Tag(String id, String description, List<Long> articlesBarcode, Boolean favourite) {
@@ -48,16 +49,6 @@ public class Tag {
 
     public void setFavourite(Boolean favourite) {
         this.favourite = favourite;
-    }
-
-    @Override
-    public int hashCode() {
-        return this.description.hashCode();
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        return this == obj || obj != null && getClass() == obj.getClass() && (description.equals(((Tag) obj).description));
     }
 
     @Override
