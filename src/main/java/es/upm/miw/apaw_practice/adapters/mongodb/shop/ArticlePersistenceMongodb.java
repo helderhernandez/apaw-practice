@@ -3,6 +3,7 @@ package es.upm.miw.apaw_practice.adapters.mongodb.shop;
 import es.upm.miw.apaw_practice.domain.exceptions.ConflictException;
 import es.upm.miw.apaw_practice.domain.exceptions.NotFoundException;
 import es.upm.miw.apaw_practice.domain.models.shop.Article;
+import es.upm.miw.apaw_practice.domain.models.shop.ArticleCreation;
 import es.upm.miw.apaw_practice.domain.out_ports.shop.ArticlePersistence;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -53,10 +54,10 @@ public class ArticlePersistenceMongodb implements ArticlePersistence {
     }
 
     @Override
-    public Article create(Article article) {
-        this.assertBarcodeNotExist(article.getBarcode());
+    public Article create(ArticleCreation articleCreation) {
+        this.assertBarcodeNotExist(articleCreation.getBarcode());
         return this.articleRepository
-                .save(new ArticleEntity(article))
+                .save(new ArticleEntity(articleCreation))
                 .toArticle();
     }
 

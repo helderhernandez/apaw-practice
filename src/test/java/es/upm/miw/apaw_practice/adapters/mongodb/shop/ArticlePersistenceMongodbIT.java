@@ -4,6 +4,7 @@ import es.upm.miw.apaw_practice.TestConfig;
 import es.upm.miw.apaw_practice.domain.exceptions.ConflictException;
 import es.upm.miw.apaw_practice.domain.exceptions.NotFoundException;
 import es.upm.miw.apaw_practice.domain.models.shop.Article;
+import es.upm.miw.apaw_practice.domain.models.shop.ArticleCreation;
 import es.upm.miw.apaw_practice.domain.out_ports.shop.ArticlePersistence;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,9 +36,9 @@ class ArticlePersistenceMongodbIT {
 
     @Test
     void testCreateAndRead() {
-        Article article =
-                new Article(6661001L, "art per", new BigDecimal("3.00"), "prov per");
-        this.articlePersistence.create(article);
+        ArticleCreation articleCreation =
+                new ArticleCreation(6661001L, "art per", new BigDecimal("3.00"), "prov per");
+        this.articlePersistence.create(articleCreation);
         Article articleBD = this.articlePersistence.readByBarcode(6661001L);
         assertEquals("art per", articleBD.getDescription());
         assertEquals(0, new BigDecimal("3.00").compareTo(articleBD.getPrice()));
@@ -48,9 +49,9 @@ class ArticlePersistenceMongodbIT {
 
     @Test
     void testCreateAndUpdate() {
-        Article article =
-                new Article(6661002L, "art per", new BigDecimal("3.00"), "prov per");
-        Article articleBD = this.articlePersistence.create(article);
+        ArticleCreation articleCreation =
+                new ArticleCreation(6661002L, "art per", new BigDecimal("3.00"), "prov per");
+        Article articleBD = this.articlePersistence.create(articleCreation);
         articleBD.setPrice(BigDecimal.TEN);
         this.articlePersistence.update(articleBD);
         articleBD = this.articlePersistence.readByBarcode(6661002L);
@@ -59,8 +60,8 @@ class ArticlePersistenceMongodbIT {
 
     @Test
     void testCreateConflict() {
-        Article article =
-                new Article(84003L, "art per", new BigDecimal("3.00"), "prov per");
-        assertThrows(ConflictException.class, () -> this.articlePersistence.create(article));
+        ArticleCreation articleCreation =
+                new ArticleCreation(84003L, "art per", new BigDecimal("3.00"), "prov per");
+        assertThrows(ConflictException.class, () -> this.articlePersistence.create(articleCreation));
     }
 }

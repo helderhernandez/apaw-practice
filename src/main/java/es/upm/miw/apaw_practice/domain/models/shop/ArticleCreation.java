@@ -1,7 +1,5 @@
 package es.upm.miw.apaw_practice.domain.models.shop;
 
-import org.springframework.beans.BeanUtils;
-
 import java.math.BigDecimal;
 
 public class ArticleCreation {
@@ -10,8 +8,7 @@ public class ArticleCreation {
     private BigDecimal price;
     private String provider;
 
-    public ArticleCreation() {
-        //empty for framework
+    public ArticleCreation() { //empty for framework
     }
 
     public ArticleCreation(Long barcode, String description, BigDecimal price, String provider) {
@@ -51,12 +48,6 @@ public class ArticleCreation {
 
     public void setProvider(String provider) {
         this.provider = provider;
-    }
-
-    public Article toArticle() {
-        Article article = new Article();
-        BeanUtils.copyProperties(this, article);
-        return article;
     }
 
     @Override

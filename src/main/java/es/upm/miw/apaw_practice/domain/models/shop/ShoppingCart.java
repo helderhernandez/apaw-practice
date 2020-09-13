@@ -2,7 +2,6 @@ package es.upm.miw.apaw_practice.domain.models.shop;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.UUID;
 
 public class ShoppingCart {
     private String id;
@@ -11,13 +10,10 @@ public class ShoppingCart {
     private String user;
     private String address;
 
-    public ShoppingCart() {
-        this.id = UUID.randomUUID().toString();
-        this.creationDate = LocalDateTime.now();
+    public ShoppingCart() { //empty from framework
     }
 
     public ShoppingCart(List<ArticleItem> articleItems, String user, String address) {
-        this();
         this.articleItems = articleItems;
         this.user = user;
         this.address = address;
@@ -27,8 +23,16 @@ public class ShoppingCart {
         return id;
     }
 
+    public void setId(String id) {
+        this.id = id;
+    }
+
     public LocalDateTime getCreationDate() {
         return creationDate;
+    }
+
+    public void setCreationDate(LocalDateTime creationDate) {
+        this.creationDate = creationDate;
     }
 
     public List<ArticleItem> getArticleItems() {

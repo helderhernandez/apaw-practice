@@ -22,16 +22,17 @@ public class ArticleService {
     }
 
     public Article create(ArticleCreation articleCreation) {
-        return this.articlePersistence.create(articleCreation.toArticle());
+        return this.articlePersistence.create(articleCreation);
     }
 
     public void updatePrices(List<ArticlePriceUpdating> articlePriceUpdatingList) {
-        articlePriceUpdatingList
-                .forEach(articleNewPrice -> {
+        articlePriceUpdatingList.stream()
+                .map(articleNewPrice -> {
                     Article article = this.articlePersistence.readByBarcode(articleNewPrice.getBarcode());
                     article.setPrice(articleNewPrice.getPrice());
-                    this.articlePersistence.update(article);
-                });
+                    return article;
+                })
+                .forEach(article -> this.articlePersistence.update(article));
     }
 
     public Stream<Article> findByProviderAndPriceGreaterThan(String provider, BigDecimal price) {
