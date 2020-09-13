@@ -5,7 +5,6 @@ import es.upm.miw.apaw_practice.domain.exceptions.ConflictException;
 import es.upm.miw.apaw_practice.domain.exceptions.NotFoundException;
 import es.upm.miw.apaw_practice.domain.models.shop.Article;
 import es.upm.miw.apaw_practice.domain.models.shop.ArticleCreation;
-import es.upm.miw.apaw_practice.domain.out_ports.shop.ArticlePersistence;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -17,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class ArticlePersistenceMongodbIT {
 
     @Autowired
-    private ArticlePersistence articlePersistence;
+    private ArticlePersistenceMongodb articlePersistence;
 
     @Test
     void testReadByBarcodeNotFound() {
