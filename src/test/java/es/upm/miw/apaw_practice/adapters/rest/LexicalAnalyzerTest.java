@@ -26,10 +26,11 @@ class LexicalAnalyzerTest {
 
     @Test
     void testExtractWithAssureBadRequest() {
+        LexicalAnalyzer lexicalAnalyzer = new LexicalAnalyzer();
         assertThrows(BadRequestException.class, () -> {
-            new LexicalAnalyzer().extractWithAssure("name:ana;surname:gil", "ana");
-            new LexicalAnalyzer().extractWithAssure("", "name");
-            new LexicalAnalyzer().extractWithAssure("price:kk", "price", BigDecimal::new);
+            lexicalAnalyzer.extractWithAssure("name:ana;surname:gil", "ana");
+            lexicalAnalyzer.extractWithAssure("", "name");
+            lexicalAnalyzer.extractWithAssure("price:kk", "price", BigDecimal::new);
         });
     }
 
