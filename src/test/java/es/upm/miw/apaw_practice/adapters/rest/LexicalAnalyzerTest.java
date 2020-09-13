@@ -25,24 +25,16 @@ class LexicalAnalyzerTest {
     }
 
     @Test
-    void testExtractWithAssureBadRequestKeyNotFound() {
+    void testExtractWithAssureBadRequest() {
         assertThrows(BadRequestException.class, () -> new LexicalAnalyzer().extractWithAssure("name:ana;surname:gil", "ana"));
-    }
-
-    @Test
-    void testExtractWithAssureBadRequestEmpty() {
         assertThrows(BadRequestException.class, () -> new LexicalAnalyzer().extractWithAssure("", "name"));
+        assertThrows(BadRequestException.class, () -> new LexicalAnalyzer().extractWithAssure("price:kk", "price", BigDecimal::new));
     }
 
     @Test
     void testExtractWithAssureConverting() {
         BigDecimal price = new LexicalAnalyzer().extractWithAssure("price:10.12", "price", BigDecimal::new);
         assertEquals(0, new BigDecimal("10.12").compareTo(price));
-    }
-
-    @Test
-    void testExtractWithAssureConvertingError() {
-        assertThrows(BadRequestException.class, () -> new LexicalAnalyzer().extractWithAssure("price:kk", "price", BigDecimal::new));
     }
 
 }
