@@ -2,7 +2,6 @@ package es.upm.miw.apaw_practice.adapters.mongodb.shop;
 
 import es.upm.miw.apaw_practice.TestConfig;
 import es.upm.miw.apaw_practice.domain.models.shop.Tag;
-import es.upm.miw.apaw_practice.domain.out_ports.shop.TagPersistence;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -15,7 +14,7 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class TagPersistenceMongodbIT {
 
     @Autowired
-    private TagPersistence tagPersistence;
+    private TagPersistenceMongodb tagPersistence;
 
     @Test
     void testReadById() {
