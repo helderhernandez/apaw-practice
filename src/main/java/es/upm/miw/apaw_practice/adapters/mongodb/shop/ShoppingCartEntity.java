@@ -2,6 +2,7 @@ package es.upm.miw.apaw_practice.adapters.mongodb.shop;
 
 import es.upm.miw.apaw_practice.domain.models.shop.ArticleItem;
 import es.upm.miw.apaw_practice.domain.models.shop.ShoppingCart;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -19,13 +20,12 @@ public class ShoppingCartEntity {
     private String user;
     private String address;
 
-    public ShoppingCartEntity() {
-        this.id = UUID.randomUUID().toString();
-        this.creationDate = LocalDateTime.now();
+    public ShoppingCartEntity() { //empty from framework
     }
 
     public ShoppingCartEntity(List<ArticleItemEntity> articleItemEntities, String user, String address) {
-        this();
+        this.id = UUID.randomUUID().toString();
+        this.creationDate = LocalDateTime.now();
         this.articleItemEntities = articleItemEntities;
         this.user = user;
         this.address = address;
@@ -64,10 +64,14 @@ public class ShoppingCartEntity {
     }
 
     public ShoppingCart toShoppingCart() {
+        ShoppingCart shoppingCart = new ShoppingCart();
+        BeanUtils.copyProperties(this, shoppingCart, "articleItemEntities");
         List<ArticleItem> articleItems = this.articleItemEntities.stream()
                 .map(ArticleItemEntity::toArticleItem)
                 .collect(Collectors.toList());
-        return new ShoppingCart(articleItems, user, address);
+        shoppingCart.setArticleItems(articleItems);
+        return shoppingCart;
+
     }
 
     @Override

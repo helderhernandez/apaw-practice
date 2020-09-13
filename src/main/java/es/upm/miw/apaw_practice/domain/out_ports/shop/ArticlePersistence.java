@@ -1,6 +1,7 @@
 package es.upm.miw.apaw_practice.domain.out_ports.shop;
 
 import es.upm.miw.apaw_practice.domain.models.shop.Article;
+import es.upm.miw.apaw_practice.domain.models.shop.ArticleCreation;
 import org.springframework.stereotype.Repository;
 
 import java.math.BigDecimal;
@@ -11,7 +12,7 @@ public interface ArticlePersistence {
 
     Stream<Article> readAll();
 
-    Article create(Article article);
+    Article create(ArticleCreation articleCreation);
 
     Article update(Article article);
 
