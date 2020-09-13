@@ -2,7 +2,6 @@ package es.upm.miw.apaw_practice.domain.models.shop;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.UUID;
 
 public class Article {
     private String id;
@@ -13,12 +12,10 @@ public class Article {
     private String provider;
 
     public Article() {
-        this.id = UUID.randomUUID().toString();
-        this.registrationDate = LocalDate.now();
+        //empty for framework
     }
 
     public Article(Long barcode, String description, BigDecimal price, String provider) {
-        this();
         this.barcode = barcode;
         this.description = description;
         this.price = price;
@@ -71,16 +68,6 @@ public class Article {
 
     public void setProvider(String provider) {
         this.provider = provider;
-    }
-
-    @Override
-    public int hashCode() {
-        return barcode.hashCode();
-    }
-
-    //@Override
-    public boolean equals(Object obj) {
-        return this == obj || obj != null && getClass() == obj.getClass() && (barcode.equals(((Article) obj).barcode));
     }
 
     @Override

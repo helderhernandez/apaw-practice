@@ -9,7 +9,7 @@ public class LexicalAnalyzer {
 
     private static final String ASSIGNMENT = ":";
     private static final String BOOKMARK = ";";
-    private static final int keyIndex = 1;
+    private static final int KEY_INDEX = 1;
 
     public String extractWithAssure(String q, String key) {
         String[] token = Stream.of(q.split(BOOKMARK))
@@ -17,7 +17,7 @@ public class LexicalAnalyzer {
                 .map(item -> item.split(ASSIGNMENT))
                 .findFirst()
                 .orElseThrow(() -> new BadRequestException("Key not found: " + key));
-        return token.length > keyIndex ? token[keyIndex] : "";
+        return token.length > KEY_INDEX ? token[KEY_INDEX] : "";
     }
 
     public <T> T extractWithAssure(String q, String key, Function<String, T> convert) {

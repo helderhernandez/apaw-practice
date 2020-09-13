@@ -22,7 +22,8 @@ public class ArticleEntity {
     private BigDecimal price;
     private String provider;
 
-    public ArticleEntity() { //empty from framework
+    public ArticleEntity() {
+        //empty from framework
     }
 
     public ArticleEntity(ArticleCreation articleCreation) {
@@ -94,7 +95,7 @@ public class ArticleEntity {
         return barcode.hashCode();
     }
 
-    //@Override
+    @Override
     public boolean equals(Object obj) {
         return this == obj || obj != null && getClass() == obj.getClass() && (barcode.equals(((ArticleEntity) obj).barcode));
     }
