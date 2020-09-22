@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.math.BigDecimal;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @TestConfig
 class ArticleEntityRepositoryIT {
@@ -16,6 +17,7 @@ class ArticleEntityRepositoryIT {
 
     @Test
     void testFindByBarcode() {
+        assertTrue(this.articleRepository.findByBarcode(84003L).isPresent());
         ArticleEntity article = this.articleRepository.findByBarcode(84003L).get();
         assertEquals("art 003", article.getDescription());
         assertEquals(0, new BigDecimal("12.13").compareTo(article.getPrice()));
