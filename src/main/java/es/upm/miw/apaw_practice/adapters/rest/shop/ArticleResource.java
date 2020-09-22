@@ -15,7 +15,8 @@ import java.util.stream.Stream;
 @RestController
 @RequestMapping(ArticleResource.ARTICLES)
 public class ArticleResource {
-    static final String ARTICLES = "/articles";
+    static final String ARTICLES = "/shop/articles";
+
     static final String SEARCH = "/search";
 
     private ArticleService articleService;

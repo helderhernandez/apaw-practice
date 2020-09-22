@@ -15,7 +15,8 @@ import java.util.stream.Stream;
 @RestController
 @RequestMapping(ShoppingCartResource.SHOPPING_CARTS)
 public class ShoppingCartResource {
-    static final String SHOPPING_CARTS = "/shopping-carts";
+    static final String SHOPPING_CARTS = "/shop/shopping-carts";
+
     static final String ID_ID = "/{id}";
     static final String ARTICLE_ITEMS = "/article-items";
     static final String SEARCH = "/search";
