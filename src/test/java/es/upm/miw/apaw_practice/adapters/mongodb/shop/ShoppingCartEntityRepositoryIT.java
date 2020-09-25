@@ -22,8 +22,8 @@ class ShoppingCartEntityRepositoryIT {
                         "user1".equals(cart.getUser()) &&
                                 "address 1".equals(cart.getAddress()) &&
                                 cart.getId() != null &&
-                                cart.getCreationDate().isBefore(LocalDateTime.now()) &&
                                 cart.getCreationDate() != null &&
+                                cart.getCreationDate().isBefore(LocalDateTime.now()) &&
                                 2 == cart.getArticleItemEntities().size() &&
                                 84001L == cart.getArticleItemEntities().get(0).getArticleEntity().getBarcode() &&
                                 1 == cart.getArticleItemEntities().get(0).getAmount() &&

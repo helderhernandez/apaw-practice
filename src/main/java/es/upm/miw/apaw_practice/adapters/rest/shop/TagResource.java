@@ -12,7 +12,8 @@ import java.util.stream.Stream;
 @RestController
 @RequestMapping(TagResource.TAGS)
 public class TagResource {
-    static final String TAGS = "/tags";
+    static final String TAGS = "/shop/tags";
+
     static final String ID_ID = "/{id}";
     static final String SEARCH = "/search";
 

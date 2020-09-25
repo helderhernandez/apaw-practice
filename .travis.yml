@@ -9,13 +9,15 @@ notifications:
     recipients:
       - j.bernal@upm.es
   slack:
-    secure: SsCPUzcFMMhnP2vUvyFhDh+2V4xYl9pD8GVnRXFxxKTUDDwrUs4QUTtuI9tMrxvU49H6bwCZsHCqZNVM56uiwUD/RPyBIg5197uBt82uhbqI5XVAyuYgGBpcJedadAAZsODFjXtBvYWgsVBVsUaXZWFTHgbN48KXbxA3A3p3vXrckP5QZLZ85gYJBdSKyj9X3I0uJPv5c/IYuk3lHda/Db7/lZqRKlvnXzX10b/9AbUIPuunTm75pMtMT7RAe5ZZc1FLhoiYM8d7fa9QexfgCX4DSnLuUblQU/5YmaOYOQBjeqzZJlDVBb3wiEA+xafFNTzG/+llp5GoukNnhKGxGn41MbNYtsyKYXZNrQQosWLFvG2IHx7c4XReWGW+u2xQkIHEn4r7vMo4QASqhGt82V8C2pnjMpNrAfYkHmRvMxL21ss2zGl2D63D7bh1bhKNOMvbNcQFN+snHUZJ15ZAonaGpBqRK0osF3PN8drV3BRgf9p2rBKosRWvhjD618V1UesXJptswMsD7SxVetGGWEkez5yX/mZNG1GB9TPIx1gaXsrlrvRWswwfQf/cTFGZ9v6b4/VyFXall6w7TtswN1B/C6vFudJM2088/YG+jBYqzrNvFV2wzpxOHm5N+YdXBajq6Uk9s49sm3KsUifGJy5sCXBSJFNnvH5ltUorJ1g=
+    secure: fxZir5c4R+ijPo8MIHc5kjbHii7u0u5kc1rk6wIAJ5MHMDDR0OnXVnWaYzZFgqnYk+PSRxEgUBpnv1z6U6N6AIMG34iRDFK/lX8z6cIEAV2/FR5d5O7UnUBA/UFDXUVUo35JEaCOiR9NDg4LuPyPn7JMSTeodCk2/SO3f20HeN/KByikIpTehET6YoLwr3u1AG+J7QtckvVEOIFOQZCezoHeQzzpbcdq3uJcGgIReSpHrGewVVx21fohXEwBB4dthoyB9NgmLpP6X56sKnZgyfOqDC/hMTnyeftQ6ofoRXcahHtrKpfZgNhcp5rHW/SCrn6rGZNsY5F+JOmOXv+UJqgNM/QkxebUg0CoJegalbFIOtQ49GH+xeFYgEx7M3JltzsoC2sBxJpmiOMG/mV1isG8Bbdb/k5nqDCtwAzJIjqiUXwFkfAvayCzUfKpCbyN+pLmlQTZEx9zH+V7rKnGeNOzpE1YTxSzIZgtgZO130kPrhO3u+85rN83pGeaZJSh5Zrh9H2+aRiu55WZEnWOdV8EHUg+7Z/muDYcVEy3zDRML29cK/6kj+U5FBYp6rsbLt6jsPgxu2fxd2RwoqF5l64h/2drXW23u456EMm+2cBDN/R21k3CsasxomSlDVLG8Pkt1vk3Fzalgp6UM6uC01+CLqvnnUP13CN141K/BUk=
 install:
   - mvn install -DskipTests=true -Dmaven.javadoc.skip=true -B -V
 script:
-  - mvn verify sonar:sonar -Dsonar.host.url=https://sonarcloud.io -Dsonar.organization=miw-upm-github -Dsonar.login=$SONAR
+  - mvn verify sonar:sonar -Dsonar.host.url=https://sonarcloud.io -Dsonar.organization=miw-upm-github
+    -Dsonar.login=$SONAR
 deploy:
   provider: heroku
-  api_key: $HEROKU
+  api_key: "$HEROKU"
   on:
     branch: master
+
