@@ -2,7 +2,6 @@ package es.upm.miw.apaw_practice.adapters.mongodb.factory.daos;
 
 import es.upm.miw.apaw_practice.adapters.mongodb.factory.entities.ProductEntity;
 import es.upm.miw.apaw_practice.TestConfig;
-import es.upm.miw.apaw_practice.adapters.mongodb.shop.entities.ArticleEntity;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import java.math.BigDecimal;

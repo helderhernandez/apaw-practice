@@ -20,10 +20,12 @@ public class DatabaseSeederService {
 
     public void seedDatabase() {
         this.shopSeederService.seedDatabase();
+        this.factorySeederService.seedDatabase();
     }
 
     public void deleteAll() {
         this.shopSeederService.deleteAll();
+        this.factorySeederService.deleteAll();
     }
 
     public void reSeedDatabase() {
