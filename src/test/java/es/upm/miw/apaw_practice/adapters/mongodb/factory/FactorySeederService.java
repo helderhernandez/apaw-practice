@@ -1,5 +1,6 @@
-package es.upm.miw.apaw_practice.adapters.mongodb.factory.daos;
+package es.upm.miw.apaw_practice.adapters.mongodb.factory;
 
+import es.upm.miw.apaw_practice.adapters.mongodb.factory.daos.ProductRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.factory.entities.ProductEntity;
 
 import org.apache.logging.log4j.LogManager;
