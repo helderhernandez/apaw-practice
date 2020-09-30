@@ -41,4 +41,23 @@ public class ProductEntity {
         this.description = description;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        return this == obj || obj != null && getClass() == obj.getClass()
+                && (id.equals(((ProductEntity) obj).id));
+    }
+
+    @Override
+    public int hashCode() {
+        return id.hashCode();
+    }
+
+    @Override
+    public String toString() {
+        return "ProductEntity{" +
+                "id='" + id + '\'' +
+                ", wholesalePrice=" + wholesalePrice +
+                ", description='" + description + '\'' +
+                '}';
+    }
 }
