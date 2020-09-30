@@ -1,5 +1,6 @@
 package es.upm.miw.apaw_practice.adapters.mongodb;
 
+import es.upm.miw.apaw_practice.adapters.mongodb.factory.daos.FactorySeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.shop.ShopSeederService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -8,10 +9,12 @@ import org.springframework.stereotype.Service;
 public class DatabaseSeederService {
 
     private ShopSeederService shopSeederService;
+    private FactorySeederService factorySeederService;
 
     @Autowired
-    public DatabaseSeederService(ShopSeederService shopSeederService) {
+    public DatabaseSeederService(ShopSeederService shopSeederService, FactorySeederService factorySeederService) {
         this.shopSeederService = shopSeederService;
+        this.factorySeederService = factorySeederService;
         this.seedDatabase();
     }
 
