@@ -31,7 +31,6 @@ public class ArticlePersistenceMongodb implements ArticlePersistence {
                 .toArticle();
     }
 
-    @Override
     public void assertBarcodeNotExist(Long barcode) {
         this.articleRepository
                 .findByBarcode(barcode)
