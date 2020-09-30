@@ -2,8 +2,8 @@ package es.upm.miw.apaw_practice.domain.services.shop;
 
 import es.upm.miw.apaw_practice.domain.models.shop.ArticleItem;
 import es.upm.miw.apaw_practice.domain.models.shop.Tag;
-import es.upm.miw.apaw_practice.domain.out_ports.shop.ShoppingCartPersistence;
-import es.upm.miw.apaw_practice.domain.out_ports.shop.TagPersistence;
+import es.upm.miw.apaw_practice.domain.persistence_ports.shop.ShoppingCartPersistence;
+import es.upm.miw.apaw_practice.domain.persistence_ports.shop.TagPersistence;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

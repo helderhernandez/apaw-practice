@@ -1,5 +1,12 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.shop;
 
+import es.upm.miw.apaw_practice.adapters.mongodb.shop.daos.ArticleRepository;
+import es.upm.miw.apaw_practice.adapters.mongodb.shop.daos.ShoppingCartRepository;
+import es.upm.miw.apaw_practice.adapters.mongodb.shop.daos.TagRepository;
+import es.upm.miw.apaw_practice.adapters.mongodb.shop.entities.ArticleEntity;
+import es.upm.miw.apaw_practice.adapters.mongodb.shop.entities.ArticleItemEntity;
+import es.upm.miw.apaw_practice.adapters.mongodb.shop.entities.ShoppingCartEntity;
+import es.upm.miw.apaw_practice.adapters.mongodb.shop.entities.TagEntity;
 import es.upm.miw.apaw_practice.domain.models.shop.ArticleCreation;
 import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;

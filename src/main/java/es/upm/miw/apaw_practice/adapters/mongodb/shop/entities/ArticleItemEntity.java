@@ -1,4 +1,4 @@
-package es.upm.miw.apaw_practice.adapters.mongodb.shop;
+package es.upm.miw.apaw_practice.adapters.mongodb.shop.entities;
 
 import es.upm.miw.apaw_practice.domain.models.shop.ArticleItem;
 import org.springframework.data.mongodb.core.mapping.DBRef;

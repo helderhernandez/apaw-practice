@@ -1,4 +1,4 @@
-package es.upm.miw.apaw_practice.domain.out_ports.shop;
+package es.upm.miw.apaw_practice.domain.persistence_ports.shop;
 
 import es.upm.miw.apaw_practice.domain.models.shop.ShoppingCart;
 import org.springframework.stereotype.Repository;

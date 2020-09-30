@@ -2,7 +2,7 @@ package es.upm.miw.apaw_practice.domain.services.shop;
 
 import es.upm.miw.apaw_practice.TestConfig;
 import es.upm.miw.apaw_practice.domain.models.shop.ArticlePriceUpdating;
-import es.upm.miw.apaw_practice.domain.out_ports.shop.ArticlePersistence;
+import es.upm.miw.apaw_practice.domain.persistence_ports.shop.ArticlePersistence;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 

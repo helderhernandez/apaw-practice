@@ -1,5 +1,6 @@
-package es.upm.miw.apaw_practice.adapters.mongodb.shop;
+package es.upm.miw.apaw_practice.adapters.mongodb.shop.daos;
 
+import es.upm.miw.apaw_practice.adapters.mongodb.shop.entities.ArticleEntity;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 import java.util.Optional;

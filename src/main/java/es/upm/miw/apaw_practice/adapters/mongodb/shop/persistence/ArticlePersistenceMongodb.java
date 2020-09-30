@@ -1,10 +1,12 @@
-package es.upm.miw.apaw_practice.adapters.mongodb.shop;
+package es.upm.miw.apaw_practice.adapters.mongodb.shop.persistence;
 
+import es.upm.miw.apaw_practice.adapters.mongodb.shop.daos.ArticleRepository;
+import es.upm.miw.apaw_practice.adapters.mongodb.shop.entities.ArticleEntity;
 import es.upm.miw.apaw_practice.domain.exceptions.ConflictException;
 import es.upm.miw.apaw_practice.domain.exceptions.NotFoundException;
 import es.upm.miw.apaw_practice.domain.models.shop.Article;
 import es.upm.miw.apaw_practice.domain.models.shop.ArticleCreation;
-import es.upm.miw.apaw_practice.domain.out_ports.shop.ArticlePersistence;
+import es.upm.miw.apaw_practice.domain.persistence_ports.shop.ArticlePersistence;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 

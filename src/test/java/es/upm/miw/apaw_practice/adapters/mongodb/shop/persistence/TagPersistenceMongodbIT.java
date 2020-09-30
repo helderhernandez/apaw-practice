@@ -1,4 +1,4 @@
-package es.upm.miw.apaw_practice.adapters.mongodb.shop;
+package es.upm.miw.apaw_practice.adapters.mongodb.shop.persistence;
 
 import es.upm.miw.apaw_practice.TestConfig;
 import es.upm.miw.apaw_practice.domain.models.shop.Tag;

@@ -1,8 +1,12 @@
-package es.upm.miw.apaw_practice.adapters.mongodb.shop;
+package es.upm.miw.apaw_practice.adapters.mongodb.shop.persistence;
 
+import es.upm.miw.apaw_practice.adapters.mongodb.shop.daos.ArticleRepository;
+import es.upm.miw.apaw_practice.adapters.mongodb.shop.daos.ShoppingCartRepository;
+import es.upm.miw.apaw_practice.adapters.mongodb.shop.entities.ArticleItemEntity;
+import es.upm.miw.apaw_practice.adapters.mongodb.shop.entities.ShoppingCartEntity;
 import es.upm.miw.apaw_practice.domain.exceptions.NotFoundException;
 import es.upm.miw.apaw_practice.domain.models.shop.ShoppingCart;
-import es.upm.miw.apaw_practice.domain.out_ports.shop.ShoppingCartPersistence;
+import es.upm.miw.apaw_practice.domain.persistence_ports.shop.ShoppingCartPersistence;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
