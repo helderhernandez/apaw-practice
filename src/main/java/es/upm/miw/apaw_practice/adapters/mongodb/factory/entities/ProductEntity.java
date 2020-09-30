@@ -10,11 +10,13 @@ public class ProductEntity {
 
     @Id
     private String id;
-    private BigDecimal wholesalePrice;
     private String description;
+    private BigDecimal wholesalePrice;
 
-    public ProductEntity() {
-        //empty from framework
+    public ProductEntity(String id, String description, BigDecimal wholesalePrice) {
+        this.id = id;
+        this.description = description;
+        this.wholesalePrice = wholesalePrice;
     }
 
     public String getId() {
