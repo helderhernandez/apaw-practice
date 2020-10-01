@@ -15,7 +15,7 @@ import static es.upm.miw.apaw_practice.adapters.rest.shop.TagResource.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 @RestTestConfig
-class TagEntityResourceIT {
+class TagResourceIT {
 
     @Autowired
     private WebTestClient webTestClient;
