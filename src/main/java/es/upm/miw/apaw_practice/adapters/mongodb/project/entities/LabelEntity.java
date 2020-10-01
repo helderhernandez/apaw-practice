@@ -18,6 +18,12 @@ public class LabelEntity {
         //empty for framework
     }
 
+    public LabelEntity(String id, String name, String description) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+    }
+
     public String getId() {
         return id;
     }
@@ -44,7 +50,7 @@ public class LabelEntity {
 
     @Override
     public boolean equals(Object obj) {
-        return this == obj || obj != null && getClass() == obj.getClass() && (id.equals(((ArticleEntity) obj).getId()));
+        return this == obj || obj != null && getClass() == obj.getClass() && (id.equals(((LabelEntity) obj).id));
     }
 
     @Override
