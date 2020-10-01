@@ -20,6 +20,6 @@ public class ProductEntityRepositoryIT {
         assertTrue(this.productRepository.findById("P30092047").isPresent());
         ProductEntity product = this.productRepository.findById("P30092047").get();
         assertEquals("product 3", product.getDescription());
-        assertEquals(0, new BigDecimal(9.85).compareTo(product.getWholesalePrice()));
+        assertEquals(0, new BigDecimal("9.85").compareTo(product.getWholesalePrice()));
     }
 }

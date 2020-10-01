@@ -19,11 +19,11 @@ public class FactorySeederService {
         LogManager.getLogger(this.getClass()).warn("------- Factory Initial Load -----------");
 
         ProductEntity[] products = {
-                new ProductEntity("P30092040", "product 1", new BigDecimal(15.90)),
-                new ProductEntity("P30092045", "product 2", new BigDecimal(7.40)),
-                new ProductEntity("P30092047", "product 3", new BigDecimal(9.85)),
-                new ProductEntity("P30092048", "product 4", new BigDecimal(106.65)),
-                new ProductEntity("P30092050", "product 5", new BigDecimal(2560.74))
+                new ProductEntity("P30092040", "product 1", new BigDecimal("15.90")),
+                new ProductEntity("P30092045", "product 2", new BigDecimal("7.40")),
+                new ProductEntity("P30092047", "product 3", new BigDecimal("9.85")),
+                new ProductEntity("P30092048", "product 4", new BigDecimal("106.65")),
+                new ProductEntity("P30092050", "product 5", new BigDecimal("2560.74"))
         };
         this.productRepository.saveAll(Arrays.asList(products));
 
