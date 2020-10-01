@@ -62,7 +62,7 @@ public class MovieSeederService {
         CinemaEntity[] cinemas = {
                 new CinemaEntity(List.of(movies[0], movies[1], movies[3]), List.of(filmRooms[0], filmRooms[1]), "YelmoCine", new BigDecimal("10.23"), "Alcorcon"),
                 new CinemaEntity(List.of(movies[1], movies[1]), List.of(filmRooms[2], filmRooms[3]), "OdeonCine", new BigDecimal("9.24"), "Mostoles"),
-                new CinemaEntity(List.of(movies[4], movies[5], movies[7]), List.of(filmRooms[4], filmRooms[5]), "OdeonCine", new BigDecimal("8.34"), "Fuenlabrada"),
+                new CinemaEntity(List.of(movies[4], movies[5], movies[7]), List.of(filmRooms[4], filmRooms[5]), "Cinepolis", new BigDecimal("8.34"), "Fuenlabrada"),
                 new CinemaEntity(List.of(movies[2], movies[3], movies[0]), List.of(filmRooms[6], filmRooms[7]), "Cinessa", new BigDecimal("8.45"), "Boadilla")
         };
         this.cinemaRepository.saveAll(Arrays.asList(cinemas));

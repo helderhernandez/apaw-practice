@@ -1,11 +1,15 @@
-/*package es.upm.miw.apaw_practice.adapters.mongodb.movie.daos;
+package es.upm.miw.apaw_practice.adapters.mongodb.movie.daos;
 
 import es.upm.miw.apaw_practice.TestConfig;
-import es.upm.miw.apaw_practice.adapters.mongodb.shop.entities.ArticleEntity;
+import es.upm.miw.apaw_practice.adapters.mongodb.movie.entities.CinemaEntity;
+import es.upm.miw.apaw_practice.adapters.mongodb.movie.entities.FilmRoomEntity;
+import es.upm.miw.apaw_practice.adapters.mongodb.movie.entities.MovieEntity;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.math.BigDecimal;
+import java.util.Arrays;
+import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -18,11 +22,18 @@ public class CinemaEntityRepositoryIT {
 
     @Test
     void testFindByBarcode() {
-        assertTrue(this.articleRepository.findByBarcode(84003L).isPresent());
-        ArticleEntity article = this.articleRepository.findByBarcode(84003L).get();
-        assertEquals("art 003", article.getDescription());
-        assertEquals(0, new BigDecimal("12.13").compareTo(article.getPrice()));
-        assertEquals("prov 3", article.getProvider());
+        assertTrue(this.cinemaRepository.findByCinemaName("YelmoCine").isPresent());
+        CinemaEntity cinema = this.cinemaRepository.findByCinemaName("YelmoCine").get();
+        assertTrue(cinema.getId() != null);
+        assertTrue(cinema.getMovies().stream()
+                .map(MovieEntity::getFilmTitle)
+                .collect(Collectors.toList())
+                .containsAll(Arrays.asList("Frozen", "Kill", "Deadpool")));
+        assertTrue(cinema.getFilmRooms().stream()
+                .map(FilmRoomEntity::getNumberFilmRoom)
+                .collect(Collectors.toList())
+                .containsAll(Arrays.asList(12, 14)));
+        assertEquals(0, new BigDecimal("10.23").compareTo(cinema.getMovieTicketPrice()));
+        assertEquals("Alcorcon", cinema.getCity());
     }
 }
-*/
