@@ -49,9 +49,8 @@ public class ArticlePersistenceMongodb implements ArticlePersistence {
 
     @Override
     public Stream<Article> readAll() {
-        return this.articleRepository
-                .findAll().stream()
-                .map(ArticleEntity::toArticle);
+        return this.articleRepository.findAll().stream()
+                .map(articleEntity -> articleEntity.toArticle());
     }
 
     @Override
