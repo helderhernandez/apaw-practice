@@ -18,7 +18,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 @RestTestConfig
-class ArticleEntityResourceIT {
+class ArticleResourceIT {
 
     @Autowired
     private WebTestClient webTestClient;
@@ -89,5 +89,16 @@ class ArticleEntityResourceIT {
                                 .build())
                 .exchange()
                 .expectStatus().isBadRequest();
+    }
+
+    @Test
+    void testReadAll() {
+        this.webTestClient
+                .get()
+                .uri(ArticleResource.ARTICLES)
+                .exchange()
+                .expectStatus().isOk()
+                .expectBodyList(BasicArticleDto.class)
+                .value(Assertions::assertNotNull);
     }
 }
