@@ -13,7 +13,7 @@ public class FilmDirectorEntityRepositoryIT {
     private FilmDirectorRepository filmDirectorRepository;
 
     @Test
-    void testCreateAndRead(){
+    void testCreateAndRead() {
         assertTrue(this.filmDirectorRepository.findAll().stream()
                 .anyMatch(filmDirector ->
                         filmDirector.getName().equals("Hector") &&
