@@ -15,13 +15,6 @@ public class Article {
         //empty for framework
     }
 
-    public Article(Long barcode, String description, BigDecimal price, String provider) {
-        this.barcode = barcode;
-        this.description = description;
-        this.price = price;
-        this.provider = provider;
-    }
-
     public String getId() {
         return id;
     }
