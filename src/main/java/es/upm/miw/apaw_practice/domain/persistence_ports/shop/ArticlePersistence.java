@@ -18,7 +18,5 @@ public interface ArticlePersistence {
 
     Article readByBarcode(Long barcode);
 
-    void assertBarcodeNotExist(Long barcode);
-
     Stream<Article> findByProviderAndPriceGreaterThan(String provider, BigDecimal price);
 }

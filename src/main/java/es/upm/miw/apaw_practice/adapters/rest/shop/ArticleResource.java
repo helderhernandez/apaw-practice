@@ -43,4 +43,10 @@ public class ArticleResource {
         return this.articleService.findByProviderAndPriceGreaterThan(provider, price);
     }
 
+    @GetMapping
+    public Stream<BasicArticleDto> redAll() {
+        return this.articleService.readAll()
+                .map(BasicArticleDto::new);
+    }
+
 }
