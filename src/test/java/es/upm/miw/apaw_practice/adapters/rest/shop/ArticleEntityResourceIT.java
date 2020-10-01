@@ -2,6 +2,7 @@ package es.upm.miw.apaw_practice.adapters.rest.shop;
 
 import es.upm.miw.apaw_practice.adapters.rest.RestTestConfig;
 import es.upm.miw.apaw_practice.domain.models.shop.Article;
+import es.upm.miw.apaw_practice.domain.models.shop.ArticleCreation;
 import es.upm.miw.apaw_practice.domain.models.shop.ArticlePriceUpdating;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -24,12 +25,12 @@ class ArticleEntityResourceIT {
 
     @Test
     void testCreate() {
-        Article article =
-                new Article(666004L, "art rest", new BigDecimal("3.00"), null);
+        ArticleCreation articleCreation =
+                new ArticleCreation(666004L, "art rest", new BigDecimal("3.00"), null);
         this.webTestClient
                 .post()
                 .uri(ArticleResource.ARTICLES)
-                .body(BodyInserters.fromValue(article))
+                .body(BodyInserters.fromValue(articleCreation))
                 .exchange()
                 .expectStatus().isOk()
                 .expectBody(Article.class)
@@ -39,12 +40,12 @@ class ArticleEntityResourceIT {
 
     @Test
     void testCreateConflict() {
-        Article article =
-                new Article(84001L, "repeated", new BigDecimal("3.00"), null);
+        ArticleCreation articleCreation =
+                new ArticleCreation(84001L, "repeated", new BigDecimal("3.00"), null);
         this.webTestClient
                 .post()
                 .uri(ArticleResource.ARTICLES)
-                .body(BodyInserters.fromValue(article))
+                .body(BodyInserters.fromValue(articleCreation))
                 .exchange()
                 .expectStatus().isEqualTo(HttpStatus.CONFLICT);
     }
