@@ -13,6 +13,10 @@ public class ProductEntity {
     private String description;
     private BigDecimal wholesalePrice;
 
+    public ProductEntity() {
+        // empty for framework
+    }
+
     public ProductEntity(String id, String description, BigDecimal wholesalePrice) {
         this.id = id;
         this.description = description;
