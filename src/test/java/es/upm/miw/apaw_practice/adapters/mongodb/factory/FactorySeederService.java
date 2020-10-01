@@ -2,7 +2,6 @@ package es.upm.miw.apaw_practice.adapters.mongodb.factory;
 
 import es.upm.miw.apaw_practice.adapters.mongodb.factory.daos.ProductRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.factory.entities.ProductEntity;
-
 import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

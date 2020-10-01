@@ -65,6 +65,6 @@ public class SchoolSeederService {
         this.teacherRepository.deleteAll();
         this.studentRepository.deleteAll();
     }
-    }
+}
 
 
