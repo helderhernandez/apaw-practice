@@ -5,6 +5,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Document
@@ -12,13 +13,13 @@ public class ReservationEntity {
     @Id
     private String id;
     private BigDecimal price;
-    private LocalDate date;
+    private LocalDateTime date;
 
     public ReservationEntity() {
         //Empty for framework
     }
 
-    public ReservationEntity(BigDecimal price, LocalDate date) {
+    public ReservationEntity(BigDecimal price, LocalDateTime date) {
         this.id = UUID.randomUUID().toString();
         this.price = price;
         this.date = date;
@@ -40,11 +41,11 @@ public class ReservationEntity {
         this.price = price;
     }
 
-    public LocalDate getDate() {
+    public LocalDateTime getDate() {
         return date;
     }
 
-    public void setDate(LocalDate date) {
+    public void setDate(LocalDateTime date) {
         this.date = date;
     }
 
