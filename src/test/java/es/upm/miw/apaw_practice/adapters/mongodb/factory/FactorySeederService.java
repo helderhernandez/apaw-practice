@@ -1,7 +1,9 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.factory;
 
+import es.upm.miw.apaw_practice.adapters.mongodb.factory.daos.DegreeRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.factory.daos.EmployeeRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.factory.daos.ProductRepository;
+import es.upm.miw.apaw_practice.adapters.mongodb.factory.entities.DegreeEntity;
 import es.upm.miw.apaw_practice.adapters.mongodb.factory.entities.EmployeeEntity;
 import es.upm.miw.apaw_practice.adapters.mongodb.factory.entities.ProductEntity;
 import org.apache.logging.log4j.LogManager;
@@ -19,6 +21,8 @@ public class FactorySeederService {
     private ProductRepository productRepository;
     @Autowired
     private EmployeeRepository employeeRepository;
+    @Autowired
+    private DegreeRepository degreeRepository;
 
     public void seedDatabase() {
         LogManager.getLogger(this.getClass()).warn("------- Factory Initial Load -----------");
@@ -46,9 +50,18 @@ public class FactorySeederService {
         };
         this.employeeRepository.saveAll(Arrays.asList(employees));
 
+        DegreeEntity[] degrees = {
+                new DegreeEntity(employees[0], "Grado en Ingeria de Telecomunicaciones", "123456-7", "Universidad de Alcala"),
+                new DegreeEntity(employees[2], "Grado en Ingenieria Industrial", "456789-1", "Universidad Carlos III de Madrid"),
+                new DegreeEntity(employees[3], "Grado en Bellas Artes", "789123-4", "Universidad Complutense de Madrid")
+        };
+        this.degreeRepository.saveAll(Arrays.asList(degrees));
+
     }
 
     public void deleteAll() {
+        this.degreeRepository.deleteAll();
+        this.employeeRepository.deleteAll();
         this.productRepository.deleteAll();
     }
 }
