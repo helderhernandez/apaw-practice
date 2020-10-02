@@ -10,7 +10,7 @@ public class StudentEntity {
     private String id;
     private String name;
     private String familyName;
-    private boolean graduate;
+    private Boolean graduate;
     @Indexed(unique = true)
     private String dni;
     private String email;
@@ -19,7 +19,7 @@ public class StudentEntity {
         //empty from framework
     }
 
-    public StudentEntity(String name, String familyName, boolean graduate, String dni, String email) {
+    public StudentEntity(String name, String familyName, Boolean graduate, String dni, String email) {
         this.name = name;
         this.familyName = familyName;
         this.graduate = graduate;
@@ -51,11 +51,11 @@ public class StudentEntity {
         this.familyName = familyName;
     }
 
-    public boolean isGraduate() {
+    public Boolean isGraduate() {
         return graduate;
     }
 
-    public void setGraduate(boolean graduate) {
+    public void setGraduate(Boolean graduate) {
         this.graduate = graduate;
     }
 

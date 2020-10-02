@@ -1,9 +1,9 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.movie.entities;
 
 public class FilmRoomEntity {
-    private int numberOfSeats;
-    private int numberFilmRoom;
-    private boolean laserScreen;
+    private Integer numberOfSeats;
+    private Integer numberFilmRoom;
+    private Boolean laserScreen;
 
     public FilmRoomEntity() {
         //empty from framework
@@ -15,7 +15,7 @@ public class FilmRoomEntity {
         this.laserScreen = laserScreen;
     }
 
-    public int getNumberOfSeats() {
+    public Integer getNumberOfSeats() {
         return numberOfSeats;
     }
 
@@ -23,7 +23,7 @@ public class FilmRoomEntity {
         this.numberOfSeats = numberOfSeats;
     }
 
-    public int getNumberFilmRoom() {
+    public Integer getNumberFilmRoom() {
         return numberFilmRoom;
     }
 
@@ -31,7 +31,7 @@ public class FilmRoomEntity {
         this.numberFilmRoom = numberFilmRoom;
     }
 
-    public boolean isLaserScreen() {
+    public Boolean isLaserScreen() {
         return laserScreen;
     }
 
