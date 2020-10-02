@@ -1,24 +1,39 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.factory.entities;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
+import java.time.LocalDate;
 
 @Document
 public class EmployeeEntity {
 
     @Id
     private String id;
-    private Long phoneNumber;
-    private LocalDateTime seniority;
+    @Indexed(unique = true)
+    private String dni;
+    private String name;
+    private String lastName;
+    private Long phone;
+    private LocalDate seniority;
     private BigDecimal salary;
     private String department;
-    private String category;
+
 
     public EmployeeEntity() {
         // empty for framework
+    }
+
+    public EmployeeEntity(String dni, String name, String lastName, Long phone, LocalDate seniority, BigDecimal salary, String department) {
+        this.dni = dni;
+        this.name = name;
+        this.lastName = lastName;
+        this.phone = phone;
+        this.seniority = seniority;
+        this.salary = salary;
+        this.department = department;
     }
 
     public String getId() {
@@ -29,19 +44,43 @@ public class EmployeeEntity {
         this.id = id;
     }
 
-    public Long getPhoneNumber() {
-        return phoneNumber;
+    public String getDni() {
+        return dni;
     }
 
-    public void setPhoneNumber(Long phoneNumber) {
-        this.phoneNumber = phoneNumber;
+    public void setDni(String dni) {
+        this.dni = dni;
     }
 
-    public LocalDateTime getSeniority() {
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public void setLastName(String lastName) {
+        this.lastName = lastName;
+    }
+
+    public Long getPhone() {
+        return phone;
+    }
+
+    public void setPhone(Long phone) {
+        this.phone = phone;
+    }
+
+    public LocalDate getSeniority() {
         return seniority;
     }
 
-    public void setSeniority(LocalDateTime seniority) {
+    public void setSeniority(LocalDate seniority) {
         this.seniority = seniority;
     }
 
@@ -61,34 +100,29 @@ public class EmployeeEntity {
         this.department = department;
     }
 
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
-    }
 
     @Override
     public boolean equals(Object obj) {
         return this == obj || obj != null && getClass() == obj.getClass()
-                && (id.equals(((EmployeeEntity) obj).id));
+                && (dni.equals(((EmployeeEntity) obj).dni));
     }
 
     @Override
     public int hashCode() {
-        return id.hashCode();
+        return dni.hashCode();
     }
 
     @Override
     public String toString() {
         return "EmployeeEntity{" +
                 "id='" + id + '\'' +
-                ", phoneNumber=" + phoneNumber +
+                ", dni='" + dni + '\'' +
+                ", name='" + name + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", phone=" + phone +
                 ", seniority=" + seniority +
                 ", salary=" + salary +
                 ", department='" + department + '\'' +
-                ", category='" + category + '\'' +
                 '}';
     }
 }
