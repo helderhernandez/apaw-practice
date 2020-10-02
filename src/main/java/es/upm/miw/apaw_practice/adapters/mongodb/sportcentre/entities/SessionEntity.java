@@ -12,12 +12,12 @@ public class SessionEntity {
 
     @Id
     private String id;
-    private int roomNumber;
+    private Integer roomNumber;
     private LocalDateTime date;
     private List<AssistantEntity> assistants;
     private InstructorEntity instructor;
 
-    public SessionEntity(String id, int roomNumber, List<AssistantEntity> assistants, InstructorEntity instructor) {
+    public SessionEntity(String id, Integer roomNumber, List<AssistantEntity> assistants, InstructorEntity instructor) {
         this.id = id;
         this.roomNumber = roomNumber;
         this.assistants = assistants;
@@ -37,7 +37,7 @@ public class SessionEntity {
         return roomNumber;
     }
 
-    public void setRoomNumber(int roomNumber) {
+    public void setRoomNumber(Integer roomNumber) {
         this.roomNumber = roomNumber;
     }
 

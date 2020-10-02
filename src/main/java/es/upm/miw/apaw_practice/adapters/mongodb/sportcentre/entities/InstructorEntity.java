@@ -12,7 +12,7 @@ import java.util.Objects;
 public class InstructorEntity {
 
     @Id
-    private  String id;
+    private String id;
     private String name;
     private String lastName;
     private BigDecimal salary;

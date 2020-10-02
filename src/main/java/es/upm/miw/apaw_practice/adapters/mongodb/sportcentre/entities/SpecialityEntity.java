@@ -12,11 +12,12 @@ public class SpecialityEntity {
     private String id;
     private String title;
     private String description;
-    private int duration;
-    private boolean recomended;
+    private Integer duration;
+    private Boolean recomended;
 
 
-    public SpecialityEntity(String id, String title, String description, int duration, boolean recomended) {
+
+    public SpecialityEntity(String id, String title, String description, Integer duration, Boolean recomended) {
         this.id = id;
         this.title = title;
         this.description = description;
@@ -52,7 +53,7 @@ public class SpecialityEntity {
         return duration;
     }
 
-    public void setDuration(int duration) {
+    public void setDuration(Integer duration) {
         this.duration = duration;
     }
 
@@ -60,7 +61,7 @@ public class SpecialityEntity {
         return recomended;
     }
 
-    public void setRecomended(boolean recomended) {
+    public void setRecomended(Boolean recomended) {
         this.recomended = recomended;
     }
 
