@@ -4,6 +4,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
+import java.util.UUID;
 
 @Document
 public class RoomEntity {
@@ -11,11 +12,18 @@ public class RoomEntity {
     @Id
     private String id;
     private String area;
-    private int floor;
-    private List<PatientEntity> patientEntitys;
+    private Integer floor;
+    private List<PatientEntity> patientEntities;
 
     public RoomEntity(){
         //empty for framework
+    }
+
+    public RoomEntity(String area, Integer floor, List<PatientEntity> patientEntities) {
+        this.id = UUID.randomUUID().toString();
+        this.area = area;
+        this.floor = floor;
+        this.patientEntities = patientEntities;
     }
 
     public String getId() {
@@ -38,16 +46,16 @@ public class RoomEntity {
         return floor;
     }
 
-    public void setFloor(int floor) {
+    public void setFloor(Integer floor) {
         this.floor = floor;
     }
 
-    public List<PatientEntity> getPatientEntitys() {
-        return patientEntitys;
+    public List<PatientEntity> getPatientEntities() {
+        return patientEntities;
     }
 
     public void setPatientEntitys(List<PatientEntity> patientEntitys) {
-        this.patientEntitys = patientEntitys;
+        this.patientEntities = patientEntitys;
     }
 
     @Override
@@ -67,7 +75,7 @@ public class RoomEntity {
                 "id='" + id + '\'' +
                 ", area='" + area + '\'' +
                 ", floor=" + floor +
-                ", patientEntitys=" + patientEntitys +
+                ", patientEntitys=" + patientEntities +
                 '}';
     }
 }

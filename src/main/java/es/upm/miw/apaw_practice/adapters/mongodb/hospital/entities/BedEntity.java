@@ -3,6 +3,7 @@ package es.upm.miw.apaw_practice.adapters.mongodb.hospital.entities;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Document
@@ -10,13 +11,23 @@ public class BedEntity {
 
     @Id
     private String id;
-    private int width;
-    private int height;
+    private Integer width;
+    private Integer height;
     private Boolean occupied;
+    private LocalDateTime internedDate;
     private RoomEntity roomEntity;
 
     public BedEntity(){
         //empty for framework
+    }
+
+    public BedEntity(Integer width, Integer height, Boolean occupied, LocalDateTime internedDate, RoomEntity roomEntity) {
+        this.id = UUID.randomUUID().toString();
+        this.width = width;
+        this.height = height;
+        this.occupied = occupied;
+        this.internedDate = internedDate;
+        this.roomEntity = roomEntity;
     }
 
     public String getId() {
@@ -27,19 +38,19 @@ public class BedEntity {
         this.id = id;
     }
 
-    public int getWidth() {
+    public Integer getWidth() {
         return width;
     }
 
-    public void setWidth(int width) {
+    public void setWidth(Integer width) {
         this.width = width;
     }
 
-    public int getHeight() {
+    public Integer getHeight() {
         return height;
     }
 
-    public void setHeight(int height) {
+    public void setHeight(Integer height) {
         this.height = height;
     }
 
@@ -49,6 +60,14 @@ public class BedEntity {
 
     public void setOccupied(Boolean occupied) {
         this.occupied = occupied;
+    }
+
+    public LocalDateTime getInternedDate() {
+        return internedDate;
+    }
+
+    public void setInternedDate(LocalDateTime internedDate) {
+        this.internedDate = internedDate;
     }
 
     public RoomEntity getRoomEntity() {

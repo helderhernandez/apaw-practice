@@ -1,8 +1,10 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.hospital.daos;
 
-import es.upm.miw.apaw_practice.adapters.mongodb.shop.entities.ArticleEntity;
+import es.upm.miw.apaw_practice.adapters.mongodb.hospital.entities.PatientEntity;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
-public interface PatientRepository extends MongoRepository<ArticleEntity, String> {
+import java.util.Optional;
 
+public interface PatientRepository extends MongoRepository<PatientEntity, String> {
+    Optional<PatientEntity> findByDni(String dni);
 }
