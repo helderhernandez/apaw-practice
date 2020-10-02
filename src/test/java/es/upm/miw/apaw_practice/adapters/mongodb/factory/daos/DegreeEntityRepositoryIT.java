@@ -5,6 +5,8 @@ import es.upm.miw.apaw_practice.adapters.mongodb.factory.entities.DegreeEntity;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.time.LocalDate;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
@@ -30,9 +32,10 @@ public class DegreeEntityRepositoryIT {
                         "Grado en Ingenieria Industrial".equals(deg.getTitle()) &&
                                 "Universidad Carlos III de Madrid".equals(deg.getInstitute()) &&
                                 deg.getId() != null &&
-                                "22222222C".equals(deg.getEmployeeEntity().getDni())
+                                "22222222C".equals(deg.getEmployeeEntity().getDni()) &&
+                                LocalDate.of(2018, 7, 27).equals(deg.getEmployeeEntity().getSeniority()) &&
+                                666666662L == deg.getEmployeeEntity().getPhone()
                 ));
     }
-
 
 }

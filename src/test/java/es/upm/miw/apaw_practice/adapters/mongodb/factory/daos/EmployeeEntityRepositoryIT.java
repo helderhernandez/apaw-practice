@@ -27,7 +27,7 @@ public class EmployeeEntityRepositoryIT {
         assertEquals(666666661L, employee.getPhone());
         assertEquals(LocalDate.of(2019, 8, 28), employee.getSeniority());
         assertEquals(0, new BigDecimal("26000").compareTo(employee.getSalary()));
-        assertEquals("Hardware", employee.getDepartment());
+        assertEquals("Software", employee.getDepartment());
     }
 }
 
