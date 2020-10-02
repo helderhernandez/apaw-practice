@@ -17,7 +17,7 @@ public class MovieEntity {
     private String filmTitle;
     private LocalDateTime releaseDate;
     private String synopsis;
-    private int punctuation;
+    private Integer punctuation;
 
     public MovieEntity() {
         //empty for framework
@@ -71,7 +71,7 @@ public class MovieEntity {
         this.synopsis = synopsis;
     }
 
-    public int getPunctuation() {
+    public Integer getPunctuation() {
         return punctuation;
     }
 

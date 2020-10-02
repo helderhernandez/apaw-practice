@@ -10,7 +10,7 @@ public class TeacherEntity {
     private String id;
     private String name;
     private String familyName;
-    private boolean intern;
+    private Boolean intern;
     @Indexed(unique = true)
     private String dni;
     private String email;
@@ -19,7 +19,7 @@ public class TeacherEntity {
         //empty from framework
     }
 
-    public TeacherEntity(String name, String familyName, boolean intern, String dni, String email) {
+    public TeacherEntity(String name, String familyName, Boolean intern, String dni, String email) {
         this.name = name;
         this.familyName = familyName;
         this.intern = intern;
@@ -51,11 +51,11 @@ public class TeacherEntity {
         this.familyName = familyName;
     }
 
-    public boolean isIntern() {
+    public Boolean isIntern() {
         return intern;
     }
 
-    public void setIntern(boolean intern) {
+    public void setIntern(Boolean intern) {
         this.intern = intern;
     }
 
