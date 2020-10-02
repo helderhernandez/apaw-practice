@@ -10,10 +10,10 @@ public class AssistantEntity {
     private String id;
     private String name;
     private String lastName;
-    private long phone;
+    private Integer phone;
 
 
-    public AssistantEntity(String id, String name, String lastName, long phone){
+    public AssistantEntity(String id, String name, String lastName, Integer phone){
         this.id = id;
         this.name = name;
         this.lastName = lastName;
@@ -49,7 +49,7 @@ public class AssistantEntity {
         return phone;
     }
 
-    public void setPhone(long phone) {
+    public void setPhone(Integer phone) {
         this.phone = phone;
     }
 
