@@ -1,22 +1,36 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.hospital.entities;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Arrays;
+import java.util.List;
+import java.util.UUID;
 
 @Document
 public class PatientEntity {
 
     @Id
     private String id;
+    @Indexed(unique = true)
+    private String dni;
     private String name;
     private String surname;
     private String [] pathologies;
-    private IllnessEntity [] illnessEntities;
+    private List<IllnessEntity> illnessEntities;
 
     public PatientEntity(){
         //empty for framework
+    }
+
+    public PatientEntity(String dni, String name, String surname, String[] pathologies, List<IllnessEntity> illnessEntities) {
+        this.id = UUID.randomUUID().toString();
+        this.dni = dni;
+        this.name = name;
+        this.surname = surname;
+        this.pathologies = pathologies;
+        this.illnessEntities = illnessEntities;
     }
 
     public String getId() {
@@ -25,6 +39,14 @@ public class PatientEntity {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getDni() {
+        return dni;
+    }
+
+    public void setDni(String dni) {
+        this.dni = dni;
     }
 
     public String getName() {
@@ -51,11 +73,11 @@ public class PatientEntity {
         this.pathologies = pathologies;
     }
 
-    public IllnessEntity[] getIllnessEntities() {
+    public List<IllnessEntity> getIllnessEntities() {
         return illnessEntities;
     }
 
-    public void setIllnessEntities(IllnessEntity[] illnessEntities) {
+    public void setIllnessEntities(List<IllnessEntity> illnessEntities) {
         this.illnessEntities = illnessEntities;
     }
 
@@ -74,10 +96,11 @@ public class PatientEntity {
     public String toString() {
         return "PatientEntity{" +
                 "id='" + id + '\'' +
+                ", dni='" + dni + '\'' +
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
                 ", pathologies=" + Arrays.toString(pathologies) +
-                ", illnessEntities=" + Arrays.toString(illnessEntities) +
+                ", illnessEntities=" + illnessEntities +
                 '}';
     }
 }

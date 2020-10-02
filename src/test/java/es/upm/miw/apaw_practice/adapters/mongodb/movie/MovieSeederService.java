@@ -28,7 +28,7 @@ public class MovieSeederService {
     private MovieRepository movieRepository;
 
     public void seedDatabase() {
-        LogManager.getLogger(this.getClass()).warn("------- Shop Initial Load -----------");
+        LogManager.getLogger(this.getClass()).warn("------- Movie Initial Load -----------");
         FilmDirectorEntity[] filmDirectories = {
                 new FilmDirectorEntity("Jose", "Luis Rodriguez", 38),
                 new FilmDirectorEntity("Pedro", "Munoz Roda", 30),

@@ -1,32 +1,15 @@
-package es.upm.miw.apaw_practice.adapters.mongodb.school.entities;
+package es.upm.miw.apaw_practice.domain.models.school;
 
-import es.upm.miw.apaw_practice.domain.models.school.Student;
-import org.springframework.beans.BeanUtils;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.index.Indexed;
-import org.springframework.data.mongodb.core.mapping.Document;
-
-@Document
-public class StudentEntity {
-    @Id
+public class Student {
     private String id;
     private String name;
     private String familyName;
     private Boolean graduate;
-    @Indexed(unique = true)
     private String dni;
     private String email;
 
-    public StudentEntity() {
+    public Student() {
         //empty from framework
-    }
-
-    public StudentEntity(String name, String familyName, Boolean graduate, String dni, String email) {
-        this.name = name;
-        this.familyName = familyName;
-        this.graduate = graduate;
-        this.dni = dni;
-        this.email = email;
     }
 
     public String getId() {
@@ -77,22 +60,6 @@ public class StudentEntity {
         this.email = email;
     }
 
-    public Student toStudent() {
-        Student student = new Student();
-        BeanUtils.copyProperties(this, student);
-        return student;
-    }
-
-    @Override
-    public int hashCode() {
-        return dni.hashCode();
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        return this == obj || obj != null && getClass() == obj.getClass() && (dni.equals(((es.upm.miw.apaw_practice.adapters.mongodb.school.entities.StudentEntity) obj).dni));
-    }
-
     @Override
     public String toString() {
         return "StudentEntity{" +
@@ -105,4 +72,3 @@ public class StudentEntity {
                 '}';
     }
 }
-
