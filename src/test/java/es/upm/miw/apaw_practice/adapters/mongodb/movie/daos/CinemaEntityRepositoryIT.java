@@ -33,6 +33,14 @@ public class CinemaEntityRepositoryIT {
                 .map(FilmRoomEntity::getNumberFilmRoom)
                 .collect(Collectors.toList())
                 .containsAll(Arrays.asList(12, 14)));
+        assertTrue(cinema.getFilmRooms().stream()
+                .map(FilmRoomEntity::getNumberOfSeats)
+                .collect(Collectors.toList())
+                .containsAll(Arrays.asList(150, 85)));
+        assertTrue(cinema.getFilmRooms().stream()
+                .map(FilmRoomEntity::isLaserScreen)
+                .collect(Collectors.toList())
+                .containsAll(Arrays.asList(true, false)));
         assertEquals(0, new BigDecimal("10.23").compareTo(cinema.getMovieTicketPrice()));
         assertEquals("Alcorcon", cinema.getCity());
     }
