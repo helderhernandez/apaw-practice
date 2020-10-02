@@ -9,7 +9,7 @@ public class FilmDirectorEntity {
     private String id;
     private String name;
     private String fullName;
-    private int age;
+    private Integer age;
 
     public FilmDirectorEntity() {
         //empty from framework
@@ -45,7 +45,7 @@ public class FilmDirectorEntity {
         this.fullName = fullName;
     }
 
-    public int getAge() {
+    public Integer getAge() {
         return age;
     }
 
