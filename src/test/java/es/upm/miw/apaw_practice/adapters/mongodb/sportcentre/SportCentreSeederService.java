@@ -35,8 +35,8 @@ public class SportCentreSeederService {
                 new AssistantEntity("100", "Alejandro", "Rodriguez", 111111111),
                 new AssistantEntity("101", "Julia", "Perez", 122222222),
                 new AssistantEntity("102", "Jose", "Gonzalez", 133333333),
-                new AssistantEntity("103", "Elena", "Castro", 144444444),
-                new AssistantEntity("104", "Adrian", "Garcia", 155555555)
+                new AssistantEntity("103", "Elena", "Castro",144444444),
+                new AssistantEntity("104", "Adrian", "Garcia",155555555)
         };
         this.assistantRepository.saveAll(Arrays.asList(assistants));
         SpecialityEntity[] specialities = {
