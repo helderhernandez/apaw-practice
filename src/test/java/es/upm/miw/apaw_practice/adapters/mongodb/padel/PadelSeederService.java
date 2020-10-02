@@ -14,6 +14,7 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
 
@@ -31,12 +32,12 @@ public class PadelSeederService {
     public void seedDatabase() {
         LogManager.getLogger(this.getClass()).warn("------- Padel Initial Load -----------");
         ReservationEntity[] reservationEntities = {
-                new ReservationEntity(BigDecimal.TEN,LocalDate.of(1996,11,11)),
-                new ReservationEntity(BigDecimal.TEN,LocalDate.of(1997,11,11)),
-                new ReservationEntity(BigDecimal.TEN,LocalDate.of(1998,11,11)),
-                new ReservationEntity(BigDecimal.ONE,LocalDate.of(1999,11,11)),
-                new ReservationEntity(BigDecimal.ONE,LocalDate.of(2000,11,11)),
-                new ReservationEntity(BigDecimal.ONE,LocalDate.of(2001,11,11)),
+                new ReservationEntity(BigDecimal.TEN, LocalDateTime.of(1997,11,11,9,0)),
+                new ReservationEntity(BigDecimal.TEN,LocalDateTime.of(1997,11,11,10,30)),
+                new ReservationEntity(BigDecimal.TEN,LocalDateTime.of(1998,11,11,12,0)),
+                new ReservationEntity(BigDecimal.ONE,LocalDateTime.of(1999,11,11,13,0)),
+                new ReservationEntity(BigDecimal.ONE,LocalDateTime.of(2000,11,11,16,0)),
+                new ReservationEntity(BigDecimal.ONE,LocalDateTime.of(2001,11,11,17,30)),
 
         };
         this.reservationRepository.saveAll(Arrays.asList(reservationEntities));
@@ -60,10 +61,10 @@ public class PadelSeederService {
         this.racketRepository.saveAll(Arrays.asList(racketEntities));
 
         TournamentEntity[] tournamentEntities = {
-                new TournamentEntity("TORNEO-A",LocalDate.of(2020,12,1),LocalDate.of(2020,12,10),0, List.of(playerEntities[0],playerEntities[1])),
-                new TournamentEntity("TORNEO-A",LocalDate.of(2020,12,10),LocalDate.of(2020,12,20),1, List.of(playerEntities[0],playerEntities[2])),
-                new TournamentEntity("TORNEO-B",LocalDate.of(2020,12,20),LocalDate.of(2020,12,30),2, List.of(playerEntities[0],playerEntities[1],playerEntities[2])),
-                new TournamentEntity("TORNEO-C",LocalDate.of(2021,1,1),LocalDate.of(2021,10,10),3, List.of(playerEntities)),
+                new TournamentEntity("TORNEO-A",LocalDateTime.of(2020,12,1,0,0),LocalDateTime.of(2020,12,10,0,0),0, List.of(playerEntities[0],playerEntities[1])),
+                new TournamentEntity("TORNEO-A",LocalDateTime.of(2020,12,10,0,0),LocalDateTime.of(2020,12,20,0,0),1, List.of(playerEntities[0],playerEntities[2])),
+                new TournamentEntity("TORNEO-B",LocalDateTime.of(2020,12,20,0,0),LocalDateTime.of(2020,12,30,0,0),2, List.of(playerEntities[0],playerEntities[1],playerEntities[2])),
+                new TournamentEntity("TORNEO-C",LocalDateTime.of(2021,1,1,0,0),LocalDateTime.of(2021,10,10,0,0),3, List.of(playerEntities)),
 
         };
         this.tournamentRepository.saveAll(Arrays.asList(tournamentEntities));

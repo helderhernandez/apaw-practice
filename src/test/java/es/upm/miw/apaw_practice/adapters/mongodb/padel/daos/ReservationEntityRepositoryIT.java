@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -15,9 +16,9 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 
     @Test
     void testFindAllByDateBefore(){
-        LocalDate testDate = LocalDate.of(2000,10,20);
+        LocalDateTime testDate = LocalDateTime.of(2000,10,20,0,0);
         assertEquals(4,this.reservationRepository.findAllByDateBefore(testDate).orElse(null).size());
-        testDate = LocalDate.of(1998,10,20);
+        testDate = LocalDateTime.of(1998,10,20,0,0);
         assertEquals(2,this.reservationRepository.findAllByDateBefore(testDate).orElse(null).size());
 
     }

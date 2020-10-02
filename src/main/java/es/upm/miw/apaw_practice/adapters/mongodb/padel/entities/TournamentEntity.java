@@ -4,6 +4,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -12,16 +13,16 @@ public class TournamentEntity {
     @Id
     private String id;
     private String name;
-    private LocalDate startDay;
-    private LocalDate finishDay;
-    private int level;
+    private LocalDateTime startDay;
+    private LocalDateTime finishDay;
+    private Integer level;
     private List<PlayerEntity> playerEntities;
 
     public TournamentEntity() {
         //Empty for framework
     }
 
-    public TournamentEntity(String name, LocalDate startDay, LocalDate finishDay, int level, List<PlayerEntity> playerEntities) {
+    public TournamentEntity(String name, LocalDateTime startDay, LocalDateTime finishDay, Integer level, List<PlayerEntity> playerEntities) {
         this.id = UUID.randomUUID().toString();
         this.name = name;
         this.startDay = startDay;
@@ -46,27 +47,27 @@ public class TournamentEntity {
         this.name = name;
     }
 
-    public LocalDate getStartDay() {
+    public LocalDateTime getStartDay() {
         return startDay;
     }
 
-    public void setStartDay(LocalDate startDay) {
+    public void setStartDay(LocalDateTime startDay) {
         this.startDay = startDay;
     }
 
-    public LocalDate getFinishDay() {
+    public LocalDateTime getFinishDay() {
         return finishDay;
     }
 
-    public void setFinishDay(LocalDate finishDay) {
+    public void setFinishDay(LocalDateTime finishDay) {
         this.finishDay = finishDay;
     }
 
-    public int getLevel() {
+    public Integer getLevel() {
         return level;
     }
 
-    public void setLevel(int level) {
+    public void setLevel(Integer level) {
         this.level = level;
     }
 
