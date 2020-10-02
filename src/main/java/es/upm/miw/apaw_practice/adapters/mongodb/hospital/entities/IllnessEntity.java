@@ -4,19 +4,28 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Arrays;
+import java.util.UUID;
 
 @Document
 public class IllnessEntity {
 
     @Id
     private String id;
-    private int phase;
+    private Integer phase;
     private String [] symptoms;
     private String [] causes;
     private Boolean contagious;
 
     public IllnessEntity(){
         //empty for framework
+    }
+
+    public IllnessEntity(Integer phase, String[] symptoms, String[] causes, Boolean contagious) {
+        this.id = UUID.randomUUID().toString();
+        this.phase = phase;
+        this.symptoms = symptoms;
+        this.causes = causes;
+        this.contagious = contagious;
     }
 
     public String getId() {
@@ -31,7 +40,7 @@ public class IllnessEntity {
         return phase;
     }
 
-    public void setPhase(int phase) {
+    public void setPhase(Integer phase) {
         this.phase = phase;
     }
 
