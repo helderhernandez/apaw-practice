@@ -16,7 +16,7 @@ import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @RestTestConfig
-class ShoppingCartEntityResourceIT {
+class ShoppingCartResourceIT {
 
     @Autowired
     private WebTestClient webTestClient;
