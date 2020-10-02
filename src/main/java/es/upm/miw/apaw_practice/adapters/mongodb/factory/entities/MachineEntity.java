@@ -17,14 +17,14 @@ public class MachineEntity {
     private List<ProductEntity> productEntities;
     @Indexed(unique = true)
     private Long serialNumber;
-    private boolean isActive;
+    private Boolean isActive;
     private LocalDate lastInspection;
 
     public MachineEntity() {
         // empty for framework
     }
 
-    public MachineEntity(List<EmployeeEntity> employeeEntities, List<ProductEntity> productEntities, Long serialNumber, boolean isActive, LocalDate lastInspection) {
+    public MachineEntity(List<EmployeeEntity> employeeEntities, List<ProductEntity> productEntities, Long serialNumber, Boolean isActive, LocalDate lastInspection) {
         this.employeeEntities = employeeEntities;
         this.productEntities = productEntities;
         this.serialNumber = serialNumber;
@@ -64,11 +64,11 @@ public class MachineEntity {
         this.serialNumber = serialNumber;
     }
 
-    public boolean isActive() {
+    public Boolean isActive() {
         return isActive;
     }
 
-    public void setActive(boolean active) {
+    public void setActive(Boolean active) {
         isActive = active;
     }
 
