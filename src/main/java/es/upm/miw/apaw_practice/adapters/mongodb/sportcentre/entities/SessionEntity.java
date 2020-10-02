@@ -17,12 +17,12 @@ public class SessionEntity {
     private List<AssistantEntity> assistants;
     private InstructorEntity instructor;
 
-    public SessionEntity(String id, int roomNumber, LocalDateTime date, List<AssistantEntity> assistants, InstructorEntity instructor) {
+    public SessionEntity(String id, int roomNumber, List<AssistantEntity> assistants, InstructorEntity instructor) {
         this.id = id;
         this.roomNumber = roomNumber;
-        this.date = date;
         this.assistants = assistants;
         this.instructor = instructor;
+        this.date = LocalDateTime.now();
     }
 
     public String getId() {

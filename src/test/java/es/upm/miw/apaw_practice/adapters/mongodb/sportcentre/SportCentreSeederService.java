@@ -2,9 +2,11 @@ package es.upm.miw.apaw_practice.adapters.mongodb.sportcentre;
 
 import es.upm.miw.apaw_practice.adapters.mongodb.sportcentre.daos.AssistantRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.sportcentre.daos.InstructorRepository;
+import es.upm.miw.apaw_practice.adapters.mongodb.sportcentre.daos.SessionRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.sportcentre.daos.SpecialityRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.sportcentre.entities.AssistantEntity;
 import es.upm.miw.apaw_practice.adapters.mongodb.sportcentre.entities.InstructorEntity;
+import es.upm.miw.apaw_practice.adapters.mongodb.sportcentre.entities.SessionEntity;
 import es.upm.miw.apaw_practice.adapters.mongodb.sportcentre.entities.SpecialityEntity;
 import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +25,9 @@ public class SportCentreSeederService {
     private SpecialityRepository specialityRepository;
     @Autowired
     private InstructorRepository instructorRepository;
+    @Autowired
+    private SessionRepository sessionRepository;
+
 
     public void seedDatabase() {
         LogManager.getLogger(this.getClass()).warn("------- Shop Initial Load -----------");
@@ -50,7 +55,17 @@ public class SportCentreSeederService {
                 new InstructorEntity("904", "Teresa", "Izquierdo", BigDecimal.valueOf(1000), List.of(specialities[3], specialities[4])),
         };
         this.instructorRepository.saveAll(Arrays.asList(instructors));
-
+        SessionEntity[] sessions = {
+                new SessionEntity("S00", 1, List.of(), instructors[0]),
+                new SessionEntity("S01", 2, List.of(assistants[1], assistants[3]), instructors[1]),
+                new SessionEntity("S02", 3, List.of(assistants[0], assistants[1], assistants[4]), instructors[2]),
+                new SessionEntity("S03", 4, List.of(assistants[2], assistants[3]), instructors[3]),
+                new SessionEntity("S04", 5, List.of(assistants[4]), instructors[4]),
+                new SessionEntity("S05", 6, List.of(assistants[0],assistants[3],assistants[4], assistants[1]), instructors[1]),
+                new SessionEntity("S06", 7, List.of(assistants[2]), instructors[2]),
+                new SessionEntity("S07", 8, List.of(assistants[1], assistants[2]), instructors[3])
+        };
+        this.sessionRepository.saveAll(Arrays.asList(sessions));
     }
 
     public void deleteAll() {
