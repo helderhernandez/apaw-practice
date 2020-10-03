@@ -1,22 +1,11 @@
-package es.upm.miw.apaw_practice.adapters.mongodb.factory.entities;
-
-import es.upm.miw.apaw_practice.domain.models.factory.Employee;
-import es.upm.miw.apaw_practice.domain.models.factory.EmployeeCreation;
-import org.springframework.beans.BeanUtils;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.index.Indexed;
-import org.springframework.data.mongodb.core.mapping.Document;
+package es.upm.miw.apaw_practice.domain.models.factory;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.UUID;
 
-@Document
-public class EmployeeEntity {
+public class Employee {
 
-    @Id
     private String id;
-    @Indexed(unique = true)
     private String dni;
     private String name;
     private String lastName;
@@ -25,12 +14,11 @@ public class EmployeeEntity {
     private BigDecimal salary;
     private String department;
 
-
-    public EmployeeEntity() {
+    public Employee() {
         // empty for framework
     }
 
-    public EmployeeEntity(String dni, String name, String lastName, Long phone, LocalDate seniority, BigDecimal salary, String department) {
+    public Employee(String dni, String name, String lastName, Long phone, LocalDate seniority, BigDecimal salary, String department) {
         this.dni = dni;
         this.name = name;
         this.lastName = lastName;
@@ -38,12 +26,6 @@ public class EmployeeEntity {
         this.seniority = seniority;
         this.salary = salary;
         this.department = department;
-    }
-
-    public EmployeeEntity(EmployeeCreation employeeCreation) {
-        BeanUtils.copyProperties(employeeCreation, this);
-        this.id = UUID.randomUUID().toString();
-        this.seniority = LocalDate.now();
     }
 
     public String getId() {
@@ -110,26 +92,9 @@ public class EmployeeEntity {
         this.department = department;
     }
 
-    public Employee toEmployee() {
-        Employee employee = new Employee();
-        BeanUtils.copyProperties(this, employee);
-        return employee;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        return this == obj || obj != null && getClass() == obj.getClass()
-                && (dni.equals(((EmployeeEntity) obj).dni));
-    }
-
-    @Override
-    public int hashCode() {
-        return dni.hashCode();
-    }
-
     @Override
     public String toString() {
-        return "EmployeeEntity{" +
+        return "Employee{" +
                 "id='" + id + '\'' +
                 ", dni='" + dni + '\'' +
                 ", name='" + name + '\'' +
@@ -140,6 +105,4 @@ public class EmployeeEntity {
                 ", department='" + department + '\'' +
                 '}';
     }
-
-
 }
