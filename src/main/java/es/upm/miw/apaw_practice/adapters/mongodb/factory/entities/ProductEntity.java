@@ -1,5 +1,7 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.factory.entities;
 
+import es.upm.miw.apaw_practice.domain.models.factory.Product;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -77,5 +79,11 @@ public class ProductEntity {
                 ", serialNumber=" + serialNumber +
                 ", wholesalePrice=" + wholesalePrice +
                 '}';
+    }
+
+    public Product toProduct() {
+        Product product = new Product();
+        BeanUtils.copyProperties(this, product);
+        return product;
     }
 }
