@@ -1,8 +1,16 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.school.entities;
 
+import es.upm.miw.apaw_practice.domain.models.school.Teacher;
+import es.upm.miw.apaw_practice.domain.models.school.TeacherCreation;
+import es.upm.miw.apaw_practice.domain.models.shop.Article;
+import es.upm.miw.apaw_practice.domain.models.shop.ArticleCreation;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
+
+import java.time.LocalDate;
+import java.util.UUID;
 
 @Document
 public class TeacherEntity {
@@ -19,12 +27,10 @@ public class TeacherEntity {
         //empty from framework
     }
 
-    public TeacherEntity(String name, String familyName, Boolean intern, String dni, String email) {
-        this.name = name;
-        this.familyName = familyName;
-        this.intern = intern;
-        this.dni = dni;
-        this.email = email;
+    public TeacherEntity(TeacherCreation teacherCreation) {
+        BeanUtils.copyProperties(teacherCreation, this);
+        this.id = UUID.randomUUID().toString();
+        this.intern=teacherCreation.isIntern();
     }
 
     public String getId() {
@@ -73,6 +79,12 @@ public class TeacherEntity {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public Teacher toTeacher() {
+        Teacher teacher = new Teacher();
+        BeanUtils.copyProperties(this, teacher);
+        return teacher;
     }
 
     @Override
