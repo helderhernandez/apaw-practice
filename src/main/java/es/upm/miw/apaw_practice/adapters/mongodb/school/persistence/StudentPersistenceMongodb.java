@@ -10,7 +10,7 @@ import java.util.stream.Stream;
 
 @Repository("studentPersistence")
 public class StudentPersistenceMongodb implements StudentPersistence {
-    private StudentRepository studentRepository;
+    private final StudentRepository studentRepository;
 
     @Autowired
     public StudentPersistenceMongodb(StudentRepository studentRepository) {

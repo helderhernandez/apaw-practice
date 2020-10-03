@@ -16,7 +16,7 @@ public class StudentResource {
 
     static final String SEARCH = "/search";
 
-    private StudentService studentService;
+    private final StudentService studentService;
 
     @Autowired
     public StudentResource(StudentService studentService) {
