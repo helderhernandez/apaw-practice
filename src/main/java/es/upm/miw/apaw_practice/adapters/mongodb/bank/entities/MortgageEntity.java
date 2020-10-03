@@ -1,7 +1,7 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.bank.entities;
 
-import nonapi.io.github.classgraph.json.Id;
-import org.springframework.data.mongodb.core.index.Indexed;
+
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -10,25 +10,25 @@ import java.util.Objects;
 import java.util.UUID;
 
 @Document
-public class AccountEntity {
+public class MortgageEntity {
     @Id
     private String id;
     private BigDecimal amount;
-    @Indexed(unique = true)
-    private String IBAN;
+    private BigDecimal paidout;
     @DBRef
     private CustomerEntity customerEntity;
 
-    public AccountEntity(BigDecimal amount, CustomerEntity customerEntity, String IBAN) {
-        this.id = UUID.randomUUID().toString();
-        this.amount = amount;
-        this.customerEntity = customerEntity;
-        this.IBAN = IBAN;
-    }
-
-    public AccountEntity() {
+    public MortgageEntity() {
         //Empty for framework
     }
+
+    public MortgageEntity(BigDecimal amount, BigDecimal paidout, CustomerEntity customerEntity) {
+        this.id = UUID.randomUUID().toString();
+        this.amount = amount;
+        this.paidout = paidout;
+        this.customerEntity = customerEntity;
+    }
+
 
     public String getId() {
         return id;
@@ -46,6 +46,14 @@ public class AccountEntity {
         this.amount = amount;
     }
 
+    public BigDecimal getPaidout() {
+        return paidout;
+    }
+
+    public void setPaidout(BigDecimal paidout) {
+        this.paidout = paidout;
+    }
+
     public CustomerEntity getCustomerEntity() {
         return customerEntity;
     }
@@ -54,33 +62,25 @@ public class AccountEntity {
         this.customerEntity = customerEntity;
     }
 
-    public String getIBAN() {
-        return IBAN;
-    }
-
-    public void setIBAN(String IBAN) {
-        this.IBAN = IBAN;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        AccountEntity that = (AccountEntity) o;
+        MortgageEntity that = (MortgageEntity) o;
         return id.equals(that.id);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(IBAN);
+        return Objects.hash(id);
     }
 
     @Override
     public String toString() {
-        return "AccountEntity{" +
+        return "MortgageEntity{" +
                 "id='" + id + '\'' +
                 ", amount=" + amount +
-                ", IBAN='" + IBAN + '\'' +
+                ", paidout=" + paidout +
                 ", customerEntity=" + customerEntity +
                 '}';
     }

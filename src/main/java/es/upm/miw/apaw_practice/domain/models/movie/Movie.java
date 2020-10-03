@@ -1,36 +1,19 @@
-package es.upm.miw.apaw_practice.adapters.mongodb.movie.entities;
+package es.upm.miw.apaw_practice.domain.models.movie;
 
-import es.upm.miw.apaw_practice.domain.models.movie.Movie;
-import es.upm.miw.apaw_practice.domain.models.movie.MovieCreation;
-import es.upm.miw.apaw_practice.domain.models.shop.Article;
-import org.springframework.beans.BeanUtils;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.index.Indexed;
-import org.springframework.data.mongodb.core.mapping.DBRef;
-import org.springframework.data.mongodb.core.mapping.Document;
+import es.upm.miw.apaw_practice.adapters.mongodb.movie.entities.FilmDirectorEntity;
 
 import java.time.LocalDateTime;
-import java.util.UUID;
 
-@Document
-public class MovieEntity {
-    @Id
+public class Movie {
     private String id;
-    @DBRef
     private FilmDirectorEntity filmDirector;
-    @Indexed(unique = true)
     private String filmTitle;
     private LocalDateTime releaseDate;
     private String synopsis;
     private Integer punctuation;
 
-    public MovieEntity() {
+    public Movie(){
         //empty for framework
-    }
-
-    public MovieEntity(MovieCreation movieCreation) {
-        BeanUtils.copyProperties(movieCreation, this);
-        this.id = UUID.randomUUID().toString();
     }
 
     public String getId() {
@@ -77,29 +60,13 @@ public class MovieEntity {
         return punctuation;
     }
 
-    public void setPunctuation(int punctuation) {
+    public void setPunctuation(Integer punctuation) {
         this.punctuation = punctuation;
-    }
-
-    public Movie toMovie() {
-        Movie movie = new Movie();
-        BeanUtils.copyProperties(this, movie);
-        return movie;
-    }
-
-    @Override
-    public int hashCode() {
-        return this.synopsis.hashCode();
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        return this == obj || obj != null && getClass() == obj.getClass() && (synopsis.equals(((MovieEntity) obj).synopsis));
     }
 
     @Override
     public String toString() {
-        return "MovieEntity{" +
+        return "Movie{" +
                 "id='" + id + '\'' +
                 ", filmDirector=" + filmDirector +
                 ", filmTitle='" + filmTitle + '\'' +
