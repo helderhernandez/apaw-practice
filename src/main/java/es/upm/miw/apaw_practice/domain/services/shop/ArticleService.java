@@ -42,4 +42,8 @@ public class ArticleService {
     public Stream<Article> readAll() {
         return this.articlePersistence.readAll();
     }
+
+    public Article updateDescription(String id, String description) {
+        return this.articlePersistence.updateDescription(id, description);
+    }
 }
