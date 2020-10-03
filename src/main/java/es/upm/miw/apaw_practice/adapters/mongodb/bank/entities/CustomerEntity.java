@@ -14,10 +14,10 @@ public class CustomerEntity {
     private String name;
     @Indexed(unique = true)
     private String DNI;
-    private long phone;
+    private String phone;
     private String email;
 
-    public CustomerEntity(String name, String DNI, long phone, String email) {
+    public CustomerEntity(String name, String DNI, String phone, String email) {
         this.id = UUID.randomUUID().toString();
         this.name = name;
         this.DNI = DNI;
@@ -53,11 +53,11 @@ public class CustomerEntity {
         this.DNI = DNI;
     }
 
-    public long getPhone() {
+    public String getPhone() {
         return phone;
     }
 
-    public void setPhone(long phone) {
+    public void setPhone(String phone) {
         this.phone = phone;
     }
 
