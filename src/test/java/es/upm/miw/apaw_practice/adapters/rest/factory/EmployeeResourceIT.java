@@ -1,11 +1,8 @@
 package es.upm.miw.apaw_practice.adapters.rest.factory;
 
 import es.upm.miw.apaw_practice.adapters.rest.RestTestConfig;
-import es.upm.miw.apaw_practice.adapters.rest.shop.ArticleResource;
 import es.upm.miw.apaw_practice.domain.models.factory.Employee;
 import es.upm.miw.apaw_practice.domain.models.factory.EmployeeCreation;
-import es.upm.miw.apaw_practice.domain.models.shop.Article;
-import es.upm.miw.apaw_practice.domain.models.shop.ArticleCreation;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

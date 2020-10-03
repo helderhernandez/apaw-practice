@@ -26,7 +26,7 @@ public class EmployeePersistenceMongodb implements EmployeePersistence {
                 .toEmployee();
     }
 
-    private void assertDniNotExist(String dni) {
+    public void assertDniNotExist(String dni) {
         this.employeeRepository
                 .findByDni(dni)
                 .ifPresent(employee -> {
