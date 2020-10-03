@@ -1,6 +1,7 @@
 package es.upm.miw.apaw_practice.adapters.rest.factory;
 
 import es.upm.miw.apaw_practice.domain.models.factory.Employee;
+import es.upm.miw.apaw_practice.domain.models.factory.EmployeeCreation;
 import es.upm.miw.apaw_practice.domain.services.factory.EmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -22,7 +23,7 @@ public class EmployeeResource {
     }
 
     @PostMapping
-    public Employee create(@RequestBody Employee employee) {
-        return this.employeeService.create(employee);
+    public Employee create(@RequestBody EmployeeCreation employeeCreation) {
+        return this.employeeService.create(employeeCreation);
     }
 }

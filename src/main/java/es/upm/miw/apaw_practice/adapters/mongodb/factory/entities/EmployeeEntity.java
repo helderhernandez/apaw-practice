@@ -1,11 +1,15 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.factory.entities;
 
+import es.upm.miw.apaw_practice.domain.models.factory.Employee;
+import es.upm.miw.apaw_practice.domain.models.factory.EmployeeCreation;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.UUID;
 
 @Document
 public class EmployeeEntity {
@@ -34,6 +38,12 @@ public class EmployeeEntity {
         this.seniority = seniority;
         this.salary = salary;
         this.department = department;
+    }
+
+    public EmployeeEntity(EmployeeCreation employeeCreation) {
+        BeanUtils.copyProperties(employeeCreation, this);
+        this.id = UUID.randomUUID().toString();
+        this.seniority = LocalDate.now();
     }
 
     public String getId() {
@@ -100,6 +110,11 @@ public class EmployeeEntity {
         this.department = department;
     }
 
+    public Employee toEmployee() {
+        Employee employee = new Employee();
+        BeanUtils.copyProperties(this, employee);
+        return employee;
+    }
 
     @Override
     public boolean equals(Object obj) {
@@ -125,4 +140,6 @@ public class EmployeeEntity {
                 ", department='" + department + '\'' +
                 '}';
     }
+
+
 }
