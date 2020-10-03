@@ -48,6 +48,14 @@ public class ArticlePersistenceMongodb implements ArticlePersistence {
     }
 
     @Override
+    public Article updateDescription(String id, String description) {
+        ArticleEntity articleEntity = this.articleRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException("Article id: " + id));
+        articleEntity.setDescription(description);
+        return this.articleRepository.save(articleEntity).toArticle();
+    }
+
+    @Override
     public Stream<Article> readAll() {
         return this.articleRepository.findAll().stream()
                 .map(articleEntity -> articleEntity.toArticle());

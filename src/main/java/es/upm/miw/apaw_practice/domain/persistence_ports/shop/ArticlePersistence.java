@@ -19,4 +19,6 @@ public interface ArticlePersistence {
     Article readByBarcode(Long barcode);
 
     Stream<Article> findByProviderAndPriceGreaterThan(String provider, BigDecimal price);
+
+    Article updateDescription(String id, String description);
 }

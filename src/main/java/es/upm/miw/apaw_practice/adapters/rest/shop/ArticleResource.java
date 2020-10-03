@@ -18,6 +18,8 @@ public class ArticleResource {
     static final String ARTICLES = "/shop/articles";
 
     static final String SEARCH = "/search";
+    static final String ID_ID = "/{id}";
+    static final String DESCRIPTION = "/description";
 
     private ArticleService articleService;
 
@@ -47,6 +49,11 @@ public class ArticleResource {
     public Stream<BasicArticleDto> redAll() {
         return this.articleService.readAll()
                 .map(BasicArticleDto::new);
+    }
+
+    @PutMapping(ID_ID + DESCRIPTION)
+    public Article updateDescription(@PathVariable String id, @RequestBody DescriptionDto descriptionDto) {
+        return this.articleService.updateDescription(id, descriptionDto.getDescription());
     }
 
 }
