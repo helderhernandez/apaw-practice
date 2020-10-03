@@ -1,34 +1,39 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.bank.entities;
 
-import nonapi.io.github.classgraph.json.Id;
+
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.math.BigDecimal;
+import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
 @Document
-public class AccountEntity {
+public class SharedAccountEntity {
     @Id
     private String id;
     private BigDecimal amount;
+    private String type;
     @Indexed(unique = true)
     private String IBAN;
     @DBRef
-    private CustomerEntity customerEntity;
+    private List<CustomerEntity> customerEntities;
 
-    public AccountEntity(BigDecimal amount, CustomerEntity customerEntity, String IBAN) {
-        this.id = UUID.randomUUID().toString();
-        this.amount = amount;
-        this.customerEntity = customerEntity;
-        this.IBAN = IBAN;
-    }
-
-    public AccountEntity() {
+    public SharedAccountEntity() {
         //Empty for framework
     }
+
+    public SharedAccountEntity(BigDecimal amount, String type, String IBAN, List<CustomerEntity> customerEntities) {
+        this.id = UUID.randomUUID().toString();
+        this.amount = amount;
+        this.type = type;
+        this.IBAN = IBAN;
+        this.customerEntities = customerEntities;
+    }
+
 
     public String getId() {
         return id;
@@ -46,12 +51,21 @@ public class AccountEntity {
         this.amount = amount;
     }
 
-    public CustomerEntity getCustomerEntity() {
-        return customerEntity;
+    public List<CustomerEntity> getCustomerEntities() {
+        return customerEntities;
     }
 
-    public void setCustomerEntity(CustomerEntity customerEntity) {
-        this.customerEntity = customerEntity;
+    public void setCustomerEntities(List<CustomerEntity> customerEntities) {
+        this.customerEntities = customerEntities;
+    }
+
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 
     public String getIBAN() {
@@ -66,7 +80,7 @@ public class AccountEntity {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        AccountEntity that = (AccountEntity) o;
+        SharedAccountEntity that = (SharedAccountEntity) o;
         return id.equals(that.id);
     }
 
@@ -77,11 +91,12 @@ public class AccountEntity {
 
     @Override
     public String toString() {
-        return "AccountEntity{" +
+        return "SharedAccountEntity{" +
                 "id='" + id + '\'' +
                 ", amount=" + amount +
+                ", type='" + type + '\'' +
                 ", IBAN='" + IBAN + '\'' +
-                ", customerEntity=" + customerEntity +
+                ", customerEntities=" + customerEntities +
                 '}';
     }
 }
