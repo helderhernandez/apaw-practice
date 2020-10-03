@@ -1,5 +1,7 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.sportcentre.entities;
 
+import es.upm.miw.apaw_practice.domain.models.sportcentre.Speciality;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -93,4 +95,9 @@ public class SpecialityEntity {
                 '}';
     }
 
+    public Speciality toSpeciality() {
+        Speciality speciality = new Speciality();
+        BeanUtils.copyProperties(this, speciality);
+        return speciality;
+    }
 }
