@@ -1,7 +1,5 @@
 package es.upm.miw.apaw_practice.domain.models.sportcentre;
 
-import es.upm.miw.apaw_practice.adapters.mongodb.sportcentre.entities.SpecialityEntity;
-
 import java.math.BigDecimal;
 import java.util.List;
 
@@ -12,7 +10,7 @@ public class Instructor {
     private String name;
     private String lastName;
     private BigDecimal salary;
-    private List<SpecialityEntity> specialities;
+    private List<Speciality> specialities;
 
     public Instructor(){
         //Empty from framework
@@ -58,11 +56,11 @@ public class Instructor {
         this.salary = salary;
     }
 
-    public List<SpecialityEntity> getSpecialities() {
+    public List<Speciality> getSpecialities() {
         return specialities;
     }
 
-    public void setSpecialities(List<SpecialityEntity> specialities) {
+    public void setSpecialities(List<Speciality> specialities) {
         this.specialities = specialities;
     }
 

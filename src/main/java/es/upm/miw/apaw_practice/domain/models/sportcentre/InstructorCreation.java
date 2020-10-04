@@ -1,7 +1,5 @@
 package es.upm.miw.apaw_practice.domain.models.sportcentre;
 
-import es.upm.miw.apaw_practice.adapters.mongodb.sportcentre.entities.SpecialityEntity;
-
 import java.math.BigDecimal;
 import java.util.List;
 
