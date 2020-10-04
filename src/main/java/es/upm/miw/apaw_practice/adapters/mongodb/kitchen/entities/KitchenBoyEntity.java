@@ -66,7 +66,7 @@ public class KitchenBoyEntity {
 
     @Override
     public String toString() {
-        return "RecipeEntity{" +
+        return "KitchenBoyEntity{" +
                 "id='" + id + '\'' +
                 ", dni=" + dni + '\'' +
                 ", workExperienceYears=" + workExperienceYears + '\'' +

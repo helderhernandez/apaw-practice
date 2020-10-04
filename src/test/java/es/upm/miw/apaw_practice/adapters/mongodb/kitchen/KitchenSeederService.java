@@ -1,8 +1,10 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.kitchen;
 
+import es.upm.miw.apaw_practice.adapters.mongodb.kitchen.daos.ChefRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.kitchen.daos.IngredientRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.kitchen.daos.KitchenBoyRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.kitchen.daos.RecipeRepository;
+import es.upm.miw.apaw_practice.adapters.mongodb.kitchen.entities.ChefEntity;
 import es.upm.miw.apaw_practice.adapters.mongodb.kitchen.entities.IngredientEntity;
 import es.upm.miw.apaw_practice.adapters.mongodb.kitchen.entities.KitchenBoyEntity;
 import es.upm.miw.apaw_practice.adapters.mongodb.kitchen.entities.RecipeEntity;
@@ -25,6 +27,9 @@ public class KitchenSeederService {
 
     @Autowired
     private KitchenBoyRepository kitchenBoyRepository;
+
+    @Autowired
+    private ChefRepository chefRepository;
 
     public void seedDatabase() {
         LogManager.getLogger(this.getClass()).warn("------- Kitchen Initial Load -----------");
@@ -52,11 +57,16 @@ public class KitchenSeederService {
         };
         this.kitchenBoyRepository.saveAll(Arrays.asList(kitchenBoys));
 
+        ChefEntity[] chefs = {
+                new ChefEntity("44411122F", List.of(kitchenBoys))
+        };
+        this.chefRepository.saveAll(Arrays.asList(chefs));
     }
 
     public void deleteAll() {
         this.ingredientRepository.deleteAll();
         this.recipeRepository.deleteAll();
         this.kitchenBoyRepository.deleteAll();
+        this.chefRepository.deleteAll();
     }
 }
