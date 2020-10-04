@@ -20,4 +20,8 @@ public class FilmDirectorService {
     public Stream<FilmDirector> readAll() {
         return this.filmDirectorPersistence.readAll();
     }
+
+    public FilmDirector updateAge(String id, Integer age) {
+        return this.filmDirectorPersistence.updateAge(id, age);
+    }
 }

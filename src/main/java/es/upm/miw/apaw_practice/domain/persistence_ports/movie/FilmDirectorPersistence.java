@@ -8,4 +8,6 @@ import java.util.stream.Stream;
 @Repository
 public interface FilmDirectorPersistence {
     Stream<FilmDirector> readAll();
+
+    FilmDirector updateAge(String id, Integer age);
 }
