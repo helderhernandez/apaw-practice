@@ -11,7 +11,7 @@ public class MovieCreation {
     private String synopsis;
     private Integer punctuation;
 
-    public MovieCreation(){
+    public MovieCreation() {
         //empty for framework
     }
 
