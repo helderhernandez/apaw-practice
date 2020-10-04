@@ -11,13 +11,13 @@ public class InstructorCreation {
     private String name;
     private String lastName;
     private BigDecimal salary;
-    private List<SpecialityEntity> specialities;
+    private List<Speciality> specialities;
 
     public InstructorCreation(){
         //Empty from framework
     }
 
-    public InstructorCreation(String dni, String name, String lastName, BigDecimal salary, List<SpecialityEntity> specialities) {
+    public InstructorCreation(String dni, String name, String lastName, BigDecimal salary, List<Speciality> specialities) {
         this.dni = dni;
         this.name = name;
         this.lastName = lastName;
@@ -57,11 +57,11 @@ public class InstructorCreation {
         this.salary = salary;
     }
 
-    public List<SpecialityEntity> getSpecialities() {
+    public List<Speciality> getSpecialities() {
         return specialities;
     }
 
-    public void setSpecialities(List<SpecialityEntity> specialities) {
+    public void setSpecialities(List<Speciality> specialities) {
         this.specialities = specialities;
     }
 

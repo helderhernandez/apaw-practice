@@ -29,7 +29,7 @@ public class InstructorEntityRepositoryIT {
         assertTrue(instructor.getSpecialities().stream()
             .map(SpecialityEntity::isRecomended)
             .collect(Collectors.toList())
-            .containsAll(Arrays.asList(true, false, true)));
+            .containsAll(Arrays.asList(true)));
     }
 
 }

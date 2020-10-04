@@ -20,7 +20,7 @@ public class InstructorPersistenceMongodb implements InstructorPersistence {
         this.instructorRepository = instructorRepository;
     }
 
-    private void assertDniNotExist(String dni) {
+    public void assertDniNotExist(String dni) {
         this.instructorRepository
                 .findByDni(dni)
                 .ifPresent(instructor -> {

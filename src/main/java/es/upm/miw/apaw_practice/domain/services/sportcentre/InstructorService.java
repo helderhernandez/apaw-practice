@@ -17,7 +17,6 @@ public class InstructorService {
         this.instructorPersistence = instructorPersistence;
     }
 
-
     public Instructor create(InstructorCreation instructorCreation) {
         return this.instructorPersistence.create(instructorCreation);
     }
