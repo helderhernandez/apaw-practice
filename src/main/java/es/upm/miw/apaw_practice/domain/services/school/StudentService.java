@@ -10,7 +10,7 @@ import java.util.stream.Stream;
 @Service
 public class StudentService {
 
-    private StudentPersistence studentPersistence;
+    private final StudentPersistence studentPersistence;
 
     @Autowired
     public StudentService(StudentPersistence studentPersistence) {
