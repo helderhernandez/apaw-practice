@@ -1,5 +1,8 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.sportcentre.entities;
 
+import es.upm.miw.apaw_practice.domain.models.sportcentre.Assistant;
+import es.upm.miw.apaw_practice.domain.models.sportcentre.Instructor;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -19,7 +22,6 @@ public class AssistantEntity {
         this.lastName = lastName;
         this.phone = phone;
     }
-
 
     public String getId() {
         return id;
@@ -51,6 +53,12 @@ public class AssistantEntity {
 
     public void setPhone(Integer phone) {
         this.phone = phone;
+    }
+
+    public Assistant toAssistant() {
+        Assistant assistant = new Assistant();
+        BeanUtils.copyProperties(this, assistant);
+        return assistant;
     }
 
     @Override
