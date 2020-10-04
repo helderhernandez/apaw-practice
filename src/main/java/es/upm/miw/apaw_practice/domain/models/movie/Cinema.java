@@ -1,37 +1,21 @@
-package es.upm.miw.apaw_practice.adapters.mongodb.movie.entities;
+package es.upm.miw.apaw_practice.domain.models.movie;
 
-import es.upm.miw.apaw_practice.domain.models.movie.Cinema;
-import org.springframework.beans.BeanUtils;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.index.Indexed;
-import org.springframework.data.mongodb.core.mapping.DBRef;
-import org.springframework.data.mongodb.core.mapping.Document;
+import es.upm.miw.apaw_practice.adapters.mongodb.movie.entities.FilmRoomEntity;
+import es.upm.miw.apaw_practice.adapters.mongodb.movie.entities.MovieEntity;
 
 import java.math.BigDecimal;
 import java.util.List;
 
-@Document
-public class CinemaEntity {
-    @Id
+public class Cinema {
     private String id;
-    @DBRef
     private List<MovieEntity> movies;
     private List<FilmRoomEntity> filmRooms;
-    @Indexed(unique = true)
     private String cinemaName;
     private BigDecimal movieTicketPrice;
     private String city;
 
-    public CinemaEntity() {
+    public Cinema() {
         //empty for framework
-    }
-
-    public CinemaEntity(List<MovieEntity> movies, List<FilmRoomEntity> filmRooms, String cinemaName, BigDecimal movieTicketPrice, String city) {
-        this.movies = movies;
-        this.filmRooms = filmRooms;
-        this.cinemaName = cinemaName;
-        this.movieTicketPrice = movieTicketPrice;
-        this.city = city;
     }
 
     public String getId() {
@@ -82,29 +66,9 @@ public class CinemaEntity {
         this.city = city;
     }
 
-    public void fromCinema(Cinema cinema) {
-        BeanUtils.copyProperties(cinema, this);
-    }
-
-    public Cinema toCinema() {
-        Cinema cinema = new Cinema();
-        BeanUtils.copyProperties(this, cinema);
-        return cinema;
-    }
-
-    @Override
-    public int hashCode() {
-        return cinemaName.hashCode();
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        return this == obj || obj != null && getClass() == obj.getClass() && (cinemaName.equals(((CinemaEntity) obj).cinemaName));
-    }
-
     @Override
     public String toString() {
-        return "CinemaEntity{" +
+        return "Cinema{" +
                 "id='" + id + '\'' +
                 ", movies=" + movies +
                 ", filmRooms=" + filmRooms +

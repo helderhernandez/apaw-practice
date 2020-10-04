@@ -1,32 +1,18 @@
-package es.upm.miw.apaw_practice.adapters.mongodb.school.entities;
+package es.upm.miw.apaw_practice.domain.models.school;
 
-import es.upm.miw.apaw_practice.domain.models.school.Subject;
-import org.springframework.beans.BeanUtils;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.DBRef;
-import org.springframework.data.mongodb.core.mapping.Document;
+import es.upm.miw.apaw_practice.adapters.mongodb.school.entities.TeacherEntity;
 
 import java.time.LocalDateTime;
 
-@Document
-public class SubjectEntity {
-    @DBRef
-    private TeacherEntity teacherEntity;
-    @Id
+public class Subject {
     private String id;
+    private TeacherEntity teacherEntity;
     private String name;
     private LocalDateTime creationDate;
     private String knowledgeArea;
 
-    public SubjectEntity() {
+    public Subject() {
         //empty for framework
-    }
-
-    public SubjectEntity(TeacherEntity teacherEntity, String name, String knowledgeArea) {
-        this.teacherEntity = teacherEntity;
-        this.name = name;
-        this.creationDate = LocalDateTime.now();
-        this.knowledgeArea = knowledgeArea;
     }
 
     public TeacherEntity getTeacherEntity() {
@@ -67,12 +53,6 @@ public class SubjectEntity {
 
     public void setKnowledgeArea(String knowledgeArea) {
         this.knowledgeArea = knowledgeArea;
-    }
-
-    public Subject toSubject() {
-        Subject subject = new Subject();
-        BeanUtils.copyProperties(this, subject);
-        return subject;
     }
 
     @Override

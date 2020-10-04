@@ -12,7 +12,7 @@ public class Movie {
     private String synopsis;
     private Integer punctuation;
 
-    public Movie(){
+    public Movie() {
         //empty for framework
     }
 
