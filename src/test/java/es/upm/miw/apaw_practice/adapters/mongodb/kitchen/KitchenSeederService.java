@@ -1,8 +1,10 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.kitchen;
 
 import es.upm.miw.apaw_practice.adapters.mongodb.kitchen.daos.IngredientRepository;
+import es.upm.miw.apaw_practice.adapters.mongodb.kitchen.daos.KitchenBoyRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.kitchen.daos.RecipeRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.kitchen.entities.IngredientEntity;
+import es.upm.miw.apaw_practice.adapters.mongodb.kitchen.entities.KitchenBoyEntity;
 import es.upm.miw.apaw_practice.adapters.mongodb.kitchen.entities.RecipeEntity;
 import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +12,6 @@ import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -21,6 +22,9 @@ public class KitchenSeederService {
 
     @Autowired
     private RecipeRepository recipeRepository;
+
+    @Autowired
+    private KitchenBoyRepository kitchenBoyRepository;
 
     public void seedDatabase() {
         LogManager.getLogger(this.getClass()).warn("------- Kitchen Initial Load -----------");
@@ -41,10 +45,18 @@ public class KitchenSeederService {
         };
         recipes[0].setLastUseDate(LocalDateTime.now());
         this.recipeRepository.saveAll(Arrays.asList(recipes));
+
+        KitchenBoyEntity[] kitchenBoys = {
+                new KitchenBoyEntity("12345678A", 3, ingredients[1]),
+                new KitchenBoyEntity("50129911B", 0, ingredients[3])
+        };
+        this.kitchenBoyRepository.saveAll(Arrays.asList(kitchenBoys));
+
     }
 
     public void deleteAll() {
         this.ingredientRepository.deleteAll();
         this.recipeRepository.deleteAll();
+        this.kitchenBoyRepository.deleteAll();
     }
 }

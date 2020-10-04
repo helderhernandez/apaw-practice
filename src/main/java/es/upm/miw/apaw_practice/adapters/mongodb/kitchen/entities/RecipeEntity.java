@@ -2,6 +2,7 @@ package es.upm.miw.apaw_practice.adapters.mongodb.kitchen.entities;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
@@ -15,6 +16,7 @@ public class RecipeEntity {
     @Indexed(unique = true)
     private String name;
     private LocalDateTime lastUseDate;
+    @DBRef
     private List<IngredientEntity> ingredients;
 
     public RecipeEntity() {
@@ -57,7 +59,7 @@ public class RecipeEntity {
 
     @Override
     public int hashCode() {
-        return this.id.hashCode();
+        return this.name.hashCode();
     }
 
     @Override
