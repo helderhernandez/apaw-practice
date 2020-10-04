@@ -83,6 +83,10 @@ public class StudentEntity {
         return student;
     }
 
+    public void fromStudent(Student student) {
+        BeanUtils.copyProperties(student, this);
+    }
+
     @Override
     public int hashCode() {
         return dni.hashCode();
