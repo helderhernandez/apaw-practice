@@ -5,6 +5,8 @@ import es.upm.miw.apaw_practice.domain.persistence_ports.sportcentre.AssistantPe
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.stream.Stream;
+
 @Service
 public class AssistantService {
 
@@ -17,5 +19,9 @@ public class AssistantService {
 
     public Assistant updatePhone(String id, int phone) {
         return this.assistantPersistence.updatePhone(id, phone);
+    }
+
+    public Stream<Assistant> readAll() {
+        return this.assistantPersistence.readAll();
     }
 }

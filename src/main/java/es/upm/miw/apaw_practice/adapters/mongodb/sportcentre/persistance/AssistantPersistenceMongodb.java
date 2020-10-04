@@ -8,6 +8,8 @@ import es.upm.miw.apaw_practice.domain.persistence_ports.sportcentre.AssistantPe
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.stream.Stream;
+
 @Repository("assistantPersistence")
 public class AssistantPersistenceMongodb implements AssistantPersistence {
 
@@ -24,5 +26,11 @@ public class AssistantPersistenceMongodb implements AssistantPersistence {
                 .orElseThrow(() -> new NotFoundException("Assistant id: " + id));
         assistantEntity.setPhone(phone);
         return this.assistantRepository.save(assistantEntity).toAssistant();
+    }
+
+    @Override
+    public Stream<Assistant> readAll() {
+        return this.assistantRepository.findAll().stream()
+                .map(assistantEntity -> assistantEntity.toAssistant());
     }
 }
