@@ -1,14 +1,15 @@
 package es.upm.miw.apaw_practice.adapters.mongodb;
 
+import es.upm.miw.apaw_practice.adapters.mongodb.airport.AirportSeederService;
+import es.upm.miw.apaw_practice.adapters.mongodb.bank.BankSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.factory.FactorySeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.hospital.HospitalSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.kitchen.KitchenSeederService;
+import es.upm.miw.apaw_practice.adapters.mongodb.movie.MovieSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.padel.PadelSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.project.ProjectSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.school.SchoolSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.shop.ShopSeederService;
-import es.upm.miw.apaw_practice.adapters.mongodb.bank.BankSeederService;
-import es.upm.miw.apaw_practice.adapters.mongodb.movie.MovieSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.sportcentre.SportCentreSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.veterinary.VeterinarySeederService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,7 @@ public class DatabaseSeederService {
     private ProjectSeederService projectSeederService;
     private HospitalSeederService hospitalSeederService;
     private VeterinarySeederService veterinarySeederService;
+    private AirportSeederService airportSeederService;
 
     @Autowired
     public DatabaseSeederService(ShopSeederService shopSeederService, SchoolSeederService schoolSeederService,
@@ -35,7 +37,7 @@ public class DatabaseSeederService {
                                  MovieSeederService movieSeederService, PadelSeederService padelSeederService,
                                  SportCentreSeederService sportCentreSeederService, KitchenSeederService kitchenSeederService,
                                  ProjectSeederService projectSeederService, HospitalSeederService hospitalSeederService,
-                                 VeterinarySeederService veterinarySeederService) {
+                                 VeterinarySeederService veterinarySeederService, AirportSeederService airportSeederService) {
         this.shopSeederService = shopSeederService;
         this.schoolSeederService = schoolSeederService;
         this.factorySeederService = factorySeederService;
@@ -47,6 +49,7 @@ public class DatabaseSeederService {
         this.projectSeederService = projectSeederService;
         this.hospitalSeederService = hospitalSeederService;
         this.veterinarySeederService = veterinarySeederService;
+        this.airportSeederService = airportSeederService;
         this.seedDatabase();
     }
 
@@ -62,6 +65,7 @@ public class DatabaseSeederService {
         this.projectSeederService.seedDatabase();
         this.hospitalSeederService.seedDatabase();
         this.veterinarySeederService.seedDatabase();
+        this.airportSeederService.seedDataBase();
     }
 
     public void deleteAll() {
@@ -76,6 +80,7 @@ public class DatabaseSeederService {
         this.projectSeederService.deleteAll();
         this.hospitalSeederService.deleteAll();
         this.veterinarySeederService.deleteAll();
+        this.airportSeederService.deleteAll();
     }
 
     public void reSeedDatabase() {
