@@ -7,15 +7,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @TestConfig
-class PassengerEntityRepositoryIT {
+class PassengerBusEntityRepositoryIT {
 
     @Autowired
-    private PassengerRepository passengerRepository;
+    private PassengerBusRepository passengerBusRepository;
 
     @Test
     void testCreateAndRead() {
 
-        assertTrue(this.passengerRepository.findAll().stream()
+        assertTrue(this.passengerBusRepository.findAll().stream()
                 .anyMatch(passenger ->
                         "89386661J".equals(passenger.getDocIdentify()) &&
                                 "Juan".equals(passenger.getName()) &&

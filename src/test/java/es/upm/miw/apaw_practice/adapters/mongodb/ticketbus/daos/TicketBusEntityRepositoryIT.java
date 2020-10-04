@@ -25,7 +25,7 @@ class TicketBusEntityRepositoryIT {
                                 "89386661J".equals(ticket.getPassenger().getDocIdentify()) &&
                                 "Juan".equals(ticket.getPassenger().getName()) &&
                                 "Perez".equals(ticket.getPassenger().getFamilyName()) &&
-                                "651112234".equals(ticket.getPassenger().getEmail()) &&
+                                "651112234".equals(ticket.getPassenger().getPhone()) &&
                                 "jpz@upm.es".equals(ticket.getPassenger().getEmail()) &&
                                 Boolean.FALSE.equals(ticket.getPassenger().getAccesibility())
                 )

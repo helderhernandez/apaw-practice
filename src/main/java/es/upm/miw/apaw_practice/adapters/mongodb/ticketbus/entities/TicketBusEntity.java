@@ -18,13 +18,13 @@ public class TicketBusEntity {
     private BigDecimal price;
 
     @DBRef
-    private PassengerEntity passenger;
+    private PassengerBusEntity passenger;
 
     public TicketBusEntity() {
         //empty from framework
     }
 
-    public TicketBusEntity(Integer seat, LocalDateTime departureTime, LocalDateTime arriveTime, BigDecimal price, PassengerEntity passenger) {
+    public TicketBusEntity(Integer seat, LocalDateTime departureTime, LocalDateTime arriveTime, BigDecimal price, PassengerBusEntity passenger) {
         this.id = UUID.randomUUID().toString();
         this.seat = seat;
         this.departureTime = departureTime;
@@ -65,11 +65,11 @@ public class TicketBusEntity {
         this.price = price;
     }
 
-    public PassengerEntity getPassenger() {
+    public PassengerBusEntity getPassenger() {
         return passenger;
     }
 
-    public void setPassenger(PassengerEntity passenger) {
+    public void setPassenger(PassengerBusEntity passenger) {
         this.passenger = passenger;
     }
 

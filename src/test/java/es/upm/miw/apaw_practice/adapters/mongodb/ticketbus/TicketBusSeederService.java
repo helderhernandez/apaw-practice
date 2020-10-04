@@ -2,20 +2,17 @@ package es.upm.miw.apaw_practice.adapters.mongodb.ticketbus;
 
 import es.upm.miw.apaw_practice.adapters.mongodb.ticketbus.daos.BusRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.ticketbus.daos.JourneyRepository;
-import es.upm.miw.apaw_practice.adapters.mongodb.ticketbus.daos.PassengerRepository;
+import es.upm.miw.apaw_practice.adapters.mongodb.ticketbus.daos.PassengerBusRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.ticketbus.daos.TicketBusRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.ticketbus.entities.BusEntity;
 import es.upm.miw.apaw_practice.adapters.mongodb.ticketbus.entities.JourneyEntity;
-import es.upm.miw.apaw_practice.adapters.mongodb.ticketbus.entities.PassengerEntity;
+import es.upm.miw.apaw_practice.adapters.mongodb.ticketbus.entities.PassengerBusEntity;
 import es.upm.miw.apaw_practice.adapters.mongodb.ticketbus.entities.TicketBusEntity;
 import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.LocalTime;
 import java.util.Arrays;
 import java.util.List;
 
@@ -27,19 +24,19 @@ public class TicketBusSeederService {
     @Autowired
     private TicketBusRepository ticketBusRepository;
     @Autowired
-    private PassengerRepository passengerRepository;
+    private PassengerBusRepository passengerBusRepository;
     @Autowired
     private JourneyRepository journeyRepository;
 
     public void seedDatabase() {
         LogManager.getLogger(this.getClass()).warn("------- TicketBus Initial Load -----------");
 
-        PassengerEntity[] passengers = {
-                new PassengerEntity("89386661J", "Juan", "Perez", "651112234", "jpz@upm.es", Boolean.FALSE),
-                new PassengerEntity("33909261Q", "Ana", "Suarez", "679998821", "asz@upm.es", Boolean.FALSE),
-                new PassengerEntity("07904440F", "Claudia", "Wang", "760349846", "cwang@upm.es", Boolean.FALSE)
+        PassengerBusEntity[] passengers = {
+                new PassengerBusEntity("89386661J", "Juan", "Perez", "651112234", "jpz@upm.es", Boolean.FALSE),
+                new PassengerBusEntity("33909261Q", "Ana", "Suarez", "679998821", "asz@upm.es", Boolean.FALSE),
+                new PassengerBusEntity("07904440F", "Claudia", "Wang", "760349846", "cwang@upm.es", Boolean.FALSE)
         };
-        this.passengerRepository.saveAll(Arrays.asList(passengers));
+        this.passengerBusRepository.saveAll(Arrays.asList(passengers));
 
         JourneyEntity[] journeys = {
                 new JourneyEntity("Madrid", "Barcelona", 5),
@@ -65,7 +62,7 @@ public class TicketBusSeederService {
     public void deleteAll() {
         busRepository.deleteAll();
         ticketBusRepository.deleteAll();
-        passengerRepository.deleteAll();
+        passengerBusRepository.deleteAll();
         journeyRepository.deleteAll();
     }
 

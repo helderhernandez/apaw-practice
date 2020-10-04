@@ -7,7 +7,7 @@ import java.util.Objects;
 import java.util.UUID;
 
 @Document
-public class PassengerEntity {
+public class PassengerBusEntity {
     @Id
     private String id;
     private String docIdentify;
@@ -17,11 +17,11 @@ public class PassengerEntity {
     private String email;
     private Boolean accesibility;
 
-    public PassengerEntity() {
+    public PassengerBusEntity() {
         //empty from framework
     }
 
-    public PassengerEntity(String docIdentify, String name, String familyName, String phone, String email, Boolean accesibility) {
+    public PassengerBusEntity(String docIdentify, String name, String familyName, String phone, String email, Boolean accesibility) {
         this.id = UUID.randomUUID().toString();
         this.docIdentify = docIdentify;
         this.name = name;
@@ -83,7 +83,7 @@ public class PassengerEntity {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        PassengerEntity that = (PassengerEntity) o;
+        PassengerBusEntity that = (PassengerBusEntity) o;
         return id.equals(that.id) &&
                 docIdentify.equals(that.docIdentify) &&
                 name.equals(that.name) &&
