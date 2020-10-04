@@ -1,6 +1,8 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.bank.entities;
 
+import es.upm.miw.apaw_practice.domain.models.bank.Customer;
 import nonapi.io.github.classgraph.json.Id;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -88,5 +90,11 @@ public class CustomerEntity {
                 ", phone=" + phone +
                 ", email='" + email + '\'' +
                 '}';
+    }
+
+    public Customer toCustomer() {
+        Customer customer = new Customer();
+        BeanUtils.copyProperties(this, customer);
+        return customer;
     }
 }

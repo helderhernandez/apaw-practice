@@ -1,29 +1,37 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.sportcentre.entities;
 
 
+import es.upm.miw.apaw_practice.domain.models.sportcentre.Instructor;
+import es.upm.miw.apaw_practice.domain.models.sportcentre.InstructorCreation;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.math.BigDecimal;
 import java.util.List;
 import java.util.Objects;
+import java.util.UUID;
 
 @Document
 public class InstructorEntity {
 
     @Id
     private String id;
+    @Indexed(unique = true)
+    private String dni;
     private String name;
     private String lastName;
     private BigDecimal salary;
     private List<SpecialityEntity> specialities;
 
-    public InstructorEntity(String id, String name, String lastName, BigDecimal salary, List<SpecialityEntity> specialities) {
-        this.id = id;
-        this.name = name;
-        this.lastName = lastName;
-        this.salary = salary;
-        this.specialities = specialities;
+    public InstructorEntity(){
+        //Empty from framework
+    }
+
+    public InstructorEntity(InstructorCreation instructorCreation) {
+        BeanUtils.copyProperties(instructorCreation, this);
+        this.id = UUID.randomUUID().toString();
     }
 
     public String getId() {
@@ -32,6 +40,14 @@ public class InstructorEntity {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getDni() {
+        return dni;
+    }
+
+    public void setDni(String dni) {
+        this.dni = dni;
     }
 
     public String getName() {
@@ -66,23 +82,31 @@ public class InstructorEntity {
         this.specialities = specialities;
     }
 
+    public Instructor toInstructor() {
+        Instructor instructor = new Instructor();
+        BeanUtils.copyProperties(this, instructor);
+        return instructor;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         InstructorEntity that = (InstructorEntity) o;
-        return id.equals(that.id);
+        return id.equals(that.id) &&
+                dni.equals(that.dni);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return Objects.hash(id, dni);
     }
 
     @Override
     public String toString() {
         return "InstructorEntity{" +
                 "id='" + id + '\'' +
+                ", dni='" + dni + '\'' +
                 ", name='" + name + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", salary=" + salary +

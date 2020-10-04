@@ -3,9 +3,7 @@ package es.upm.miw.apaw_practice.adapters.rest.movie;
 import es.upm.miw.apaw_practice.domain.models.movie.FilmDirector;
 import es.upm.miw.apaw_practice.domain.services.movie.FilmDirectorService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.stream.Stream;
 
@@ -14,7 +12,8 @@ import java.util.stream.Stream;
 public class FilmDirectorResource {
     static final String FILMDIRECTORS = "/movie/filmDirectors";
 
-    static final String SEARCH = "/search";
+    static final String ID_ID = "/{id}";
+    static final String AGE = "/age";
 
     private FilmDirectorService filmDirectorService;
 
@@ -26,5 +25,10 @@ public class FilmDirectorResource {
     @GetMapping
     public Stream<FilmDirector> readAll() {
         return this.filmDirectorService.readAll();
+    }
+
+    @PutMapping(ID_ID + AGE)
+    public FilmDirector updateAge(@PathVariable String id, @RequestBody AgeDto ageDto) {
+        return this.filmDirectorService.updateAge(id, ageDto.getAge());
     }
 }
