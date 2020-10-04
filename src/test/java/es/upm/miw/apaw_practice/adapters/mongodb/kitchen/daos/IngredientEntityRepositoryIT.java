@@ -23,8 +23,10 @@ public class IngredientEntityRepositoryIT {
 
     @BeforeEach
     void before(){
-        assertTrue(this.ingredientRepository.findByName("Cacao en polvo").isPresent());
-        ingredient = this.ingredientRepository.findByName("Cacao en polvo").get();
+        assertTrue(!this.ingredientRepository.findByName("Cacao en polvo").isEmpty());
+        ingredient = this.ingredientRepository.findByName("Cacao en polvo").stream()
+                .findFirst()
+                .get();
     }
 
     @Test
