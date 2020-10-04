@@ -1,5 +1,7 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.factory.entities;
 
+import es.upm.miw.apaw_practice.domain.models.factory.Machine;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;
@@ -101,5 +103,11 @@ public class MachineEntity {
                 ", isActive=" + isActive +
                 ", lastInspection=" + lastInspection +
                 '}';
+    }
+
+    public Machine toMachine() {
+        Machine machine = new Machine();
+        BeanUtils.copyProperties(this, machine);
+        return machine;
     }
 }
