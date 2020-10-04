@@ -20,9 +20,9 @@ public class InstructorEntityRepositoryIT {
     private InstructorRepository instructorRepository;
 
     @Test
-    void testCreateAndRead() {
-        assertTrue(this.instructorRepository.findById("903").isPresent());
-        InstructorEntity instructor = this.instructorRepository.findById("903").get();
+    void testFindByDni() {
+        assertTrue(this.instructorRepository.findByDni("11111111D").isPresent());
+        InstructorEntity instructor = this.instructorRepository.findByDni("11111111D").get();
         assertEquals("Javier", instructor.getName());
         assertEquals("Fernandez", instructor.getLastName());
         assertEquals(new BigDecimal(1200), instructor.getSalary());

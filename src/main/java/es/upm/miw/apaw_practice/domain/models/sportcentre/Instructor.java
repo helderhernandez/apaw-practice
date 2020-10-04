@@ -1,37 +1,21 @@
-package es.upm.miw.apaw_practice.adapters.mongodb.sportcentre.entities;
+package es.upm.miw.apaw_practice.domain.models.sportcentre;
 
-
-import es.upm.miw.apaw_practice.domain.models.sportcentre.Instructor;
-import es.upm.miw.apaw_practice.domain.models.sportcentre.InstructorCreation;
-import org.springframework.beans.BeanUtils;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.index.Indexed;
-import org.springframework.data.mongodb.core.mapping.Document;
+import es.upm.miw.apaw_practice.adapters.mongodb.sportcentre.entities.SpecialityEntity;
 
 import java.math.BigDecimal;
 import java.util.List;
-import java.util.Objects;
-import java.util.UUID;
 
-@Document
-public class InstructorEntity {
+public class Instructor {
 
-    @Id
     private String id;
-    @Indexed(unique = true)
     private String dni;
     private String name;
     private String lastName;
     private BigDecimal salary;
     private List<SpecialityEntity> specialities;
 
-    public InstructorEntity(){
+    public Instructor(){
         //Empty from framework
-    }
-
-    public InstructorEntity(InstructorCreation instructorCreation) {
-        BeanUtils.copyProperties(instructorCreation, this);
-        this.id = UUID.randomUUID().toString();
     }
 
     public String getId() {
@@ -82,29 +66,9 @@ public class InstructorEntity {
         this.specialities = specialities;
     }
 
-    public Instructor toInstructor() {
-        Instructor instructor = new Instructor();
-        BeanUtils.copyProperties(this, instructor);
-        return instructor;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        InstructorEntity that = (InstructorEntity) o;
-        return id.equals(that.id) &&
-                dni.equals(that.dni);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, dni);
-    }
-
     @Override
     public String toString() {
-        return "InstructorEntity{" +
+        return "Instructor{" +
                 "id='" + id + '\'' +
                 ", dni='" + dni + '\'' +
                 ", name='" + name + '\'' +
