@@ -25,6 +25,6 @@ public class CinemaService {
                     cinema.setMovieTicketPrice(cinemaTicketNewPrice.getMovieTicketPrice());
                     return cinema;
                 })
-                .forEach(cinema -> this.cinemaPersistence.update(cinema));
+                .forEach(cinema -> this.cinemaPersistence.updateMovieTicketPrice(cinema));
     }
 }

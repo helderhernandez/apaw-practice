@@ -5,7 +5,7 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface CinemaPersistence {
-    Cinema update(Cinema cinema);
+    Cinema updateMovieTicketPrice(Cinema cinema);
 
     Cinema readByCinemaName(String cinemaName);
 }
