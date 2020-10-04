@@ -8,6 +8,8 @@ import es.upm.miw.apaw_practice.domain.persistence_ports.factory.MachinePersiste
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.stream.Stream;
+
 @Repository("machinePersistence")
 public class MachinePersistenceMongodb implements MachinePersistence {
     private MachineRepository machineRepository;
@@ -18,13 +20,19 @@ public class MachinePersistenceMongodb implements MachinePersistence {
     }
 
     @Override
-    public Machine updateStatus(String id, Boolean status) {
+    public Machine updateStatus(String id, Boolean isActive) {
         MachineEntity machineEntity = this.machineRepository
                 .findById(id)
                 .orElseThrow(() -> new NotFoundException("Machine id: " + id));
-        machineEntity.setActive(status);
+        machineEntity.setActive(isActive);
         return this.machineRepository
                 .save(machineEntity)
                 .toMachine();
+    }
+
+    @Override
+    public Stream<Machine> readAll() {
+        return this.machineRepository.findAll().stream()
+                .map(MachineEntity::toMachine);
     }
 }

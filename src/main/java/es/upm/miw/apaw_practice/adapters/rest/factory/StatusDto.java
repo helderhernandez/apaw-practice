@@ -1,20 +1,20 @@
 package es.upm.miw.apaw_practice.adapters.rest.factory;
 
 public class StatusDto {
-    private Boolean status;
+    private Boolean isActive;
 
-    public Boolean getStatus() {
-        return status;
+    public Boolean getIsActive() {
+        return isActive;
     }
 
-    public void setStatus(Boolean status) {
-        this.status = status;
+    public void setIsActive(Boolean isActive) {
+        this.isActive = isActive;
     }
 
     @Override
     public String toString() {
         return "StatusDto{" +
-                "status=" + status +
+                "isActive=" + isActive +
                 '}';
     }
 }

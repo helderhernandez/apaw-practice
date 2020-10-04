@@ -5,6 +5,8 @@ import es.upm.miw.apaw_practice.domain.services.factory.MachineService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.stream.Stream;
+
 @RestController
 @RequestMapping(MachineResource.MACHINES)
 public class MachineResource {
@@ -21,7 +23,12 @@ public class MachineResource {
     }
 
     @PutMapping(ID_ID + STATUS)
-    public Machine updateStatus(@PathVariable String id, @RequestBody StatusDto statusDto) {
-        return this.machineService.updateStatus(id, statusDto.getStatus());
+    public Machine updateStatus(@PathVariable String id, @RequestBody StatusDto isActive) {
+        return this.machineService.updateStatus(id, isActive.getIsActive());
+    }
+
+    @GetMapping
+    public Stream<Machine> readAll() {
+        return this.machineService.readAll();
     }
 }
