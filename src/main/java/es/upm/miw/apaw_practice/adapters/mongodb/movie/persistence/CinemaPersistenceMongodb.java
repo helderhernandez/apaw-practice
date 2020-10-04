@@ -19,7 +19,7 @@ public class CinemaPersistenceMongodb implements CinemaPersistence {
     }
 
     @Override
-    public Cinema update(Cinema cinema) {
+    public Cinema updateMovieTicketPrice(Cinema cinema) {
         CinemaEntity cinemaEntity = this.cinemaRepository
                 .findById(cinema.getId())
                 .orElseThrow(() -> new NotFoundException("Cinema id: " + cinema.getId()));
