@@ -10,7 +10,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @TestConfig
-class PassengerRepositoryIT {
+class PassengerBusRepositoryIT {
 
     @Autowired
     private PassengerRepository passengerRepository;
