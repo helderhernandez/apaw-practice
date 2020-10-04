@@ -1,27 +1,34 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.project.entities;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
 @Document
-public class LabelEntity {
+public class UserStoryEntity {
 
     @Id
     private String id;
     private String name;
     private String description;
+    private Integer value;
+    @DBRef
+    private List<IssueEntity> issues;
 
-    public LabelEntity() {
+    public UserStoryEntity() {
         //empty for framework
     }
 
-    public LabelEntity(String name, String description) {
+    public UserStoryEntity(String name, String description, Integer value, List<IssueEntity> issues) {
         this.id = UUID.randomUUID().toString();
         this.name = name;
         this.description = description;
+        this.value = value;
+        this.issues = issues;
     }
 
     public String getId() {
@@ -48,9 +55,25 @@ public class LabelEntity {
         this.description = description;
     }
 
+    public Integer getValue() {
+        return value;
+    }
+
+    public void setValue(Integer value) {
+        this.value = value;
+    }
+
+    public List<IssueEntity> getIssues() {
+        return issues;
+    }
+
+    public void setIssues(List<IssueEntity> issues) {
+        this.issues = issues;
+    }
+
     @Override
     public boolean equals(Object obj) {
-        return this == obj || obj != null && getClass() == obj.getClass() && (id.equals(((LabelEntity) obj).id));
+        return this == obj || obj != null && getClass() == obj.getClass() && (id.equals(((UserStoryEntity) obj).id));
     }
 
     @Override
@@ -60,11 +83,12 @@ public class LabelEntity {
 
     @Override
     public String toString() {
-        return "LabelEntity{" +
+        return "UserStoryEntity{" +
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
+                ", value=" + value +
+                ", issues=" + issues +
                 '}';
     }
-
 }

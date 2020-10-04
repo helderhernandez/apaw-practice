@@ -17,8 +17,6 @@ public class SpecialityEntity {
     private Integer duration;
     private Boolean recomended;
 
-
-
     public SpecialityEntity(String id, String title, String description, Integer duration, Boolean recomended) {
         this.id = id;
         this.title = title;
