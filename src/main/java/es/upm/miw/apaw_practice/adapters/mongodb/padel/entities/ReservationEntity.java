@@ -1,5 +1,7 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.padel.entities;
 
+import es.upm.miw.apaw_practice.domain.models.Reservation.Reservation;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -66,5 +68,11 @@ public class ReservationEntity {
                 ", price=" + price +
                 ", date=" + date +
                 '}';
+    }
+
+    public Reservation toReservation() {
+        Reservation reservation = new Reservation();
+        BeanUtils.copyProperties(this,reservation);
+        return reservation;
     }
 }
