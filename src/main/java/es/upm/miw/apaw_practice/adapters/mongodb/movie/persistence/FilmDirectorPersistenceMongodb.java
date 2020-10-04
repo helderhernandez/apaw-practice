@@ -2,6 +2,7 @@ package es.upm.miw.apaw_practice.adapters.mongodb.movie.persistence;
 
 import es.upm.miw.apaw_practice.adapters.mongodb.movie.daos.FilmDirectorRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.movie.entities.FilmDirectorEntity;
+import es.upm.miw.apaw_practice.domain.exceptions.NotFoundException;
 import es.upm.miw.apaw_practice.domain.models.movie.FilmDirector;
 import es.upm.miw.apaw_practice.domain.persistence_ports.movie.FilmDirectorPersistence;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,5 +24,13 @@ public class FilmDirectorPersistenceMongodb implements FilmDirectorPersistence {
     public Stream<FilmDirector> readAll() {
         return this.filmDirectorRepository.findAll().stream()
                 .map(FilmDirectorEntity::toFilmDirector);
+    }
+
+    @Override
+    public FilmDirector updateAge(String id, Integer age) {
+        FilmDirectorEntity filmDirectorEntity = this.filmDirectorRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException("FilmDirector id: " + id));
+        filmDirectorEntity.setAge(age);
+        return this.filmDirectorRepository.save(filmDirectorEntity).toFilmDirector();
     }
 }
