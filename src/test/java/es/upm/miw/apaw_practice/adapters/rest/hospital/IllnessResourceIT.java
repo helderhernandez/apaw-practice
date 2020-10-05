@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.web.reactive.server.WebTestClient;
 
 @RestTestConfig
-public class IllnessResourceIT {
+class IllnessResourceIT {
 
     @Autowired
     private WebTestClient webTestClient;

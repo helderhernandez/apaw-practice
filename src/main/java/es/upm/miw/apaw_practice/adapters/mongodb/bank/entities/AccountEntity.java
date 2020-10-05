@@ -1,6 +1,8 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.bank.entities;
 
+import es.upm.miw.apaw_practice.domain.models.bank.Account;
 import nonapi.io.github.classgraph.json.Id;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -83,5 +85,11 @@ public class AccountEntity {
                 ", IBAN='" + IBAN + '\'' +
                 ", customerEntity=" + customerEntity +
                 '}';
+    }
+
+    public Account toAccount() {
+        Account account = new Account();
+        BeanUtils.copyProperties(this, account);
+        return account;
     }
 }
