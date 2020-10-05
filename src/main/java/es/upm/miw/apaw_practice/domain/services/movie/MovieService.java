@@ -19,4 +19,8 @@ public class MovieService {
     public Movie create(MovieCreation movieCreation) {
         return this.moviePersistence.create(movieCreation);
     }
+
+    public void delete(String id) {
+        this.moviePersistence.deleteById(id);
+    }
 }
