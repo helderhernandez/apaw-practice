@@ -1,15 +1,12 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.videogame.entities;
 
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
-
 import java.util.Objects;
 import java.util.UUID;
 
 
 public class ChallengeEntity {
 
-    @Id
+
     private String id;
     private String description;
     private Boolean isCompleted;
@@ -24,17 +21,29 @@ public class ChallengeEntity {
         this.isCompleted = isCompleted;
     }
 
-    public String getId() { return id; }
+    public String getId() {
+        return id;
+    }
 
-    public void setId(String id) { this.id = id; }
+    public void setId(String id) {
+        this.id = id;
+    }
 
-    public String getDescription() { return description; }
+    public String getDescription() {
+        return description;
+    }
 
-    public void setDescription(String description) { this.description = description; }
+    public void setDescription(String description) {
+        this.description = description;
+    }
 
-    public Boolean getCompleted() { return isCompleted; }
+    public Boolean getCompleted() {
+        return isCompleted;
+    }
 
-    public void setCompleted(Boolean completed) { isCompleted = completed; }
+    public void setCompleted(Boolean completed) {
+        isCompleted = completed;
+    }
 
     @Override
     public boolean equals(Object o) {

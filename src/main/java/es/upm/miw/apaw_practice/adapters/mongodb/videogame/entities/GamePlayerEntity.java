@@ -1,7 +1,6 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.videogame.entities;
 
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
@@ -18,12 +17,12 @@ public class GamePlayerEntity {
     private LocalDateTime signUpDate;
     private Integer points;
     private Boolean isPremiumPlayer;
-    @DBRef
     private List<ChallengeEntity> challengeEntities;
 
     public GamePlayerEntity() {
+        //empty for framework
     }
-    //empty for framework
+
 
     public GamePlayerEntity(String nickName, Integer points, Boolean isPremiumPlayer, List<ChallengeEntity> challengeEntities) {
         this.id = UUID.randomUUID().toString();
