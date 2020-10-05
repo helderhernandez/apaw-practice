@@ -28,9 +28,4 @@ public class AssistantResource {
         return this.assistantService.updatePhone(id, phoneDto.getPhone());
     }
 
-    @GetMapping
-    public Stream<Assistant> readAll(){
-        return this.assistantService.readAll();
-    }
-
 }
