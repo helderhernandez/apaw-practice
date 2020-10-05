@@ -27,9 +27,4 @@ public class SubjectResource {
     public Subject updateName(@PathVariable String id, @RequestBody NameDto nameDto) {
         return this.subjectService.updateName(id, nameDto.getName());
     }
-
-    @GetMapping
-    public Stream<Subject> readAll() {
-        return this.subjectService.readAll();
-    }
 }
