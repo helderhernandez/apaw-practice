@@ -1,30 +1,22 @@
-package es.upm.miw.apaw_practice.adapters.mongodb.padel.entities;
+package es.upm.miw.apaw_practice.domain.models.padel;
 
-import es.upm.miw.apaw_practice.domain.models.padel.Tournament;
-import org.springframework.beans.BeanUtils;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
-
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
-@Document
-public class TournamentEntity {
-    @Id
+public class Tournament {
     private String id;
     private String name;
     private LocalDateTime startDay;
     private LocalDateTime finishDay;
     private Integer level;
-    private List<PlayerEntity> playerEntities;
+    private List<Player> playerEntities;
 
-    public TournamentEntity() {
+    public Tournament() {
         //Empty for framework
     }
 
-    public TournamentEntity(String name, LocalDateTime startDay, LocalDateTime finishDay, Integer level, List<PlayerEntity> playerEntities) {
+    public Tournament(String name, LocalDateTime startDay, LocalDateTime finishDay, Integer level, List<Player> playerEntities) {
         this.id = UUID.randomUUID().toString();
         this.name = name;
         this.startDay = startDay;
@@ -73,22 +65,14 @@ public class TournamentEntity {
         this.level = level;
     }
 
-    public List<PlayerEntity> getPlayerEntities() {
+    public List<Player> getPlayerEntities() {
         return playerEntities;
     }
 
-    public void setPlayerEntities(List<PlayerEntity> playerEntities) {
+    public void setPlayerEntities(List<Player> playerEntities) {
         this.playerEntities = playerEntities;
     }
-    @Override
-    public boolean equals(Object obj) {
-        return this == obj || obj != null && getClass() == obj.getClass() && (id.equals(((PlayerEntity) obj).getId()));
-    }
 
-    @Override
-    public int hashCode() {
-        return id.hashCode();
-    }
 
     @Override
     public String toString() {
@@ -98,13 +82,7 @@ public class TournamentEntity {
                 ", startDay=" + startDay +
                 ", finishDay=" + finishDay +
                 ", level=" + level +
-                ", playerEntities=" + playerEntities +
+                ", players=" + playerEntities +
                 '}';
-    }
-
-    public Tournament toTournament() {
-        Tournament tournament = new Tournament();
-        BeanUtils.copyProperties(this,tournament);
-        return tournament;
     }
 }
