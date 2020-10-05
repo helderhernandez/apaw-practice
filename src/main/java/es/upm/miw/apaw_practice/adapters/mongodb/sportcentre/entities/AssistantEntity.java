@@ -47,7 +47,7 @@ public class AssistantEntity {
         this.lastName = lastName;
     }
 
-    public long getPhone() {
+    public Integer getPhone() {
         return phone;
     }
 
