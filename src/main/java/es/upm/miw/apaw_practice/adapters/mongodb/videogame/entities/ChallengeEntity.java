@@ -18,7 +18,7 @@ public class ChallengeEntity {
         //empty for framework
     }
 
-    public ChallengeEntity(String id, String description, Boolean isCompleted) {
+    public ChallengeEntity(String description, Boolean isCompleted) {
         this.id = UUID.randomUUID().toString();
         this.description = description;
         this.isCompleted = isCompleted;

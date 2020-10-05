@@ -25,7 +25,7 @@ public class GamePlayerEntity {
     }
     //empty for framework
 
-    public GamePlayerEntity(String id, String nickName, Integer points, Boolean isPremiumPlayer, List<ChallengeEntity> challengeEntities) {
+    public GamePlayerEntity(String nickName, Integer points, Boolean isPremiumPlayer, List<ChallengeEntity> challengeEntities) {
         this.id = UUID.randomUUID().toString();
         this.nickName = nickName;
         this.signUpDate = LocalDateTime.now();

@@ -13,13 +13,13 @@ public class GameDeveloperEntity {
     private String id;
     private String name;
     private String email;
-    private Long phone;
+    private Integer phone;
 
     public GameDeveloperEntity(){
         //empty from framework
     }
 
-    public GameDeveloperEntity(String id, String name, String email, Long phone) {
+    public GameDeveloperEntity(String name, String email, Integer phone) {
         this.id = UUID.randomUUID().toString();
         this.name = name;
         this.email = email;
@@ -38,9 +38,9 @@ public class GameDeveloperEntity {
 
     public void setEmail(String email) { this.email = email; }
 
-    public Long getPhone() { return phone; }
+    public Integer getPhone() { return phone; }
 
-    public void setPhone(Long phone) { this.phone = phone; }
+    public void setPhone(Integer phone) { this.phone = phone; }
 
     @Override
     public boolean equals(Object o) {

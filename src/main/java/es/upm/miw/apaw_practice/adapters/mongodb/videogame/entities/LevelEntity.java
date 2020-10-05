@@ -25,7 +25,7 @@ public class LevelEntity {
         //empty from framework
     }
 
-    public LevelEntity(String id, String description, Duration maxTimeAllowed, Integer recordPoints, List<GamePlayerEntity> playerEntity, GameDeveloperEntity gameDeveloperEntity) {
+    public LevelEntity(String description, Duration maxTimeAllowed, Integer recordPoints, List<GamePlayerEntity> playerEntity, GameDeveloperEntity gameDeveloperEntity) {
         this.id = UUID.randomUUID().toString();
         this.description = description;
         this.maxTimeAllowed = maxTimeAllowed;
