@@ -1,42 +1,23 @@
-package es.upm.miw.apaw_practice.adapters.mongodb.project.entities;
+package es.upm.miw.apaw_practice.domain.models.project;
 
-import es.upm.miw.apaw_practice.domain.models.project.Issue;
-import org.springframework.beans.BeanUtils;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.DBRef;
-import org.springframework.data.mongodb.core.mapping.Document;
+import es.upm.miw.apaw_practice.adapters.mongodb.project.entities.DeveloperEntity;
+import es.upm.miw.apaw_practice.adapters.mongodb.project.entities.LabelEntity;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Objects;
-import java.util.UUID;
 
-@Document
-public class IssueEntity {
+public class Issue {
 
-    @Id
     private String id;
     private String name;
     private Integer estimatedHours;
     private LocalDateTime dueDate;
     private Boolean done;
-    @DBRef
     private DeveloperEntity developer;
-    @DBRef
     private List<LabelEntity> labels;
 
-    private IssueEntity() {
+    public Issue() {
         //empty for framework
-    }
-
-    public IssueEntity(String name, Integer estimatedHours, DeveloperEntity developer, List<LabelEntity> labels) {
-        this.id = UUID.randomUUID().toString();
-        this.name = name;
-        this.estimatedHours = estimatedHours;
-        this.dueDate = LocalDateTime.now();
-        this.done = false;
-        this.developer = developer;
-        this.labels = labels;
     }
 
     public String getId() {
@@ -95,25 +76,9 @@ public class IssueEntity {
         this.labels = labels;
     }
 
-    public Issue toIssue() {
-        Issue issue = new Issue();
-        BeanUtils.copyProperties(this, issue);
-        return issue;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        return this == obj || obj != null && getClass() == obj.getClass() && (id.equals(((IssueEntity) obj).id));
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id);
-    }
-
     @Override
     public String toString() {
-        return "IssueEntity{" +
+        return "Issue{" +
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 ", estimatedHours=" + estimatedHours +
