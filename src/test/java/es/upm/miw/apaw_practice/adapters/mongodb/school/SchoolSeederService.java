@@ -8,8 +8,7 @@ import es.upm.miw.apaw_practice.adapters.mongodb.school.entities.CourseEntity;
 import es.upm.miw.apaw_practice.adapters.mongodb.school.entities.StudentEntity;
 import es.upm.miw.apaw_practice.adapters.mongodb.school.entities.SubjectEntity;
 import es.upm.miw.apaw_practice.adapters.mongodb.school.entities.TeacherEntity;
-import es.upm.miw.apaw_practice.domain.models.school.TeacherCreation;
-import es.upm.miw.apaw_practice.domain.models.shop.ArticleCreation;
+import es.upm.miw.apaw_practice.domain.models.school.Teacher;
 import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -40,10 +39,10 @@ public class SchoolSeederService {
         };
         this.studentRepository.saveAll(Arrays.asList(students));
         TeacherEntity[] teachers = {
-                new TeacherEntity(new TeacherCreation("Jose", "Fridge", true, "33667788R", "dsfsdf@gmail.com")),
-                new TeacherEntity(new TeacherCreation("Pablo", "Terra", false, "35557788B", "lushf@gmail.com")),
-                new TeacherEntity(new TeacherCreation("Teresa", "Fridge", true, "33645788R", "teref@gmail.com")),
-                new TeacherEntity(new TeacherCreation("Tomato", "Zacar", false, "87653788L", "toma@gmail.com"))
+                new TeacherEntity(new Teacher("Jose", "Fridge", true, "33667788R", "dsfsdf@gmail.com")),
+                new TeacherEntity(new Teacher("Pablo", "Terra", false, "35557788B", "lushf@gmail.com")),
+                new TeacherEntity(new Teacher("Teresa", "Fridge", true, "33645788R", "teref@gmail.com")),
+                new TeacherEntity(new Teacher("Tomato", "Zacar", false, "87653788L", "toma@gmail.com"))
         };
         this.teacherRepository.saveAll(Arrays.asList(teachers));
         SubjectEntity[] subjects = {

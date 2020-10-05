@@ -1,5 +1,7 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.veterinary.entities;
 
+import es.upm.miw.apaw_practice.domain.models.veterinary.Animal;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -79,5 +81,11 @@ public class AnimalEntity {
                 ", age=" + age +
                 ", client=" + client +
                 '}';
+    }
+
+    public Animal toAnimal() {
+        Animal animal = new Animal();
+        BeanUtils.copyProperties(this, animal);
+        return animal;
     }
 }

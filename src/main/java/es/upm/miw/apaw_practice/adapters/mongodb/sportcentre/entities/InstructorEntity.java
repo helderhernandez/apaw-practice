@@ -6,6 +6,7 @@ import es.upm.miw.apaw_practice.domain.models.sportcentre.InstructorCreation;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.math.BigDecimal;
@@ -23,6 +24,7 @@ public class InstructorEntity {
     private String name;
     private String lastName;
     private BigDecimal salary;
+    @DBRef
     private List<SpecialityEntity> specialities;
 
     public InstructorEntity(){

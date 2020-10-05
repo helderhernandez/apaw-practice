@@ -29,7 +29,7 @@ public class VeterinarySeederService {
     private SurgeryRepository surgeryRepository;
 
     public void seedDatabase() {
-        LogManager.getLogger(this.getClass()).warn("------- Shop Initial Load -----------");
+        LogManager.getLogger(this.getClass()).warn("------- Veterinary Initial Load -----------");
         ClientEntity[] clients = {
                 new ClientEntity("key-client-ds", "Manuel", "calle Lazaga", "636363654"),
                 new ClientEntity("key-client-ssj", "Ulises", "calle Odonell", "435654673")
