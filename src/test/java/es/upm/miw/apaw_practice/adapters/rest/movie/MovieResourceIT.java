@@ -75,4 +75,13 @@ public class MovieResourceIT {
                 .exchange()
                 .expectStatus().isEqualTo(HttpStatus.CONFLICT);
     }
+
+    @Test
+    void testDelete() {
+        this.webTestClient
+                .delete()
+                .uri(MovieResource.MOVIES + MovieResource.ID_ID, "kk")
+                .exchange()
+                .expectStatus().isOk();
+    }
 }
