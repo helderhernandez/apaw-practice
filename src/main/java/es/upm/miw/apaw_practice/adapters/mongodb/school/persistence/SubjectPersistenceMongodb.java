@@ -8,8 +8,6 @@ import es.upm.miw.apaw_practice.domain.persistence_ports.school.SubjectPersisten
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import java.util.stream.Stream;
-
 @Repository("subjectPersistence")
 public class SubjectPersistenceMongodb implements SubjectPersistence {
 
