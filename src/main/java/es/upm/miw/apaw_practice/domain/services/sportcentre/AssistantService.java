@@ -21,7 +21,4 @@ public class AssistantService {
         return this.assistantPersistence.updatePhone(id, phone);
     }
 
-    public Stream<Assistant> readAll() {
-        return this.assistantPersistence.readAll();
-    }
 }
