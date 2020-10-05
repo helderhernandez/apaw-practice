@@ -1,7 +1,6 @@
 package es.upm.miw.apaw_practice.adapters.rest.school;
 
 import es.upm.miw.apaw_practice.domain.models.school.Teacher;
-import es.upm.miw.apaw_practice.domain.models.school.TeacherCreation;
 import es.upm.miw.apaw_practice.domain.services.school.TeacherService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -24,7 +23,7 @@ public class TeacherResource {
     }
 
     @PostMapping
-    public Teacher create(@RequestBody TeacherCreation teacherCreation) {
-        return this.teacherService.create(teacherCreation);
+    public Teacher create(@RequestBody Teacher teacher) {
+        return this.teacherService.create(teacher);
     }
 }
