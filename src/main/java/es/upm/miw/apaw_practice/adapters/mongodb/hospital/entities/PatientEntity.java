@@ -1,9 +1,14 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.hospital.entities;
 
+import es.upm.miw.apaw_practice.domain.models.hospital.Patient;
+import es.upm.miw.apaw_practice.domain.models.hospital.PatientCreation;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.time.LocalDate;
 import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
@@ -18,6 +23,7 @@ public class PatientEntity {
     private String name;
     private String surname;
     private String [] pathologies;
+    @DBRef
     private List<IllnessEntity> illnessEntities;
 
     public PatientEntity(){
@@ -31,6 +37,11 @@ public class PatientEntity {
         this.surname = surname;
         this.pathologies = pathologies;
         this.illnessEntities = illnessEntities;
+    }
+
+    public PatientEntity(PatientCreation patientCreation) {
+        BeanUtils.copyProperties(patientCreation, this);
+        this.id = UUID.randomUUID().toString();
     }
 
     public String getId() {
@@ -90,6 +101,12 @@ public class PatientEntity {
     public boolean equals(Object obj) {
         return this == obj || obj != null && getClass() == obj.getClass() &&
                 (id.equals(((PatientEntity) obj).id));
+    }
+
+    public Patient toPatient() {
+        Patient patient = new Patient();
+        BeanUtils.copyProperties(this,patient);
+        return patient;
     }
 
     @Override

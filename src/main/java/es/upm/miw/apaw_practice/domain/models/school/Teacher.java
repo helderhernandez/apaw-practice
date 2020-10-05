@@ -12,6 +12,14 @@ public class Teacher {
         //empty from framework
     }
 
+    public Teacher(String name, String familyName, Boolean intern, String dni, String email) {
+        this.name = name;
+        this.familyName = familyName;
+        this.intern = intern;
+        this.dni = dni;
+        this.email = email;
+    }
+
     public String getId() {
         return id;
     }

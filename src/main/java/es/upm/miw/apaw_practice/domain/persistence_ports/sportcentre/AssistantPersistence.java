@@ -10,5 +10,4 @@ public interface AssistantPersistence {
 
     Assistant updatePhone(String id, int phone);
 
-    Stream<Assistant> readAll();
 }
