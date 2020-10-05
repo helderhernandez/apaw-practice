@@ -19,8 +19,4 @@ public class SubjectService {
     public Subject updateName(String id, String name) {
         return this.subjectPersistence.updateName(id, name);
     }
-
-    public Stream<Subject> readAll() {
-        return this.subjectPersistence.readAll();
-    }
 }

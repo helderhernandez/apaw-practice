@@ -8,5 +8,4 @@ import java.util.stream.Stream;
 @Repository
 public interface SubjectPersistence {
     Subject updateName(String id, String name);
-    Stream<Subject> readAll();
 }

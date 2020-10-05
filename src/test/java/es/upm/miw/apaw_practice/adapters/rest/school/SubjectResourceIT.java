@@ -26,37 +26,4 @@ public class SubjectResourceIT {
                 .exchange()
                 .expectStatus().isNotFound();
     }
-
-    @Test
-    void testUpdate() {
-        Subject subject = this.webTestClient
-                .get()
-                .uri(SubjectResource.SUBJECTS)
-                .exchange()
-                .expectStatus().isOk()
-                .expectBodyList(Subject.class)
-                .value(Assertions::assertNotNull)
-                .returnResult()
-                .getResponseBody()
-                .get(0);
-        SubjectItem subjectName = new SubjectItem("Computer sciences");
-        this.webTestClient
-                .put()
-                .uri(SubjectResource.SUBJECTS + SubjectResource.ID_ID + SubjectResource.NAME, subject.getId())
-                .body(BodyInserters.fromValue(subjectName))
-                .exchange()
-                .expectStatus().isOk()
-                .expectBodyList(Subject.class)
-                .value(Assertions::assertNotNull);
-        assertEquals("Computer sciences", this.webTestClient
-                .get()
-                .uri(SubjectResource.SUBJECTS)
-                .exchange()
-                .expectStatus().isOk()
-                .expectBodyList(Subject.class)
-                .returnResult()
-                .getResponseBody()
-                .get(0)
-                .getName());
-    }
 }

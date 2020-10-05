@@ -21,12 +21,6 @@ public class SubjectPersistenceMongodb implements SubjectPersistence {
     }
 
     @Override
-    public Stream<Subject> readAll() {
-        return this.subjectRepository.findAll().stream()
-                .map(SubjectEntity::toSubject);
-    }
-
-    @Override
     public Subject updateName(String id, String name) {
         SubjectEntity subjectEntity = this.subjectRepository.findById(id)
                 .orElseThrow(() -> new NotFoundException("Subject id: " + id));
