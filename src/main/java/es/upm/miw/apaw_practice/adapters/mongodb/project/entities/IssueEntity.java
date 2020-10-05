@@ -1,5 +1,7 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.project.entities;
 
+import es.upm.miw.apaw_practice.domain.models.project.Issue;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -69,7 +71,7 @@ public class IssueEntity {
         this.dueDate = dueDate;
     }
 
-    public Boolean isDone() {
+    public Boolean getDone() {
         return done;
     }
 
@@ -91,6 +93,12 @@ public class IssueEntity {
 
     public void setLabels(List<LabelEntity> labels) {
         this.labels = labels;
+    }
+
+    public Issue toIssue() {
+        Issue issue = new Issue();
+        BeanUtils.copyProperties(this, issue);
+        return issue;
     }
 
     @Override
