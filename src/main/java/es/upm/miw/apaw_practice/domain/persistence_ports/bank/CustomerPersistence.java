@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 import java.util.stream.Stream;
 
 @Repository
-public interface CustomerPersistance {
+public interface CustomerPersistence {
     Stream<Customer> readAll();
 
     Customer create(CustomerCreation customerCreation);
