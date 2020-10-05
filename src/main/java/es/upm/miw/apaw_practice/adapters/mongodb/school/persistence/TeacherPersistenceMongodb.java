@@ -4,7 +4,6 @@ import es.upm.miw.apaw_practice.adapters.mongodb.school.daos.TeacherRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.school.entities.TeacherEntity;
 import es.upm.miw.apaw_practice.domain.exceptions.ConflictException;
 import es.upm.miw.apaw_practice.domain.models.school.Teacher;
-import es.upm.miw.apaw_practice.domain.models.school.TeacherCreation;
 import es.upm.miw.apaw_practice.domain.persistence_ports.school.TeacherPersistence;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -27,10 +26,10 @@ public class TeacherPersistenceMongodb implements TeacherPersistence {
     }
 
     @Override
-    public Teacher create(TeacherCreation teacherCreation) {
-        this.assertDniNotExist(teacherCreation.getDni());
+    public Teacher create(Teacher teacher) {
+        this.assertDniNotExist(teacher.getDni());
         return this.teacherRepository
-                .save(new TeacherEntity(teacherCreation))
+                .save(new TeacherEntity(teacher))
                 .toTeacher();
     }
 }

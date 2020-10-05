@@ -1,15 +1,8 @@
-package es.upm.miw.apaw_practice.adapters.mongodb.kitchen.entities;
-
-import es.upm.miw.apaw_practice.domain.models.kitchen.Ingredient;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+package es.upm.miw.apaw_practice.domain.models.kitchen;
 
 import java.math.BigDecimal;
-import java.util.UUID;
 
-@Document
-public class IngredientEntity {
-    @Id
+public class Ingredient {
     private String id;
     private String name;
     private BigDecimal pricePerKg;
@@ -17,12 +10,12 @@ public class IngredientEntity {
     private Boolean washed;
     private Boolean elaborated;
 
-    public IngredientEntity() {
+    public Ingredient() {
         // Empty from framework
     }
 
-    public IngredientEntity(String name, BigDecimal pricePerKg, Double weightKg){
-        this.id = UUID.randomUUID().toString();
+    public Ingredient(String id, String name, BigDecimal pricePerKg, Double weightKg){
+        this.id = id;
         this.washed = false;
         this.elaborated = false;
         this.name = name;
@@ -32,6 +25,10 @@ public class IngredientEntity {
 
     public String getId() {
         return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getName() {
@@ -74,30 +71,9 @@ public class IngredientEntity {
         this.elaborated = elaborated;
     }
 
-    public BigDecimal calculatePrice(){
-        return pricePerKg.multiply(BigDecimal.valueOf(weightKg));
-    }
-
-    public Ingredient toIngredient() {
-        Ingredient ingredient = new Ingredient(id, name, pricePerKg, weightKg);
-        ingredient.setElaborated(elaborated);
-        ingredient.setWashed(washed);
-        return ingredient;
-    }
-
-    @Override
-    public int hashCode() {
-        return this.id.hashCode();
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        return this == obj || obj != null && getClass() == obj.getClass() && (id.equals(((IngredientEntity) obj).id));
-    }
-
     @Override
     public String toString() {
-        return "IngredientEntity{" +
+        return "Ingredient{" +
                 "id='" + id + '\'' +
                 ", name=" + name + '\'' +
                 ", pricePerKg=" + pricePerKg + '\'' +
