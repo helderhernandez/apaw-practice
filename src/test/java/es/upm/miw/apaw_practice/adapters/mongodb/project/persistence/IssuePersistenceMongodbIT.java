@@ -1,4 +1,4 @@
-package es.upm.miw.apaw_practice.adapters.mongodb.project.daos;
+package es.upm.miw.apaw_practice.adapters.mongodb.project.persistence;
 
 import es.upm.miw.apaw_practice.TestConfig;
 import org.junit.jupiter.api.Test;
@@ -9,14 +9,14 @@ import java.time.LocalDateTime;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @TestConfig
-public class IssueEntityRepositoryIT {
+class IssuePersistenceMongodbIT {
 
     @Autowired
-    private IssueRepository issueRepository;
+    private IssuePersistenceMongodb issuePersistence;
 
     @Test
-    void createAndRead() {
-        assertTrue(this.issueRepository.findAll().stream()
+    void testReadAll() {
+        assertTrue(this.issuePersistence.readAll()
                 .anyMatch(issue ->
                         "create class user".equals(issue.getName()) &&
                                 2 == issue.getEstimatedHours() &&
