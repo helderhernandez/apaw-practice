@@ -1,4 +1,4 @@
-package es.upm.miw.apaw_practice.domain.models.Reservation;
+package es.upm.miw.apaw_practice.domain.models.padel;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -39,7 +39,7 @@ public class Reservation {
 
     @Override
     public String toString() {
-        return "Reservation{" +
+        return "padel{" +
                 "id='" + id + '\'' +
                 ", price=" + price +
                 ", date=" + date +

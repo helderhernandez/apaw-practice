@@ -1,7 +1,6 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.school.entities;
 
 import es.upm.miw.apaw_practice.domain.models.school.Teacher;
-import es.upm.miw.apaw_practice.domain.models.school.TeacherCreation;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
@@ -24,10 +23,10 @@ public class TeacherEntity {
         //empty from framework
     }
 
-    public TeacherEntity(TeacherCreation teacherCreation) {
-        BeanUtils.copyProperties(teacherCreation, this);
+    public TeacherEntity(Teacher teacher) {
+        BeanUtils.copyProperties(teacher, this);
         this.id = UUID.randomUUID().toString();
-        this.intern = teacherCreation.isIntern();
+        this.intern = teacher.isIntern();
     }
 
     public String getId() {

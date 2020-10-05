@@ -7,4 +7,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface MoviePersistence {
     Movie create(MovieCreation movieCreation);
+
+    void deleteById(String id);
 }

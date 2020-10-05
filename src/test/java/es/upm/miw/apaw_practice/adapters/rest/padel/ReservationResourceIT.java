@@ -1,7 +1,7 @@
 package es.upm.miw.apaw_practice.adapters.rest.padel;
 
 import es.upm.miw.apaw_practice.adapters.rest.RestTestConfig;
-import es.upm.miw.apaw_practice.domain.models.Reservation.Reservation;
+import es.upm.miw.apaw_practice.domain.models.padel.Reservation;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

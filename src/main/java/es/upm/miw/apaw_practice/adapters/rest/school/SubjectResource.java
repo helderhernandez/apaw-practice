@@ -5,8 +5,6 @@ import es.upm.miw.apaw_practice.domain.services.school.SubjectService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.stream.Stream;
-
 @RestController
 @RequestMapping(SubjectResource.SUBJECTS)
 public class SubjectResource {
@@ -26,10 +24,5 @@ public class SubjectResource {
     @PutMapping(ID_ID + NAME)
     public Subject updateName(@PathVariable String id, @RequestBody NameDto nameDto) {
         return this.subjectService.updateName(id, nameDto.getName());
-    }
-
-    @GetMapping
-    public Stream<Subject> readAll() {
-        return this.subjectService.readAll();
     }
 }

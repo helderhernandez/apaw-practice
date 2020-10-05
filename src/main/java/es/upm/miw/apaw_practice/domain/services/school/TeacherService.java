@@ -1,7 +1,6 @@
 package es.upm.miw.apaw_practice.domain.services.school;
 
 import es.upm.miw.apaw_practice.domain.models.school.Teacher;
-import es.upm.miw.apaw_practice.domain.models.school.TeacherCreation;
 import es.upm.miw.apaw_practice.domain.persistence_ports.school.TeacherPersistence;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -15,7 +14,7 @@ public class TeacherService {
         this.teacherPersistence = teacherPersistence;
     }
 
-    public Teacher create(TeacherCreation teacherCreation) {
-        return this.teacherPersistence.create(teacherCreation);
+    public Teacher create(Teacher teacher) {
+        return this.teacherPersistence.create(teacher);
     }
 }
