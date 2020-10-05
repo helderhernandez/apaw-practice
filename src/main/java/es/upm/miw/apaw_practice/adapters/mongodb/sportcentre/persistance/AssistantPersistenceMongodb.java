@@ -28,9 +28,4 @@ public class AssistantPersistenceMongodb implements AssistantPersistence {
         return this.assistantRepository.save(assistantEntity).toAssistant();
     }
 
-    @Override
-    public Stream<Assistant> readAll() {
-        return this.assistantRepository.findAll().stream()
-                .map(assistantEntity -> assistantEntity.toAssistant());
-    }
 }
