@@ -10,7 +10,7 @@ public class BasicArticleDto {
         // empty for framework
     }
 
-    public BasicArticleDto(Article article) {
+    BasicArticleDto(Article article) {
         this.id = article.getId();
         this.barcode = article.getBarcode();
     }

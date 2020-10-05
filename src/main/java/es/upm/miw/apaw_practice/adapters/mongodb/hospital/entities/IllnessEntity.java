@@ -1,5 +1,7 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.hospital.entities;
 
+import es.upm.miw.apaw_practice.domain.models.hospital.Illness;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -88,5 +90,11 @@ public class IllnessEntity {
                 ", causes=" + Arrays.toString(causes) +
                 ", contagious=" + contagious +
                 '}';
+    }
+
+    public Illness toIllness() {
+        Illness illness = new Illness();
+        BeanUtils.copyProperties(this,illness);
+        return illness;
     }
 }
