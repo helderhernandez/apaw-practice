@@ -34,4 +34,9 @@ public class MoviePersistenceMongodb implements MoviePersistence {
                 .save(new MovieEntity(movieCreation))
                 .toMovie();
     }
+
+    @Override
+    public void deleteById(String id) {
+        this.movieRepository.deleteById(id);
+    }
 }
