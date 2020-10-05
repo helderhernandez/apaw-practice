@@ -1,6 +1,6 @@
 package es.upm.miw.apaw_practice.domain.services.padel;
 
-import es.upm.miw.apaw_practice.domain.models.Reservation.Reservation;
+import es.upm.miw.apaw_practice.domain.models.padel.Reservation;
 import es.upm.miw.apaw_practice.domain.persistence_ports.padel.ReservationPersistence;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
