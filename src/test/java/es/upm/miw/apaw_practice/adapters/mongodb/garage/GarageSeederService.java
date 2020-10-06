@@ -4,7 +4,7 @@ package es.upm.miw.apaw_practice.adapters.mongodb.garage;
 import es.upm.miw.apaw_practice.adapters.mongodb.garage.daos.DriverRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.garage.daos.MechanicRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.garage.daos.PieceRepository;
-import es.upm.miw.apaw_practice.adapters.mongodb.garage.daos.VehicleRepository;
+import es.upm.miw.apaw_practice.adapters.mongodb.garage.daos.VehicleGarageRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.garage.entities.DriverEntity;
 import es.upm.miw.apaw_practice.adapters.mongodb.garage.entities.MechanicEntity;
 import es.upm.miw.apaw_practice.adapters.mongodb.garage.entities.PieceEntity;
@@ -22,7 +22,7 @@ import java.util.List;
 public class GarageSeederService {
 
     @Autowired
-    private VehicleRepository vehicleRepository;
+    private VehicleGarageRepository vehicleRepository;
     @Autowired
     private DriverRepository driverRepository;
     @Autowired
@@ -61,7 +61,7 @@ public class GarageSeederService {
         vehicles[1].setMechanicEntities(List.of(mechanics[2]));
         vehicles[2].setMechanicEntities(List.of(mechanics[1], mechanics[3]));
         vehicles[3].setMechanicEntities(List.of(mechanics[3]));
-        vehicles[0].setPieceEntities(List.of(pieces[0], pieces[5]));
+        vehicles[0].setPieceEntities(List.of(pieces[0], pieces[4]));
         vehicles[1].setPieceEntities(List.of(pieces[0], pieces[2]));
         vehicles[2].setPieceEntities(List.of(pieces[2], pieces[1]));
         vehicles[3].setPieceEntities(List.of(pieces[1]));
