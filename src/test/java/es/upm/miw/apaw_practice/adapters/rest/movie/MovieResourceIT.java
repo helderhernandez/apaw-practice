@@ -2,9 +2,11 @@ package es.upm.miw.apaw_practice.adapters.rest.movie;
 
 import es.upm.miw.apaw_practice.adapters.mongodb.movie.entities.FilmDirectorEntity;
 import es.upm.miw.apaw_practice.adapters.rest.RestTestConfig;
+import es.upm.miw.apaw_practice.adapters.rest.shop.ArticleResource;
 import es.upm.miw.apaw_practice.domain.models.movie.FilmDirector;
 import es.upm.miw.apaw_practice.domain.models.movie.Movie;
 import es.upm.miw.apaw_practice.domain.models.movie.MovieCreation;
+import es.upm.miw.apaw_practice.domain.models.shop.Article;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,10 +14,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.test.web.reactive.server.WebTestClient;
 import org.springframework.web.reactive.function.BodyInserters;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @RestTestConfig
 public class MovieResourceIT {
@@ -83,5 +87,20 @@ public class MovieResourceIT {
                 .uri(MovieResource.MOVIES + MovieResource.ID_ID, "kk")
                 .exchange()
                 .expectStatus().isOk();
+    }
+
+    @Test
+    void testFindByCinemaFilmRoomsWithMoreThanNumberOfSeats(){
+        this.webTestClient
+                .get()
+                .uri(uriBuilder ->
+                        uriBuilder.path(MovieResource.MOVIES + MovieResource.SEARCH)
+                                .queryParam("q", "numberOfSeats:10")
+                                .build())
+                .exchange()
+                .expectStatus().isOk()
+                .expectBodyList(Movie.class)
+                .value(movies -> assertTrue(movies.size() > 0));
+                //.value(movies -> assertEquals( ,movies.get(0).getPrice()) < 0);
     }
 }
