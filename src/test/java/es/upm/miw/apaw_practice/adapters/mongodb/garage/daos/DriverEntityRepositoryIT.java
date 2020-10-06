@@ -1,11 +1,13 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.garage.daos;
 
+import es.upm.miw.apaw_practice.TestConfig;
 import es.upm.miw.apaw_practice.adapters.mongodb.garage.entities.DriverEntity;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import static org.junit.jupiter.api.Assertions.*;
 
+@TestConfig
 public class DriverEntityRepositoryIT {
 
     @Autowired
@@ -19,7 +21,7 @@ public class DriverEntityRepositoryIT {
         assertEquals("789456123", driver.getTelephone());
         assertEquals("frcgon@example.com", driver.getEmail());
         assertEquals(Boolean.FALSE, driver.getGarageMember());
-        assertFalse(!driver.getVehicleEntities().isEmpty());
+        assertFalse(driver.getVehicleEntities().isEmpty());
     }
 
 }

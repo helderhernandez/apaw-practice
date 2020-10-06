@@ -60,6 +60,16 @@ public class ProductEntity {
         this.wholesalePrice = wholesalePrice;
     }
 
+    public Product toProduct() {
+        Product product = new Product();
+        BeanUtils.copyProperties(this, product);
+        return product;
+    }
+
+    public void fromProduct(Product product) {
+        BeanUtils.copyProperties(product, this);
+    }
+
     @Override
     public boolean equals(Object obj) {
         return this == obj || obj != null && getClass() == obj.getClass()
@@ -79,11 +89,5 @@ public class ProductEntity {
                 ", serialNumber=" + serialNumber +
                 ", wholesalePrice=" + wholesalePrice +
                 '}';
-    }
-
-    public Product toProduct() {
-        Product product = new Product();
-        BeanUtils.copyProperties(this, product);
-        return product;
     }
 }

@@ -19,4 +19,8 @@ public class PlaneService {
     public Plane create(PlaneCreation planeCreation) {
         return planePersistence.create(planeCreation);
     }
+
+    public Plane updateCapacity(String id, Integer capacity) {
+        return planePersistence.updateCapacity(id, capacity);
+    }
 }

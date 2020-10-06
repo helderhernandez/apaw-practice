@@ -1,5 +1,6 @@
-package es.upm.miw.apaw_practice.adapters.mongodb.transitTaxes.entities;
+package es.upm.miw.apaw_practice.adapters.mongodb.transittaxes.entities;
 
+import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Objects;
@@ -8,6 +9,7 @@ import java.util.UUID;
 @Document
 public class OwnerEntity {
 
+    @Id
     private String id;
     private String name;
     private String familyName;
@@ -63,12 +65,13 @@ public class OwnerEntity {
         OwnerEntity that = (OwnerEntity) o;
         return Objects.equals(id, that.id) &&
                 Objects.equals(name, that.name) &&
+                Objects.equals(familyName, that.familyName) &&
                 Objects.equals(dni, that.dni);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, name, dni);
+        return Objects.hash(id, name, familyName, dni);
     }
 
     @Override
@@ -76,6 +79,7 @@ public class OwnerEntity {
         return "OwnerEntity{" +
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
+                ", familyName='" + familyName + '\'' +
                 ", dni='" + dni + '\'' +
                 '}';
     }

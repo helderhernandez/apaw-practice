@@ -1,5 +1,7 @@
-package es.upm.miw.apaw_practice.adapters.mongodb.transitTaxes.entities;
+package es.upm.miw.apaw_practice.adapters.mongodb.transittaxes.entities;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
@@ -9,7 +11,9 @@ import java.util.UUID;
 @Document
 public class AccidentEntity {
 
+    @Id
     private String id;
+    @Indexed(unique = true)
     private String refAccident;
     private LocalDateTime date;
     private String place;
@@ -64,12 +68,13 @@ public class AccidentEntity {
         AccidentEntity that = (AccidentEntity) o;
         return Objects.equals(id, that.id) &&
                 Objects.equals(refAccident, that.refAccident) &&
-                Objects.equals(date, that.date);
+                Objects.equals(date, that.date) &&
+                Objects.equals(place, that.place);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, refAccident, date);
+        return Objects.hash(id, refAccident, date, place);
     }
 
     @Override
@@ -78,6 +83,7 @@ public class AccidentEntity {
                 "id='" + id + '\'' +
                 ", refAccident='" + refAccident + '\'' +
                 ", date=" + date +
+                ", place='" + place + '\'' +
                 '}';
     }
 }

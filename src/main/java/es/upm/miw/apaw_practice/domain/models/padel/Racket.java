@@ -1,36 +1,29 @@
-package es.upm.miw.apaw_practice.adapters.mongodb.padel.entities;
-
-import es.upm.miw.apaw_practice.domain.models.padel.Racket;
-import org.springframework.beans.BeanUtils;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+package es.upm.miw.apaw_practice.domain.models.padel;
 
 import java.math.BigDecimal;
 import java.util.UUID;
 
-@Document
-public class RacketEntity {
-    @Id
+public class Racket {
     private String id;
     private String name;
     private String brand;
     private String description;
     private BigDecimal price;
     private String weight;
-    private PlayerEntity playerEntity;
+    private Player player;
 
-    public RacketEntity() {
+    public Racket() {
         //Empty for Spring
     }
 
-    public RacketEntity(String name, String brand, String description, BigDecimal price, String weight, PlayerEntity playerEntity) {
+    public Racket(String name, String brand, String description, BigDecimal price, String weight, Player player) {
         this.id = UUID.randomUUID().toString();
         this.name = name;
         this.brand = brand;
         this.description = description;
         this.price = price;
         this.weight = weight;
-        this.playerEntity = playerEntity;
+        this.player = player;
     }
 
     public String getId() {
@@ -80,22 +73,12 @@ public class RacketEntity {
     public void setWeight(String weight) {
         this.weight = weight;
     }
-    public PlayerEntity getPlayerEntity() {
-        return playerEntity;
+    public Player getPlayer() {
+        return player;
     }
 
-    public void setPlayerEntity(PlayerEntity playerEntity) {
-        this.playerEntity = playerEntity;
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        return this == obj || obj != null && getClass() == obj.getClass() && (id.equals(((PlayerEntity) obj).getId()));
-    }
-
-    @Override
-    public int hashCode() {
-        return id.hashCode();
+    public void setPlayer(Player playerEntity) {
+        this.player = playerEntity;
     }
 
     @Override
@@ -107,18 +90,7 @@ public class RacketEntity {
                 ", description='" + description + '\'' +
                 ", price=" + price +
                 ", weight='" + weight + '\'' +
-                ", playerEntity=" + playerEntity +
+                ", player=" + player +
                 '}';
-    }
-
-    public void fromRacket(Racket racket) {
-        BeanUtils.copyProperties(racket, this);
-
-    }
-
-    public Racket toRacket() {
-        Racket racket = new Racket();
-        BeanUtils.copyProperties(this,racket);
-        return racket;
     }
 }
