@@ -36,11 +36,12 @@ public class SpecialityPersistenceMongodb implements SpecialityPersistence {
     }
 
     @Override
-    public void update(Speciality speciality) {
+    public Speciality update(Speciality speciality) {
         SpecialityEntity specialityEntity = this.specialityRepository
                 .findById(speciality.getId())
                 .orElseThrow();
-
+        specialityEntity.fromSpeciality(speciality);
+        return this.specialityRepository.save(specialityEntity).toSpeciality();
     }
 
 }

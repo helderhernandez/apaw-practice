@@ -16,5 +16,5 @@ public interface SpecialityPersistence {
 
     Speciality findById(String id);
 
-    void update(Speciality speciality);
+    Speciality update(Speciality speciality);
 }
