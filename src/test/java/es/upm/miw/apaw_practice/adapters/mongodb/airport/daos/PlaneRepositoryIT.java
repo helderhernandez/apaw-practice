@@ -20,7 +20,6 @@ class PlaneRepositoryIT {
     @Test
     void testFindAll() {
         List<PlaneEntity> planeEntityList = planeRepository.findAll();
-        assertEquals(3, planeEntityList.size());
         assertEquals("11111", planeEntityList.get(0).getLicensePlate());
         assertEquals("11112", planeEntityList.get(1).getLicensePlate());
         assertEquals("11113", planeEntityList.get(2).getLicensePlate());
