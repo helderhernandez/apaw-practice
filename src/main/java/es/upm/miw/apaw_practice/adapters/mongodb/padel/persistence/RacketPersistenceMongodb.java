@@ -42,4 +42,9 @@ public class RacketPersistenceMongodb implements RacketPersistence {
                 .stream()
                 .map(RacketEntity::toRacket);
     }
+
+    @Override
+    public void deleteById(String id) {
+        this.racketRepository.deleteById(id);
+    }
 }
