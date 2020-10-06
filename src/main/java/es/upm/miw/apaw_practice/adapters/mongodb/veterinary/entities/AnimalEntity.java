@@ -31,14 +31,14 @@ public class AnimalEntity {
         this.id = id;
         this.name = name;
         this.age = age;
+        this.date = date;
         this.isMale = isMale;
         this.client = client;
-
     }
 
     public AnimalEntity(AnimalCreation animalCreation) {
         BeanUtils.copyProperties(animalCreation, this);
-        this.id = UUID.randomUUID().toString();
+        this.date = LocalDateTime.now();
     }
 
     public String getId() {

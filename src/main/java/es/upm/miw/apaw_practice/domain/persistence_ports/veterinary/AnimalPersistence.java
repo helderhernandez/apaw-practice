@@ -7,8 +7,10 @@ import org.springframework.stereotype.Repository;
 import java.util.stream.Stream;
 
 @Repository
-public interface AnimalPersistance {
+public interface AnimalPersistence {
     Stream<Animal> readAll();
+
+    Animal readById(String id);
 
     Animal create(AnimalCreation animalCreation);
 }
