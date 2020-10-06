@@ -5,6 +5,6 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 
 import java.util.Optional;
 
-public interface VehicleRepository extends MongoRepository<VehicleEntity, String> {
+public interface VehicleGarageRepository extends MongoRepository<VehicleEntity, String> {
     Optional<VehicleEntity> findByCarRegistration(String carRegistration);
 }

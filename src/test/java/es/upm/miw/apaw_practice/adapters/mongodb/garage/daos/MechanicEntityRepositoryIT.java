@@ -1,5 +1,6 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.garage.daos;
 
+import es.upm.miw.apaw_practice.TestConfig;
 import es.upm.miw.apaw_practice.adapters.mongodb.garage.entities.MechanicEntity;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,6 +11,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+@TestConfig
 public class MechanicEntityRepositoryIT {
 
     @Autowired
