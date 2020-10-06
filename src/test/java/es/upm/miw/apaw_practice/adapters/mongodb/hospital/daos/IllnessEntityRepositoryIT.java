@@ -14,7 +14,7 @@ class IllnessEntityRepositoryIT {
     @Test
     void testFindByContagious(){
         assertEquals(2,this.illnessRepository.findByContagious(true).orElse(null).size());
-        assertEquals(2,this.illnessRepository.findByContagious(false).orElse(null).size());
+        assertEquals(3,this.illnessRepository.findByContagious(false).orElse(null).size());
         assertEquals(4,this.illnessRepository.findByContagious(true).orElse(null).get(1).getPhase());
     }
 }
