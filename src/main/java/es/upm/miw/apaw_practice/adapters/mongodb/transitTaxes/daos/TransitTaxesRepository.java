@@ -8,5 +8,4 @@ import java.util.Optional;
 
 public interface TransitTaxesRepository extends MongoRepository<TransitTaxesEntity, String> {
     Optional<TransitTaxesEntity> findByRefTaxes(String ref);
-
 }
