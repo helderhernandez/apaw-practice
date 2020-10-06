@@ -32,4 +32,8 @@ public class StudentService {
                 })
                 .forEach(student -> this.studentPersistence.update(student));
     }
+
+    public Stream<Student> findGraduateStudentsByKnowledgeArea(String knowledgeArea) {
+        return this.studentPersistence.findGraduateStudentsByKnowledgeArea(knowledgeArea);
+    }
 }

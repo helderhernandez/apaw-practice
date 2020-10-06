@@ -39,10 +39,10 @@ public class CourseResourceIT {
                 .expectBodyList(Course.class)
                 .consumeWith(entityList -> {
                     assertNotNull(entityList.getResponseBody());
-                    List<String> tagList = entityList.getResponseBody().stream()
+                    List<String> courseList = entityList.getResponseBody().stream()
                             .map(Course::getAcademicLevel)
                             .collect(Collectors.toList());
-                    assertTrue(tagList.containsAll(Arrays.asList("Primary", "Secondary", "Primary")));
+                    assertTrue(courseList.containsAll(Arrays.asList("Primary", "Secondary", "Primary")));
                 });
     }
 
@@ -59,10 +59,10 @@ public class CourseResourceIT {
                 .expectBodyList(Course.class)
                 .consumeWith(entityList -> {
                     assertNotNull(entityList.getResponseBody());
-                    List<String> tagList = entityList.getResponseBody().stream()
+                    List<String> courseList = entityList.getResponseBody().stream()
                             .map(Course::getAcademicLevel)
                             .collect(Collectors.toList());
-                    assertFalse(tagList.containsAll(Arrays.asList("Primary", "Secondary", "Primary")));
+                    assertFalse(courseList.containsAll(Arrays.asList("Primary", "Secondary", "Primary")));
                 });
     }
 }
