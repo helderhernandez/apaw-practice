@@ -32,7 +32,7 @@ public class CourseResourceIT {
                 .get()
                 .uri(uriBuilder -> uriBuilder
                         .path(CourseResource.COURSES + CourseResource.SEARCH)
-                        .queryParam("q", "Pablo")
+                        .queryParam("q", "name:Pablo")
                         .build())
                 .exchange()
                 .expectStatus().isOk()
@@ -52,7 +52,7 @@ public class CourseResourceIT {
                 .get()
                 .uri(uriBuilder -> uriBuilder
                         .path(CourseResource.COURSES + CourseResource.SEARCH)
-                        .queryParam("q", "Pablodfgfdg")
+                        .queryParam("q", "name:Pablodfgfdg")
                         .build())
                 .exchange()
                 .expectStatus().isOk()
