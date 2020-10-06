@@ -1,12 +1,18 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.ticketbus.entities;
 
+import es.upm.miw.apaw_practice.domain.models.ticketbus.Bus;
+import es.upm.miw.apaw_practice.domain.models.ticketbus.BusCreation;
+import es.upm.miw.apaw_practice.domain.models.ticketbus.TicketBus;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Document
 public class BusEntity {
@@ -15,8 +21,10 @@ public class BusEntity {
     @Indexed(unique = true)
     private String reference;
     private String company;
+    private Integer capacity;
     private Boolean accesibility;
     private Boolean wifi;
+    private LocalDateTime registrationDate;
 
     @DBRef
     private List<TicketBusEntity> tickets;
@@ -28,14 +36,39 @@ public class BusEntity {
         // empty from framework
     }
 
-    public BusEntity(String reference, String company, Boolean accesibility, Boolean wifi, List<TicketBusEntity> tickets, List<JourneyEntity> journeys) {
+    public BusEntity(String reference, String company, Integer capacity, Boolean accesibility, Boolean wifi, List<TicketBusEntity> tickets, List<JourneyEntity> journeys) {
         this.id = UUID.randomUUID().toString();
         this.reference = reference;
+        this.capacity = capacity;
         this.company = company;
         this.accesibility = accesibility;
         this.wifi = wifi;
         this.tickets = tickets;
         this.journeys = journeys;
+    }
+
+    public BusEntity(BusCreation busCreation) {
+        BeanUtils.copyProperties(busCreation, this);
+        this.id = UUID.randomUUID().toString();
+        this.registrationDate = LocalDateTime.now();
+    }
+
+    public Bus toBus() {
+        Bus bus = new Bus();
+        BeanUtils.copyProperties(this, bus);
+        List<TicketBus> ticketsAux = this.tickets.stream()
+                .map(TicketBusEntity::toTicketBus)
+                .collect(Collectors.toList());
+        bus.setTickets(ticketsAux);
+        return bus;
+    }
+
+    public String getId(){
+        return this.id;
+    }
+
+    public void setId(String id){
+        this.id = id;
     }
 
     public String getReference() {
@@ -86,6 +119,22 @@ public class BusEntity {
         this.journeys = journeys;
     }
 
+    public Integer getCapacity() {
+        return capacity;
+    }
+
+    public void setCapacity(Integer capacity) {
+        this.capacity = capacity;
+    }
+
+    public LocalDateTime getRegistrationDate() {
+        return registrationDate;
+    }
+
+    public void setRegistrationDate(LocalDateTime registrationDate) {
+        this.registrationDate = registrationDate;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -93,6 +142,7 @@ public class BusEntity {
         BusEntity busEntity = (BusEntity) o;
         return id.equals(busEntity.id) &&
                 reference.equals(busEntity.reference) &&
+                capacity.equals(busEntity.capacity) &&
                 company.equals(busEntity.company);
     }
 
@@ -106,6 +156,7 @@ public class BusEntity {
         return "BusEntity{" +
                 "id='" + id + '\'' +
                 ", reference='" + reference + '\'' +
+                ", capacity='" + capacity + '\'' +
                 ", company='" + company + '\'' +
                 ", accesibility=" + accesibility +
                 ", wifi=" + wifi +
@@ -113,4 +164,5 @@ public class BusEntity {
                 ", journeys=" + journeys +
                 '}';
     }
+
 }
