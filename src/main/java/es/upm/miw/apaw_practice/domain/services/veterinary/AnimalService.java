@@ -1,6 +1,7 @@
 package es.upm.miw.apaw_practice.domain.services.veterinary;
 
 import es.upm.miw.apaw_practice.domain.models.veterinary.Animal;
+import es.upm.miw.apaw_practice.domain.models.veterinary.AnimalCreation;
 import es.upm.miw.apaw_practice.domain.persistence_ports.veterinary.AnimalPersistance;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -21,4 +22,7 @@ public class AnimalService {
         return this.animalPersistance.readAll();
     }
 
+    public Animal create(AnimalCreation animalCreation) {
+        return this.animalPersistance.create(animalCreation);
+    }
 }
