@@ -1,17 +1,18 @@
 package es.upm.miw.apaw_practice.domain.models.veterinary;
 
-import java.time.LocalDateTime;
-
-public class Animal {
-
+public class AnimalCreation {
     private String id;
     private String name;
     private Integer age;
-    private LocalDateTime date;
-    private Boolean isMale;
 
-    public Animal() {
+    public AnimalCreation() {
         //Empty for framework
+    }
+
+    public AnimalCreation(String id, String name, Integer age) {
+        this.id = id;
+        this.name = name;
+        this.age = age;
     }
 
     public String getId() {
@@ -34,24 +35,8 @@ public class Animal {
         return age;
     }
 
-    public void setAge(Integer age) {
+    public void setAge(int age) {
         this.age = age;
-    }
-
-    public LocalDateTime getDate() {
-        return date;
-    }
-
-    public void setDate(LocalDateTime date) {
-        this.date = date;
-    }
-
-    public Boolean isMAle() {
-        return isMale;
-    }
-
-    public void setIsMale(Boolean isMale) {
-        this.isMale = isMale;
     }
 
     @Override
@@ -60,8 +45,6 @@ public class Animal {
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 ", age=" + age +
-                ", date=" + date +
-                ", isMAle=" + isMale +
                 '}';
     }
 }

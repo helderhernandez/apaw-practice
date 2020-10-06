@@ -8,7 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.stream.Stream;
 
-@Repository("IssuePersistence")
+@Repository("issuePersistence")
 public class IssuePersistenceMongodb implements IssuePersistence {
 
     private IssueRepository issueRepository;
