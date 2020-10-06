@@ -1,5 +1,6 @@
 package es.upm.miw.apaw_practice.adapters.rest.school;
 
+import es.upm.miw.apaw_practice.adapters.rest.LexicalAnalyzer;
 import es.upm.miw.apaw_practice.domain.models.school.Course;
 import es.upm.miw.apaw_practice.domain.services.school.CourseService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,6 +30,7 @@ public class CourseResource {
 
     @GetMapping(SEARCH)
     public Stream<Course> findCoursesByTeacherName(@RequestParam String q) {
-        return this.courseService.CoursesByTeacherName(q);
+        String name = new LexicalAnalyzer().extractWithAssure(q, "name");
+        return this.courseService.CoursesByTeacherName(name);
     }
 }
