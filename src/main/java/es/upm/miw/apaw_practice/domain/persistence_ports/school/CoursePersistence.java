@@ -6,5 +6,6 @@ import java.util.stream.Stream;
 
 public interface CoursePersistence {
     void deleteById(String id);
+
     Stream<Course> findCoursesByTeacherName(String name);
 }
