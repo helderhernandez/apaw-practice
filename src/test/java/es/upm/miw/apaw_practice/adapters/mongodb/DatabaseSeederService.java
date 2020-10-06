@@ -15,7 +15,7 @@ import es.upm.miw.apaw_practice.adapters.mongodb.socialnetwork.SocialNetworkSeed
 import es.upm.miw.apaw_practice.adapters.mongodb.sportcentre.SportCentreSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.ticketbus.TicketBusSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.transport.TransportSeedService;
-import es.upm.miw.apaw_practice.adapters.mongodb.transitTaxes.TransitTaxesSeederService;
+import es.upm.miw.apaw_practice.adapters.mongodb.transittaxes.TransitTaxesSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.veterinary.VeterinarySeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.videogame.VideogameSeederService;
 import org.springframework.beans.factory.annotation.Autowired;

@@ -1,6 +1,7 @@
-package es.upm.miw.apaw_practice.adapters.mongodb.transitTaxes.entities;
+package es.upm.miw.apaw_practice.adapters.mongodb.transittaxes.entities;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -12,6 +13,7 @@ import java.util.UUID;
 public class VehicleEntity {
     @Id
     private String id;
+    @Indexed(unique = true)
     private String enrollment;
     private String brand;
     @DBRef
@@ -90,12 +92,15 @@ public class VehicleEntity {
         VehicleEntity that = (VehicleEntity) o;
         return Objects.equals(id, that.id) &&
                 Objects.equals(enrollment, that.enrollment) &&
-                Objects.equals(brand, that.brand);
+                Objects.equals(brand, that.brand) &&
+                Objects.equals(accidents, that.accidents) &&
+                Objects.equals(owner, that.owner) &&
+                Objects.equals(transitTaxes, that.transitTaxes);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, enrollment, brand);
+        return Objects.hash(id, enrollment, brand, accidents, owner, transitTaxes);
     }
 
     @Override
@@ -104,6 +109,9 @@ public class VehicleEntity {
                 "id='" + id + '\'' +
                 ", enrollment='" + enrollment + '\'' +
                 ", brand='" + brand + '\'' +
+                ", accidents=" + accidents +
+                ", owner=" + owner +
+                ", transitTaxes=" + transitTaxes +
                 '}';
     }
 }

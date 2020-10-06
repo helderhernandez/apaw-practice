@@ -1,5 +1,7 @@
-package es.upm.miw.apaw_practice.adapters.mongodb.transitTaxes.entities;
+package es.upm.miw.apaw_practice.adapters.mongodb.transittaxes.entities;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.math.BigDecimal;
@@ -9,7 +11,9 @@ import java.util.UUID;
 @Document
 public class TransitTaxesEntity {
 
+    @Id
     private String id;
+    @Indexed(unique = true)
     private String refTaxes;
     private String description;
     private BigDecimal price;
@@ -74,13 +78,14 @@ public class TransitTaxesEntity {
         TransitTaxesEntity that = (TransitTaxesEntity) o;
         return Objects.equals(id, that.id) &&
                 Objects.equals(refTaxes, that.refTaxes) &&
+                Objects.equals(description, that.description) &&
                 Objects.equals(price, that.price) &&
                 Objects.equals(paid, that.paid);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, refTaxes, price, paid);
+        return Objects.hash(id, refTaxes, description, price, paid);
     }
 
     @Override
@@ -88,6 +93,7 @@ public class TransitTaxesEntity {
         return "TransitTaxesEntity{" +
                 "id='" + id + '\'' +
                 ", refTaxes='" + refTaxes + '\'' +
+                ", description='" + description + '\'' +
                 ", price=" + price +
                 ", paid=" + paid +
                 '}';
