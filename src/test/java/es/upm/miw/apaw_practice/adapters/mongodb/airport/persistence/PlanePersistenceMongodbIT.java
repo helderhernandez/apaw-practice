@@ -2,6 +2,7 @@ package es.upm.miw.apaw_practice.adapters.mongodb.airport.persistence;
 
 import es.upm.miw.apaw_practice.TestConfig;
 import es.upm.miw.apaw_practice.domain.exceptions.ConflictException;
+import es.upm.miw.apaw_practice.domain.exceptions.NotFoundException;
 import es.upm.miw.apaw_practice.domain.models.airport.Plane;
 import es.upm.miw.apaw_practice.domain.models.airport.PlaneCreation;
 import org.junit.jupiter.api.Test;
@@ -29,5 +30,10 @@ class PlanePersistenceMongodbIT {
         PlaneCreation planeCreation =
                 new PlaneCreation("model", 100, false, "11111");
         assertThrows(ConflictException.class, () -> this.planePersistence.create(planeCreation));
+    }
+
+    @Test
+    void testUpdateCapacityNotFound() {
+        assertThrows(NotFoundException.class, () -> this.planePersistence.updateCapacity("00", 50));
     }
 }
