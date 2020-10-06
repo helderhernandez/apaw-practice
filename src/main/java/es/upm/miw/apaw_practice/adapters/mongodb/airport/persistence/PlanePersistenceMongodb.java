@@ -3,6 +3,7 @@ package es.upm.miw.apaw_practice.adapters.mongodb.airport.persistence;
 import es.upm.miw.apaw_practice.adapters.mongodb.airport.daos.PlaneRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.airport.entities.PlaneEntity;
 import es.upm.miw.apaw_practice.domain.exceptions.ConflictException;
+import es.upm.miw.apaw_practice.domain.exceptions.NotFoundException;
 import es.upm.miw.apaw_practice.domain.models.airport.Plane;
 import es.upm.miw.apaw_practice.domain.models.airport.PlaneCreation;
 import es.upm.miw.apaw_practice.domain.persistence_ports.airport.PlanePersistence;
@@ -25,6 +26,14 @@ public class PlanePersistenceMongodb implements PlanePersistence {
         return this.planeRepository
                 .save(new PlaneEntity(planeCreation))
                 .toPlane();
+    }
+
+    @Override
+    public Plane updateCapacity(String id, Integer capacity) {
+        PlaneEntity planeEntity = this.planeRepository.findById(id)
+                .orElseThrow(() -> new NotFoundException("Plane id: " + id));
+        planeEntity.setCapacity(capacity);
+        return this.planeRepository.save(planeEntity).toPlane();
     }
 
     private void assertLicensePlateNotExist(String licensePlate) {
