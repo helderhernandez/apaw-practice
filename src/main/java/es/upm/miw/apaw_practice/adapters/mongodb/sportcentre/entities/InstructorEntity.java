@@ -31,6 +31,15 @@ public class InstructorEntity {
         //Empty from framework
     }
 
+    public InstructorEntity(String dni, String name, String lastName, BigDecimal salary, List<SpecialityEntity> specialities) {
+        this.id = UUID.randomUUID().toString();
+        this.dni = dni;
+        this.name = name;
+        this.lastName = lastName;
+        this.salary = salary;
+        this.specialities = specialities;
+    }
+
     public InstructorEntity(InstructorCreation instructorCreation) {
         BeanUtils.copyProperties(instructorCreation, this);
         this.id = UUID.randomUUID().toString();
