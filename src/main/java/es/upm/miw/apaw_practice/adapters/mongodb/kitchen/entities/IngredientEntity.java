@@ -1,5 +1,6 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.kitchen.entities;
 
+import es.upm.miw.apaw_practice.domain.models.kitchen.Ingredient;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -75,6 +76,13 @@ public class IngredientEntity {
 
     public BigDecimal calculatePrice(){
         return pricePerKg.multiply(BigDecimal.valueOf(weightKg));
+    }
+
+    public Ingredient toIngredient() {
+        Ingredient ingredient = new Ingredient(id, name, pricePerKg, weightKg);
+        ingredient.setElaborated(elaborated);
+        ingredient.setWashed(washed);
+        return ingredient;
     }
 
     @Override

@@ -1,12 +1,11 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.padel.entities;
 
-import es.upm.miw.apaw_practice.domain.models.Reservation.Reservation;
+import es.upm.miw.apaw_practice.domain.models.padel.Reservation;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.UUID;
 

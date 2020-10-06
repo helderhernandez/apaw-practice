@@ -1,17 +1,23 @@
 package es.upm.miw.apaw_practice.adapters.mongodb;
 
+import es.upm.miw.apaw_practice.adapters.mongodb.airport.AirportSeederService;
+import es.upm.miw.apaw_practice.adapters.mongodb.bank.BankSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.factory.FactorySeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.garage.GarageSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.hospital.HospitalSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.kitchen.KitchenSeederService;
+import es.upm.miw.apaw_practice.adapters.mongodb.movie.MovieSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.padel.PadelSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.project.ProjectSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.school.SchoolSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.shop.ShopSeederService;
-import es.upm.miw.apaw_practice.adapters.mongodb.bank.BankSeederService;
-import es.upm.miw.apaw_practice.adapters.mongodb.movie.MovieSeederService;
+import es.upm.miw.apaw_practice.adapters.mongodb.socialnetwork.SocialNetworkSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.sportcentre.SportCentreSeederService;
+import es.upm.miw.apaw_practice.adapters.mongodb.ticketbus.TicketBusSeederService;
+import es.upm.miw.apaw_practice.adapters.mongodb.transport.TransportSeedService;
+import es.upm.miw.apaw_practice.adapters.mongodb.transitTaxes.TransitTaxesSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.veterinary.VeterinarySeederService;
+import es.upm.miw.apaw_practice.adapters.mongodb.videogame.VideogameSeederService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -30,6 +36,12 @@ public class DatabaseSeederService {
     private HospitalSeederService hospitalSeederService;
     private VeterinarySeederService veterinarySeederService;
     private GarageSeederService garageSeederService;
+    private AirportSeederService airportSeederService;
+    private TicketBusSeederService ticketBusSeederService;
+    private TransportSeedService transportSeedService;
+    private VideogameSeederService videogameSeederService;
+    private TransitTaxesSeederService transitTaxesSeederService;
+    private SocialNetworkSeederService socialNetworkSeederService;
 
     @Autowired
     public DatabaseSeederService(ShopSeederService shopSeederService, SchoolSeederService schoolSeederService,
@@ -37,8 +49,11 @@ public class DatabaseSeederService {
                                  MovieSeederService movieSeederService, PadelSeederService padelSeederService,
                                  SportCentreSeederService sportCentreSeederService, KitchenSeederService kitchenSeederService,
                                  ProjectSeederService projectSeederService, HospitalSeederService hospitalSeederService,
-                                 VeterinarySeederService veterinarySeederService,
-                                 GarageSeederService garageSeederService) {
+                                 VeterinarySeederService veterinarySeederService, GarageSeederService garageSeederService,
+                                 AirportSeederService airportSeederService, TicketBusSeederService ticketBusSeederService,
+                                 VideogameSeederService videogameSeederService, TransitTaxesSeederService transitTaxesSeederService,
+                                 TransportSeedService transportSeedService, SocialNetworkSeederService socialNetworkSeederService) {
+
         this.shopSeederService = shopSeederService;
         this.schoolSeederService = schoolSeederService;
         this.factorySeederService = factorySeederService;
@@ -51,6 +66,13 @@ public class DatabaseSeederService {
         this.hospitalSeederService = hospitalSeederService;
         this.veterinarySeederService = veterinarySeederService;
         this.garageSeederService = garageSeederService;
+        this.airportSeederService = airportSeederService;
+        this.ticketBusSeederService = ticketBusSeederService;
+        this.transportSeedService = transportSeedService;
+        this.videogameSeederService = videogameSeederService;
+        this.transitTaxesSeederService = transitTaxesSeederService;
+        this.socialNetworkSeederService = socialNetworkSeederService;
+
         this.seedDatabase();
     }
 
@@ -67,6 +89,12 @@ public class DatabaseSeederService {
         this.hospitalSeederService.seedDatabase();
         this.veterinarySeederService.seedDatabase();
         this.garageSeederService.seedDatabase();
+        this.airportSeederService.seedDataBase();
+        this.ticketBusSeederService.seedDatabase();
+        this.transportSeedService.seedDatabase();
+        this.videogameSeederService.seedDataBase();
+        this.transitTaxesSeederService.seedDatabase();
+        this.socialNetworkSeederService.seedDatabase();
     }
 
     public void deleteAll() {
@@ -82,6 +110,12 @@ public class DatabaseSeederService {
         this.hospitalSeederService.deleteAll();
         this.veterinarySeederService.deleteAll();
         this.garageSeederService.deleteAll();
+        this.airportSeederService.deleteAll();
+        this.ticketBusSeederService.deleteAll();
+        this.transportSeedService.deleteAll();
+        this.videogameSeederService.deleteAll();
+        this.transitTaxesSeederService.deleteAll();
+        this.socialNetworkSeederService.deleteAll();
     }
 
     public void reSeedDatabase() {

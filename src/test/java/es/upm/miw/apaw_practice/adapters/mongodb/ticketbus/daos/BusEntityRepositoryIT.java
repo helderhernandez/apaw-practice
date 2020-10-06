@@ -1,0 +1,39 @@
+package es.upm.miw.apaw_practice.adapters.mongodb.ticketbus.daos;
+
+import es.upm.miw.apaw_practice.TestConfig;
+import es.upm.miw.apaw_practice.adapters.mongodb.ticketbus.entities.BusEntity;
+import org.junit.jupiter.api.Test;
+import org.springframework.beans.factory.annotation.Autowired;
+
+import java.math.BigDecimal;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+@TestConfig
+class BusEntityRepositoryIT {
+
+    @Autowired
+    private BusRepository busRepository;
+
+    @Test
+    void testAndCreate() {
+
+        assertTrue(this.busRepository.findAll().stream()
+                .anyMatch(bus ->
+                        "COOP-VEL-11".equals(bus.getReference()) &&
+                                "Velocity Cars".equals(bus.getCompany()) &&
+                                Boolean.TRUE.equals(bus.getAccesibility()) &&
+                                Boolean.TRUE.equals(bus.getWifi()) &&
+                                Integer.valueOf(11).equals(bus.getTickets().get(0).getSeat()) &&
+                                bus.getTickets().get(0).getDepartureTime() == null &&
+                                bus.getTickets().get(0).getArriveTime() == null &&
+                                new BigDecimal("30.99").equals(bus.getTickets().get(0).getPrice()) &&
+                                "89386661J".equals(bus.getTickets().get(0).getPassenger().getDocIdentify()) &&
+                                "Madrid".equals(bus.getJourneys().get(0).getDeparture()) &&
+                                "Barcelona".equals(bus.getJourneys().get(0).getArrive()) &&
+                                Integer.valueOf(5).equals(bus.getJourneys().get(0).getNumStops())
+                )
+        );
+    }
+}

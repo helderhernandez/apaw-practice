@@ -13,6 +13,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
 
@@ -29,7 +30,7 @@ public class VeterinarySeederService {
     private SurgeryRepository surgeryRepository;
 
     public void seedDatabase() {
-        LogManager.getLogger(this.getClass()).warn("------- Shop Initial Load -----------");
+        LogManager.getLogger(this.getClass()).warn("------- Veterinary Initial Load -----------");
         ClientEntity[] clients = {
                 new ClientEntity("key-client-ds", "Manuel", "calle Lazaga", "636363654"),
                 new ClientEntity("key-client-ssj", "Ulises", "calle Odonell", "435654673")
@@ -41,11 +42,11 @@ public class VeterinarySeederService {
                 new VeterinaryEntity("key-vet-jdnhc", "Joaquin", 46)
         };
         this.veterinaryRepository.saveAll(Arrays.asList(veterinarians));
-
+        LocalDateTime date = LocalDateTime.now();
         AnimalEntity[] animals = {
-                new AnimalEntity("key-1-a", "Garfield", 6, clients[0]),
-                new AnimalEntity("key-10-bd", "Simba", 1, clients[0]),
-                new AnimalEntity("key-7-ctg", "Garfield2", 8, clients[1])
+                new AnimalEntity("key-1-a", "Garfield", 6, date, true, clients[0]),
+                new AnimalEntity("key-10-bd", "Simba", 1, date, true, clients[0]),
+                new AnimalEntity("key-7-ctg", "Garfield2", 8, date, true, clients[1])
         };
         this.animalRepository.saveAll(Arrays.asList(animals));
 

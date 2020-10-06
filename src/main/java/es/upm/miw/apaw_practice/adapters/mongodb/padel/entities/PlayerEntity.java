@@ -1,9 +1,13 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.padel.entities;
 
+import es.upm.miw.apaw_practice.domain.models.padel.Player;
+import es.upm.miw.apaw_practice.domain.models.padel.PlayerCreation;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
 
@@ -32,6 +36,13 @@ public class PlayerEntity {
         this.email = email;
         this.federated = federated;
         this.reservationEntities = reservationEntities;
+    }
+
+    public PlayerEntity(PlayerCreation playerCreation){
+        BeanUtils.copyProperties(playerCreation, this);
+        this.id = UUID.randomUUID().toString();
+        this.reservationEntities= new ArrayList<ReservationEntity>();
+
     }
 
     public String getId() {
@@ -111,5 +122,10 @@ public class PlayerEntity {
                 ", federated=" + federated +
                 ", reservationEntities=" + reservationEntities +
                 '}';
+    }
+    public Player toPlayer(){
+        Player player = new Player();
+        BeanUtils.copyProperties(this, player);
+        return player;
     }
 }

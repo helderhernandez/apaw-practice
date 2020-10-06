@@ -98,4 +98,8 @@ public class SpecialityEntity {
         BeanUtils.copyProperties(this, speciality);
         return speciality;
     }
+
+    public void fromSpeciality(Speciality speciality) {
+        BeanUtils.copyProperties(speciality, this);
+    }
 }

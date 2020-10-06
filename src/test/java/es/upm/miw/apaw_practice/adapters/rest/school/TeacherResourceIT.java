@@ -2,7 +2,6 @@ package es.upm.miw.apaw_practice.adapters.rest.school;
 
 import es.upm.miw.apaw_practice.adapters.rest.RestTestConfig;
 import es.upm.miw.apaw_practice.domain.models.school.Teacher;
-import es.upm.miw.apaw_practice.domain.models.school.TeacherCreation;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,8 +19,8 @@ public class TeacherResourceIT {
 
     @Test
     void testCreate() {
-        TeacherCreation teacherCreation =
-                new TeacherCreation("Luisa", "Fridgerard", true, "3365558R", "luisa@gmail.com");
+        Teacher teacherCreation =
+                new Teacher("Luisa", "Fridgerard", true, "3365558R", "luisa@gmail.com");
         this.webTestClient
                 .post()
                 .uri(TeacherResource.TEACHERS)
@@ -35,8 +34,8 @@ public class TeacherResourceIT {
 
     @Test
     void testCreateConflict() {
-        TeacherCreation teacherCreation =
-                new TeacherCreation("Luisa2", "Fridgerard2", true, "33667788R", "luisa2@gmail.com");
+        Teacher teacherCreation =
+                new Teacher("Luisa2", "Fridgerard2", true, "33667788R", "luisa2@gmail.com");
         this.webTestClient
                 .post()
                 .uri(TeacherResource.TEACHERS)

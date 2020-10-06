@@ -1,6 +1,6 @@
 package es.upm.miw.apaw_practice.adapters.rest.padel;
 
-import es.upm.miw.apaw_practice.domain.models.Reservation.Reservation;
+import es.upm.miw.apaw_practice.domain.models.padel.Reservation;
 import es.upm.miw.apaw_practice.domain.services.padel.ReservationService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
