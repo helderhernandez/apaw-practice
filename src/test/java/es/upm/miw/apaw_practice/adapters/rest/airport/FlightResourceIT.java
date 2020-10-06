@@ -24,7 +24,6 @@ class FlightResourceIT {
                 .expectStatus().isOk()
                 .expectBodyList(Flight.class)
                 .value(Assertions::assertNotNull)
-                .value(flights -> assertEquals(3, flights.size()))
                 .value(flights -> assertEquals("madrid", flights.get(0).getDestinationCity()))
                 .value(flights -> assertEquals("11112", flights.get(1).getPlane().getLicensePlate()));
     }

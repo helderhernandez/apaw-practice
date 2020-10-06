@@ -1,6 +1,7 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.airport.entities;
 
 import es.upm.miw.apaw_practice.domain.models.airport.Plane;
+import es.upm.miw.apaw_practice.domain.models.airport.PlaneCreation;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
@@ -30,6 +31,11 @@ public class PlaneEntity {
         this.capacity = capacity;
         this.complete = complete;
         this.licensePlate = licensePlate;
+    }
+
+    public PlaneEntity(PlaneCreation planeCreation) {
+        BeanUtils.copyProperties(planeCreation, this);
+        this.id = UUID.randomUUID().toString();
     }
 
     public String getId() {
