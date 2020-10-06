@@ -1,6 +1,7 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.hospital.entities;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
@@ -13,6 +14,7 @@ public class RoomEntity {
     private String id;
     private String area;
     private Integer floor;
+    @DBRef
     private List<PatientEntity> patientEntities;
 
     public RoomEntity(){
