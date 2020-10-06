@@ -1,14 +1,14 @@
-package es.upm.miw.apaw_practice.domain.models.bank;
+package es.upm.miw.apaw_practice.domain.models.project;
 
-public class Customer {
+public class Developer {
+
     private String id;
     private String name;
-    private String DNI;
-    private String phone;
     private String email;
+    private Integer yearsOfExperience;
 
-    public Customer() {
-        //Empty for framework
+    public Developer() {
+        //empty for framework
     }
 
     public String getId() {
@@ -27,22 +27,6 @@ public class Customer {
         this.name = name;
     }
 
-    public String getDNI() {
-        return DNI;
-    }
-
-    public void setDNI(String DNI) {
-        this.DNI = DNI;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
-    }
-
     public String getEmail() {
         return email;
     }
@@ -51,14 +35,22 @@ public class Customer {
         this.email = email;
     }
 
+    public Integer getYearsOfExperience() {
+        return yearsOfExperience;
+    }
+
+    public void setYearsOfExperience(Integer yearsOfExperience) {
+        this.yearsOfExperience = yearsOfExperience;
+    }
+
     @Override
     public String toString() {
-        return "Customer{" +
+        return "Developer{" +
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
-                ", DNI='" + DNI + '\'' +
-                ", phone='" + phone + '\'' +
                 ", email='" + email + '\'' +
+                ", yearsOfExperience=" + yearsOfExperience +
                 '}';
     }
+
 }
