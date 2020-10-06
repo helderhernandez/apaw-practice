@@ -18,16 +18,13 @@ public class TransitTaxesEntityRepositoryIT {
 
     @Test
     void testCreateAndRead() {
-
         TransitTaxesEntity transitTaxesEntity = this.transitTaxesRepository.findByRefTaxes("TAX002").get();
-        assertEquals("Driving with excess alcohol",transitTaxesEntity.getDescription());
-        assertEquals(new BigDecimal("400.00"),transitTaxesEntity.getPrice());
-
+        assertEquals("Driving with excess alcohol", transitTaxesEntity.getDescription());
+        assertEquals(new BigDecimal("400.00"), transitTaxesEntity.getPrice());
         assertTrue(this.transitTaxesRepository.findAll().stream()
-                .anyMatch( tax -> tax.getPaid().equals(Boolean.TRUE)));
-
+                .anyMatch(tax -> tax.getPaid().equals(Boolean.TRUE)));
         assertTrue(this.transitTaxesRepository.findAll().stream()
-        .map(TransitTaxesEntity :: getRefTaxes)
-        .anyMatch(tax -> tax.equals("TAX004")));
+                .map(TransitTaxesEntity::getRefTaxes)
+                .anyMatch(tax -> tax.equals("TAX004")));
     }
 }
