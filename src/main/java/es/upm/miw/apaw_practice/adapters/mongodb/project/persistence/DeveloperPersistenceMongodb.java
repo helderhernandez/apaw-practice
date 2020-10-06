@@ -8,7 +8,7 @@ import es.upm.miw.apaw_practice.domain.persistence_ports.project.DeveloperPersis
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-@Repository("developerRepository")
+@Repository("developerPersistence")
 public class DeveloperPersistenceMongodb implements DeveloperPersistence {
 
     private DeveloperRepository developerRepository;
