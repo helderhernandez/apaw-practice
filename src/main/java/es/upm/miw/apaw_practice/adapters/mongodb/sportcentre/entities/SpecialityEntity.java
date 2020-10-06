@@ -100,6 +100,6 @@ public class SpecialityEntity {
     }
 
     public void fromSpeciality(Speciality speciality) {
-        BeanUtils.copyProperties(this, speciality);
+        BeanUtils.copyProperties(speciality, this);
     }
 }

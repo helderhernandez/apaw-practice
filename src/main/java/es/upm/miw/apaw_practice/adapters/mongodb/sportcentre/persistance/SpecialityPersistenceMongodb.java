@@ -32,14 +32,15 @@ public class SpecialityPersistenceMongodb implements SpecialityPersistence {
     @Override
     public Speciality findById(String id) {
         return this.specialityRepository.findById(id)
-                .orElseThrow().toSpeciality();
+                .orElseThrow(() -> new NotFoundException("Speciality id: " + id))
+                .toSpeciality();
     }
 
     @Override
     public Speciality update(Speciality speciality) {
         SpecialityEntity specialityEntity = this.specialityRepository
                 .findById(speciality.getId())
-                .orElseThrow();
+                .orElseThrow(() -> new NotFoundException("Speciality id: " + speciality.getId()));
         specialityEntity.fromSpeciality(speciality);
         return this.specialityRepository.save(specialityEntity).toSpeciality();
     }

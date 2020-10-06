@@ -5,8 +5,13 @@ public class DurationsUpdating {
     private String id;
     private Integer duration;
 
-    public DurationsUpdating() {
-      //Empty from framework
+    public DurationsUpdating(){
+        //Empty from framework
+    }
+
+    public DurationsUpdating(String id, Integer duration) {
+        this.id = id;
+        this.duration = duration;
     }
 
     public String getId() {
