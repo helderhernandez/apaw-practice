@@ -12,7 +12,10 @@ import es.upm.miw.apaw_practice.adapters.mongodb.school.SchoolSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.shop.ShopSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.sportcentre.SportCentreSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.ticketbus.TicketBusSeederService;
+import es.upm.miw.apaw_practice.adapters.mongodb.transport.TransportSeedService;
+import es.upm.miw.apaw_practice.adapters.mongodb.transitTaxes.TransitTaxesSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.veterinary.VeterinarySeederService;
+import es.upm.miw.apaw_practice.adapters.mongodb.videogame.VideogameSeederService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -32,6 +35,9 @@ public class DatabaseSeederService {
     private VeterinarySeederService veterinarySeederService;
     private AirportSeederService airportSeederService;
     private TicketBusSeederService ticketBusSeederService;
+    private TransportSeedService transportSeedService;
+    private VideogameSeederService videogameSeederService;
+    private TransitTaxesSeederService transitTaxesSeederService;
 
     @Autowired
     public DatabaseSeederService(ShopSeederService shopSeederService, SchoolSeederService schoolSeederService,
@@ -40,7 +46,8 @@ public class DatabaseSeederService {
                                  SportCentreSeederService sportCentreSeederService, KitchenSeederService kitchenSeederService,
                                  ProjectSeederService projectSeederService, HospitalSeederService hospitalSeederService,
                                  VeterinarySeederService veterinarySeederService, AirportSeederService airportSeederService,
-                                 TicketBusSeederService ticketBusSeederService) {
+                                 TicketBusSeederService ticketBusSeederService, VideogameSeederService videogameSeederService,
+                                 TransitTaxesSeederService transitTaxesSeederService, TransportSeedService transportSeedService) {
         this.shopSeederService = shopSeederService;
         this.schoolSeederService = schoolSeederService;
         this.factorySeederService = factorySeederService;
@@ -54,6 +61,9 @@ public class DatabaseSeederService {
         this.veterinarySeederService = veterinarySeederService;
         this.airportSeederService = airportSeederService;
         this.ticketBusSeederService = ticketBusSeederService;
+        this.transportSeedService = transportSeedService;
+        this.videogameSeederService = videogameSeederService;
+        this.transitTaxesSeederService = transitTaxesSeederService;
         this.seedDatabase();
     }
 
@@ -71,6 +81,9 @@ public class DatabaseSeederService {
         this.veterinarySeederService.seedDatabase();
         this.airportSeederService.seedDataBase();
         this.ticketBusSeederService.seedDatabase();
+        this.transportSeedService.seedDatabase();
+        this.videogameSeederService.seedDataBase();
+        this.transitTaxesSeederService.seedDatabase();
     }
 
     public void deleteAll() {
@@ -87,6 +100,9 @@ public class DatabaseSeederService {
         this.veterinarySeederService.deleteAll();
         this.airportSeederService.deleteAll();
         this.ticketBusSeederService.deleteAll();
+        this.transportSeedService.deleteAll();
+        this.videogameSeederService.deleteAll();
+        this.transitTaxesSeederService.deleteAll();
     }
 
     public void reSeedDatabase() {

@@ -1,5 +1,7 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.padel.entities;
 
+import es.upm.miw.apaw_practice.domain.models.padel.Tournament;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -98,5 +100,11 @@ public class TournamentEntity {
                 ", level=" + level +
                 ", playerEntities=" + playerEntities +
                 '}';
+    }
+
+    public Tournament toTournament() {
+        Tournament tournament = new Tournament();
+        BeanUtils.copyProperties(this,tournament);
+        return tournament;
     }
 }

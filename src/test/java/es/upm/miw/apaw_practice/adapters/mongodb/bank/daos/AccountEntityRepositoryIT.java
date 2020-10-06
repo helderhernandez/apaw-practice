@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.math.BigDecimal;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @TestConfig
@@ -19,7 +20,7 @@ public class AccountEntityRepositoryIT {
     void testFindByIBAN() {
         assertTrue(this.accountRepository.findByIBAN("ES66 987651234").isPresent());
         AccountEntity account = this.accountRepository.findByIBAN("ES66 987651234").get();
-        assertTrue(account.getAmount().equals(new BigDecimal("68.54")));
+        assertEquals(new BigDecimal("68.54"), account.getAmount());
     }
 
     @Test

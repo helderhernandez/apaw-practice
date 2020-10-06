@@ -21,7 +21,7 @@ public class IssueEntityRepositoryIT {
                         "create class user".equals(issue.getName()) &&
                                 2 == issue.getEstimatedHours() &&
                                 issue.getDueDate().isBefore(LocalDateTime.now()) &&
-                                !issue.isDone() &&
+                                !issue.getDone() &&
                                 "jaime@developer.com".equals(issue.getDeveloper().getEmail()) &&
                                 2 == issue.getLabels().size()));
     }
