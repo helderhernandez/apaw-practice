@@ -1,5 +1,7 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.project.entities;
 
+import es.upm.miw.apaw_practice.domain.models.project.Developer;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -58,6 +60,12 @@ public class DeveloperEntity {
 
     public void setYearsOfExperience(Integer yearsOfExperience) {
         this.yearsOfExperience = yearsOfExperience;
+    }
+
+    public Developer toDeveloper() {
+        Developer developer = new Developer();
+        BeanUtils.copyProperties(this, developer);
+        return developer;
     }
 
     @Override

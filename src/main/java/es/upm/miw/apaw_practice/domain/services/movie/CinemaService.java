@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Stream;
 
 @Service
 public class CinemaService {
@@ -26,5 +27,9 @@ public class CinemaService {
                     return cinema;
                 })
                 .forEach(cinema -> this.cinemaPersistence.updateMovieTicketPrice(cinema));
+    }
+
+    public Stream<Cinema> findByNameAndFulNameDirector(String name, String fulName) {
+        return this.cinemaPersistence.findByNameAndFulNameDirector(name, fulName);
     }
 }

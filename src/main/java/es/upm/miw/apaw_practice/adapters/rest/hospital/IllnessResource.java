@@ -1,12 +1,12 @@
 package es.upm.miw.apaw_practice.adapters.rest.hospital;
 
 import es.upm.miw.apaw_practice.domain.models.hospital.Illness;
+import es.upm.miw.apaw_practice.domain.models.hospital.IllnessContagiousUpdating;
 import es.upm.miw.apaw_practice.domain.services.hospital.IllnessService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.stream.Stream;
 
 @RestController
@@ -24,5 +24,10 @@ public class IllnessResource {
     @GetMapping
     public Stream<BasicIllnessDto> readAll(){
         return this.illnessService.readAll().map(BasicIllnessDto::new);
+    }
+
+    @PatchMapping
+    public void updateContagious(@RequestBody IllnessContagiousUpdating illnessContagiousUpdating) {
+        this.illnessService.updateContagious(illnessContagiousUpdating);
     }
 }
