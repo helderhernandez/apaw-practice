@@ -5,6 +5,7 @@ import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDate;
+import java.util.List;
 import java.util.UUID;
 
 @Document
@@ -16,17 +17,19 @@ public class WorkerEntity {
     private String telephone;
     @Indexed(unique = true)
     private String dni;
+    private List<ExtraEntity> extraEntities;
 
     public WorkerEntity() {
         //empty for framework
     }
 
-    public WorkerEntity(String name, String telephone, String dni) {
+    public WorkerEntity(String name, String telephone, String dni, List<ExtraEntity> extraEntities) {
         this.id = UUID.randomUUID().toString();
         this.name = name;
         this.creation = LocalDate.now();
         this.telephone = telephone;
         this.dni = dni;
+        this.extraEntities = extraEntities;
     }
 
     public String getId() {
@@ -61,6 +64,14 @@ public class WorkerEntity {
         this.dni = dni;
     }
 
+    public List<ExtraEntity> getExtraEntities() {
+        return extraEntities;
+    }
+
+    public void setExtraEntities(List<ExtraEntity> extraEntities) {
+        this.extraEntities = extraEntities;
+    }
+
     @Override
     public int hashCode() {
         return this.dni.hashCode();
@@ -79,6 +90,7 @@ public class WorkerEntity {
                 ", creation=" + creation +
                 ", telephone='" + telephone + '\'' +
                 ", dni='" + dni + '\'' +
+                ", extraEntities=" + extraEntities +
                 '}';
     }
 }

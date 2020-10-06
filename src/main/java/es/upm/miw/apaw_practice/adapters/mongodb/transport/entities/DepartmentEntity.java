@@ -3,6 +3,7 @@ package es.upm.miw.apaw_practice.adapters.mongodb.transport.entities;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.List;
 import java.util.UUID;
 
 @Document
@@ -11,15 +12,17 @@ public class DepartmentEntity {
     private String id;
     private String name;
     private String ubication;
+    private List<WorkerEntity> workerEntityList;
 
     public DepartmentEntity() {
         //empty for framework
     }
 
-    public DepartmentEntity(String name, String ubication) {
+    public DepartmentEntity(String name, String ubication, List<WorkerEntity> workerEntities) {
         this.id = UUID.randomUUID().toString();
         this.name = name;
         this.ubication = ubication;
+        this.workerEntityList = workerEntities;
     }
 
     public String getId() {
@@ -46,6 +49,14 @@ public class DepartmentEntity {
         this.ubication = ubication;
     }
 
+    public List<WorkerEntity> getWorkerEntityList() {
+        return workerEntityList;
+    }
+
+    public void setWorkerEntityList(List<WorkerEntity> workerEntityList) {
+        this.workerEntityList = workerEntityList;
+    }
+
     @Override
     public int hashCode() {
         return this.id.hashCode();
@@ -62,6 +73,7 @@ public class DepartmentEntity {
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 ", ubication='" + ubication + '\'' +
+                ", workerEntityList=" + workerEntityList +
                 '}';
     }
 }

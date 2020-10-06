@@ -2,6 +2,7 @@ package es.upm.miw.apaw_practice.adapters.mongodb.transport.entities;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+import reactor.core.scheduler.Scheduler;
 
 import java.time.LocalDate;
 import java.util.UUID;
@@ -14,17 +15,19 @@ public class VehicleEntity {
     private String model;
     private String plate;
     private LocalDate boughtDate;
+    private WorkerEntity workerEntity;
 
     public VehicleEntity() {
         //empty for framework
     }
 
-    public VehicleEntity(String brand, String model, String plate, LocalDate boughtDate) {
+    public VehicleEntity(String brand, String model, String plate, LocalDate boughtDate, WorkerEntity workerEntity) {
         this.id = UUID.randomUUID().toString();
         this.brand = brand;
         this.model = model;
         this.plate = plate;
         this.boughtDate = boughtDate;
+        this.workerEntity = workerEntity;
     }
 
     public String getId() {
@@ -67,6 +70,14 @@ public class VehicleEntity {
         this.boughtDate = boughtDate;
     }
 
+    public WorkerEntity getWorkerEntity() {
+        return workerEntity;
+    }
+
+    public void setWorkerEntity(WorkerEntity workerEntity) {
+        this.workerEntity = workerEntity;
+    }
+
     @Override
     public int hashCode() {
         return this.id.hashCode();
@@ -85,6 +96,7 @@ public class VehicleEntity {
                 ", model='" + model + '\'' +
                 ", plate='" + plate + '\'' +
                 ", boughtDate=" + boughtDate +
+                ", workerEntity=" + workerEntity +
                 '}';
     }
 }
