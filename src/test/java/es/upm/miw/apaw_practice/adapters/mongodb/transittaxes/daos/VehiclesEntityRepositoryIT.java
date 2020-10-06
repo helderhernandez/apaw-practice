@@ -1,9 +1,9 @@
-package es.upm.miw.apaw_practice.adapters.mongodb.transitTaxes.daos;
+package es.upm.miw.apaw_practice.adapters.mongodb.transittaxes.daos;
 
 import es.upm.miw.apaw_practice.TestConfig;
-import es.upm.miw.apaw_practice.adapters.mongodb.transitTaxes.entities.AccidentEntity;
-import es.upm.miw.apaw_practice.adapters.mongodb.transitTaxes.entities.TransitTaxesEntity;
-import es.upm.miw.apaw_practice.adapters.mongodb.transitTaxes.entities.VehicleEntity;
+import es.upm.miw.apaw_practice.adapters.mongodb.transittaxes.entities.AccidentEntity;
+import es.upm.miw.apaw_practice.adapters.mongodb.transittaxes.entities.TransitTaxesEntity;
+import es.upm.miw.apaw_practice.adapters.mongodb.transittaxes.entities.VehicleEntity;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
