@@ -8,7 +8,7 @@ public class Customer {
     private String email;
 
     public Customer() {
-        //Empty for frameworkk
+        //Empty for framework
     }
 
     public String getId() {
