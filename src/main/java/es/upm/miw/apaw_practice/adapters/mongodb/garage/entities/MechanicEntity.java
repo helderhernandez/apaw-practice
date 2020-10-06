@@ -4,6 +4,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.math.BigDecimal;
+import java.util.UUID;
 
 @Document
 public class MechanicEntity {
@@ -11,12 +12,24 @@ public class MechanicEntity {
     @Id
     private String id;
     private String name;
+    private String telephone;
     private String department;
     private BigDecimal pricePerHour;
     private Double numWorkedHours;
+    private Boolean available;
 
-    public MechanicEntity(){
+    public MechanicEntity() {
         //empty for framework
+    }
+
+    public MechanicEntity(String name, String telephone, String department, BigDecimal pricePerHour, Double numWorkedHours, Boolean available) {
+        this.id = UUID.randomUUID().toString();
+        this.name = name;
+        this.telephone = telephone;
+        this.department = department;
+        this.pricePerHour = pricePerHour;
+        this.numWorkedHours = numWorkedHours;
+        this.available = available;
     }
 
     public String getId() {
@@ -33,6 +46,14 @@ public class MechanicEntity {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getTelephone() {
+        return telephone;
+    }
+
+    public void setTelephone(String telephone) {
+        this.telephone = telephone;
     }
 
     public String getDepartment() {
@@ -59,4 +80,11 @@ public class MechanicEntity {
         this.numWorkedHours = numWorkedHours;
     }
 
+    public Boolean getAvailable() {
+        return available;
+    }
+
+    public void setAvailable(Boolean available) {
+        this.available = available;
+    }
 }

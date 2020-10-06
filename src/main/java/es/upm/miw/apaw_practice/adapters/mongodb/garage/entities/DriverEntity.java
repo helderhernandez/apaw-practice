@@ -4,6 +4,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 
 import java.util.List;
+import java.util.UUID;
 
 public class DriverEntity {
 
@@ -19,6 +20,16 @@ public class DriverEntity {
 
     public DriverEntity(){
         //empty for framework
+    }
+
+    public DriverEntity(String dni, String name, String telephone, String email, Boolean garageMember, List<VehicleEntity> vehicleEntities) {
+        this.id = UUID.randomUUID().toString();
+        this.dni = dni;
+        this.name = name;
+        this.telephone = telephone;
+        this.email = email;
+        this.garageMember = garageMember;
+        this.vehicleEntities = vehicleEntities;
     }
 
     public String getId() {

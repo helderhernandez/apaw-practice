@@ -6,6 +6,7 @@ import org.springframework.data.mongodb.core.index.Indexed;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.UUID;
 
 public class VehicleEntity {
 
@@ -23,6 +24,16 @@ public class VehicleEntity {
 
     public VehicleEntity() {
         //empty for framework
+    }
+
+    public VehicleEntity(String carRegistration, String make, String model, BigDecimal estimatedBudget, LocalDateTime receptionDate, LocalDateTime estimatedDeliveryDate) {
+        this.id = UUID.randomUUID().toString();
+        this.carRegistration = carRegistration;
+        this.make = make;
+        this.model = model;
+        this.estimatedBudget = estimatedBudget;
+        this.receptionDate = receptionDate;
+        this.estimatedDeliveryDate = estimatedDeliveryDate;
     }
 
     public String getId() {
