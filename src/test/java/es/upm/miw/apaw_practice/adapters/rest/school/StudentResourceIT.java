@@ -11,8 +11,9 @@ import org.springframework.web.reactive.function.BodyInserters;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.*;
 
 @RestTestConfig
 public class StudentResourceIT {
@@ -67,5 +68,46 @@ public class StudentResourceIT {
                 .getResponseBody()
                 .get(1)
                 .getEmail());
+    }
+
+    @Test
+    void testFindGraduateStudentsByKnowledgeArea() {
+        this.webTestClient
+                .get()
+                .uri(uriBuilder -> uriBuilder
+                        .path(StudentResource.STUDENTS + StudentResource.SEARCH)
+                        .queryParam("q", "knowledgeArea:Science")
+                        .build())
+                .exchange()
+                .expectStatus().isOk()
+                .expectBodyList(Student.class)
+                .consumeWith(entityList -> {
+                    assertNotNull(entityList.getResponseBody());
+                    List<String> knowledgeAreaList = entityList.getResponseBody().stream()
+                            .map(Student::getName)
+                            .collect(Collectors.toList());
+                    assertTrue(knowledgeAreaList.containsAll(Arrays.asList("Juan")));
+                    assertEquals(1, knowledgeAreaList.size());
+                });
+    }
+
+    @Test
+    void testFindGraduateStudentsByKnowledgeAreaError() {
+        this.webTestClient
+                .get()
+                .uri(uriBuilder -> uriBuilder
+                        .path(StudentResource.STUDENTS + StudentResource.SEARCH)
+                        .queryParam("q", "knowledgeArea:Science")
+                        .build())
+                .exchange()
+                .expectStatus().isOk()
+                .expectBodyList(Student.class)
+                .consumeWith(entityList -> {
+                    assertNotNull(entityList.getResponseBody());
+                    List<String> knowledgeAreaList = entityList.getResponseBody().stream()
+                            .map(Student::getName)
+                            .collect(Collectors.toList());
+                    assertFalse(knowledgeAreaList.containsAll(Arrays.asList("Doraemon")));
+                });
     }
 }

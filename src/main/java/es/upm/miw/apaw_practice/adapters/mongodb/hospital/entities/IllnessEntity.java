@@ -97,4 +97,8 @@ public class IllnessEntity {
         BeanUtils.copyProperties(this,illness);
         return illness;
     }
+
+    public void fromIllness(Illness illness) {
+        BeanUtils.copyProperties(illness,this);
+    }
 }

@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
 
@@ -65,9 +66,9 @@ public class BankSeederService {
         this.sharedAccountsRepository.saveAll(Arrays.asList(sharedAccounts));
 
         ShareholderEntity[] shareholders = {
-                new ShareholderEntity(new BigDecimal("20.25"), new BigDecimal("1.22"),
+                new ShareholderEntity(new BigDecimal("20.25"), new BigDecimal("1.22"), LocalDateTime.of(2020, 11, 7, 13, 30), Boolean.TRUE,
                         List.of(customers[0], customers[1], customers[4])),
-                new ShareholderEntity(new BigDecimal("79.75"), new BigDecimal("2.33"),
+                new ShareholderEntity(new BigDecimal("79.75"), new BigDecimal("2.33"), LocalDateTime.of(2020, 12, 9, 20, 15), Boolean.FALSE,
                         List.of(customers[2], customers[3]))
         };
         this.shareholderRepository.saveAll(Arrays.asList(shareholders));
