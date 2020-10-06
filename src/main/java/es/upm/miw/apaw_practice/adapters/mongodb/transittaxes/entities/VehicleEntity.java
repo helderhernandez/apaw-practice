@@ -1,4 +1,4 @@
-package es.upm.miw.apaw_practice.adapters.mongodb.transitTaxes.entities;
+package es.upm.miw.apaw_practice.adapters.mongodb.transittaxes.entities;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
