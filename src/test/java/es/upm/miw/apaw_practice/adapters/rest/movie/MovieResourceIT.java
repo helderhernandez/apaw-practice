@@ -7,6 +7,7 @@ import es.upm.miw.apaw_practice.domain.models.movie.FilmDirector;
 import es.upm.miw.apaw_practice.domain.models.movie.Movie;
 import es.upm.miw.apaw_practice.domain.models.movie.MovieCreation;
 import es.upm.miw.apaw_practice.domain.models.shop.Article;
+import es.upm.miw.apaw_practice.domain.models.shop.Tag;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,9 @@ import org.springframework.web.reactive.function.BodyInserters;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -95,12 +99,19 @@ public class MovieResourceIT {
                 .get()
                 .uri(uriBuilder ->
                         uriBuilder.path(MovieResource.MOVIES + MovieResource.SEARCH)
-                                .queryParam("q", "numberOfSeats:10")
+                                .queryParam("q", "numberOfSeats:160")
                                 .build())
                 .exchange()
                 .expectStatus().isOk()
                 .expectBodyList(Movie.class)
-                .value(movies -> assertTrue(movies.size() > 0));
-                //.value(movies -> assertEquals( ,movies.get(0).getPrice()) < 0);
+                .consumeWith(entityList -> {
+                    assertNotNull(entityList.getResponseBody());
+                    List<String> movieList = entityList.getResponseBody().stream()
+                            .map(Movie::getFilmTitle)
+                            .collect(Collectors.toList());
+                    assertEquals(3, movieList.size());
+                    assertTrue(movieList.containsAll(Arrays.asList("Let's Be Cops", "The dark Knight", "The Simpsons")));
+                    assertTrue(movieList.contains("Let's Be Cops"));
+                });
     }
 }

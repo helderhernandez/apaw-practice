@@ -19,8 +19,9 @@ public class MoviePersistenceMongodb implements MoviePersistence {
     private CinemaRepository cinemaRepository;
 
     @Autowired
-    public MoviePersistenceMongodb(MovieRepository movieRepository) {
+    public MoviePersistenceMongodb(MovieRepository movieRepository, CinemaRepository cinemaRepository) {
         this.movieRepository = movieRepository;
+        this.cinemaRepository = cinemaRepository;
     }
 
     public void assertFilmTitle(String filmTitle) {
