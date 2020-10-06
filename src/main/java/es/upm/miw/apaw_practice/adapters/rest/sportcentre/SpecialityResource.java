@@ -1,13 +1,12 @@
 package es.upm.miw.apaw_practice.adapters.rest.sportcentre;
 
-
+import es.upm.miw.apaw_practice.domain.models.sportcentre.DurationsUpdating;
 import es.upm.miw.apaw_practice.domain.models.sportcentre.Speciality;
 import es.upm.miw.apaw_practice.domain.services.sportcentre.SpecialityService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.stream.Stream;
 
 @RestController
@@ -28,5 +27,9 @@ public class SpecialityResource {
         return this.specialityService.readAll();
     }
 
+    @PatchMapping
+    public void updateDurations(@RequestBody List<DurationsUpdating> listDurations){
+        this.specialityService.updateDurations(listDurations);
+    }
 
 }
