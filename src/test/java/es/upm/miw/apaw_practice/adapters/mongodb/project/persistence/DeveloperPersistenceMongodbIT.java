@@ -23,6 +23,7 @@ public class DeveloperPersistenceMongodbIT {
         DeveloperEntity developer = this.developerRepository.findByEmail("jaime@developer.com").get();
         assertEquals(10,
                 this.developerPersistence.updateYearsOfExperience(developer.getId(), 10).getYearsOfExperience());
+        this.developerPersistence.updateYearsOfExperience(developer.getId(), 7);
     }
 
 }
