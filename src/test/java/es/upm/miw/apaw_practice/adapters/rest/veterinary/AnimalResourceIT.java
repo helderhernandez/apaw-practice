@@ -35,7 +35,7 @@ public class AnimalResourceIT {
     @Test
     void testCreate() {
         AnimalCreation animalCreation =
-                new AnimalCreation("", "", 10);
+                new AnimalCreation("animal-key-sdfsdf", "Rayo", 2);
         this.webTestClient
                 .post()
                 .uri(AnimalResource.ANIMALS)

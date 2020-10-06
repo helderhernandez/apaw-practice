@@ -33,7 +33,7 @@ public class AnimalPersistanceMongodb implements AnimalPersistance {
         this.animalRepository
                 .findById(animalKey)
                 .ifPresent(animal -> {
-                    throw new ConflictException("Barcode exist: " + animalKey);
+                    throw new ConflictException("AnimalKey exist: " + animalKey);
                 });
     }
 

@@ -3,13 +3,13 @@ package es.upm.miw.apaw_practice.domain.models.veterinary;
 public class AnimalCreation {
     private String id;
     private String name;
-    private int age;
+    private Integer age;
 
     public AnimalCreation() {
         //Empty for framework
     }
 
-    public AnimalCreation(String id, String name, int age) {
+    public AnimalCreation(String id, String name, Integer age) {
         this.id = id;
         this.name = name;
         this.age = age;
@@ -31,7 +31,7 @@ public class AnimalCreation {
         this.name = name;
     }
 
-    public int getAge() {
+    public Integer getAge() {
         return age;
     }
 
