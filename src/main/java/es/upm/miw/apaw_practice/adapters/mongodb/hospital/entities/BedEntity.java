@@ -1,5 +1,7 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.hospital.entities;
 
+import es.upm.miw.apaw_practice.domain.models.hospital.Bed;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -102,4 +104,9 @@ public class BedEntity {
                 '}';
     }
 
+    public Bed toBed() {
+        Bed bed = new Bed();
+        BeanUtils.copyProperties(this, bed);
+        return bed;
+    }
 }
