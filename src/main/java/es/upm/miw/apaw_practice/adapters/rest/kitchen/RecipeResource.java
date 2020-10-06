@@ -1,5 +1,8 @@
 package es.upm.miw.apaw_practice.adapters.rest.kitchen;
 
+import es.upm.miw.apaw_practice.domain.models.kitchen.Recipe;
+import es.upm.miw.apaw_practice.domain.models.kitchen.RecipeCreation;
+import es.upm.miw.apaw_practice.domain.services.kitchen.RecipeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -19,7 +22,7 @@ public class RecipeResource {
     }
 
     @PostMapping
-    public void create(@RequestBody RecipeCreation recipeCreation) {
+    public Recipe create(@RequestBody RecipeCreation recipeCreation) {
         return this.recipeService.create(recipeCreation);
     }
 

@@ -7,7 +7,7 @@ public class Recipe {
     private String id;
     private String name;
     private LocalDateTime lastUseDate;
-    private List<String> ingredientsId;
+    private List<String> ingredientIds;
 
     public Recipe() {
         //Empty from framework
@@ -16,7 +16,7 @@ public class Recipe {
     public Recipe(String id, String name, List<String> ingredients){
         this.id = id;
         this.name = name;
-        this.ingredientsId = ingredients;
+        this.ingredientIds = ingredients;
     }
 
     public String getId() {
@@ -43,12 +43,12 @@ public class Recipe {
         this.lastUseDate = lastUseDate;
     }
 
-    public List<String> getIngredientsId() {
-        return ingredientsId;
+    public List<String> getIngredientIds() {
+        return ingredientIds;
     }
 
-    public void setIngredientsId(List<String> ingredientsId) {
-        this.ingredientsId = ingredientsId;
+    public void setIngredientIds(List<String> ingredientIds) {
+        this.ingredientIds = ingredientIds;
     }
 
     @Override
@@ -57,7 +57,7 @@ public class Recipe {
                 "id='" + id + '\'' +
                 ", name=" + name + '\'' +
                 ", lastUseDate=" + lastUseDate + '\'' +
-                ", ingredientsId=" + ingredientsId + '\'' +
+                ", ingredientIds=" + ingredientIds + '\'' +
                 '}';
     }
 }
