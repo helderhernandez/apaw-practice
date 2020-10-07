@@ -1,5 +1,8 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.transittaxes.entities;
 
+import es.upm.miw.apaw_practice.domain.models.shop.Article;
+import es.upm.miw.apaw_practice.domain.models.transittaxes.Vehicle;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;
@@ -27,9 +30,9 @@ public class VehicleEntity {
         //empty from framework
     }
 
-    public VehicleEntity(String enrollment, String brand, List<AccidentEntity> accidents,
+    public VehicleEntity(String id, String enrollment, String brand, List<AccidentEntity> accidents,
                          OwnerEntity owner, List<TransitTaxesEntity> transitTaxes) {
-        this.id = UUID.randomUUID().toString();
+        this.id = id;
         this.enrollment = enrollment;
         this.brand = brand;
         this.accidents = accidents;
@@ -113,5 +116,11 @@ public class VehicleEntity {
                 ", owner=" + owner +
                 ", transitTaxes=" + transitTaxes +
                 '}';
+    }
+
+    public Vehicle toVehicle() {
+        Vehicle vehicle = new Vehicle();
+        BeanUtils.copyProperties(this, vehicle);
+        return vehicle;
     }
 }

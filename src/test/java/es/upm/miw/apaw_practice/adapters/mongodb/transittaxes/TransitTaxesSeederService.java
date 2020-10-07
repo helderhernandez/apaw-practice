@@ -57,9 +57,9 @@ public class TransitTaxesSeederService {
         ownerRepository.saveAll(Arrays.asList(owners));
 
         VehicleEntity [] vehicles = {
-                new VehicleEntity("AAAA", "SEAT",  List.of(accidents[0]),owners[0],List.of(taxes[0])),
-                new VehicleEntity("BBBB", "FORD",  List.of(),owners[1],List.of(taxes[1], taxes[2],taxes[3])),
-                new VehicleEntity("CCCC", "PEUGEOT",  List.of(),owners[2],List.of())
+                new VehicleEntity("01","AAAA", "SEAT",  List.of(accidents[0]),owners[0],List.of(taxes[0])),
+                new VehicleEntity("02","BBBB", "FORD",  List.of(),owners[1],List.of(taxes[1], taxes[2],taxes[3])),
+                new VehicleEntity("03","CCCC", "PEUGEOT",  List.of(),owners[2],List.of())
 
         };
         vehicleRepository.saveAll(Arrays.asList(vehicles));
