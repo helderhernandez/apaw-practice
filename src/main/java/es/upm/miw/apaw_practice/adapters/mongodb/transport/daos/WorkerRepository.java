@@ -6,5 +6,5 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import java.util.Optional;
 
 public interface WorkerRepository extends MongoRepository<WorkerEntity, String> {
-    Optional<WorkerEntity> findByDni(String sni);
+    Optional<WorkerEntity> findByDni(String dni);
 }

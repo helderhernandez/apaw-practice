@@ -4,4 +4,5 @@ import es.upm.miw.apaw_practice.adapters.mongodb.transport.entities.VehicleEntit
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 public interface VehicleReopsitory extends MongoRepository<VehicleEntity, String> {
+
 }
