@@ -16,6 +16,14 @@ public class Movie {
         //empty for framework
     }
 
+    public Movie(String filmTitle, FilmDirectorEntity filmDirector, LocalDateTime releaseDate, String synopsis, Integer punctuation) {
+        this.filmTitle = filmTitle;
+        this.filmDirector = filmDirector;
+        this.releaseDate = releaseDate;
+        this.synopsis = synopsis;
+        this.punctuation = punctuation;
+    }
+
     public String getId() {
         return id;
     }
