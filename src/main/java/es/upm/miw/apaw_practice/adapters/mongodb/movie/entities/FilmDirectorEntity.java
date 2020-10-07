@@ -17,10 +17,40 @@ public class FilmDirectorEntity {
         //empty from framework
     }
 
-    public FilmDirectorEntity(String name, String fullName, int age) {
-        this.name = name;
-        this.fullName = fullName;
-        this.age = age;
+    public static UserBuilders.Name builder() {
+        return new Builder();
+    }
+
+    public static class Builder implements UserBuilders.Name, UserBuilders.FulName, UserBuilders.Age, UserBuilders.Optionals {
+
+        private FilmDirectorEntity filmDirectorEntity;
+
+        public Builder() {
+            this.filmDirectorEntity = new FilmDirectorEntity();
+        }
+
+        @Override
+        public UserBuilders.FulName name(String name) {
+            this.filmDirectorEntity.name = name;
+            return this;
+        }
+
+        @Override
+        public UserBuilders.Age fulName(String fulName) {
+            this.filmDirectorEntity.fullName = fulName;
+            return this;
+        }
+
+        @Override
+        public UserBuilders.Optionals age(Integer age) {
+            this.filmDirectorEntity.age = age;
+            return this;
+        }
+
+        @Override
+        public FilmDirectorEntity build() {
+            return this.filmDirectorEntity;
+        }
     }
 
     public String getId() {

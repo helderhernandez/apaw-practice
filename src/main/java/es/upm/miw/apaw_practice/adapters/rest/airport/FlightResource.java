@@ -1,12 +1,12 @@
 package es.upm.miw.apaw_practice.adapters.rest.airport;
 
 import es.upm.miw.apaw_practice.domain.models.airport.Flight;
+import es.upm.miw.apaw_practice.domain.models.airport.FlightPriceUpdating;
 import es.upm.miw.apaw_practice.domain.services.airport.FlightService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.stream.Stream;
 
 @RestController
@@ -24,5 +24,10 @@ public class FlightResource {
     @GetMapping
     public Stream<Flight> readAll() {
         return this.flightService.readAll();
+    }
+
+    @PatchMapping
+    public void updatePrices(@RequestBody List<FlightPriceUpdating> flightPriceUpdatingList) {
+        this.flightService.updatePrices(flightPriceUpdatingList);
     }
 }
