@@ -37,8 +37,8 @@ public class SessionPersistenceMongodb implements SessionPersistence {
     @Override
     public Session findSessionByInstructor(Instructor instructor) {
         return this.sessionRepository.findAll().stream()
-                .filter(session -> session.getInstructor().equals(instructor))
-                .findFirst().get()
+                .filter(session -> session.getInstructor().getId().equals(instructor.getId()))
+                .findFirst().orElseThrow()
                 .toSession();
     }
 

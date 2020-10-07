@@ -42,7 +42,7 @@ public class SessionResourceIT {
         this.webTestClient
                 .get()
                 .uri(uriBuilder ->
-                        uriBuilder.path(SessionResource.SESSIONS + SessionResource.SEARCH)
+                        uriBuilder.path(SessionResource.SESSIONS + SessionResource.SEARCH_INSTRUCTOR)
                                 .queryParam("q", "name:Gonzalo")
                                 .build())
                 .exchange()
@@ -62,7 +62,7 @@ public class SessionResourceIT {
         this.webTestClient
                 .get()
                 .uri(uriBuilder ->
-                        uriBuilder.path(SessionResource.SESSIONS + SessionResource.SEARCH)
+                        uriBuilder.path(SessionResource.SESSIONS + SessionResource.SEARCH_SPECIALITY)
                                 .queryParam("q", "title:Yoga")
                                 .build())
                 .exchange()

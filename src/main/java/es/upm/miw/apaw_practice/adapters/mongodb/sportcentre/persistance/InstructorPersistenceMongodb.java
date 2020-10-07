@@ -41,7 +41,8 @@ public class InstructorPersistenceMongodb implements InstructorPersistence {
         return this.instructorRepository.findAll().stream()
                 .filter(instructor -> instructor.getSpecialities().stream()
                         .anyMatch(speciality -> speciality.getTitle().equals(title)))
-                .findFirst().get().toInstructor();
+                .findFirst().orElseThrow()
+                .toInstructor();
     }
 
 }
