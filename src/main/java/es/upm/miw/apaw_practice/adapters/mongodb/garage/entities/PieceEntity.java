@@ -2,10 +2,12 @@ package es.upm.miw.apaw_practice.adapters.mongodb.garage.entities;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.math.BigDecimal;
 import java.util.UUID;
 
+@Document
 public class PieceEntity {
 
     @Id
@@ -13,7 +15,6 @@ public class PieceEntity {
     @Indexed(unique = true)
     private String barcode;
     private String name;
-    private String manufacturer;
     private Boolean inStock;
     private BigDecimal price;
 
@@ -21,11 +22,10 @@ public class PieceEntity {
         //empty for framework
     }
 
-    public PieceEntity(String barcode, String name, String manufacturer, Boolean inStock, BigDecimal price) {
+    public PieceEntity(String barcode, String name, Boolean inStock, BigDecimal price) {
         this.id = UUID.randomUUID().toString();
         this.barcode = barcode;
         this.name = name;
-        this.manufacturer = manufacturer;
         this.inStock = inStock;
         this.price = price;
     }
@@ -52,14 +52,6 @@ public class PieceEntity {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getManufacturer() {
-        return manufacturer;
-    }
-
-    public void setManufacturer(String manufacturer) {
-        this.manufacturer = manufacturer;
     }
 
     public Boolean getInStock() {
