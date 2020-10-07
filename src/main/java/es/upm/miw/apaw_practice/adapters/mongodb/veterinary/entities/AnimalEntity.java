@@ -9,7 +9,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
-import java.util.UUID;
 
 @Document
 public class AnimalEntity {
@@ -31,14 +30,14 @@ public class AnimalEntity {
         this.id = id;
         this.name = name;
         this.age = age;
+        this.date = date;
         this.isMale = isMale;
         this.client = client;
-
     }
 
     public AnimalEntity(AnimalCreation animalCreation) {
         BeanUtils.copyProperties(animalCreation, this);
-        this.id = UUID.randomUUID().toString();
+        this.date = LocalDateTime.now();
     }
 
     public String getId() {
@@ -123,5 +122,9 @@ public class AnimalEntity {
         Animal animal = new Animal();
         BeanUtils.copyProperties(this, animal);
         return animal;
+    }
+
+    public void fromAnimal(Animal animal) {
+        BeanUtils.copyProperties(animal, this);
     }
 }

@@ -33,10 +33,8 @@ public class MachineEntityRepositoryIT {
                                 mach.getId() != null &&
                                 !mach.isActive() &&
                                 LocalDate.of(2020, 7, 1).equals(mach.getLastInspection()) &&
-                                3 == mach.getEmployeeEntities().size() &&
                                 "00000000A".equals(mach.getEmployeeEntities().get(0).getDni()) &&
                                 666666661L == mach.getEmployeeEntities().get(1).getPhone() &&
-                                3 == mach.getProductEntities().size() &&
                                 20000001L == mach.getProductEntities().get(1).getSerialNumber() &&
                                 new BigDecimal("2560.74").equals(mach.getProductEntities().get(2).getWholesalePrice())
                 ));

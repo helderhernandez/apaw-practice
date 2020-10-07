@@ -3,7 +3,6 @@ package es.upm.miw.apaw_practice.adapters.rest.movie;
 import es.upm.miw.apaw_practice.adapters.rest.LexicalAnalyzer;
 import es.upm.miw.apaw_practice.domain.models.movie.Movie;
 import es.upm.miw.apaw_practice.domain.models.movie.MovieCreation;
-import es.upm.miw.apaw_practice.domain.models.shop.Tag;
 import es.upm.miw.apaw_practice.domain.services.movie.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

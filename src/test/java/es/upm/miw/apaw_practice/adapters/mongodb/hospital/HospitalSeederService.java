@@ -43,7 +43,8 @@ public class HospitalSeederService {
                 new IllnessEntity(3,symptomsA,causesA,true),
                 new IllnessEntity(2,symptomsB,causesB,false),
                 new IllnessEntity(4,symptomsC,causesC,true),
-                new IllnessEntity(1,symptomsD,causesD,false)
+                new IllnessEntity(1,symptomsD,causesD,false),
+                new IllnessEntity(4,symptomsD,causesD,false),
         };
         this.illnessRepository.saveAll(Arrays.asList(illnesses));
 
