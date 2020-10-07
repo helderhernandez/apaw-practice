@@ -2,34 +2,37 @@ package es.upm.miw.apaw_practice.adapters.mongodb.garage.entities;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.DBRef;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
+@Document
 public class VehicleEntity {
 
     @Id
     private String id;
     @Indexed(unique = true)
     private String carRegistration;
-    private String make;
     private String model;
     private BigDecimal estimatedBudget;
     private LocalDateTime receptionDate;
     private LocalDateTime estimatedDeliveryDate;
+    @DBRef
     private List<PieceEntity> pieceEntities;
+    @DBRef
     private List<MechanicEntity> mechanicEntities;
 
     public VehicleEntity() {
         //empty for framework
     }
 
-    public VehicleEntity(String carRegistration, String make, String model, BigDecimal estimatedBudget, LocalDateTime receptionDate, LocalDateTime estimatedDeliveryDate) {
+    public VehicleEntity(String carRegistration, String model, BigDecimal estimatedBudget, LocalDateTime receptionDate, LocalDateTime estimatedDeliveryDate) {
         this.id = UUID.randomUUID().toString();
         this.carRegistration = carRegistration;
-        this.make = make;
         this.model = model;
         this.estimatedBudget = estimatedBudget;
         this.receptionDate = receptionDate;
@@ -50,14 +53,6 @@ public class VehicleEntity {
 
     public void setCarRegistration(String carRegistration) {
         this.carRegistration = carRegistration;
-    }
-
-    public String getMake() {
-        return make;
-    }
-
-    public void setMake(String make) {
-        this.make = make;
     }
 
     public String getModel() {
@@ -107,4 +102,5 @@ public class VehicleEntity {
     public void setMechanicEntities(List<MechanicEntity> mechanicEntities) {
         this.mechanicEntities = mechanicEntities;
     }
+
 }
