@@ -4,6 +4,8 @@ import es.upm.miw.apaw_practice.domain.persistence_ports.sportcentre.SessionPers
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.stream.Stream;
+
 @Service
 public class SessionService {
 
@@ -16,5 +18,9 @@ public class SessionService {
 
     public void delete(String id) {
         this.sessionPersistence.deleteById(id);
+    }
+
+    public Stream<String> findNameAssistantsSessionByInstructor(String nameInstructor) {
+        return this.sessionPersistence.findNameAssistantsSessionByInstructor(nameInstructor);
     }
 }

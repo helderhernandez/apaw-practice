@@ -1,5 +1,9 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.videogame.entities;
 
+import es.upm.miw.apaw_practice.domain.models.shop.Article;
+import es.upm.miw.apaw_practice.domain.models.videogame.Challenge;
+import org.springframework.beans.BeanUtils;
+
 import java.util.Objects;
 import java.util.UUID;
 
@@ -60,6 +64,12 @@ public class ChallengeEntity {
         return Objects.hash(id, description, isCompleted);
     }
 
+    public Challenge toChallenge(){
+        Challenge challenge = new Challenge();
+        BeanUtils.copyProperties(this, challenge);
+        return challenge;
+
+    }
     @Override
     public String toString() {
         return "ChallengeEntity{" +
