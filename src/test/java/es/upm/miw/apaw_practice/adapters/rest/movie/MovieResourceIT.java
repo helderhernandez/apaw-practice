@@ -44,7 +44,7 @@ public class MovieResourceIT {
                 .getResponseBody()
                 .get(0)
                 .getId();
-        FilmDirectorEntity filmDirectorEntity = new FilmDirectorEntity("Jose", "Luis Rodriguez", 38);
+        FilmDirectorEntity filmDirectorEntity = FilmDirectorEntity.builder().name("Jose").fulName("Luis Rodriguez").age(38).build();
         filmDirectorEntity.setId(filmDirectorEntityId);
         MovieCreation movieCreation =
                 new MovieCreation("La ola", filmDirectorEntity, LocalDateTime.parse("1996-03-08 10:30", formatter), "mmmmmm", 9);
@@ -72,7 +72,7 @@ public class MovieResourceIT {
                 .getResponseBody()
                 .get(0)
                 .getId();
-        FilmDirectorEntity filmDirectorEntity = new FilmDirectorEntity("Jose", "Luis Rodriguez", 38);
+        FilmDirectorEntity filmDirectorEntity = FilmDirectorEntity.builder().name("Jose").fulName("Luis Rodriguez").age(38).build();
         filmDirectorEntity.setId(filmDirectorEntityId);
         MovieCreation movieCreation =
                 new MovieCreation("Frozen", filmDirectorEntity, LocalDateTime.parse("1986-04-08 10:30", formatter), "ppppppp", 10);

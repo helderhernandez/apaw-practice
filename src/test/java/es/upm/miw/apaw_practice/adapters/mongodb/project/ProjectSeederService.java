@@ -8,6 +8,7 @@ import es.upm.miw.apaw_practice.adapters.mongodb.project.entities.DeveloperEntit
 import es.upm.miw.apaw_practice.adapters.mongodb.project.entities.IssueEntity;
 import es.upm.miw.apaw_practice.adapters.mongodb.project.entities.LabelEntity;
 import es.upm.miw.apaw_practice.adapters.mongodb.project.entities.UserStoryEntity;
+import es.upm.miw.apaw_practice.domain.models.project.Label;
 import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -29,10 +30,10 @@ public class ProjectSeederService {
     public void seedDatabase() {
         LogManager.getLogger(this.getClass()).warn("------- Project Initial Load -----------");
         LabelEntity[] labels = {
-                new LabelEntity("enhancement", "New feature or request"),
-                new LabelEntity("documentation", "Improvements or additions to documentation"),
-                new LabelEntity("bug", "Something isn't working"),
-                new LabelEntity("test", "Test new code")
+                new LabelEntity(new Label("enhancement", "New feature or request")),
+                new LabelEntity(new Label("documentation", "Improvements or additions to documentation")),
+                new LabelEntity(new Label("bug", "Something isn't working")),
+                new LabelEntity(new Label("test", "Test new code"))
         };
         this.labelRepository.saveAll(Arrays.asList(labels));
         DeveloperEntity[] developers = {
