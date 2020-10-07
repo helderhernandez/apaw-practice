@@ -12,4 +12,6 @@ public interface StudentPersistence {
     Student update(Student student);
 
     Student readByDni(String dni);
+
+    Stream<Student> findGraduateStudentsByKnowledgeArea(String knowledgeArea);
 }

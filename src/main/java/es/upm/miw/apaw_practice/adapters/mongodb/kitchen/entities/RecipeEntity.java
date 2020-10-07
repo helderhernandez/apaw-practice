@@ -1,5 +1,8 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.kitchen.entities;
 
+import es.upm.miw.apaw_practice.domain.models.kitchen.Recipe;
+import es.upm.miw.apaw_practice.domain.models.kitchen.RecipeCreation;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;
@@ -8,6 +11,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Document
 public class RecipeEntity {
@@ -26,6 +30,12 @@ public class RecipeEntity {
     public RecipeEntity(String name, List<IngredientEntity> ingredients){
         this.id = UUID.randomUUID().toString();
         this.name = name;
+        this.ingredients = ingredients;
+    }
+
+    public RecipeEntity(RecipeCreation recipeCreation, List<IngredientEntity> ingredients) {
+        BeanUtils.copyProperties(recipeCreation, this);
+        this.id = UUID.randomUUID().toString();
         this.ingredients = ingredients;
     }
 
@@ -55,6 +65,12 @@ public class RecipeEntity {
 
     public void setIngredients(List<IngredientEntity> ingredients) {
         this.ingredients = ingredients;
+    }
+
+    public Recipe toRecipe() {
+        return new Recipe(id, name, ingredients.stream()
+                .map(ingredient -> ingredient.getId())
+                .collect(Collectors.toList()));
     }
 
     @Override
