@@ -1,31 +1,24 @@
-package es.upm.miw.apaw_practice.adapters.mongodb.transport.entities;
+package es.upm.miw.apaw_practice.domain.models.transport;
 
-import es.upm.miw.apaw_practice.domain.models.transport.Worker;
-
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.index.Indexed;
-import org.springframework.data.mongodb.core.mapping.Document;
+import es.upm.miw.apaw_practice.adapters.mongodb.transport.entities.ExtraEntity;
 
 import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
-@Document
-public class WorkerEntity {
-    @Id
+public class Worker {
     private String id;
     private String name;
     private LocalDate creation;
     private String telephone;
-    @Indexed(unique = true)
     private String dni;
     private List<ExtraEntity> extraEntities;
 
-    public WorkerEntity() {
+    public Worker() {
         //empty for framework
     }
 
-    public WorkerEntity(String name, String telephone, String dni, List<ExtraEntity> extraEntities) {
+    public Worker(String name, String telephone, String dni, List<ExtraEntity> extraEntities) {
         this.id = UUID.randomUUID().toString();
         this.name = name;
         this.creation = LocalDate.now();
@@ -48,6 +41,14 @@ public class WorkerEntity {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public LocalDate getCreation() {
+        return creation;
+    }
+
+    public void setCreation(LocalDate creation) {
+        this.creation = creation;
     }
 
     public String getTelephone() {
@@ -74,23 +75,9 @@ public class WorkerEntity {
         this.extraEntities = extraEntities;
     }
 
-    public Worker toWorker() {
-        return new Worker(name, telephone, dni, extraEntities);
-    }
-
-    @Override
-    public int hashCode() {
-        return this.dni.hashCode();
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        return this == obj || obj != null && getClass() == obj.getClass() && (dni.equals(((WorkerEntity) obj).dni));
-    }
-
     @Override
     public String toString() {
-        return "WorkerEntity{" +
+        return "Worker{" +
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 ", creation=" + creation +
