@@ -1,8 +1,6 @@
 package es.upm.miw.apaw_practice.domain.services.movie;
 
 import es.upm.miw.apaw_practice.domain.models.movie.Movie;
-import es.upm.miw.apaw_practice.domain.models.movie.MovieCreation;
-import es.upm.miw.apaw_practice.domain.models.shop.Tag;
 import es.upm.miw.apaw_practice.domain.persistence_ports.movie.MoviePersistence;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,8 +17,8 @@ public class MovieService {
         this.moviePersistence = moviePersistence;
     }
 
-    public Movie create(MovieCreation movieCreation) {
-        return this.moviePersistence.create(movieCreation);
+    public Movie create(Movie movie) {
+        return this.moviePersistence.create(movie);
     }
 
     public void delete(String id) {
