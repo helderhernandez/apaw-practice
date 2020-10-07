@@ -19,7 +19,6 @@ class PassengerRepositoryIT {
     void testFindAll() {
         List<PassengerEntity> passengerRepositoryList = passengerRepository.findAll();
 
-        assertEquals(2, passengerRepositoryList.size());
         assertEquals("sergio", passengerRepositoryList.get(0).getName());
         assertEquals("11112", passengerRepositoryList.get(0).getFlightEntities().get(1).getPlaneEntity().getLicensePlate());
         assertEquals("white", passengerRepositoryList.get(1).getSuitcaseEntities().get(0).getColor());

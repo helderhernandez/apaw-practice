@@ -28,9 +28,10 @@ public class IllnessPersistenceMongodb implements IllnessPersistence {
 
     @Override
     public Stream<Illness> readByPhase(Integer phase) {
-        return this.illnessRepository.findByPhase(phase)
-                .orElseThrow(()->new NotFoundException("Illness phase: " + phase))
-                .stream()
+        if(this.illnessRepository.findByPhase(phase).isEmpty()){
+            throw new NotFoundException("Illness phase: " + phase);
+        }
+        return this.illnessRepository.findByPhase(phase).stream()
                 .map(IllnessEntity::toIllness);
     }
 

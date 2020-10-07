@@ -1,9 +1,6 @@
 package es.upm.miw.apaw_practice.adapters.rest.veterinary;
 
 import es.upm.miw.apaw_practice.adapters.rest.RestTestConfig;
-import es.upm.miw.apaw_practice.adapters.rest.shop.ArticleResource;
-import es.upm.miw.apaw_practice.domain.models.shop.Article;
-import es.upm.miw.apaw_practice.domain.models.shop.ArticleCreation;
 import es.upm.miw.apaw_practice.domain.models.veterinary.Animal;
 import es.upm.miw.apaw_practice.domain.models.veterinary.AnimalCreation;
 import org.junit.jupiter.api.Assertions;
@@ -12,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.web.reactive.server.WebTestClient;
 import org.springframework.web.reactive.function.BodyInserters;
 
-import java.math.BigDecimal;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
@@ -42,8 +38,20 @@ public class AnimalResourceIT {
                 .body(BodyInserters.fromValue(animalCreation))
                 .exchange()
                 .expectStatus().isOk()
-                .expectBody(Article.class)
+                .expectBody(Animal.class)
                 .value(Assertions::assertNotNull)
-                .value(articleData -> assertNotNull(articleData.getId()));
+                .value(animalData -> assertNotNull(animalData.getId()));
+    }
+
+    @Test
+    void testUpdateAge() {
+        AnimalCreation animalCreation = new AnimalCreation("animal-key-1111", "Aaron", 4);
+        this.webTestClient
+                .put()
+                .uri(AnimalResource.ANIMALS + AnimalResource.ID + AnimalResource.AGE, "notAnId")
+                .body(BodyInserters.fromValue(animalCreation))
+                .exchange()
+                .expectStatus()
+                .isNotFound();
     }
 }
