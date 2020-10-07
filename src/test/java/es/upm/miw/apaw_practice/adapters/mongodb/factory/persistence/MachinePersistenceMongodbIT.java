@@ -31,9 +31,7 @@ public class MachinePersistenceMongodbIT {
         this.machinePersistence.updateStatus(machine.getId(), true);
         Boolean isActive = this.machineRepository.findBySerialNumber(900600L).get().isActive();
         assertTrue(isActive);
-        factorySeederService.deleteAll();
-        factorySeederService.seedDatabase();
+        this.machinePersistence.updateStatus(machine.getId(), false);
     }
 }
-
 
