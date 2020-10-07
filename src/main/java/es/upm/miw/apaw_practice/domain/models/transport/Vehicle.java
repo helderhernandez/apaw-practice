@@ -1,17 +1,12 @@
-package es.upm.miw.apaw_practice.adapters.mongodb.transport.entities;
+package es.upm.miw.apaw_practice.domain.models.transport;
 
-import es.upm.miw.apaw_practice.domain.models.transport.Vehicle;
-import es.upm.miw.apaw_practice.domain.models.transport.Worker;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
-import reactor.core.scheduler.Scheduler;
+import es.upm.miw.apaw_practice.adapters.mongodb.transport.entities.WorkerEntity;
 
 import java.time.LocalDate;
 import java.util.UUID;
 
-@Document
-public class VehicleEntity {
-    @Id
+public class Vehicle {
+
     private String id;
     private String brand;
     private String model;
@@ -19,11 +14,11 @@ public class VehicleEntity {
     private LocalDate boughtDate;
     private WorkerEntity workerEntity;
 
-    public VehicleEntity(Vehicle vehicle) {
+    public Vehicle() {
         //empty for framework
     }
 
-    public VehicleEntity(String brand, String model, String plate, LocalDate boughtDate, WorkerEntity workerEntity) {
+    public Vehicle(String brand, String model, String plate, LocalDate boughtDate, WorkerEntity workerEntity) {
         this.id = UUID.randomUUID().toString();
         this.brand = brand;
         this.model = model;
@@ -80,23 +75,9 @@ public class VehicleEntity {
         this.workerEntity = workerEntity;
     }
 
-    public Vehicle toVehicle() {
-        return new Vehicle(brand, model, plate, boughtDate, workerEntity);
-    }
-
-    @Override
-    public int hashCode() {
-        return this.id.hashCode();
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        return this == obj || obj != null && getClass() == obj.getClass() && (id.equals(((VehicleEntity) obj).id));
-    }
-
     @Override
     public String toString() {
-        return "VehicleEntity{" +
+        return "Vehicle{" +
                 "id='" + id + '\'' +
                 ", brand='" + brand + '\'' +
                 ", model='" + model + '\'' +
