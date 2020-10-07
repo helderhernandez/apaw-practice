@@ -31,11 +31,11 @@ public class MovieSeederService {
     public void seedDatabase() {
         LogManager.getLogger(this.getClass()).warn("------- Movie Initial Load -----------");
         FilmDirectorEntity[] filmDirectories = {
-                new FilmDirectorEntity("Jose", "Luis Rodriguez", 38),
-                new FilmDirectorEntity("Pedro", "Munoz Roda", 30),
-                new FilmDirectorEntity("Marta", "Gomez Gomez", 28),
-                new FilmDirectorEntity("Luis", "Franco Perez", 55),
-                new FilmDirectorEntity("Hector", "Munoz Merida", 22)
+                FilmDirectorEntity.builder().name("Jose").fulName("Luis Rodriguez").age(38).build(),
+                FilmDirectorEntity.builder().name("Pedro").fulName("Munoz Roda").age(30).build(),//("Pedro", "Munoz Roda", 30),
+                FilmDirectorEntity.builder().name("Marta").fulName("Gomez Gomez").age(28).build(),//("Marta", "Gomez Gomez", 28),
+                FilmDirectorEntity.builder().name("Luis").fulName("Franco Perez").age(55).build(),//("Luis", "Franco Perez", 55),
+                FilmDirectorEntity.builder().name("Hector").fulName("Munoz Merida").age(22).build()//("Hector", "Munoz Merida", 22)
         };
         this.filmDirectorRepository.saveAll(Arrays.asList(filmDirectories));
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
