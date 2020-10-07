@@ -37,6 +37,11 @@ public class AnimalResource {
         return this.animalService.create(animalCreation);
     }
 
+    @DeleteMapping(ID)
+    public void delete(@PathVariable String id) {
+        this.animalService.delete(id);
+    }
+
     @PutMapping(ID + AGE)
     public Animal updateAge(@PathVariable String id, @RequestBody AgeDto ageDto) {
         return this.animalService.updateAge(id, ageDto.getAge());
