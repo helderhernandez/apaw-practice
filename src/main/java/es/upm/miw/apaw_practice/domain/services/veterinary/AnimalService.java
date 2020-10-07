@@ -25,4 +25,8 @@ public class AnimalService {
     public Animal create(AnimalCreation animalCreation) {
         return this.animalPersistance.create(animalCreation);
     }
+
+    public Animal updateAge(String id, Integer age) {
+        return this.animalPersistance.updateAge(id, age);
+    }
 }
