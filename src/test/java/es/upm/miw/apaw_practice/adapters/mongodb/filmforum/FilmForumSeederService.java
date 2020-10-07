@@ -34,7 +34,7 @@ public class FilmForumSeederService {
         this.filmUserRepository.saveAll(Arrays.asList(users));
 
         FilmCommentEntity[] comments = {
-                new FilmCommentEntity("1", users[0], "content1", 10, LocalDateTime.now()),
+                new FilmCommentEntity("1", users[0], "content1", 10, LocalDateTime.of( 2020, 10, 7, 19, 0)),
                 new FilmCommentEntity("2", users[0], "content2", 60, LocalDateTime.now()),
                 new FilmCommentEntity("3", users[1], "content3", 100, LocalDateTime.now())
         };
@@ -49,7 +49,7 @@ public class FilmForumSeederService {
 
         FilmForumEntity[] films = {
                 new FilmForumEntity("1", Collections.singletonList(actors[0]), Collections.singletonList(comments[0]), "film1", 2021, true, 110, "genre1"),
-                new FilmForumEntity("2", Arrays.asList(actors[1], actors[2]), Collections.emptyList(), "film2", 2022, false, 120, "genre2"),
+                new FilmForumEntity("2", Arrays.asList(actors[1], actors[2]), Collections.emptyList(), "film2", 2021, false, 120, "genre2"),
                 new FilmForumEntity("3", Collections.singletonList(actors[0]), Arrays.asList(comments[1], comments[2]), "film3", 2023, true, 130, "genre3")
         };
         this.filmForumRepository.saveAll(Arrays.asList(films));
