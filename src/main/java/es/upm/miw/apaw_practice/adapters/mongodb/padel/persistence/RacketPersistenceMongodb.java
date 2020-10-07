@@ -33,12 +33,10 @@ public class RacketPersistenceMongodb implements RacketPersistence {
 
     @Override
     public Stream<Racket> readByBrand(String brand) {
-        if(this.racketRepository.findAllByBrand(brand).get().size()==0){
-            System.out.println("EEEEE");
-            throw new NotFoundException("AA");
+        if(this.racketRepository.findAllByBrand(brand).isEmpty()){
+            throw new NotFoundException("Racket brand: " + brand);
         }
         return this.racketRepository.findAllByBrand(brand)
-                .orElseThrow(()-> new NotFoundException("Racket brand: " + brand))
                 .stream()
                 .map(RacketEntity::toRacket);
     }
