@@ -59,4 +59,15 @@ public class AnimalPersistenceMongodb implements AnimalPersistence {
         animalEntity.setAge(age);
         return this.animalRepository.save(animalEntity).toAnimal();
     }
+
+    @Override
+    public Animal update(Animal animal) {
+        AnimalEntity animalEntity = this.animalRepository
+                .findById(animal.getId())
+                .orElseThrow(() -> new NotFoundException("Animal id: " + animal.getId()));
+        animalEntity.fromAnimal(animal);
+        return this.animalRepository
+                .save(animalEntity)
+                .toAnimal();
+    }
 }
