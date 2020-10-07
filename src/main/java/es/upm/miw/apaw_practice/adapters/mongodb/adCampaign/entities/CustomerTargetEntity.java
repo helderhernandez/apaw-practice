@@ -15,18 +15,18 @@ public class CustomerTargetEntity {
     private String email;
     private Boolean subscribed;
     @DBRef
-    private List<LikesEntity> tags;
+    private List<LikesEntity> likes;
 
     public CustomerTargetEntity() {
     }
 
-    public CustomerTargetEntity(String id, String name, String lastName, String email, Boolean subscribed, List<LikesEntity> tags) {
+    public CustomerTargetEntity(String id, String name, String lastName, String email, Boolean subscribed, List<LikesEntity> likes) {
         this.id = id;
         this.name = name;
         this.lastName = lastName;
         this.email = email;
         this.subscribed = subscribed;
-        this.tags = tags;
+        this.likes = likes;
     }
 
     public String getId() {
@@ -69,12 +69,12 @@ public class CustomerTargetEntity {
         this.subscribed = subscribed;
     }
 
-    public List<LikesEntity> getTags() {
-        return tags;
+    public List<LikesEntity> getLikes() {
+        return likes;
     }
 
-    public void setTags(List<LikesEntity> tags) {
-        this.tags = tags;
+    public void setLikes(List<LikesEntity> likes) {
+        this.likes = likes;
     }
 
     @Override
@@ -85,7 +85,7 @@ public class CustomerTargetEntity {
                 ", lastName='" + lastName + '\'' +
                 ", email='" + email + '\'' +
                 ", subscribed='" + subscribed + '\'' +
-                ", tags=" + tags +
+                ", tags=" + likes +
                 '}';
     }
 }
