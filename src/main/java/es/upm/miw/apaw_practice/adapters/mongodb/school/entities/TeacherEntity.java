@@ -23,12 +23,6 @@ public class TeacherEntity {
         //empty from framework
     }
 
-    /*public TeacherEntity(Teacher teacher) {
-        BeanUtils.copyProperties(teacher, this);
-        this.id = UUID.randomUUID().toString();
-        this.intern = teacher.isIntern();
-    }*/
-
     public static TeacherBuilders.Name builder() {
         return new Builder();
     }
