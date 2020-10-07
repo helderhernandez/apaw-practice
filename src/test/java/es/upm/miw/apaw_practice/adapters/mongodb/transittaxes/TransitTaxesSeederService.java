@@ -41,10 +41,10 @@ public class TransitTaxesSeederService {
         transitTaxesRepository.saveAll(Arrays.asList(taxes));
 
         AccidentEntity [] accidents = {
-                new AccidentEntity("ACC001", LocalDateTime.of(2020,10,05,5,0), "Toledo"),
-                new AccidentEntity("ACC002", LocalDateTime.of(2017,12,24,12,30), "Madrid"),
-                new AccidentEntity("ACC003", LocalDateTime.of(2019,10,1,7,0), "Madrid"),
-                new AccidentEntity("ACC004", LocalDateTime.of(2020,5,8,3,0),"Toledo")
+                new AccidentEntity("001","ACC001", LocalDateTime.of(2020,10,05,5,0), "Toledo"),
+                new AccidentEntity("002","ACC002", LocalDateTime.of(2017,12,24,12,30), "Madrid"),
+                new AccidentEntity("003","ACC003", LocalDateTime.of(2019,10,1,7,0), "Madrid"),
+                new AccidentEntity("004","ACC004", LocalDateTime.of(2020,5,8,3,0),"Toledo")
         };
         accidentRepository.saveAll(Arrays.asList(accidents));
 
