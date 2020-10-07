@@ -45,10 +45,10 @@ public class SchoolSeederService {
         };
         this.teacherRepository.saveAll(Arrays.asList(teachers));
         SubjectEntity[] subjects = {
-                new SubjectEntity(teachers[0], "Maths", "Science"),
-                new SubjectEntity(teachers[1], "English", "Language"),
-                new SubjectEntity(teachers[2], "Chinese", "Language"),
-                new SubjectEntity(teachers[3], "Music", "Art")
+                SubjectEntity.builder(teachers[0], "Maths").knowledgeArea("Science").build(),
+                SubjectEntity.builder(teachers[1], "English").knowledgeArea("Language").build(),
+                SubjectEntity.builder(teachers[2], "Chinese").knowledgeArea("Language").build(),
+                SubjectEntity.builder(teachers[3], "Music").knowledgeArea("Art").build()
         };
         this.subjectRepository.saveAll(Arrays.asList(subjects));
         CourseEntity[] courses = {
