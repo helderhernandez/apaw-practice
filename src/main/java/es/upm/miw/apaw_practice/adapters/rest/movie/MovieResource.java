@@ -2,7 +2,6 @@ package es.upm.miw.apaw_practice.adapters.rest.movie;
 
 import es.upm.miw.apaw_practice.adapters.rest.LexicalAnalyzer;
 import es.upm.miw.apaw_practice.domain.models.movie.Movie;
-import es.upm.miw.apaw_practice.domain.models.movie.MovieCreation;
 import es.upm.miw.apaw_practice.domain.services.movie.MovieService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -25,8 +24,8 @@ public class MovieResource {
     }
 
     @PostMapping
-    public Movie create(@RequestBody MovieCreation movieCreation) {
-        return this.movieService.create(movieCreation);
+    public Movie create(@RequestBody Movie movie) {
+        return this.movieService.create(movie);
     }
 
     @DeleteMapping(ID_ID)
