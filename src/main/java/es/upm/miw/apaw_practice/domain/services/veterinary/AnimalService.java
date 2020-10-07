@@ -41,4 +41,8 @@ public class AnimalService {
                 })
                 .forEach(animal -> this.animalPersistance.update(animal));
     }
+
+    public void delete(String id) {
+        this.animalPersistance.deleteById(id);
+    }
 }
