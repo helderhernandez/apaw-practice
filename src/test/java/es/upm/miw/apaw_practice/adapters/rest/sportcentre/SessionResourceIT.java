@@ -7,6 +7,8 @@ import es.upm.miw.apaw_practice.domain.models.school.Course;
 import es.upm.miw.apaw_practice.domain.models.school.Student;
 import es.upm.miw.apaw_practice.domain.models.shop.Article;
 import es.upm.miw.apaw_practice.domain.models.shop.Tag;
+import es.upm.miw.apaw_practice.domain.models.sportcentre.Session;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.web.reactive.server.WebTestClient;
@@ -17,6 +19,7 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.jupiter.api.Assertions.*;
 
 @RestTestConfig
@@ -53,6 +56,20 @@ public class SessionResourceIT {
                     assertFalse(nameAssistants.get(0).contains("Jose"));
                 });
     }
-    //("Julia", "Elena", "Alejandro", "Elena", "Adrian", "Julia")
+
+    @Test
+    void findSessionBySpecialityTitle(){
+        this.webTestClient
+                .get()
+                .uri(uriBuilder ->
+                        uriBuilder.path(SessionResource.SESSIONS + SessionResource.SEARCH)
+                                .queryParam("q", "title:Yoga")
+                                .build())
+                .exchange()
+                .expectStatus().isOk()
+                .expectBodyList(BasicSessionDto.class)
+                .value(Assertions::assertNotNull)
+                .value(sessionDtoList -> sessionDtoList.get(0).getRoomNumber(), equalTo(2));
+    }
 
 }

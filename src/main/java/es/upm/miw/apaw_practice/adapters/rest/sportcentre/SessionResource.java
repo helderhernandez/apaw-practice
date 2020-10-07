@@ -32,4 +32,12 @@ public class SessionResource {
         String nameInstructor = new LexicalAnalyzer().extractWithAssure(q, "name");
         return this.sessionService.findNameAssistantsSessionByInstructor(nameInstructor);
     }
+
+    @GetMapping(SEARCH)
+    public BasicSessionDto findSessionBySpecialityTitle(@RequestParam String q){
+        String title = new LexicalAnalyzer().extractWithAssure(q, "title");
+        return this.sessionService.findSessionBySpecialityTitle(title)
+                .toBasicSessionDto();
+    }
+
 }
