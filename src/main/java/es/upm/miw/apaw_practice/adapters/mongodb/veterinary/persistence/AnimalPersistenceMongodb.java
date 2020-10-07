@@ -70,4 +70,9 @@ public class AnimalPersistenceMongodb implements AnimalPersistence {
                 .save(animalEntity)
                 .toAnimal();
     }
+
+    @Override
+    public void deleteById(String id) {
+        this.animalRepository.deleteById(id);
+    }
 }
