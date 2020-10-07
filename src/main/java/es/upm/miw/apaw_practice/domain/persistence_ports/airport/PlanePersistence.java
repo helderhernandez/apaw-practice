@@ -8,4 +8,6 @@ import org.springframework.stereotype.Repository;
 public interface PlanePersistence {
 
     Plane create(PlaneCreation planeCreation);
+
+    Plane updateCapacity(String id, Integer capacity);
 }

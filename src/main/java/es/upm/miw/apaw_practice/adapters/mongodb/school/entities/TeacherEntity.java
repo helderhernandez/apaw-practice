@@ -23,10 +23,8 @@ public class TeacherEntity {
         //empty from framework
     }
 
-    public TeacherEntity(Teacher teacher) {
-        BeanUtils.copyProperties(teacher, this);
-        this.id = UUID.randomUUID().toString();
-        this.intern = teacher.isIntern();
+    public static TeacherBuilders.Name builder() {
+        return new Builder();
     }
 
     public String getId() {
@@ -103,5 +101,52 @@ public class TeacherEntity {
                 ", dni='" + dni + '\'' +
                 ", email='" + email + '\'' +
                 '}';
+    }
+
+    public static class Builder implements TeacherBuilders.Name, TeacherBuilders.FamilyName, TeacherBuilders.Dni, TeacherBuilders.Optionals {
+
+        private final TeacherEntity teacher;
+
+        public Builder() {
+            this.teacher = new TeacherEntity();
+            BeanUtils.copyProperties(teacher, this);
+            this.teacher.id = UUID.randomUUID().toString();
+            this.teacher.intern = teacher.isIntern();
+        }
+
+        @Override
+        public TeacherBuilders.FamilyName name(String name) {
+            this.teacher.name = name;
+            return this;
+        }
+
+        @Override
+        public TeacherBuilders.Dni familyName(String familyName) {
+            this.teacher.familyName = familyName;
+            return this;
+        }
+
+        @Override
+        public TeacherBuilders.Optionals dni(String dni) {
+            this.teacher.dni = dni;
+            return this;
+        }
+
+        @Override
+        public TeacherBuilders.Optionals intern(Boolean intern) {
+            this.teacher.intern = intern;
+            return this;
+        }
+
+        @Override
+        public TeacherBuilders.Optionals email(String email) {
+            this.teacher.email = email;
+            return this;
+        }
+
+        @Override
+        public TeacherEntity build() {
+            return this.teacher;
+        }
     }
 }

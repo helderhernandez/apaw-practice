@@ -7,6 +7,9 @@ import java.util.stream.Stream;
 
 @Repository
 public interface ProductPersistence {
-
     Stream<Product> readAll();
+
+    Product readBySerialNumber(Long serialNumber);
+
+    Product update(Product product);
 }

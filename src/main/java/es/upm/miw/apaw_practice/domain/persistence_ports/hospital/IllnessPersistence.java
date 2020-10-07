@@ -8,4 +8,6 @@ import java.util.stream.Stream;
 @Repository
 public interface IllnessPersistence {
     Stream<Illness> readAll();
+    Stream<Illness> readByPhase(Integer phase);
+    Illness update(Illness illness);
 }
