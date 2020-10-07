@@ -15,8 +15,8 @@ public class LabelService {
         this.labelPersistence = labelPersistence;
     }
 
-    public Label create(String name, String description) {
-        return this.labelPersistence.create(name, description);
+    public Label create(Label label) {
+        return this.labelPersistence.create(label);
     }
 
 }

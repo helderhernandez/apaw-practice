@@ -18,9 +18,9 @@ public class LabelPersistenceMongodb implements LabelPersistence {
     }
 
     @Override
-    public Label create(String name, String description) {
+    public Label create(Label label) {
         return this.labelRepository
-                .save(new LabelEntity(name, description))
+                .save(new LabelEntity(label))
                 .toLabel();
     }
 

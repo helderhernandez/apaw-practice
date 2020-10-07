@@ -10,6 +10,11 @@ public class Label {
         //empty for framework
     }
 
+    public Label(String name, String description) {
+        this.name = name;
+        this.description = description;
+    }
+
     public String getId() {
         return id;
     }

@@ -22,8 +22,8 @@ public class LabelResource {
     }
 
     @PostMapping
-    public Label create(@RequestBody String name, @RequestBody String description) {
-        return this.labelService.create(name, description);
+    public Label create(@RequestBody Label label) {
+        return this.labelService.create(label);
     }
 
 }

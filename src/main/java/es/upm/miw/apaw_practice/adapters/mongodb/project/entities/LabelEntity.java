@@ -20,10 +20,9 @@ public class LabelEntity {
         //empty for framework
     }
 
-    public LabelEntity(String name, String description) {
+    public LabelEntity(Label label) {
+        BeanUtils.copyProperties(label, this);
         this.id = UUID.randomUUID().toString();
-        this.name = name;
-        this.description = description;
     }
 
     public String getId() {

@@ -6,6 +6,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface LabelPersistence {
 
-    Label create(String name, String description);
+    Label create(Label label);
 
 }
