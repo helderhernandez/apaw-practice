@@ -1,6 +1,7 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.bank.persistence;
 
 import es.upm.miw.apaw_practice.TestConfig;
+import es.upm.miw.apaw_practice.adapters.mongodb.bank.BankSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.bank.daos.ShareholderRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,6 +19,9 @@ public class ShareholderPersistenceMongodbIT {
     @Autowired
     private ShareholderRepository shareholderRepository;
 
+    @Autowired
+    private BankSeederService bankSeederService;
+
     @Test
     void testUpdateExpirationDates() {
         LocalDateTime date = LocalDateTime.of(2023, 11, 7, 17, 45);
@@ -27,6 +31,7 @@ public class ShareholderPersistenceMongodbIT {
                     assertEquals(item.getExpirationDate(), date);
                     return item;
                 });
-
+        bankSeederService.deleteAll();
+        bankSeederService.seedDatabase();
     }
 }
