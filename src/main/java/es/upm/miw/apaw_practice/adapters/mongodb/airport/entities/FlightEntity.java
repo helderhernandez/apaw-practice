@@ -83,6 +83,11 @@ public class FlightEntity {
         return flight;
     }
 
+    public void fromFlight(Flight flight) {
+        BeanUtils.copyProperties(flight, this, "plane");
+        this.setPlaneEntity(new PlaneEntity(flight.getPlane()));
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
