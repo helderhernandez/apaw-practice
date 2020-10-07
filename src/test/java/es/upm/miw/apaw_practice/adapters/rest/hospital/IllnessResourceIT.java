@@ -41,4 +41,17 @@ class IllnessResourceIT {
                 .isOk();
     }
 
+    @Test
+    void testUpdateContagiousNotFound(){
+        IllnessContagiousUpdating illnessContagiousUpdating = new IllnessContagiousUpdating(7,true);
+
+        this.webTestClient
+                .patch()
+                .uri(IllnessResource.ILLNESES)
+                .body(BodyInserters.fromValue(illnessContagiousUpdating))
+                .exchange()
+                .expectStatus()
+                .isNotFound();
+    }
+
 }
