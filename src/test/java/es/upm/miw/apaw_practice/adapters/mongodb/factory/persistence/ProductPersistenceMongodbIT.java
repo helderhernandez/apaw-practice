@@ -34,8 +34,8 @@ public class ProductPersistenceMongodbIT {
         this.productPersistence.update(product.toProduct());
         BigDecimal newWholesalePrice = this.productRepository.findBySerialNumber(10000001L).get().getWholesalePrice();
         assertEquals(new BigDecimal("8.15"), newWholesalePrice);
-        factorySeederService.deleteAll();
-        factorySeederService.seedDatabase();
+        product.setWholesalePrice(new BigDecimal("7.40"));
+        this.productPersistence.update(product.toProduct());
     }
 }
 
