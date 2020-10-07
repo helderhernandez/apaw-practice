@@ -13,10 +13,10 @@ public class RacketEntityRepositoryIT {
 
     @Test
     void findAllByBrand(){
-        assertEquals(2,this.racketRepository.findAllByBrand("BRAND-A").orElse(null).size());
-        assertEquals(1,this.racketRepository.findAllByBrand("BRAND-B").orElse(null).size());
-        assertTrue(this.racketRepository.findAllByBrand("BRAND-Z").get().isEmpty());
-        assertEquals("DDDDD",this.racketRepository.findAllByBrand("BRAND-D").orElse(null).get(0).getName());
+        assertEquals(2,this.racketRepository.findAllByBrand("BRAND-A").size());
+        assertEquals(1,this.racketRepository.findAllByBrand("BRAND-B").size());
+        assertTrue(this.racketRepository.findAllByBrand("BRAND-Z").isEmpty());
+        assertEquals("DDDDD",this.racketRepository.findAllByBrand("BRAND-D").get(0).getName());
 
 
     }

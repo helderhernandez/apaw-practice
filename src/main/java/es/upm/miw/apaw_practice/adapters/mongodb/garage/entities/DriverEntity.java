@@ -2,10 +2,13 @@ package es.upm.miw.apaw_practice.adapters.mongodb.garage.entities;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.DBRef;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
 import java.util.UUID;
 
+@Document
 public class DriverEntity {
 
     @Id
@@ -16,6 +19,7 @@ public class DriverEntity {
     private String telephone;
     private String email;
     private Boolean garageMember;
+    @DBRef
     private List<VehicleEntity> vehicleEntities;
 
     public DriverEntity(){

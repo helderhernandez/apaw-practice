@@ -75,7 +75,7 @@ public class HospitalSeederService {
 
         BedEntity[] beds = {
                 new BedEntity(105,180,true, LocalDateTime.of(2020,10,2,10,0),rooms[0]),
-                new BedEntity(105,190,true, LocalDateTime.of(2020,10,2,10,0),rooms[1]),
+                new BedEntity(125,190,true, LocalDateTime.of(2020,10,2,10,0),rooms[1]),
                 new BedEntity(105,200,true, LocalDateTime.of(2020,10,3,15,0),rooms[2]),
                 new BedEntity(105,190,false, null,null),
         };

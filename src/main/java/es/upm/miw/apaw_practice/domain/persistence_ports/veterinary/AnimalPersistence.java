@@ -13,4 +13,8 @@ public interface AnimalPersistence {
     Animal readById(String id);
 
     Animal create(AnimalCreation animalCreation);
+
+    Animal updateAge(String id, Integer age);
+
+    Animal update(Animal animal);
 }

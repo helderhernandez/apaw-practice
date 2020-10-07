@@ -1,5 +1,9 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.ticketbus.entities;
 
+
+import es.upm.miw.apaw_practice.domain.models.ticketbus.TicketBus;
+import es.upm.miw.apaw_practice.domain.models.ticketbus.TicketBusCreation;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -10,12 +14,14 @@ import java.util.UUID;
 
 @Document
 public class TicketBusEntity {
+
     @Id
     private String id;
     private Integer seat;
     private LocalDateTime departureTime;
     private LocalDateTime arriveTime;
     private BigDecimal price;
+    private LocalDateTime registrationDate;
 
     @DBRef
     private PassengerBusEntity passenger;
@@ -31,6 +37,34 @@ public class TicketBusEntity {
         this.arriveTime = arriveTime;
         this.price = price;
         this.passenger = passenger;
+    }
+
+    public TicketBusEntity(TicketBusCreation ticketBusCreation){
+        BeanUtils.copyProperties(ticketBusCreation, this);
+        this.id = UUID.randomUUID().toString();
+        this.registrationDate = LocalDateTime.now();
+    }
+
+    public TicketBus toTicketBus(){
+        TicketBus ticketBus = new TicketBus();
+        BeanUtils.copyProperties(this, ticketBus);
+        return ticketBus;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public LocalDateTime getRegistrationDate() {
+        return registrationDate;
+    }
+
+    public void setRegistrationDate(LocalDateTime registrationDate) {
+        this.registrationDate = registrationDate;
     }
 
     public Integer getSeat() {
@@ -73,6 +107,7 @@ public class TicketBusEntity {
         this.passenger = passenger;
     }
 
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -94,6 +129,7 @@ public class TicketBusEntity {
                 ", departureTime=" + departureTime +
                 ", arriveTime=" + arriveTime +
                 ", price=" + price +
+                ", registrationDate=" + registrationDate +
                 ", passenger=" + passenger +
                 '}';
     }
