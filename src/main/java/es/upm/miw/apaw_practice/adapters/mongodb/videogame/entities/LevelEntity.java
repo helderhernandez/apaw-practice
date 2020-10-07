@@ -86,14 +86,15 @@ public class LevelEntity {
         this.gameDeveloperEntity = gameDeveloperEntity;
     }
 
-    public Level toLevel(){
+    public Level toLevel() {
         Level level = new Level();
         GameDeveloper gameDeveloper = this.gameDeveloperEntity.toGameDeveloper();
-        BeanUtils.copyProperties(this, level, new String []{"gamePlayerEntities","gameDeveloperEntity"});
-        List <GamePlayer> gamePlayerList = this.gamePlayerEntities.stream()
+        List<GamePlayer> gamePlayerList = this.gamePlayerEntities.stream()
                 .map(GamePlayerEntity::toGamePlayer)
                 .collect(Collectors.toList());
+        BeanUtils.copyProperties(this, level, "gamePlayerEntities", "gameDeveloperEntity");
         level.setGameDeveloper(gameDeveloper);
+        level.setGamePlayerList(gamePlayerList);
 
         return level;
     }

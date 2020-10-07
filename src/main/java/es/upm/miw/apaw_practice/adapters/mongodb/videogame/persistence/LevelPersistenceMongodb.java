@@ -1,7 +1,6 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.videogame.persistence;
 
 
-import es.upm.miw.apaw_practice.adapters.mongodb.airport.daos.FlightRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.videogame.daos.LevelRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.videogame.entities.LevelEntity;
 import es.upm.miw.apaw_practice.domain.models.videogame.Level;
@@ -18,13 +17,11 @@ public class LevelPersistenceMongodb implements LevelPersistence {
 
     @Autowired
     public LevelPersistenceMongodb(LevelRepository levelRepository) {
-
         this.levelRepository = levelRepository;
     }
 
     @Override
     public Stream<Level> readAll() {
-
         return levelRepository.findAll().stream()
                 .map(LevelEntity::toLevel);
     }
