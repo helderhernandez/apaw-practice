@@ -38,6 +38,10 @@ public class PlaneEntity {
         this.id = UUID.randomUUID().toString();
     }
 
+    public PlaneEntity(Plane plane) {
+        BeanUtils.copyProperties(plane, this);
+    }
+
     public String getId() {
         return id;
     }
@@ -84,6 +88,7 @@ public class PlaneEntity {
         BeanUtils.copyProperties(this, plane);
         return plane;
     }
+
     @Override
     public String toString() {
         return "PlaneEntity{" +

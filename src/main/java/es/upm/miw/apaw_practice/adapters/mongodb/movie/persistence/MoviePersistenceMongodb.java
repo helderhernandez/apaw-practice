@@ -5,7 +5,6 @@ import es.upm.miw.apaw_practice.adapters.mongodb.movie.daos.MovieRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.movie.entities.MovieEntity;
 import es.upm.miw.apaw_practice.domain.exceptions.ConflictException;
 import es.upm.miw.apaw_practice.domain.models.movie.Movie;
-import es.upm.miw.apaw_practice.domain.models.movie.MovieCreation;
 import es.upm.miw.apaw_practice.domain.persistence_ports.movie.MoviePersistence;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -33,10 +32,10 @@ public class MoviePersistenceMongodb implements MoviePersistence {
     }
 
     @Override
-    public Movie create(MovieCreation movieCreation) {
-        this.assertFilmTitle(movieCreation.getFilmTitle());
+    public Movie create(Movie movie) {
+        this.assertFilmTitle(movie.getFilmTitle());
         return this.movieRepository
-                .save(new MovieEntity(movieCreation))
+                .save(new MovieEntity(movie))
                 .toMovie();
     }
 

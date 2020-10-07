@@ -22,11 +22,8 @@ public class SubjectEntity {
         //empty for framework
     }
 
-    public SubjectEntity(TeacherEntity teacherEntity, String name, String knowledgeArea) {
-        this.teacherEntity = teacherEntity;
-        this.name = name;
-        this.creationDate = LocalDateTime.now();
-        this.knowledgeArea = knowledgeArea;
+    public static Builder builder(TeacherEntity teacherEntity, String name) {
+        return new Builder(teacherEntity, name);
     }
 
     public TeacherEntity getTeacherEntity() {
@@ -84,5 +81,26 @@ public class SubjectEntity {
                 ", creationDate=" + creationDate +
                 ", knowledgeArea='" + knowledgeArea + '\'' +
                 '}';
+    }
+
+    public static class Builder {
+
+        private final SubjectEntity subject;
+
+        private Builder(TeacherEntity teacherEntity, String name) {
+            this.subject = new SubjectEntity();
+            this.subject.teacherEntity = teacherEntity;
+            this.subject.name = name;
+            this.subject.creationDate = LocalDateTime.now();
+        }
+
+        public Builder knowledgeArea(String knowledgeArea) {
+            this.subject.knowledgeArea = knowledgeArea;
+            return this;
+        }
+
+        public SubjectEntity build() {
+            return this.subject;
+        }
     }
 }
