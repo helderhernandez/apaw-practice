@@ -12,7 +12,7 @@ public class BusCreation {
     private Boolean accesibility;
     private Boolean wifi;
     private LocalDateTime registrationDate;
-    private List<JourneyCreate> journeys;
+    private List<JourneyCreation> journeys;
     private List<TicketBusCreation> tickets;
 
     public BusCreation() {
@@ -83,11 +83,11 @@ public class BusCreation {
         this.capacity = capacity;
     }
 
-    public List<JourneyCreate> getJourneys() {
+    public List<JourneyCreation> getJourneys() {
         return journeys;
     }
 
-    public void setJourneys(List<JourneyCreate> journeys) {
+    public void setJourneys(List<JourneyCreation> journeys) {
         this.journeys = journeys;
     }
 

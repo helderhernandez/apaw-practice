@@ -1,7 +1,6 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.ticketbus.persistence;
 
 import es.upm.miw.apaw_practice.adapters.mongodb.ticketbus.daos.BusRepository;
-import es.upm.miw.apaw_practice.adapters.mongodb.ticketbus.daos.JourneyRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.ticketbus.daos.TicketBusRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.ticketbus.entities.BusEntity;
 import es.upm.miw.apaw_practice.adapters.mongodb.ticketbus.entities.TicketBusEntity;
@@ -20,11 +19,9 @@ public class BusPersistenceMongodb implements BusPersistence {
     private BusRepository busRepository;
     private TicketBusRepository ticketBusRepository;
 
-
     @Autowired
     public BusPersistenceMongodb(BusRepository busRepository,
-                                 TicketBusRepository ticketBusRepository,
-                                 JourneyRepository journeyRepository ){
+                                 TicketBusRepository ticketBusRepository){
         this.busRepository = busRepository;
         this.ticketBusRepository = ticketBusRepository;
     }
