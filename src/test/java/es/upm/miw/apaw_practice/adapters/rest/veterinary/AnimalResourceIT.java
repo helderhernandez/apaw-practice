@@ -2,6 +2,7 @@ package es.upm.miw.apaw_practice.adapters.rest.veterinary;
 
 import es.upm.miw.apaw_practice.adapters.rest.RestTestConfig;
 import es.upm.miw.apaw_practice.domain.models.veterinary.Animal;
+import es.upm.miw.apaw_practice.domain.models.veterinary.AnimalAgeUpdating;
 import es.upm.miw.apaw_practice.domain.models.veterinary.AnimalCreation;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -9,6 +10,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.web.reactive.server.WebTestClient;
 import org.springframework.web.reactive.function.BodyInserters;
 
+
+import java.util.Arrays;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
@@ -54,4 +58,36 @@ public class AnimalResourceIT {
                 .expectStatus()
                 .isNotFound();
     }
+
+    @Test
+    void testUpdateAgesNotFound() {
+        List<AnimalAgeUpdating> animalAgeUpdatingList = Arrays.asList(
+                new AnimalAgeUpdating("", 20),
+                new AnimalAgeUpdating("keyNotExists", 50)
+        );
+        this.webTestClient
+                .patch()
+                .uri(AnimalResource.ANIMALS)
+                .body(BodyInserters.fromValue(animalAgeUpdatingList))
+                .exchange()
+                .expectStatus()
+                .isNotFound();
+    }
+
+    @Test
+    void testUpdateAgesFound() {
+        List<AnimalAgeUpdating> animalAgeUpdatingList = Arrays.asList(
+                new AnimalAgeUpdating("key-1-a", 20),
+                new AnimalAgeUpdating("key-10-bd", 50)
+        );
+        this.webTestClient
+                .patch()
+                .uri(AnimalResource.ANIMALS)
+                .body(BodyInserters.fromValue(animalAgeUpdatingList))
+                .exchange()
+                .expectStatus()
+                .isOk();
+    }
+
+
 }

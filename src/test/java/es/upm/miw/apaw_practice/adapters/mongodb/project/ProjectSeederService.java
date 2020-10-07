@@ -50,7 +50,8 @@ public class ProjectSeederService {
         this.issueRepository.saveAll(Arrays.asList(issues));
         UserStoryEntity[] userStories = {
                 new UserStoryEntity("login", "Implement login feature", 5, Arrays.asList(issues[0], issues[1])),
-                new UserStoryEntity("environment", "Setup continuous integration environment", 8, Arrays.asList(issues[2]))
+                new UserStoryEntity("environment", "Setup continuous integration environment", 8, Arrays.asList(issues[2])),
+                new UserStoryEntity("delete", "Issue to delete", 8, Arrays.asList(issues[2]))
         };
         userStoryRepository.saveAll(Arrays.asList(userStories));
     }

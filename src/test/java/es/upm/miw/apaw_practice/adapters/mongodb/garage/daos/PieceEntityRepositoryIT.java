@@ -20,16 +20,9 @@ public class PieceEntityRepositoryIT {
     void testFindByBarcode() {
         assertTrue(this.pieceRepository.findByBarcode("2124565DF").isPresent());
         PieceEntity piece = this.pieceRepository.findByBarcode("2124565DF").get();
+        assertEquals("Luces delanteras led", piece.getName());
         assertEquals(Boolean.TRUE, piece.getInStock());
         assertEquals(0, new BigDecimal(60).compareTo(piece.getPrice()));
-    }
-
-    @Test
-    void testFindByNameAndManufacturer() {
-        assertTrue(this.pieceRepository.findByNameAndManufacturer("Pintura blanca", "Car Colors SL").isPresent());
-        PieceEntity piece = this.pieceRepository.findByNameAndManufacturer("Pintura blanca", "Car Colors SL").get();
-        assertEquals(Boolean.TRUE, piece.getInStock());
-        assertEquals(0, new BigDecimal(100).compareTo(piece.getPrice()));
     }
 
 }
