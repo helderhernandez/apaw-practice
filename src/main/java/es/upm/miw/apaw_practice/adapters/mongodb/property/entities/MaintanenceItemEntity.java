@@ -1,17 +1,28 @@
-package es.upm.miw.apaw_practice.adapters.mongodb.property;
+package es.upm.miw.apaw_practice.adapters.mongodb.property.entities;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 
-public class MaintanenceItem {
+public class MaintanenceItemEntity {
 
     private String item;
     private String type;
-    private LocalDateTime time;
+    private LocalDate time;
     private BigDecimal fees;
     private Long invoice;
     private String equipment;
     private Boolean status;
+
+    public MaintanenceItemEntity(String item, String type, LocalDate time, BigDecimal fees, Long invoice, String equipment, Boolean status) {
+        this.item = item;
+        this.type = type;
+        this.time = time;
+        this.fees = fees;
+        this.invoice = invoice;
+        this.equipment = equipment;
+        this.status = status;
+    }
 
     public String getItem() {
         return item;
@@ -29,11 +40,11 @@ public class MaintanenceItem {
         this.type = type;
     }
 
-    public LocalDateTime getTime() {
+    public LocalDate getTime() {
         return time;
     }
 
-    public void setTime(LocalDateTime time) {
+    public void setTime(LocalDate time) {
         this.time = time;
     }
 
@@ -71,7 +82,7 @@ public class MaintanenceItem {
 
     @Override
     public String toString() {
-        return "MaintanenceItem{" +
+        return "MaintanenceItemEntity{" +
                 "item='" + item + '\'' +
                 ", type='" + type + '\'' +
                 ", time=" + time +

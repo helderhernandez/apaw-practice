@@ -1,5 +1,6 @@
 package es.upm.miw.apaw_practice.adapters.mongodb;
 
+import es.upm.miw.apaw_practice.adapters.mongodb.Property.PropertySeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.airport.AirportSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.bank.BankSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.factory.FactorySeederService;
@@ -38,6 +39,7 @@ public class DatabaseSeederService {
     private TransportSeedService transportSeedService;
     private VideogameSeederService videogameSeederService;
     private TransitTaxesSeederService transitTaxesSeederService;
+    private PropertySeederService propertySeederService;
 
     @Autowired
     public DatabaseSeederService(ShopSeederService shopSeederService, SchoolSeederService schoolSeederService,
@@ -47,7 +49,7 @@ public class DatabaseSeederService {
                                  ProjectSeederService projectSeederService, HospitalSeederService hospitalSeederService,
                                  VeterinarySeederService veterinarySeederService, AirportSeederService airportSeederService,
                                  TicketBusSeederService ticketBusSeederService, VideogameSeederService videogameSeederService,
-                                 TransitTaxesSeederService transitTaxesSeederService, TransportSeedService transportSeedService) {
+                                 TransitTaxesSeederService transitTaxesSeederService, TransportSeedService transportSeedService,PropertySeederService propertySeederService) {
         this.shopSeederService = shopSeederService;
         this.schoolSeederService = schoolSeederService;
         this.factorySeederService = factorySeederService;
@@ -64,6 +66,7 @@ public class DatabaseSeederService {
         this.transportSeedService = transportSeedService;
         this.videogameSeederService = videogameSeederService;
         this.transitTaxesSeederService = transitTaxesSeederService;
+        this.propertySeederService = propertySeederService;
         this.seedDatabase();
     }
 
@@ -84,6 +87,7 @@ public class DatabaseSeederService {
         this.transportSeedService.seedDatabase();
         this.videogameSeederService.seedDataBase();
         this.transitTaxesSeederService.seedDatabase();
+        this.propertySeederService.seedDatabase();
     }
 
     public void deleteAll() {
@@ -103,6 +107,7 @@ public class DatabaseSeederService {
         this.transportSeedService.deleteAll();
         this.videogameSeederService.deleteAll();
         this.transitTaxesSeederService.deleteAll();
+        this.propertySeederService.deleteAll();
     }
 
     public void reSeedDatabase() {
