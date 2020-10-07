@@ -9,4 +9,8 @@ import java.util.stream.Stream;
 public interface FlightPersistence {
 
     Stream<Flight> readAll();
+
+    Flight readById(String id);
+
+    Flight update(Flight flight);
 }
