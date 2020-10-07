@@ -52,7 +52,7 @@ public class SessionResourceIT {
                     assertNotNull(responseList.getResponseBody());
                     List<String> nameAssistants = responseList.getResponseBody();
                     assertTrue(nameAssistants.get(0).contains("Elena"));
-                    assertTrue(nameAssistants.get(0).contains("Adrian"));
+                    assertTrue(nameAssistants.get(0).contains("Julia"));
                     assertFalse(nameAssistants.get(0).contains("Jose"));
                 });
     }
