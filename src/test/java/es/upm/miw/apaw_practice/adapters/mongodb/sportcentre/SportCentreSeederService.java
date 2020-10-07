@@ -42,18 +42,18 @@ public class SportCentreSeederService {
         this.assistantRepository.saveAll(Arrays.asList(assistants));
         SpecialityEntity[] specialities = {
                 new SpecialityEntity("spec1", "Zumba", "Dance Class", 60, true),
-                new SpecialityEntity("spec2", "Yoga", "Strectching and Balance Class", 60, true),
+                new SpecialityEntity("spec2", "Yoga", "Strectching and Balance Class", 70, true),
                 new SpecialityEntity("spec3", "Indoor Cycling", "Intense HIIT session of Cyling", 30, false),
                 new SpecialityEntity("spec4", "Personal Defense", "Fight session for improving personal defense", 45, true),
                 new SpecialityEntity("spec5", "Full Body", "Full body session for improving the overall shape", 50, false)
         };
         this.specialityRepository.saveAll(Arrays.asList(specialities));
         InstructorEntity[] instructors = {
-                new InstructorEntity(new InstructorCreation("11111111A", "Javier", "Rodriguez", BigDecimal.valueOf(1000), List.of(specialities[0].toSpeciality()))),
-                new InstructorEntity(new InstructorCreation("11111111B", "Gonzalo", "Sanchez", BigDecimal.valueOf(900), List.of(specialities[1].toSpeciality()))),
-                new InstructorEntity(new InstructorCreation("11111111C", "Maria", "Jurado", BigDecimal.valueOf(1200), List.of(specialities[2].toSpeciality()))),
-                new InstructorEntity(new InstructorCreation("11111111D", "Javier", "Fernandez", BigDecimal.valueOf(1200), List.of(specialities[3].toSpeciality()))),
-                new InstructorEntity(new InstructorCreation("11111111E", "Teresa", "Izquierdo", BigDecimal.valueOf(1000), List.of(specialities[3].toSpeciality(), specialities[4].toSpeciality())))
+                new InstructorEntity("11111111A", "Javier", "Rodriguez", BigDecimal.valueOf(1000), List.of(specialities[0])),
+                new InstructorEntity("11111111B", "Gonzalo", "Sanchez", BigDecimal.valueOf(900), List.of(specialities[1])),
+                new InstructorEntity("11111111C", "Maria", "Jurado", BigDecimal.valueOf(1200), List.of(specialities[2])),
+                new InstructorEntity("11111111D", "Javier", "Fernandez", BigDecimal.valueOf(1200), List.of(specialities[3])),
+                new InstructorEntity("11111111E", "Teresa", "Izquierdo", BigDecimal.valueOf(1000), List.of(specialities[3], specialities[4]))
         };
         this.instructorRepository.saveAll(Arrays.asList(instructors));
         SessionEntity[] sessions = {
