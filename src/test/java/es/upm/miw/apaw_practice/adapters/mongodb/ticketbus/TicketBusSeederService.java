@@ -53,8 +53,8 @@ public class TicketBusSeederService {
         this.ticketBusRepository.saveAll(Arrays.asList(tickets));
 
         BusEntity[] autocars = {
-                new BusEntity("COOP-VEL-11", "Velocity Cars", Boolean.TRUE, Boolean.TRUE, List.of(tickets[0], tickets[1]), List.of(journeys[0])),
-                new BusEntity("COOP-FM-11", "Flotas Madrid", Boolean.TRUE, Boolean.FALSE, List.of(tickets[2], tickets[3]), List.of(journeys[1]))
+                new BusEntity("COOP-VEL-11", "Velocity Cars", 40, Boolean.TRUE, Boolean.TRUE, List.of(tickets[0], tickets[1]), List.of(journeys[0])),
+                new BusEntity("COOP-FM-11", "Flotas Madrid", 30, Boolean.TRUE, Boolean.FALSE, List.of(tickets[2], tickets[3]), List.of(journeys[1]))
         };
         this.busRepository.saveAll(Arrays.asList(autocars));
     }
