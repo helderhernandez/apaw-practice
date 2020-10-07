@@ -1,6 +1,7 @@
 package es.upm.miw.apaw_practice.adapters.mongodb;
 
 import es.upm.miw.apaw_practice.adapters.mongodb.adCampaign.AdCampaignSeederService;
+import es.upm.miw.apaw_practice.adapters.mongodb.Property.PropertySeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.airport.AirportSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.bank.BankSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.factory.FactorySeederService;
@@ -44,6 +45,7 @@ public class DatabaseSeederService {
     private TransitTaxesSeederService transitTaxesSeederService;
     private SocialNetworkSeederService socialNetworkSeederService;
     private AdCampaignSeederService adCampaignSeederService;
+    private PropertySeederService propertySeederService;
 
     @Autowired
     public DatabaseSeederService(ShopSeederService shopSeederService, SchoolSeederService schoolSeederService,
@@ -55,7 +57,7 @@ public class DatabaseSeederService {
                                  AirportSeederService airportSeederService, TicketBusSeederService ticketBusSeederService,
                                  VideogameSeederService videogameSeederService, TransitTaxesSeederService transitTaxesSeederService,
                                  TransportSeedService transportSeedService, SocialNetworkSeederService socialNetworkSeederService,
-                                 AdCampaignSeederService adCampaignSeederService) {
+                                 AdCampaignSeederService adCampaignSeederService,PropertySeederService propertySeederService) {
 
         this.shopSeederService = shopSeederService;
         this.schoolSeederService = schoolSeederService;
@@ -76,6 +78,7 @@ public class DatabaseSeederService {
         this.transitTaxesSeederService = transitTaxesSeederService;
         this.socialNetworkSeederService = socialNetworkSeederService;
         this.adCampaignSeederService = adCampaignSeederService;
+        this.propertySeederService = propertySeederService;
 
         this.seedDatabase();
     }
@@ -100,6 +103,7 @@ public class DatabaseSeederService {
         this.transitTaxesSeederService.seedDatabase();
         this.socialNetworkSeederService.seedDatabase();
         this.adCampaignSeederService.seedDatabase();
+        this.propertySeederService.seedDatabase();
     }
 
     public void deleteAll() {
@@ -122,6 +126,7 @@ public class DatabaseSeederService {
         this.transitTaxesSeederService.deleteAll();
         this.socialNetworkSeederService.deleteAll();
         this.adCampaignSeederService.deleteAll();
+        this.propertySeederService.deleteAll();
     }
 
     public void reSeedDatabase() {

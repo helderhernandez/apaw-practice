@@ -15,7 +15,8 @@ public class AnimalResource {
     static final String ANIMALS = "/veterinary/animals";
 
     static final String SEARCH = "/search";
-    static final String ID_ID = "/{id}";
+    static final String ID = "/{id}";
+    static final String AGE = "/age";
 
     private final AnimalService animalService;
 
@@ -32,5 +33,10 @@ public class AnimalResource {
     @PostMapping
     public Animal create(@RequestBody AnimalCreation animalCreation) {
         return this.animalService.create(animalCreation);
+    }
+
+    @PutMapping(ID + AGE)
+    public Animal updateAge(@PathVariable String id, @RequestBody AgeDto ageDto) {
+        return this.animalService.updateAge(id, ageDto.getAge());
     }
 }
