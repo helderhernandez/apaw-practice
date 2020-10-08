@@ -9,5 +9,5 @@ import java.util.stream.Stream;
 public interface BedPersistence {
     Bed updateOccupied(String id, Boolean occupied);
 
-    Stream<String> findByNameWidthOfBeds(String name);
+    Stream<Bed> findByNameWidthOfBeds(String name);
 }

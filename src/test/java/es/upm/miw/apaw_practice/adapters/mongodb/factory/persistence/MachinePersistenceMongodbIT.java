@@ -29,8 +29,8 @@ public class MachinePersistenceMongodbIT {
                 .get();
         assertNotNull(machine.getId());
         this.machinePersistence.updateStatus(machine.getId(), true);
-        Boolean isActive = this.machineRepository.findBySerialNumber(900600L).get().isActive();
-        assertTrue(isActive);
+        Boolean active = this.machineRepository.findBySerialNumber(900600L).get().getActive();
+        assertTrue(active);
         this.machinePersistence.updateStatus(machine.getId(), false);
     }
 }

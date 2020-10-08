@@ -17,12 +17,12 @@ public class SpecialityEntity {
     private Integer duration;
     private Boolean recomended;
 
-    public SpecialityEntity(String id, String title, String description, Integer duration, Boolean recomended) {
-        this.id = id;
-        this.title = title;
-        this.description = description;
-        this.duration = duration;
-        this.recomended = recomended;
+    public SpecialityEntity() {
+        //empty from framework
+    }
+
+    public static SpecialityBuilders.Id builder() {
+        return new Builder();
     }
 
     public String getId() {
@@ -102,4 +102,49 @@ public class SpecialityEntity {
     public void fromSpeciality(Speciality speciality) {
         BeanUtils.copyProperties(speciality, this);
     }
+
+    public static class Builder implements SpecialityBuilders.Id, SpecialityBuilders.Title, SpecialityBuilders.Description, SpecialityBuilders.Duration, SpecialityBuilders.Recomended, SpecialityBuilders.Optionals{
+
+        private SpecialityEntity specialityEntity;
+
+        public Builder(){
+            this.specialityEntity = new SpecialityEntity();
+        }
+
+        @Override
+        public SpecialityBuilders.Title id(String id) {
+            this.specialityEntity.id = id;
+            return this;
+        }
+
+        @Override
+        public SpecialityBuilders.Description title(String title) {
+            this.specialityEntity.title = title;
+            return this;
+        }
+
+        @Override
+        public SpecialityBuilders.Duration description(String description) {
+            this.specialityEntity.description = description;
+            return this;
+        }
+
+        @Override
+        public SpecialityBuilders.Recomended duration(Integer duration) {
+            this.specialityEntity.duration = duration;
+            return this;
+        }
+
+        @Override
+        public SpecialityBuilders.Optionals recomended(Boolean recomended) {
+            this.specialityEntity.recomended = recomended;
+            return this;
+        }
+
+        @Override
+        public SpecialityEntity build() {
+            return this.specialityEntity;
+        }
+    }
+
 }

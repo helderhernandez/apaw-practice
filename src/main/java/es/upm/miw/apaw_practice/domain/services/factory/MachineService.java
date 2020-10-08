@@ -14,7 +14,7 @@ public class MachineService {
         this.machinePersistence = machinePersistence;
     }
 
-    public Machine updateStatus(String id, Boolean isActive) {
-        return this.machinePersistence.updateStatus(id, isActive);
+    public Machine updateStatus(String id, Boolean active) {
+        return this.machinePersistence.updateStatus(id, active);
     }
 }

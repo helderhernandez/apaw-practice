@@ -4,10 +4,7 @@ import es.upm.miw.apaw_practice.adapters.mongodb.hospital.daos.BedRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.hospital.daos.IllnessRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.hospital.daos.PatientRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.hospital.daos.RoomRepository;
-import es.upm.miw.apaw_practice.adapters.mongodb.hospital.entities.BedEntity;
-import es.upm.miw.apaw_practice.adapters.mongodb.hospital.entities.IllnessEntity;
-import es.upm.miw.apaw_practice.adapters.mongodb.hospital.entities.PatientEntity;
-import es.upm.miw.apaw_practice.adapters.mongodb.hospital.entities.RoomEntity;
+import es.upm.miw.apaw_practice.adapters.mongodb.hospital.entities.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -31,20 +28,13 @@ public class HospitalSeederService {
 
     public void seedDatabase(){
         LogManager.getLogger(this.getClass()).warn("------- Hospital Initial Load -----------");
-        String [] symptomsA = { "Symptom A" };
-        String [] causesA = { "Cause A" };
-        String [] symptomsB = { "Symptom B", "Cause B2" };
-        String [] causesB = { "Cause B", "Cause B2" };
-        String [] symptomsC = { "Symptom C", "Symptom C2", "Symptom C3" };
-        String [] causesC = { "Cause C", "Cause C2","Cause C3" };
-        String [] symptomsD = { "Symptom D" };
-        String [] causesD = { "Cause D", "Cause D2" };
+
         IllnessEntity[] illnesses = {
-                new IllnessEntity(3,symptomsA,causesA,true),
-                new IllnessEntity(2,symptomsB,causesB,false),
-                new IllnessEntity(4,symptomsC,causesC,true),
-                new IllnessEntity(1,symptomsD,causesD,false),
-                new IllnessEntity(4,symptomsD,causesD,false),
+                IllnessEntity.builder().phase(3).symptoms("Symptom A").endSymptoms().causes("Cause A").endCauses().contagious(true).build(),
+                IllnessEntity.builder().phase(2).symptoms("Symptom B").symptoms("Symptom B2").endSymptoms().causes("Cause B").causes("Cause B2").endCauses().contagious(false).build(),
+                IllnessEntity.builder().phase(4).symptoms("Symptom C").symptoms("Symptom C2").symptoms("Symptom C3").endSymptoms().causes("Cause C").causes("Cause C2").causes("Cause C3").endCauses().contagious(true).build(),
+                IllnessEntity.builder().phase(1).symptoms("Symptom D").endSymptoms().causes("Cause D").causes("Cause D2").endCauses().contagious(false).build(),
+                IllnessEntity.builder().phase(4).symptoms("Symptom D").endSymptoms().causes("Cause D").causes("Cause D2").endCauses().contagious(false).build()
         };
         this.illnessRepository.saveAll(Arrays.asList(illnesses));
 
@@ -77,7 +67,7 @@ public class HospitalSeederService {
                 new BedEntity(105,180,true, LocalDateTime.of(2020,10,2,10,0),rooms[0]),
                 new BedEntity(125,190,true, LocalDateTime.of(2020,10,2,10,0),rooms[1]),
                 new BedEntity(105,200,true, LocalDateTime.of(2020,10,3,15,0),rooms[2]),
-                new BedEntity(105,190,false, null,null),
+                new BedEntity(105,190,false, null,rooms[0]),
         };
         this.bedRepository.saveAll(Arrays.asList(beds));
     }

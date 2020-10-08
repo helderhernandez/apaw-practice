@@ -20,7 +20,7 @@ public class DegreeEntityRepositoryIT {
     void testFindByRecordNumber() {
         assertTrue(this.degreeRepository.findByRecordNumber("123456-7").isPresent());
         DegreeEntity degree = this.degreeRepository.findByRecordNumber("123456-7").get();
-        assertEquals("Grado en Ingeria de Telecomunicaciones", degree.getTitle());
+        assertEquals("Grado en Ingenieria de Telecomunicaciones", degree.getTitle());
         assertEquals("123456-7", degree.getRecordNumber());
         assertEquals("Universidad de Alcala", degree.getInstitute());
     }
