@@ -41,11 +41,11 @@ public class SportCentreSeederService {
         };
         this.assistantRepository.saveAll(Arrays.asList(assistants));
         SpecialityEntity[] specialities = {
-                new SpecialityEntity("spec1", "Zumba", "Dance Class", 60, true),
-                new SpecialityEntity("spec2", "Yoga", "Strectching and Balance Class", 70, true),
-                new SpecialityEntity("spec3", "Indoor Cycling", "Intense HIIT session of Cyling", 30, false),
-                new SpecialityEntity("spec4", "Personal Defense", "Fight session for improving personal defense", 45, true),
-                new SpecialityEntity("spec5", "Full Body", "Full body session for improving the overall shape", 50, false)
+                SpecialityEntity.builder().id("spec1").title("Zumba").description("Dance Class").duration(60).recomended(true).build(),
+                SpecialityEntity.builder().id("spec2").title("Yoga").description("Strectching and Balance Class").duration(70).recomended(true).build(),
+                SpecialityEntity.builder().id("spec3").title("Indoor Cycling").description("Intense HIIT session of Cyling").duration(30).recomended(false).build(),
+                SpecialityEntity.builder().id("spec4").title("Personal Defense").description("Fight session for improving personal defense").duration(45).recomended(true).build(),
+                SpecialityEntity.builder().id("spec5").title("Full Body").description("Full body session for improving the overall shape").duration(50).recomended(false).build()
         };
         this.specialityRepository.saveAll(Arrays.asList(specialities));
         InstructorEntity[] instructors = {
