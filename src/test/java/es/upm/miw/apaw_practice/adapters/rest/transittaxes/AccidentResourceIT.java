@@ -22,7 +22,7 @@ public class AccidentResourceIT {
     @Test
     void testRead() {
         this.webTestClient.get()
-                .uri(AccidentResource.ACCIDENT + AccidentResource.ID_ID, "001")
+                .uri(AccidentResource.ACCIDENTS + AccidentResource.ID_ID, "001")
                 .exchange()
                 .expectStatus().isOk()
                 .expectBody(Accident.class)
@@ -39,7 +39,7 @@ public class AccidentResourceIT {
     void testReadNotFound() {
         this.webTestClient
                 .get()
-                .uri(AccidentResource.ACCIDENT + AccidentResource.ID_ID, "009")
+                .uri(AccidentResource.ACCIDENTS + AccidentResource.ID_ID, "009")
                 .exchange()
                 .expectStatus().isNotFound();
     }

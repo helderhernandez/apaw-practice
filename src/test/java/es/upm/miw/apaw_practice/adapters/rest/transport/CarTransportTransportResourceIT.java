@@ -17,7 +17,7 @@ import static es.upm.miw.apaw_practice.adapters.rest.transport.VehicleTransportR
 import static org.junit.jupiter.api.Assertions.*;
 
 @RestTestConfig
-class VehicleTransportTransportResourceIT {
+class CarTransportTransportResourceIT {
 
     @Autowired
     private WebTestClient webTestClient;
