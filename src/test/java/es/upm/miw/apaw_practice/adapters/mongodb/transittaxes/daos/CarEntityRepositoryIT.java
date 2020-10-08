@@ -3,7 +3,7 @@ package es.upm.miw.apaw_practice.adapters.mongodb.transittaxes.daos;
 import es.upm.miw.apaw_practice.TestConfig;
 import es.upm.miw.apaw_practice.adapters.mongodb.transittaxes.entities.AccidentEntity;
 import es.upm.miw.apaw_practice.adapters.mongodb.transittaxes.entities.TransitTaxesEntity;
-import es.upm.miw.apaw_practice.adapters.mongodb.transittaxes.entities.VehicleEntity;
+import es.upm.miw.apaw_practice.adapters.mongodb.transittaxes.entities.CarEntity;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -14,25 +14,25 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @TestConfig
-public class VehiclesEntityRepositoryIT {
+public class CarEntityRepositoryIT {
 
     @Autowired
-    private VehicleRepository vehicleRepository;
+    private CarRepository carRepository;
 
     @Test
     void testCreateAndRead() {
-        assertTrue(this.vehicleRepository.findByEnrollment("AAAA").isPresent());
-        VehicleEntity vehicle = this.vehicleRepository.findByEnrollment("AAAA").get();
-        assertEquals("AAAA", vehicle.getEnrollment());
-        assertEquals("SEAT", vehicle.getBrand());
-        assertEquals("Maria", vehicle.getOwner().getName());
-        assertEquals("Perez", vehicle.getOwner().getFamilyName());
-        assertEquals("Toledo", vehicle.getAccidents().get(0).getPlace());
-        assertTrue(vehicle.getAccidents().stream()
+        assertTrue(this.carRepository.findByEnrollment("AAAA").isPresent());
+        CarEntity car = this.carRepository.findByEnrollment("AAAA").get();
+        assertEquals("AAAA", car.getEnrollment());
+        assertEquals("SEAT", car.getBrand());
+        assertEquals("Maria", car.getOwner().getName());
+        assertEquals("Perez", car.getOwner().getFamilyName());
+        assertEquals("Toledo", car.getAccidents().get(0).getPlace());
+        assertTrue(car.getAccidents().stream()
                 .map(AccidentEntity::getRefAccident)
                 .collect(Collectors.toList())
                 .containsAll(Arrays.asList("ACC001")));
-        assertTrue(vehicle.getTransitTaxes().stream()
+        assertTrue(car.getTransitTaxes().stream()
                 .map(TransitTaxesEntity::getDescription)
                 .collect(Collectors.toList())
                 .containsAll(Arrays.asList("Driving without a driver's license")));

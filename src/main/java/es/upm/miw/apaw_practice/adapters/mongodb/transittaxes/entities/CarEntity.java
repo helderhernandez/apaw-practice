@@ -1,7 +1,6 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.transittaxes.entities;
 
-import es.upm.miw.apaw_practice.domain.models.shop.Article;
-import es.upm.miw.apaw_practice.domain.models.transittaxes.Vehicle;
+import es.upm.miw.apaw_practice.domain.models.transittaxes.Car;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
@@ -10,10 +9,9 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
 import java.util.Objects;
-import java.util.UUID;
 
 @Document
-public class VehicleEntity {
+public class CarEntity {
     @Id
     private String id;
     @Indexed(unique = true)
@@ -26,12 +24,12 @@ public class VehicleEntity {
     @DBRef
     private List<TransitTaxesEntity> transitTaxes;
 
-    public VehicleEntity() {
+    public CarEntity() {
         //empty from framework
     }
 
-    public VehicleEntity(String id, String enrollment, String brand, List<AccidentEntity> accidents,
-                         OwnerEntity owner, List<TransitTaxesEntity> transitTaxes) {
+    public CarEntity(String id, String enrollment, String brand, List<AccidentEntity> accidents,
+                     OwnerEntity owner, List<TransitTaxesEntity> transitTaxes) {
         this.id = id;
         this.enrollment = enrollment;
         this.brand = brand;
@@ -92,7 +90,7 @@ public class VehicleEntity {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        VehicleEntity that = (VehicleEntity) o;
+        CarEntity that = (CarEntity) o;
         return Objects.equals(id, that.id) &&
                 Objects.equals(enrollment, that.enrollment) &&
                 Objects.equals(brand, that.brand) &&
@@ -108,7 +106,7 @@ public class VehicleEntity {
 
     @Override
     public String toString() {
-        return "VehicleEntity{" +
+        return "CarEntity{" +
                 "id='" + id + '\'' +
                 ", enrollment='" + enrollment + '\'' +
                 ", brand='" + brand + '\'' +
@@ -118,9 +116,9 @@ public class VehicleEntity {
                 '}';
     }
 
-    public Vehicle toVehicle() {
-        Vehicle vehicle = new Vehicle();
-        BeanUtils.copyProperties(this, vehicle);
-        return vehicle;
+    public Car toCar() {
+        Car car = new Car();
+        BeanUtils.copyProperties(this, car);
+        return car;
     }
 }

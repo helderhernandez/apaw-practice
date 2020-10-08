@@ -3,7 +3,7 @@ package es.upm.miw.apaw_practice.domain.models.transittaxes;
 
 import java.util.List;
 
-public class Vehicle {
+public class Car {
 
     private String id;
     private String enrollment;
@@ -12,7 +12,7 @@ public class Vehicle {
     private Owner owner;
     private List<TransitTaxes> transitTaxes;
 
-    public Vehicle() {
+    public Car() {
         //empty from framework
     }
 

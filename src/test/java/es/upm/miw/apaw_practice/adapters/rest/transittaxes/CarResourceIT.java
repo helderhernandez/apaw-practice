@@ -7,7 +7,7 @@ import org.springframework.test.web.reactive.server.WebTestClient;
 import org.springframework.web.reactive.function.BodyInserters;
 
 @RestTestConfig
-public class VehicleResourceIT {
+public class CarResourceIT {
 
     @Autowired
     private WebTestClient webTestClient;
@@ -17,7 +17,7 @@ public class VehicleResourceIT {
         BrandDto brandDto = new BrandDto("CITROEN");
         this.webTestClient
                 .put()
-                .uri(VehicleResource.VEHICLES + VehicleResource.ID_ID + VehicleResource.BRAND, "01")
+                .uri(CarResource.CARS + CarResource.ID_ID + CarResource.BRAND, "01")
                 .body(BodyInserters.fromValue(brandDto))
                 .exchange()
                 .expectStatus().isOk();

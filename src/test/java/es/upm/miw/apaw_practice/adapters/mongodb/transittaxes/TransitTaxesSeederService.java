@@ -3,11 +3,11 @@ package es.upm.miw.apaw_practice.adapters.mongodb.transittaxes;
 import es.upm.miw.apaw_practice.adapters.mongodb.transittaxes.daos.AccidentRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.transittaxes.daos.OwnerRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.transittaxes.daos.TransitTaxesRepository;
-import es.upm.miw.apaw_practice.adapters.mongodb.transittaxes.daos.VehicleRepository;
+import es.upm.miw.apaw_practice.adapters.mongodb.transittaxes.daos.CarRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.transittaxes.entities.AccidentEntity;
 import es.upm.miw.apaw_practice.adapters.mongodb.transittaxes.entities.OwnerEntity;
 import es.upm.miw.apaw_practice.adapters.mongodb.transittaxes.entities.TransitTaxesEntity;
-import es.upm.miw.apaw_practice.adapters.mongodb.transittaxes.entities.VehicleEntity;
+import es.upm.miw.apaw_practice.adapters.mongodb.transittaxes.entities.CarEntity;
 import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,7 +20,7 @@ import java.util.List;
 @Service
 public class TransitTaxesSeederService {
     @Autowired
-    private VehicleRepository vehicleRepository;
+    private CarRepository carRepository;
     @Autowired
     private OwnerRepository ownerRepository;
     @Autowired
@@ -56,18 +56,18 @@ public class TransitTaxesSeederService {
         };
         ownerRepository.saveAll(Arrays.asList(owners));
 
-        VehicleEntity [] vehicles = {
-                new VehicleEntity("01","AAAA", "SEAT",  List.of(accidents[0]),owners[0],List.of(taxes[0])),
-                new VehicleEntity("02","BBBB", "FORD",  List.of(),owners[1],List.of(taxes[1], taxes[2],taxes[3])),
-                new VehicleEntity("03","CCCC", "PEUGEOT",  List.of(),owners[2],List.of())
+        CarEntity[] cars = {
+                new CarEntity("01","AAAA", "SEAT",  List.of(accidents[0]),owners[0],List.of(taxes[0])),
+                new CarEntity("02","BBBB", "FORD",  List.of(),owners[1],List.of(taxes[1], taxes[2],taxes[3])),
+                new CarEntity("03","CCCC", "PEUGEOT",  List.of(),owners[2],List.of())
 
         };
-        vehicleRepository.saveAll(Arrays.asList(vehicles));
+        carRepository.saveAll(Arrays.asList(cars));
     }
     public void deleteAll() {
         this.transitTaxesRepository.deleteAll();
         this.accidentRepository.deleteAll();
         this.ownerRepository.deleteAll();
-        this.vehicleRepository.deleteAll();
+        this.carRepository.deleteAll();
     }
 }
