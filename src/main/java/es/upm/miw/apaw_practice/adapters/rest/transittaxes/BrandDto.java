@@ -1,13 +1,13 @@
-package es.upm.miw.apaw_practice.adapters.rest.padel;
+package es.upm.miw.apaw_practice.adapters.rest.transittaxes;
 
-public class BrandRacketDto {
+public class BrandDto {
     private String brand;
 
-    public BrandRacketDto() {
-        //For framework
+    public BrandDto() {
+        // empty for framework
     }
 
-    BrandRacketDto(String brand) {
+    public BrandDto(String brand) {
         this.brand = brand;
     }
 
@@ -21,7 +21,7 @@ public class BrandRacketDto {
 
     @Override
     public String toString() {
-        return "BrandRacketDto{" +
+        return "BrandDto{" +
                 "brand='" + brand + '\'' +
                 '}';
     }

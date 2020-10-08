@@ -9,5 +9,6 @@ import java.util.stream.Stream;
 @Repository
 public interface TournamentPersistence {
     Tournament updateInitialDay(String id, LocalDateTime initialDay);
+
     Stream<Tournament> findByTournamentsAndNameDistintOfPlayer(String name);
 }
