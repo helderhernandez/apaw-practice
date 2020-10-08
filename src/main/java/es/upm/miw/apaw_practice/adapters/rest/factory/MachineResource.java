@@ -21,7 +21,7 @@ public class MachineResource {
     }
 
     @PutMapping(ID_ID + STATUS)
-    public Machine updateStatus(@PathVariable String id, @RequestBody StatusDto isActive) {
-        return this.machineService.updateStatus(id, isActive.getIsActive());
+    public Machine updateStatus(@PathVariable String id, @RequestBody StatusDto active) {
+        return this.machineService.updateStatus(id, active.getActive());
     }
 }

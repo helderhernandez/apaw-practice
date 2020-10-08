@@ -55,9 +55,9 @@ public class FactorySeederService {
         this.employeeRepository.saveAll(Arrays.asList(employees));
 
         DegreeEntity[] degrees = {
-                new DegreeEntity(employees[0], "Grado en Ingeria de Telecomunicaciones", "123456-7", "Universidad de Alcala"),
+                new DegreeEntity(employees[0], "Grado en Ingenieria de Telecomunicaciones", "123456-7", "Universidad de Alcala"),
                 new DegreeEntity(employees[2], "Grado en Ingenieria Industrial", "456789-1", "Universidad Carlos III de Madrid"),
-                new DegreeEntity(employees[3], "Grado en Ingeniria Mecanica", "789123-4", "Universidad Complutense de Madrid")
+                new DegreeEntity(employees[3], "Grado en Ingenieria Mecanica", "789123-4", "Universidad Complutense de Madrid")
         };
         this.degreeRepository.saveAll(Arrays.asList(degrees));
 
@@ -68,7 +68,6 @@ public class FactorySeederService {
                         800500L, true, LocalDate.of(2019, 11, 1)),
         };
         this.machineRepository.saveAll(Arrays.asList(machines));
-
     }
 
     public void deleteAll() {
