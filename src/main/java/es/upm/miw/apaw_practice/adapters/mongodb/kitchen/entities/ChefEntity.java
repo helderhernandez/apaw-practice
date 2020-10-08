@@ -1,5 +1,6 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.kitchen.entities;
 
+import es.upm.miw.apaw_practice.domain.models.kitchen.Chef;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;
@@ -7,6 +8,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Document
 public class ChefEntity {
@@ -55,6 +57,13 @@ public class ChefEntity {
 
     public void setKitchenBoys(List<KitchenBoyEntity> kitchenBoys) {
         this.kitchenBoys = kitchenBoys;
+    }
+
+    public Chef toChef() {
+        List<String> kitchenBoyDnis = this.kitchenBoys.stream()
+                .map(kitchenBoy -> kitchenBoy.getDni())
+                .collect(Collectors.toList());
+        return new Chef(this.id, this.dni, this.recipesFinished, kitchenBoyDnis);
     }
 
     @Override
