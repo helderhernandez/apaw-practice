@@ -1,5 +1,7 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.sportcentre.entities;
 
+import es.upm.miw.apaw_practice.domain.models.sportcentre.Session;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -90,5 +92,11 @@ public class SessionEntity {
                 ", assistants=" + assistants +
                 ", instructor=" + instructor +
                 '}';
+    }
+
+    public Session toSession() {
+        Session session = new Session();
+        BeanUtils.copyProperties(this, session);
+        return session;
     }
 }
