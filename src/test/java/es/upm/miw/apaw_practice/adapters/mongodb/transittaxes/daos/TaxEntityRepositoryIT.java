@@ -18,13 +18,14 @@ public class TaxEntityRepositoryIT {
 
     @Test
     void testCreateAndRead() {
-        TaxEntity taxEntity = this.taxRepository.findByRefTaxes("TAX002").get();
+        assertTrue(this.taxRepository.findByRefTax("TAX002").isPresent());
+        TaxEntity taxEntity = this.taxRepository.findByRefTax("TAX002").get();
         assertEquals("Driving with excess alcohol", taxEntity.getDescription());
         assertEquals(new BigDecimal("400.00"), taxEntity.getPrice());
         assertTrue(this.taxRepository.findAll().stream()
                 .anyMatch(tax -> tax.getPaid().equals(Boolean.TRUE)));
         assertTrue(this.taxRepository.findAll().stream()
-                .map(TaxEntity::getRefTaxes)
+                .map(TaxEntity::getRefTax)
                 .anyMatch(tax -> tax.equals("TAX004")));
     }
 }

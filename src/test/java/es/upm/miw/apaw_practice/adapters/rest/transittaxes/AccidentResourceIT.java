@@ -18,7 +18,6 @@ public class AccidentResourceIT {
     @Autowired
     private WebTestClient webTestClient;
 
-
     @Test
     void testRead() {
         this.webTestClient.get()
@@ -31,7 +30,6 @@ public class AccidentResourceIT {
                     assertEquals("ACC001", AccidentData.getRefAccident());
                     assertEquals("Toledo", AccidentData.getPlace());
                     assertEquals(LocalDateTime.of(2020, 10, 5, 5, 0), AccidentData.getDate());
-
                 });
     }
 
