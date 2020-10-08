@@ -1,13 +1,10 @@
 package es.upm.miw.apaw_practice.adapters.rest.hospital;
 
 import es.upm.miw.apaw_practice.adapters.rest.RestTestConfig;
-import es.upm.miw.apaw_practice.domain.models.hospital.Bed;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.web.reactive.server.WebTestClient;
 import org.springframework.web.reactive.function.BodyInserters;
-
-import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -19,17 +16,17 @@ class BedResourceIT {
     private WebTestClient webTestClient;
 
     @Test
-    void testUpdateOccupied(){
+    void testUpdateOccupied() {
         this.webTestClient
                 .put()
-                .uri(BedResource.BEDS + BedResource.ID_ID + BedResource.OCCUPIED,"")
+                .uri(BedResource.BEDS + BedResource.ID_ID + BedResource.OCCUPIED, "")
                 .body(BodyInserters.fromValue(Boolean.TRUE))
                 .exchange()
                 .expectStatus().isNotFound();
     }
 
     @Test
-    void testSearchByNameWidthOfBeds(){
+    void testSearchByNameWidthOfBeds() {
         this.webTestClient
                 .get()
                 .uri(uriBuilder ->

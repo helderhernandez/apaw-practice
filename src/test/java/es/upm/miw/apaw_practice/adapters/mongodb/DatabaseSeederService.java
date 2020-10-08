@@ -5,12 +5,12 @@ import es.upm.miw.apaw_practice.adapters.mongodb.adCampaign.AdCampaignSeederServ
 import es.upm.miw.apaw_practice.adapters.mongodb.Property.PropertySeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.airport.AirportSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.bank.BankSeederService;
-import es.upm.miw.apaw_practice.adapters.mongodb.basketball.BasketballSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.factory.FactorySeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.filmforum.FilmForumSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.garage.GarageSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.hospital.HospitalSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.kitchen.KitchenSeederService;
+import es.upm.miw.apaw_practice.adapters.mongodb.library.LibrarySeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.movie.MovieSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.padel.PadelSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.project.ProjectSeederService;
@@ -53,7 +53,7 @@ public class DatabaseSeederService {
     private PropertySeederService propertySeederService;
     private RestaurantSeederService restaurantSeederService;
     private FurnitureFactorySeederService furnitureFactorySeederService;
-    private BasketballSeederService basketballSeederService;
+    private LibrarySeederService librarySeederService;
 
     @Autowired
     public DatabaseSeederService(ShopSeederService shopSeederService, SchoolSeederService schoolSeederService,
@@ -67,7 +67,8 @@ public class DatabaseSeederService {
                                  TransportSeedService transportSeedService, SocialNetworkSeederService socialNetworkSeederService,
                                  RestaurantSeederService restaurantSeederService, FilmForumSeederService filmForumSeederService,
                                  AdCampaignSeederService adCampaignSeederService,
-                                 PropertySeederService propertySeederService, FurnitureFactorySeederService furnitureFactorySeederService, BasketballSeederService basketballSeederService) {
+                                 PropertySeederService propertySeederService,FurnitureFactorySeederService furnitureFactorySeederService,
+                                 LibrarySeederService librarySeederService) {
 
 
         this.shopSeederService = shopSeederService;
@@ -92,9 +93,8 @@ public class DatabaseSeederService {
         this.adCampaignSeederService = adCampaignSeederService;
         this.filmForumSeederService = filmForumSeederService;
         this.propertySeederService = propertySeederService;
-        this.furnitureFactorySeederService = furnitureFactorySeederService;
-        this.basketballSeederService = basketballSeederService;
-
+        this.furnitureFactorySeederService=furnitureFactorySeederService;
+        this.librarySeederService=librarySeederService;
         this.seedDatabase();
     }
 
@@ -122,7 +122,7 @@ public class DatabaseSeederService {
         this.filmForumSeederService.seedDatabase();
         this.propertySeederService.seedDatabase();
         this.furnitureFactorySeederService.seedDatabase();
-        this.basketballSeederService.seedDatabase();
+        this.librarySeederService.seedDatabase();
     }
 
     public void deleteAll() {
@@ -149,7 +149,7 @@ public class DatabaseSeederService {
         this.filmForumSeederService.deleteAll();
         this.propertySeederService.deleteAll();
         this.furnitureFactorySeederService.deleteAll();
-        this.basketballSeederService.deleteAll();
+        this.librarySeederService.deleteAll();
     }
 
     public void reSeedDatabase() {
