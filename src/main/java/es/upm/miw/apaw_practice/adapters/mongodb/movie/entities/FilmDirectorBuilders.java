@@ -1,6 +1,6 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.movie.entities;
 
-public interface UserBuilders {
+public interface FilmDirectorBuilders {
 
     interface Name {
         FulName name(String name);

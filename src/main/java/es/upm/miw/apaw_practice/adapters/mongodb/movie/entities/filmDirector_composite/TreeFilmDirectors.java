@@ -6,9 +6,7 @@ public interface TreeFilmDirectors {
 
     boolean isComposite();
 
-    String getFilmDirectorsGroupName();
-
-    String getFilmDirectorName();
+    String getName();
 
     void add(TreeFilmDirectors treeFilmDirectors);
 

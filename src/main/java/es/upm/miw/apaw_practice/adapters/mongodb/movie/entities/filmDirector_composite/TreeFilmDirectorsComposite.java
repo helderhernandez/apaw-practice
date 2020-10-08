@@ -23,13 +23,8 @@ public class TreeFilmDirectorsComposite implements TreeFilmDirectors {
     }
 
     @Override
-    public String getFilmDirectorsGroupName() {
+    public String getName() {
         return filmDirectorsGroupName;
-    }
-
-    @Override
-    public String getFilmDirectorName() {
-        return null;
     }
 
     @Override
@@ -45,8 +40,8 @@ public class TreeFilmDirectorsComposite implements TreeFilmDirectors {
     @Override
     public List<String> getFilmDirectorsName() {
         return treeFilmDirectorsList.stream()
-                .filter(treeFilmDirectors -> treeFilmDirectors.getFilmDirectorName() != null)
-                .map(treeFilmDirectors -> treeFilmDirectors.getFilmDirectorName())
+                .filter(treeFilmDirectors -> !treeFilmDirectors.isComposite())
+                .map(treeFilmDirectors -> treeFilmDirectors.getName())
                 .collect(Collectors.toList());
     }
 }

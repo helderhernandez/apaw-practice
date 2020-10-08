@@ -18,12 +18,7 @@ public class TreeFilmDirectorsLeaf implements TreeFilmDirectors {
     }
 
     @Override
-    public String getFilmDirectorsGroupName() {
-        return null;
-    }
-
-    @Override
-    public String getFilmDirectorName() {
+    public String getName() {
         return filmDirectorEntity.getName();
     }
 
@@ -39,6 +34,6 @@ public class TreeFilmDirectorsLeaf implements TreeFilmDirectors {
 
     @Override
     public List<String> getFilmDirectorsName() {
-        return null;
+        return List.of(filmDirectorEntity.getName());
     }
 }

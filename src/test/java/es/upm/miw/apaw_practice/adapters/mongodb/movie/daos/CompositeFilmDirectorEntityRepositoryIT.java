@@ -49,13 +49,13 @@ public class CompositeFilmDirectorEntityRepositoryIT {
 
     @Test
     void testNameOfTreeFilmDirectorsIfLeaf() {
-        assertEquals("Hector", this.leaf.getFilmDirectorName());
+        assertEquals("Hector", this.leaf.getName());
     }
 
    @Test
     void testNameOfTreeFilmDirectorsIfComposite() {
-        assertEquals("Horror genre", this.root.getFilmDirectorsGroupName());
-        assertEquals("Oscar winners", this.oscarWinners.getFilmDirectorsGroupName());
+        assertEquals("Horror genre", this.root.getName());
+        assertEquals("Oscar winners", this.oscarWinners.getName());
     }
 
     @Test
