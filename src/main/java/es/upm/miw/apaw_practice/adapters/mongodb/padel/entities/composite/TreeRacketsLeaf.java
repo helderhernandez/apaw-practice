@@ -1,4 +1,8 @@
-package es.upm.miw.apaw_practice.adapters.mongodb.padel.entities;
+package es.upm.miw.apaw_practice.adapters.mongodb.padel.entities.composite;
+
+import es.upm.miw.apaw_practice.adapters.mongodb.padel.entities.PlayerEntity;
+import es.upm.miw.apaw_practice.adapters.mongodb.padel.entities.RacketEntity;
+import es.upm.miw.apaw_practice.adapters.mongodb.padel.entities.composite.TreeRackets;
 
 import java.math.BigDecimal;
 import java.util.List;
