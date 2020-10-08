@@ -17,11 +17,18 @@ public class AdCampaignEntity {
     private Integer error;
     private String status;
     @DBRef
-    private List<LikesEntity> LikesEntities;
+    private LikesEntity likesEntity;
     @DBRef
     private List<PromotionEntity> promotionEntities;
 
     public AdCampaignEntity() {
+    }
+
+    public AdCampaignEntity(String id, LocalDateTime scheduleDate, LikesEntity likesEntity, List<PromotionEntity> promotionEntities) {
+        this.id = id;
+        this.scheduleDate = scheduleDate;
+        this.likesEntity = likesEntity;
+        this.promotionEntities = promotionEntities;
     }
 
     public String getId() {
@@ -62,6 +69,22 @@ public class AdCampaignEntity {
 
     public void setStatus(String status) {
         this.status = status;
+    }
+
+    public LikesEntity getLikesEntity() {
+        return likesEntity;
+    }
+
+    public void setLikesEntity(LikesEntity likesEntity) {
+        this.likesEntity = likesEntity;
+    }
+
+    public List<PromotionEntity> getPromotionEntities() {
+        return promotionEntities;
+    }
+
+    public void setPromotionEntities(List<PromotionEntity> promotionEntities) {
+        this.promotionEntities = promotionEntities;
     }
 
     @Override

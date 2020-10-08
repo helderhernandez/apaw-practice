@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @TestConfig
-public class IssueEntityRepositoryIT {
+ class IssueEntityRepositoryIT {
 
     @Autowired
     private IssueRepository issueRepository;

@@ -30,4 +30,8 @@ public class AccountPersistenceMongodb implements AccountPersistence {
                 .save(accountEntity)
                 .toAccount();
     }
+
+    public void deleteById(String id) {
+        this.accountRepository.deleteById(id);
+    }
 }
