@@ -57,6 +57,8 @@ public class PadelSeederService {
                 new RacketEntity("BBBBB","BRAND-B","BDESCRIPTION",BigDecimal.ONE,"0,2Kg",playerEntities[0]),
                 new RacketEntity("CCCCC","BRAND-A","CDESCRIPTION",BigDecimal.ONE,"0,3Kg",playerEntities[1]),
                 new RacketEntity("DDDDD","BRAND-D","DDESCRIPTION",BigDecimal.ONE,"0,4Kg",playerEntities[2]),
+                new RacketEntity("DDDDD","BRAND-E","DDESCRIPTION",BigDecimal.ONE,"0,4Kg",playerEntities[4]),
+
 
         };
         this.racketRepository.saveAll(Arrays.asList(racketEntities));
@@ -66,7 +68,7 @@ public class PadelSeederService {
                 new TournamentEntity("TORNEO-A",LocalDateTime.of(2020,12,10,0,0),LocalDateTime.of(2020,12,20,0,0),1, List.of(playerEntities[0],playerEntities[2])),
                 new TournamentEntity("TORNEO-B",LocalDateTime.of(2020,12,20,0,0),LocalDateTime.of(2020,12,30,0,0),2, List.of(playerEntities[0],playerEntities[1],playerEntities[2])),
                 new TournamentEntity("TORNEO-C",LocalDateTime.of(2021,1,1,0,0),LocalDateTime.of(2021,10,10,0,0),3, List.of(playerEntities)),
-                new TournamentEntity("TORNEO-D",LocalDateTime.of(2021,1,1,0,0),LocalDateTime.of(2021,10,10,0,0),3, List.of(playerEntities[4])),
+                new TournamentEntity("TORNEO-D",LocalDateTime.of(2021,1,1,0,0),LocalDateTime.of(2021,10,10,0,0),4, List.of(playerEntities[4])),
 
         };
         this.tournamentRepository.saveAll(Arrays.asList(tournamentEntities));

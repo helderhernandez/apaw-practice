@@ -8,8 +8,10 @@ import java.time.LocalDateTime;
 
 @Document
 public class FilmCommentEntity {
-    @Id private String id;
-    @DBRef private FilmUserEntity commentUser;
+    @Id
+    private String id;
+    @DBRef
+    private FilmUserEntity commentUser;
     private String content;
     private Integer punctuation;
     private LocalDateTime createdAt;

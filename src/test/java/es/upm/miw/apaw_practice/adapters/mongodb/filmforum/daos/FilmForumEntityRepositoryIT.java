@@ -6,9 +6,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
-import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @TestConfig
 public class FilmForumEntityRepositoryIT {
@@ -18,15 +17,13 @@ public class FilmForumEntityRepositoryIT {
 
     @Test
     void testFindByYear() {
-        Optional<List<FilmForumEntity>> byYear = filmRepository.findByYear(2021);
-        assertTrue(byYear.isPresent());
-        assertEquals(byYear.get().size(), 2);
+        List<FilmForumEntity> byYear = filmRepository.findByYear(2021);
+        assertEquals(byYear.size(), 2);
     }
 
     @Test
     void testFindByYearNoFilm() {
-        Optional<List<FilmForumEntity>> byYear = filmRepository.findByYear(2050);
-        assertTrue(byYear.isPresent());
-        assertEquals(byYear.get().size(), 0);
+        List<FilmForumEntity> byYear = filmRepository.findByYear(2050);
+        assertEquals(byYear.size(), 0);
     }
 }

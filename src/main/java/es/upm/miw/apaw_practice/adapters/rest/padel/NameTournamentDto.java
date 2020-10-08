@@ -9,7 +9,7 @@ public class NameTournamentDto {
         //For framework
     }
 
-    public NameTournamentDto(Tournament tournament){
+    public NameTournamentDto(Tournament tournament) {
         this.name = tournament.getName();
     }
 

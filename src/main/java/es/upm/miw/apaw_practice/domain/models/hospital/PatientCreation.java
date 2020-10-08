@@ -7,7 +7,7 @@ public class PatientCreation {
     private String dni;
     private String name;
     private String surname;
-    private String [] pathologies;
+    private String[] pathologies;
 
     public PatientCreation(String dni, String name, String surname, String[] pathologies) {
         this.dni = dni;
@@ -16,7 +16,7 @@ public class PatientCreation {
         this.pathologies = pathologies;
     }
 
-    public PatientCreation(){
+    public PatientCreation() {
         //Empty for framework
     }
 

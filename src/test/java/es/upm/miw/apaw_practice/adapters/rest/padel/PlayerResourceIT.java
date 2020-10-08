@@ -17,9 +17,9 @@ public class PlayerResourceIT {
     private WebTestClient webTestClient;
 
     @Test
-    void testCreate(){
+    void testCreate() {
         PlayerCreation playerCreation =
-                new PlayerCreation("A","AA","00000000A","aaaa@aaaa.com",true);
+                new PlayerCreation("A", "AA", "00000000A", "aaaa@aaaa.com", true);
         this.webTestClient
                 .post()
                 .uri(PlayerResource.PLAYERS)
