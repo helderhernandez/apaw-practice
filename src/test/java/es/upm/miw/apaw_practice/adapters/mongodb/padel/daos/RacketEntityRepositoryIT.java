@@ -1,9 +1,9 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.padel.daos;
 
 import es.upm.miw.apaw_practice.TestConfig;
-import es.upm.miw.apaw_practice.adapters.mongodb.padel.entities.TreeRackets;
-import es.upm.miw.apaw_practice.adapters.mongodb.padel.entities.TreeRacketsComposite;
-import es.upm.miw.apaw_practice.adapters.mongodb.padel.entities.TreeRacketsLeaf;
+import es.upm.miw.apaw_practice.adapters.mongodb.padel.entities.composite.TreeRackets;
+import es.upm.miw.apaw_practice.adapters.mongodb.padel.entities.composite.TreeRacketsComposite;
+import es.upm.miw.apaw_practice.adapters.mongodb.padel.entities.composite.TreeRacketsLeaf;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;

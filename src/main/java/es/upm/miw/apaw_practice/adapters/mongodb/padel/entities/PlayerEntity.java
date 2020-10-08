@@ -1,5 +1,6 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.padel.entities;
 
+import es.upm.miw.apaw_practice.adapters.mongodb.padel.entities.builder.PlayerBuilder;
 import es.upm.miw.apaw_practice.domain.models.padel.Player;
 import es.upm.miw.apaw_practice.domain.models.padel.PlayerCreation;
 import org.springframework.beans.BeanUtils;
@@ -28,14 +29,8 @@ public class PlayerEntity {
         //Empty for Spring
     }
 
-    public PlayerEntity(String name, String surname, String dni, String email, Boolean federated, List<ReservationEntity> reservationEntities) {
-        this.id = UUID.randomUUID().toString();
-        this.dni = dni;
-        this.name = name;
-        this.surname = surname;
-        this.email = email;
-        this.federated = federated;
-        this.reservationEntities = reservationEntities;
+    public static PlayerBuilder.Name builder() {
+        return new Builder();
     }
 
     public PlayerEntity(PlayerCreation playerCreation){
@@ -127,5 +122,63 @@ public class PlayerEntity {
         Player player = new Player();
         BeanUtils.copyProperties(this, player);
         return player;
+    }
+
+    public static class Builder implements PlayerBuilder.Name,PlayerBuilder.Surname,PlayerBuilder.Dni,PlayerBuilder.Email,PlayerBuilder.Federated,PlayerBuilder.ReservationEntities,PlayerBuilder.Build {
+        private PlayerEntity playerEntity;
+
+        public Builder(){
+            this.playerEntity = new PlayerEntity();
+            this.playerEntity.id = UUID.randomUUID().toString();
+        }
+
+        @Override
+        public PlayerBuilder.Surname name(String name) {
+            this.playerEntity.name = name;
+            return this;
+        }
+
+        @Override
+        public PlayerBuilder.Dni surname(String surname) {
+            this.playerEntity.surname = surname;
+            return this;
+        }
+
+        @Override
+        public PlayerBuilder.Email dni(String dni) {
+            this.playerEntity.dni = dni;
+            return this;
+        }
+
+        @Override
+        public PlayerBuilder.Federated email(String email) {
+            this.playerEntity.email = email;
+            return this;
+        }
+
+        @Override
+        public PlayerBuilder.ReservationEntities federated(Boolean federated) {
+            this.playerEntity.federated = federated;
+            return this;
+        }
+
+        @Override
+        public PlayerBuilder.ReservationEntities reservationEntities(ReservationEntity reservationEntities) {
+            if(this.playerEntity.reservationEntities==null){
+                this.playerEntity.reservationEntities = new ArrayList<>();
+            }
+            this.playerEntity.reservationEntities.add(reservationEntities);
+            return this;
+        }
+
+        @Override
+        public PlayerBuilder.Build endReservationEntities() {
+            return this;
+        }
+
+        @Override
+        public PlayerEntity build() {
+            return this.playerEntity;
+        }
     }
 }

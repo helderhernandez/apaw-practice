@@ -43,11 +43,11 @@ public class PadelSeederService {
         this.reservationRepository.saveAll(Arrays.asList(reservationEntities));
 
         PlayerEntity[] playerEntities = {
-                new PlayerEntity("Diego", "Lusquiños Otera", "77013276A", "lusky1996@gmail.com", false, List.of(reservationEntities[0])),
-                new PlayerEntity("Diegoo", "Lusquiños Otere", "77013276B", "lusky1997@gmail.com", false, List.of(reservationEntities[1])),
-                new PlayerEntity("Diegooo", "Lusquiños Oteri", "77013276C", "lusky1998@gmail.com", true,List.of(reservationEntities[2])),
-                new PlayerEntity("Diegoooo", "Lusquiños Otero", "77013276D", "lusky1999@gmail.com", true, List.of(reservationEntities[3],reservationEntities[4],reservationEntities[5])),
-                new PlayerEntity("Andrea", "Lusquiños Oteru", "77013276E", "lusky1999@gmail.com", true, null)
+                PlayerEntity.builder().name("Diego").surname("Lusquiños Otera").dni("77013276A").email("lusky1996@gmail.com").federated(false).reservationEntities(reservationEntities[0]).endReservationEntities().build(),
+                PlayerEntity.builder().name("Diegoo").surname("Lusquiños Otere").dni("77013276B").email("lusky1997@gmail.com").federated(false).reservationEntities(reservationEntities[1]).endReservationEntities().build(),
+                PlayerEntity.builder().name("Diegooo").surname("Lusquiños Oteri").dni("77013276C").email("lusky1998@gmail.com").federated(true).reservationEntities(reservationEntities[2]).endReservationEntities().build(),
+                PlayerEntity.builder().name("Diegoooo").surname("Lusquiños Otero").dni("77013276D").email("lusky1999@gmail.com").federated(true).reservationEntities(reservationEntities[3]).reservationEntities(reservationEntities[4]).reservationEntities(reservationEntities[5]).endReservationEntities().build(),
+                PlayerEntity.builder().name("Andrea").surname("Lusquiños Oteru").dni("77013276E").email("lusky2000@gmail.com").federated(true).reservationEntities(null).endReservationEntities().build(),
 
         };
         this.playerRepository.saveAll(Arrays.asList(playerEntities));
