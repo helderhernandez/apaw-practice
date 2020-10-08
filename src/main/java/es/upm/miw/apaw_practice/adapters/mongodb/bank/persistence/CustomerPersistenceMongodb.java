@@ -2,6 +2,8 @@ package es.upm.miw.apaw_practice.adapters.mongodb.bank.persistence;
 
 
 import es.upm.miw.apaw_practice.adapters.mongodb.bank.daos.CustomerRepository;
+import es.upm.miw.apaw_practice.adapters.mongodb.bank.daos.MortgageRepository;
+import es.upm.miw.apaw_practice.adapters.mongodb.bank.daos.SharedAccountRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.bank.entities.CustomerEntity;
 import es.upm.miw.apaw_practice.domain.exceptions.ConflictException;
 import es.upm.miw.apaw_practice.domain.models.bank.Customer;
@@ -17,11 +19,15 @@ public class CustomerPersistenceMongodb implements CustomerPersistence {
 
     private final CustomerRepository customerRepository;
 
-    //private final MortgageRepository mortgageRepository;
+    private final MortgageRepository mortgageRepository;
+
+    private final SharedAccountRepository sharedAccountRepository;
 
     @Autowired
-    public CustomerPersistenceMongodb(CustomerRepository customerRepository) {
+    public CustomerPersistenceMongodb(CustomerRepository customerRepository, MortgageRepository mortgageRepository, SharedAccountRepository sharedAccountRepository) {
         this.customerRepository = customerRepository;
+        this.mortgageRepository = mortgageRepository;
+        this.sharedAccountRepository = sharedAccountRepository;
     }
 
 
@@ -47,11 +53,12 @@ public class CustomerPersistenceMongodb implements CustomerPersistence {
                 });
     }
 
-    /*public List<String> findDNIByMortgageAndSharedAccount(){
-        this.mortgageRepository
-        this.customerRepository.findAll().stream()
-                .filter(item -> item.getDNI())
+    public Stream<String> findDNIByMortgageAndSharedAccount() {
+        Stream<String> DNIs = this.readAll()
+                .map(item -> item.getDNI());
+
+
         return null;
-    }*/
+    }
 
 }
