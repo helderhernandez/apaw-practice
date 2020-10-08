@@ -13,7 +13,7 @@ import java.util.Arrays;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @TestConfig
-public class VehicleTransportPersistenceMongodbIT {
+public class CarTransportPersistenceMongodbIT {
 
     @Autowired
     private VehicleTransportPersistenceMongodb vehicleTransportPersistence;

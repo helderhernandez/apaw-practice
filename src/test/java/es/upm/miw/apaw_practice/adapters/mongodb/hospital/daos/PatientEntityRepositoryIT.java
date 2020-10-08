@@ -6,7 +6,6 @@ import es.upm.miw.apaw_practice.adapters.mongodb.hospital.entities.PatientEntity
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.math.BigDecimal;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -20,17 +19,16 @@ class PatientEntityRepositoryIT {
 
     @Test
     void testFindByDni() {
-        String [] symptomsA = { "Symptom A" };
-        String [] causesA = { "Cause A" };
-        List<IllnessEntity> illness = List.of(new IllnessEntity(3,symptomsA,causesA,true));
-        String [] pathologiesA = {"pathologieA","pathlologieA2"};
+        IllnessEntity illnessEntity = IllnessEntity.builder().phase(3).symptoms("Symptom A").endSymptoms().causes("Cause A").endCauses().contagious(true).build();
+        List<IllnessEntity> illness = List.of(illnessEntity);
+        String[] pathologiesA = {"pathology A", "pathology A2"};
 
         assertTrue(this.patientRepository.findByDni("11111111A").isPresent());
         PatientEntity patientEntity = this.patientRepository.findByDni("11111111A").get();
         assertEquals("NameA", patientEntity.getName());
         assertEquals("SurnameA", patientEntity.getSurname());
-        assertEquals(pathologiesA[0],patientEntity.getPathologies()[0]);
-        assertEquals(pathologiesA[1],patientEntity.getPathologies()[1]);
-        assertEquals(illness.size(),patientEntity.getIllnessEntities().size());
+        assertEquals(pathologiesA[0], patientEntity.getPathologies()[0]);
+        assertEquals(pathologiesA[1], patientEntity.getPathologies()[1]);
+        assertEquals(illness.size(), patientEntity.getIllnessEntities().size());
     }
 }

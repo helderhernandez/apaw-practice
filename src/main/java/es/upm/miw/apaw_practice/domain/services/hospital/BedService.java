@@ -13,8 +13,8 @@ public class BedService {
     private BedPersistence bedPersistence;
 
     @Autowired
-    public BedService(BedPersistence bedPersistence){
-        this.bedPersistence=bedPersistence;
+    public BedService(BedPersistence bedPersistence) {
+        this.bedPersistence = bedPersistence;
     }
 
     public Bed updateOccupied(String id, Boolean occupied) {

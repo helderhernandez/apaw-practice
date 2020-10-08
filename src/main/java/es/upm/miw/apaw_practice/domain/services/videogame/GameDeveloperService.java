@@ -21,4 +21,8 @@ public class GameDeveloperService {
         return gameDeveloperPersistence.create(gameDeveloperCreation);
     }
 
+    public GameDeveloper updatePhone(String id, Integer phone){
+        return gameDeveloperPersistence.updatePhone(id,phone);
+    }
+
 }

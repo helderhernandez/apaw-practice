@@ -10,7 +10,7 @@ public class RacketPriceUpdating {
         //Empty for Spring
     }
 
-    public RacketPriceUpdating(String brand,BigDecimal price) {
+    public RacketPriceUpdating(String brand, BigDecimal price) {
         this.brand = brand;
         this.price = price;
     }
