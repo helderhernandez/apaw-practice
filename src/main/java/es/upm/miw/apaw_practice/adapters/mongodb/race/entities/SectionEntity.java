@@ -1,10 +1,6 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.race.entities;
 
-import org.springframework.data.mongodb.core.mapping.DBRef;
-
 public class SectionEntity {
-    @DBRef
-    private RaceEntity raceEntity;
     private Integer ordinalNumber;
     private Integer lengthInMeters;
 
@@ -12,18 +8,9 @@ public class SectionEntity {
         // empty for framework
     }
 
-    public SectionEntity(RaceEntity raceEntity, Integer ordinalNumber, Integer lengthInMeters) {
-        this.raceEntity = raceEntity;
+    public SectionEntity(Integer ordinalNumber, Integer lengthInMeters) {
         this.ordinalNumber = ordinalNumber;
         this.lengthInMeters = lengthInMeters;
-    }
-
-    public RaceEntity getRaceEntity() {
-        return raceEntity;
-    }
-
-    public void setRaceEntity(RaceEntity raceEntity) {
-        this.raceEntity = raceEntity;
     }
 
     public Integer getOrdinalNumber() {
@@ -45,8 +32,7 @@ public class SectionEntity {
     @Override
     public String toString() {
         return "SectionEntity{" +
-                "raceEntity=" + raceEntity +
-                ", ordinalNumber=" + ordinalNumber +
+                "ordinalNumber=" + ordinalNumber +
                 ", lengthInMeters=" + lengthInMeters +
                 '}';
     }

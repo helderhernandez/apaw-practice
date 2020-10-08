@@ -10,6 +10,7 @@ import es.upm.miw.apaw_practice.adapters.mongodb.kitchen.KitchenSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.movie.MovieSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.padel.PadelSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.project.ProjectSeederService;
+import es.upm.miw.apaw_practice.adapters.mongodb.race.RaceSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.school.SchoolSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.shop.ShopSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.socialnetwork.SocialNetworkSeederService;
@@ -44,6 +45,7 @@ public class DatabaseSeederService {
     private TransitTaxesSeederService transitTaxesSeederService;
     private SocialNetworkSeederService socialNetworkSeederService;
     private PropertySeederService propertySeederService;
+    private RaceSeederService raceSeederService;
 
     @Autowired
     public DatabaseSeederService(ShopSeederService shopSeederService, SchoolSeederService schoolSeederService,
@@ -55,7 +57,7 @@ public class DatabaseSeederService {
                                  AirportSeederService airportSeederService, TicketBusSeederService ticketBusSeederService,
                                  VideogameSeederService videogameSeederService, TransitTaxesSeederService transitTaxesSeederService,
                                  TransportSeedService transportSeedService, SocialNetworkSeederService socialNetworkSeederService,
-                                 PropertySeederService propertySeederService) {
+                                 PropertySeederService propertySeederService, RaceSeederService raceSeederService) {
 
         this.shopSeederService = shopSeederService;
         this.schoolSeederService = schoolSeederService;
@@ -76,6 +78,7 @@ public class DatabaseSeederService {
         this.transitTaxesSeederService = transitTaxesSeederService;
         this.socialNetworkSeederService = socialNetworkSeederService;
         this.propertySeederService = propertySeederService;
+        this.raceSeederService = raceSeederService;
 
         this.seedDatabase();
     }
@@ -100,6 +103,7 @@ public class DatabaseSeederService {
         this.transitTaxesSeederService.seedDatabase();
         this.socialNetworkSeederService.seedDatabase();
         this.propertySeederService.seedDatabase();
+        this.raceSeederService.seedDatabase();
     }
 
     public void deleteAll() {
@@ -122,6 +126,7 @@ public class DatabaseSeederService {
         this.transitTaxesSeederService.deleteAll();
         this.socialNetworkSeederService.deleteAll();
         this.propertySeederService.deleteAll();
+        this.raceSeederService.deleteAll();
     }
 
     public void reSeedDatabase() {
