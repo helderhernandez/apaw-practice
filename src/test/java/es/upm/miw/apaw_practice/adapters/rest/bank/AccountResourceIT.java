@@ -9,6 +9,9 @@ import org.springframework.web.reactive.function.BodyInserters;
 
 import java.math.BigDecimal;
 
+import static es.upm.miw.apaw_practice.adapters.rest.bank.AccountResource.ACCOUNTS;
+import static es.upm.miw.apaw_practice.adapters.rest.bank.AccountResource.ID_ID;
+
 @RestTestConfig
 public class AccountResourceIT {
 
@@ -20,9 +23,18 @@ public class AccountResourceIT {
         AccountItem accountItem = new AccountItem(BigDecimal.ZERO);
         this.webTestClient
                 .put()
-                .uri(AccountResource.ACCOUNTS + AccountResource.ID_ID + AccountResource.AMOUNT, "notAnId")
+                .uri(ACCOUNTS + AccountResource.ID_ID + AccountResource.AMOUNT, "notAnId")
                 .body(BodyInserters.fromValue(accountItem))
                 .exchange()
                 .expectStatus().isNotFound();
+    }
+
+    @Test
+    void testDelete() {
+        this.webTestClient
+                .delete()
+                .uri(ACCOUNTS + ID_ID, "kk")
+                .exchange()
+                .expectStatus().isOk();
     }
 }

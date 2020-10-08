@@ -46,7 +46,8 @@ public class PadelSeederService {
                 new PlayerEntity("Diego", "Lusquiños Otera", "77013276A", "lusky1996@gmail.com", false, List.of(reservationEntities[0])),
                 new PlayerEntity("Diegoo", "Lusquiños Otere", "77013276B", "lusky1997@gmail.com", false, List.of(reservationEntities[1])),
                 new PlayerEntity("Diegooo", "Lusquiños Oteri", "77013276C", "lusky1998@gmail.com", true,List.of(reservationEntities[2])),
-                new PlayerEntity("Diegoooo", "Lusquiños Otero", "77013276D", "lusky1999@gmail.com", true, List.of(reservationEntities[3],reservationEntities[4],reservationEntities[5]))
+                new PlayerEntity("Diegoooo", "Lusquiños Otero", "77013276D", "lusky1999@gmail.com", true, List.of(reservationEntities[3],reservationEntities[4],reservationEntities[5])),
+                new PlayerEntity("Andrea", "Lusquiños Oteru", "77013276E", "lusky1999@gmail.com", true, null)
 
         };
         this.playerRepository.saveAll(Arrays.asList(playerEntities));
@@ -65,6 +66,7 @@ public class PadelSeederService {
                 new TournamentEntity("TORNEO-A",LocalDateTime.of(2020,12,10,0,0),LocalDateTime.of(2020,12,20,0,0),1, List.of(playerEntities[0],playerEntities[2])),
                 new TournamentEntity("TORNEO-B",LocalDateTime.of(2020,12,20,0,0),LocalDateTime.of(2020,12,30,0,0),2, List.of(playerEntities[0],playerEntities[1],playerEntities[2])),
                 new TournamentEntity("TORNEO-C",LocalDateTime.of(2021,1,1,0,0),LocalDateTime.of(2021,10,10,0,0),3, List.of(playerEntities)),
+                new TournamentEntity("TORNEO-D",LocalDateTime.of(2021,1,1,0,0),LocalDateTime.of(2021,10,10,0,0),3, List.of(playerEntities[4])),
 
         };
         this.tournamentRepository.saveAll(Arrays.asList(tournamentEntities));

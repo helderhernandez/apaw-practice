@@ -1,21 +1,18 @@
 package es.upm.miw.apaw_practice.domain.models.ticketbus;
 
-import org.springframework.data.annotation.Id;
 
+public class JourneyCreation {
 
-public class JourneyCreate {
-    @Id
-    private String id;
     private String departure;
     private String arrive;
     private Integer numStops;
 
 
-    public JourneyCreate() {
+    public JourneyCreation() {
         //empty from framework
     }
 
-    public JourneyCreate(String departure, String arrive, Integer numStops) {
+    public JourneyCreation(String departure, String arrive, Integer numStops) {
         this.departure = departure;
         this.arrive = arrive;
         this.numStops = numStops;
@@ -30,7 +27,7 @@ public class JourneyCreate {
     }
 
     public String getArrive() {
-        return arrive;
+        return this.arrive;
     }
 
     public void setArrive(String arrive) {

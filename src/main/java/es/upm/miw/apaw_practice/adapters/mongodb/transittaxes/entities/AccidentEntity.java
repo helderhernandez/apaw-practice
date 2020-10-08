@@ -1,12 +1,12 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.transittaxes.entities;
 
+import es.upm.miw.apaw_practice.domain.models.transittaxes.Accident;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
 import java.util.Objects;
-import java.util.UUID;
 
 @Document
 public class AccidentEntity {
@@ -22,8 +22,8 @@ public class AccidentEntity {
         //empty from framework
     }
 
-    public AccidentEntity(String refAccident, LocalDateTime date, String place) {
-        this.id = UUID.randomUUID().toString();
+    public AccidentEntity(String id, String refAccident, LocalDateTime date, String place) {
+        this.id = id;
         this.refAccident = refAccident;
         this.date = date;
         this.place = place;
@@ -85,5 +85,9 @@ public class AccidentEntity {
                 ", date=" + date +
                 ", place='" + place + '\'' +
                 '}';
+    }
+
+    public Accident toAccident() {
+        return new Accident(id, refAccident, date, place);
     }
 }
