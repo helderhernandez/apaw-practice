@@ -37,12 +37,10 @@ public class BedPersistenceMongodb implements BedPersistence {
     @Override
     public Stream<Bed> findByNameWidthOfBeds(String name) {
         return this.bedRepository.findAll().stream()
-                .peek(System.out::println)
                 .filter(bedEntity -> bedEntity.getRoomEntity().getPatientEntities().stream()
                         .map(PatientEntity::getName)
                         .anyMatch(name::equals))
-                .map(BedEntity::toBed)
-                .peek(x -> LogManager.getLogger(this.getClass()).info("__RESULTADO__: " + x));
+                .map(BedEntity::toBed);
     }
 }
 
