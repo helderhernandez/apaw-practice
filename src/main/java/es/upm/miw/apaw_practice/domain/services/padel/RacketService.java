@@ -16,18 +16,18 @@ public class RacketService {
         this.racketPersistence = racketPersistence;
     }
 
-    public void uptadePrices(RacketPriceUpdating racketPriceUpdating){
+    public void uptadePrices(RacketPriceUpdating racketPriceUpdating) {
         this.racketPersistence.readByBrand(racketPriceUpdating.getBrand())
                 .peek(racket -> racket.setPrice(racket.getPrice().add(racketPriceUpdating.getPrice())))
                 .forEach(racket -> this.racketPersistence.update(racket));
 
     }
 
-    public void delete(String id){
+    public void delete(String id) {
         this.racketPersistence.deleteById(id);
     }
 
-    public Stream<String> findBrandRacketPlayersToPlayInLevelTournamentGreaterThan(Integer level){
+    public Stream<String> findBrandRacketPlayersToPlayInLevelTournamentGreaterThan(Integer level) {
         return this.racketPersistence.findBrandRacketPlayersToPlayInLevelTournamentGreaterThan(level);
     }
 }
