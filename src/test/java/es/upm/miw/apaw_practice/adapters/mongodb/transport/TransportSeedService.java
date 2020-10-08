@@ -3,11 +3,11 @@ package es.upm.miw.apaw_practice.adapters.mongodb.transport;
 
 import es.upm.miw.apaw_practice.adapters.mongodb.transport.daos.DepartmentRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.transport.daos.ExtraRepository;
-import es.upm.miw.apaw_practice.adapters.mongodb.transport.daos.VehicleReopsitory;
+import es.upm.miw.apaw_practice.adapters.mongodb.transport.daos.VehicleTransportRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.transport.daos.WorkerRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.transport.entities.DepartmentEntity;
 import es.upm.miw.apaw_practice.adapters.mongodb.transport.entities.ExtraEntity;
-import es.upm.miw.apaw_practice.adapters.mongodb.transport.entities.VehicleEntity;
+import es.upm.miw.apaw_practice.adapters.mongodb.transport.entities.VehicleTransportEntity;
 import es.upm.miw.apaw_practice.adapters.mongodb.transport.entities.WorkerEntity;
 import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +24,7 @@ public class TransportSeedService {
     @Autowired
     private ExtraRepository extraRepository;
     @Autowired
-    private VehicleReopsitory vehicleReopsitory;
+    private VehicleTransportRepository vehicleTransportRepository;
     @Autowired
     private WorkerRepository workerRepository;
 
@@ -50,16 +50,16 @@ public class TransportSeedService {
                 new DepartmentEntity("name2", "ubication2", Arrays.asList(workers[0], workers[2]) )
         };
         this.departmentRepository.saveAll(Arrays.asList(departments));
-        VehicleEntity[] vehicles = {
-                new VehicleEntity("brand1", "model1", "plate1", LocalDate.now(), workers[0]),
-                new VehicleEntity("brand2", "model2", "plate2", LocalDate.now(), workers[1]),
-                new VehicleEntity("brand3", "model3", "plate3", LocalDate.now(), workers[2])
+        VehicleTransportEntity[] vehicles = {
+                new VehicleTransportEntity("brand1", "model1", "plate1", LocalDate.now(), workers[0]),
+                new VehicleTransportEntity("brand2", "model2", "plate2", LocalDate.now(), workers[1]),
+                new VehicleTransportEntity("brand3", "model3", "plate3", LocalDate.now(), workers[2])
         };
-        this.vehicleReopsitory.saveAll(Arrays.asList(vehicles));
+        this.vehicleTransportRepository.saveAll(Arrays.asList(vehicles));
     }
 
     public void deleteAll() {
-        this.vehicleReopsitory.deleteAll();
+        this.vehicleTransportRepository.deleteAll();
         this.departmentRepository.deleteAll();
         this.workerRepository.deleteAll();
         this.extraRepository.deleteAll();

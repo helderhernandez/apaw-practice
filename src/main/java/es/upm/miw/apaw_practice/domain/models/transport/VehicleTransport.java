@@ -5,7 +5,7 @@ import es.upm.miw.apaw_practice.adapters.mongodb.transport.entities.WorkerEntity
 import java.time.LocalDate;
 import java.util.UUID;
 
-public class Vehicle {
+public class VehicleTransport {
 
     private String id;
     private String brand;
@@ -14,11 +14,11 @@ public class Vehicle {
     private LocalDate boughtDate;
     private WorkerEntity workerEntity;
 
-    public Vehicle() {
+    public VehicleTransport() {
         //empty for framework
     }
 
-    public Vehicle(String brand, String model, String plate, LocalDate boughtDate, WorkerEntity workerEntity) {
+    public VehicleTransport(String brand, String model, String plate, LocalDate boughtDate, WorkerEntity workerEntity) {
         this.id = UUID.randomUUID().toString();
         this.brand = brand;
         this.model = model;
