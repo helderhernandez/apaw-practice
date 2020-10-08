@@ -1,5 +1,7 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.airport.entities;
 
+import es.upm.miw.apaw_practice.domain.models.airport.Suitcase;
+
 import java.util.Objects;
 
 public class SuitcaseEntity {
@@ -42,6 +44,9 @@ public class SuitcaseEntity {
         this.manufacturer = manufacturer;
     }
 
+    public Suitcase toSuitCase() {
+        return new Suitcase(color, size, manufacturer);
+    }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
