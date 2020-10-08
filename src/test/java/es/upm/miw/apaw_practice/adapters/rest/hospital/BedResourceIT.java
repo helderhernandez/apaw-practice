@@ -28,7 +28,7 @@ class BedResourceIT {
                 .expectStatus().isNotFound();
     }
 
-    /*@Test
+    @Test
     void testSearchByNameWidthOfBeds(){
         this.webTestClient
                 .get()
@@ -38,9 +38,9 @@ class BedResourceIT {
                                 .build())
                 .exchange()
                 .expectStatus().isOk()
-                .expectBodyList(Integer.class)
-                ;//.value(beds -> assertTrue(beds. > 0))
-                ;//.value(beds -> assertEquals(105, beds.get(0)));
-    }*/
+                .expectBodyList(WidthDto.class)
+                .value(beds -> assertTrue(beds.size() > 0))
+                .value(beds -> assertEquals("125", beds.get(0).getWidth()));
+    }
 
 }

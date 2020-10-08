@@ -29,8 +29,8 @@ public class BedResource {
     }
 
     @GetMapping(SEARCH)
-    public Stream<String> findByNameWidthOfBeds(@RequestParam String q) {
+    public Stream<WidthDto> findByNameWidthOfBeds(@RequestParam String q) {
         String name = new LexicalAnalyzer().extractWithAssure(q, "name");
-        return this.bedService.findByNameWidthOfBeds(name);
+        return this.bedService.findByNameWidthOfBeds(name).map(WidthDto::new);
     }
 }
