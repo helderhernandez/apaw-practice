@@ -1,12 +1,12 @@
 package es.upm.miw.apaw_practice.adapters.rest.project;
 
 import es.upm.miw.apaw_practice.domain.models.project.Issue;
+import es.upm.miw.apaw_practice.domain.models.project.IssueDoneStatusUpdating;
 import es.upm.miw.apaw_practice.domain.services.project.IssueService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.stream.Stream;
 
 @RestController
@@ -25,6 +25,11 @@ public class IssueResource {
     @GetMapping
     public Stream<Issue> readAll() {
         return this.issueService.readAll();
+    }
+
+    @PatchMapping
+    public void updateDoneStatus(@RequestBody List<IssueDoneStatusUpdating> issueDoneStatusUpdatingList) {
+        this.issueService.updateDoneStatus(issueDoneStatusUpdatingList);
     }
 
 }
