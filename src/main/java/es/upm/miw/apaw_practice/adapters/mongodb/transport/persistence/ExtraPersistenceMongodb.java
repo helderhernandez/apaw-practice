@@ -44,4 +44,9 @@ public class ExtraPersistenceMongodb implements ExtraPersistence {
     public Stream<Extra> readAll() {
         return this.extraRepository.findAll().stream()
                 .map(ExtraEntity::toExtra);    }
+
+    @Override
+    public void deleteById(String id) {
+        this.extraRepository.deleteById(id);
+    }
 }

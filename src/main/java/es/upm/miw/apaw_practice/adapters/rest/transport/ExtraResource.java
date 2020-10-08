@@ -15,6 +15,7 @@ import java.util.stream.Stream;
 @RequestMapping(ExtraResource.EXTRAS)
 public class ExtraResource {
     static final String EXTRAS = "/transport/extras";
+    static final String ID_ID = "/{id}";
 
     private ExtraService extraService;
 
@@ -31,6 +32,11 @@ public class ExtraResource {
     @GetMapping
     public Stream<Extra> readAll() {
         return this.extraService.readAll();
+    }
+
+    @DeleteMapping(ID_ID)
+    public void delete(@PathVariable String id) {
+        this.extraService.delete(id);
     }
 
 }

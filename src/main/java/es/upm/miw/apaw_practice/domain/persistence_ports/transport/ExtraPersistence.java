@@ -14,4 +14,6 @@ public interface ExtraPersistence {
     Extra findById(String id);
 
     Stream<Extra> readAll();
+
+    void deleteById(String id);
 }
