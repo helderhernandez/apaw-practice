@@ -1,35 +1,45 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.transittaxes.entities;
 
+import es.upm.miw.apaw_practice.domain.models.transittaxes.Tax;
+import es.upm.miw.apaw_practice.domain.models.transittaxes.TaxCreation;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.math.BigDecimal;
+import java.time.LocalDate;
 import java.util.Objects;
 import java.util.UUID;
 
 @Document
-public class TransitTaxesEntity {
+public class TaxEntity {
 
     @Id
     private String id;
     @Indexed(unique = true)
-    private String refTaxes;
+    private String refTax;
     private String description;
     private BigDecimal price;
     private Boolean paid;
 
-    public TransitTaxesEntity() {
+    public TaxEntity() {
         //empty from framework
     }
 
-    public TransitTaxesEntity(String refTaxes, String description, BigDecimal price, Boolean paid) {
+    public TaxEntity(String refTax, String description, BigDecimal price, Boolean paid) {
         this.id = UUID.randomUUID().toString();
-        this.refTaxes = refTaxes;
+        this.refTax = refTax;
         this.description = description;
         this.price = price;
         this.paid = paid;
     }
+
+    public TaxEntity(TaxCreation taxCreation) {
+        BeanUtils.copyProperties(taxCreation, this);
+        this.id = UUID.randomUUID().toString();
+    }
+
 
     public String getId() {
         return id;
@@ -39,12 +49,12 @@ public class TransitTaxesEntity {
         this.id = id;
     }
 
-    public String getRefTaxes() {
-        return refTaxes;
+    public String getRefTax() {
+        return refTax;
     }
 
-    public void setRefTaxes(String refTaxes) {
-        this.refTaxes = refTaxes;
+    public void setRefTax(String refTax) {
+        this.refTax = refTax;
     }
 
     public String getDescription() {
@@ -75,9 +85,9 @@ public class TransitTaxesEntity {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        TransitTaxesEntity that = (TransitTaxesEntity) o;
+        TaxEntity that = (TaxEntity) o;
         return Objects.equals(id, that.id) &&
-                Objects.equals(refTaxes, that.refTaxes) &&
+                Objects.equals(refTax, that.refTax) &&
                 Objects.equals(description, that.description) &&
                 Objects.equals(price, that.price) &&
                 Objects.equals(paid, that.paid);
@@ -85,17 +95,23 @@ public class TransitTaxesEntity {
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, refTaxes, description, price, paid);
+        return Objects.hash(id, refTax, description, price, paid);
     }
 
     @Override
     public String toString() {
         return "TransitTaxesEntity{" +
                 "id='" + id + '\'' +
-                ", refTaxes='" + refTaxes + '\'' +
+                ", refTaxes='" + refTax + '\'' +
                 ", description='" + description + '\'' +
                 ", price=" + price +
                 ", paid=" + paid +
                 '}';
+    }
+
+    public Tax toTax() {
+        Tax tax = new Tax();
+        BeanUtils.copyProperties(this, tax);
+        return tax;
     }
 }

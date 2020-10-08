@@ -10,7 +10,7 @@ public class Car {
     private String brand;
     private List<Accident> accidents;
     private Owner owner;
-    private List<TransitTaxes> transitTaxes;
+    private List<Tax> transitTaxes;
 
     public Car() {
         //empty from framework
@@ -56,11 +56,11 @@ public class Car {
         this.owner = owner;
     }
 
-    public List<TransitTaxes> getTransitTaxes() {
+    public List<Tax> getTransitTaxes() {
         return transitTaxes;
     }
 
-    public void setTransitTaxes(List<TransitTaxes> transitTaxes) {
+    public void setTransitTaxes(List<Tax> transitTaxes) {
         this.transitTaxes = transitTaxes;
     }
 }
