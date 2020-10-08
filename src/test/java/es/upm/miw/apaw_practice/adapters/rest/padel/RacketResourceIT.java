@@ -12,8 +12,8 @@ import org.springframework.web.reactive.function.BodyInserters;
 
 import java.math.BigDecimal;
 
-import static es.upm.miw.apaw_practice.adapters.rest.padel.RacketResource.ID_ID;
-import static es.upm.miw.apaw_practice.adapters.rest.padel.RacketResource.RACKETS;
+import static es.upm.miw.apaw_practice.adapters.rest.padel.RacketResource.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 @RestTestConfig
 public class RacketResourceIT {
@@ -51,5 +51,37 @@ public class RacketResourceIT {
                 .uri(RACKETS + ID_ID, "kk")
                 .exchange()
                 .expectStatus().isOk();
+    }
+
+    @Test
+    void testfindBrandRacketPlayersToPlayInLevelTournamentGreaterThanZero(){
+        this.webTestClient
+                .get()
+                .uri(uriBuilder ->
+                        uriBuilder.path(RACKETS + SEARCH)
+                                .queryParam("q", "level:0")
+                                .build())
+                .exchange()
+                .expectStatus().isOk()
+                .expectBodyList(BrandRacketDto.class)
+                .value(racketDtos -> assertFalse(racketDtos.isEmpty()))
+                .value(racketDtos -> assertEquals("BRAND-A",racketDtos.get(0).getBrand()))
+                .value(racketDtos -> assertEquals("BRAND-B",racketDtos.get(1).getBrand()))
+                .value(racketDtos -> assertEquals("BRAND-D",racketDtos.get(2).getBrand()));
+    }
+
+    @Test
+    void testfindBrandRacketPlayersToPlayInLevelTournamentGreaterThanThree(){
+        this.webTestClient
+                .get()
+                .uri(uriBuilder ->
+                        uriBuilder.path(RACKETS + SEARCH)
+                                .queryParam("q", "level:3")
+                                .build())
+                .exchange()
+                .expectStatus().isOk()
+                .expectBodyList(BrandRacketDto.class)
+                .value(racketDtos -> assertFalse(racketDtos.isEmpty()))
+                .value(racketDtos -> assertEquals("BRAND-E",racketDtos.get(0).getBrand()));
     }
 }

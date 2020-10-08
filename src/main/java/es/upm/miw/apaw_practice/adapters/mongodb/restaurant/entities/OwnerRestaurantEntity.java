@@ -6,17 +6,17 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.util.UUID;
 
 @Document
-public class OwnerEntity {
+public class OwnerRestaurantEntity {
     @Id
     private String id;
     private String name;
     private String familyName;
 
-    public OwnerEntity(){
+    public OwnerRestaurantEntity(){
         //empty for framework
     }
 
-    public OwnerEntity(String id, String name, String familyName){
+    public OwnerRestaurantEntity(String id, String name, String familyName){
         this.id = UUID.randomUUID().toString();
         this.name = name;
         this.familyName = familyName;
@@ -41,7 +41,7 @@ public class OwnerEntity {
 
     @Override
     public boolean equals(Object obj) {
-        return this == obj || obj != null && getClass() == obj.getClass() && (id.equals(((OwnerEntity) obj).id));
+        return this == obj || obj != null && getClass() == obj.getClass() && (id.equals(((OwnerRestaurantEntity) obj).id));
     }
 
     @Override

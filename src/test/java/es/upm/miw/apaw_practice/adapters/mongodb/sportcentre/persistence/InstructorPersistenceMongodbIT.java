@@ -28,7 +28,7 @@ public class InstructorPersistenceMongodbIT {
 
     @Test
     void testCreate(){
-        Speciality speciality = new SpecialityEntity("spec7", "Padel", "Padel training", 120, true).toSpeciality();
+        Speciality speciality = SpecialityEntity.builder().id("spec7").title("Padel").description("Padel training").duration(120).recomended(true).build().toSpeciality();
         InstructorCreation instructorCreation = new InstructorCreation("222222222A", "Eduardo", "Jimenez", new BigDecimal(1300), List.of(speciality));
         Instructor instructor = this.instructorPersistence.create(instructorCreation);
         assertEquals("222222222A", instructor.getDni());

@@ -5,9 +5,9 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Optional;
 
 public interface FilmCommentRepository extends MongoRepository<FilmCommentEntity, String> {
-    Optional<List<FilmCommentEntity>> findByPunctuation(Integer punctuation);
-    Optional<List<FilmCommentEntity>> findByCreatedAt(LocalDateTime createdAt);
+    List<FilmCommentEntity> findByPunctuation(Integer punctuation);
+
+    List<FilmCommentEntity> findByCreatedAt(LocalDateTime createdAt);
 }

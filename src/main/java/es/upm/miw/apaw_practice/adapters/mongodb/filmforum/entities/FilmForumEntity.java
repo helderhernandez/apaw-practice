@@ -8,9 +8,12 @@ import java.util.List;
 
 @Document
 public class FilmForumEntity {
-    @Id private String id;
-    @DBRef private List<FilmActorEntity> filmActors;
-    @DBRef private List<FilmCommentEntity> filmComments;
+    @Id
+    private String id;
+    @DBRef
+    private List<FilmActorEntity> filmActors;
+    @DBRef
+    private List<FilmCommentEntity> filmComments;
     private String name;
     private Integer year;
     private Boolean isForAllPublic;
