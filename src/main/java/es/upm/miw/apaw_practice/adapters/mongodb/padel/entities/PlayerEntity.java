@@ -36,7 +36,7 @@ public class PlayerEntity {
     public PlayerEntity(PlayerCreation playerCreation){
         BeanUtils.copyProperties(playerCreation, this);
         this.id = UUID.randomUUID().toString();
-        this.reservationEntities= new ArrayList<ReservationEntity>();
+        this.reservationEntities= new ArrayList<>();
 
     }
 
@@ -127,7 +127,7 @@ public class PlayerEntity {
     public static class Builder implements PlayerBuilder.Name,PlayerBuilder.Surname,PlayerBuilder.Dni,PlayerBuilder.Email,PlayerBuilder.Federated,PlayerBuilder.ReservationEntities,PlayerBuilder.Build {
         private PlayerEntity playerEntity;
 
-        public Builder(){
+        Builder(){
             this.playerEntity = new PlayerEntity();
             this.playerEntity.id = UUID.randomUUID().toString();
         }
