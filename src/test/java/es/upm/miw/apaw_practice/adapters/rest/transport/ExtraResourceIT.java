@@ -45,4 +45,13 @@ public class ExtraResourceIT {
                 .getPaid());
     }
 
+    @Test
+    void testDelete() {
+        this.webTestClient
+                .delete()
+                .uri(ExtraResource.EXTRAS + ExtraResource.ID_ID, "kk")
+                .exchange()
+                .expectStatus().isOk();
+    }
+
 }

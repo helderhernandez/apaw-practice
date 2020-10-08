@@ -33,4 +33,8 @@ public class ExtraService {
     public Stream<Extra> readAll() {
         return this.extraPersistence.readAll();
     }
+
+    public void delete(String id) {
+        this.extraPersistence.deleteById(id);
+    }
 }
