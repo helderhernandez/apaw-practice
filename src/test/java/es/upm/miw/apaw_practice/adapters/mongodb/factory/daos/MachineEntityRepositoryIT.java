@@ -27,6 +27,7 @@ public class MachineEntityRepositoryIT {
 
     @Test
     void testCreateAndRead() {
+        //System.out.println(this.machineRepository.findAll());
         assertTrue(this.machineRepository.findAll().stream()
                 .anyMatch(mach ->
                         900600L == mach.getSerialNumber() &&

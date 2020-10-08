@@ -4,8 +4,11 @@ import es.upm.miw.apaw_practice.TestConfig;
 import es.upm.miw.apaw_practice.adapters.mongodb.factory.FactorySeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.factory.daos.MachineRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.factory.entities.MachineEntity;
+import es.upm.miw.apaw_practice.domain.models.factory.Machine;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -36,7 +39,8 @@ public class MachinePersistenceMongodbIT {
 
     @Test
     void testFindMachineByEmployeeDegreeTitle() {
-        this.machinePersistence.findMachineByEmployeeDegreeTitle("Grado en Ingeria de Telecomunicaciones");
+        List<Machine> x = this.machinePersistence.findMachineByEmployeeDegreeTitle("Grado en Ingeria de Telecomunicaciones");
+        System.out.println(x);
     }
 }
 

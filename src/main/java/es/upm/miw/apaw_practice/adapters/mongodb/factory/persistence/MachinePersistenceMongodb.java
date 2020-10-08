@@ -39,14 +39,18 @@ public class MachinePersistenceMongodb implements MachinePersistence {
 
     @Override
     public List<Machine> findMachineByEmployeeDegreeTitle(String title) {
-        List<Employee> employeeTitleList = this.degreeRepository.findAll().stream()
+        List<Employee> employeeList = this.degreeRepository.findAll().stream()
                 .filter(matchedTitle -> title.equals(matchedTitle.getTitle()))
                 .map(employee -> employee.getEmployeeEntity().toEmployee())
                 .collect(Collectors.toList());
-
-        return this.machineRepository.findAll().stream()
-                .filter(employee -> !employeeTitleList.contains(employee))
+        System.out.println("Employees >>>: " + employeeList);
+        System.out.println("Before >>>> " + this.machineRepository.findAll());
+        List<Machine> x = this.machineRepository.findAll().stream()
+                .filter(machines -> !employeeList.contains(machines.getEmployeeEntities()))
                 .map(MachineEntity::toMachine)
                 .collect(Collectors.toList());
+        System.out.println("Machines >>>: " + x);
+
+        return x;
     }
 }
