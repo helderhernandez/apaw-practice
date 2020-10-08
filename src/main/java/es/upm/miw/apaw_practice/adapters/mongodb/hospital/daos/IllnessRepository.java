@@ -1,5 +1,6 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.hospital.daos;
 
+import es.upm.miw.apaw_practice.adapters.mongodb.hospital.entities.IllnessBuilder;
 import es.upm.miw.apaw_practice.adapters.mongodb.hospital.entities.IllnessEntity;
 import org.springframework.data.mongodb.repository.MongoRepository;
 

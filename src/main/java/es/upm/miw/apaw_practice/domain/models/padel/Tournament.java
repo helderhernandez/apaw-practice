@@ -76,7 +76,7 @@ public class Tournament {
 
     @Override
     public String toString() {
-        return "TournamentEntity{" +
+        return "Tournament{" +
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 ", startDay=" + startDay +

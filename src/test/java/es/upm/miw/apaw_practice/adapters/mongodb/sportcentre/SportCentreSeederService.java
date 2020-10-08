@@ -41,11 +41,11 @@ public class SportCentreSeederService {
         };
         this.assistantRepository.saveAll(Arrays.asList(assistants));
         SpecialityEntity[] specialities = {
-                new SpecialityEntity("spec1", "Zumba", "Dance Class", 60, true),
-                new SpecialityEntity("spec2", "Yoga", "Strectching and Balance Class", 70, true),
-                new SpecialityEntity("spec3", "Indoor Cycling", "Intense HIIT session of Cyling", 30, false),
-                new SpecialityEntity("spec4", "Personal Defense", "Fight session for improving personal defense", 45, true),
-                new SpecialityEntity("spec5", "Full Body", "Full body session for improving the overall shape", 50, false)
+                SpecialityEntity.builder().id("spec1").title("Zumba").description("Dance Class").duration(60).recomended(true).build(),
+                SpecialityEntity.builder().id("spec2").title("Yoga").description("Strectching and Balance Class").duration(70).recomended(true).build(),
+                SpecialityEntity.builder().id("spec3").title("Indoor Cycling").description("Intense HIIT session of Cyling").duration(30).recomended(false).build(),
+                SpecialityEntity.builder().id("spec4").title("Personal Defense").description("Fight session for improving personal defense").duration(45).recomended(true).build(),
+                SpecialityEntity.builder().id("spec5").title("Full Body").description("Full body session for improving the overall shape").duration(50).recomended(false).build()
         };
         this.specialityRepository.saveAll(Arrays.asList(specialities));
         InstructorEntity[] instructors = {
@@ -53,7 +53,7 @@ public class SportCentreSeederService {
                 new InstructorEntity("11111111B", "Gonzalo", "Sanchez", BigDecimal.valueOf(900), List.of(specialities[1])),
                 new InstructorEntity("11111111C", "Maria", "Jurado", BigDecimal.valueOf(1200), List.of(specialities[2])),
                 new InstructorEntity("11111111D", "Javier", "Fernandez", BigDecimal.valueOf(1200), List.of(specialities[3])),
-                new InstructorEntity("11111111E", "Teresa", "Izquierdo", BigDecimal.valueOf(1000), List.of(specialities[3], specialities[4]))
+                new InstructorEntity("11111111E", "Teresa", "Izquierdo", BigDecimal.valueOf(1000), List.of(specialities[4]))
         };
         this.instructorRepository.saveAll(Arrays.asList(instructors));
         SessionEntity[] sessions = {
@@ -61,10 +61,7 @@ public class SportCentreSeederService {
                 new SessionEntity("S01", 2, List.of(assistants[1], assistants[3]), instructors[1]),
                 new SessionEntity("S02", 3, List.of(assistants[0], assistants[1], assistants[4]), instructors[2]),
                 new SessionEntity("S03", 4, List.of(assistants[2], assistants[3]), instructors[3]),
-                new SessionEntity("S04", 5, List.of(assistants[4]), instructors[4]),
-                new SessionEntity("S05", 6, List.of(assistants[0],assistants[3],assistants[4], assistants[1]), instructors[1]),
-                new SessionEntity("S06", 7, List.of(assistants[2]), instructors[2]),
-                new SessionEntity("S07", 8, List.of(assistants[1], assistants[2]), instructors[3])
+                new SessionEntity("S04", 5, List.of(assistants[4]), instructors[4])
         };
         this.sessionRepository.saveAll(Arrays.asList(sessions));
     }

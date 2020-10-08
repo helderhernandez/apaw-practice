@@ -21,7 +21,7 @@ public class BedService {
         return this.bedPersistence.updateOccupied(id, occupied);
     }
 
-    public Stream<String> findByNameWidthOfBeds(String name) {
+    public Stream<Bed> findByNameWidthOfBeds(String name) {
         return this.bedPersistence.findByNameWidthOfBeds(name);
     }
 }

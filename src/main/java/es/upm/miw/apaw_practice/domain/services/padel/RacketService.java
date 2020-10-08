@@ -5,6 +5,8 @@ import es.upm.miw.apaw_practice.domain.persistence_ports.padel.RacketPersistence
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.stream.Stream;
+
 @Service
 public class RacketService {
     private RacketPersistence racketPersistence;
@@ -23,5 +25,9 @@ public class RacketService {
 
     public void delete(String id){
         this.racketPersistence.deleteById(id);
+    }
+
+    public Stream<String> findBrandRacketPlayersToPlayInLevelTournamentGreaterThan(Integer level){
+        return this.racketPersistence.findBrandRacketPlayersToPlayInLevelTournamentGreaterThan(level);
     }
 }
