@@ -73,6 +73,7 @@ public class Racket {
     public void setWeight(String weight) {
         this.weight = weight;
     }
+
     public Player getPlayer() {
         return player;
     }

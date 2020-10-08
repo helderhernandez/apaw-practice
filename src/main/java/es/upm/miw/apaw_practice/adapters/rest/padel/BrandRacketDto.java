@@ -3,10 +3,11 @@ package es.upm.miw.apaw_practice.adapters.rest.padel;
 public class BrandRacketDto {
     private String brand;
 
-    public BrandRacketDto(){
+    public BrandRacketDto() {
         //For framework
     }
-     BrandRacketDto(String brand) {
+
+    BrandRacketDto(String brand) {
         this.brand = brand;
     }
 
