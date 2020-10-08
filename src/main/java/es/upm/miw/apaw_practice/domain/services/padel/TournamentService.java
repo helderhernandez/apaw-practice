@@ -26,4 +26,5 @@ public class TournamentService {
     public Stream<Tournament> findByTournamentsAndNameDistintOfPlayer(String name){
         return this.tournamentPersistence.findByTournamentsAndNameDistintOfPlayer(name);
     }
+
 }

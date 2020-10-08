@@ -40,8 +40,6 @@ public class TournamentPersistenceMongodb implements TournamentPersistence {
                 .map(TournamentEntity::toTournament)
                 .peek(x-> LogManager.getLogger(this.getClass()).info("RESULTADO:" + x));
 
-
-
     }
 
 

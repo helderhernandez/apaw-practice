@@ -40,7 +40,5 @@ public class TournamentResourceIT {
                 .value(tournamentsName -> assertFalse(tournamentsName.isEmpty()))
                 .value(tournamentsName -> assertEquals("TORNEO-C",tournamentsName.get(0).getName()))
                 .value(tournamentsName -> assertEquals("TORNEO-D",tournamentsName.get(1).getName()));
-
-
     }
 }
