@@ -8,6 +8,5 @@ import java.util.Optional;
 
 public interface TournamentRepository extends MongoRepository<TournamentEntity,String> {
     Optional<List<TournamentEntity>> findByName(String name);
-
     Optional<TournamentEntity> findById (String id);
 }

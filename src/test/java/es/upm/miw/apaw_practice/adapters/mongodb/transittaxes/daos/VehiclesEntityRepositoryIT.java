@@ -28,7 +28,6 @@ public class VehiclesEntityRepositoryIT {
         assertEquals("Maria", vehicle.getOwner().getName());
         assertEquals("Perez", vehicle.getOwner().getFamilyName());
         assertEquals("Toledo", vehicle.getAccidents().get(0).getPlace());
-        assertEquals(1, vehicle.getTransitTaxes().size());
         assertTrue(vehicle.getAccidents().stream()
                 .map(AccidentEntity::getRefAccident)
                 .collect(Collectors.toList())

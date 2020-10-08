@@ -1,18 +1,24 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.ticketbus.entities;
 
+import es.upm.miw.apaw_practice.domain.models.ticketbus.Journey;
+import es.upm.miw.apaw_practice.domain.models.ticketbus.JourneyCreation;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Document
 public class JourneyEntity {
+
+
     @Id
     private String id;
     private String departure;
     private String arrive;
     private Integer numStops;
-
+    private LocalDateTime registrationDate;
 
     public JourneyEntity() {
         //empty from framework
@@ -23,6 +29,34 @@ public class JourneyEntity {
         this.departure = departure;
         this.arrive = arrive;
         this.numStops = numStops;
+    }
+
+    public JourneyEntity(JourneyCreation journeyCreation){
+        BeanUtils.copyProperties(journeyCreation, this);
+        this.id = UUID.randomUUID().toString();
+        this.registrationDate = LocalDateTime.now();
+    }
+
+    public Journey toJourney(){
+        Journey journey = new Journey();
+        BeanUtils.copyProperties(this, journey);
+        return journey;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public LocalDateTime getRegistrationDate() {
+        return registrationDate;
+    }
+
+    public void setRegistrationDate(LocalDateTime registrationDate) {
+        this.registrationDate = registrationDate;
     }
 
     public String getDeparture() {
