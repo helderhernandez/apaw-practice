@@ -23,7 +23,7 @@ class PatientEntityRepositoryIT {
     void testFindByDni() {
         IllnessEntity illnessEntity = IllnessEntity.builder().phase(3).symptoms("Symptom A").endSymptoms().causes("Cause A").endCauses().contagious(true).build();
         List<IllnessEntity> illness = List.of(illnessEntity);
-        String [] pathologiesA = {"pathologieA","pathlologieA2"};
+        String [] pathologiesA = {"pathology A","pathology A2"};
 
         assertTrue(this.patientRepository.findByDni("11111111A").isPresent());
         PatientEntity patientEntity = this.patientRepository.findByDni("11111111A").get();
