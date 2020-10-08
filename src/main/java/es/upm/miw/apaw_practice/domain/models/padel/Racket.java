@@ -83,7 +83,7 @@ public class Racket {
 
     @Override
     public String toString() {
-        return "RacketEntity{" +
+        return "Racket{" +
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 ", brand='" + brand + '\'' +
