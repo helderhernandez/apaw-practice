@@ -6,4 +6,6 @@ import java.math.BigDecimal;
 
 public interface AccountPersistence {
     Account updateAmount(String id, BigDecimal amount);
+
+    void deleteById(String id);
 }

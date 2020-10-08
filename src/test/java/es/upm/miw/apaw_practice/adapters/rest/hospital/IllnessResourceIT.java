@@ -8,9 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.web.reactive.server.WebTestClient;
 import org.springframework.web.reactive.function.BodyInserters;
 
-import java.util.Arrays;
-import java.util.List;
-
 @RestTestConfig
 class IllnessResourceIT {
 
@@ -18,7 +15,7 @@ class IllnessResourceIT {
     private WebTestClient webTestClient;
 
     @Test
-    void testReadAll(){
+    void testReadAll() {
         this.webTestClient
                 .get()
                 .uri(IllnessResource.ILLNESES)
@@ -29,8 +26,8 @@ class IllnessResourceIT {
     }
 
     @Test
-    void testUpdateContagious(){
-        IllnessContagiousUpdating illnessContagiousUpdating = new IllnessContagiousUpdating(4,true);
+    void testUpdateContagious() {
+        IllnessContagiousUpdating illnessContagiousUpdating = new IllnessContagiousUpdating(4, true);
 
         this.webTestClient
                 .patch()
@@ -42,8 +39,8 @@ class IllnessResourceIT {
     }
 
     @Test
-    void testUpdateContagiousNotFound(){
-        IllnessContagiousUpdating illnessContagiousUpdating = new IllnessContagiousUpdating(7,true);
+    void testUpdateContagiousNotFound() {
+        IllnessContagiousUpdating illnessContagiousUpdating = new IllnessContagiousUpdating(7, true);
 
         this.webTestClient
                 .patch()

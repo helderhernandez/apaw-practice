@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
+import java.util.stream.Stream;
 
 @Service
 public class TournamentService {
@@ -21,4 +22,9 @@ public class TournamentService {
     public Tournament uptadeStartDay(String id, LocalDateTime startDay){
         return this.tournamentPersistence.updateInitialDay(id,startDay);
     }
+
+    public Stream<Tournament> findByTournamentsAndNameDistintOfPlayer(String name){
+        return this.tournamentPersistence.findByTournamentsAndNameDistintOfPlayer(name);
+    }
+
 }

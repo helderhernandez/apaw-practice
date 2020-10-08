@@ -15,4 +15,8 @@ public interface AnimalPersistence {
     Animal create(AnimalCreation animalCreation);
 
     Animal updateAge(String id, Integer age);
+
+    Animal update(Animal animal);
+
+    void deleteById(String id);
 }

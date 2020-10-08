@@ -1,12 +1,16 @@
 package es.upm.miw.apaw_practice.adapters.mongodb;
 
+import es.upm.miw.apaw_practice.adapters.mongodb.FurnitureFactory.FurnitureFactorySeederService;
+import es.upm.miw.apaw_practice.adapters.mongodb.adCampaign.AdCampaignSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.Property.PropertySeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.airport.AirportSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.bank.BankSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.factory.FactorySeederService;
+import es.upm.miw.apaw_practice.adapters.mongodb.filmforum.FilmForumSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.garage.GarageSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.hospital.HospitalSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.kitchen.KitchenSeederService;
+import es.upm.miw.apaw_practice.adapters.mongodb.library.LibrarySeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.movie.MovieSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.padel.PadelSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.project.ProjectSeederService;
@@ -19,6 +23,7 @@ import es.upm.miw.apaw_practice.adapters.mongodb.transport.TransportSeedService;
 import es.upm.miw.apaw_practice.adapters.mongodb.transittaxes.TransitTaxesSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.veterinary.VeterinarySeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.videogame.VideogameSeederService;
+import es.upm.miw.apaw_practice.adapters.mongodb.restaurant.RestaurantSeederService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -43,7 +48,12 @@ public class DatabaseSeederService {
     private VideogameSeederService videogameSeederService;
     private TransitTaxesSeederService transitTaxesSeederService;
     private SocialNetworkSeederService socialNetworkSeederService;
+    private AdCampaignSeederService adCampaignSeederService;
+    private FilmForumSeederService filmForumSeederService;
     private PropertySeederService propertySeederService;
+    private RestaurantSeederService restaurantSeederService;
+    private FurnitureFactorySeederService furnitureFactorySeederService;
+    private LibrarySeederService librarySeederService;
 
     @Autowired
     public DatabaseSeederService(ShopSeederService shopSeederService, SchoolSeederService schoolSeederService,
@@ -55,7 +65,11 @@ public class DatabaseSeederService {
                                  AirportSeederService airportSeederService, TicketBusSeederService ticketBusSeederService,
                                  VideogameSeederService videogameSeederService, TransitTaxesSeederService transitTaxesSeederService,
                                  TransportSeedService transportSeedService, SocialNetworkSeederService socialNetworkSeederService,
-                                 PropertySeederService propertySeederService) {
+                                 RestaurantSeederService restaurantSeederService, FilmForumSeederService filmForumSeederService,
+                                 AdCampaignSeederService adCampaignSeederService,
+                                 PropertySeederService propertySeederService,FurnitureFactorySeederService furnitureFactorySeederService,
+                                 LibrarySeederService librarySeederService) {
+
 
         this.shopSeederService = shopSeederService;
         this.schoolSeederService = schoolSeederService;
@@ -75,8 +89,12 @@ public class DatabaseSeederService {
         this.videogameSeederService = videogameSeederService;
         this.transitTaxesSeederService = transitTaxesSeederService;
         this.socialNetworkSeederService = socialNetworkSeederService;
+        this.restaurantSeederService = restaurantSeederService;
+        this.adCampaignSeederService = adCampaignSeederService;
+        this.filmForumSeederService = filmForumSeederService;
         this.propertySeederService = propertySeederService;
-
+        this.furnitureFactorySeederService=furnitureFactorySeederService;
+        this.librarySeederService=librarySeederService;
         this.seedDatabase();
     }
 
@@ -99,7 +117,12 @@ public class DatabaseSeederService {
         this.videogameSeederService.seedDataBase();
         this.transitTaxesSeederService.seedDatabase();
         this.socialNetworkSeederService.seedDatabase();
+        this.restaurantSeederService.seedDatabase();
+        this.adCampaignSeederService.seedDatabase();
+        this.filmForumSeederService.seedDatabase();
         this.propertySeederService.seedDatabase();
+        this.furnitureFactorySeederService.seedDatabase();
+        this.librarySeederService.seedDatabase();
     }
 
     public void deleteAll() {
@@ -121,7 +144,12 @@ public class DatabaseSeederService {
         this.videogameSeederService.deleteAll();
         this.transitTaxesSeederService.deleteAll();
         this.socialNetworkSeederService.deleteAll();
+        this.restaurantSeederService.deleteAll();
+        this.adCampaignSeederService.deleteAll();
+        this.filmForumSeederService.deleteAll();
         this.propertySeederService.deleteAll();
+        this.furnitureFactorySeederService.deleteAll();
+        this.librarySeederService.deleteAll();
     }
 
     public void reSeedDatabase() {
