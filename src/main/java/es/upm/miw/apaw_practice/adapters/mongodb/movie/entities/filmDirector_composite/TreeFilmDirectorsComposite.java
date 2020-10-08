@@ -2,6 +2,7 @@ package es.upm.miw.apaw_practice.adapters.mongodb.movie.entities.filmDirector_co
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class TreeFilmDirectorsComposite implements TreeFilmDirectors {
 
@@ -22,8 +23,13 @@ public class TreeFilmDirectorsComposite implements TreeFilmDirectors {
     }
 
     @Override
-    public String getName() {
-        return this.filmDirectorsGroupName;
+    public String getFilmDirectorsGroupName() {
+        return filmDirectorsGroupName;
+    }
+
+    @Override
+    public String getFilmDirectorName() {
+        return null;
     }
 
     @Override
@@ -34,5 +40,13 @@ public class TreeFilmDirectorsComposite implements TreeFilmDirectors {
     @Override
     public void remove(TreeFilmDirectors treeFilmDirectors) {
         treeFilmDirectorsList.remove(treeFilmDirectors);
+    }
+
+    @Override
+    public List<String> getFilmDirectorsName() {
+        return treeFilmDirectorsList.stream()
+                .filter(treeFilmDirectors -> treeFilmDirectors.getFilmDirectorName() != null)
+                .map(treeFilmDirectors -> treeFilmDirectors.getFilmDirectorName())
+                .collect(Collectors.toList());
     }
 }

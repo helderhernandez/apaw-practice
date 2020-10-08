@@ -2,6 +2,8 @@ package es.upm.miw.apaw_practice.adapters.mongodb.movie.entities.filmDirector_co
 
 import es.upm.miw.apaw_practice.adapters.mongodb.movie.entities.FilmDirectorEntity;
 
+import java.util.List;
+
 public class TreeFilmDirectorsLeaf implements TreeFilmDirectors {
 
     private FilmDirectorEntity filmDirectorEntity;
@@ -16,8 +18,13 @@ public class TreeFilmDirectorsLeaf implements TreeFilmDirectors {
     }
 
     @Override
-    public String getName() {
-        return this.filmDirectorEntity.getName();
+    public String getFilmDirectorsGroupName() {
+        return null;
+    }
+
+    @Override
+    public String getFilmDirectorName() {
+        return filmDirectorEntity.getName();
     }
 
     @Override
@@ -28,5 +35,10 @@ public class TreeFilmDirectorsLeaf implements TreeFilmDirectors {
     @Override
     public void remove(TreeFilmDirectors treeFilmDirectors) {
         //Do nothing is leaf
+    }
+
+    @Override
+    public List<String> getFilmDirectorsName() {
+        return null;
     }
 }
