@@ -5,8 +5,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface VehicleTransportPersistence {
-
     VehicleTransport create(VehicleTransport vehicleTransport);
     VehicleTransport readByPlate(String plate);
-
 }
