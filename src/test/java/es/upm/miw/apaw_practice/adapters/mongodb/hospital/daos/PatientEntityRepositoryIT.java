@@ -3,6 +3,7 @@ package es.upm.miw.apaw_practice.adapters.mongodb.hospital.daos;
 import es.upm.miw.apaw_practice.TestConfig;
 import es.upm.miw.apaw_practice.adapters.mongodb.hospital.entities.IllnessEntity;
 import es.upm.miw.apaw_practice.adapters.mongodb.hospital.entities.PatientEntity;
+import es.upm.miw.apaw_practice.domain.models.hospital.Illness;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -20,9 +21,8 @@ class PatientEntityRepositoryIT {
 
     @Test
     void testFindByDni() {
-        String [] symptomsA = { "Symptom A" };
-        String [] causesA = { "Cause A" };
-        List<IllnessEntity> illness = List.of(new IllnessEntity(3,symptomsA,causesA,true));
+        IllnessEntity illnessEntity = IllnessEntity.builder().phase(3).symptoms("Symptom A").endSymptoms().causes("Cause A").endCauses().contagious(true).build();
+        List<IllnessEntity> illness = List.of(illnessEntity);
         String [] pathologiesA = {"pathologieA","pathlologieA2"};
 
         assertTrue(this.patientRepository.findByDni("11111111A").isPresent());
