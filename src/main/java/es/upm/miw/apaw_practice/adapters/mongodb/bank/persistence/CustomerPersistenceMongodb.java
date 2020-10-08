@@ -17,6 +17,8 @@ public class CustomerPersistenceMongodb implements CustomerPersistence {
 
     private final CustomerRepository customerRepository;
 
+    //private final MortgageRepository mortgageRepository;
+
     @Autowired
     public CustomerPersistenceMongodb(CustomerRepository customerRepository) {
         this.customerRepository = customerRepository;
@@ -44,5 +46,12 @@ public class CustomerPersistenceMongodb implements CustomerPersistence {
                     throw new ConflictException("DNI already exists: " + DNI);
                 });
     }
+
+    /*public List<String> findDNIByMortgageAndSharedAccount(){
+        this.mortgageRepository
+        this.customerRepository.findAll().stream()
+                .filter(item -> item.getDNI())
+        return null;
+    }*/
 
 }
