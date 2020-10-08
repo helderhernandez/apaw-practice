@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 import static org.junit.jupiter.api.Assertions.*;
 
 @TestConfig
-public class VehicleEntityRepositoryIT {
+public class CarEntityRepositoryIT {
 
     @Autowired
     private VehicleGarageRepository vehicleRepository;
