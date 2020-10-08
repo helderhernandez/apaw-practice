@@ -1,6 +1,10 @@
-package es.upm.miw.apaw_practice.adapters.mongodb.padel.entities;
+package es.upm.miw.apaw_practice.adapters.mongodb.padel.entities.composite;
+
+import es.upm.miw.apaw_practice.adapters.mongodb.padel.entities.PlayerEntity;
+import es.upm.miw.apaw_practice.adapters.mongodb.padel.entities.RacketEntity;
 
 import java.math.BigDecimal;
+import java.util.Collections;
 import java.util.List;
 
 public class TreeRacketsLeaf implements TreeRackets {
@@ -63,7 +67,7 @@ public class TreeRacketsLeaf implements TreeRackets {
 
     @Override
     public List<String> getRacketsName() {
-        return null;
+        return Collections.emptyList();
     }
 
 }

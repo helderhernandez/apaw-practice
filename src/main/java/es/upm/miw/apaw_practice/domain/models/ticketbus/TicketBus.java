@@ -1,6 +1,7 @@
 package es.upm.miw.apaw_practice.domain.models.ticketbus;
 
 
+
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
@@ -11,9 +12,9 @@ public class TicketBus {
     private LocalDateTime departureTime;
     private LocalDateTime arriveTime;
     private BigDecimal price;
-
-
     private LocalDateTime registrationDate;
+
+    private PassengerBus passenger;
 
 
     public TicketBus() {
@@ -67,6 +68,14 @@ public class TicketBus {
 
     public void setRegistrationDate(LocalDateTime registrationDate) {
         this.registrationDate = registrationDate;
+    }
+
+    public PassengerBus getPassenger() {
+        return passenger;
+    }
+
+    public void setPassenger(PassengerBus passenger) {
+        this.passenger = passenger;
     }
 
     @Override

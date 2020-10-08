@@ -1,4 +1,6 @@
-package es.upm.miw.apaw_practice.adapters.mongodb.padel.entities;
+package es.upm.miw.apaw_practice.adapters.mongodb.padel.entities.composite;
+
+import es.upm.miw.apaw_practice.adapters.mongodb.padel.entities.PlayerEntity;
 
 import java.math.BigDecimal;
 import java.util.List;
@@ -24,5 +26,5 @@ public interface TreeRackets {
 
     void remove(TreeRackets treeRackets);
 
-    List<String> getRacketsName();
+    List getRacketsName();
 }
