@@ -22,14 +22,14 @@ public class CarEntity {
     @DBRef
     private OwnerEntity owner;
     @DBRef
-    private List<TransitTaxesEntity> transitTaxes;
+    private List<TaxEntity> transitTaxes;
 
     public CarEntity() {
         //empty from framework
     }
 
     public CarEntity(String id, String enrollment, String brand, List<AccidentEntity> accidents,
-                     OwnerEntity owner, List<TransitTaxesEntity> transitTaxes) {
+                     OwnerEntity owner, List<TaxEntity> transitTaxes) {
         this.id = id;
         this.enrollment = enrollment;
         this.brand = brand;
@@ -78,11 +78,11 @@ public class CarEntity {
         this.owner = owner;
     }
 
-    public List<TransitTaxesEntity> getTransitTaxes() {
+    public List<TaxEntity> getTransitTaxes() {
         return transitTaxes;
     }
 
-    public void setTransitTaxes(List<TransitTaxesEntity> transitTaxes) {
+    public void setTransitTaxes(List<TaxEntity> transitTaxes) {
         this.transitTaxes = transitTaxes;
     }
 

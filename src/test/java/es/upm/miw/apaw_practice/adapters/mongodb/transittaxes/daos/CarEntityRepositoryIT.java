@@ -2,7 +2,7 @@ package es.upm.miw.apaw_practice.adapters.mongodb.transittaxes.daos;
 
 import es.upm.miw.apaw_practice.TestConfig;
 import es.upm.miw.apaw_practice.adapters.mongodb.transittaxes.entities.AccidentEntity;
-import es.upm.miw.apaw_practice.adapters.mongodb.transittaxes.entities.TransitTaxesEntity;
+import es.upm.miw.apaw_practice.adapters.mongodb.transittaxes.entities.TaxEntity;
 import es.upm.miw.apaw_practice.adapters.mongodb.transittaxes.entities.CarEntity;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -33,7 +33,7 @@ public class CarEntityRepositoryIT {
                 .collect(Collectors.toList())
                 .containsAll(Arrays.asList("ACC001")));
         assertTrue(car.getTransitTaxes().stream()
-                .map(TransitTaxesEntity::getDescription)
+                .map(TaxEntity::getDescription)
                 .collect(Collectors.toList())
                 .containsAll(Arrays.asList("Driving without a driver's license")));
     }

@@ -3,32 +3,30 @@ package es.upm.miw.apaw_practice.domain.models.transittaxes;
 
 import java.math.BigDecimal;
 
-public class TransitTaxes {
+public class TaxCreation {
 
-    private String id;
-    private String refTaxes;
+    private String refTax;
     private String description;
     private BigDecimal price;
     private Boolean paid;
 
-    public TransitTaxes() {
+    public TaxCreation() {
         //empty from framework
     }
 
-    public String getId() {
-        return id;
+    public TaxCreation(String refTax, String description, BigDecimal price, Boolean paid) {
+        this.refTax = refTax;
+        this.description = description;
+        this.price = price;
+        this.paid = paid;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public String getRefTax() {
+        return refTax;
     }
 
-    public String getRefTaxes() {
-        return refTaxes;
-    }
-
-    public void setRefTaxes(String refTaxes) {
-        this.refTaxes = refTaxes;
+    public void setRefTax(String refTax) {
+        this.refTax = refTax;
     }
 
     public String getDescription() {

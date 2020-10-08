@@ -2,11 +2,11 @@ package es.upm.miw.apaw_practice.adapters.mongodb.transittaxes;
 
 import es.upm.miw.apaw_practice.adapters.mongodb.transittaxes.daos.AccidentRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.transittaxes.daos.OwnerRepository;
-import es.upm.miw.apaw_practice.adapters.mongodb.transittaxes.daos.TransitTaxesRepository;
+import es.upm.miw.apaw_practice.adapters.mongodb.transittaxes.daos.TaxRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.transittaxes.daos.CarRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.transittaxes.entities.AccidentEntity;
 import es.upm.miw.apaw_practice.adapters.mongodb.transittaxes.entities.OwnerEntity;
-import es.upm.miw.apaw_practice.adapters.mongodb.transittaxes.entities.TransitTaxesEntity;
+import es.upm.miw.apaw_practice.adapters.mongodb.transittaxes.entities.TaxEntity;
 import es.upm.miw.apaw_practice.adapters.mongodb.transittaxes.entities.CarEntity;
 import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,22 +26,22 @@ public class TransitTaxesSeederService {
     @Autowired
     private AccidentRepository accidentRepository;
     @Autowired
-    private TransitTaxesRepository transitTaxesRepository;
+    private TaxRepository taxRepository;
 
     public void seedDatabase() {
         LogManager.getLogger(this.getClass()).warn("------- TransitTaxes Initial Load -----------");
 
-        TransitTaxesEntity [] taxes = {
-                new TransitTaxesEntity("TAX001","Driving without a driver's license", new BigDecimal("500.00"),false),
-                new TransitTaxesEntity("TAX002","Driving with excess alcohol", new BigDecimal("400.00"),true),
-                new TransitTaxesEntity("TAX003","Using the mobile at the wheel", new BigDecimal("200.00"),false),
-                new TransitTaxesEntity("TAX004","Throw any object on the road", new BigDecimal("50.00"),true)
+        TaxEntity[] taxes = {
+                new TaxEntity("TAX001","Driving without a driver's license", new BigDecimal("500.00"),false),
+                new TaxEntity("TAX002","Driving with excess alcohol", new BigDecimal("400.00"),true),
+                new TaxEntity("TAX003","Using the mobile at the wheel", new BigDecimal("200.00"),false),
+                new TaxEntity("TAX004","Throw any object on the road", new BigDecimal("50.00"),true)
 
         };
-        transitTaxesRepository.saveAll(Arrays.asList(taxes));
+        taxRepository.saveAll(Arrays.asList(taxes));
 
         AccidentEntity [] accidents = {
-                new AccidentEntity("001","ACC001", LocalDateTime.of(2020,10,05,5,0), "Toledo"),
+                new AccidentEntity("001","ACC001", LocalDateTime.of(2020,10,5,5,0), "Toledo"),
                 new AccidentEntity("002","ACC002", LocalDateTime.of(2017,12,24,12,30), "Madrid"),
                 new AccidentEntity("003","ACC003", LocalDateTime.of(2019,10,1,7,0), "Madrid"),
                 new AccidentEntity("004","ACC004", LocalDateTime.of(2020,5,8,3,0),"Toledo")
@@ -65,7 +65,7 @@ public class TransitTaxesSeederService {
         carRepository.saveAll(Arrays.asList(cars));
     }
     public void deleteAll() {
-        this.transitTaxesRepository.deleteAll();
+        this.taxRepository.deleteAll();
         this.accidentRepository.deleteAll();
         this.ownerRepository.deleteAll();
         this.carRepository.deleteAll();
