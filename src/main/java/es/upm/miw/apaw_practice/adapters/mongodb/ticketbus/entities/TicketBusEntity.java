@@ -1,6 +1,7 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.ticketbus.entities;
 
 
+import es.upm.miw.apaw_practice.domain.models.ticketbus.PassengerBusCreation;
 import es.upm.miw.apaw_practice.domain.models.ticketbus.TicketBus;
 import es.upm.miw.apaw_practice.domain.models.ticketbus.TicketBusCreation;
 import org.springframework.beans.BeanUtils;
@@ -48,6 +49,7 @@ public class TicketBusEntity {
     public TicketBus toTicketBus(){
         TicketBus ticketBus = new TicketBus();
         BeanUtils.copyProperties(this, ticketBus);
+        ticketBus.setPassenger(this.passenger != null ? this.passenger.toPassengerBus() : null);
         return ticketBus;
     }
 
@@ -107,6 +109,9 @@ public class TicketBusEntity {
         this.passenger = passenger;
     }
 
+    public void changePassenger(PassengerBusCreation passengerBusCreation){
+        this.setPassenger(new PassengerBusEntity(passengerBusCreation));
+    }
 
     @Override
     public boolean equals(Object o) {
