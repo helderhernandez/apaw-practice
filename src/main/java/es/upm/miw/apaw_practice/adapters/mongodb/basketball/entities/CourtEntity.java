@@ -3,15 +3,16 @@ package es.upm.miw.apaw_practice.adapters.mongodb.basketball.entities;
 import nonapi.io.github.classgraph.json.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.Objects;
 import java.util.UUID;
 
 @Document
 public class CourtEntity {
     @Id
     private String id;
-    private LocalDateTime dateMatch;
+    private LocalDate dateMatch;
+    private String name;
     private Integer numberTeams;
     private Integer capacity;
 
@@ -19,9 +20,10 @@ public class CourtEntity {
         //Empty constructor for the framework
     }
 
-    public CourtEntity(LocalDateTime dateMatch, Integer numberTeams, Integer capacity) {
+    public CourtEntity(String name, Integer numberTeams, Integer capacity) {
         this.id = UUID.randomUUID().toString();
-        this.dateMatch = dateMatch;
+        this.dateMatch = LocalDate.now();
+        this.name = name;
         this.numberTeams = numberTeams;
         this.capacity = capacity;
     }
@@ -34,12 +36,20 @@ public class CourtEntity {
         this.id = id;
     }
 
-    public LocalDateTime getDateMatch() {
+    public LocalDate getDateMatch() {
         return dateMatch;
     }
 
-    public void setDateMatch(LocalDateTime dateMatch) {
+    public void setDateMatch(LocalDate dateMatch) {
         this.dateMatch = dateMatch;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Integer getNumberTeams() {
@@ -73,6 +83,7 @@ public class CourtEntity {
         return "CourtEntity{" +
                 "id='" + id + '\'' +
                 ", dateMatch=" + dateMatch +
+                ", name='" + name + '\'' +
                 ", numberTeams=" + numberTeams +
                 ", capacity=" + capacity +
                 '}';
