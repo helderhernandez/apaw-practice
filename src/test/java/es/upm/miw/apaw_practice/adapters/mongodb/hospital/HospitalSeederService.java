@@ -4,12 +4,13 @@ import es.upm.miw.apaw_practice.adapters.mongodb.hospital.daos.BedRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.hospital.daos.IllnessRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.hospital.daos.PatientRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.hospital.daos.RoomRepository;
-import es.upm.miw.apaw_practice.adapters.mongodb.hospital.entities.*;
-import es.upm.miw.apaw_practice.domain.models.hospital.Patient;
+import es.upm.miw.apaw_practice.adapters.mongodb.hospital.entities.BedEntity;
+import es.upm.miw.apaw_practice.adapters.mongodb.hospital.entities.IllnessEntity;
+import es.upm.miw.apaw_practice.adapters.mongodb.hospital.entities.PatientEntity;
+import es.upm.miw.apaw_practice.adapters.mongodb.hospital.entities.RoomEntity;
+import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import org.apache.logging.log4j.LogManager;
 
 import java.time.LocalDateTime;
 import java.util.Arrays;
@@ -27,7 +28,7 @@ public class HospitalSeederService {
     @Autowired
     private RoomRepository roomRepository;
 
-    public void seedDatabase(){
+    public void seedDatabase() {
         LogManager.getLogger(this.getClass()).warn("------- Hospital Initial Load -----------");
 
         IllnessEntity[] illnesses = {
@@ -50,18 +51,18 @@ public class HospitalSeederService {
         this.patientRepository.saveAll(Arrays.asList(patients));
 
         RoomEntity[] rooms = {
-                new RoomEntity("AreaA",1,List.of(patients[0],patients[1])),
-                new RoomEntity("AreaB",2,List.of(patients[2],patients[3])),
-                new RoomEntity("AreaC",3,List.of(patients[4])),
-                new RoomEntity("AreaD",3,List.of(patients[5]))
+                new RoomEntity("AreaA", 1, List.of(patients[0], patients[1])),
+                new RoomEntity("AreaB", 2, List.of(patients[2], patients[3])),
+                new RoomEntity("AreaC", 3, List.of(patients[4])),
+                new RoomEntity("AreaD", 3, List.of(patients[5]))
         };
         this.roomRepository.saveAll(Arrays.asList(rooms));
 
         BedEntity[] beds = {
-                new BedEntity(105,180,true, LocalDateTime.of(2020,10,2,10,0),rooms[0]),
-                new BedEntity(125,190,true, LocalDateTime.of(2020,10,2,10,0),rooms[1]),
-                new BedEntity(105,200,true, LocalDateTime.of(2020,10,3,15,0),rooms[2]),
-                new BedEntity(105,190,false, null,rooms[0]),
+                new BedEntity(105, 180, true, LocalDateTime.of(2020, 10, 2, 10, 0), rooms[0]),
+                new BedEntity(125, 190, true, LocalDateTime.of(2020, 10, 2, 10, 0), rooms[1]),
+                new BedEntity(105, 200, true, LocalDateTime.of(2020, 10, 3, 15, 0), rooms[2]),
+                new BedEntity(105, 190, false, null, rooms[0]),
         };
         this.bedRepository.saveAll(Arrays.asList(beds));
     }

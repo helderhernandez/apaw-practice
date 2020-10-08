@@ -12,11 +12,11 @@ public class PatientService {
     private PatientPersistence patientPersistence;
 
     @Autowired
-    public PatientService(PatientPersistence patientPersistence){
-        this.patientPersistence=patientPersistence;
+    public PatientService(PatientPersistence patientPersistence) {
+        this.patientPersistence = patientPersistence;
     }
 
-    public Patient create(PatientCreation patientCreation){
+    public Patient create(PatientCreation patientCreation) {
         return this.patientPersistence.create(patientCreation);
     }
 }

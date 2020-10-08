@@ -17,21 +17,21 @@ public class RoomResource {
 
 
     private RoomService roomService;
-    
+
     @Autowired
 
     public RoomResource(RoomService roomService) {
         this.roomService = roomService;
     }
-    
+
     @DeleteMapping(ID_ID)
-    public void delete(@PathVariable String id){
+    public void delete(@PathVariable String id) {
         this.roomService.delete(id);
     }
 
     @GetMapping(SEARCH)
     public Stream<Room> findRoomsByPatientsIllnessContagious(@RequestParam String q) {
-        Boolean contagious = new LexicalAnalyzer().extractWithAssure(q, "contagious",Boolean::new);
+        Boolean contagious = new LexicalAnalyzer().extractWithAssure(q, "contagious", Boolean::valueOf);
         return this.roomService.findRoomsByPatientsIllnessContagious(contagious);
     }
 }
