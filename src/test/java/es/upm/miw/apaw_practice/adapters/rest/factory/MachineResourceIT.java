@@ -29,7 +29,7 @@ public class MachineResourceIT {
                 .exchange()
                 .expectStatus().isNotFound();
     }
-
+/*
     @Test
     void testFindMachineByEmployeeDegreeTitle(){
         this.webTestClient
@@ -43,4 +43,5 @@ public class MachineResourceIT {
                 .expectBodyList(Machine.class)
                 .value(machines -> assertEquals("00000000A", machines.get(0).getEmployeeEntities().get(0).getDni()));
     }
+    */
 }

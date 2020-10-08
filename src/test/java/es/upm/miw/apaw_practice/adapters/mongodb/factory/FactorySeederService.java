@@ -77,7 +77,7 @@ public class FactorySeederService {
                         900600L, false, LocalDate.of(2020, 7, 1)),
                 new MachineEntity(Arrays.asList(employees[3], employees[4]), Arrays.asList(products[1], products[2], products[3], products[4]),
                         800500L, true, LocalDate.of(2019, 11, 1)),
-                new MachineEntity(Arrays.asList(employees[5], employees[6], employees[7]), Arrays.asList(products[0], products[4]),
+                new MachineEntity(Arrays.asList(employees[6], employees[7]), Arrays.asList(products[0], products[4]),
                         700500L, true, LocalDate.of(2020, 5, 1)),
         };
         this.machineRepository.saveAll(Arrays.asList(machines));
