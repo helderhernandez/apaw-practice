@@ -51,6 +51,8 @@ class IssuePersistenceMongodbIT {
         this.issuePersistence.update(issueToUpdate);
         assertTrue(this.issuePersistence.readById(issueToUpdate.getId())
                 .getDone());
+        issueToUpdate.setDone(false);
+        this.issuePersistence.update(issueToUpdate);
     }
 
 }
