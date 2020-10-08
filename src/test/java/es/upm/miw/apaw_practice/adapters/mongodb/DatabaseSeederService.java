@@ -1,5 +1,6 @@
 package es.upm.miw.apaw_practice.adapters.mongodb;
 
+import es.upm.miw.apaw_practice.adapters.mongodb.FurnitureFactory.FurnitureFactorySeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.adCampaign.AdCampaignSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.Property.PropertySeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.airport.AirportSeederService;
@@ -21,6 +22,7 @@ import es.upm.miw.apaw_practice.adapters.mongodb.transport.TransportSeedService;
 import es.upm.miw.apaw_practice.adapters.mongodb.transittaxes.TransitTaxesSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.veterinary.VeterinarySeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.videogame.VideogameSeederService;
+import es.upm.miw.apaw_practice.adapters.mongodb.restaurant.RestaurantSeederService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -48,6 +50,9 @@ public class DatabaseSeederService {
     private AdCampaignSeederService adCampaignSeederService;
     private FilmForumSeederService filmForumSeederService;
     private PropertySeederService propertySeederService;
+    private RestaurantSeederService restaurantSeederService;
+    private FurnitureFactorySeederService furnitureFactorySeederService;
+
 
     @Autowired
     public DatabaseSeederService(ShopSeederService shopSeederService, SchoolSeederService schoolSeederService,
@@ -59,8 +64,10 @@ public class DatabaseSeederService {
                                  AirportSeederService airportSeederService, TicketBusSeederService ticketBusSeederService,
                                  VideogameSeederService videogameSeederService, TransitTaxesSeederService transitTaxesSeederService,
                                  TransportSeedService transportSeedService, SocialNetworkSeederService socialNetworkSeederService,
-                                 FilmForumSeederService filmForumSeederService, AdCampaignSeederService adCampaignSeederService,
-                                 PropertySeederService propertySeederService) {
+                                 RestaurantSeederService restaurantSeederService, FilmForumSeederService filmForumSeederService,
+                                 AdCampaignSeederService adCampaignSeederService,
+                                 PropertySeederService propertySeederService,FurnitureFactorySeederService furnitureFactorySeederService) {
+
 
         this.shopSeederService = shopSeederService;
         this.schoolSeederService = schoolSeederService;
@@ -80,9 +87,11 @@ public class DatabaseSeederService {
         this.videogameSeederService = videogameSeederService;
         this.transitTaxesSeederService = transitTaxesSeederService;
         this.socialNetworkSeederService = socialNetworkSeederService;
+        this.restaurantSeederService = restaurantSeederService;
         this.adCampaignSeederService = adCampaignSeederService;
         this.filmForumSeederService = filmForumSeederService;
         this.propertySeederService = propertySeederService;
+        this.furnitureFactorySeederService=furnitureFactorySeederService;
 
         this.seedDatabase();
     }
@@ -106,9 +115,11 @@ public class DatabaseSeederService {
         this.videogameSeederService.seedDataBase();
         this.transitTaxesSeederService.seedDatabase();
         this.socialNetworkSeederService.seedDatabase();
+        this.restaurantSeederService.seedDatabase();
         this.adCampaignSeederService.seedDatabase();
         this.filmForumSeederService.seedDatabase();
         this.propertySeederService.seedDatabase();
+        this.furnitureFactorySeederService.seedDatabase();
     }
 
     public void deleteAll() {
@@ -130,9 +141,11 @@ public class DatabaseSeederService {
         this.videogameSeederService.deleteAll();
         this.transitTaxesSeederService.deleteAll();
         this.socialNetworkSeederService.deleteAll();
+        this.restaurantSeederService.deleteAll();
         this.adCampaignSeederService.deleteAll();
         this.filmForumSeederService.deleteAll();
         this.propertySeederService.deleteAll();
+        this.furnitureFactorySeederService.deleteAll();
     }
 
     public void reSeedDatabase() {

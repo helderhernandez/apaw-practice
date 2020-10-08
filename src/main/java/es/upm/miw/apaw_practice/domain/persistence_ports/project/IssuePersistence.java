@@ -10,4 +10,8 @@ public interface IssuePersistence {
 
     Stream<Issue> readAll();
 
+    Issue readById(String id);
+
+    void update(Issue issue);
+
 }

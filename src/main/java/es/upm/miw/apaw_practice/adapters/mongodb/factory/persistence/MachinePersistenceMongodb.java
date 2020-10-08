@@ -18,11 +18,11 @@ public class MachinePersistenceMongodb implements MachinePersistence {
     }
 
     @Override
-    public Machine updateStatus(String id, Boolean isActive) {
+    public Machine updateStatus(String id, Boolean active) {
         MachineEntity machineEntity = this.machineRepository
                 .findById(id)
                 .orElseThrow(() -> new NotFoundException("Machine id: " + id));
-        machineEntity.setActive(isActive);
+        machineEntity.setActive(active);
         return this.machineRepository
                 .save(machineEntity)
                 .toMachine();

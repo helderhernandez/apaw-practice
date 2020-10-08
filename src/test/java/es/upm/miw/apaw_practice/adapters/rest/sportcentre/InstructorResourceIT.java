@@ -26,7 +26,7 @@ public class InstructorResourceIT {
 
     @Test
     void testCreate(){
-        Speciality speciality = new SpecialityEntity("spec8", "Padel", "Padel training", 120, true).toSpeciality();
+        Speciality speciality = SpecialityEntity.builder().id("spec8").title("Padel").description("Padel training").duration(120).recomended(true).build().toSpeciality();
         InstructorCreation instructorCreation = new InstructorCreation("222222222A", "Eduardo", "Jimenez", new BigDecimal(1300), List.of(speciality));
         this.webTestClient
                 .post()

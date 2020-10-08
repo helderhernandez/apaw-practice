@@ -5,7 +5,8 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document
 public class FilmUserEntity {
-    @Id private String id;
+    @Id
+    private String id;
     private String username;
     private String email;
 
