@@ -61,15 +61,14 @@ public class FactorySeederService {
         this.employeeRepository.saveAll(Arrays.asList(employees));
 
         DegreeEntity[] degrees = {
-                new DegreeEntity(employees[0], "Grado en Ingeria de Telecomunicaciones", "123456-7", "Universidad de Alcala"),
-                new DegreeEntity(employees[1], "Grado en Ingeria de Telecomunicaciones", "258369-1", "Universidad de Alcala"),
+                new DegreeEntity(employees[0], "Grado en Ingenieria de Telecomunicaciones", "123456-7", "Universidad de Alcala"),
+                new DegreeEntity(employees[1], "Grado en Ingenieria de Telecomunicaciones", "258369-1", "Universidad de Alcala"),
                 new DegreeEntity(employees[2], "Grado en Ingenieria Industrial", "456789-1", "Universidad Carlos III de Madrid"),
-                new DegreeEntity(employees[3], "Grado en Ingeniria Mecanica", "789123-4", "Universidad Complutense de Madrid"),
-                new DegreeEntity(employees[4], "Grado en Ingeria de Telecomunicaciones", "147258-9", "Universidad de Alcala"),
-                new DegreeEntity(employees[5], "Grado en Ingeria de Telecomunicaciones", "654789-3", "Universidad de Politecnica de Madrid"),
-                new DegreeEntity(employees[6], "Grado en Ingeniria Mecanica", "369147-8", "Universidad Complutense de Madrid"),
-                new DegreeEntity(employees[7], "Grado en Ingeniria Mecanica", "321654-9", "Universidad Carlos III de Madrid"),
-
+                new DegreeEntity(employees[3], "Grado en Ingenieria Mecanica", "789123-4", "Universidad Complutense de Madrid"),
+                new DegreeEntity(employees[4], "Grado en Ingenieria de Telecomunicaciones", "147258-9", "Universidad de Alcala"),
+                new DegreeEntity(employees[5], "Grado en Ingenieria de Telecomunicaciones", "654789-3", "Universidad de Politecnica de Madrid"),
+                new DegreeEntity(employees[6], "Grado en Ingenieria Mecanica", "369147-8", "Universidad Complutense de Madrid"),
+                new DegreeEntity(employees[7], "Grado en Ingenieria Mecanica", "321654-9", "Universidad Carlos III de Madrid"),
         };
         this.degreeRepository.saveAll(Arrays.asList(degrees));
 
@@ -82,7 +81,6 @@ public class FactorySeederService {
                         700500L, true, LocalDate.of(2020, 5, 1)),
         };
         this.machineRepository.saveAll(Arrays.asList(machines));
-
     }
 
     public void deleteAll() {

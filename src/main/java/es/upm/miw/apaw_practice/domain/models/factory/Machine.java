@@ -11,7 +11,7 @@ public class Machine {
     private List<ProductEntity> productEntities;
     private String id;
     private Long serialNumber;
-    private Boolean isActive;
+    private Boolean active;
     private LocalDate lastInspection;
 
     public Machine() {
@@ -51,11 +51,11 @@ public class Machine {
     }
 
     public Boolean getActive() {
-        return isActive;
+        return active;
     }
 
     public void setActive(Boolean active) {
-        isActive = active;
+        this.active = active;
     }
 
     public LocalDate getLastInspection() {
@@ -71,7 +71,7 @@ public class Machine {
         return "Machine{" +
                 "id='" + id + '\'' +
                 ", serialNumber=" + serialNumber +
-                ", isActive=" + isActive +
+                ", active=" + active +
                 ", lastInspection=" + lastInspection +
                 '}';
     }

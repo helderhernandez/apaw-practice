@@ -8,4 +8,5 @@ public interface MachinePersistence {
     Machine updateStatus(String id, Boolean isActive);
 
     List<Machine> findMachineByEmployeeDegreeTitle(String title);
+
 }
