@@ -1,17 +1,9 @@
-package es.upm.miw.apaw_practice.adapters.mongodb.garage.entities;
-
-import es.upm.miw.apaw_practice.domain.models.garage.Mechanic;
-import org.springframework.beans.BeanUtils;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+package es.upm.miw.apaw_practice.domain.models.garage;
 
 import java.math.BigDecimal;
-import java.util.UUID;
 
-@Document
-public class MechanicEntity {
+public class Mechanic {
 
-    @Id
     private String id;
     private String name;
     private String telephone;
@@ -20,18 +12,8 @@ public class MechanicEntity {
     private Double numWorkedHours;
     private Boolean available;
 
-    public MechanicEntity() {
+    public Mechanic() {
         //empty for framework
-    }
-
-    public MechanicEntity(String name, String telephone, String department, BigDecimal pricePerHour, Double numWorkedHours, Boolean available) {
-        this.id = UUID.randomUUID().toString();
-        this.name = name;
-        this.telephone = telephone;
-        this.department = department;
-        this.pricePerHour = pricePerHour;
-        this.numWorkedHours = numWorkedHours;
-        this.available = available;
     }
 
     public String getId() {
@@ -89,15 +71,5 @@ public class MechanicEntity {
     public void setAvailable(Boolean available) {
         this.available = available;
     }
-
-    public Mechanic toMechanic() {
-        Mechanic mechanic = new Mechanic();
-        BeanUtils.copyProperties(this, mechanic);
-        return mechanic;
-    }
-
-    public void fromMechanic(Mechanic mechanic) {
-        BeanUtils.copyProperties(mechanic,this);
-    }
-
+    
 }
