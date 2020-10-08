@@ -113,7 +113,7 @@ public class PlayerEntity {
 
     @Override
     public String toString() {
-        return "PlayerEntity{" +
+        return "Player{" +
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
