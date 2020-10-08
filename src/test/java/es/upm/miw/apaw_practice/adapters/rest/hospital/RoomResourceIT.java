@@ -17,17 +17,17 @@ class RoomResourceIT {
     private WebTestClient webTestClient;
 
     @Test
-    void testDelete(){
+    void testDelete() {
         this.webTestClient
                 .delete()
-                .uri(ROOMS+ID_ID,"exampleOfId")
+                .uri(ROOMS + ID_ID, "exampleOfId")
                 .exchange()
                 .expectStatus()
                 .isOk();
     }
 
     @Test
-    void testSearchByNameWidthOfBeds(){
+    void testSearchByNameWidthOfBeds() {
         this.webTestClient
                 .get()
                 .uri(uriBuilder ->
