@@ -11,9 +11,9 @@ public class VeterinaryEntity {
     @Id
     private String id;
     private String name;
-    private int age;
+    private Integer age;
 
-    public VeterinaryEntity(String id, String name, int age){
+    public VeterinaryEntity(String id, String name, Integer age) {
         this.id = id;
         this.name = name;
         this.age = age;
@@ -35,11 +35,11 @@ public class VeterinaryEntity {
         this.name = name;
     }
 
-    public int getAge() {
+    public Integer getAge() {
         return age;
     }
 
-    public void setAge(int age) {
+    public void setAge(Integer age) {
         this.age = age;
     }
 
@@ -48,9 +48,9 @@ public class VeterinaryEntity {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         VeterinaryEntity that = (VeterinaryEntity) o;
-        return age == that.age &&
-                Objects.equals(id, that.id) &&
-                Objects.equals(name, that.name);
+        return Objects.equals(id, that.id) &&
+                Objects.equals(name, that.name) &&
+                Objects.equals(age, that.age);
     }
 
     @Override
