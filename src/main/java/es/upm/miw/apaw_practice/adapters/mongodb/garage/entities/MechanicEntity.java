@@ -1,5 +1,7 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.garage.entities;
 
+import es.upm.miw.apaw_practice.domain.models.garage.Mechanic;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -87,4 +89,15 @@ public class MechanicEntity {
     public void setAvailable(Boolean available) {
         this.available = available;
     }
+
+    public Mechanic toMechanic() {
+        Mechanic mechanic = new Mechanic();
+        BeanUtils.copyProperties(this, mechanic);
+        return mechanic;
+    }
+
+    public void fromMechanic(Mechanic mechanic) {
+        BeanUtils.copyProperties(mechanic,this);
+    }
+
 }

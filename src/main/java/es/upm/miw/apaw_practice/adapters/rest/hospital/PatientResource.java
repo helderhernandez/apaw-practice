@@ -17,12 +17,12 @@ public class PatientResource {
     private PatientService patientService;
 
     @Autowired
-    public PatientResource(PatientService patientService){
-        this.patientService=patientService;
+    public PatientResource(PatientService patientService) {
+        this.patientService = patientService;
     }
 
     @PostMapping
-    public Patient create(@RequestBody PatientCreation patientCreation){
+    public Patient create(@RequestBody PatientCreation patientCreation) {
         return this.patientService.create(patientCreation);
     }
 }
