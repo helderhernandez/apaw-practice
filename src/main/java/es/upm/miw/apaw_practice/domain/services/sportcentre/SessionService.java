@@ -1,7 +1,7 @@
 package es.upm.miw.apaw_practice.domain.services.sportcentre;
 
+import es.upm.miw.apaw_practice.domain.models.sportcentre.BasicSession;
 import es.upm.miw.apaw_practice.domain.models.sportcentre.Instructor;
-import es.upm.miw.apaw_practice.domain.models.sportcentre.Session;
 import es.upm.miw.apaw_practice.domain.persistence_ports.sportcentre.InstructorPersistence;
 import es.upm.miw.apaw_practice.domain.persistence_ports.sportcentre.SessionPersistence;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,8 +29,8 @@ public class SessionService {
         return this.sessionPersistence.findNameAssistantsSessionByInstructor(nameInstructor);
     }
 
-    public Session findSessionBySpecialityTitle(String title) {
+    public BasicSession findSessionBySpecialityTitle(String title) {
         Instructor instructor = this.instructorPersistence.readBySpecialityTitle(title);
-        return this.sessionPersistence.findSessionByInstructor(instructor);
+        return this.sessionPersistence.findSessionByInstructor(instructor).toBasicSession();
     }
 }

@@ -1,8 +1,6 @@
 package es.upm.miw.apaw_practice.domain.models.sportcentre;
 
 
-import es.upm.miw.apaw_practice.adapters.rest.sportcentre.BasicSessionDto;
-
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -69,8 +67,8 @@ public class Session {
                 '}';
     }
 
-    public BasicSessionDto toBasicSessionDto() {
-        BasicSessionDto basicSession = new BasicSessionDto();
+    public BasicSession toBasicSession() {
+        BasicSession basicSession = new BasicSession();
         basicSession.setRoomNumber(this.getRoomNumber());
         basicSession.setDate(this.getDate());
         return basicSession;

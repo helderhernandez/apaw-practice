@@ -1,17 +1,13 @@
-package es.upm.miw.apaw_practice.adapters.rest.sportcentre;
-
-
-
-import es.upm.miw.apaw_practice.domain.models.sportcentre.Session;
+package es.upm.miw.apaw_practice.domain.models.sportcentre;
 
 import java.time.LocalDateTime;
 
-public class BasicSessionDto {
+public class BasicSession {
 
     private Integer roomNumber;
     private LocalDateTime date;
 
-    public BasicSessionDto(){
+    public BasicSession(){
         //Empty from framework
     }
 
@@ -33,7 +29,7 @@ public class BasicSessionDto {
 
     @Override
     public String toString() {
-        return "BasicSessionDto{" +
+        return "BasicSession{" +
                 "roomNumber=" + roomNumber +
                 ", date=" + date +
                 '}';

@@ -12,8 +12,7 @@ import java.util.stream.Stream;
 public class SessionResource {
 
     static final String SESSIONS = "/sportcentre/sessions";
-    static final String SEARCH_INSTRUCTOR = "/search-instructor";
-    static final String SEARCH_SPECIALITY = "/search-speciality";
+    static final String SEARCH = "/search";
     static final String ID_ID = "/{id}";
 
     private SessionService sessionService;
@@ -28,17 +27,13 @@ public class SessionResource {
         this.sessionService.delete(id);
     }
 
-    @GetMapping(SEARCH_INSTRUCTOR)
-    public Stream<String> findNameAssistantsSessionByInstructor(@RequestParam String q){
-        String nameInstructor = new LexicalAnalyzer().extractWithAssure(q, "name");
-        return this.sessionService.findNameAssistantsSessionByInstructor(nameInstructor);
-    }
-
-    @GetMapping(SEARCH_SPECIALITY)
-    public BasicSessionDto findSessionBySpecialityTitle(@RequestParam String q){
-        String title = new LexicalAnalyzer().extractWithAssure(q, "title");
-        return this.sessionService.findSessionBySpecialityTitle(title)
-                .toBasicSessionDto();
+    @GetMapping(SEARCH)
+    public void findInSession(@RequestParam(required = false) String name, @RequestParam(required = false) String title){
+        if(name != null){
+            this.sessionService.findNameAssistantsSessionByInstructor(name);
+        }else{
+            this.sessionService.findSessionBySpecialityTitle(title);
+        }
     }
 
 }
