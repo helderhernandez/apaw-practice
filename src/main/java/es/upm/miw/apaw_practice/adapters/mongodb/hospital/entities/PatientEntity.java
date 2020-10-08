@@ -158,7 +158,7 @@ public class PatientEntity {
         @Override
         public PatientBuilder.Optionals illnessEntities(IllnessEntity illnessEntity) {
             if (this.patientEntity.illnessEntities == null) {
-                this.patientEntity.illnessEntities = new ArrayList<IllnessEntity>();
+                this.patientEntity.illnessEntities = new ArrayList<>();
             }
             this.patientEntity.illnessEntities.add(illnessEntity);
             return this;

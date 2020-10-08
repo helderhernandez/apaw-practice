@@ -9,5 +9,6 @@ import java.util.stream.Stream;
 public interface RoomPersistence {
 
     void deleteById(String id);
+
     Stream<Room> findRoomsByPatientsIllnessContagious(Boolean contagious);
 }

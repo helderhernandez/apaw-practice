@@ -1,18 +1,17 @@
 package es.upm.miw.apaw_practice.adapters.rest.hospital;
 
-
 import es.upm.miw.apaw_practice.domain.models.hospital.Bed;
 
 public class WidthDto {
 
     private String width;
 
-    public WidthDto(){
+    public WidthDto() {
         //empty for framework
     }
 
-    public WidthDto(Bed bed){
-        this.width=String.valueOf(bed.getWidth());
+    public WidthDto(Bed bed) {
+        this.width = String.valueOf(bed.getWidth());
     }
 
     public String getWidth() {
