@@ -3,7 +3,7 @@ package es.upm.miw.apaw_practice.domain.models.transittaxes;
 
 import java.math.BigDecimal;
 
-public class TransitTaxes {
+public class Tax {
 
     private String id;
     private String refTaxes;
@@ -11,7 +11,7 @@ public class TransitTaxes {
     private BigDecimal price;
     private Boolean paid;
 
-    public TransitTaxes() {
+    public Tax() {
         //empty from framework
     }
 

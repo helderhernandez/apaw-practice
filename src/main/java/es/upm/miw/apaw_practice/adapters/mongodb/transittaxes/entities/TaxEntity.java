@@ -9,7 +9,7 @@ import java.util.Objects;
 import java.util.UUID;
 
 @Document
-public class TransitTaxesEntity {
+public class TaxEntity {
 
     @Id
     private String id;
@@ -19,11 +19,11 @@ public class TransitTaxesEntity {
     private BigDecimal price;
     private Boolean paid;
 
-    public TransitTaxesEntity() {
+    public TaxEntity() {
         //empty from framework
     }
 
-    public TransitTaxesEntity(String refTaxes, String description, BigDecimal price, Boolean paid) {
+    public TaxEntity(String refTaxes, String description, BigDecimal price, Boolean paid) {
         this.id = UUID.randomUUID().toString();
         this.refTaxes = refTaxes;
         this.description = description;
@@ -75,7 +75,7 @@ public class TransitTaxesEntity {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        TransitTaxesEntity that = (TransitTaxesEntity) o;
+        TaxEntity that = (TaxEntity) o;
         return Objects.equals(id, that.id) &&
                 Objects.equals(refTaxes, that.refTaxes) &&
                 Objects.equals(description, that.description) &&
