@@ -1,5 +1,6 @@
 package es.upm.miw.apaw_practice.adapters.mongodb;
 
+import es.upm.miw.apaw_practice.adapters.mongodb.FurnitureFactory.FurnitureFactorySeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.adCampaign.AdCampaignSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.Property.PropertySeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.airport.AirportSeederService;
@@ -48,6 +49,7 @@ public class DatabaseSeederService {
     private AdCampaignSeederService adCampaignSeederService;
     private FilmForumSeederService filmForumSeederService;
     private PropertySeederService propertySeederService;
+    private FurnitureFactorySeederService furnitureFactorySeederService;
 
     @Autowired
     public DatabaseSeederService(ShopSeederService shopSeederService, SchoolSeederService schoolSeederService,
@@ -60,7 +62,7 @@ public class DatabaseSeederService {
                                  VideogameSeederService videogameSeederService, TransitTaxesSeederService transitTaxesSeederService,
                                  TransportSeedService transportSeedService, SocialNetworkSeederService socialNetworkSeederService,
                                  FilmForumSeederService filmForumSeederService, AdCampaignSeederService adCampaignSeederService,
-                                 PropertySeederService propertySeederService) {
+                                 PropertySeederService propertySeederService,FurnitureFactorySeederService furnitureFactorySeederService) {
 
         this.shopSeederService = shopSeederService;
         this.schoolSeederService = schoolSeederService;
@@ -83,6 +85,7 @@ public class DatabaseSeederService {
         this.adCampaignSeederService = adCampaignSeederService;
         this.filmForumSeederService = filmForumSeederService;
         this.propertySeederService = propertySeederService;
+        this.furnitureFactorySeederService=furnitureFactorySeederService;
 
         this.seedDatabase();
     }
@@ -109,6 +112,7 @@ public class DatabaseSeederService {
         this.adCampaignSeederService.seedDatabase();
         this.filmForumSeederService.seedDatabase();
         this.propertySeederService.seedDatabase();
+        this.furnitureFactorySeederService.seedDatabase();
     }
 
     public void deleteAll() {
@@ -133,6 +137,7 @@ public class DatabaseSeederService {
         this.adCampaignSeederService.deleteAll();
         this.filmForumSeederService.deleteAll();
         this.propertySeederService.deleteAll();
+        this.furnitureFactorySeederService.deleteAll();
     }
 
     public void reSeedDatabase() {
