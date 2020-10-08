@@ -23,5 +23,4 @@ public class MachineResourceIT {
                 .exchange()
                 .expectStatus().isNotFound();
     }
-
 }

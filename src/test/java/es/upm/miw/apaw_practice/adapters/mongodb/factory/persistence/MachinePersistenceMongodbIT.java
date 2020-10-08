@@ -33,5 +33,10 @@ public class MachinePersistenceMongodbIT {
         assertTrue(isActive);
         this.machinePersistence.updateStatus(machine.getId(), false);
     }
+
+    @Test
+    void testFindMachineByEmployeeDegreeTitle() {
+        this.machinePersistence.findMachineByEmployeeDegreeTitle("Grado en Ingeria de Telecomunicaciones");
+    }
 }
 
