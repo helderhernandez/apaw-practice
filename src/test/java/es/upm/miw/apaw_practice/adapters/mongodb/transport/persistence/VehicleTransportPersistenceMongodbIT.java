@@ -21,8 +21,8 @@ public class VehicleTransportPersistenceMongodbIT {
     @Test
     void testCreateAndRead() {
         ExtraEntity[] extras = {
-                new ExtraEntity(1, true),
-                new ExtraEntity(2, false)
+                new ExtraEntity("1",1, true),
+                new ExtraEntity("2",2, false)
         };
         WorkerEntity worker =
                 new WorkerEntity("nameTest", "telephoneTest", "dniTest", Arrays.asList(extras[0], extras[1]) );

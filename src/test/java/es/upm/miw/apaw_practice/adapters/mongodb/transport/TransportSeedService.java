@@ -31,12 +31,12 @@ public class TransportSeedService {
     public void seedDatabase() {
         LogManager.getLogger(this.getClass()).warn("------- Worker Initial Load -----------");
         ExtraEntity[] extras = {
-                new ExtraEntity(1, true),
-                new ExtraEntity(2, false),
-                new ExtraEntity(3, true),
-                new ExtraEntity(4, false),
-                new ExtraEntity(5, true),
-                new ExtraEntity(6, false)
+                new ExtraEntity("1",1, true),
+                new ExtraEntity("2",2, false),
+                new ExtraEntity("3",3, true),
+                new ExtraEntity("4",4, false),
+                new ExtraEntity("5",5, true),
+                new ExtraEntity("6",6, false)
         };
         this.extraRepository.saveAll(Arrays.asList(extras));
         WorkerEntity[] workers = {

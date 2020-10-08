@@ -1,7 +1,6 @@
 package es.upm.miw.apaw_practice.adapters.rest.transport;
 
 import es.upm.miw.apaw_practice.adapters.rest.RestTestConfig;
-import es.upm.miw.apaw_practice.adapters.rest.shop.ShoppingCartResource;
 import es.upm.miw.apaw_practice.domain.models.shop.ArticleItem;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,7 +12,7 @@ import java.util.Arrays;
 import java.util.List;
 
 @RestTestConfig
-public class DepartmentResourceIT {
+class DepartmentResourceIT {
 
     @Autowired
     private WebTestClient webTestClient;
