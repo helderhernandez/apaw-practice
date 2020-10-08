@@ -1,11 +1,13 @@
 package es.upm.miw.apaw_practice.adapters.rest.veterinary;
 
 import es.upm.miw.apaw_practice.domain.models.veterinary.Animal;
+import es.upm.miw.apaw_practice.domain.models.veterinary.AnimalAgeUpdating;
 import es.upm.miw.apaw_practice.domain.models.veterinary.AnimalCreation;
 import es.upm.miw.apaw_practice.domain.services.veterinary.AnimalService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.stream.Stream;
 
 @RestController
@@ -35,8 +37,18 @@ public class AnimalResource {
         return this.animalService.create(animalCreation);
     }
 
+    @DeleteMapping(ID)
+    public void delete(@PathVariable String id) {
+        this.animalService.delete(id);
+    }
+
     @PutMapping(ID + AGE)
     public Animal updateAge(@PathVariable String id, @RequestBody AgeDto ageDto) {
         return this.animalService.updateAge(id, ageDto.getAge());
+    }
+
+    @PatchMapping
+    public void updateAges(@RequestBody List<AnimalAgeUpdating> animalAgeUpdatingList) {
+        this.animalService.updateAges(animalAgeUpdatingList);
     }
 }

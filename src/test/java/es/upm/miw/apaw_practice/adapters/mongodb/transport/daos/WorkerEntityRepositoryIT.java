@@ -1,15 +1,9 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.transport.daos;
 
 import es.upm.miw.apaw_practice.TestConfig;
-import es.upm.miw.apaw_practice.adapters.mongodb.shop.entities.ArticleEntity;
-import es.upm.miw.apaw_practice.adapters.mongodb.shop.entities.TagEntity;
 import es.upm.miw.apaw_practice.adapters.mongodb.transport.entities.WorkerEntity;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import reactor.core.scheduler.Scheduler;
-
-import java.util.Arrays;
-import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -21,7 +15,7 @@ public class WorkerEntityRepositoryIT {
     private WorkerRepository workerRepository;
 
     @Test
-    void testCreateAndRead() {
+    void testRead() {
         assertTrue(this.workerRepository.findByDni("dni2").isPresent());
         WorkerEntity worker = this.workerRepository.findByDni("dni2").get();
         assertEquals("name2", worker.getName());

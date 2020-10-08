@@ -8,4 +8,6 @@ import org.springframework.stereotype.Repository;
 public interface InstructorPersistence {
 
     Instructor create(InstructorCreation instructorCreation);
+
+    Instructor readBySpecialityTitle(String title);
 }

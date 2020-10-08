@@ -29,7 +29,7 @@ public class TeacherPersistenceMongodb implements TeacherPersistence {
     public Teacher create(Teacher teacher) {
         this.assertDniNotExist(teacher.getDni());
         return this.teacherRepository
-                .save(new TeacherEntity(teacher))
+                .save(TeacherEntity.builder().name(teacher.getName()).familyName(teacher.getFamilyName()).dni(teacher.getDni()).intern(teacher.isIntern()).email(teacher.getEmail()).build())
                 .toTeacher();
     }
 }

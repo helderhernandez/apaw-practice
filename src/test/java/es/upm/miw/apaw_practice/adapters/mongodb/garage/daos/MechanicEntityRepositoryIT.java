@@ -8,8 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.math.BigDecimal;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 @TestConfig
 public class MechanicEntityRepositoryIT {
@@ -21,7 +20,7 @@ public class MechanicEntityRepositoryIT {
     void testFindByDepartment() {
         assertTrue(this.mechanicRepository.findByDepartment("Tapicería").isPresent());
         List<MechanicEntity> mechanics = this.mechanicRepository.findByDepartment("Tapicería").get();
-        assertTrue(!mechanics.isEmpty());
+        assertFalse(mechanics.isEmpty());
         assertEquals("Andrea Montaño", mechanics.get(0).getName());
         assertEquals("111222333", mechanics.get(0).getTelephone());
         assertEquals(0, BigDecimal.valueOf(10.50).compareTo(mechanics.get(0).getPricePerHour()));

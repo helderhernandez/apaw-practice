@@ -1,8 +1,11 @@
 package es.upm.miw.apaw_practice.adapters.mongodb;
 
+import es.upm.miw.apaw_practice.adapters.mongodb.adCampaign.AdCampaignSeederService;
+import es.upm.miw.apaw_practice.adapters.mongodb.Property.PropertySeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.airport.AirportSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.bank.BankSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.factory.FactorySeederService;
+import es.upm.miw.apaw_practice.adapters.mongodb.filmforum.FilmForumSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.garage.GarageSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.hospital.HospitalSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.kitchen.KitchenSeederService;
@@ -42,6 +45,9 @@ public class DatabaseSeederService {
     private VideogameSeederService videogameSeederService;
     private TransitTaxesSeederService transitTaxesSeederService;
     private SocialNetworkSeederService socialNetworkSeederService;
+    private AdCampaignSeederService adCampaignSeederService;
+    private FilmForumSeederService filmForumSeederService;
+    private PropertySeederService propertySeederService;
 
     @Autowired
     public DatabaseSeederService(ShopSeederService shopSeederService, SchoolSeederService schoolSeederService,
@@ -52,7 +58,9 @@ public class DatabaseSeederService {
                                  VeterinarySeederService veterinarySeederService, GarageSeederService garageSeederService,
                                  AirportSeederService airportSeederService, TicketBusSeederService ticketBusSeederService,
                                  VideogameSeederService videogameSeederService, TransitTaxesSeederService transitTaxesSeederService,
-                                 TransportSeedService transportSeedService, SocialNetworkSeederService socialNetworkSeederService) {
+                                 TransportSeedService transportSeedService, SocialNetworkSeederService socialNetworkSeederService,
+                                 FilmForumSeederService filmForumSeederService, AdCampaignSeederService adCampaignSeederService,
+                                 PropertySeederService propertySeederService) {
 
         this.shopSeederService = shopSeederService;
         this.schoolSeederService = schoolSeederService;
@@ -72,6 +80,9 @@ public class DatabaseSeederService {
         this.videogameSeederService = videogameSeederService;
         this.transitTaxesSeederService = transitTaxesSeederService;
         this.socialNetworkSeederService = socialNetworkSeederService;
+        this.adCampaignSeederService = adCampaignSeederService;
+        this.filmForumSeederService = filmForumSeederService;
+        this.propertySeederService = propertySeederService;
 
         this.seedDatabase();
     }
@@ -95,6 +106,9 @@ public class DatabaseSeederService {
         this.videogameSeederService.seedDataBase();
         this.transitTaxesSeederService.seedDatabase();
         this.socialNetworkSeederService.seedDatabase();
+        this.adCampaignSeederService.seedDatabase();
+        this.filmForumSeederService.seedDatabase();
+        this.propertySeederService.seedDatabase();
     }
 
     public void deleteAll() {
@@ -116,6 +130,9 @@ public class DatabaseSeederService {
         this.videogameSeederService.deleteAll();
         this.transitTaxesSeederService.deleteAll();
         this.socialNetworkSeederService.deleteAll();
+        this.adCampaignSeederService.deleteAll();
+        this.filmForumSeederService.deleteAll();
+        this.propertySeederService.deleteAll();
     }
 
     public void reSeedDatabase() {
