@@ -6,7 +6,7 @@ import es.upm.miw.apaw_practice.domain.services.factory.MachineService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
+import java.util.stream.Stream;
 
 @RestController
 @RequestMapping(MachineResource.MACHINES)
@@ -30,9 +30,8 @@ public class MachineResource {
     }
 
     @GetMapping(SEARCH)
-    public List<Machine> findMachineByEmployeeDegreeTitle(@RequestBody String q) {
+    public Stream<Machine> findMachineByEmployeeDegreeTitle(@RequestParam String q) {
         String title = new LexicalAnalyzer().extractWithAssure(q, "title");
         return this.machineService.findMachineByEmployeeDegreeTitle(title);
     }
-
 }

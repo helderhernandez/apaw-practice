@@ -5,7 +5,7 @@ import es.upm.miw.apaw_practice.domain.persistence_ports.factory.MachinePersiste
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.stream.Stream;
 
 @Service
 public class MachineService {
@@ -20,8 +20,7 @@ public class MachineService {
         return this.machinePersistence.updateStatus(id, active);
     }
 
-    public List<Machine> findMachineByEmployeeDegreeTitle(String title) {
+    public Stream<Machine> findMachineByEmployeeDegreeTitle(String title) {
         return this.machinePersistence.findMachineByEmployeeDegreeTitle(title);
     }
-
 }

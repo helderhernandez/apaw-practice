@@ -2,7 +2,6 @@ package es.upm.miw.apaw_practice.adapters.mongodb.factory.persistence;
 
 import es.upm.miw.apaw_practice.adapters.mongodb.factory.daos.DegreeRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.factory.daos.MachineRepository;
-import es.upm.miw.apaw_practice.adapters.mongodb.factory.entities.EmployeeEntity;
 import es.upm.miw.apaw_practice.adapters.mongodb.factory.entities.MachineEntity;
 import es.upm.miw.apaw_practice.domain.exceptions.NotFoundException;
 import es.upm.miw.apaw_practice.domain.models.factory.Machine;
@@ -38,50 +37,20 @@ public class MachinePersistenceMongodb implements MachinePersistence {
                 .toMachine();
     }
 
-    public Stream<EmployeeEntity> employeesFromMachine (Machine machine) {
-        Stream<EmployeeEntity> employeeStream = machine.getEmployeeEntities().stream();
-        System.out.println("Employees from Machine: >>>> " + employeeStream.collect(Collectors.toList()));
-        return employeeStream;
-    }
-
     public List<String> employeeByDegree(String title) {
         return this.degreeRepository.findAll().stream()
                 .filter(matchedTitle -> title.equals(matchedTitle.getTitle()))
                 .map(employee -> employee.getEmployeeEntity().getDni())
                 .collect(Collectors.toList());
-        //System.out.println("Employees >>>: " + employeeList);
-
     }
 
     @Override
-    public List<Machine> findMachineByEmployeeDegreeTitle(String title) {
-        List<String> employeeList = this.degreeRepository.findAll().stream()
-                .filter(matchedTitle -> title.equals(matchedTitle.getTitle()))
-                .map(employee -> employee.getEmployeeEntity().getDni())
-                .collect(Collectors.toList());
-        System.out.println("Employees DNIs>>>: " + employeeList);
-        //System.out.println("Before >>>> " + this.machineRepository.findAll());
-
-        List<Machine> x = this.machineRepository.findAll().stream()
+    public Stream<Machine> findMachineByEmployeeDegreeTitle(String title) {
+        List<String> employeeList = this.employeeByDegree(title);
+        return this.machineRepository.findAll().stream()
                 .map(MachineEntity::toMachine)
-                //.peek(c -> System.out.println("Machine >>>>> " + c.getSerialNumber()))
                 .filter(machine -> machine.getEmployeeEntities().stream()
-                        //.peek(c -> System.out.println("Employees in machine >>>>> " + c.getDni()))
                         .anyMatch(employeeEntity -> employeeList.contains(employeeEntity.getDni())))
-                .peek(c -> System.out.println("Filtered machine  >>>>>  " + c.getSerialNumber()))
-                .collect(Collectors.toList());
-        System.out.println("Machines >>>: " + x);
-        return x;
+                .peek(c -> System.out.println("Filtered machine  >>>>>  " + c.getSerialNumber()));
     }
 }
-/*
-List<MachineEntity> x = this.machineRepository.findAll().stream()
-                .peek(c -> System.out.println("Machine >>>>> " + c.getSerialNumber()))
-                .filter(machine -> machine.getEmployeeEntities().stream()
-                        .peek(c -> System.out.println("Employees in machine >>>>> " + c.getDni()))
-                        .anyMatch(employeeEntity -> employeeList.contains(employeeEntity.getDni())))
-                .peek(c -> System.out.println("Filtered machine  >>>>>  " + c.getSerialNumber()))
-                .collect(Collectors.toList());
-        System.out.println("Machines >>>: " + x);
-        return null;
- */
