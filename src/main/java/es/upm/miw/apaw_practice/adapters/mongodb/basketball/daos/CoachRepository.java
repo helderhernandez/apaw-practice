@@ -6,5 +6,5 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import java.util.Optional;
 
 public interface CoachRepository extends MongoRepository<CoachEntity, String> {
-    Optional<CoachEntity> findCoachByDni(String id);
+    Optional<CoachEntity> findCoachByDni(String dni);
 }
