@@ -23,7 +23,7 @@ public class BankSeederService {
     @Autowired
     private MortgageRepository mortgageRepository;
     @Autowired
-    private SharedAccountsRepository sharedAccountsRepository;
+    private SharedAccountRepository sharedAccountRepository;
     @Autowired
     private ShareholderRepository shareholderRepository;
 
@@ -63,7 +63,7 @@ public class BankSeederService {
                 new SharedAccountEntity(new BigDecimal("100"), "Family", "ES66 256652256",
                         List.of(customers[1], customers[3]))
         };
-        this.sharedAccountsRepository.saveAll(Arrays.asList(sharedAccounts));
+        this.sharedAccountRepository.saveAll(Arrays.asList(sharedAccounts));
 
         ShareholderEntity[] shareholders = {
                 new ShareholderEntity(new BigDecimal("20.25"), new BigDecimal("1.22"), LocalDateTime.of(2020, 11, 7, 13, 30), Boolean.TRUE,
@@ -77,7 +77,7 @@ public class BankSeederService {
 
     public void deleteAll() {
         this.shareholderRepository.deleteAll();
-        this.sharedAccountsRepository.deleteAll();
+        this.sharedAccountRepository.deleteAll();
         this.mortgageRepository.deleteAll();
         this.accountRepository.deleteAll();
         this.customerRepository.deleteAll();
