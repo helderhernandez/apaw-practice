@@ -8,9 +8,10 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.math.BigDecimal;
+import java.util.List;
+import java.util.stream.Collectors;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 @TestConfig
 public class ProductPersistenceMongodbIT {
@@ -37,5 +38,37 @@ public class ProductPersistenceMongodbIT {
         product.setWholesalePrice(new BigDecimal("7.40"));
         this.productPersistence.update(product.toProduct());
     }
+
+
+    @Test
+    void testCompareTwoPrices(){
+        BigDecimal price1 = new BigDecimal("5.59");
+        BigDecimal price2 = new BigDecimal("10.59");
+        BigDecimal price3 = new BigDecimal("15.59");
+
+        assertFalse(this.productPersistence.compareTwoPrices(price1, price2));
+        assertTrue(this.productPersistence.compareTwoPrices(price3, price2));
+    }
+
+    @Test
+    void testProductsWithAWholesalePriceGreaterThan(){
+        BigDecimal price1 = new BigDecimal("5.50");
+        BigDecimal price2 = new BigDecimal("50.50");
+        BigDecimal price3 = new BigDecimal("500.50");
+        BigDecimal price4 = new BigDecimal("5000.50");
+
+        List<Long> x1 = this.productPersistence.productsWithAWholesalePriceGreaterThan(price1);
+        System.out.println("Products over Price 1 >>>> " + x1);
+        List<Long> x2 = this.productPersistence.productsWithAWholesalePriceGreaterThan(price2);
+        System.out.println("Products over Price 2 >>>> " + x2);
+        List<Long> x3 = this.productPersistence.productsWithAWholesalePriceGreaterThan(price3);
+        System.out.println("Products over Price 3 >>>> " + x3);
+        List<Long> x4 = this.productPersistence.productsWithAWholesalePriceGreaterThan(price4);
+        System.out.println("Products over Price 4 >>>> " + x4);
+
+
+
+    }
+
 }
 

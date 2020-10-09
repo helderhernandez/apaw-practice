@@ -8,6 +8,9 @@ import es.upm.miw.apaw_practice.domain.persistence_ports.factory.ProductPersiste
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.math.BigDecimal;
+import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @Repository("productPersistence")
@@ -42,5 +45,24 @@ public class ProductPersistenceMongodb implements ProductPersistence {
         return this.productRepository
                 .save(productEntity)
                 .toProduct();
+    }
+
+    public Boolean compareTwoPrices(BigDecimal greaterPrice, BigDecimal lowerPrice){
+        int res = greaterPrice.compareTo(lowerPrice);
+        return res > 0;
+    }
+
+    public List<Long> productsWithAWholesalePriceGreaterThan (BigDecimal wholesalePrice){
+        return this.productRepository.findAll().stream()
+                .filter(greaterWholesalePrice ->
+                        compareTwoPrices(greaterWholesalePrice.getWholesalePrice(), wholesalePrice))
+                .map(ProductEntity::getSerialNumber)
+                .collect(Collectors.toList());
+    }
+
+    @Override
+    public Stream<Product> findProductsWithAnActiveMachineAndAWholesalePriceGreaterThan(BigDecimal wholesalePrice) {
+        List<Long> productList = this.productsWithAWholesalePriceGreaterThan(wholesalePrice);
+        return null;
     }
 }
