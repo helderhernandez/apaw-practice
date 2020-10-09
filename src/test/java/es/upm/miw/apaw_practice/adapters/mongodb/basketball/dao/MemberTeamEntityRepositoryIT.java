@@ -17,8 +17,8 @@ public class MemberTeamEntityRepositoryIT {
 
     @Test
     void testFindMemberByDni() {
-        assertTrue(this.memberTeamRepository.findMemberByDni("20000000C").isPresent());
-        MemberTeamEntity memberTeam = this.memberTeamRepository.findMemberByDni("20000000C").get();
+        assertTrue(this.memberTeamRepository.findByDni("20000000C").isPresent());
+        MemberTeamEntity memberTeam = this.memberTeamRepository.findByDni("20000000C").get();
         assertEquals("Leonor", memberTeam.getName());
         assertEquals("Rodriguez", memberTeam.getSurname());
     }

@@ -17,8 +17,8 @@ public class CoachEntityRepositoryIT {
 
     @Test
     void testFindCoachByDni() {
-        assertTrue(this.coachRepository.findCoachByDni("32222222C").isPresent());
-        CoachEntity coach = this.coachRepository.findCoachByDni("32222222C").get();
+        assertTrue(this.coachRepository.findByDni("32222222C").isPresent());
+        CoachEntity coach = this.coachRepository.findByDni("32222222C").get();
         assertEquals("Pablo", coach.getName());
         assertEquals("Laso", coach.getSurname());
     }
