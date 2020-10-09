@@ -5,6 +5,7 @@ import es.upm.miw.apaw_practice.adapters.mongodb.factory.FactorySeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.factory.daos.ProductRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.factory.entities.ProductEntity;
 import es.upm.miw.apaw_practice.domain.models.factory.Machine;
+import es.upm.miw.apaw_practice.domain.models.factory.Product;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -13,7 +14,8 @@ import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @TestConfig
 public class ProductPersistenceMongodbIT {
@@ -42,55 +44,31 @@ public class ProductPersistenceMongodbIT {
     }
 
     @Test
-    void testCompareTwoPrices() {
-        BigDecimal price1 = new BigDecimal("5.59");
-        BigDecimal price2 = new BigDecimal("10.59");
-        BigDecimal price3 = new BigDecimal("15.59");
-
-        assertFalse(this.productPersistence.compareTwoPrices(price1, price2));
-        assertTrue(this.productPersistence.compareTwoPrices(price3, price2));
-    }
-
-    @Test
     void testActiveMachines() {
         List<Machine> activeMachines = this.productPersistence.activeMachines();
-        System.out.println("Active machines >>>> " + activeMachines);
+
+        assertEquals(800500L, activeMachines.get(0).getSerialNumber());
+        assertEquals(700500L, activeMachines.get(1).getSerialNumber());
     }
 
     @Test
     void testProductsInActiveMachines() {
         List<Long> productsActiveMachines = this.productPersistence.productsInActiveMachines();
-        System.out.println("Products in active machines >>>> " + productsActiveMachines);
-    }
 
-    @Test
-    void testProductsWithAWholesalePriceGreaterThan() {
-        BigDecimal price1 = new BigDecimal("5.50");
-        BigDecimal price2 = new BigDecimal("50.50");
-        BigDecimal price3 = new BigDecimal("500.50");
-        BigDecimal price4 = new BigDecimal("5000.50");
-
-        List<Long> x1 = this.productPersistence.productsWithAWholesalePriceGreaterThan(price1);
-        System.out.println("Products over Price 1 >>>> " + x1);
-        List<Long> x2 = this.productPersistence.productsWithAWholesalePriceGreaterThan(price2);
-        System.out.println("Products over Price 2 >>>> " + x2);
-        List<Long> x3 = this.productPersistence.productsWithAWholesalePriceGreaterThan(price3);
-        System.out.println("Products over Price 3 >>>> " + x3);
-        List<Long> x4 = this.productPersistence.productsWithAWholesalePriceGreaterThan(price4);
-        System.out.println("Products over Price 4 >>>> " + x4);
+        assertEquals(10000001, productsActiveMachines.get(0));
+        assertEquals(20000001, productsActiveMachines.get(1));
+        assertEquals(30000001, productsActiveMachines.get(2));
+        assertEquals(40000001, productsActiveMachines.get(3));
     }
 
     @Test
     void testFindProductsWithAnActiveMachineAndAWholesalePriceGreaterThan() {
-        BigDecimal price1 = new BigDecimal("5.50");
-        BigDecimal price2 = new BigDecimal("50.50");
-        BigDecimal price3 = new BigDecimal("500.50");
-        BigDecimal price4 = new BigDecimal("5000.50");
-        //this.productPersistence.findProductsWithAnActiveMachineAndAWholesalePriceGreaterThan(price1);
-        this.productPersistence.findProductsWithAnActiveMachineAndAWholesalePriceGreaterThan(price2);
-        //this.productPersistence.findProductsWithAnActiveMachineAndAWholesalePriceGreaterThan(price3);
-        //this.productPersistence.findProductsWithAnActiveMachineAndAWholesalePriceGreaterThan(price4);
+        Stream<Product> products = this.productPersistence.findProductsWithAnActiveMachineAndAWholesalePriceGreaterThan(new BigDecimal("50.50"));
+        List<Product> productList = products.collect(Collectors.toList());
 
+        assertEquals(30000001L, productList.get(0).getSerialNumber());
+        assertEquals(new BigDecimal("106.65"), productList.get(0).getWholesalePrice());
+        assertEquals("P0004", productList.get(1).getItemReference());
     }
 }
 
