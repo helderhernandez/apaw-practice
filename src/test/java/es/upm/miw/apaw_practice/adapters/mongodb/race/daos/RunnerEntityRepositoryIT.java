@@ -1,7 +1,7 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.race.daos;
 
 import es.upm.miw.apaw_practice.TestConfig;
-import es.upm.miw.apaw_practice.adapters.mongodb.race.entities.RunnerClubEntity;
+import es.upm.miw.apaw_practice.adapters.mongodb.race.entities.RunnerEntity;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -9,15 +9,15 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @TestConfig
-public class RunnerClubEntityRepositoryIT {
+public class RunnerEntityRepositoryIT {
 
     @Autowired
-    private RunnerClubRepository runnerClubRepository;
+    private RunnerRepository runnerRepository;
 
     @Test
     void testCreateAndRead() {
-        assertTrue(this.runnerClubRepository.findById("1").isPresent());
-        RunnerClubEntity runnerClub = this.runnerClubRepository.findById("1").get();
-        assertEquals("Runners Club", runnerClub.getName());
+        assertTrue(runnerRepository.findById("3").isPresent());
+        RunnerEntity runner = runnerRepository.findById("3").get();
+        assertEquals("00000003", runner.getDni());
     }
 }
