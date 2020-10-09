@@ -92,4 +92,10 @@ public class AccountEntity {
         BeanUtils.copyProperties(this, account);
         return account;
     }
+
+    public String getIdByCustomer(CustomerEntity customerEntity) {
+        if (this.customerEntity.equals(customerEntity))
+            return this.getId();
+        else return null;
+    }
 }

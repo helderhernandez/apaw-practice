@@ -38,4 +38,9 @@ public class AccountPersistenceMongodbIT {
         bankSeederService.deleteAll();
         bankSeederService.seedDatabase();
     }
+
+    @Test
+    void testIdByCustomerWithShareholderWithValueGreaterThan() {
+        //TODO
+    }
 }
