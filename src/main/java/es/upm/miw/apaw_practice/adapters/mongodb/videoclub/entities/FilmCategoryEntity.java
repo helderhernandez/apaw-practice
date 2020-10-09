@@ -18,10 +18,14 @@ public class FilmCategoryEntity {
     }
 
     public FilmCategoryEntity(String id, String name, String subName, Boolean plus18) {
-        this.id = UUID.randomUUID().toString();
+        this.id = id;
         this.name = name;
         this.subName = subName;
         this.plus18 = plus18;
+    }
+
+    public String getId() {
+        return id;
     }
 
     public String getName() {

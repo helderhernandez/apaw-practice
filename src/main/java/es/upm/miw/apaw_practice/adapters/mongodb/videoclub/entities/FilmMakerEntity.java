@@ -2,6 +2,7 @@ package es.upm.miw.apaw_practice.adapters.mongodb.videoclub.entities;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+
 import java.time.LocalDate;
 import java.time.Period;
 import java.util.UUID;
@@ -20,11 +21,15 @@ public class FilmMakerEntity {
     }
 
     public FilmMakerEntity(String id, String name, String familyName, LocalDate birthday, String gender) {
-        this.id = UUID.randomUUID().toString();
+        this.id = id;
         this.name = name;
         this.familyName = familyName;
         this.birthday = birthday;
         this.gender = gender;
+    }
+
+    public String getId() {
+        return id;
     }
 
     public String getName() {

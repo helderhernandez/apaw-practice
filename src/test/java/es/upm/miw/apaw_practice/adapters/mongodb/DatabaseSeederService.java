@@ -22,6 +22,7 @@ import es.upm.miw.apaw_practice.adapters.mongodb.ticketbus.TicketBusSeederServic
 import es.upm.miw.apaw_practice.adapters.mongodb.transport.TransportSeedService;
 import es.upm.miw.apaw_practice.adapters.mongodb.transittaxes.TransitTaxesSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.veterinary.VeterinarySeederService;
+import es.upm.miw.apaw_practice.adapters.mongodb.videoclub.VideoclubSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.videogame.VideogameSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.restaurant.RestaurantSeederService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,6 +55,7 @@ public class DatabaseSeederService {
     private RestaurantSeederService restaurantSeederService;
     private FurnitureFactorySeederService furnitureFactorySeederService;
     private LibrarySeederService librarySeederService;
+    private VideoclubSeederService videoclubSeederService;
 
     @Autowired
     public DatabaseSeederService(ShopSeederService shopSeederService, SchoolSeederService schoolSeederService,
@@ -68,7 +70,7 @@ public class DatabaseSeederService {
                                  RestaurantSeederService restaurantSeederService, FilmForumSeederService filmForumSeederService,
                                  AdCampaignSeederService adCampaignSeederService,
                                  PropertySeederService propertySeederService,FurnitureFactorySeederService furnitureFactorySeederService,
-                                 LibrarySeederService librarySeederService) {
+                                 LibrarySeederService librarySeederService, VideoclubSeederService videoclubSeederService) {
 
 
         this.shopSeederService = shopSeederService;
@@ -95,6 +97,7 @@ public class DatabaseSeederService {
         this.propertySeederService = propertySeederService;
         this.furnitureFactorySeederService=furnitureFactorySeederService;
         this.librarySeederService=librarySeederService;
+        this.videoclubSeederService = videoclubSeederService;
         this.seedDatabase();
     }
 
@@ -123,6 +126,7 @@ public class DatabaseSeederService {
         this.propertySeederService.seedDatabase();
         this.furnitureFactorySeederService.seedDatabase();
         this.librarySeederService.seedDatabase();
+        this.videoclubSeederService.seedDatabase();
     }
 
     public void deleteAll() {
@@ -150,6 +154,7 @@ public class DatabaseSeederService {
         this.propertySeederService.deleteAll();
         this.furnitureFactorySeederService.deleteAll();
         this.librarySeederService.deleteAll();
+        this.videoclubSeederService.deleteAll();
     }
 
     public void reSeedDatabase() {
