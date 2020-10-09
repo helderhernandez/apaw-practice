@@ -7,4 +7,5 @@ import java.util.Optional;
 
 public interface ChefRepository extends MongoRepository<ChefEntity, String> {
     Optional<ChefEntity> findByDni(String dni);
+
 }

@@ -12,15 +12,15 @@ import java.util.stream.Stream;
 @RequestMapping(BedResource.BEDS)
 public class BedResource {
     static final String BEDS = "/hospital/beds";
-    static final String ID_ID = "/{id}";;
+    static final String ID_ID = "/{id}";
     static final String OCCUPIED = "/occupied";
     static final String SEARCH = "/search";
 
     private BedService bedService;
 
     @Autowired
-    public BedResource(BedService bedService){
-        this.bedService=bedService;
+    public BedResource(BedService bedService) {
+        this.bedService = bedService;
     }
 
     @PutMapping(ID_ID + OCCUPIED)
@@ -29,8 +29,8 @@ public class BedResource {
     }
 
     @GetMapping(SEARCH)
-    public Stream<String> findByNameWidthOfBeds(@RequestParam String q) {
+    public Stream<WidthDto> findByNameWidthOfBeds(@RequestParam String q) {
         String name = new LexicalAnalyzer().extractWithAssure(q, "name");
-        return this.bedService.findByNameWidthOfBeds(name);
+        return this.bedService.findByNameWidthOfBeds(name).map(WidthDto::new);
     }
 }

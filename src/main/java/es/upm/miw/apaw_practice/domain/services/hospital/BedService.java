@@ -13,15 +13,15 @@ public class BedService {
     private BedPersistence bedPersistence;
 
     @Autowired
-    public BedService(BedPersistence bedPersistence){
-        this.bedPersistence=bedPersistence;
+    public BedService(BedPersistence bedPersistence) {
+        this.bedPersistence = bedPersistence;
     }
 
     public Bed updateOccupied(String id, Boolean occupied) {
         return this.bedPersistence.updateOccupied(id, occupied);
     }
 
-    public Stream<String> findByNameWidthOfBeds(String name) {
+    public Stream<Bed> findByNameWidthOfBeds(String name) {
         return this.bedPersistence.findByNameWidthOfBeds(name);
     }
 }

@@ -1,5 +1,7 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.transport.entities;
 
+import es.upm.miw.apaw_practice.domain.models.transport.Extra;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -16,8 +18,8 @@ public class ExtraEntity {
         //empty for framework
     }
 
-    public ExtraEntity(Integer workedHours, Boolean paid) {
-        this.id = UUID.randomUUID().toString();
+    public ExtraEntity(String id, Integer workedHours, Boolean paid) {
+        this.id = id;
         this.workedHours = workedHours;
         this.paid = paid;
     }
@@ -63,5 +65,15 @@ public class ExtraEntity {
                 ", workedHours=" + workedHours +
                 ", paid=" + paid +
                 '}';
+    }
+
+    public void fromStudent(Extra extra) {
+        BeanUtils.copyProperties(extra, this);
+    }
+
+    public Extra toExtra() {
+        Extra extra = new Extra();
+        BeanUtils.copyProperties(this, extra);
+        return extra;
     }
 }

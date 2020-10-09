@@ -19,18 +19,18 @@ public class MachineEntity {
     private List<ProductEntity> productEntities;
     @Indexed(unique = true)
     private Long serialNumber;
-    private Boolean isActive;
+    private Boolean active;
     private LocalDate lastInspection;
 
     public MachineEntity() {
         // empty for framework
     }
 
-    public MachineEntity(List<EmployeeEntity> employeeEntities, List<ProductEntity> productEntities, Long serialNumber, Boolean isActive, LocalDate lastInspection) {
+    public MachineEntity(List<EmployeeEntity> employeeEntities, List<ProductEntity> productEntities, Long serialNumber, Boolean active, LocalDate lastInspection) {
         this.employeeEntities = employeeEntities;
         this.productEntities = productEntities;
         this.serialNumber = serialNumber;
-        this.isActive = isActive;
+        this.active = active;
         this.lastInspection = lastInspection;
     }
 
@@ -66,12 +66,12 @@ public class MachineEntity {
         this.serialNumber = serialNumber;
     }
 
-    public Boolean isActive() {
-        return isActive;
+    public Boolean getActive() {
+        return active;
     }
 
     public void setActive(Boolean active) {
-        isActive = active;
+        this.active = active;
     }
 
     public LocalDate getLastInspection() {
@@ -80,6 +80,12 @@ public class MachineEntity {
 
     public void setLastInspection(LocalDate lastInspection) {
         this.lastInspection = lastInspection;
+    }
+
+    public Machine toMachine() {
+        Machine machine = new Machine();
+        BeanUtils.copyProperties(this, machine);
+        return machine;
     }
 
     @Override
@@ -100,14 +106,8 @@ public class MachineEntity {
                 ", employeeEntities=" + employeeEntities +
                 ", productEntities=" + productEntities +
                 ", serialNumber=" + serialNumber +
-                ", isActive=" + isActive +
+                ", active=" + active +
                 ", lastInspection=" + lastInspection +
                 '}';
-    }
-
-    public Machine toMachine() {
-        Machine machine = new Machine();
-        BeanUtils.copyProperties(this, machine);
-        return machine;
     }
 }

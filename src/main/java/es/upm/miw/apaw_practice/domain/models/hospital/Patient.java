@@ -9,10 +9,10 @@ public class Patient {
     private String dni;
     private String name;
     private String surname;
-    private String [] pathologies;
+    private String[] pathologies;
     private List<Illness> illness;
 
-    public Patient(){
+    public Patient() {
         //Empty for framework
     }
 
