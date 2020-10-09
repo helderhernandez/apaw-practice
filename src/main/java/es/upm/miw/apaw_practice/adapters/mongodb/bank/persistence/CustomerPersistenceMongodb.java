@@ -2,8 +2,6 @@ package es.upm.miw.apaw_practice.adapters.mongodb.bank.persistence;
 
 
 import es.upm.miw.apaw_practice.adapters.mongodb.bank.daos.CustomerRepository;
-import es.upm.miw.apaw_practice.adapters.mongodb.bank.daos.MortgageRepository;
-import es.upm.miw.apaw_practice.adapters.mongodb.bank.daos.SharedAccountRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.bank.entities.CustomerEntity;
 import es.upm.miw.apaw_practice.domain.exceptions.ConflictException;
 import es.upm.miw.apaw_practice.domain.models.bank.Customer;
@@ -12,6 +10,8 @@ import es.upm.miw.apaw_practice.domain.persistence_ports.bank.CustomerPersistenc
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @Repository("customerPersistence")
@@ -19,15 +19,15 @@ public class CustomerPersistenceMongodb implements CustomerPersistence {
 
     private final CustomerRepository customerRepository;
 
-    private final MortgageRepository mortgageRepository;
+    private final MortgagePersistenceMongodb mortgagePersistence;
 
-    private final SharedAccountRepository sharedAccountRepository;
+    private final SharedAccountPersistenceMongodb sharedAccountPersistence;
 
     @Autowired
-    public CustomerPersistenceMongodb(CustomerRepository customerRepository, MortgageRepository mortgageRepository, SharedAccountRepository sharedAccountRepository) {
+    public CustomerPersistenceMongodb(CustomerRepository customerRepository, MortgagePersistenceMongodb mortgagePersistence, SharedAccountPersistenceMongodb sharedAccountPersistence) {
         this.customerRepository = customerRepository;
-        this.mortgageRepository = mortgageRepository;
-        this.sharedAccountRepository = sharedAccountRepository;
+        this.mortgagePersistence = mortgagePersistence;
+        this.sharedAccountPersistence = sharedAccountPersistence;
     }
 
 
@@ -53,12 +53,14 @@ public class CustomerPersistenceMongodb implements CustomerPersistence {
                 });
     }
 
-    public Stream<String> findDNIByMortgageAndSharedAccount() {
-        Stream<String> DNIs = this.readAll()
-                .map(item -> item.getDNI());
+    public List<String> findDNIByMortgageAndSharedAccount() {
+        List<String> shared = this.sharedAccountPersistence.findDNIBySharedAccount();
+        List<String> mortgages = this.mortgagePersistence.findDNIbyCustomers();
+        return shared.stream()
+                .distinct()
+                .filter(mortgages::contains)
+                .collect(Collectors.toList());
 
-
-        return null;
     }
 
 }
