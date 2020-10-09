@@ -1,13 +1,12 @@
 package es.upm.miw.apaw_practice.adapters.rest.kitchen;
 
 import es.upm.miw.apaw_practice.domain.models.kitchen.Ingredient;
+import es.upm.miw.apaw_practice.domain.models.kitchen.IngredientPricePerKgUpdating;
 import es.upm.miw.apaw_practice.domain.services.kitchen.IngredientService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.stream.Stream;
 
 @RestController
@@ -25,5 +24,10 @@ public class IngredientResource {
     @GetMapping
     public Stream<Ingredient> readAll() {
         return this.ingredientService.readAll();
+    }
+
+    @PatchMapping
+    public void updatePricesPerKg(@RequestBody List<IngredientPricePerKgUpdating> ingredientPricesPerKg) {
+        this.ingredientService.updatePricesPerKg(ingredientPricesPerKg);
     }
 }

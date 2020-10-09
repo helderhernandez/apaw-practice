@@ -20,4 +20,8 @@ public class AccountService {
     public Account updateAmount(String id, BigDecimal amount) {
         return this.accountPersistence.updateAmount(id, amount);
     }
+
+    public void delete(String id) {
+        this.accountPersistence.deleteById(id);
+    }
 }

@@ -6,13 +6,13 @@ public class BasicIllnessDto {
     private String id;
     private Boolean contagious;
 
-    public BasicIllnessDto(){
+    public BasicIllnessDto() {
         //empty for framework
     }
 
     public BasicIllnessDto(Illness illness) {
-        this.id=illness.getId();
-        this.contagious=illness.getContagious();
+        this.id = illness.getId();
+        this.contagious = illness.getContagious();
     }
 
     public String getId() {

@@ -1,5 +1,7 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.project.entities;
 
+import es.upm.miw.apaw_practice.domain.models.project.Label;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -18,10 +20,9 @@ public class LabelEntity {
         //empty for framework
     }
 
-    public LabelEntity(String name, String description) {
+    public LabelEntity(Label label) {
+        BeanUtils.copyProperties(label, this);
         this.id = UUID.randomUUID().toString();
-        this.name = name;
-        this.description = description;
     }
 
     public String getId() {
@@ -46,6 +47,12 @@ public class LabelEntity {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Label toLabel() {
+        Label label = new Label();
+        BeanUtils.copyProperties(this, label);
+        return label;
     }
 
     @Override

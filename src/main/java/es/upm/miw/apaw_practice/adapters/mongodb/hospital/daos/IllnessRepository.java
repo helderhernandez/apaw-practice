@@ -8,4 +8,7 @@ import java.util.Optional;
 
 public interface IllnessRepository extends MongoRepository<IllnessEntity, String> {
     Optional<List<IllnessEntity>> findByContagious(Boolean contagious);
+
+    List<IllnessEntity> findByPhase(Integer phase);
+
 }

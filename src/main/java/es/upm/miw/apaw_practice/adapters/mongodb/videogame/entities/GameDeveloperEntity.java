@@ -1,5 +1,8 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.videogame.entities;
 
+import es.upm.miw.apaw_practice.domain.models.videogame.GameDeveloper;
+import es.upm.miw.apaw_practice.domain.models.videogame.GameDeveloperCreation;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -16,7 +19,7 @@ public class GameDeveloperEntity {
     private Integer phone;
 
     public GameDeveloperEntity() {
-        //empty from framework
+        //empty for framework
     }
 
     public GameDeveloperEntity(String name, String email, Integer phone) {
@@ -24,6 +27,16 @@ public class GameDeveloperEntity {
         this.name = name;
         this.email = email;
         this.phone = phone;
+    }
+
+    public GameDeveloperEntity(GameDeveloperCreation gameDeveloperCreation) {
+        BeanUtils.copyProperties(gameDeveloperCreation, this);
+        this.id = UUID.randomUUID().toString();
+
+    }
+
+    public GameDeveloperEntity(GameDeveloper gameDeveloper) {
+        BeanUtils.copyProperties(gameDeveloper, this);
     }
 
     public String getId() {
@@ -72,6 +85,12 @@ public class GameDeveloperEntity {
     @Override
     public int hashCode() {
         return Objects.hash(id, name, email, phone);
+    }
+
+    public GameDeveloper toGameDeveloper() {
+        GameDeveloper gameDeveloper = new GameDeveloper();
+        BeanUtils.copyProperties(this, gameDeveloper);
+        return gameDeveloper;
     }
 
     @Override

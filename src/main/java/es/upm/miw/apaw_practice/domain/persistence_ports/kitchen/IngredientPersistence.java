@@ -8,4 +8,6 @@ import java.util.stream.Stream;
 @Repository
 public interface IngredientPersistence {
     Stream<Ingredient> readAll();
+
+    Ingredient update(Ingredient ingredient);
 }

@@ -1,6 +1,5 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.sportcentre.entities;
 
-
 import es.upm.miw.apaw_practice.domain.models.sportcentre.Instructor;
 import es.upm.miw.apaw_practice.domain.models.sportcentre.InstructorCreation;
 import org.springframework.beans.BeanUtils;
@@ -15,7 +14,7 @@ import java.util.Objects;
 import java.util.UUID;
 
 @Document
-public class InstructorEntity {
+public class InstructorEntity implements InstructorComponent{
 
     @Id
     private String id;
@@ -29,6 +28,15 @@ public class InstructorEntity {
 
     public InstructorEntity(){
         //Empty from framework
+    }
+
+    public InstructorEntity(String dni, String name, String lastName, BigDecimal salary, List<SpecialityEntity> specialities) {
+        this.id = UUID.randomUUID().toString();
+        this.dni = dni;
+        this.name = name;
+        this.lastName = lastName;
+        this.salary = salary;
+        this.specialities = specialities;
     }
 
     public InstructorEntity(InstructorCreation instructorCreation) {
@@ -114,5 +122,25 @@ public class InstructorEntity {
                 ", salary=" + salary +
                 ", specialities=" + specialities +
                 '}';
+    }
+
+    @Override
+    public void add(InstructorComponent instructorComponent) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public void remove(InstructorComponent instructorComponent) {
+        throw new UnsupportedOperationException();
+    }
+
+    @Override
+    public String view() {
+        return this.toString();
+    }
+
+    @Override
+    public Boolean isComposite(InstructorComponent instructorComponent) {
+        return false;
     }
 }

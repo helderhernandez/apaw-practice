@@ -1,15 +1,37 @@
 package es.upm.miw.apaw_practice.domain.models.factory;
 
+import es.upm.miw.apaw_practice.adapters.mongodb.factory.entities.EmployeeEntity;
+import es.upm.miw.apaw_practice.adapters.mongodb.factory.entities.ProductEntity;
+
 import java.time.LocalDate;
+import java.util.List;
 
 public class Machine {
+    private List<EmployeeEntity> employeeEntities;
+    private List<ProductEntity> productEntities;
     private String id;
     private Long serialNumber;
-    private Boolean isActive;
+    private Boolean active;
     private LocalDate lastInspection;
 
     public Machine() {
         // empty for framework
+    }
+
+    public List<EmployeeEntity> getEmployeeEntities() {
+        return employeeEntities;
+    }
+
+    public void setEmployeeEntities(List<EmployeeEntity> employeeEntities) {
+        this.employeeEntities = employeeEntities;
+    }
+
+    public List<ProductEntity> getProductEntities() {
+        return productEntities;
+    }
+
+    public void setProductEntities(List<ProductEntity> productEntities) {
+        this.productEntities = productEntities;
     }
 
     public String getId() {
@@ -29,11 +51,11 @@ public class Machine {
     }
 
     public Boolean getActive() {
-        return isActive;
+        return active;
     }
 
     public void setActive(Boolean active) {
-        isActive = active;
+        this.active = active;
     }
 
     public LocalDate getLastInspection() {
@@ -49,7 +71,7 @@ public class Machine {
         return "Machine{" +
                 "id='" + id + '\'' +
                 ", serialNumber=" + serialNumber +
-                ", isActive=" + isActive +
+                ", active=" + active +
                 ", lastInspection=" + lastInspection +
                 '}';
     }

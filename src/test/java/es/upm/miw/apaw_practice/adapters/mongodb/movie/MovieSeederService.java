@@ -7,7 +7,7 @@ import es.upm.miw.apaw_practice.adapters.mongodb.movie.entities.CinemaEntity;
 import es.upm.miw.apaw_practice.adapters.mongodb.movie.entities.FilmDirectorEntity;
 import es.upm.miw.apaw_practice.adapters.mongodb.movie.entities.FilmRoomEntity;
 import es.upm.miw.apaw_practice.adapters.mongodb.movie.entities.MovieEntity;
-import es.upm.miw.apaw_practice.domain.models.movie.MovieCreation;
+import es.upm.miw.apaw_practice.domain.models.movie.Movie;
 import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,23 +31,23 @@ public class MovieSeederService {
     public void seedDatabase() {
         LogManager.getLogger(this.getClass()).warn("------- Movie Initial Load -----------");
         FilmDirectorEntity[] filmDirectories = {
-                new FilmDirectorEntity("Jose", "Luis Rodriguez", 38),
-                new FilmDirectorEntity("Pedro", "Munoz Roda", 30),
-                new FilmDirectorEntity("Marta", "Gomez Gomez", 28),
-                new FilmDirectorEntity("Luis", "Franco Perez", 55),
-                new FilmDirectorEntity("Hector", "Munoz Merida", 22)
+                FilmDirectorEntity.builder().name("Jose").fulName("Luis Rodriguez").age(38).build(),
+                FilmDirectorEntity.builder().name("Pedro").fulName("Munoz Roda").age(30).build(),
+                FilmDirectorEntity.builder().name("Marta").fulName("Gomez Gomez").age(28).build(),
+                FilmDirectorEntity.builder().name("Luis").fulName("Franco Perez").age(55).build(),
+                FilmDirectorEntity.builder().name("Hector").fulName("Munoz Merida").age(22).build()
         };
         this.filmDirectorRepository.saveAll(Arrays.asList(filmDirectories));
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm");
         MovieEntity[] movies = {
-                new MovieEntity(new MovieCreation("Frozen", filmDirectories[4], LocalDateTime.parse("1986-04-08 10:30", formatter), "ppppppp", 10)),
-                new MovieEntity(new MovieCreation("Kill", filmDirectories[0], LocalDateTime.parse("2000-02-23 20:50", formatter), "dddddddddd", 2)),
-                new MovieEntity(new MovieCreation("Avengers", filmDirectories[4], LocalDateTime.parse("2010-01-09 14:12", formatter), "tttttttt", 5)),
-                new MovieEntity(new MovieCreation("Deadpool", filmDirectories[3], LocalDateTime.parse("2020-02-14 18:20", formatter), "ggggggg", 6)),
-                new MovieEntity(new MovieCreation("Let's Be Cops", filmDirectories[1], LocalDateTime.parse("1986-06-08 13:21", formatter), "lllllll", 3)),
-                new MovieEntity(new MovieCreation("The dark Knight", filmDirectories[2], LocalDateTime.parse("1986-11-03 23:32", formatter), "wwwwwww", 7)),
-                new MovieEntity(new MovieCreation("X-Men", filmDirectories[3], LocalDateTime.parse("1986-05-14 11:23", formatter), "yyyyyyyyyy", 9)),
-                new MovieEntity(new MovieCreation("The Simpsons", filmDirectories[4], LocalDateTime.parse("1986-02-17 20:30", formatter), "qqqqqqq", 1))
+                new MovieEntity(new Movie("Frozen", filmDirectories[4], LocalDateTime.parse("1986-04-08 10:30", formatter), "ppppppp", 10)),
+                new MovieEntity(new Movie("Kill", filmDirectories[0], LocalDateTime.parse("2000-02-23 20:50", formatter), "dddddddddd", 2)),
+                new MovieEntity(new Movie("Avengers", filmDirectories[4], LocalDateTime.parse("2010-01-09 14:12", formatter), "tttttttt", 5)),
+                new MovieEntity(new Movie("Deadpool", filmDirectories[3], LocalDateTime.parse("2020-02-14 18:20", formatter), "ggggggg", 6)),
+                new MovieEntity(new Movie("Let's Be Cops", filmDirectories[1], LocalDateTime.parse("1986-06-08 13:21", formatter), "lllllll", 3)),
+                new MovieEntity(new Movie("The dark Knight", filmDirectories[2], LocalDateTime.parse("1986-11-03 23:32", formatter), "wwwwwww", 7)),
+                new MovieEntity(new Movie("X-Men", filmDirectories[3], LocalDateTime.parse("1986-05-14 11:23", formatter), "yyyyyyyyyy", 9)),
+                new MovieEntity(new Movie("The Simpsons", filmDirectories[4], LocalDateTime.parse("1986-02-17 20:30", formatter), "qqqqqqq", 1))
         };
         this.movieRepository.saveAll(Arrays.asList(movies));
         FilmRoomEntity[] filmRooms = {

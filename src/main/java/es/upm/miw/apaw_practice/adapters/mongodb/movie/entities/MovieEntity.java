@@ -1,7 +1,6 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.movie.entities;
 
 import es.upm.miw.apaw_practice.domain.models.movie.Movie;
-import es.upm.miw.apaw_practice.domain.models.movie.MovieCreation;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
@@ -27,8 +26,8 @@ public class MovieEntity {
         //empty for framework
     }
 
-    public MovieEntity(MovieCreation movieCreation) {
-        BeanUtils.copyProperties(movieCreation, this);
+    public MovieEntity(Movie movie) {
+        BeanUtils.copyProperties(movie, this);
         this.id = UUID.randomUUID().toString();
     }
 
