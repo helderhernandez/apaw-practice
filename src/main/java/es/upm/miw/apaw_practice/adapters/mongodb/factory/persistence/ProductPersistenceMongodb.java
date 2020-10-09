@@ -57,6 +57,21 @@ public class ProductPersistenceMongodb implements ProductPersistence {
         return res > 0;
     }
 
+    public List<Machine> activeMachines() {
+        return this.machineRepository.findAll().stream()
+                .map(machineEntity -> machineEntity.toMachine())
+                .filter(machine -> machine.getActive() == true)
+                .collect(Collectors.toList());
+    }
+
+    public List<Long> productsInActiveMachines() {
+        return this.activeMachines().stream()
+                .flatMap(pr -> pr.getProductEntities().stream())
+                .map(pr -> pr.toProduct().getSerialNumber())
+                .distinct()
+                .collect(Collectors.toList());
+    }
+
     public List<Long> productsWithAWholesalePriceGreaterThan(BigDecimal wholesalePrice) {
         return this.productRepository.findAll().stream()
                 .filter(greaterWholesalePrice ->
@@ -64,34 +79,31 @@ public class ProductPersistenceMongodb implements ProductPersistence {
                 .map(ProductEntity::getSerialNumber)
                 .collect(Collectors.toList());
     }
-
-    public List<Long> activeMachines() {
-        List<Long> activeMachines = this.machineRepository.findAll().stream()
-                .map(machineEntity -> machineEntity.toMachine())
-                .filter(machine -> machine.getActive() == true)
-                .map(machine -> machine.getSerialNumber())
-                .collect(Collectors.toList());
-        return activeMachines;
+/*
+    @Override
+    public Stream<Long> findProductsWithAnActiveMachineAndAWholesalePriceGreaterThan(BigDecimal wholesalePrice) {
+        List<Long> productList = this.productsWithAWholesalePriceGreaterThan(wholesalePrice);
+        List<Long> productsInActiveMachines = this.productsInActiveMachines();
+        return productsInActiveMachines.stream()
+                .filter(p -> productList.contains(p))
     }
-
+*/
     @Override
     public Stream<Product> findProductsWithAnActiveMachineAndAWholesalePriceGreaterThan(BigDecimal wholesalePrice) {
         List<Long> productList = this.productsWithAWholesalePriceGreaterThan(wholesalePrice);
-        List<Machine> activeMachines = this.machineRepository.findAll().stream()
-                .map(machineEntity -> machineEntity.toMachine())
-                .filter(machine -> machine.getActive() == true)
+        List<Long> productsInActiveMachines = this.productsInActiveMachines();
+        List<Product> x = this.productRepository.findAll().stream()
+                .peek(c -> System.out.println("Current product  >>>>>  " + c))
+                .map(productEntity -> productEntity.toProduct())
+                .filter(product -> product.getWholesalePrice().compareTo(wholesalePrice) > 0)
+                .peek(c -> System.out.println("First filter product  >>>>>  " + c.getSerialNumber()))
+                .filter(product -> productsInActiveMachines.contains(product.getSerialNumber()))
+                .peek(c -> System.out.println("Second filter product  >>>>>  " + c.getSerialNumber()))
                 .collect(Collectors.toList());
+        System.out.println("Products >>>> " + x);
         return null;
     }
-/*
-    public Stream<Machine> findMachineByEmployeeDegreeTitle(String title) {
-        List<String> employeeList = this.employeeByDegree(title);
-        return this.machineRepository.findAll().stream()
-                .map(MachineEntity::toMachine)
-                .filter(machine -> machine.getEmployeeEntities().stream()
-                        .anyMatch(employeeEntity -> employeeList.contains(employeeEntity.getDni())))
-                .peek(c -> System.out.println("Filtered machine  >>>>>  " + c.getSerialNumber()));
-    }
 
- */
+
 }
+

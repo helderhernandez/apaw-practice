@@ -36,7 +36,8 @@ public class FactorySeederService {
                 new ProductEntity("P0001", 10000001L, new BigDecimal("7.40")),
                 new ProductEntity("P0002", 20000001L, new BigDecimal("9.85")),
                 new ProductEntity("P0003", 30000001L, new BigDecimal("106.65")),
-                new ProductEntity("P0004", 40000001L, new BigDecimal("2560.74"))
+                new ProductEntity("P0004", 40000001L, new BigDecimal("2560.74")),
+                new ProductEntity("P0005", 50000001L, new BigDecimal("74.10"))
         };
         this.productRepository.saveAll(Arrays.asList(products));
 
@@ -77,8 +78,10 @@ public class FactorySeederService {
                         900600L, false, LocalDate.of(2020, 7, 1)),
                 new MachineEntity(Arrays.asList(employees[3], employees[4]), Arrays.asList(products[1], products[2], products[3], products[4]),
                         800500L, true, LocalDate.of(2019, 11, 1)),
-                new MachineEntity(Arrays.asList(employees[6], employees[7]), Arrays.asList(products[0], products[4]),
+                new MachineEntity(Arrays.asList(employees[6], employees[7]), Arrays.asList(products[4]),
                         700500L, true, LocalDate.of(2020, 5, 1)),
+                new MachineEntity(Arrays.asList(employees[5]), Arrays.asList(products[5]),
+                        600500L, false, LocalDate.of(2020, 5, 1)),
         };
         this.machineRepository.saveAll(Arrays.asList(machines));
     }
