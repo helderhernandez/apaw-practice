@@ -1,9 +1,14 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.hospital.entities;
 
+import es.upm.miw.apaw_practice.domain.models.hospital.Patient;
+import es.upm.miw.apaw_practice.domain.models.hospital.PatientCreation;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.UUID;
@@ -18,19 +23,20 @@ public class PatientEntity {
     private String name;
     private String surname;
     private String [] pathologies;
+    @DBRef
     private List<IllnessEntity> illnessEntities;
 
     public PatientEntity(){
         //empty for framework
     }
 
-    public PatientEntity(String dni, String name, String surname, String[] pathologies, List<IllnessEntity> illnessEntities) {
+    public static PatientBuilder.Dni builder(){
+        return new Builder();
+    }
+
+    public PatientEntity(PatientCreation patientCreation) {
+        BeanUtils.copyProperties(patientCreation, this);
         this.id = UUID.randomUUID().toString();
-        this.dni = dni;
-        this.name = name;
-        this.surname = surname;
-        this.pathologies = pathologies;
-        this.illnessEntities = illnessEntities;
     }
 
     public String getId() {
@@ -92,6 +98,12 @@ public class PatientEntity {
                 (id.equals(((PatientEntity) obj).id));
     }
 
+    public Patient toPatient() {
+        Patient patient = new Patient();
+        BeanUtils.copyProperties(this,patient);
+        return patient;
+    }
+
     @Override
     public String toString() {
         return "PatientEntity{" +
@@ -102,5 +114,59 @@ public class PatientEntity {
                 ", pathologies=" + Arrays.toString(pathologies) +
                 ", illnessEntities=" + illnessEntities +
                 '}';
+    }
+
+    public static class Builder implements PatientBuilder.Dni, PatientBuilder.Optionals{
+
+        private PatientEntity patientEntity;
+        private Integer numElemPathologies;
+
+        public Builder(){
+            this.numElemPathologies=0;
+            this.patientEntity=new PatientEntity();
+            this.patientEntity.id = UUID.randomUUID().toString();
+        }
+
+        @Override
+        public PatientBuilder.Optionals dni(String dni) {
+            this.patientEntity.dni=dni;
+            return this;
+        }
+
+        @Override
+        public PatientBuilder.Optionals name(String name) {
+            this.patientEntity.name=name;
+            return this;
+        }
+
+        @Override
+        public PatientBuilder.Optionals surname(String surname) {
+            this.patientEntity.surname=surname;
+            return this;
+        }
+
+        @Override
+        public PatientBuilder.Optionals pathologies(String pathology) {
+            if (this.patientEntity.pathologies == null) {
+                this.patientEntity.pathologies = new String [10];
+            }
+            this.patientEntity.pathologies[numElemPathologies]=pathology;
+            this.numElemPathologies++;
+            return this;
+        }
+
+        @Override
+        public PatientBuilder.Optionals illnessEntities(IllnessEntity illnessEntity) {
+            if (this.patientEntity.illnessEntities == null) {
+                this.patientEntity.illnessEntities = new ArrayList<>();
+            }
+            this.patientEntity.illnessEntities.add(illnessEntity);
+            return this;
+        }
+
+        @Override
+        public PatientEntity build() {
+            return this.patientEntity;
+        }
     }
 }

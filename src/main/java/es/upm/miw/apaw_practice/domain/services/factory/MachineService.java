@@ -7,7 +7,6 @@ import org.springframework.stereotype.Service;
 
 import java.util.stream.Stream;
 
-
 @Service
 public class MachineService {
     private MachinePersistence machinePersistence;
@@ -17,11 +16,11 @@ public class MachineService {
         this.machinePersistence = machinePersistence;
     }
 
-    public Machine updateStatus(String id, Boolean isActive) {
-        return this.machinePersistence.updateStatus(id, isActive);
+    public Machine updateStatus(String id, Boolean active) {
+        return this.machinePersistence.updateStatus(id, active);
     }
 
-    public Stream<Machine> readAll() {
-        return this.machinePersistence.readAll();
+    public Stream<Machine> findMachineByEmployeeDegreeTitle(String title) {
+        return this.machinePersistence.findMachineByEmployeeDegreeTitle(title);
     }
 }

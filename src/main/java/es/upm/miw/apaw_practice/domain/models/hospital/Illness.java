@@ -1,16 +1,15 @@
 package es.upm.miw.apaw_practice.domain.models.hospital;
 
 import java.util.Arrays;
-import java.util.UUID;
 
 public class Illness {
     private String id;
     private Integer phase;
-    private String [] symptoms;
-    private String [] causes;
+    private String[] symptoms;
+    private String[] causes;
     private Boolean contagious;
 
-    public Illness(){
+    public Illness() {
         //empty for framework
     }
 

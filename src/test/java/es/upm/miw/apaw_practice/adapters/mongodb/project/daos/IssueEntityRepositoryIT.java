@@ -9,7 +9,7 @@ import java.time.LocalDateTime;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @TestConfig
-public class IssueEntityRepositoryIT {
+ class IssueEntityRepositoryIT {
 
     @Autowired
     private IssueRepository issueRepository;
@@ -21,7 +21,7 @@ public class IssueEntityRepositoryIT {
                         "create class user".equals(issue.getName()) &&
                                 2 == issue.getEstimatedHours() &&
                                 issue.getDueDate().isBefore(LocalDateTime.now()) &&
-                                !issue.isDone() &&
+                                !issue.getDone() &&
                                 "jaime@developer.com".equals(issue.getDeveloper().getEmail()) &&
                                 2 == issue.getLabels().size()));
     }

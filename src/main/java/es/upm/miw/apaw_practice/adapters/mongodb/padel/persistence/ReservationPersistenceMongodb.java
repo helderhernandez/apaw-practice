@@ -14,12 +14,10 @@ public class ReservationPersistenceMongodb implements ReservationPersistence {
 
     private ReservationRepository reservationRepository;
 
+    @Autowired
     public ReservationPersistenceMongodb(ReservationRepository reservationRepository) {
         this.reservationRepository = reservationRepository;
     }
-
-    @Autowired
-
 
     @Override
     public Stream<Reservation> readAll() {

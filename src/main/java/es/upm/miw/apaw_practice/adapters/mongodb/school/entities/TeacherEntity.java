@@ -1,7 +1,6 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.school.entities;
 
 import es.upm.miw.apaw_practice.domain.models.school.Teacher;
-import es.upm.miw.apaw_practice.domain.models.school.TeacherCreation;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
@@ -24,10 +23,8 @@ public class TeacherEntity {
         //empty from framework
     }
 
-    public TeacherEntity(TeacherCreation teacherCreation) {
-        BeanUtils.copyProperties(teacherCreation, this);
-        this.id = UUID.randomUUID().toString();
-        this.intern = teacherCreation.isIntern();
+    public static TeacherBuilders.Name builder() {
+        return new Builder();
     }
 
     public String getId() {
@@ -104,5 +101,52 @@ public class TeacherEntity {
                 ", dni='" + dni + '\'' +
                 ", email='" + email + '\'' +
                 '}';
+    }
+
+    public static class Builder implements TeacherBuilders.Name, TeacherBuilders.FamilyName, TeacherBuilders.Dni, TeacherBuilders.Optionals {
+
+        private final TeacherEntity teacher;
+
+        public Builder() {
+            this.teacher = new TeacherEntity();
+            BeanUtils.copyProperties(teacher, this);
+            this.teacher.id = UUID.randomUUID().toString();
+            this.teacher.intern = teacher.isIntern();
+        }
+
+        @Override
+        public TeacherBuilders.FamilyName name(String name) {
+            this.teacher.name = name;
+            return this;
+        }
+
+        @Override
+        public TeacherBuilders.Dni familyName(String familyName) {
+            this.teacher.familyName = familyName;
+            return this;
+        }
+
+        @Override
+        public TeacherBuilders.Optionals dni(String dni) {
+            this.teacher.dni = dni;
+            return this;
+        }
+
+        @Override
+        public TeacherBuilders.Optionals intern(Boolean intern) {
+            this.teacher.intern = intern;
+            return this;
+        }
+
+        @Override
+        public TeacherBuilders.Optionals email(String email) {
+            this.teacher.email = email;
+            return this;
+        }
+
+        @Override
+        public TeacherEntity build() {
+            return this.teacher;
+        }
     }
 }

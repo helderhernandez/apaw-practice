@@ -1,6 +1,9 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.hospital.entities;
 
+import es.upm.miw.apaw_practice.domain.models.hospital.Room;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
@@ -13,6 +16,7 @@ public class RoomEntity {
     private String id;
     private String area;
     private Integer floor;
+    @DBRef
     private List<PatientEntity> patientEntities;
 
     public RoomEntity(){
@@ -67,6 +71,12 @@ public class RoomEntity {
     public boolean equals(Object obj) {
         return this == obj || obj != null && getClass() == obj.getClass() &&
                 (id.equals(((RoomEntity) obj).id));
+    }
+
+    public Room toRoom() {
+        Room room = new Room();
+        BeanUtils.copyProperties(this,room);
+        return room;
     }
 
     @Override

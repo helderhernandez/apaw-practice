@@ -8,8 +8,6 @@ import es.upm.miw.apaw_practice.adapters.mongodb.school.entities.CourseEntity;
 import es.upm.miw.apaw_practice.adapters.mongodb.school.entities.StudentEntity;
 import es.upm.miw.apaw_practice.adapters.mongodb.school.entities.SubjectEntity;
 import es.upm.miw.apaw_practice.adapters.mongodb.school.entities.TeacherEntity;
-import es.upm.miw.apaw_practice.domain.models.school.TeacherCreation;
-import es.upm.miw.apaw_practice.domain.models.shop.ArticleCreation;
 import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -40,17 +38,17 @@ public class SchoolSeederService {
         };
         this.studentRepository.saveAll(Arrays.asList(students));
         TeacherEntity[] teachers = {
-                new TeacherEntity(new TeacherCreation("Jose", "Fridge", true, "33667788R", "dsfsdf@gmail.com")),
-                new TeacherEntity(new TeacherCreation("Pablo", "Terra", false, "35557788B", "lushf@gmail.com")),
-                new TeacherEntity(new TeacherCreation("Teresa", "Fridge", true, "33645788R", "teref@gmail.com")),
-                new TeacherEntity(new TeacherCreation("Tomato", "Zacar", false, "87653788L", "toma@gmail.com"))
+                TeacherEntity.builder().name("Jose").familyName("Fridge").dni("33667788R").intern(true).email("dsfsdf@gmail.com").build(),
+                TeacherEntity.builder().name("Pablo").familyName("Terra").dni("35557788B").intern(false).email("lushf@gmail.com").build(),
+                TeacherEntity.builder().name("Teresa").familyName("Fridge").dni("33645788R").intern(true).email("teref@gmail.com").build(),
+                TeacherEntity.builder().name("Tomato").familyName("Zacar").dni("87653788L").intern(false).email("toma@gmail.com").build()
         };
         this.teacherRepository.saveAll(Arrays.asList(teachers));
         SubjectEntity[] subjects = {
-                new SubjectEntity(teachers[0], "Maths", "Science"),
-                new SubjectEntity(teachers[1], "English", "Language"),
-                new SubjectEntity(teachers[2], "Chinese", "Language"),
-                new SubjectEntity(teachers[3], "Music", "Art")
+                SubjectEntity.builder(teachers[0], "Maths").knowledgeArea("Science").build(),
+                SubjectEntity.builder(teachers[1], "English").knowledgeArea("Language").build(),
+                SubjectEntity.builder(teachers[2], "Chinese").knowledgeArea("Language").build(),
+                SubjectEntity.builder(teachers[3], "Music").knowledgeArea("Art").build()
         };
         this.subjectRepository.saveAll(Arrays.asList(subjects));
         CourseEntity[] courses = {

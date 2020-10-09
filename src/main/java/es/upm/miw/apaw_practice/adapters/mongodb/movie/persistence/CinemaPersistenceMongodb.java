@@ -8,6 +8,8 @@ import es.upm.miw.apaw_practice.domain.persistence_ports.movie.CinemaPersistence
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.stream.Stream;
+
 @Repository("cinemaPersistence")
 public class CinemaPersistenceMongodb implements CinemaPersistence {
 
@@ -35,5 +37,15 @@ public class CinemaPersistenceMongodb implements CinemaPersistence {
                 .findByCinemaName(cinemaName)
                 .orElseThrow(() -> new NotFoundException("Article barcode: " + cinemaName))
                 .toCinema();
+    }
+
+    @Override
+    public Stream<Cinema> findByNameAndFulNameDirector(String name, String fulName) {
+        return this.cinemaRepository.findAll().stream()
+                .map(cinemaEntity -> cinemaEntity.toCinema())
+                .filter(cinema -> cinema.getMovies().stream()
+                    .anyMatch(movieEntity -> movieEntity.getFilmDirector().getName().equals(name) &&
+                                                movieEntity.getFilmDirector().getFullName().equals(fulName)))
+                .distinct();
     }
 }

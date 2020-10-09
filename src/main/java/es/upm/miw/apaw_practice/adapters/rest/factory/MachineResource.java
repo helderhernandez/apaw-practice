@@ -1,5 +1,6 @@
 package es.upm.miw.apaw_practice.adapters.rest.factory;
 
+import es.upm.miw.apaw_practice.adapters.rest.LexicalAnalyzer;
 import es.upm.miw.apaw_practice.domain.models.factory.Machine;
 import es.upm.miw.apaw_practice.domain.services.factory.MachineService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +15,7 @@ public class MachineResource {
     static final String MACHINES = "/factory/machines";
     static final String ID_ID = "/{id}";
     static final String STATUS = "/status";
+    static final String SEARCH = "/search";
 
     private MachineService machineService;
 
@@ -23,12 +25,13 @@ public class MachineResource {
     }
 
     @PutMapping(ID_ID + STATUS)
-    public Machine updateStatus(@PathVariable String id, @RequestBody StatusDto isActive) {
-        return this.machineService.updateStatus(id, isActive.getIsActive());
+    public Machine updateStatus(@PathVariable String id, @RequestBody StatusDto active) {
+        return this.machineService.updateStatus(id, active.getActive());
     }
 
-    @GetMapping
-    public Stream<Machine> readAll() {
-        return this.machineService.readAll();
+    @GetMapping(SEARCH)
+    public Stream<Machine> findMachineByEmployeeDegreeTitle(@RequestParam String q) {
+        String title = new LexicalAnalyzer().extractWithAssure(q, "title");
+        return this.machineService.findMachineByEmployeeDegreeTitle(title);
     }
 }

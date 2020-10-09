@@ -1,7 +1,6 @@
 package es.upm.miw.apaw_practice.domain.persistence_ports.school;
 
 import es.upm.miw.apaw_practice.domain.models.school.Student;
-import es.upm.miw.apaw_practice.domain.models.shop.Article;
 import org.springframework.stereotype.Repository;
 
 import java.util.stream.Stream;
@@ -9,6 +8,10 @@ import java.util.stream.Stream;
 @Repository
 public interface StudentPersistence {
     Stream<Student> readAll();
+
     Student update(Student student);
+
     Student readByDni(String dni);
+
+    Stream<Student> findGraduateStudentsByKnowledgeArea(String knowledgeArea);
 }

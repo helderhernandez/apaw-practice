@@ -22,7 +22,7 @@ public class EmployeeResourceIT {
     @Test
     void testCreate() {
         EmployeeCreation employeeCreation =
-                new EmployeeCreation("55555555F", "Paula", "Calvo", 666666665L,
+                new EmployeeCreation("99999999K", "Paula", "Calvo", 666666669L,
                         new BigDecimal("24000"), "Sales");
         this.webTestClient
                 .post()

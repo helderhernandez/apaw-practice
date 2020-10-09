@@ -1,6 +1,9 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.sportcentre.entities;
 
+import es.upm.miw.apaw_practice.domain.models.sportcentre.Session;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
@@ -14,7 +17,9 @@ public class SessionEntity {
     private String id;
     private Integer roomNumber;
     private LocalDateTime date;
+    @DBRef
     private List<AssistantEntity> assistants;
+    @DBRef
     private InstructorEntity instructor;
 
     public SessionEntity(String id, Integer roomNumber, List<AssistantEntity> assistants, InstructorEntity instructor) {
@@ -87,5 +92,11 @@ public class SessionEntity {
                 ", assistants=" + assistants +
                 ", instructor=" + instructor +
                 '}';
+    }
+
+    public Session toSession() {
+        Session session = new Session();
+        BeanUtils.copyProperties(this, session);
+        return session;
     }
 }

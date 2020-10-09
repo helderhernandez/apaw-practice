@@ -5,7 +5,8 @@ import es.upm.miw.apaw_practice.domain.models.factory.Machine;
 import java.util.stream.Stream;
 
 public interface MachinePersistence {
-    Machine updateStatus(String id, Boolean isActive);
+    Machine updateStatus(String id, Boolean active);
 
-    Stream<Machine> readAll();
+    Stream<Machine> findMachineByEmployeeDegreeTitle(String title);
+
 }

@@ -5,8 +5,6 @@ import es.upm.miw.apaw_practice.domain.persistence_ports.school.SubjectPersisten
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.stream.Stream;
-
 @Service
 public class SubjectService {
     private final SubjectPersistence subjectPersistence;
@@ -18,9 +16,5 @@ public class SubjectService {
 
     public Subject updateName(String id, String name) {
         return this.subjectPersistence.updateName(id, name);
-    }
-
-    public Stream<Subject> readAll() {
-        return this.subjectPersistence.readAll();
     }
 }
