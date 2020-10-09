@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping(AccidentResource.ACCIDENT)
+@RequestMapping(AccidentResource.ACCIDENTS)
 public class AccidentResource {
 
-    static final String ACCIDENT = "/transittaxes/accidents";
+    static final String ACCIDENTS = "/transittaxes/accidents";
     static final String ID_ID = "/{id}";
 
     private AccidentService accidentService;

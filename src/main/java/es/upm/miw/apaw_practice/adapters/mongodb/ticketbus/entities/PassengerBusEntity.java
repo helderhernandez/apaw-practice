@@ -1,5 +1,8 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.ticketbus.entities;
 
+import es.upm.miw.apaw_practice.domain.models.ticketbus.PassengerBus;
+import es.upm.miw.apaw_practice.domain.models.ticketbus.PassengerBusCreation;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -29,6 +32,25 @@ public class PassengerBusEntity {
         this.phone = phone;
         this.email = email;
         this.accesibility = accesibility;
+    }
+
+    public PassengerBusEntity(PassengerBusCreation passenger) {
+        BeanUtils.copyProperties(passenger, this);
+        this.id = UUID.randomUUID().toString();
+    }
+
+    public PassengerBus toPassengerBus(){
+        PassengerBus passengerBus = new PassengerBus();
+        BeanUtils.copyProperties(this, passengerBus);
+        return passengerBus;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getName() {

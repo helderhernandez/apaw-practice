@@ -18,14 +18,14 @@ public class RestaurantEntity {
     @DBRef
     private List<FoodTypeEntity> foodTypeEntities;
     @DBRef
-    private OwnerEntity ownerEntities;
+    private OwnerRestaurantEntity ownerEntities;
 
     public RestaurantEntity() {
         //empty for framework
     }
 
-    public RestaurantEntity(String name, Double score, List<PhysicalStoreEntity> physicalStoreEntities,
-                            List<FoodTypeEntity> foodTypeEntities, OwnerEntity ownerEntities) {
+    public RestaurantEntity(String id, String name, Double score, List<PhysicalStoreEntity> physicalStoreEntities,
+                            List<FoodTypeEntity> foodTypeEntities, OwnerRestaurantEntity ownerEntities) {
         this.id = UUID.randomUUID().toString();
         this.name = name;
         this.score = score;
@@ -34,9 +34,7 @@ public class RestaurantEntity {
         this.ownerEntities = ownerEntities;
     }
 
-    public String getId() {
-        return id;
-    }
+    public String getId() { return id; }
 
     public void setId(String id) {
         this.id = id;
@@ -74,11 +72,11 @@ public class RestaurantEntity {
         this.foodTypeEntities = foodTypeEntities;
     }
 
-    public OwnerEntity getOwnerEntities() {
+    public OwnerRestaurantEntity getOwnerEntities() {
         return ownerEntities;
     }
 
-    public void setOwnerEntities(OwnerEntity ownerEntities) {
+    public void setOwnerEntities(OwnerRestaurantEntity ownerEntities) {
         this.foodTypeEntities = foodTypeEntities;
     }
 

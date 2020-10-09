@@ -25,13 +25,13 @@ public class TournamentResource {
     }
 
     @PutMapping
-    public Tournament updateStartDay(@PathVariable String id,@RequestBody LocalDateTime startDay){
-        return this.tournamentService.uptadeStartDay(id,startDay);
+    public Tournament updateStartDay(@PathVariable String id, @RequestBody LocalDateTime startDay) {
+        return this.tournamentService.uptadeStartDay(id, startDay);
     }
 
     @GetMapping(SEARCH)
-    public Stream<NameTournamentDto> findByTournamentsAndNameDistintOfPlayer(@RequestParam String q){
-        String name = new LexicalAnalyzer().extractWithAssure(q,"name");
+    public Stream<NameTournamentDto> findByTournamentsAndNameDistintOfPlayer(@RequestParam String q) {
+        String name = new LexicalAnalyzer().extractWithAssure(q, "name");
         return this.tournamentService.findByTournamentsAndNameDistintOfPlayer(name)
                 .map(NameTournamentDto::new);
     }

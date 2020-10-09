@@ -7,9 +7,9 @@ import org.springframework.test.web.reactive.server.WebTestClient;
 import org.springframework.web.reactive.function.BodyInserters;
 
 import java.time.LocalDateTime;
-import java.util.stream.Stream;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 @RestTestConfig
 public class TournamentResourceIT {
@@ -17,17 +17,17 @@ public class TournamentResourceIT {
     private WebTestClient webTestClient;
 
     @Test
-    void testUpdateStartDay(){
+    void testUpdateStartDay() {
         this.webTestClient
                 .put()
-                .uri(TournamentResource.TOURNAMENT + TournamentResource.ID_ID + TournamentResource.START_DAY,"")
+                .uri(TournamentResource.TOURNAMENT + TournamentResource.ID_ID + TournamentResource.START_DAY, "")
                 .body(BodyInserters.fromValue(LocalDateTime.now()))
                 .exchange()
                 .expectStatus().isNotFound();
     }
 
     @Test
-    void testfindByTournamentsAndNameDistintOfPlayer(){
+    void testfindByTournamentsAndNameDistintOfPlayer() {
         this.webTestClient
                 .get()
                 .uri(uriBuilder ->
@@ -38,9 +38,7 @@ public class TournamentResourceIT {
                 .expectStatus().isOk()
                 .expectBodyList(NameTournamentDto.class)
                 .value(tournamentsName -> assertFalse(tournamentsName.isEmpty()))
-                .value(tournamentsName -> assertEquals("TORNEO-C",tournamentsName.get(0).getName()))
-                .value(tournamentsName -> assertEquals("TORNEO-D",tournamentsName.get(1).getName()));
-
-
+                .value(tournamentsName -> assertEquals("TORNEO-C", tournamentsName.get(0).getName()))
+                .value(tournamentsName -> assertEquals("TORNEO-D", tournamentsName.get(1).getName()));
     }
 }
