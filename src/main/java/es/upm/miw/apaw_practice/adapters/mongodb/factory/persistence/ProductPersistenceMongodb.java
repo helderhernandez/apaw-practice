@@ -1,8 +1,10 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.factory.persistence;
 
+import es.upm.miw.apaw_practice.adapters.mongodb.factory.daos.MachineRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.factory.daos.ProductRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.factory.entities.ProductEntity;
 import es.upm.miw.apaw_practice.domain.exceptions.NotFoundException;
+import es.upm.miw.apaw_practice.domain.models.factory.Machine;
 import es.upm.miw.apaw_practice.domain.models.factory.Product;
 import es.upm.miw.apaw_practice.domain.persistence_ports.factory.ProductPersistence;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,9 +19,12 @@ import java.util.stream.Stream;
 public class ProductPersistenceMongodb implements ProductPersistence {
     private ProductRepository productRepository;
 
+    private MachineRepository machineRepository;
+
     @Autowired
-    public ProductPersistenceMongodb(ProductRepository productRepository) {
+    public ProductPersistenceMongodb(ProductRepository productRepository, MachineRepository machineRepository) {
         this.productRepository = productRepository;
+        this.machineRepository = machineRepository;
     }
 
     @Override
@@ -47,12 +52,12 @@ public class ProductPersistenceMongodb implements ProductPersistence {
                 .toProduct();
     }
 
-    public Boolean compareTwoPrices(BigDecimal greaterPrice, BigDecimal lowerPrice){
+    public Boolean compareTwoPrices(BigDecimal greaterPrice, BigDecimal lowerPrice) {
         int res = greaterPrice.compareTo(lowerPrice);
         return res > 0;
     }
 
-    public List<Long> productsWithAWholesalePriceGreaterThan (BigDecimal wholesalePrice){
+    public List<Long> productsWithAWholesalePriceGreaterThan(BigDecimal wholesalePrice) {
         return this.productRepository.findAll().stream()
                 .filter(greaterWholesalePrice ->
                         compareTwoPrices(greaterWholesalePrice.getWholesalePrice(), wholesalePrice))
@@ -60,9 +65,33 @@ public class ProductPersistenceMongodb implements ProductPersistence {
                 .collect(Collectors.toList());
     }
 
+    public List<Long> activeMachines() {
+        List<Long> activeMachines = this.machineRepository.findAll().stream()
+                .map(machineEntity -> machineEntity.toMachine())
+                .filter(machine -> machine.getActive() == true)
+                .map(machine -> machine.getSerialNumber())
+                .collect(Collectors.toList());
+        return activeMachines;
+    }
+
     @Override
     public Stream<Product> findProductsWithAnActiveMachineAndAWholesalePriceGreaterThan(BigDecimal wholesalePrice) {
         List<Long> productList = this.productsWithAWholesalePriceGreaterThan(wholesalePrice);
+        List<Machine> activeMachines = this.machineRepository.findAll().stream()
+                .map(machineEntity -> machineEntity.toMachine())
+                .filter(machine -> machine.getActive() == true)
+                .collect(Collectors.toList());
         return null;
     }
+/*
+    public Stream<Machine> findMachineByEmployeeDegreeTitle(String title) {
+        List<String> employeeList = this.employeeByDegree(title);
+        return this.machineRepository.findAll().stream()
+                .map(MachineEntity::toMachine)
+                .filter(machine -> machine.getEmployeeEntities().stream()
+                        .anyMatch(employeeEntity -> employeeList.contains(employeeEntity.getDni())))
+                .peek(c -> System.out.println("Filtered machine  >>>>>  " + c.getSerialNumber()));
+    }
+
+ */
 }

@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.math.BigDecimal;
 import java.util.List;
-import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -41,7 +40,7 @@ public class ProductPersistenceMongodbIT {
 
 
     @Test
-    void testCompareTwoPrices(){
+    void testCompareTwoPrices() {
         BigDecimal price1 = new BigDecimal("5.59");
         BigDecimal price2 = new BigDecimal("10.59");
         BigDecimal price3 = new BigDecimal("15.59");
@@ -51,7 +50,7 @@ public class ProductPersistenceMongodbIT {
     }
 
     @Test
-    void testProductsWithAWholesalePriceGreaterThan(){
+    void testProductsWithAWholesalePriceGreaterThan() {
         BigDecimal price1 = new BigDecimal("5.50");
         BigDecimal price2 = new BigDecimal("50.50");
         BigDecimal price3 = new BigDecimal("500.50");
@@ -65,10 +64,12 @@ public class ProductPersistenceMongodbIT {
         System.out.println("Products over Price 3 >>>> " + x3);
         List<Long> x4 = this.productPersistence.productsWithAWholesalePriceGreaterThan(price4);
         System.out.println("Products over Price 4 >>>> " + x4);
-
-
-
     }
 
+    @Test
+    void testActiveMachines() {
+        List<Long> activeMachines = this.productPersistence.activeMachines();
+        System.out.println("Active machines >>>> " + activeMachines);
+    }
 }
 
