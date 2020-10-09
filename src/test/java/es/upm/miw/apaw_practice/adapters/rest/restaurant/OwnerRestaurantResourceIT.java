@@ -27,6 +27,7 @@ public class OwnerRestaurantResourceIT {
                 .expectStatus().isOk()
                 .expectBodyList(NameDto.class)
                 .value(Assertions::assertNotNull)
-                .value(owner -> assertEquals("name1", owner.get(0).getName()));
+                .value(owner -> assertEquals("name1", owner.get(0).getName()))
+                .value(owner -> assertEquals("name2", owner.get(1).getName()));
     }
 }
