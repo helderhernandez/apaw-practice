@@ -3,6 +3,8 @@ package es.upm.miw.apaw_practice.adapters.mongodb.cardealership.entities;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.UUID;
+
 @Document
 public class CDOwnerEntity {
     @Id
@@ -16,6 +18,7 @@ public class CDOwnerEntity {
     }
 
     public CDOwnerEntity(String name, String surname, Long telephone) {
+        this.id = UUID.randomUUID().toString();
         this.name = name;
         this.surname = surname;
         this.telephone = telephone;

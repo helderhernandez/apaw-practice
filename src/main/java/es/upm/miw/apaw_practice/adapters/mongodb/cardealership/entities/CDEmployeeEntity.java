@@ -5,6 +5,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Document
 public class CDEmployeeEntity {
@@ -20,6 +21,7 @@ public class CDEmployeeEntity {
     }
 
     public CDEmployeeEntity(String name, String category, LocalDateTime seniority, BigDecimal salary) {
+        this.id = UUID.randomUUID().toString();
         this.name = name;
         this.category = category;
         this.seniority = seniority;

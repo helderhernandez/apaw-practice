@@ -3,6 +3,8 @@ package es.upm.miw.apaw_practice.adapters.mongodb.cardealership.entities;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.UUID;
+
 @Document
 public class CDVehicleEntity {
     @Id
@@ -17,6 +19,7 @@ public class CDVehicleEntity {
     }
 
     public CDVehicleEntity(String brand, String type, Boolean unused, Integer year) {
+        this.id = UUID.randomUUID().toString();
         this.brand = brand;
         this.type = type;
         this.unused = unused;

@@ -1,9 +1,11 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.cardealership.entities;
 
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.Objects;
+import java.util.List;
+import java.util.UUID;
 
 @Document
 public class CarDealershipEntity {
@@ -12,15 +14,26 @@ public class CarDealershipEntity {
     private String name;
     private String address;
     private Long telephone;
+    @DBRef
+    private List<CDEmployeeEntity> employees;
+    @DBRef
+    private List<CDVehicleEntity> vehicles;
+    @DBRef
+    private CDOwnerEntity owner;
+
 
     public CarDealershipEntity() {
         // Empty for framework
     }
 
-    public CarDealershipEntity(String name, String address, Long telephone) {
+    public CarDealershipEntity(String name, String address, Long telephone, List<CDEmployeeEntity> employees, List<CDVehicleEntity> vehicles, CDOwnerEntity owner) {
+        this.id = UUID.randomUUID().toString();
         this.name = name;
         this.address = address;
         this.telephone = telephone;
+        this.employees = employees;
+        this.vehicles = vehicles;
+        this.owner = owner;
     }
 
     public String getId() {
@@ -53,6 +66,30 @@ public class CarDealershipEntity {
 
     public void setTelephone(Long telephone) {
         this.telephone = telephone;
+    }
+
+    public List<CDEmployeeEntity> getEmployees() {
+        return employees;
+    }
+
+    public void setEmployees(List<CDEmployeeEntity> employees) {
+        this.employees = employees;
+    }
+
+    public List<CDVehicleEntity> getVehicles() {
+        return vehicles;
+    }
+
+    public void setVehicles(List<CDVehicleEntity> vehicles) {
+        this.vehicles = vehicles;
+    }
+
+    public CDOwnerEntity getOwner() {
+        return owner;
+    }
+
+    public void setOwner(CDOwnerEntity owner) {
+        this.owner = owner;
     }
 
     @Override
