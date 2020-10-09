@@ -18,9 +18,9 @@ class PatientResourceIT {
     private WebTestClient webTestClient;
 
     @Test
-    void testCreate(){
-        String [] pathologiesA = {"pathologieA","pathlologieA2"};
-        PatientCreation patientCreation = new PatientCreation("12345678A","NameZ","SurnameZ",pathologiesA);
+    void testCreate() {
+        String[] pathologiesA = {"pathologieA", "pathlologieA2"};
+        PatientCreation patientCreation = new PatientCreation("12345678A", "NameZ", "SurnameZ", pathologiesA);
         this.webTestClient
                 .post()
                 .uri(PatientResource.PATIENTS)

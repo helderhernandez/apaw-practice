@@ -50,14 +50,25 @@ public class FactorySeederService {
                 new EmployeeEntity("33333333D", "Erica ", "Martinez", 666666663L,
                         LocalDate.of(2017, 6, 26), new BigDecimal("28000"), "Production"),
                 new EmployeeEntity("44444444E", "Miriam ", "Guzman,", 666666664L,
-                        LocalDate.of(2016, 5, 25), new BigDecimal("29000"), "Production")
+                        LocalDate.of(2016, 5, 25), new BigDecimal("29000"), "Production"),
+                new EmployeeEntity("55555555F", "Hilario ", "Gomez,", 666666665L,
+                        LocalDate.of(2015, 4, 24), new BigDecimal("30000"), "Software"),
+                new EmployeeEntity("66666666G", "Isaac ", "Carpena,", 666666666L,
+                        LocalDate.of(2014, 3, 23), new BigDecimal("31000"), "Sales"),
+                new EmployeeEntity("77777777H", "Ruben ", "Redondo,", 666666667L,
+                        LocalDate.of(2013, 2, 22), new BigDecimal("32000"), "Production")
         };
         this.employeeRepository.saveAll(Arrays.asList(employees));
 
         DegreeEntity[] degrees = {
                 new DegreeEntity(employees[0], "Grado en Ingenieria de Telecomunicaciones", "123456-7", "Universidad de Alcala"),
+                new DegreeEntity(employees[1], "Grado en Ingenieria de Telecomunicaciones", "258369-1", "Universidad de Alcala"),
                 new DegreeEntity(employees[2], "Grado en Ingenieria Industrial", "456789-1", "Universidad Carlos III de Madrid"),
-                new DegreeEntity(employees[3], "Grado en Ingenieria Mecanica", "789123-4", "Universidad Complutense de Madrid")
+                new DegreeEntity(employees[3], "Grado en Ingenieria Mecanica", "789123-4", "Universidad Complutense de Madrid"),
+                new DegreeEntity(employees[4], "Grado en Ingenieria de Telecomunicaciones", "147258-9", "Universidad de Alcala"),
+                new DegreeEntity(employees[5], "Grado en Ingenieria de Telecomunicaciones", "654789-3", "Universidad de Politecnica de Madrid"),
+                new DegreeEntity(employees[6], "Grado en Ingenieria Mecanica", "369147-8", "Universidad Complutense de Madrid"),
+                new DegreeEntity(employees[7], "Grado en Ingenieria Mecanica", "321654-9", "Universidad Carlos III de Madrid"),
         };
         this.degreeRepository.saveAll(Arrays.asList(degrees));
 
@@ -66,6 +77,8 @@ public class FactorySeederService {
                         900600L, false, LocalDate.of(2020, 7, 1)),
                 new MachineEntity(Arrays.asList(employees[3], employees[4]), Arrays.asList(products[1], products[2], products[3], products[4]),
                         800500L, true, LocalDate.of(2019, 11, 1)),
+                new MachineEntity(Arrays.asList(employees[6], employees[7]), Arrays.asList(products[0], products[4]),
+                        700500L, true, LocalDate.of(2020, 5, 1)),
         };
         this.machineRepository.saveAll(Arrays.asList(machines));
     }

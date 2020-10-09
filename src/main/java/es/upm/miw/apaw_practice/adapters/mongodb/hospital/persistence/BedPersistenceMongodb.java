@@ -1,19 +1,14 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.hospital.persistence;
 
 import es.upm.miw.apaw_practice.adapters.mongodb.hospital.daos.BedRepository;
-import es.upm.miw.apaw_practice.adapters.mongodb.hospital.daos.PatientRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.hospital.entities.BedEntity;
 import es.upm.miw.apaw_practice.adapters.mongodb.hospital.entities.PatientEntity;
-import es.upm.miw.apaw_practice.adapters.rest.hospital.WidthDto;
 import es.upm.miw.apaw_practice.domain.exceptions.NotFoundException;
 import es.upm.miw.apaw_practice.domain.models.hospital.Bed;
 import es.upm.miw.apaw_practice.domain.persistence_ports.hospital.BedPersistence;
-import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @Repository("bedPersistence")
