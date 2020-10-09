@@ -8,4 +8,6 @@ import org.springframework.stereotype.Repository;
 public interface GameDeveloperPersistence {
 
     GameDeveloper create (GameDeveloperCreation gameDeveloperCreation);
+
+    GameDeveloper updatePhone(String id, Integer phone);
 }
