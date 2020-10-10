@@ -13,18 +13,16 @@ public class CourtEntity {
     private String id;
     private LocalDate dateMatch;
     private String name;
-    private Integer numberTeams;
     private Integer capacity;
 
     public CourtEntity() {
         //Empty constructor for the framework
     }
 
-    public CourtEntity(String name, Integer numberTeams, Integer capacity) {
+    public CourtEntity(String name, Integer capacity) {
         this.id = UUID.randomUUID().toString();
         this.dateMatch = LocalDate.now();
         this.name = name;
-        this.numberTeams = numberTeams;
         this.capacity = capacity;
     }
 
@@ -52,14 +50,6 @@ public class CourtEntity {
         this.name = name;
     }
 
-    public Integer getNumberTeams() {
-        return numberTeams;
-    }
-
-    public void setNumberTeams(Integer numberTeams) {
-        this.numberTeams = numberTeams;
-    }
-
     public Integer getCapacity() {
         return capacity;
     }
@@ -84,7 +74,6 @@ public class CourtEntity {
                 "id='" + id + '\'' +
                 ", dateMatch=" + dateMatch +
                 ", name='" + name + '\'' +
-                ", numberTeams=" + numberTeams +
                 ", capacity=" + capacity +
                 '}';
     }

@@ -1,5 +1,6 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.garage.entities;
 
+import es.upm.miw.apaw_practice.domain.models.garage.VehicleCreation;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;
@@ -37,6 +38,15 @@ public class VehicleEntity {
         this.estimatedBudget = estimatedBudget;
         this.receptionDate = receptionDate;
         this.estimatedDeliveryDate = estimatedDeliveryDate;
+    }
+
+    public VehicleEntity(VehicleCreation vehicleCreation) {
+        this.id = UUID.randomUUID().toString();
+        this.carRegistration = vehicleCreation.getCarRegistration();
+        this.model = vehicleCreation.getModel();
+        this.estimatedBudget = vehicleCreation.getEstimatedBudget();
+        this.receptionDate = vehicleCreation.getReceptionDate();
+        this.estimatedDeliveryDate = vehicleCreation.getEstimatedDeliveryDate();
     }
 
     public String getId() {
