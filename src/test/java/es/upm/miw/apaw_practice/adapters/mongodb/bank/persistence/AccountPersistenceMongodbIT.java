@@ -26,6 +26,9 @@ public class AccountPersistenceMongodbIT {
     @Autowired
     private AccountRepository accountRepository;
 
+    @Autowired
+    private AccountPersistenceMongodb accountPersistenceMongodb;
+
     @Test
     void testUpdateAmount() {
         AccountEntity accountEntity = this.accountRepository
@@ -41,6 +44,8 @@ public class AccountPersistenceMongodbIT {
 
     @Test
     void testIdByCustomerWithShareholderWithValueGreaterThan() {
-        //TODO
+        assertEquals(this.accountPersistenceMongodb
+                .findIdByCustomerWithShareholderWithValueGreaterThan(BigDecimal.valueOf(1.50))
+                .size(), 4);
     }
 }
