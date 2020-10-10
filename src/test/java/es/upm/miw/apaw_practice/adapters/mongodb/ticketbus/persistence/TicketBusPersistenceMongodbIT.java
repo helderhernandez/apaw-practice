@@ -2,17 +2,20 @@ package es.upm.miw.apaw_practice.adapters.mongodb.ticketbus.persistence;
 
 import es.upm.miw.apaw_practice.TestConfig;
 import es.upm.miw.apaw_practice.adapters.mongodb.ticketbus.TicketBusSeederService;
+import es.upm.miw.apaw_practice.adapters.mongodb.ticketbus.entities.TicketBusEntity;
 import es.upm.miw.apaw_practice.domain.models.ticketbus.PassengerBus;
 import es.upm.miw.apaw_practice.domain.models.ticketbus.PassengerBusCreation;
 import es.upm.miw.apaw_practice.domain.models.ticketbus.TicketBus;
+import es.upm.miw.apaw_practice.domain.models.ticketbus.TicketBusCreation;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
+import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
 import java.util.stream.Collectors;
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 @TestConfig
 class TicketBusPersistenceMongodbIT {
@@ -25,12 +28,12 @@ class TicketBusPersistenceMongodbIT {
     private TicketBusPersistenceMongodb ticketBusPersistenceMongodb;
 
     @AfterEach
-    void resetBD(){
+    void resetBD() {
         ticketBusSeederService.deleteAll();
         ticketBusSeederService.seedDatabase();
     }
 
-    void testTicketBusPassenger(TicketBus ticketBus, PassengerBusCreation passengerBusCreation){
+    void testTicketBusPassenger(TicketBus ticketBus, PassengerBusCreation passengerBusCreation) {
         PassengerBus passengerBus = ticketBus.getPassenger();
         assertNotNull(ticketBus);
         assertNotNull(ticketBus.getReference());
@@ -46,7 +49,7 @@ class TicketBusPersistenceMongodbIT {
     }
 
     @Test
-    void testUpdate(){
+    void testUpdate() {
         List<TicketBus> ticketBuses = ticketBusPersistenceMongodb.findAll().collect(Collectors.toList());
         TicketBus ticketBus = ticketBuses.get(0);
         assertNotNull(ticketBus);
@@ -59,4 +62,19 @@ class TicketBusPersistenceMongodbIT {
 
     }
 
+    @Test
+    void testDelete() {
+        List<TicketBus> ticketBuses = ticketBusPersistenceMongodb.findAll().collect(Collectors.toList());
+        TicketBusCreation ticketBusCreation = new TicketBusCreation();
+        TicketBus ticketBus = ticketBuses.get(3);
+        BeanUtils.copyProperties(ticketBus, ticketBusCreation);
+
+        ticketBusPersistenceMongodb.delete(ticketBus.getReference());
+
+        assertFalse(ticketBusPersistenceMongodb.findAll()
+                .anyMatch(ticketBus1 -> ticketBus1.getReference().equals(ticketBus.getReference()))
+        );
+
+        ticketBusPersistenceMongodb.save(ticketBusCreation);
+    }
 }
