@@ -3,6 +3,7 @@ package es.upm.miw.apaw_practice.adapters.mongodb.veterinary.persistence;
 import es.upm.miw.apaw_practice.TestConfig;
 import es.upm.miw.apaw_practice.adapters.mongodb.veterinary.VeterinarySeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.veterinary.daos.AnimalRepository;
+import es.upm.miw.apaw_practice.adapters.mongodb.veterinary.daos.SurgeryRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.veterinary.entities.AnimalEntity;
 import es.upm.miw.apaw_practice.domain.exceptions.NotFoundException;
 import es.upm.miw.apaw_practice.domain.models.veterinary.Animal;
@@ -22,6 +23,9 @@ public class AnimalPersistenceMongodbIT {
 
     @Autowired
     private AnimalRepository animalRepository;
+
+    @Autowired
+    private SurgeryRepository surgeryRepository;
 
     @Autowired
     private VeterinarySeederService veterinarySeederService;

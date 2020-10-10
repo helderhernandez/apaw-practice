@@ -12,5 +12,4 @@ public interface VeterinaryPersistence {
 
     Veterinary readById(String id);
 
-    Veterinary update(Veterinary veterinary);
 }
