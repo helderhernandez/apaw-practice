@@ -4,17 +4,17 @@ import nonapi.io.github.classgraph.json.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document
-public class MuscleEntity {
+public class MuscleUsedEntity {
     @Id
     private String id;
     private String name;
     private String bodyPart;
 
-    public MuscleEntity(){
+    public MuscleUsedEntity(){
         //empty for the framework
     }
 
-    public MuscleEntity(String id, String name, String bodyPart) {
+    public MuscleUsedEntity(String id, String name, String bodyPart) {
         this.id = id;
         this.name = name;
         this.bodyPart = bodyPart;
@@ -46,7 +46,7 @@ public class MuscleEntity {
 
     @Override
     public String toString() {
-        return "MuscleEntity{" +
+        return "MuscleUsedEntity{" +
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 ", bodyPart='" + bodyPart + '\'' +

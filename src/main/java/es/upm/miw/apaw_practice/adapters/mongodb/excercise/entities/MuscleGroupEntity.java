@@ -10,16 +10,16 @@ public class MuscleGroupEntity {
     @Id
     private String id;
     private String name;
-    private List<MuscleEntity> muscleEntityList;
+    private List<MuscleUsedEntity> muscleUsedEntityList;
 
     public MuscleGroupEntity(){
         //empty for the framework
     }
 
-    public MuscleGroupEntity(String id, String name, List<MuscleEntity> muscleEntityList) {
+    public MuscleGroupEntity(String id, String name, List<MuscleUsedEntity> muscleUsedEntityList) {
         this.id = id;
         this.name = name;
-        this.muscleEntityList = muscleEntityList;
+        this.muscleUsedEntityList = muscleUsedEntityList;
     }
 
     public String getId() {
@@ -38,12 +38,12 @@ public class MuscleGroupEntity {
         this.name = name;
     }
 
-    public List<MuscleEntity> getMuscleEntityList() {
-        return muscleEntityList;
+    public List<MuscleUsedEntity> getMuscleUsedEntityList() {
+        return muscleUsedEntityList;
     }
 
-    public void setMuscleEntityList(List<MuscleEntity> muscleEntityList) {
-        this.muscleEntityList = muscleEntityList;
+    public void setMuscleUsedEntityList(List<MuscleUsedEntity> muscleUsedEntityList) {
+        this.muscleUsedEntityList = muscleUsedEntityList;
     }
 
     @Override
@@ -51,7 +51,7 @@ public class MuscleGroupEntity {
         return "MuscleGroupEntity{" +
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
-                ", muscleEntityList=" + muscleEntityList +
+                ", muscleUsedEntityList=" + muscleUsedEntityList +
                 '}';
     }
 }
