@@ -7,4 +7,5 @@ import java.util.Optional;
 
 public interface TicketBusRepository extends MongoRepository<TicketBusEntity, String> {
     Optional<TicketBusEntity> findByReference(String reference);
+    void deleteByReference(String reference);
 }
