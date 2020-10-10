@@ -29,13 +29,13 @@ public class CarEntity {
     }
 
     public CarEntity(String id, String enrollment, String brand, List<AccidentEntity> accidents,
-                     OwnerEntity owner, List<TaxEntity> transitTaxes) {
+                     OwnerEntity owner, List<TaxEntity> taxes) {
         this.id = id;
         this.enrollment = enrollment;
         this.brand = brand;
         this.accidents = accidents;
         this.owner = owner;
-        this.taxes = transitTaxes;
+        this.taxes = taxes;
     }
 
     public String getBrand() {
@@ -117,16 +117,16 @@ public class CarEntity {
     }
 
     public Car toCar() {
-        List<String> accidents = this.accidents.stream()
+        List<String> listAccidents = this.accidents.stream()
                 .map(AccidentEntity::getRefAccident)
                 .collect(Collectors.toList());
-        List<String> taxes = this.taxes.stream()
+        List<String> listTaxes = this.taxes.stream()
                 .map(TaxEntity::getRefTax)
                 .collect(Collectors.toList());
         Car car = new Car();
         car.setEnrollment(this.enrollment);
-        car.setRefAccidents(accidents);
-        car.setRefTaxes(taxes);
+        car.setRefAccidents(listAccidents);
+        car.setRefTaxes(listTaxes);
         car.setBrand(this.brand);
         car.setDniOwner(this.owner.getDni());
         return car;
