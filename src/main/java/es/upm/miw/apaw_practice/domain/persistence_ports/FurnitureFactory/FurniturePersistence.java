@@ -9,5 +9,5 @@ import java.util.stream.Stream;
 @Repository
 public interface FurniturePersistence {
     Stream<Furniture> readAll();
-
+    Furniture updateName(String id, String name);
 }
