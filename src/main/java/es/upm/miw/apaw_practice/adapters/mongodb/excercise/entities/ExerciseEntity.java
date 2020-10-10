@@ -3,6 +3,7 @@ package es.upm.miw.apaw_practice.adapters.mongodb.excercise.entities;
 import nonapi.io.github.classgraph.json.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Document
@@ -14,18 +15,20 @@ public class ExerciseEntity {
     private Integer numberOfSets;
     private List<MuscleGroupEntity> muscleGroupEntityList;
     private List<GymMachineEntity> gymMachineEntityList;
+    private LocalDateTime creationDate;
 
     public ExerciseEntity() {
         //empty for the framework
     }
 
-    public ExerciseEntity(String id, String name, Integer numberOfReps, Integer numberOfSets, List<MuscleGroupEntity> muscleGroupEntityList, List<GymMachineEntity> gymMachineEntityList) {
+    public ExerciseEntity(String id, String name, Integer numberOfReps, Integer numberOfSets, List<MuscleGroupEntity> muscleGroupEntityList, List<GymMachineEntity> gymMachineEntityList, LocalDateTime creationDate) {
         this.id = id;
         this.name = name;
         this.numberOfReps = numberOfReps;
         this.numberOfSets = numberOfSets;
         this.muscleGroupEntityList = muscleGroupEntityList;
         this.gymMachineEntityList = gymMachineEntityList;
+        this.creationDate = creationDate;
     }
 
     public String getId() {
@@ -76,6 +79,14 @@ public class ExerciseEntity {
         this.gymMachineEntityList = gymMachineEntityList;
     }
 
+    public LocalDateTime getCreationDate() {
+        return creationDate;
+    }
+
+    public void setCreationDate(LocalDateTime creationDate) {
+        this.creationDate = creationDate;
+    }
+
     @Override
     public String toString() {
         return "ExerciseEntity{" +
@@ -85,6 +96,7 @@ public class ExerciseEntity {
                 ", numberOfSets=" + numberOfSets +
                 ", muscleGroupEntityList=" + muscleGroupEntityList +
                 ", gymMachineEntityList=" + gymMachineEntityList +
+                ", creationDate=" + creationDate +
                 '}';
     }
 }
