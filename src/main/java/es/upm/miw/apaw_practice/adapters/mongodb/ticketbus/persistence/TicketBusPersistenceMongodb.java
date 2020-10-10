@@ -27,9 +27,9 @@ public class TicketBusPersistenceMongodb implements TicketBusPersistence {
     }
 
     @Override
-    public TicketBus update(String idTicket, PassengerBusCreation passenger) {
-        TicketBusEntity ticketBusEntity = ticketBusRepository.findById(idTicket)
-                .orElseThrow(() -> new NotFoundException("TicketBus with id: " + idTicket + " not found"));
+    public TicketBus update(String reference, PassengerBusCreation passenger) {
+        TicketBusEntity ticketBusEntity = ticketBusRepository.findByReference(reference)
+                .orElseThrow(() -> new NotFoundException("TicketBus with reference: " + reference + " not found"));
         ticketBusEntity.changePassenger(passenger);
         return ticketBusRepository.save(ticketBusEntity).toTicketBus();
     }

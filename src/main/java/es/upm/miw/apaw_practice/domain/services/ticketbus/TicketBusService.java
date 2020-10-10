@@ -16,7 +16,7 @@ public class TicketBusService {
         this.ticketBusPersistence = ticketBusPersistence;
     }
 
-    public TicketBus update(String idTicket, PassengerBusCreation passenger) {
-        return ticketBusPersistence.update(idTicket, passenger);
+    public TicketBus update(String reference, PassengerBusCreation passenger) {
+        return ticketBusPersistence.update(reference, passenger);
     }
 }
