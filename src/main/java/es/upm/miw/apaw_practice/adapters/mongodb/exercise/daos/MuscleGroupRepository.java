@@ -1,6 +1,6 @@
-package es.upm.miw.apaw_practice.adapters.mongodb.excercise.daos;
+package es.upm.miw.apaw_practice.adapters.mongodb.exercise.daos;
 
-import es.upm.miw.apaw_practice.adapters.mongodb.excercise.entities.MuscleGroupEntity;
+import es.upm.miw.apaw_practice.adapters.mongodb.exercise.entities.MuscleGroupEntity;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 import java.util.Optional;

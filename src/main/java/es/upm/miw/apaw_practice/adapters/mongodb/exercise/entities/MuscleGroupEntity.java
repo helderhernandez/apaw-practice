@@ -1,4 +1,4 @@
-package es.upm.miw.apaw_practice.adapters.mongodb.excercise.entities;
+package es.upm.miw.apaw_practice.adapters.mongodb.exercise.entities;
 
 import nonapi.io.github.classgraph.json.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -6,20 +6,20 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.util.List;
 
 @Document
-public class GymMachineEntity {
+public class MuscleGroupEntity {
     @Id
     private String id;
     private String name;
-    private Boolean useWeighs;
+    private List<MuscleUsedEntity> muscleUsedEntityList;
 
-    public GymMachineEntity() {
+    public MuscleGroupEntity(){
         //empty for the framework
     }
 
-    public GymMachineEntity(String id, String name, Boolean useWeighs) {
+    public MuscleGroupEntity(String id, String name, List<MuscleUsedEntity> muscleUsedEntityList) {
         this.id = id;
         this.name = name;
-        this.useWeighs = useWeighs;
+        this.muscleUsedEntityList = muscleUsedEntityList;
     }
 
     public String getId() {
@@ -38,20 +38,20 @@ public class GymMachineEntity {
         this.name = name;
     }
 
-    public Boolean getUseWeighs() {
-        return useWeighs;
+    public List<MuscleUsedEntity> getMuscleUsedEntityList() {
+        return muscleUsedEntityList;
     }
 
-    public void setUseWeighs(Boolean useWeighs) {
-        this.useWeighs = useWeighs;
+    public void setMuscleUsedEntityList(List<MuscleUsedEntity> muscleUsedEntityList) {
+        this.muscleUsedEntityList = muscleUsedEntityList;
     }
 
     @Override
     public String toString() {
-        return "GymMachineEntity{" +
+        return "MuscleGroupEntity{" +
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
-                ", useWeighs=" + useWeighs +
+                ", muscleUsedEntityList=" + muscleUsedEntityList +
                 '}';
     }
 }

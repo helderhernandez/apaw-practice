@@ -1,23 +1,23 @@
-package es.upm.miw.apaw_practice.adapters.mongodb.excercise.entities;
+package es.upm.miw.apaw_practice.adapters.mongodb.exercise.entities;
 
 import nonapi.io.github.classgraph.json.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document
-public class MuscleUsedEntity {
+public class GymMachineEntity {
     @Id
     private String id;
     private String name;
-    private String bodyPart;
+    private Boolean useWeighs;
 
-    public MuscleUsedEntity(){
+    public GymMachineEntity() {
         //empty for the framework
     }
 
-    public MuscleUsedEntity(String id, String name, String bodyPart) {
+    public GymMachineEntity(String id, String name, Boolean useWeighs) {
         this.id = id;
         this.name = name;
-        this.bodyPart = bodyPart;
+        this.useWeighs = useWeighs;
     }
 
     public String getId() {
@@ -36,20 +36,20 @@ public class MuscleUsedEntity {
         this.name = name;
     }
 
-    public String getBodyPart() {
-        return bodyPart;
+    public Boolean getUseWeighs() {
+        return useWeighs;
     }
 
-    public void setBodyPart(String bodyPart) {
-        this.bodyPart = bodyPart;
+    public void setUseWeighs(Boolean useWeighs) {
+        this.useWeighs = useWeighs;
     }
 
     @Override
     public String toString() {
-        return "MuscleUsedEntity{" +
+        return "GymMachineEntity{" +
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
-                ", bodyPart='" + bodyPart + '\'' +
+                ", useWeighs=" + useWeighs +
                 '}';
     }
 }
