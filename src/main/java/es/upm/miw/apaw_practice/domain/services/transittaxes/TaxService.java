@@ -1,7 +1,6 @@
 package es.upm.miw.apaw_practice.domain.services.transittaxes;
 
 import es.upm.miw.apaw_practice.domain.models.transittaxes.Tax;
-import es.upm.miw.apaw_practice.domain.models.transittaxes.TaxCreation;
 import es.upm.miw.apaw_practice.domain.persistence_ports.transittaxes.TaxPersistence;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,7 +15,7 @@ public class TaxService {
         this.taxPersistence = taxPersistence;
     }
 
-    public Tax create(TaxCreation taxCreation) {
-        return taxPersistence.create(taxCreation);
+    public Tax create(Tax tax) {
+        return taxPersistence.create(tax);
     }
 }

@@ -2,10 +2,12 @@ package es.upm.miw.apaw_practice.adapters.rest.FurnitureFactory;
 
 import es.upm.miw.apaw_practice.adapters.rest.RestTestConfig;
 import es.upm.miw.apaw_practice.domain.models.FurnitureFactory.Furniture;
+import es.upm.miw.apaw_practice.domain.models.FurnitureFactory.FurnitureItem;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.web.reactive.server.WebTestClient;
+import org.springframework.web.reactive.function.BodyInserters;
 
 @RestTestConfig
 public class FurnitureResourceIT {
@@ -21,6 +23,16 @@ public class FurnitureResourceIT {
                 .expectBodyList(Furniture.class)
                 .value(Assertions::assertNotNull)
                 .hasSize(4);
+    }
+    @Test
+    void testUpdateNotFound() {
+        FurnitureItem furnitureName = new FurnitureItem("sofa");
+        this.webTestClient
+                .put()
+                .uri(FurnitureResource.FURNITURE + FurnitureResource.ID_ID + FurnitureResource.NAME, "kkk")
+                .body(BodyInserters.fromValue(furnitureName))
+                .exchange()
+                .expectStatus().isNotFound();
     }
 
 }
