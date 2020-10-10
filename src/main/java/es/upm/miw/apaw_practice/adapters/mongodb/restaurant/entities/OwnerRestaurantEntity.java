@@ -1,6 +1,8 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.restaurant.entities;
 
+import es.upm.miw.apaw_practice.domain.models.restaurant.OwnerRestaurant;
 import nonapi.io.github.classgraph.json.Id;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.UUID;
@@ -33,6 +35,12 @@ public class OwnerRestaurantEntity {
     public String getFamilyName() { return familyName; }
 
     public void setFamilyName(String familyName) { this.familyName = familyName; }
+
+    public OwnerRestaurant toOwnerRestaurant() {
+        OwnerRestaurant ownerRestaurant = new OwnerRestaurant();
+        BeanUtils.copyProperties(this, ownerRestaurant);
+            return ownerRestaurant;
+    }
 
     @Override
     public int hashCode() {
