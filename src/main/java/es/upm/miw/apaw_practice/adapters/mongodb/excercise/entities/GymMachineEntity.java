@@ -10,16 +10,16 @@ public class GymMachineEntity {
     @Id
     private String id;
     private String name;
-    private String type;
+    private Boolean useWeighs;
 
     public GymMachineEntity() {
         //empty for the framework
     }
 
-    public GymMachineEntity(String id, String name, String type) {
+    public GymMachineEntity(String id, String name, Boolean useWeighs) {
         this.id = id;
         this.name = name;
-        this.type = type;
+        this.useWeighs = useWeighs;
     }
 
     public String getId() {
@@ -38,12 +38,12 @@ public class GymMachineEntity {
         this.name = name;
     }
 
-    public String getType() {
-        return type;
+    public Boolean getUseWeighs() {
+        return useWeighs;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setUseWeighs(Boolean useWeighs) {
+        this.useWeighs = useWeighs;
     }
 
     @Override
@@ -51,7 +51,7 @@ public class GymMachineEntity {
         return "GymMachineEntity{" +
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
-                ", type='" + type + '\'' +
+                ", useWeighs=" + useWeighs +
                 '}';
     }
 }
