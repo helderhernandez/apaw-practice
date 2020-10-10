@@ -3,6 +3,7 @@ package es.upm.miw.apaw_practice.domain.persistence_ports.factory;
 import es.upm.miw.apaw_practice.domain.models.factory.Product;
 import org.springframework.stereotype.Repository;
 
+import java.math.BigDecimal;
 import java.util.stream.Stream;
 
 @Repository
@@ -12,4 +13,6 @@ public interface ProductPersistence {
     Product readBySerialNumber(Long serialNumber);
 
     Product update(Product product);
+
+    Stream<Product> findProductsWithAnActiveMachineAndAWholesalePriceGreaterThan(BigDecimal wholesalePrice);
 }
