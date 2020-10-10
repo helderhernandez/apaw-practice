@@ -32,8 +32,4 @@ public class VeterinaryPersistenceMongodb implements VeterinaryPersistence {
                 .toVeterinary();
     }
 
-    @Override
-    public Veterinary update(Veterinary veterinary) {
-        return null;
-    }
 }
