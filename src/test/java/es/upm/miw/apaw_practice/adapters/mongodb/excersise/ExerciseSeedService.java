@@ -71,5 +71,6 @@ public class ExerciseSeedService {
                         List.of(machine[3]), LocalDateTime.now())
 
         };
+        this.exerciseRepository.saveAll(Arrays.asList(exercise));
     }
 }
