@@ -17,7 +17,8 @@ class PassengerBusEntityRepositoryIT {
 
         assertTrue(this.passengerBusRepository.findAll().stream()
                 .anyMatch(passenger ->
-                        "89386661J".equals(passenger.getDocIdentify()) &&
+                        passenger.getReference() != null &&
+                                "89386661J".equals(passenger.getDocIdentify()) &&
                                 "Juan".equals(passenger.getName()) &&
                                 "Perez".equals(passenger.getFamilyName()) &&
                                 "651112234".equals(passenger.getPhone()) &&

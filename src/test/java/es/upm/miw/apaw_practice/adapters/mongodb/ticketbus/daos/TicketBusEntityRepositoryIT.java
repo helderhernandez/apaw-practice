@@ -21,7 +21,7 @@ class TicketBusEntityRepositoryIT {
 
 
     @AfterEach
-    void resetBD(){
+    void resetBD() {
         ticketBusSeederService.deleteAll();
         ticketBusSeederService.seedDatabase();
     }
@@ -30,7 +30,8 @@ class TicketBusEntityRepositoryIT {
     void testCreateAndRead() {
         assertTrue(this.ticketBusRepository.findAll().stream()
                 .anyMatch(ticket ->
-                        Integer.valueOf(11).equals(ticket.getSeat()) &&
+                        ticket.getId() != null &&
+                                Integer.valueOf(11).equals(ticket.getSeat()) &&
                                 ticket.getDepartureTime() == null &&
                                 ticket.getArriveTime() == null &&
                                 new BigDecimal("30.99").equals(ticket.getPrice()) &&

@@ -16,7 +16,8 @@ class JourneyEntityRepositoryIT {
     void testCreateAndRead() {
         assertTrue(journeyRepository.findAll().stream()
                 .anyMatch(journey ->
-                        "Madrid".equals(journey.getDeparture()) &&
+                        journey.getReference() != null &&
+                                "Madrid".equals(journey.getDeparture()) &&
                                 "Barcelona".equals(journey.getArrive()) &&
                                 Integer.valueOf(5).equals(journey.getNumStops())
                 )
