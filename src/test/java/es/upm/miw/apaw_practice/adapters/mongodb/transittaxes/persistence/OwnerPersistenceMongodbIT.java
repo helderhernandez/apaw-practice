@@ -19,8 +19,8 @@ public class OwnerPersistenceMongodbIT {
         ownerPersistenceMongodb.deleteById("ow2");
         Owner owner = new Owner();
         owner.setDni("00000000C");
-        owner.setFamilyName("Jhon");
-        owner.setName("Smith");
+        owner.setFamilyName("Smith");
+        owner.setName("Jhon");
         Owner owner2 = ownerPersistenceMongodb.create(owner);
         assertEquals(owner.getDni(), owner2.getDni());
     }
