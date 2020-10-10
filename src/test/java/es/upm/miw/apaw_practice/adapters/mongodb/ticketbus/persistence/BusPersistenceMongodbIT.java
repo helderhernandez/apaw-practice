@@ -50,7 +50,6 @@ class BusPersistenceMongodbIT {
 
         Bus bus = this.busPersistenceMongodb.create(busCreation);
 
-        assertEquals(busCreation.getReference(), bus.getReference());
         assertEquals(busCreation.getCompany(), bus.getCompany());
         assertEquals(busCreation.getCapacity(), bus.getCapacity());
         assertEquals(busCreation.getAccesibility(), bus.getAccesibility());

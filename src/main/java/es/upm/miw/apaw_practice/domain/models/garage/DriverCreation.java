@@ -4,26 +4,26 @@ import es.upm.miw.apaw_practice.adapters.mongodb.garage.entities.VehicleEntity;
 
 import java.util.List;
 
-public class Driver {
+public class DriverCreation {
 
-    private String id;
     private String dni;
     private String name;
     private String telephone;
     private String email;
     private Boolean garageMember;
-    private List<VehicleEntity> vehicleEntities;
+    private List<VehicleCreation> vehicleCreations;
 
-    public Driver() {
-        //empty for framework
+    public DriverCreation() {
+        // empty for framework
     }
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
+    public DriverCreation(String dni, String name, String telephone, String email, Boolean garageMember, List<VehicleCreation> vehicleCreations) {
+        this.dni = dni;
+        this.name = name;
+        this.telephone = telephone;
+        this.email = email;
+        this.garageMember = garageMember;
+        this.vehicleCreations = vehicleCreations;
     }
 
     public String getDni() {
@@ -66,12 +66,12 @@ public class Driver {
         this.garageMember = garageMember;
     }
 
-    public List<VehicleEntity> getVehicleEntities() {
-        return vehicleEntities;
+    public List<VehicleCreation> getVehicleCreations() {
+        return vehicleCreations;
     }
 
-    public void setVehicleEntities(List<VehicleEntity> vehicleEntities) {
-        this.vehicleEntities = vehicleEntities;
+    public void setVehicleCreations(List<VehicleCreation> vehicleCreations) {
+        this.vehicleCreations = vehicleCreations;
     }
 
 }
