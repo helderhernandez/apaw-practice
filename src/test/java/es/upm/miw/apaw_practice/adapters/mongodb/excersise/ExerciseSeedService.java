@@ -73,4 +73,11 @@ public class ExerciseSeedService {
         };
         this.exerciseRepository.saveAll(Arrays.asList(exercise));
     }
+
+    public void deleteAll(){
+        this.muscleUsedRepository.deleteAll();
+        this.muscleGroupRepository.deleteAll();
+        this.gymMachineRepository.deleteAll();
+        this.exerciseRepository.deleteAll();
+    }
 }
