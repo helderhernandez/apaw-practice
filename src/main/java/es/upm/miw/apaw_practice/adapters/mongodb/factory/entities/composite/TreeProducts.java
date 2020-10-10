@@ -14,5 +14,7 @@ public interface TreeProducts {
 
     boolean isComposite();
 
+    int numberOfDescendants();
+
 }
 

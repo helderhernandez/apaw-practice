@@ -4,7 +4,7 @@ import es.upm.miw.apaw_practice.adapters.mongodb.factory.entities.ProductEntity;
 
 import java.util.List;
 
-public class TreeProductsLeaf implements TreeProducts{
+public class TreeProductsLeaf implements TreeProducts {
 
     private ProductEntity productEntity;
 
@@ -35,5 +35,10 @@ public class TreeProductsLeaf implements TreeProducts{
     @Override
     public boolean isComposite() {
         return false;
+    }
+
+    @Override
+    public int numberOfDescendants() {
+        return 1;
     }
 }

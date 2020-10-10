@@ -42,4 +42,9 @@ public class TreeProductsComposite implements TreeProducts{
     public boolean isComposite() {
         return true;
     }
+
+    @Override
+    public int numberOfDescendants() {
+        return this.treeProductsList.size();
+    }
 }
