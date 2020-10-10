@@ -17,7 +17,7 @@ class JourneyResourceIT {
 
     void testJourney(Journey journey){
         assertNotNull(journey);
-        assertNotNull(journey.getId());
+        assertNotNull(journey.getReference());
         assertEquals("Madrid", journey.getDeparture());
         assertEquals("Barcelona", journey.getArrive());
         assertEquals(5, journey.getNumStops());

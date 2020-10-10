@@ -10,6 +10,9 @@ import es.upm.miw.apaw_practice.domain.persistence_ports.bank.CustomerPersistenc
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.math.BigDecimal;
+import java.util.List;
+import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 @Repository("customerPersistence")
@@ -17,9 +20,21 @@ public class CustomerPersistenceMongodb implements CustomerPersistence {
 
     private final CustomerRepository customerRepository;
 
+    private final MortgagePersistenceMongodb mortgagePersistence;
+
+    private final SharedAccountPersistenceMongodb sharedAccountPersistence;
+
+    private final ShareholderPersistenceMongodb shareholderPersistence;
+
     @Autowired
-    public CustomerPersistenceMongodb(CustomerRepository customerRepository) {
+    public CustomerPersistenceMongodb(CustomerRepository customerRepository,
+                                      MortgagePersistenceMongodb mortgagePersistence,
+                                      SharedAccountPersistenceMongodb sharedAccountPersistence,
+                                      ShareholderPersistenceMongodb shareholderPersistence) {
         this.customerRepository = customerRepository;
+        this.mortgagePersistence = mortgagePersistence;
+        this.sharedAccountPersistence = sharedAccountPersistence;
+        this.shareholderPersistence = shareholderPersistence;
     }
 
 
@@ -43,6 +58,22 @@ public class CustomerPersistenceMongodb implements CustomerPersistence {
                 .ifPresent(customer -> {
                     throw new ConflictException("DNI already exists: " + DNI);
                 });
+    }
+
+    public List<String> findDNIByMortgageAndSharedAccount() {
+        List<String> shared = this.sharedAccountPersistence.findDNIBySharedAccount();
+        List<String> mortgages = this.mortgagePersistence.findDNIbyCustomers();
+        return shared.stream()
+                .distinct()
+                .filter(mortgages::contains)
+                .collect(Collectors.toList());
+
+    }
+
+    public List<CustomerEntity> findCustomerByShareholderWithValueGreaterThan(BigDecimal value) {
+        return this.shareholderPersistence.findValueGraterThan(value).stream()
+                .flatMap(shareholder -> shareholder.getCustomerEntities().stream())
+                .collect(Collectors.toList());
     }
 
 }

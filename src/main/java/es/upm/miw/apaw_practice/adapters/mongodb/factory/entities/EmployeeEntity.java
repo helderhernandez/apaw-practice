@@ -30,6 +30,10 @@ public class EmployeeEntity {
         // empty for framework
     }
 
+    public static EmployeeBuilders.Dni builder() {
+        return new Builder();
+    }
+
     public EmployeeEntity(String dni, String name, String lastName, Long phone, LocalDate seniority, BigDecimal salary, String department) {
         this.dni = dni;
         this.name = name;
@@ -141,5 +145,58 @@ public class EmployeeEntity {
                 '}';
     }
 
+    public static class Builder implements EmployeeBuilders.Dni, EmployeeBuilders.Name, EmployeeBuilders.Optionals {
+        private EmployeeEntity employeeEntity;
 
+        public Builder() {
+            this.employeeEntity = new EmployeeEntity();
+        }
+
+        @Override
+        public EmployeeBuilders.Name dni(String dni) {
+            this.employeeEntity.dni = dni;
+            return this;
+        }
+
+        @Override
+        public EmployeeBuilders.Optionals name(String name) {
+            this.employeeEntity.name = name;
+            return this;
+        }
+
+        @Override
+        public EmployeeBuilders.Optionals lastName(String lastName) {
+            this.employeeEntity.lastName = lastName;
+            return this;
+        }
+
+        @Override
+        public EmployeeBuilders.Optionals phone(Long phone) {
+            this.employeeEntity.phone = phone;
+            return this;
+        }
+
+        @Override
+        public EmployeeBuilders.Optionals seniority(LocalDate seniority) {
+            this.employeeEntity.seniority = seniority;
+            return this;
+        }
+
+        @Override
+        public EmployeeBuilders.Optionals salary(BigDecimal salary) {
+            this.employeeEntity.salary = salary;
+            return this;
+        }
+
+        @Override
+        public EmployeeBuilders.Optionals department(String department) {
+            this.employeeEntity.department = department;
+            return this;
+        }
+
+        @Override
+        public EmployeeEntity build() {
+            return this.employeeEntity;
+        }
+    }
 }
