@@ -1,6 +1,5 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.transittaxes.entities;
 
-import es.upm.miw.apaw_practice.domain.models.shop.Article;
 import es.upm.miw.apaw_practice.domain.models.transittaxes.Accident;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
@@ -93,8 +92,5 @@ public class AccidentEntity {
         Accident accident = new Accident();
         BeanUtils.copyProperties(this, accident);
         return accident;
-    }
-    public void fromAccident(Accident accident) {
-        BeanUtils.copyProperties(accident, this);
     }
 }

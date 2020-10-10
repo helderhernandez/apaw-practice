@@ -12,12 +12,6 @@ public class Accident {
     public Accident() {
         //empty from framework
     }
-
-    public Accident(String refAccident, LocalDateTime date, String place) {
-        this.refAccident = refAccident;
-        this.date = date;
-        this.place = place;
-    }
     public String getRefAccident() {
         return refAccident;
     }
