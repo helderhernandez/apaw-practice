@@ -39,6 +39,7 @@ public class RestaurantSeederService {
         this.foodTypeRepository.saveAll(Arrays.asList(foodType));
         OwnerRestaurantEntity[] owner = {
                 new OwnerRestaurantEntity("tag1", "name1","familyName1"),
+                new OwnerRestaurantEntity("tag2", "name2","familyName2")
         };
         this.ownerRepository.saveAll(Arrays.asList(owner));
         RestaurantEntity[] restaurant = {

@@ -36,27 +36,43 @@ public class FactorySeederService {
                 new ProductEntity("P0001", 10000001L, new BigDecimal("7.40")),
                 new ProductEntity("P0002", 20000001L, new BigDecimal("9.85")),
                 new ProductEntity("P0003", 30000001L, new BigDecimal("106.65")),
-                new ProductEntity("P0004", 40000001L, new BigDecimal("2560.74"))
+                new ProductEntity("P0004", 40000001L, new BigDecimal("2560.74")),
+                new ProductEntity("P0005", 50000001L, new BigDecimal("74.10"))
         };
         this.productRepository.saveAll(Arrays.asList(products));
 
         EmployeeEntity[] employees = {
-                new EmployeeEntity("00000000A", "Andrea", "Calvo", 666666660L,
-                        LocalDate.of(2020, 9, 29), new BigDecimal("25000"), "Software"),
-                new EmployeeEntity("11111111B", "Carlos", "Cob", 666666661L,
-                        LocalDate.of(2019, 8, 28), new BigDecimal("26000"), "Software"),
-                new EmployeeEntity("22222222C", "Carlos ", "Boyero", 666666662L,
-                        LocalDate.of(2018, 7, 27), new BigDecimal("27000"), "Sales"),
-                new EmployeeEntity("33333333D", "Erica ", "Martinez", 666666663L,
-                        LocalDate.of(2017, 6, 26), new BigDecimal("28000"), "Production"),
-                new EmployeeEntity("44444444E", "Miriam ", "Guzman,", 666666664L,
-                        LocalDate.of(2016, 5, 25), new BigDecimal("29000"), "Production"),
-                new EmployeeEntity("55555555F", "Hilario ", "Gomez,", 666666665L,
-                        LocalDate.of(2015, 4, 24), new BigDecimal("30000"), "Software"),
-                new EmployeeEntity("66666666G", "Isaac ", "Carpena,", 666666666L,
-                        LocalDate.of(2014, 3, 23), new BigDecimal("31000"), "Sales"),
-                new EmployeeEntity("77777777H", "Ruben ", "Redondo,", 666666667L,
-                        LocalDate.of(2013, 2, 22), new BigDecimal("32000"), "Production")
+                EmployeeEntity.builder().dni("00000000A").name("Andrea").lastName("Calvo").phone(666666660L)
+                        .seniority(LocalDate.of(2019, 8, 28)).salary(new BigDecimal("25000"))
+                        .department("Software").build(),
+
+                EmployeeEntity.builder().dni("11111111B").name("Carlos").lastName("Cob").phone(666666661L)
+                        .seniority(LocalDate.of(2019, 8, 28)).salary(new BigDecimal("26000"))
+                        .department("Software").build(),
+
+                EmployeeEntity.builder().dni("22222222C").name("Carlos").lastName("Boyero").phone(666666662L)
+                        .seniority(LocalDate.of(2018, 7, 27)).salary(new BigDecimal("27000"))
+                        .department("Sales").build(),
+
+                EmployeeEntity.builder().dni("33333333D").name("Erica").lastName("Martinez").phone(666666663L)
+                        .seniority(LocalDate.of(2017, 6, 26)).salary(new BigDecimal("28000"))
+                        .department("Production").build(),
+
+                EmployeeEntity.builder().dni("44444444E").name("Miriam").lastName("Guzman").phone(666666664L)
+                        .seniority(LocalDate.of(2016, 5, 25)).salary(new BigDecimal("29000"))
+                        .department("Production").build(),
+
+                EmployeeEntity.builder().dni("55555555F").name("Hilario").lastName("Gomez").phone(666666665L)
+                        .seniority(LocalDate.of(2015, 4, 24)).salary(new BigDecimal("30000"))
+                        .department("Software").build(),
+
+                EmployeeEntity.builder().dni("66666666G").name("Isaac").lastName("Carpena").phone(666666666L)
+                        .seniority(LocalDate.of(2014, 3, 23)).salary(new BigDecimal("31000"))
+                        .department("Sales").build(),
+
+                EmployeeEntity.builder().dni("77777777H").name("Ruben").lastName("Redondo").phone(666666667L)
+                        .seniority(LocalDate.of(2013, 2, 22)).salary(new BigDecimal("32000"))
+                        .department("Production").build(),
         };
         this.employeeRepository.saveAll(Arrays.asList(employees));
 
@@ -77,8 +93,10 @@ public class FactorySeederService {
                         900600L, false, LocalDate.of(2020, 7, 1)),
                 new MachineEntity(Arrays.asList(employees[3], employees[4]), Arrays.asList(products[1], products[2], products[3], products[4]),
                         800500L, true, LocalDate.of(2019, 11, 1)),
-                new MachineEntity(Arrays.asList(employees[6], employees[7]), Arrays.asList(products[0], products[4]),
+                new MachineEntity(Arrays.asList(employees[6], employees[7]), Arrays.asList(products[4]),
                         700500L, true, LocalDate.of(2020, 5, 1)),
+                new MachineEntity(Arrays.asList(employees[5]), Arrays.asList(products[5]),
+                        600500L, false, LocalDate.of(2020, 5, 1)),
         };
         this.machineRepository.saveAll(Arrays.asList(machines));
     }

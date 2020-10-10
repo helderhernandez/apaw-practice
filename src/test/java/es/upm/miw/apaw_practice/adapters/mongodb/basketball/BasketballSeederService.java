@@ -40,22 +40,22 @@ public class BasketballSeederService {
         };
         this.memberTeamRepository.saveAll(Arrays.asList(membersTeam));
         CoachEntity[] coachs = {
-                new CoachEntity("Lucas", "Mondelo", "2222222A", 1),
-                new CoachEntity("Victor", "Lapeña", "12222222B", 1),
-                new CoachEntity("Pablo", "Laso", "32222222C", 1)
+                new CoachEntity("Lucas", "2222222A"),
+                new CoachEntity("Victor", "12222222B"),
+                new CoachEntity("Pablo", "32222222C")
         };
         this.coachRepository.saveAll(Arrays.asList(coachs));
         CourtEntity[] courts = {
-                new CourtEntity("Palacio de Deportes", 2, 15500),
-                new CourtEntity("Fuente de San Luis", 2, 9000),
-                new CourtEntity("Palau Blaugrana", 3, 7500),
-                new CourtEntity("Bilbao Arena", 0, 10000)
+                new CourtEntity("Palacio de Deportes", 15500),
+                new CourtEntity("Fuente de San Luis", 9000),
+                new CourtEntity("Palau Blaugrana", 7500),
+                new CourtEntity("Bilbao Arena", 10000)
         };
         this.courtRepository.saveAll(Arrays.asList(courts));
         TeamEntity[] teams = {
-                new TeamEntity("Real Madrid", List.of(membersTeam[0], membersTeam[1]), List.of(courts[0], courts[2]), coachs[0], "Profesional"),
-                new TeamEntity("Valencia Basket", List.of(membersTeam[2], membersTeam[3]), List.of(courts[0], courts[1], courts[2]), coachs[1], "Profesional"),
-                new TeamEntity("Barcelona", List.of(membersTeam[4], membersTeam[5]), List.of(courts[1], courts[2]), coachs[2], "Profesional")
+                new TeamEntity("Real Madrid", List.of(membersTeam[0], membersTeam[1]), List.of(courts[0], courts[2]), coachs[0]),
+                new TeamEntity("Valencia Basket", List.of(membersTeam[2], membersTeam[3]), List.of(courts[0], courts[1], courts[2]), coachs[1]),
+                new TeamEntity("Barcelona", List.of(membersTeam[4], membersTeam[5]), List.of(courts[1], courts[2]), coachs[2])
         };
         this.teamRepository.saveAll(Arrays.asList(teams));
     }
