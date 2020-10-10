@@ -6,7 +6,7 @@ public class Warehouse {
     private String id;
     private String name;
     private String area;
-    private Boolean isActive;
+    private Boolean active;
 
     public String getId() {
         return id;
@@ -32,12 +32,12 @@ public class Warehouse {
         this.area = area;
     }
 
-    public Boolean isActive() {
-        return isActive;
+    public Boolean getActive() {
+        return active;
     }
 
     public void setActive(Boolean active) {
-        isActive = active;
+        this.active = active;
     }
 
     @Override
@@ -59,7 +59,7 @@ public class Warehouse {
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 ", area=" + area +
-                ", isActive=" + isActive +
+                ", active=" + active +
                 '}';
     }
 }
