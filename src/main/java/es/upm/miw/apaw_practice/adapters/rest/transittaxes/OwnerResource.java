@@ -24,6 +24,4 @@ public class OwnerResource {
     public void delete(@PathVariable String id) {
         this.ownerService.delete(id);
     }
-
-
 }

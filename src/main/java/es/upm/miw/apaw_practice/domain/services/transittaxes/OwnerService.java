@@ -17,4 +17,5 @@ public class OwnerService {
     public void delete(String id) {
         this.ownerPersitence.deleteById(id);
     }
+
 }
