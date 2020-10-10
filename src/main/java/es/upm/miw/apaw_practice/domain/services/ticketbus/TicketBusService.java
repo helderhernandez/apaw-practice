@@ -19,4 +19,8 @@ public class TicketBusService {
     public TicketBus update(String reference, PassengerBusCreation passenger) {
         return ticketBusPersistence.update(reference, passenger);
     }
+
+    public void delete(String reference) {
+        ticketBusPersistence.delete(reference);
+    }
 }
