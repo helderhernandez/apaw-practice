@@ -5,6 +5,6 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 
 import java.util.Optional;
 
-public interface SharedAccountsRepository extends MongoRepository<SharedAccountEntity, String> {
+public interface SharedAccountRepository extends MongoRepository<SharedAccountEntity, String> {
     Optional<SharedAccountEntity> findByIBAN(String IBAN);
 }
