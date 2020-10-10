@@ -19,11 +19,11 @@ public class Bus {
         // empty from framework
     }
 
-    public List<TicketBus> getTickets(){
+    public List<TicketBus> getTickets() {
         return this.tickets;
     }
 
-    public void setTickets(List<TicketBus> tickets){
+    public void setTickets(List<TicketBus> tickets) {
         this.tickets = tickets;
     }
 
