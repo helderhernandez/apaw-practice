@@ -6,7 +6,6 @@ import java.util.List;
 
 public class Bus {
 
-    private String id;
     private String reference;
     private String company;
     private Integer capacity;
@@ -68,14 +67,6 @@ public class Bus {
         this.registrationDate = registrationDate;
     }
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
     public Integer getCapacity() {
         return capacity;
     }
@@ -87,8 +78,7 @@ public class Bus {
     @Override
     public String toString() {
         return "Bus{" +
-                "id='" + id + '\'' +
-                ", reference='" + reference + '\'' +
+                "reference='" + reference + '\'' +
                 ", company='" + company + '\'' +
                 ", capacity=" + capacity +
                 ", accesibility=" + accesibility +

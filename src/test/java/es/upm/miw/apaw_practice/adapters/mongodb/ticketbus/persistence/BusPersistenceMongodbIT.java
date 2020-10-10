@@ -27,7 +27,7 @@ class BusPersistenceMongodbIT {
 
     @BeforeEach
     void testBefore() {
-        busCreation = new BusCreation("VL-001", "COOP-VL", 50, Boolean.TRUE, Boolean.FALSE);
+        busCreation = new BusCreation("COOP-VL", 50, Boolean.TRUE, Boolean.FALSE);
         ticketBusCreation = new TicketBusCreation(3, LocalDateTime.now(), LocalDateTime.now(), new BigDecimal("19.99"));
     }
 
@@ -43,19 +43,19 @@ class BusPersistenceMongodbIT {
 
     @Test
     void testCreateAndRead() {
-        BusCreation busCreation = new BusCreation("VL-001", "COOP-VL", 50, Boolean.TRUE, Boolean.FALSE);
+        BusCreation busCreation = new BusCreation("COOP-VL", 50, Boolean.TRUE, Boolean.FALSE);
         ticketBusCreation = new TicketBusCreation(3, LocalDateTime.now(), LocalDateTime.now(), new BigDecimal("19.99"));
 
         busCreation.setTickets(Arrays.asList(ticketBusCreation));
 
         Bus bus = this.busPersistenceMongodb.create(busCreation);
 
+        assertNotNull(bus.getReference());
         assertEquals(busCreation.getCompany(), bus.getCompany());
         assertEquals(busCreation.getCapacity(), bus.getCapacity());
         assertEquals(busCreation.getAccesibility(), bus.getAccesibility());
         assertEquals(busCreation.getWifi(), bus.getWifi());
         assertNotNull(bus.getRegistrationDate());
-        assertNotNull(bus.getId());
         assertNotNull(bus.getTickets());
         assertEquals(1, bus.getTickets().size());
 
