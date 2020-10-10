@@ -15,7 +15,7 @@ public class OwnerEntityRepositoryIT {
     private OwnerRepository ownerRepository;
 
     @Test
-    void testCreateAndRead() {
+    void testRead() {
         assertTrue(ownerRepository.findByDni("00000000C").isPresent());
         OwnerEntity ownerEntity = ownerRepository.findByDni("00000000C").get();
         assertEquals("Jhon", ownerEntity.getName());
