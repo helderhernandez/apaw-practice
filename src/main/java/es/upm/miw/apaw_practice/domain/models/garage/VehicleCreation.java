@@ -1,36 +1,26 @@
 package es.upm.miw.apaw_practice.domain.models.garage;
 
-import es.upm.miw.apaw_practice.adapters.mongodb.garage.entities.MechanicEntity;
-import es.upm.miw.apaw_practice.adapters.mongodb.garage.entities.PieceEntity;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.index.Indexed;
-import org.springframework.data.mongodb.core.mapping.DBRef;
-
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.List;
 
-public class Vehicle {
+public class VehicleCreation {
 
-    private String id;
     private String carRegistration;
     private String model;
     private BigDecimal estimatedBudget;
     private LocalDateTime receptionDate;
     private LocalDateTime estimatedDeliveryDate;
-    private List<PieceEntity> pieceEntities;
-    private List<MechanicEntity> mechanicEntities;
 
-    public Vehicle() {
+    public VehicleCreation() {
         // empty for framework
     }
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
+    public VehicleCreation(String carRegistration, String model, BigDecimal estimatedBudget, LocalDateTime receptionDate, LocalDateTime estimatedDeliveryDate) {
+        this.carRegistration = carRegistration;
+        this.model = model;
+        this.estimatedBudget = estimatedBudget;
+        this.receptionDate = receptionDate;
+        this.estimatedDeliveryDate = estimatedDeliveryDate;
     }
 
     public String getCarRegistration() {
@@ -71,21 +61,5 @@ public class Vehicle {
 
     public void setEstimatedDeliveryDate(LocalDateTime estimatedDeliveryDate) {
         this.estimatedDeliveryDate = estimatedDeliveryDate;
-    }
-
-    public List<PieceEntity> getPieceEntities() {
-        return pieceEntities;
-    }
-
-    public void setPieceEntities(List<PieceEntity> pieceEntities) {
-        this.pieceEntities = pieceEntities;
-    }
-
-    public List<MechanicEntity> getMechanicEntities() {
-        return mechanicEntities;
-    }
-
-    public void setMechanicEntities(List<MechanicEntity> mechanicEntities) {
-        this.mechanicEntities = mechanicEntities;
     }
 }

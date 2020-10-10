@@ -1,5 +1,8 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.garage.entities;
 
+import es.upm.miw.apaw_practice.domain.models.garage.Driver;
+import es.upm.miw.apaw_practice.domain.models.garage.DriverCreation;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;
@@ -7,6 +10,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Document
 public class DriverEntity {
@@ -22,7 +26,7 @@ public class DriverEntity {
     @DBRef
     private List<VehicleEntity> vehicleEntities;
 
-    public DriverEntity(){
+    public DriverEntity() {
         //empty for framework
     }
 
@@ -34,6 +38,18 @@ public class DriverEntity {
         this.email = email;
         this.garageMember = garageMember;
         this.vehicleEntities = vehicleEntities;
+    }
+
+    public DriverEntity(DriverCreation driverCreation) {
+        this.id = UUID.randomUUID().toString();
+        this.dni = driverCreation.getDni();
+        this.name = driverCreation.getName();
+        this.telephone = driverCreation.getTelephone();
+        this.email = driverCreation.getEmail();
+        this.garageMember = driverCreation.getGarageMember();
+        this.vehicleEntities = driverCreation.getVehicleCreations().stream()
+                                                    .map(VehicleEntity::new)
+                                                    .collect(Collectors.toList());
     }
 
     public String getId() {
@@ -90,6 +106,16 @@ public class DriverEntity {
 
     public void setVehicleEntities(List<VehicleEntity> vehicleEntities) {
         this.vehicleEntities = vehicleEntities;
+    }
+
+    public Driver toDriver() {
+        Driver driver = new Driver();
+        BeanUtils.copyProperties(this, driver);
+        return driver;
+    }
+
+    public void fromDriver(Driver driver) {
+        BeanUtils.copyProperties(driver, this);
     }
 
 }
