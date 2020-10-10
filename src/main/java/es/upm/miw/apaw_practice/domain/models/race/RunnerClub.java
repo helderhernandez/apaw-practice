@@ -1,24 +1,21 @@
-package es.upm.miw.apaw_practice.adapters.mongodb.race.entities;
+package es.upm.miw.apaw_practice.domain.models.race;
 
-import es.upm.miw.apaw_practice.domain.models.race.RunnerClub;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
 
-@Document
-public class RunnerClubEntity {
+public class RunnerClub {
     @Id
     private String id;
     private String name;
     private String location;
     private LocalDateTime foundationDate;
 
-    public RunnerClubEntity() {
+    public RunnerClub() {
         // empty for framework
     }
 
-    public RunnerClubEntity(String id, String name, String location, LocalDateTime foundationDate) {
+    public RunnerClub(String id, String name, String location, LocalDateTime foundationDate) {
         this.id = id;
         this.name = name;
         this.location = location;
@@ -64,20 +61,16 @@ public class RunnerClubEntity {
 
     @Override
     public boolean equals(Object obj) {
-        return this == obj || obj != null && getClass() == obj.getClass() && (name.equals(((RunnerClubEntity) obj).name));
+        return this == obj || obj != null && getClass() == obj.getClass() && (name.equals(((RunnerClub) obj).name));
     }
 
     @Override
     public String toString() {
-        return "RunnerClubEntity{" +
+        return "RunnerClub{" +
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 ", location='" + location + '\'' +
                 ", foundationDate=" + foundationDate +
                 '}';
-    }
-
-    public RunnerClub toRunnerClub() {
-        return new RunnerClub(this.id, this.name, this.location, this.foundationDate);
     }
 }

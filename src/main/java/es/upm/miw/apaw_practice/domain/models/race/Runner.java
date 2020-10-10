@@ -1,35 +1,27 @@
-package es.upm.miw.apaw_practice.adapters.mongodb.race.entities;
+package es.upm.miw.apaw_practice.domain.models.race;
 
-import es.upm.miw.apaw_practice.domain.models.race.Runner;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.index.Indexed;
-import org.springframework.data.mongodb.core.mapping.DBRef;
-import org.springframework.data.mongodb.core.mapping.Document;
+import es.upm.miw.apaw_practice.adapters.mongodb.race.entities.RunnerEntity;
 
+public class Runner {
 
-@Document
-public class RunnerEntity {
-    @Id
     private String id;
     private String name;
-    @Indexed(unique = true)
     private String dni;
     private Integer dorsal;
     private Boolean isProfessional;
-    @DBRef
-    private RunnerClubEntity runnerClubEntity;
+    private RunnerClub runnerClub;
 
-    public RunnerEntity() {
+    public Runner() {
         // empty for framework
     }
 
-    public RunnerEntity(String id, String name, String dni, Integer dorsal, Boolean isProfessional, RunnerClubEntity runnerClubEntity) {
+    public Runner(String id, String name, String dni, Integer dorsal, Boolean isProfessional, RunnerClub runnerClub) {
         this.id = id;
         this.name = name;
         this.dni = dni;
         this.dorsal = dorsal;
         this.isProfessional = isProfessional;
-        this.runnerClubEntity = runnerClubEntity;
+        this.runnerClub = runnerClub;
     }
 
     public String getId() {
@@ -72,12 +64,12 @@ public class RunnerEntity {
         isProfessional = professional;
     }
 
-    public RunnerClubEntity getRunnerClubEntity() {
-        return runnerClubEntity;
+    public RunnerClub getRunnerClub() {
+        return runnerClub;
     }
 
-    public void setRunnerClubEntity(RunnerClubEntity runnerClubEntity) {
-        this.runnerClubEntity = runnerClubEntity;
+    public void setRunnerClub(RunnerClub runnerClub) {
+        this.runnerClub = runnerClub;
     }
 
     @Override
@@ -87,7 +79,7 @@ public class RunnerEntity {
 
     @Override
     public boolean equals(Object obj) {
-        return this == obj || obj != null && getClass() == obj.getClass() && (dni.equals(((RunnerEntity) obj).dni));
+        return this == obj || obj != null && getClass() == obj.getClass() && (dni.equals(((Runner) obj).dni));
     }
 
     @Override
@@ -98,11 +90,8 @@ public class RunnerEntity {
                 ", dni='" + dni + '\'' +
                 ", dorsal=" + dorsal +
                 ", isProfessional=" + isProfessional +
-                ", runnerClubEntity=" + runnerClubEntity +
+                ", runnerClub=" + runnerClub +
                 '}';
     }
 
-    public Runner toRunner() {
-        return new Runner(this.id, this.name, this.dni, this.dorsal, this.isProfessional, this.runnerClubEntity.toRunnerClub());
-    }
 }
