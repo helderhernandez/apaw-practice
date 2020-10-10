@@ -1,5 +1,8 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.airport.entities;
 
+import es.upm.miw.apaw_practice.domain.models.airport.Flight;
+import es.upm.miw.apaw_practice.domain.models.airport.Passenger;
+import es.upm.miw.apaw_practice.domain.models.airport.Suitcase;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -7,6 +10,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Document
 public class PassengerEntity {
@@ -71,6 +75,16 @@ public class PassengerEntity {
         this.flightEntities = flightEntities;
     }
 
+    public Passenger toPassenger() {
+        List<Flight> flightList = this.flightEntities.stream()
+                .map(FlightEntity::toFlight)
+                .collect(Collectors.toList());
+        List<Suitcase> suitcaseList = this.suitcaseEntities.stream()
+                .map(SuitcaseEntity::toSuitCase)
+                .collect(Collectors.toList());
+
+        return new Passenger(id, name, surname, suitcaseList, flightList);
+    }
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;

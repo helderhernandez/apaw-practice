@@ -18,7 +18,7 @@ public class ShareholderEntity {
     private BigDecimal percentage;
     private BigDecimal value;
     private LocalDateTime expirationDate;
-    private Boolean isActive;
+    private Boolean active;
     @DBRef
     private List<CustomerEntity> customerEntities;
 
@@ -26,12 +26,12 @@ public class ShareholderEntity {
         //Empty for framework
     }
 
-    public ShareholderEntity(BigDecimal percentage, BigDecimal value, LocalDateTime expirationDate, Boolean isActive, List<CustomerEntity> customerEntities) {
+    public ShareholderEntity(BigDecimal percentage, BigDecimal value, LocalDateTime expirationDate, Boolean active, List<CustomerEntity> customerEntities) {
         this.id = UUID.randomUUID().toString();
         this.percentage = percentage;
         this.value = value;
         this.expirationDate = expirationDate;
-        this.isActive = isActive;
+        this.active = active;
         this.customerEntities = customerEntities;
     }
 
@@ -76,11 +76,11 @@ public class ShareholderEntity {
     }
 
     public Boolean getActive() {
-        return isActive;
+        return active;
     }
 
     public void setActive(Boolean active) {
-        isActive = active;
+        this.active = active;
     }
 
     @Override
@@ -103,7 +103,7 @@ public class ShareholderEntity {
                 ", percentage=" + percentage +
                 ", value=" + value +
                 ", expirationDate=" + expirationDate +
-                ", isActive=" + isActive +
+                ", isActive=" + active +
                 ", customerEntities=" + customerEntities +
                 '}';
     }

@@ -17,12 +17,12 @@ public class ReservationResource {
     private ReservationService reservationService;
 
     @Autowired
-    public ReservationResource(ReservationService reservationService){
+    public ReservationResource(ReservationService reservationService) {
         this.reservationService = reservationService;
     }
 
     @GetMapping
-    public Stream<Reservation> readAll(){
+    public Stream<Reservation> readAll() {
         return this.reservationService.readAll();
     }
 }
