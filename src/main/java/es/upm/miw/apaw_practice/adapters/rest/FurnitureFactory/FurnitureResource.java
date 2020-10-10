@@ -28,6 +28,9 @@ public class FurnitureResource {
     public Stream<Furniture> readAll() {
         return this.furnitureService.readAll();
     }
-
+    @PutMapping(ID_ID + NAME)
+    public Furniture updateName(@PathVariable String id, @RequestBody NameDto nameDto) {
+        return this.furnitureService.updateName(id, nameDto.getName());
+    }
 
 }

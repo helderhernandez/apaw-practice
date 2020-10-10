@@ -19,5 +19,8 @@ public class FurnitureService {
         return this.furniturePersistence.readAll();
     }
 
+    public Furniture updateName(String id, String name) {
+        return this.furniturePersistence.updateName(id, name);
+    }
 
 }
