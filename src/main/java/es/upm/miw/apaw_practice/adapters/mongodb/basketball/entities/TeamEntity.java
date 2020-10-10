@@ -20,19 +20,17 @@ public class TeamEntity {
     private List<CourtEntity> courtsToPlay;
     @DBRef
     private CoachEntity coachTeam;
-    private String category;
 
     public  TeamEntity() {
         //Empty constructor for the framework
     }
 
-    public TeamEntity(String name, List<MemberTeamEntity> players, List<CourtEntity> courtsToPlay, CoachEntity coachTeam, String category) {
+    public TeamEntity(String name, List<MemberTeamEntity> players, List<CourtEntity> courtsToPlay, CoachEntity coachTeam) {
         this.id = UUID.randomUUID().toString();
         this.name = name;
         this.players = players;
         this.courtsToPlay = courtsToPlay;
         this.coachTeam = coachTeam;
-        this.category = category;
     }
 
     public String getId() {
@@ -75,14 +73,6 @@ public class TeamEntity {
         this.coachTeam = coachTeam;
     }
 
-    public String getCategory() {
-        return category;
-    }
-
-    public void setCategory(String category) {
-        this.category = category;
-    }
-
     @Override
     public boolean equals(Object o) {
         return this == o || o != null && getClass() == o.getClass() && (id.equals(((TeamEntity) o).id));
@@ -101,7 +91,6 @@ public class TeamEntity {
                 ", players=" + players +
                 ", courtsToPlay=" + courtsToPlay +
                 ", coachTeam=" + coachTeam +
-                ", category='" + category + '\'' +
                 '}';
     }
 }
