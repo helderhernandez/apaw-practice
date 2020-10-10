@@ -1,10 +1,13 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.kitchen.persistence;
 
 import es.upm.miw.apaw_practice.adapters.mongodb.kitchen.daos.IngredientRepository;
+import es.upm.miw.apaw_practice.adapters.mongodb.kitchen.daos.KitchenBoyRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.kitchen.daos.RecipeRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.kitchen.entities.IngredientEntity;
 import es.upm.miw.apaw_practice.adapters.mongodb.kitchen.entities.RecipeEntity;
 import es.upm.miw.apaw_practice.domain.exceptions.ConflictException;
+import es.upm.miw.apaw_practice.domain.exceptions.NotFoundException;
+import es.upm.miw.apaw_practice.domain.models.kitchen.Ingredient;
 import es.upm.miw.apaw_practice.domain.models.kitchen.Recipe;
 import es.upm.miw.apaw_practice.domain.models.kitchen.RecipeCreation;
 import es.upm.miw.apaw_practice.domain.persistence_ports.kitchen.RecipePersistence;
@@ -13,6 +16,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Repository("recipePersistence")
 public class RecipePersistenceMongodb implements RecipePersistence {
@@ -21,10 +25,14 @@ public class RecipePersistenceMongodb implements RecipePersistence {
 
     private IngredientRepository ingredientRepository;
 
+    private KitchenBoyRepository kitchenBoyRepository;
+
     @Autowired
-    public RecipePersistenceMongodb(RecipeRepository recipeRepository, IngredientRepository ingredientRepository) {
+    public RecipePersistenceMongodb(RecipeRepository recipeRepository, IngredientRepository ingredientRepository,
+                                    KitchenBoyRepository kitchenBoyRepository) {
         this.recipeRepository = recipeRepository;
         this.ingredientRepository = ingredientRepository;
+        this.kitchenBoyRepository = kitchenBoyRepository;
     }
 
     @Override
@@ -42,5 +50,16 @@ public class RecipePersistenceMongodb implements RecipePersistence {
                 .ifPresent(recipe -> {
                     throw new ConflictException("Recipe already exists: " + name);
                 });
+    }
+
+    @Override
+    public Stream<String> search1(String dni) {
+        Ingredient kitchenBoyIngredient = this.kitchenBoyRepository.findByDni(dni)
+                .orElseThrow(() -> new NotFoundException("KitchenBoy DNI: " + dni))
+                .getIngredientToWorkOn()
+                .toIngredient();
+        return this.recipeRepository.findAll().stream()
+                .filter(recipe -> recipe.getIngredients().contains(kitchenBoyIngredient))
+                .map(recipe -> recipe.getName());
     }
 }
