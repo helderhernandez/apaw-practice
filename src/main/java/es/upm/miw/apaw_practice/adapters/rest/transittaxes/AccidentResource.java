@@ -3,10 +3,7 @@ package es.upm.miw.apaw_practice.adapters.rest.transittaxes;
 import es.upm.miw.apaw_practice.domain.models.transittaxes.Accident;
 import es.upm.miw.apaw_practice.domain.services.transittaxes.AccidentService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(AccidentResource.ACCIDENTS)
@@ -25,5 +22,10 @@ public class AccidentResource {
     @GetMapping(ID_ID)
     public Accident read(@PathVariable String id) {
         return this.accidentService.read(id);
+    }
+
+    @PatchMapping
+    public Accident updatePlace(@RequestBody Accident accident){
+        return this.accidentService.updatePlace(accident);
     }
 }
