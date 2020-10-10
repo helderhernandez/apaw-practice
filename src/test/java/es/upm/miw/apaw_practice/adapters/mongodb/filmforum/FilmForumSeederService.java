@@ -18,10 +18,14 @@ import java.util.Collections;
 
 @Service
 public class FilmForumSeederService {
-    @Autowired private FilmForumRepository filmForumRepository;
-    @Autowired private FilmActorRepository filmActorRepository;
-    @Autowired private FilmCommentRepository filmCommentRepository;
-    @Autowired private FilmUserRepository filmUserRepository;
+    @Autowired
+    private FilmForumRepository filmForumRepository;
+    @Autowired
+    private FilmActorRepository filmActorRepository;
+    @Autowired
+    private FilmCommentRepository filmCommentRepository;
+    @Autowired
+    private FilmUserRepository filmUserRepository;
 
     public void seedDatabase() {
         LogManager.getLogger(this.getClass()).warn("------- FilmForum Initial Load -----------");
@@ -34,7 +38,7 @@ public class FilmForumSeederService {
         this.filmUserRepository.saveAll(Arrays.asList(users));
 
         FilmCommentEntity[] comments = {
-                new FilmCommentEntity("1", users[0], "content1", 10, LocalDateTime.of( 2020, 10, 7, 19, 0)),
+                new FilmCommentEntity("1", users[0], "content1", 10, LocalDateTime.of(2020, 10, 7, 19, 0)),
                 new FilmCommentEntity("2", users[0], "content2", 60, LocalDateTime.now()),
                 new FilmCommentEntity("3", users[1], "content3", 100, LocalDateTime.now())
         };

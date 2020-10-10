@@ -24,14 +24,14 @@ public class TournamentResource {
         this.tournamentService = tournamentService;
     }
 
-    @PutMapping
-    public Tournament updateStartDay(@PathVariable String id,@RequestBody LocalDateTime startDay){
-        return this.tournamentService.uptadeStartDay(id,startDay);
+    @PutMapping(ID_ID + START_DAY)
+    public Tournament updateStartDay(@PathVariable String id, @RequestBody LocalDateTime startDay) {
+        return this.tournamentService.uptadeStartDay(id, startDay);
     }
 
     @GetMapping(SEARCH)
-    public Stream<NameTournamentDto> findByTournamentsAndNameDistintOfPlayer(@RequestParam String q){
-        String name = new LexicalAnalyzer().extractWithAssure(q,"name");
+    public Stream<NameTournamentDto> findByTournamentsAndNameDistintOfPlayer(@RequestParam String q) {
+        String name = new LexicalAnalyzer().extractWithAssure(q, "name");
         return this.tournamentService.findByTournamentsAndNameDistintOfPlayer(name)
                 .map(NameTournamentDto::new);
     }

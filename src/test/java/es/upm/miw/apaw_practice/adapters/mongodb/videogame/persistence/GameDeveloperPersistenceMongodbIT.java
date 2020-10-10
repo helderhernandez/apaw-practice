@@ -2,6 +2,7 @@ package es.upm.miw.apaw_practice.adapters.mongodb.videogame.persistence;
 
 import es.upm.miw.apaw_practice.TestConfig;
 import es.upm.miw.apaw_practice.domain.exceptions.ConflictException;
+import es.upm.miw.apaw_practice.domain.exceptions.NotFoundException;
 import es.upm.miw.apaw_practice.domain.models.videogame.GameDeveloper;
 import es.upm.miw.apaw_practice.domain.models.videogame.GameDeveloperCreation;
 import org.junit.jupiter.api.Test;
@@ -29,5 +30,10 @@ class GameDeveloperPersistenceMongodbIT {
         GameDeveloperCreation gameDeveloperCreation =
                 new GameDeveloperCreation("Pedro", "pedrofernandez@hotmail.com", 667659345);
         assertThrows(ConflictException.class, () -> this.gameDeveloperPersistence.create(gameDeveloperCreation));
+    }
+
+    @Test
+    void testUpdatePhoneNotFound(){
+        assertThrows(NotFoundException.class, () -> this.gameDeveloperPersistence.updatePhone("01",667549012));
     }
 }

@@ -12,7 +12,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping(PlayerResource.PLAYERS)
 public class PlayerResource {
-    static final String PLAYERS ="/padel/players";
+    static final String PLAYERS = "/padel/players";
 
     private PlayerService playerService;
 
@@ -22,7 +22,7 @@ public class PlayerResource {
     }
 
     @PostMapping
-    public Player create(@RequestBody PlayerCreation playerCreation){
+    public Player create(@RequestBody PlayerCreation playerCreation) {
         return this.playerService.create(playerCreation);
     }
 }

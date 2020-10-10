@@ -10,6 +10,7 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
+import java.util.stream.Stream;
 
 @Document
 public class SharedAccountEntity {
@@ -74,6 +75,11 @@ public class SharedAccountEntity {
 
     public void setIBAN(String IBAN) {
         this.IBAN = IBAN;
+    }
+
+    public Stream<String> getDNIs() {
+        return this.customerEntities.stream().
+                map(CustomerEntity::getDNI);
     }
 
     @Override

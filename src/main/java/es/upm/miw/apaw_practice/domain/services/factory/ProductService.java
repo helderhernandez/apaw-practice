@@ -6,6 +6,7 @@ import es.upm.miw.apaw_practice.domain.persistence_ports.factory.ProductPersiste
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -31,6 +32,10 @@ public class ProductService {
                     return product;
                 })
                 .forEach(this.productPersistence::update);
+    }
+
+    public Stream<Product> findProductsWithAnActiveMachineAndAWholesalePriceGreaterThan(BigDecimal wholesalePrice) {
+        return this.productPersistence.findProductsWithAnActiveMachineAndAWholesalePriceGreaterThan(wholesalePrice);
     }
 }
 

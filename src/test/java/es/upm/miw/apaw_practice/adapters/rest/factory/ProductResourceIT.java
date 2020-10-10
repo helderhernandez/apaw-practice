@@ -71,4 +71,33 @@ public class ProductResourceIT {
                 .exchange()
                 .expectStatus().isNotFound();
     }
+
+    @Test
+    void testFindProductsWithAnActiveMachineAndAWholesalePriceGreaterThan() {
+        this.webTestClient
+                .get()
+                .uri(uriBuilder ->
+                        uriBuilder.path(ProductResource.PRODUCTS + ProductResource.SEARCH)
+                                .queryParam("q", "wholesalePrice:50.50")
+                                .build())
+                .exchange()
+                .expectStatus().isOk()
+                .expectBodyList(Product.class)
+                .value(products -> assertEquals(30000001L, products.get(0).getSerialNumber()))
+                .value(products -> assertEquals(new BigDecimal("106.65"), products.get(0).getWholesalePrice()))
+                .value(products -> assertEquals("P0004", products.get(1).getItemReference()));
+    }
+
+
+    @Test
+    void testFindProductsWithAnActiveMachineAndAWholesalePriceGreaterThanBadRequest() {
+        this.webTestClient
+                .get()
+                .uri(uriBuilder ->
+                        uriBuilder.path(ProductResource.PRODUCTS + ProductResource.SEARCH)
+                                .queryParam("q", "wholesalePrice:badRequest")
+                                .build())
+                .exchange()
+                .expectStatus().isBadRequest();
+    }
 }

@@ -8,7 +8,7 @@ public class Shareholder {
     private BigDecimal percentage;
     private BigDecimal value;
     private LocalDateTime expirationDate;
-    private Boolean isActive;
+    private Boolean active;
 
     public Shareholder() {
         //Empty for framework
@@ -47,11 +47,11 @@ public class Shareholder {
     }
 
     public Boolean getActive() {
-        return isActive;
+        return active;
     }
 
     public void setActive(Boolean active) {
-        isActive = active;
+        this.active = active;
     }
 
     @Override
@@ -61,7 +61,7 @@ public class Shareholder {
                 ", percentage=" + percentage +
                 ", value=" + value +
                 ", expirationDate=" + expirationDate +
-                ", isActive=" + isActive +
+                ", isActive=" + active +
                 '}';
     }
 }

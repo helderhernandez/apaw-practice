@@ -18,11 +18,10 @@ public class AccidentResourceIT {
     @Autowired
     private WebTestClient webTestClient;
 
-
     @Test
     void testRead() {
         this.webTestClient.get()
-                .uri(AccidentResource.ACCIDENT + AccidentResource.ID_ID, "001")
+                .uri(AccidentResource.ACCIDENTS + AccidentResource.ID_ID, "001")
                 .exchange()
                 .expectStatus().isOk()
                 .expectBody(Accident.class)
@@ -31,7 +30,6 @@ public class AccidentResourceIT {
                     assertEquals("ACC001", AccidentData.getRefAccident());
                     assertEquals("Toledo", AccidentData.getPlace());
                     assertEquals(LocalDateTime.of(2020, 10, 5, 5, 0), AccidentData.getDate());
-
                 });
     }
 
@@ -39,7 +37,7 @@ public class AccidentResourceIT {
     void testReadNotFound() {
         this.webTestClient
                 .get()
-                .uri(AccidentResource.ACCIDENT + AccidentResource.ID_ID, "009")
+                .uri(AccidentResource.ACCIDENTS + AccidentResource.ID_ID, "009")
                 .exchange()
                 .expectStatus().isNotFound();
     }
