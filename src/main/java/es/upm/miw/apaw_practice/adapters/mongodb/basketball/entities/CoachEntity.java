@@ -12,21 +12,17 @@ public class CoachEntity {
     @Id
     private String id;
     private String name;
-    private String surname;
     @Indexed(unique = true)
     private String dni;
-    private Integer numberTeamsCoaching;
 
     public CoachEntity() {
         //Empty constructor for the framework
     }
 
-    public CoachEntity(String name, String surname, String dni, Integer numberTeamsCoaching) {
+    public CoachEntity(String name, String dni) {
         this.id = UUID.randomUUID().toString();
         this.name = name;
-        this.surname = surname;
         this.dni = dni;
-        this.numberTeamsCoaching = numberTeamsCoaching;
     }
 
     public String getId() {
@@ -45,28 +41,12 @@ public class CoachEntity {
         this.name = name;
     }
 
-    public String getSurname() {
-        return surname;
-    }
-
-    public void setSurname(String surname) {
-        this.surname = surname;
-    }
-
     public String getDni() {
         return dni;
     }
 
     public void setDni(String dni) {
         this.dni = dni;
-    }
-
-    public Integer getNumberTeamsCoaching() {
-        return numberTeamsCoaching;
-    }
-
-    public void setNumberTeamsCoaching(Integer numberTeamsCoaching) {
-        this.numberTeamsCoaching = numberTeamsCoaching;
     }
 
     @Override
@@ -84,9 +64,7 @@ public class CoachEntity {
         return "CoachEntity{" +
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
-                ", surname='" + surname + '\'' +
                 ", dni='" + dni + '\'' +
-                ", numberTeamsCoaching=" + numberTeamsCoaching +
                 '}';
     }
 }
