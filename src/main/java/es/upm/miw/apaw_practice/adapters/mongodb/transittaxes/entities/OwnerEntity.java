@@ -19,8 +19,8 @@ public class OwnerEntity {
         //empty from framework
     }
 
-    public OwnerEntity(String name, String dni, String familyName) {
-        this.id = UUID.randomUUID().toString();
+    public OwnerEntity(String id, String name, String dni, String familyName) {
+        this.id = id;
         this.name = name;
         this.dni = dni;
         this.familyName = familyName;
