@@ -37,4 +37,8 @@ public class ExtraService {
     public void delete(String id) {
         this.extraPersistence.deleteById(id);
     }
+
+    public Stream<Integer> readWorkedHoursByDepartment(String name) {
+        return this.extraPersistence.readWorkedHoursByDepartment(name);
+    }
 }

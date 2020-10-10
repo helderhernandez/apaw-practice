@@ -1,4 +1,4 @@
-package es.upm.miw.apaw_practice.adapters.mongodb.excercise.entities;
+package es.upm.miw.apaw_practice.adapters.mongodb.exercise.entities;
 
 import nonapi.io.github.classgraph.json.Id;
 import org.springframework.data.mongodb.core.mapping.Document;

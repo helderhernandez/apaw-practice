@@ -1,13 +1,13 @@
-package es.upm.miw.apaw_practice.adapters.mongodb.excersise;
+package es.upm.miw.apaw_practice.adapters.mongodb.exercise.persistence;
 
-import es.upm.miw.apaw_practice.adapters.mongodb.excercise.daos.ExerciseRepository;
-import es.upm.miw.apaw_practice.adapters.mongodb.excercise.daos.GymMachineRepository;
-import es.upm.miw.apaw_practice.adapters.mongodb.excercise.daos.MuscleGroupRepository;
-import es.upm.miw.apaw_practice.adapters.mongodb.excercise.daos.MuscleUsedRepository;
-import es.upm.miw.apaw_practice.adapters.mongodb.excercise.entities.ExerciseEntity;
-import es.upm.miw.apaw_practice.adapters.mongodb.excercise.entities.GymMachineEntity;
-import es.upm.miw.apaw_practice.adapters.mongodb.excercise.entities.MuscleGroupEntity;
-import es.upm.miw.apaw_practice.adapters.mongodb.excercise.entities.MuscleUsedEntity;
+import es.upm.miw.apaw_practice.adapters.mongodb.exercise.daos.ExerciseRepository;
+import es.upm.miw.apaw_practice.adapters.mongodb.exercise.daos.GymMachineRepository;
+import es.upm.miw.apaw_practice.adapters.mongodb.exercise.daos.MuscleGroupRepository;
+import es.upm.miw.apaw_practice.adapters.mongodb.exercise.daos.MuscleUsedRepository;
+import es.upm.miw.apaw_practice.adapters.mongodb.exercise.entities.ExerciseEntity;
+import es.upm.miw.apaw_practice.adapters.mongodb.exercise.entities.GymMachineEntity;
+import es.upm.miw.apaw_practice.adapters.mongodb.exercise.entities.MuscleGroupEntity;
+import es.upm.miw.apaw_practice.adapters.mongodb.exercise.entities.MuscleUsedEntity;
 import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -7,7 +7,7 @@ import es.upm.miw.apaw_practice.adapters.mongodb.airport.AirportSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.bank.BankSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.basketball.BasketballSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.cardealership.CarDealershipSeederService;
-import es.upm.miw.apaw_practice.adapters.mongodb.excersise.ExerciseSeedService;
+import es.upm.miw.apaw_practice.adapters.mongodb.exercise.persistence.ExerciseSeedService;
 import es.upm.miw.apaw_practice.adapters.mongodb.factory.FactorySeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.filmforum.FilmForumSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.garage.GarageSeederService;

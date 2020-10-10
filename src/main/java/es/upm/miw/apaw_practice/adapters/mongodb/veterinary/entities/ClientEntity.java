@@ -14,6 +14,10 @@ public class ClientEntity {
     private String address;
     private String phone;
 
+    public ClientEntity() {
+        //Empty for framework
+    }
+
     public ClientEntity(String id, String name, String address, String phone) {
         this.id = id;
         this.name = name;
