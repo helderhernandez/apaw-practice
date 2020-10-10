@@ -24,7 +24,7 @@ public class TournamentResource {
         this.tournamentService = tournamentService;
     }
 
-    @PutMapping
+    @PutMapping(ID_ID + START_DAY)
     public Tournament updateStartDay(@PathVariable String id, @RequestBody LocalDateTime startDay) {
         return this.tournamentService.uptadeStartDay(id, startDay);
     }

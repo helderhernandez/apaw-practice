@@ -14,18 +14,18 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 public class SharedAccountEntityRepositoryIT {
 
     @Autowired
-    private SharedAccountsRepository sharedAccountsRepository;
+    private SharedAccountRepository sharedAccountRepository;
 
     @Test
     void testFindByIBAN() {
-        assertTrue(this.sharedAccountsRepository.findByIBAN("ES66 123123123").isPresent());
-        SharedAccountEntity sharedAccount = this.sharedAccountsRepository.findByIBAN("ES66 123123123").get();
+        assertTrue(this.sharedAccountRepository.findByIBAN("ES66 123123123").isPresent());
+        SharedAccountEntity sharedAccount = this.sharedAccountRepository.findByIBAN("ES66 123123123").get();
         assertTrue(sharedAccount.getAmount().equals(new BigDecimal("4000.00")));
     }
 
     @Test
     void testCreateAndRead() {
-        assertTrue(this.sharedAccountsRepository.findAll().stream()
+        assertTrue(this.sharedAccountRepository.findAll().stream()
                 .anyMatch(shared ->
                         new BigDecimal("4000.00").equals(shared.getAmount()) &&
                                 "Family".equals(shared.getType()) &&
