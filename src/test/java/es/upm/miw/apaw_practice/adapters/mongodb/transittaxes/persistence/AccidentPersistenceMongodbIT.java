@@ -5,7 +5,6 @@ import es.upm.miw.apaw_practice.domain.models.transittaxes.Accident;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.time.LocalDateTime;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
@@ -19,8 +18,8 @@ public class AccidentPersistenceMongodbIT {
     void testReadById() {
 
         Accident accident = accidentPersistenceMongodb.read("003");
-        assertEquals("Madrid",accident.getPlace());
-        assertEquals("ACC003",accident.getRefAccident());
-        assertEquals(2019,accident.getDate().getYear());
+        assertEquals("Madrid", accident.getPlace());
+        assertEquals("ACC003", accident.getRefAccident());
+        assertEquals(2019, accident.getDate().getYear());
     }
 }

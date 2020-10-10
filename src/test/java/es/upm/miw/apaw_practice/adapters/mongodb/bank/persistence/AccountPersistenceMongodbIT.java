@@ -26,6 +26,9 @@ public class AccountPersistenceMongodbIT {
     @Autowired
     private AccountRepository accountRepository;
 
+    @Autowired
+    private AccountPersistenceMongodb accountPersistenceMongodb;
+
     @Test
     void testUpdateAmount() {
         AccountEntity accountEntity = this.accountRepository
@@ -37,5 +40,12 @@ public class AccountPersistenceMongodbIT {
                 accountRepository.findByIBAN("ES66 987651234").get().getAmount());
         bankSeederService.deleteAll();
         bankSeederService.seedDatabase();
+    }
+
+    @Test
+    void testIdByCustomerWithShareholderWithValueGreaterThan() {
+        assertEquals(this.accountPersistenceMongodb
+                .findIdByCustomerWithShareholderWithValueGreaterThan(BigDecimal.valueOf(1.50))
+                .size(), 4);
     }
 }

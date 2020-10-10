@@ -16,6 +16,8 @@ import java.util.stream.Stream;
 public class ExtraResource {
     static final String EXTRAS = "/transport/extras";
     static final String ID_ID = "/{id}";
+    static final String SEARCH = "/search";
+
 
     private ExtraService extraService;
 
@@ -37,6 +39,13 @@ public class ExtraResource {
     @DeleteMapping(ID_ID)
     public void delete(@PathVariable String id) {
         this.extraService.delete(id);
+    }
+
+    @GetMapping(SEARCH)
+    public Stream<WorkedHoursExtraDto> readWorkedHoursByDepartment(@RequestParam String q) {
+        String name = new LexicalAnalyzer().extractWithAssure(q, "name");
+        return this.extraService.readWorkedHoursByDepartment(name)
+                .map(WorkedHoursExtraDto::new);
     }
 
 }

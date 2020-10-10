@@ -4,6 +4,7 @@ import es.upm.miw.apaw_practice.domain.models.ticketbus.Journey;
 import es.upm.miw.apaw_practice.domain.models.ticketbus.JourneyCreation;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
@@ -12,9 +13,12 @@ import java.util.UUID;
 @Document
 public class JourneyEntity {
 
+    private static final String ENTITY_REF_NAME = "JRNY";
 
     @Id
     private String id;
+    @Indexed(unique = true)
+    private String reference;
     private String departure;
     private String arrive;
     private Integer numStops;
@@ -26,6 +30,7 @@ public class JourneyEntity {
 
     public JourneyEntity(String departure, String arrive, Integer numStops) {
         this.id = UUID.randomUUID().toString();
+        this.reference = GenRefEntity.getReferenceId(ENTITY_REF_NAME);
         this.departure = departure;
         this.arrive = arrive;
         this.numStops = numStops;
@@ -34,6 +39,7 @@ public class JourneyEntity {
     public JourneyEntity(JourneyCreation journeyCreation){
         BeanUtils.copyProperties(journeyCreation, this);
         this.id = UUID.randomUUID().toString();
+        this.reference = GenRefEntity.getReferenceId(ENTITY_REF_NAME);
         this.registrationDate = LocalDateTime.now();
     }
 
@@ -49,6 +55,14 @@ public class JourneyEntity {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getReference() {
+        return reference;
+    }
+
+    public void setReference(String reference) {
+        this.reference = reference;
     }
 
     public LocalDateTime getRegistrationDate() {
@@ -103,9 +117,11 @@ public class JourneyEntity {
     public String toString() {
         return "JourneyEntity{" +
                 "id='" + id + '\'' +
+                ", reference='" + reference + '\'' +
                 ", departure='" + departure + '\'' +
                 ", arrive='" + arrive + '\'' +
                 ", numStops=" + numStops +
+                ", registrationDate=" + registrationDate +
                 '}';
     }
 }

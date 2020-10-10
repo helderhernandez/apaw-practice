@@ -12,7 +12,7 @@ public class WarehouseEntity {
     private String id;
     private String name;
     private String area;
-    private Boolean isActive;
+    private Boolean active;
     @DBRef
     private List<StaffEntity> staffEntities;
     @DBRef
@@ -33,11 +33,11 @@ public class WarehouseEntity {
         this.furnitureEntity = furnitureEntity;
     }
 
-    public WarehouseEntity(String name, String area, Boolean isActive, List<StaffEntity> staffEntities, List<AddressEntity> addressEntity, List<FurnitureEntity> furnitureEntity) {
+    public WarehouseEntity(String name, String area, Boolean active, List<StaffEntity> staffEntities, List<AddressEntity> addressEntity, List<FurnitureEntity> furnitureEntity) {
         this.id = UUID.randomUUID().toString();
         this.name=name;
         this.area = area;
-        this.isActive = isActive;
+        this.active = active;
         this.staffEntities = staffEntities;
         this.addressEntity=addressEntity;
         this.furnitureEntity=furnitureEntity;
@@ -68,11 +68,11 @@ public class WarehouseEntity {
     }
 
     public Boolean getActive() {
-        return isActive;
+        return active;
     }
 
     public void setActive(Boolean active) {
-        isActive = active;
+        this.active = active;
     }
 
     public List<StaffEntity> getEmployeeEntity() {
@@ -110,7 +110,7 @@ public class WarehouseEntity {
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 ", area='" + area + '\'' +
-                ", isActive=" + isActive +
+                ", active=" + active +
                 ", employeeEntity=" + staffEntities +
                 ", addressEntity=" + addressEntity +
                 ", furnitureEntity=" + furnitureEntity +

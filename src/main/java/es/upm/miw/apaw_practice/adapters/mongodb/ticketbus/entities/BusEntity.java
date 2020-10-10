@@ -16,6 +16,9 @@ import java.util.stream.Collectors;
 
 @Document
 public class BusEntity {
+
+    private static final String ENTITY_REF_NAME = "BS";
+
     @Id
     private String id;
     @Indexed(unique = true)
@@ -36,9 +39,9 @@ public class BusEntity {
         // empty from framework
     }
 
-    public BusEntity(String reference, String company, Integer capacity, Boolean accesibility, Boolean wifi, List<TicketBusEntity> tickets, List<JourneyEntity> journeys) {
+    public BusEntity(String company, Integer capacity, Boolean accesibility, Boolean wifi, List<TicketBusEntity> tickets, List<JourneyEntity> journeys) {
         this.id = UUID.randomUUID().toString();
-        this.reference = reference;
+        this.reference = GenRefEntity.getReferenceId(ENTITY_REF_NAME);
         this.capacity = capacity;
         this.company = company;
         this.accesibility = accesibility;
@@ -50,6 +53,7 @@ public class BusEntity {
     public BusEntity(BusCreation busCreation) {
         BeanUtils.copyProperties(busCreation, this);
         this.id = UUID.randomUUID().toString();
+        this.reference = GenRefEntity.getReferenceId(ENTITY_REF_NAME);
         this.registrationDate = LocalDateTime.now();
     }
 
