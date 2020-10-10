@@ -21,7 +21,6 @@ public class CourtEntityRepositoryIT {
                 .anyMatch(court ->
                         "Palau Blaugrana".equals(court.getName()) &&
                                 7500 == court.getCapacity() &&
-                                3 == court.getNumberTeams() &&
                                 court.getId() != null &&
                                 court.getDateMatch() != null
                 ));

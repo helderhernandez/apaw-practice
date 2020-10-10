@@ -1,5 +1,6 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.cardealership.entities;
 
+import es.upm.miw.apaw_practice.domain.models.car_dealership.CarDealership;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -90,6 +91,10 @@ public class CarDealershipEntity {
 
     public void setOwner(CDOwnerEntity owner) {
         this.owner = owner;
+    }
+
+    public CarDealership toCarDealership() {
+        return new CarDealership(id, name, address, telephone);
     }
 
     @Override

@@ -18,7 +18,7 @@ public class AnimalEntity {
     private String name;
     private Integer age;
     private LocalDateTime date;
-    private Boolean isMale;
+    private Boolean male;
     @DBRef
     private ClientEntity client;
 
@@ -26,12 +26,12 @@ public class AnimalEntity {
         //Empty for framework;
     }
 
-    public AnimalEntity(String id, String name, Integer age, LocalDateTime date, Boolean isMale, ClientEntity client) {
+    public AnimalEntity(String id, String name, Integer age, LocalDateTime date, Boolean male, ClientEntity client) {
         this.id = id;
         this.name = name;
         this.age = age;
         this.date = date;
-        this.isMale = isMale;
+        this.male = male;
         this.client = client;
     }
 
@@ -80,12 +80,12 @@ public class AnimalEntity {
         this.date = date;
     }
 
-    public boolean isMAle() {
-        return isMale;
+    public boolean male() {
+        return male;
     }
 
-    public void setIsMale(boolean isMale) {
-        this.isMale = isMale;
+    public void setMale(boolean male) {
+        this.male = male;
     }
 
     @Override
@@ -94,7 +94,7 @@ public class AnimalEntity {
         if (o == null || getClass() != o.getClass()) return false;
         AnimalEntity that = (AnimalEntity) o;
         return age == that.age &&
-                isMale == that.isMale &&
+                male == that.male &&
                 Objects.equals(id, that.id) &&
                 Objects.equals(name, that.name) &&
                 Objects.equals(date, that.date) &&
@@ -113,7 +113,7 @@ public class AnimalEntity {
                 ", name='" + name + '\'' +
                 ", age=" + age +
                 ", date=" + date +
-                ", isMAle=" + isMale +
+                ", isMAle=" + male +
                 ", client=" + client +
                 '}';
     }

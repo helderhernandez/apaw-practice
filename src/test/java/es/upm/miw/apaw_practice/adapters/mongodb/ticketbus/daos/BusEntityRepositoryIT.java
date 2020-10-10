@@ -21,7 +21,6 @@ class BusEntityRepositoryIT {
 
         assertTrue(this.busRepository.findAll().stream()
                 .anyMatch(bus ->
-                        "COOP-VEL-11".equals(bus.getReference()) &&
                                 "Velocity Cars".equals(bus.getCompany()) &&
                                 Boolean.TRUE.equals(bus.getAccesibility()) &&
                                 Boolean.TRUE.equals(bus.getWifi()) &&
