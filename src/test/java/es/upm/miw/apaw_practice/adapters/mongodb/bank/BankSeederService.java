@@ -56,12 +56,20 @@ public class BankSeederService {
         this.mortgageRepository.saveAll(Arrays.asList(mortgages));
 
         SharedAccountEntity[] sharedAccounts = {
-                new SharedAccountEntity(new BigDecimal("4000.00"), "Family", "ES66 123123123",
-                        List.of(customers[0], customers[1])),
-                new SharedAccountEntity(new BigDecimal("20000.00"), "Enterprise", "ES66 321321321",
-                        List.of(customers[0], customers[2], customers[4])),
-                new SharedAccountEntity(new BigDecimal("100"), "Family", "ES66 256652256",
-                        List.of(customers[1], customers[3]))
+                new SharedAccountEntity.Builder("ES66 123123123")
+                        .amount(new BigDecimal("4000.00"))
+                        .type("Family")
+                        .customerEntities(List.of(customers[0], customers[1]))
+                        .build(),
+                new SharedAccountEntity.Builder("ES66 321321321")
+                        .amount(new BigDecimal("20000.00"))
+                        .type("Enterprise")
+                        .customerEntities(List.of(customers[0], customers[2], customers[4]))
+                        .build(),
+                new SharedAccountEntity.Builder("ES66 256652256")
+                        .amount((new BigDecimal("100")))
+                        .customerEntities(List.of(customers[1], customers[3]))
+                        .build()
         };
         this.sharedAccountRepository.saveAll(Arrays.asList(sharedAccounts));
 
