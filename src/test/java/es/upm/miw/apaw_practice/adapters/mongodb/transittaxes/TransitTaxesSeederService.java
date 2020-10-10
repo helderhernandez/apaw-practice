@@ -49,9 +49,9 @@ public class TransitTaxesSeederService {
         accidentRepository.saveAll(Arrays.asList(accidents));
 
         OwnerEntity [] owners = {
-                new OwnerEntity("Maria", "00000000A", "Perez"),
-                new OwnerEntity("Jhon", "00000000C", "Smith"),
-                new OwnerEntity("Celia", "00000000D", "Guerrero"),
+                new OwnerEntity("ow1","Maria", "00000000A", "Perez"),
+                new OwnerEntity("ow2","Jhon", "00000000C", "Smith"),
+                new OwnerEntity("ow3","Celia", "00000000D", "Guerrero"),
 
         };
         ownerRepository.saveAll(Arrays.asList(owners));
