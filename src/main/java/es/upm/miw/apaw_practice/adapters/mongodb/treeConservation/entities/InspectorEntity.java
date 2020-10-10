@@ -4,7 +4,6 @@ import nonapi.io.github.classgraph.json.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.List;
 import java.util.UUID;
 
 @Document
@@ -17,6 +16,10 @@ public class InspectorEntity {
     private String lastName;
     private String email;
     private String phoneNumber;
+
+    public InspectorEntity() {
+        //empty from framework
+    }
 
     public InspectorEntity(String dni, String firstName, String lastName, String email, String phoneNumber) {
         this.id = UUID.randomUUID().toString();
@@ -39,28 +42,28 @@ public class InspectorEntity {
         return firstName;
     }
 
-    public String getLastName() {
-        return lastName;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public String getPhoneNumber() {
-        return phoneNumber;
-    }
-
     public void setFirstName(String firstName) {
         this.firstName = firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
     }
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public String getPhoneNumber() {
+        return phoneNumber;
     }
 
     public void setPhoneNumber(String phoneNumber) {

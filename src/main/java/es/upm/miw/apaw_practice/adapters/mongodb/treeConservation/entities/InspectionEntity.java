@@ -3,7 +3,7 @@ package es.upm.miw.apaw_practice.adapters.mongodb.treeConservation.entities;
 import nonapi.io.github.classgraph.json.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.UUID;
 
 @Document
@@ -11,12 +11,16 @@ public class InspectionEntity {
 
     @Id
     private String id;
-    private LocalDate date;
+    private LocalDateTime date;
     private String type;
     private String treeStatus;
     private InspectorEntity inspectorEntity;
 
-    public InspectionEntity(LocalDate date, String type, String treeStatus, InspectorEntity inspectorEntity) {
+    public InspectionEntity() {
+        //empty from framework
+    }
+
+    public InspectionEntity(LocalDateTime date, String type, String treeStatus, InspectorEntity inspectorEntity) {
         this.id = UUID.randomUUID().toString();
         this.date = date;
         this.type = type;
@@ -28,32 +32,32 @@ public class InspectionEntity {
         return id;
     }
 
-    public LocalDate getDate() {
+    public LocalDateTime getDate() {
         return date;
+    }
+
+    public void setDate(LocalDateTime date) {
+        this.date = date;
     }
 
     public String getType() {
         return type;
     }
 
-    public String isTreeStatus() {
-        return treeStatus;
-    }
-
-    public InspectorEntity getInspectorEntity() {
-        return inspectorEntity;
-    }
-
-    public void setDate(LocalDate date) {
-        this.date = date;
-    }
-
     public void setType(String type) {
         this.type = type;
     }
 
+    public String getTreeStatus() {
+        return treeStatus;
+    }
+
     public void setTreeStatus(String treeStatus) {
         this.treeStatus = treeStatus;
+    }
+
+    public InspectorEntity getInspectorEntity() {
+        return inspectorEntity;
     }
 
     public void setInspectorEntity(InspectorEntity inspectorEntity) {

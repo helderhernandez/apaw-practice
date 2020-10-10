@@ -1,29 +1,30 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.treeConservation.entities;
 
-import es.upm.miw.apaw_practice.adapters.mongodb.shop.entities.ArticleEntity;
 import nonapi.io.github.classgraph.json.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.math.BigDecimal;
-import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
-import java.util.Objects;
 import java.util.UUID;
 
 @Document
 public class TreeEntity {
     @Id
     private String id;
-    private LocalDate registerDate;
+    private LocalDateTime registrationDate;
     private String specie;
     private String age;
     private boolean isMonitored;
     private List<InspectionEntity> inspectionEntities;
     private List<DiseaseEntity> diseaseEntities;
 
+    public TreeEntity() {
+        //empty from framework
+    }
+
     public TreeEntity(String specie, String age, List<InspectionEntity> inspectionEntities, List<DiseaseEntity> diseaseEntities) {
         this.id = UUID.randomUUID().toString();
-        this.registerDate = LocalDate.now();
+        this.registrationDate = LocalDateTime.now();
         this.specie = specie;
         this.age = age;
         this.inspectionEntities = inspectionEntities;
@@ -34,44 +35,44 @@ public class TreeEntity {
         return id;
     }
 
-    public LocalDate getRegisterDate() {
-        return registerDate;
+    public LocalDateTime getRegistrationDate() {
+        return registrationDate;
     }
 
     public String getSpecie() {
         return specie;
     }
 
-    public String getAge() {
-        return age;
-    }
-
-    public boolean isMonitored() {
-        return isMonitored;
-    }
-
-    public List<InspectionEntity> getInspectionEntities() {
-        return inspectionEntities;
-    }
-
-    public List<DiseaseEntity> getDiseaseEntities() {
-        return diseaseEntities;
-    }
-
     public void setSpecie(String specie) {
         this.specie = specie;
+    }
+
+    public String getAge() {
+        return age;
     }
 
     public void setAge(String age) {
         this.age = age;
     }
 
+    public boolean isMonitored() {
+        return isMonitored;
+    }
+
     public void setMonitored(boolean monitored) {
         isMonitored = monitored;
     }
 
+    public List<InspectionEntity> getInspectionEntities() {
+        return inspectionEntities;
+    }
+
     public void setInspectionEntities(List<InspectionEntity> inspectionEntities) {
         this.inspectionEntities = inspectionEntities;
+    }
+
+    public List<DiseaseEntity> getDiseaseEntities() {
+        return diseaseEntities;
     }
 
     public void setDiseaseEntities(List<DiseaseEntity> diseaseEntities) {
@@ -92,7 +93,7 @@ public class TreeEntity {
     public String toString() {
         return "TreeEntity{" +
                 "id='" + id + '\'' +
-                ", registerDate=" + registerDate +
+                ", registrationDate=" + registrationDate +
                 ", specie='" + specie + '\'' +
                 ", age='" + age + '\'' +
                 ", isMonitored=" + isMonitored +
