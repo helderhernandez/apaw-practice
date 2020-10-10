@@ -5,6 +5,7 @@ import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -16,20 +17,27 @@ public class ReservationSportyEntity {
     private LocalDateTime dateReservation;
     @Indexed(unique = true)
     private String refReservation;
+    private BigDecimal amount;
+    private Boolean paidOut;
     @DBRef
     private List<CustomerSportyEntity> customerSportyEntities;
     @DBRef
     private CategorySportyEntity categorySportyEntity;
+    @DBRef
+    private List<DiscountSportyEntity> discountSportyEntity;
 
     public ReservationSportyEntity() {
     }
 
-    public ReservationSportyEntity(String idReservation, LocalDateTime dateReservation, String refReservation, List<CustomerSportyEntity> customerSportyEntities, CategorySportyEntity categorySportyEntity) {
+    public ReservationSportyEntity(String idReservation, LocalDateTime dateReservation, String refReservation, BigDecimal amount, Boolean paidOut, List<CustomerSportyEntity> customerSportyEntities, CategorySportyEntity categorySportyEntity, List<DiscountSportyEntity> discountSportyEntity) {
         this.idReservation = idReservation;
         this.dateReservation = dateReservation;
         this.refReservation = refReservation;
+        this.amount = amount;
+        this.paidOut = paidOut;
         this.customerSportyEntities = customerSportyEntities;
         this.categorySportyEntity = categorySportyEntity;
+        this.discountSportyEntity = discountSportyEntity;
     }
 
     public String getIdReservation() {
@@ -56,6 +64,22 @@ public class ReservationSportyEntity {
         this.refReservation = refReservation;
     }
 
+    public BigDecimal getAmount() {
+        return amount;
+    }
+
+    public void setAmount(BigDecimal amount) {
+        this.amount = amount;
+    }
+
+    public Boolean getPaidOut() {
+        return paidOut;
+    }
+
+    public void setPaidOut(Boolean paidOut) {
+        this.paidOut = paidOut;
+    }
+
     public List<CustomerSportyEntity> getCustomerSportyEntities() {
         return customerSportyEntities;
     }
@@ -72,14 +96,25 @@ public class ReservationSportyEntity {
         this.categorySportyEntity = categorySportyEntity;
     }
 
+    public List<DiscountSportyEntity> getDiscountSportyEntity() {
+        return discountSportyEntity;
+    }
+
+    public void setDiscountSportyEntity(List<DiscountSportyEntity> discountSportyEntity) {
+        this.discountSportyEntity = discountSportyEntity;
+    }
+
     @Override
     public String toString() {
         return "ReservationSportyEntity{" +
                 "idReservation='" + idReservation + '\'' +
                 ", dateReservation=" + dateReservation +
                 ", refReservation='" + refReservation + '\'' +
+                ", amount=" + amount +
+                ", paidOut=" + paidOut +
                 ", customerSportyEntities=" + customerSportyEntities +
                 ", categorySportyEntity=" + categorySportyEntity +
+                ", discountSportyEntity=" + discountSportyEntity +
                 '}';
     }
 }
