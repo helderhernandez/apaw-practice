@@ -1,13 +1,12 @@
 package es.upm.miw.apaw_practice.domain.models.ticketbus;
 
 
-
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
 public class TicketBus {
 
-    private String id;
+    private String reference;
     private Integer seat;
     private LocalDateTime departureTime;
     private LocalDateTime arriveTime;
@@ -21,12 +20,12 @@ public class TicketBus {
         //empty from framework
     }
 
-    public String getId() {
-        return id;
+    public String getReference() {
+        return reference;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setReference(String reference) {
+        this.reference = reference;
     }
 
     public Integer getSeat() {
@@ -81,7 +80,7 @@ public class TicketBus {
     @Override
     public String toString() {
         return "TicketBus{" +
-                "id='" + id + '\'' +
+                "reference='" + reference + '\'' +
                 ", seat=" + seat +
                 ", departureTime=" + departureTime +
                 ", arriveTime=" + arriveTime +

@@ -1,14 +1,12 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.transittaxes.entities;
 
 import es.upm.miw.apaw_practice.domain.models.transittaxes.Tax;
-import es.upm.miw.apaw_practice.domain.models.transittaxes.TaxCreation;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -35,11 +33,10 @@ public class TaxEntity {
         this.paid = paid;
     }
 
-    public TaxEntity(TaxCreation taxCreation) {
-        BeanUtils.copyProperties(taxCreation, this);
+    public TaxEntity(Tax tax) {
+        BeanUtils.copyProperties(tax, this);
         this.id = UUID.randomUUID().toString();
     }
-
 
     public String getId() {
         return id;

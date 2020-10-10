@@ -6,5 +6,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface AccidentPersistence {
 
-    Accident read(String id);
+    Accident readById(String id);
+
+    Accident updatePlace(Accident accident);
 }

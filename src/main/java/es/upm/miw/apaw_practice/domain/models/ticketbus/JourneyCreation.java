@@ -7,7 +7,6 @@ public class JourneyCreation {
     private String arrive;
     private Integer numStops;
 
-
     public JourneyCreation() {
         //empty from framework
     }

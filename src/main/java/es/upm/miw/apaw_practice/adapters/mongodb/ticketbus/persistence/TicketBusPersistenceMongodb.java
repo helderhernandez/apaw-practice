@@ -5,6 +5,7 @@ import es.upm.miw.apaw_practice.adapters.mongodb.ticketbus.entities.TicketBusEnt
 import es.upm.miw.apaw_practice.domain.exceptions.NotFoundException;
 import es.upm.miw.apaw_practice.domain.models.ticketbus.PassengerBusCreation;
 import es.upm.miw.apaw_practice.domain.models.ticketbus.TicketBus;
+import es.upm.miw.apaw_practice.domain.models.ticketbus.TicketBusCreation;
 import es.upm.miw.apaw_practice.domain.persistence_ports.ticketbus.TicketBusPersistence;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -27,10 +28,24 @@ public class TicketBusPersistenceMongodb implements TicketBusPersistence {
     }
 
     @Override
-    public TicketBus update(String idTicket, PassengerBusCreation passenger) {
-        TicketBusEntity ticketBusEntity = ticketBusRepository.findById(idTicket)
-                .orElseThrow(() -> new NotFoundException("TicketBus with id: " + idTicket + " not found"));
+    public TicketBus update(String reference, PassengerBusCreation passenger) {
+        TicketBusEntity ticketBusEntity = ticketBusRepository.findByReference(reference)
+                .orElseThrow(() -> new NotFoundException("TicketBus with reference: " + reference + " not found"));
         ticketBusEntity.changePassenger(passenger);
         return ticketBusRepository.save(ticketBusEntity).toTicketBus();
     }
+
+    @Override
+    public void delete(String reference) {
+        TicketBusEntity ticketBusEntity = ticketBusRepository.findByReference(reference)
+                .orElseThrow(() -> new NotFoundException("TicketBus with reference: " + reference + " not found"));
+        ticketBusRepository.deleteByReference(ticketBusEntity.getReference());
+    }
+
+    @Override
+    public TicketBus save(TicketBusCreation ticketBusCreation) {
+        TicketBusEntity ticketBusEntity = new TicketBusEntity(ticketBusCreation);
+        return ticketBusRepository.save(ticketBusEntity).toTicketBus();
+    }
+
 }

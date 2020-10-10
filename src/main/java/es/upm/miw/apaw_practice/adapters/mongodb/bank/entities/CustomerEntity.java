@@ -37,6 +37,49 @@ public class CustomerEntity {
         //Empty for framework;
     }
 
+    public static CustomerBuilder.DNI builder(){
+        return new Builder();
+    }
+
+    public static class Builder implements CustomerBuilder.DNI, CustomerBuilder.Name, CustomerBuilder.Optionals{
+
+        private CustomerEntity customerEntity;
+
+        public Builder(){
+            this.customerEntity = new CustomerEntity();
+        }
+
+
+        public CustomerBuilder.Name dni(String DNI){
+            this.customerEntity.DNI = DNI;
+            return this;
+        }
+
+        @Override
+        public CustomerBuilder.Optionals name(String name) {
+            this.customerEntity.name = name;
+            return this;
+        }
+
+        @Override
+        public CustomerBuilder.Optionals phone(String phone) {
+            this.customerEntity.phone = phone;
+            return this;
+        }
+
+        public CustomerBuilder.Optionals email(String email){
+            this.customerEntity.email = email;
+            return this;
+        }
+
+        public CustomerEntity build(){
+            return this.customerEntity;
+        }
+    }
+
+
+
+
     public String getId() {
         return id;
     }

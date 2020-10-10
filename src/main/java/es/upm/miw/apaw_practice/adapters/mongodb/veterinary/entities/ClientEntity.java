@@ -1,5 +1,7 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.veterinary.entities;
 
+import es.upm.miw.apaw_practice.domain.models.veterinary.Client;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -81,5 +83,11 @@ public class ClientEntity {
                 ", address='" + address + '\'' +
                 ", phone='" + phone + '\'' +
                 '}';
+    }
+
+    public Client toClient() {
+        Client client = new Client();
+        BeanUtils.copyProperties(this, client);
+        return client;
     }
 }

@@ -22,4 +22,10 @@ public class SurgeryPersistenceMongodbIT {
         List<String> names = List.of("Sonsoles", "Joaquin");
         assertTrue(surgeryPersistence.findAnimalByName("Garfield").containsAll(names));
     }
+
+    @Test
+    void testFindAnimalByType() {
+        List<String> names = List.of("Manuel", "Ulises");
+        assertTrue(surgeryPersistence.findAnimalByType("spinal").containsAll(names));
+    }
 }

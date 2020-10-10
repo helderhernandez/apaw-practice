@@ -1,6 +1,7 @@
 package es.upm.miw.apaw_practice.domain.models.ticketbus;
 
 import es.upm.miw.apaw_practice.adapters.mongodb.ticketbus.entities.PassengerBusEntity;
+
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
