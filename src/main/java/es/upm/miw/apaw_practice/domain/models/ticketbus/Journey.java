@@ -7,7 +7,7 @@ public class Journey {
 
 
 
-    private String id;
+    private String reference;
     private String departure;
     private String arrive;
     private Integer numStops;
@@ -19,12 +19,12 @@ public class Journey {
         //empty from framework
     }
 
-    public String getId() {
-        return id;
+    public String getReference() {
+        return reference;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setReference(String reference) {
+        this.reference = reference;
     }
 
     public String getDeparture() {
@@ -62,7 +62,7 @@ public class Journey {
     @Override
     public String toString() {
         return "Journey{" +
-                "id='" + id + '\'' +
+                "reference='" + reference + '\'' +
                 ", departure='" + departure + '\'' +
                 ", arrive='" + arrive + '\'' +
                 ", numStops=" + numStops +

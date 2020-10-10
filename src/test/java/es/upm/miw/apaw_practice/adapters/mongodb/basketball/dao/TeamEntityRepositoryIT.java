@@ -19,7 +19,6 @@ public class TeamEntityRepositoryIT {
         .anyMatch(team ->
                 "Valencia Basket".equals(team.getName()) &&
                         team.getId() != null &&
-                        "Profesional".equals(team.getCategory()) &&
                         "Victor".equals(team.getCoachTeam().getName()) &&
                         "Leonor".equals(team.getPlayers().get(0).getName()) &&
                         15500 == team.getCourtsToPlay().get(0).getCapacity()
