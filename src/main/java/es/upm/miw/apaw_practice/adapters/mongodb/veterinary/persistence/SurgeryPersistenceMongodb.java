@@ -3,6 +3,7 @@ package es.upm.miw.apaw_practice.adapters.mongodb.veterinary.persistence;
 import es.upm.miw.apaw_practice.adapters.mongodb.veterinary.daos.AnimalRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.veterinary.daos.SurgeryRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.veterinary.daos.VeterinaryRepository;
+import es.upm.miw.apaw_practice.adapters.mongodb.veterinary.entities.AnimalEntity;
 import es.upm.miw.apaw_practice.adapters.mongodb.veterinary.entities.SurgeryEntity;
 import es.upm.miw.apaw_practice.adapters.mongodb.veterinary.entities.VeterinaryEntity;
 import es.upm.miw.apaw_practice.domain.models.veterinary.Surgery;
@@ -41,6 +42,16 @@ public class SurgeryPersistenceMongodb implements SurgeryPersistence {
         return surgeries.stream()
                 .flatMap(veterinary -> veterinary.getVeterinarians().stream().map(VeterinaryEntity::getName))
                 .collect(Collectors.toList());
+    }
 
+    public List<String> findAnimalByType(String type) {
+        List<AnimalEntity> animals = this.surgeryRepository.findAll().stream()
+                .filter(surgery -> surgery.getType().equals(type))
+                .flatMap(animal -> animal.getAnimals().stream())
+                .collect(Collectors.toList());
+        return animals.stream()
+                .map(client -> client.getClient().getName())
+                .distinct()
+                .collect(Collectors.toList());
     }
 }

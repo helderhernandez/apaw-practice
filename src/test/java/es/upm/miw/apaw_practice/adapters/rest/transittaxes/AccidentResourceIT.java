@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.web.reactive.server.WebTestClient;
+import org.springframework.web.reactive.function.BodyInserters;
 
 import java.time.LocalDateTime;
 
@@ -20,7 +21,8 @@ public class AccidentResourceIT {
 
     @Test
     void testRead() {
-        this.webTestClient.get()
+        this.webTestClient
+                .get()
                 .uri(AccidentResource.ACCIDENTS + AccidentResource.ID_ID, "001")
                 .exchange()
                 .expectStatus().isOk()
@@ -38,6 +40,18 @@ public class AccidentResourceIT {
         this.webTestClient
                 .get()
                 .uri(AccidentResource.ACCIDENTS + AccidentResource.ID_ID, "009")
+                .exchange()
+                .expectStatus().isNotFound();
+    }
+    @Test
+    void testUpdatePlaceNotFound() {
+        Accident accident = new Accident();
+        accident.setRefAccident("ACC009");
+        accident.setPlace("Barcelona");
+        this.webTestClient
+                .patch()
+                .uri(AccidentResource.ACCIDENTS)
+                .body(BodyInserters.fromValue(accident))
                 .exchange()
                 .expectStatus().isNotFound();
     }
