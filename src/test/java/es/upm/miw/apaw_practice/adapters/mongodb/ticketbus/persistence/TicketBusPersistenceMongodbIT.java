@@ -8,7 +8,6 @@ import es.upm.miw.apaw_practice.domain.models.ticketbus.TicketBus;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.event.annotation.AfterTestExecution;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -34,9 +33,9 @@ class TicketBusPersistenceMongodbIT {
     void testTicketBusPassenger(TicketBus ticketBus, PassengerBusCreation passengerBusCreation){
         PassengerBus passengerBus = ticketBus.getPassenger();
         assertNotNull(ticketBus);
-        assertNotNull(ticketBus.getId());
+        assertNotNull(ticketBus.getReference());
         assertNotNull(passengerBus);
-        assertNotNull(passengerBus.getId());
+        assertNotNull(passengerBus.getReference());
 
         assertEquals(passengerBusCreation.getName(), passengerBus.getName());
         assertEquals(passengerBusCreation.getFamilyName(), passengerBus.getFamilyName());
@@ -51,11 +50,11 @@ class TicketBusPersistenceMongodbIT {
         List<TicketBus> ticketBuses = ticketBusPersistenceMongodb.findAll().collect(Collectors.toList());
         TicketBus ticketBus = ticketBuses.get(0);
         assertNotNull(ticketBus);
-        assertNotNull(ticketBus.getId());
+        assertNotNull(ticketBus.getReference());
 
         PassengerBusCreation passengerBusCreation = new PassengerBusCreation("87460970C", "Juan Jose", "Cortes", "893266507", "kfl688l2@talk21.com", Boolean.FALSE);
 
-        ticketBus = ticketBusPersistenceMongodb.update(ticketBus.getId(), passengerBusCreation);
+        ticketBus = ticketBusPersistenceMongodb.update(ticketBus.getReference(), passengerBusCreation);
         testTicketBusPassenger(ticketBus, passengerBusCreation);
 
     }

@@ -4,16 +4,13 @@ import es.upm.miw.apaw_practice.adapters.mongodb.ticketbus.TicketBusSeederServic
 import es.upm.miw.apaw_practice.adapters.mongodb.ticketbus.daos.TicketBusRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.ticketbus.entities.TicketBusEntity;
 import es.upm.miw.apaw_practice.adapters.rest.RestTestConfig;
-import es.upm.miw.apaw_practice.domain.models.ticketbus.Journey;
 import es.upm.miw.apaw_practice.domain.models.ticketbus.PassengerBus;
 import es.upm.miw.apaw_practice.domain.models.ticketbus.PassengerBusCreation;
 import es.upm.miw.apaw_practice.domain.models.ticketbus.TicketBus;
-import org.junit.jupiter.api.AfterAll;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.event.annotation.AfterTestExecution;
 import org.springframework.test.web.reactive.server.WebTestClient;
 import org.springframework.web.reactive.function.BodyInserters;
 
@@ -45,9 +42,9 @@ class TicketBusResourceIT {
     void testTicketBusPassenger(TicketBus ticketBus, PassengerBusCreation passengerBusCreation){
         PassengerBus passengerBus = ticketBus.getPassenger();
         assertNotNull(ticketBus);
-        assertNotNull(ticketBus.getId());
+        assertNotNull(ticketBus.getReference());
         assertNotNull(passengerBus);
-        assertNotNull(passengerBus.getId());
+        assertNotNull(passengerBus.getReference());
 
         assertEquals(passengerBusCreation.getName(), passengerBus.getName());
         assertEquals(passengerBusCreation.getFamilyName(), passengerBus.getFamilyName());
@@ -69,13 +66,13 @@ class TicketBusResourceIT {
 
         this.webTestClient
                 .put()
-                .uri(TicketBusResource.TICKETBUSES + ticketBus.getId() + TicketBusResource.PASSENGER )
+                .uri(TicketBusResource.TICKETBUSES + ticketBus.getReference() + TicketBusResource.PASSENGER )
                 .body(BodyInserters.fromValue(passengerBusCreation))
                 .exchange()
                 .expectStatus().isOk()
                 .expectBody(TicketBus.class)
                 .value(Assertions::assertNotNull)
-                .value(ticketBus1 -> assertNotNull(ticketBus1.getId()))
+                .value(ticketBus1 -> assertNotNull(ticketBus1.getReference()))
                 .value(ticketBus1 -> testTicketBusPassenger(ticketBus1, passengerBusCreation) );
     }
 
