@@ -67,11 +67,11 @@ public class BusEntity {
         return bus;
     }
 
-    public String getId(){
+    public String getId() {
         return this.id;
     }
 
-    public void setId(String id){
+    public void setId(String id) {
         this.id = id;
     }
 
