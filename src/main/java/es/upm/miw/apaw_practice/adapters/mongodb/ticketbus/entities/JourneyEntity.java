@@ -36,14 +36,14 @@ public class JourneyEntity {
         this.numStops = numStops;
     }
 
-    public JourneyEntity(JourneyCreation journeyCreation){
+    public JourneyEntity(JourneyCreation journeyCreation) {
         BeanUtils.copyProperties(journeyCreation, this);
         this.id = UUID.randomUUID().toString();
         this.reference = GenRefEntity.getReferenceId(ENTITY_REF_NAME);
         this.registrationDate = LocalDateTime.now();
     }
 
-    public Journey toJourney(){
+    public Journey toJourney() {
         Journey journey = new Journey();
         BeanUtils.copyProperties(this, journey);
         return journey;

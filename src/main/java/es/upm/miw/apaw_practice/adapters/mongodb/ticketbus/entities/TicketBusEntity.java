@@ -46,14 +46,14 @@ public class TicketBusEntity {
         this.passenger = passenger;
     }
 
-    public TicketBusEntity(TicketBusCreation ticketBusCreation){
+    public TicketBusEntity(TicketBusCreation ticketBusCreation) {
         BeanUtils.copyProperties(ticketBusCreation, this);
         this.id = UUID.randomUUID().toString();
         this.reference = GenRefEntity.getReferenceId(ENTITY_REF_NAME);
         this.registrationDate = LocalDateTime.now();
     }
 
-    public TicketBus toTicketBus(){
+    public TicketBus toTicketBus() {
         TicketBus ticketBus = new TicketBus();
         BeanUtils.copyProperties(this, ticketBus);
         ticketBus.setPassenger(this.passenger != null ? this.passenger.toPassengerBus() : null);
@@ -124,10 +124,14 @@ public class TicketBusEntity {
         this.passenger = passenger;
     }
 
-    public void changePassenger(PassengerBusCreation passengerBusCreation){
+    public void changePassenger(PassengerBusCreation passengerBusCreation) {
         this.setPassenger(new PassengerBusEntity(passengerBusCreation));
     }
 
+    public void setDates(LocalDateTime departureTime, LocalDateTime arriveTime) {
+        this.departureTime = departureTime;
+        this.arriveTime = arriveTime;
+    }
 
     @Override
     public boolean equals(Object o) {
