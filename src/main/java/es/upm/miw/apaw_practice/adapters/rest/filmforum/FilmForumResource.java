@@ -12,7 +12,6 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping(FilmForumResource.FILMFORUM_FILMS)
 public class FilmForumResource {
     public static final String FILMFORUM_FILMS = "/filmforum/film";
-    public static final String FIND_BY_NAME = "/name";
 
     private final FilmForumService filmForumService;
 
@@ -20,7 +19,7 @@ public class FilmForumResource {
         this.filmForumService = filmForumService;
     }
 
-    @GetMapping(FIND_BY_NAME)
+    @GetMapping
     public FilmForum findByName(@RequestParam String q) {
         String name = new LexicalAnalyzer().extractWithAssure(q, "name");
         return filmForumService.findByName(name);

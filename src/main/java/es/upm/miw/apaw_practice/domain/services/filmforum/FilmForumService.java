@@ -8,6 +8,10 @@ import org.springframework.stereotype.Service;
 public class FilmForumService {
     private FilmForumPersistence filmForumPersistence;
 
+    public FilmForumService(FilmForumPersistence filmForumPersistence) {
+        this.filmForumPersistence = filmForumPersistence;
+    }
+
     public FilmForum findByName(String name) {
         return filmForumPersistence.findByName(name);
     }
