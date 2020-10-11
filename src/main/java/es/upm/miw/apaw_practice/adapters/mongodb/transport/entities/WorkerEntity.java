@@ -1,7 +1,6 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.transport.entities;
 
 import es.upm.miw.apaw_practice.domain.models.transport.Worker;
-
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;

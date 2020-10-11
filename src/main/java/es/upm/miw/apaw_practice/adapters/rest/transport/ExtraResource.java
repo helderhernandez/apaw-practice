@@ -1,7 +1,6 @@
 package es.upm.miw.apaw_practice.adapters.rest.transport;
 
 import es.upm.miw.apaw_practice.adapters.rest.LexicalAnalyzer;
-import es.upm.miw.apaw_practice.domain.models.school.Student;
 import es.upm.miw.apaw_practice.domain.models.transport.Extra;
 import es.upm.miw.apaw_practice.domain.models.transport.ExtraPaidUpdate;
 import es.upm.miw.apaw_practice.domain.services.transport.ExtraService;
@@ -19,7 +18,7 @@ public class ExtraResource {
     static final String SEARCH = "/search";
 
 
-    private ExtraService extraService;
+    private final ExtraService extraService;
 
     @Autowired
     public ExtraResource(ExtraService extraService) {
@@ -42,7 +41,7 @@ public class ExtraResource {
     }
 
     @GetMapping(SEARCH)
-    public Stream<WorkedHoursExtraDto> readWorkedHoursByDepartment(@RequestParam String q) {
+    public Stream<WorkedHoursExtraDto> searchWorkedHoursByDepartment(@RequestParam String q) {
         String name = new LexicalAnalyzer().extractWithAssure(q, "name");
         return this.extraService.readWorkedHoursByDepartment(name)
                 .map(WorkedHoursExtraDto::new);
