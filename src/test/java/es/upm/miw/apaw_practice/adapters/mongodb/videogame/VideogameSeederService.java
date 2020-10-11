@@ -48,7 +48,9 @@ public class VideogameSeederService {
         GamePlayerEntity[] gamePlayerEntities = {
                 new GamePlayerEntity("marta06", 10, false, Arrays.asList(challengeEntities[0], challengeEntities[1])),
                 new GamePlayerEntity("natcas", 300, true, Arrays.asList(challengeEntities[1], challengeEntities[2])),
-                new GamePlayerEntity("martin_db", 50, false, Arrays.asList(challengeEntities[0]))
+                new GamePlayerEntity("martin_db", 50, false, Arrays.asList(challengeEntities[0])),
+                new GamePlayerEntity("a89", 200,true,Arrays.asList(challengeEntities[2]))
+
         };
 
         this.gamePlayerRepository.saveAll(Arrays.asList(gamePlayerEntities));
