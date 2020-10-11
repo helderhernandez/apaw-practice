@@ -11,8 +11,8 @@ import org.springframework.web.bind.annotation.*;
 public class GameDeveloperResource {
 
     static final String GDEVELOPERS = "/videogame/gdevelopers";
-    static final String ID="/{id}";
-    static final String PHONE="/phone";
+    static final String ID = "/{id}";
+    static final String PHONE = "/phone";
 
     private GameDeveloperService gameDeveloperService;
 
@@ -28,10 +28,9 @@ public class GameDeveloperResource {
     }
 
     @PutMapping(ID + PHONE)
-    public GameDeveloper updatePhone(@PathVariable String id, @RequestBody PhoneDto phoneDto){
+    public GameDeveloper updatePhone(@PathVariable String id, @RequestBody PhoneDto phoneDto) {
         return this.gameDeveloperService.updatePhone(id, phoneDto.getPhone());
     }
-
 
 
 }
