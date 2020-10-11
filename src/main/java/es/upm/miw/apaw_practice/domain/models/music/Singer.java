@@ -1,30 +1,11 @@
-package es.upm.miw.apaw_practice.adapters.mongodb.music.entities;
+package es.upm.miw.apaw_practice.domain.models.music;
 
-import es.upm.miw.apaw_practice.domain.models.music.Singer;
-import org.springframework.beans.BeanUtils;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+public class Singer {
 
-
-@Document
-
-public class SingerEntity {
-
-    @Id
     private String id;
     private String name;
     private String surname;
     private String nationality;
-
-    public SingerEntity(){
-        //Empty for framework
-    }
-
-    public SingerEntity( String name, String surname, String nationality) {
-        this.name = name;
-        this.surname = surname;
-        this.nationality = nationality;
-    }
 
     public String getId() { return id; }
 
@@ -42,19 +23,9 @@ public class SingerEntity {
 
     public void setNationality(String nationality) { this.nationality = nationality; }
 
-
-
-    public Singer toSinger(){
-        Singer singer = new Singer();
-        BeanUtils.copyProperties(this,singer);
-        return singer;
-    }
-
-
-
     @Override
     public String toString() {
-        return "SingerEntity{" +
+        return "Singer{" +
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
