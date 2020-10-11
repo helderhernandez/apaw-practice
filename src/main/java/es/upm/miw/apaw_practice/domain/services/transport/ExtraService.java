@@ -13,8 +13,8 @@ import java.util.stream.Stream;
 @Service
 public class ExtraService {
 
-    private ExtraPersistence extraPersistence;
-    private WorkerPersistence workerPersistence;
+    private final ExtraPersistence extraPersistence;
+    private final WorkerPersistence workerPersistence;
 
     @Autowired
     public ExtraService(ExtraPersistence extraPersistence, WorkerPersistence workerPersistence) {
@@ -29,7 +29,7 @@ public class ExtraService {
                     extra.setPaid(extraNewPaid.isPaid());
                     return extra;
                 })
-                .forEach(extra -> this.extraPersistence.update(extra));
+                .forEach(this.extraPersistence::update);
     }
 
     public Stream<Extra> readAll() {

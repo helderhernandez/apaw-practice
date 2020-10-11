@@ -13,7 +13,7 @@ import java.util.stream.Stream;
 @Repository("departmentPersistence")
 public class DepartmentPersistenceMongodb implements DepartmentPersistence {
 
-    private DepartmentRepository departmentRepository;
+    private final DepartmentRepository departmentRepository;
 
     @Autowired
     public DepartmentPersistenceMongodb(DepartmentRepository departmentRepository) {
