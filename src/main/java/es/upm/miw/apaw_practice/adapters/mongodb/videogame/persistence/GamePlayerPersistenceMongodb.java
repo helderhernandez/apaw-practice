@@ -15,5 +15,9 @@ public class GamePlayerPersistenceMongodb implements GamePlayerPersistence {
         this.gamePlayerRepository = gamePlayerRepository;
     }
 
+    public void delete(String id){
+        this.gamePlayerRepository.deleteById(id);
+    }
+
 
 }
