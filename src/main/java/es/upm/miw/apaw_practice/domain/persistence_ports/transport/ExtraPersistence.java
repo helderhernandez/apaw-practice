@@ -17,5 +17,6 @@ public interface ExtraPersistence {
 
     void deleteById(String id);
 
-    Stream<Integer> readWorkedHoursByDepartment(String name);
+    Stream<Integer> readWorkedHoursByWorker(List<String> listofWorkers);
+
 }

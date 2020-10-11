@@ -1,6 +1,7 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.transport.entities;
 
 import es.upm.miw.apaw_practice.domain.models.transport.VehicleTransport;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -113,5 +114,11 @@ public class VehicleTransportEntity {
                 ", boughtDate=" + boughtDate +
                 ", workerEntity=" + workerEntity +
                 '}';
+    }
+
+    public VehicleTransport toVehicleTransport() {
+        VehicleTransport vehicleTransport = new VehicleTransport();
+        BeanUtils.copyProperties(this, vehicleTransport);
+        return vehicleTransport;
     }
 }
