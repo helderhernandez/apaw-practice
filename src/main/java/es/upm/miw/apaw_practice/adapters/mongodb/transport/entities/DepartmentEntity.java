@@ -1,6 +1,5 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.transport.entities;
 
-import es.upm.miw.apaw_practice.domain.models.shop.Article;
 import es.upm.miw.apaw_practice.domain.models.transport.Department;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;

@@ -1,6 +1,7 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.transport.entities;
 
 import es.upm.miw.apaw_practice.domain.models.transport.VehicleTransport;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -23,22 +24,17 @@ public class VehicleTransportEntity {
         //empty for framework
     }
 
-    public VehicleTransportEntity(VehicleTransport vehicleTransport) {
+    public VehicleTransportEntity(String plate) {
         this.id = UUID.randomUUID().toString();
-        this.brand = vehicleTransport.getBrand();
-        this.model = vehicleTransport.getModel();
-        this.plate = vehicleTransport.getPlate();
-        this.boughtDate = vehicleTransport.getBoughtDate();
-        this.workerEntity = vehicleTransport.getWorkerEntity();
+        this.plate = plate;
     }
 
-    public VehicleTransportEntity(String brand, String model, String plate, LocalDate boughtDate, WorkerEntity workerEntity) {
-        this.id = UUID.randomUUID().toString();
-        this.brand = brand;
-        this.model = model;
-        this.plate = plate;
-        this.boughtDate = boughtDate;
-        this.workerEntity = workerEntity;
+    public VehicleTransportEntity(VehicleTransport vehicleTransport) {
+        BeanUtils.copyProperties(vehicleTransport, this);
+    }
+
+    public static VehicleTransportEntity.VehicleTransportBuilder builder(String plate) {
+        return new VehicleTransportEntity.VehicleTransportBuilder(plate);
     }
 
     public String getId() {
@@ -113,5 +109,43 @@ public class VehicleTransportEntity {
                 ", boughtDate=" + boughtDate +
                 ", workerEntity=" + workerEntity +
                 '}';
+    }
+
+    public VehicleTransport toVehicleTransport() {
+        VehicleTransport vehicleTransport = new VehicleTransport();
+        BeanUtils.copyProperties(this, vehicleTransport);
+        return vehicleTransport;
+    }
+
+    public static class VehicleTransportBuilder {
+        private final VehicleTransportEntity vehicleTransportEntity;
+
+        private VehicleTransportBuilder(String plate) {
+            this.vehicleTransportEntity = new VehicleTransportEntity(plate);
+        }
+
+        public VehicleTransportBuilder brand(String brand) {
+            this.vehicleTransportEntity.brand = brand;
+            return this;
+        }
+
+        public VehicleTransportBuilder model(String model) {
+            this.vehicleTransportEntity.model = model;
+            return this;
+        }
+
+        public VehicleTransportBuilder boughtDate(LocalDate boughtDate) {
+            this.vehicleTransportEntity.boughtDate = boughtDate;
+            return this;
+        }
+
+        public VehicleTransportBuilder workerEntity(WorkerEntity workerEntity) {
+            this.vehicleTransportEntity.workerEntity = workerEntity;
+            return this;
+        }
+
+        public VehicleTransportEntity build() {
+            return this.vehicleTransportEntity;
+        }
     }
 }

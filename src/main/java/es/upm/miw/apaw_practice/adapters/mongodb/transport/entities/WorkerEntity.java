@@ -1,14 +1,12 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.transport.entities;
 
 import es.upm.miw.apaw_practice.domain.models.transport.Worker;
-
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDate;
 import java.util.List;
-import java.util.UUID;
 
 @Document
 public class WorkerEntity {
@@ -25,13 +23,8 @@ public class WorkerEntity {
         //empty for framework
     }
 
-    public WorkerEntity(String name, String telephone, String dni, List<ExtraEntity> extraEntities) {
-        this.id = UUID.randomUUID().toString();
-        this.name = name;
-        this.creation = LocalDate.now();
-        this.telephone = telephone;
-        this.dni = dni;
-        this.extraEntities = extraEntities;
+    public static WorkerBuilder.Name builder() {
+        return new Builder();
     }
 
     public String getId() {
@@ -98,5 +91,43 @@ public class WorkerEntity {
                 ", dni='" + dni + '\'' +
                 ", extraEntities=" + extraEntities +
                 '}';
+    }
+
+    public static class Builder implements WorkerBuilder.Name, WorkerBuilder.Telephone, WorkerBuilder.Dni, WorkerBuilder.Optionals {
+
+        private final WorkerEntity workerEntity;
+
+        public Builder() {
+            this.workerEntity = new WorkerEntity();
+        }
+
+        @Override
+        public WorkerBuilder.Telephone name(String name) {
+            this.workerEntity.name = name;
+            return this;
+        }
+
+        @Override
+        public WorkerBuilder.Dni telephone(String telephone) {
+            this.workerEntity.telephone = telephone;
+            return this;
+        }
+
+        @Override
+        public WorkerBuilder.Optionals dni(String dni) {
+            this.workerEntity.dni = dni;
+            return this;
+        }
+
+        @Override
+        public WorkerBuilder.Optionals extraEntities(List<ExtraEntity> extraEntities) {
+            this.workerEntity.extraEntities = extraEntities;
+            return this;
+        }
+
+        @Override
+        public WorkerEntity build() {
+            return this.workerEntity;
+        }
     }
 }

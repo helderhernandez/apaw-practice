@@ -17,12 +17,12 @@ public class JourneyResource {
     private JourneyService journeService;
 
     @Autowired
-    public JourneyResource(JourneyService journeService){
+    public JourneyResource(JourneyService journeService) {
         this.journeService = journeService;
     }
 
     @GetMapping
-    public Stream<Journey> findJourneys(){
+    public Stream<Journey> findJourneys() {
         return this.journeService.findAll();
     }
 

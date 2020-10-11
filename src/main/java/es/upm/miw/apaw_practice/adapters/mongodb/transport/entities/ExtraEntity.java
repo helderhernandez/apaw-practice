@@ -5,8 +5,6 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.UUID;
-
 @Document
 public class ExtraEntity {
     @Id
@@ -18,10 +16,14 @@ public class ExtraEntity {
         //empty for framework
     }
 
-    public ExtraEntity(String id, Integer workedHours, Boolean paid) {
+    public ExtraEntity(String id) {
         this.id = id;
-        this.workedHours = workedHours;
-        this.paid = paid;
+        this.workedHours = 0;
+        this.paid = false;
+    }
+
+    public static ExtraBuilder builder(String id) {
+        return new ExtraBuilder(id);
     }
 
     public String getId() {
@@ -75,5 +77,27 @@ public class ExtraEntity {
         Extra extra = new Extra();
         BeanUtils.copyProperties(this, extra);
         return extra;
+    }
+
+    public static class ExtraBuilder {
+        private final ExtraEntity extraEntity;
+
+        private ExtraBuilder(String id) {
+            this.extraEntity = new ExtraEntity(id);
+        }
+
+        public ExtraBuilder workedHours(Integer workedHours) {
+            this.extraEntity.workedHours = workedHours;
+            return this;
+        }
+
+        public ExtraBuilder paid(Boolean paid) {
+            this.extraEntity.paid = paid;
+            return this;
+        }
+
+        public ExtraEntity build() {
+            return this.extraEntity;
+        }
     }
 }

@@ -1,5 +1,7 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.music.entities;
 
+import es.upm.miw.apaw_practice.domain.models.music.Singer;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -41,6 +43,12 @@ public class SingerEntity {
     public void setNationality(String nationality) { this.nationality = nationality; }
 
 
+
+    public Singer toSinger(){
+        Singer singer = new Singer();
+        BeanUtils.copyProperties(this,singer);
+        return singer;
+    }
 
 
 

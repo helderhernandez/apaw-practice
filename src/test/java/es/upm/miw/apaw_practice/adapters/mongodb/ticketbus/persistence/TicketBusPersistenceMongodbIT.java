@@ -2,6 +2,7 @@ package es.upm.miw.apaw_practice.adapters.mongodb.ticketbus.persistence;
 
 import es.upm.miw.apaw_practice.TestConfig;
 import es.upm.miw.apaw_practice.adapters.mongodb.ticketbus.TicketBusSeederService;
+import es.upm.miw.apaw_practice.adapters.mongodb.ticketbus.entities.PassengerBusEntity;
 import es.upm.miw.apaw_practice.adapters.mongodb.ticketbus.entities.TicketBusEntity;
 import es.upm.miw.apaw_practice.domain.models.ticketbus.PassengerBus;
 import es.upm.miw.apaw_practice.domain.models.ticketbus.PassengerBusCreation;
@@ -59,7 +60,6 @@ class TicketBusPersistenceMongodbIT {
 
         ticketBus = ticketBusPersistenceMongodb.update(ticketBus.getReference(), passengerBusCreation);
         testTicketBusPassenger(ticketBus, passengerBusCreation);
-
     }
 
     @Test

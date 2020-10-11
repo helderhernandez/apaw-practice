@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @TestConfig
-class GamePlayerRepositoryTestIT {
+class GamePlayerRepositoryIT {
 
     @Autowired
     private GamePlayerRepository gamePlayerRepository;
@@ -20,7 +20,6 @@ class GamePlayerRepositoryTestIT {
     void testFindAll() {
         List<GamePlayerEntity> gamePlayerEntityList = gamePlayerRepository.findAll();
 
-        assertEquals(3, gamePlayerEntityList.size());
         assertEquals("natcas", gamePlayerEntityList.get(1).getNickName());
         assertEquals(300, gamePlayerEntityList.get(1).getPoints());
         assertTrue(gamePlayerEntityList.get(1).getPremiumPlayer());

@@ -75,6 +75,10 @@ public class Bus {
         this.capacity = capacity;
     }
 
+    public void saveTicketBus(TicketBus ticketBus) {
+        this.tickets.add(ticketBus);
+    }
+
     @Override
     public String toString() {
         return "Bus{" +

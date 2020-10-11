@@ -1,6 +1,8 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.restaurant.entities;
 
+import es.upm.miw.apaw_practice.domain.models.restaurant.PhysicalStore;
 import nonapi.io.github.classgraph.json.Id;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -27,6 +29,10 @@ public class PhysicalStoreEntity {
         this.size = size;
         this.terrace = terrace;
         this.opening = opening;
+    }
+
+    public PhysicalStoreEntity(PhysicalStore physicalStore) {
+        BeanUtils.copyProperties(physicalStore, this);
     }
 
     public String getId() {
@@ -60,6 +66,12 @@ public class PhysicalStoreEntity {
     public LocalDateTime getOpening() { return opening; }
 
     public void setOpening(LocalDateTime opening) { this.opening = opening; }
+
+    public PhysicalStore toPhysicalStore() {
+        PhysicalStore physicalStore = new PhysicalStore();
+        BeanUtils.copyProperties(this, physicalStore);
+        return physicalStore;
+    }
 
     @Override
     public int hashCode() {
