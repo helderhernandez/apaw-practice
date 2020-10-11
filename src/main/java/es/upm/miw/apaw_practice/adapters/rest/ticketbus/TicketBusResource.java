@@ -26,5 +26,9 @@ public class TicketBusResource {
         return ticketBusService.update(idTicket, passenger);
     }
 
+    @DeleteMapping(path = ID)
+    public void delete(@PathVariable("id") String idTicket){
+        this.ticketBusService.delete(idTicket);
+    }
 
 }

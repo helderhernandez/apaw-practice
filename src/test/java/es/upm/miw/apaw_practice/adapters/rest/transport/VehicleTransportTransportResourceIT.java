@@ -14,10 +14,11 @@ import java.time.LocalDate;
 import java.util.Arrays;
 
 import static es.upm.miw.apaw_practice.adapters.rest.transport.VehicleTransportResource.VEHICLES;
+import static es.upm.miw.apaw_practice.adapters.rest.transport.VehicleTransportResource.SEARCH;
 import static org.junit.jupiter.api.Assertions.*;
 
 @RestTestConfig
-class CarTransportTransportResourceIT {
+class VehicleTransportTransportResourceIT {
 
     @Autowired
     private WebTestClient webTestClient;
@@ -40,5 +41,21 @@ class CarTransportTransportResourceIT {
                 .expectBody(VehicleTransport.class)
                 .value(Assertions::assertNotNull)
                 .value(vehicleData -> assertNotNull(vehicleData.getId()));
+    }
+
+    @Test
+    void testSearchModelDistinctbyDeptName() {
+        this.webTestClient
+                .get()
+                .uri(uriBuilder ->
+                        uriBuilder.path(VEHICLES + SEARCH)
+                                .queryParam("q", "name:name1")
+                                .build())
+                .exchange()
+                .expectStatus().isOk()
+                .expectBodyList(DistinctModelVehicleDto.class)
+                .value(Assertions::assertNotNull)
+                .value(DistinctModelVehicleDto -> assertEquals("model1", DistinctModelVehicleDto.get(0).getModel()))
+                .value(DistinctModelVehicleDto -> assertEquals("model2", DistinctModelVehicleDto.get(1).getModel()));
     }
 }

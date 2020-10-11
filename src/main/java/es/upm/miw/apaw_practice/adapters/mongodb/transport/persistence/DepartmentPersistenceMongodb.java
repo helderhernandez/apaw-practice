@@ -1,6 +1,5 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.transport.persistence;
 
-import es.upm.miw.apaw_practice.adapters.mongodb.shop.entities.ArticleEntity;
 import es.upm.miw.apaw_practice.adapters.mongodb.transport.daos.DepartmentRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.transport.entities.DepartmentEntity;
 import es.upm.miw.apaw_practice.domain.exceptions.NotFoundException;

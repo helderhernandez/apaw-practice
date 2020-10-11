@@ -32,7 +32,7 @@ public class CarEntityRepositoryIT {
                 .map(AccidentEntity::getRefAccident)
                 .collect(Collectors.toList())
                 .containsAll(Arrays.asList("ACC001")));
-        assertTrue(car.getTransitTaxes().stream()
+        assertTrue(car.getTaxes().stream()
                 .map(TaxEntity::getDescription)
                 .collect(Collectors.toList())
                 .containsAll(Arrays.asList("Driving without a driver's license")));

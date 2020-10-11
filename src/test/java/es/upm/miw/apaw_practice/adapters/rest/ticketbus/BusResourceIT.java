@@ -32,9 +32,17 @@ class BusResourceIT {
         assertEquals(ticketBusCreation.getArriveTime(), ticketBus.getArriveTime());
     }
 
+    void testCmpBus(Bus busReturned, BusCreation busCreation) {
+        assertNotNull(busReturned.getReference());
+        assertEquals(busCreation.getCompany(), busReturned.getCompany());
+        assertEquals(busCreation.getCapacity(), busReturned.getCapacity());
+        assertEquals(busCreation.getAccesibility(), busReturned.getAccesibility());
+        assertEquals(busCreation.getWifi(), busReturned.getWifi());
+    }
+
     @Test
     void testCreate() {
-        busCreation = new BusCreation("VL-001", "COOP-VL", 50, Boolean.TRUE, Boolean.FALSE);
+        busCreation = new BusCreation("COOP-VL", 50, Boolean.TRUE, Boolean.FALSE);
         ticketBusCreation = new TicketBusCreation(3, LocalDateTime.now(), LocalDateTime.now(), new BigDecimal("19.99"));
 
         busCreation.setTickets(Arrays.asList(ticketBusCreation));
@@ -47,7 +55,7 @@ class BusResourceIT {
                 .expectStatus().isOk()
                 .expectBody(Bus.class)
                 .value(Assertions::assertNotNull)
-                .value(busData -> assertNotNull(busData.getId()))
+                .value(busData -> testCmpBus(busData, busCreation))
                 .value(busData -> assertNotNull(busData.getTickets()))
                 .value(busData -> assertNotNull(busData.getTickets().get(0)))
                 .value(busData -> testTicketBus(busData.getTickets().get(0)));

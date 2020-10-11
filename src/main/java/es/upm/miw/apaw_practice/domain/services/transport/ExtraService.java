@@ -1,9 +1,9 @@
 package es.upm.miw.apaw_practice.domain.services.transport;
 
-import es.upm.miw.apaw_practice.domain.models.school.Student;
 import es.upm.miw.apaw_practice.domain.models.transport.Extra;
 import es.upm.miw.apaw_practice.domain.models.transport.ExtraPaidUpdate;
 import es.upm.miw.apaw_practice.domain.persistence_ports.transport.ExtraPersistence;
+import es.upm.miw.apaw_practice.domain.persistence_ports.transport.WorkerPersistence;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,10 +14,12 @@ import java.util.stream.Stream;
 public class ExtraService {
 
     private ExtraPersistence extraPersistence;
+    private WorkerPersistence workerPersistence;
 
     @Autowired
-    public ExtraService(ExtraPersistence extraPersistence) {
+    public ExtraService(ExtraPersistence extraPersistence, WorkerPersistence workerPersistence) {
         this.extraPersistence = extraPersistence;
+        this.workerPersistence = workerPersistence;
     }
 
     public void updatePaid(List<ExtraPaidUpdate> extraPaidUpdates) {
@@ -36,5 +38,10 @@ public class ExtraService {
 
     public void delete(String id) {
         this.extraPersistence.deleteById(id);
+    }
+
+    public Stream<Integer> readWorkedHoursByDepartment(String name) {
+        List<String> listofWorkers = this.workerPersistence.findByDepartmentName(name);
+        return this.extraPersistence.readWorkedHoursByWorker(listofWorkers);
     }
 }

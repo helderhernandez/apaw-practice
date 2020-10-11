@@ -5,7 +5,6 @@ import es.upm.miw.apaw_practice.adapters.mongodb.transittaxes.entities.TaxEntity
 import es.upm.miw.apaw_practice.domain.exceptions.ConflictException;
 import es.upm.miw.apaw_practice.domain.exceptions.NotFoundException;
 import es.upm.miw.apaw_practice.domain.models.transittaxes.Tax;
-import es.upm.miw.apaw_practice.domain.models.transittaxes.TaxCreation;
 import es.upm.miw.apaw_practice.domain.persistence_ports.transittaxes.TaxPersistence;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -21,9 +20,9 @@ public class TaxPersistenceMongodb implements TaxPersistence {
     }
 
     @Override
-    public Tax create(TaxCreation taxCreation) {
-        assertRefTaxNoExist(taxCreation.getRefTax());
-        return this.taxRepository.save(new TaxEntity(taxCreation)).toTax();
+    public Tax create(Tax tax) {
+        assertRefTaxNoExist(tax.getRefTax());
+        return this.taxRepository.save(new TaxEntity(tax)).toTax();
     }
 
     private void assertRefTaxNoExist(String refTax) {

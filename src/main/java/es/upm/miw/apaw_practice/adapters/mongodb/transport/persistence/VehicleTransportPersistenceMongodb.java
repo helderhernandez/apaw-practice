@@ -8,6 +8,9 @@ import es.upm.miw.apaw_practice.domain.persistence_ports.transport.VehicleTransp
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+import java.util.stream.Stream;
+
 @Repository("vehicleTransportPersistence")
 public class VehicleTransportPersistenceMongodb implements VehicleTransportPersistence {
 
@@ -31,5 +34,14 @@ public class VehicleTransportPersistenceMongodb implements VehicleTransportPersi
                 .findByPlate(plate)
                 .orElseThrow(() -> new NotFoundException("Plate: " + plate))
                 .toVehicle();
+    }
+
+    @Override
+    public Stream<String> searchDistinctModelListofWorkers(List<String> listofWorkers) {
+        return this.vehicleTransportRepository.findAll().stream()
+                .filter(vehicle -> listofWorkers.contains(vehicle.getWorkerEntity().getDni()))
+                .map(VehicleTransportEntity::toVehicleTransport)
+                .map(VehicleTransport::getModel)
+                .distinct();
     }
 }

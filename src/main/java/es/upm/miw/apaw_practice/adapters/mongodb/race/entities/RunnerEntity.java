@@ -1,5 +1,6 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.race.entities;
 
+import es.upm.miw.apaw_practice.domain.models.race.Runner;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;
@@ -99,5 +100,9 @@ public class RunnerEntity {
                 ", isProfessional=" + isProfessional +
                 ", runnerClubEntity=" + runnerClubEntity +
                 '}';
+    }
+
+    public Runner toRunner() {
+        return new Runner(this.id, this.name, this.dni, this.dorsal, this.isProfessional, this.runnerClubEntity.toRunnerClub());
     }
 }
