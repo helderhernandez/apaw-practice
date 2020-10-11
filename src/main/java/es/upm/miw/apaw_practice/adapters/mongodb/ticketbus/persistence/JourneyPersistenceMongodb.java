@@ -15,7 +15,7 @@ public class JourneyPersistenceMongodb implements JourneyPersistence {
     private JourneyRepository journeyRepository;
 
     @Autowired
-    public JourneyPersistenceMongodb(JourneyRepository journeyRepository){
+    public JourneyPersistenceMongodb(JourneyRepository journeyRepository) {
         this.journeyRepository = journeyRepository;
     }
 
