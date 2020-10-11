@@ -2,9 +2,11 @@ package es.upm.miw.apaw_practice.adapters.mongodb.treeConservation.entities;
 
 import nonapi.io.github.classgraph.json.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
+import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.UUID;
 
+@Document
 public class DiseaseEntity {
     @Id
     private String id;
