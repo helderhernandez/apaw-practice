@@ -20,7 +20,7 @@ public class TaxResource {
     }
 
     @PostMapping
-    public Tax create(@RequestBody Tax tax){
+    public Tax create(@RequestBody Tax tax) {
         return this.taxService.create(tax);
     }
 

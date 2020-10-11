@@ -17,7 +17,7 @@ public class CarResourceIT {
         BrandDto brandDto = new BrandDto("CITROEN");
         this.webTestClient
                 .put()
-                .uri(CarResource.CARS + CarResource.ID_ID + CarResource.BRAND, "01")
+                .uri(CarResource.CARS + CarResource.ID_ID + CarResource.BRAND, "03")
                 .body(BodyInserters.fromValue(brandDto))
                 .exchange()
                 .expectStatus().isOk();

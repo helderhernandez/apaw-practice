@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 @RestController
 @RequestMapping(CarResource.CARS)
 public class CarResource {
+
     static final String CARS = "/transittaxes/cars";
     static final String ID_ID = "/{id}";
     static final String BRAND = "/brand";
