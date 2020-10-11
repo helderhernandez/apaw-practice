@@ -1,7 +1,5 @@
 package es.upm.miw.apaw_practice.adapters.rest.transport;
 
-import es.upm.miw.apaw_practice.domain.models.transport.Extra;
-
 public class WorkedHoursExtraDto {
     private int workedHours;
 

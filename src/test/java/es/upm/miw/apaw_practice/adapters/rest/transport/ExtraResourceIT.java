@@ -1,11 +1,8 @@
 package es.upm.miw.apaw_practice.adapters.rest.transport;
 
 import es.upm.miw.apaw_practice.adapters.rest.RestTestConfig;
-import es.upm.miw.apaw_practice.adapters.rest.factory.MachineResource;
-import es.upm.miw.apaw_practice.domain.models.school.StudentEmailUpdating;
 import es.upm.miw.apaw_practice.domain.models.transport.Extra;
 import es.upm.miw.apaw_practice.domain.models.transport.ExtraPaidUpdate;
-import es.upm.miw.apaw_practice.domain.models.transport.Worker;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
