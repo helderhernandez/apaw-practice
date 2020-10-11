@@ -73,7 +73,7 @@ public class ChallengeEntity {
     }
 
     public void fromChallenge(Challenge challenge){
-        BeanUtils.copyProperties(this, challenge);
+        BeanUtils.copyProperties(challenge, this);
     }
 
     @Override
