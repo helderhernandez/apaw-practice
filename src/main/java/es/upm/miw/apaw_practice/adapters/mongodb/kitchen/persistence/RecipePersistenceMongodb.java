@@ -54,12 +54,13 @@ public class RecipePersistenceMongodb implements RecipePersistence {
 
     @Override
     public Stream<String> search1(String dni) {
-        Ingredient kitchenBoyIngredient = this.kitchenBoyRepository.findByDni(dni)
+        IngredientEntity kitchenBoyIngredient = this.kitchenBoyRepository.findByDni(dni)
                 .orElseThrow(() -> new NotFoundException("KitchenBoy DNI: " + dni))
-                .getIngredientToWorkOn()
-                .toIngredient();
+                .getIngredientToWorkOn();
+        System.out.println("----------" + kitchenBoyIngredient.getName());
         return this.recipeRepository.findAll().stream()
                 .filter(recipe -> recipe.getIngredients().contains(kitchenBoyIngredient))
+                .peek(recipe -> System.out.println("----------" + recipe.getName()))
                 .map(recipe -> recipe.getName());
     }
 }

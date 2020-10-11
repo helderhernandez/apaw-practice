@@ -14,7 +14,7 @@ import org.springframework.web.reactive.function.BodyInserters;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 @RestTestConfig
 class RecipeResourceIT {
@@ -60,5 +60,21 @@ class RecipeResourceIT {
                 .body(BodyInserters.fromValue(recipeCreation))
                 .exchange()
                 .expectStatus().isEqualTo(HttpStatus.CONFLICT);
+    }
+
+    @Test
+    void testSearch1() {
+        this.webTestClient
+                .get()
+                .uri(uriBuilder ->
+                        uriBuilder.path(RecipeResource.RECIPES + RecipeResource.SEARCH)
+                        .queryParam("q", "dni:12345678A")
+                        .build())
+                .exchange()
+                .expectStatus().isOk()
+                .expectBodyList(String.class)
+                .value(recipes -> assertTrue(recipes.size() > 0))
+                .value(recipes -> System.out.println(recipes.get(0)));
+        //TODO Devuelve una lista de un solo elemento que contiene todos los nombres de las recetas, arreglar
     }
 }
