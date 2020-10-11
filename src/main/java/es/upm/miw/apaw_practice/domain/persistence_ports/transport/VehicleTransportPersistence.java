@@ -9,6 +9,8 @@ import java.util.stream.Stream;
 @Repository
 public interface VehicleTransportPersistence {
     VehicleTransport create(VehicleTransport vehicleTransport);
+
     VehicleTransport readByPlate(String plate);
+
     Stream<String> searchDistinctModelListofWorkers(List<String> listofWorkers);
 }
