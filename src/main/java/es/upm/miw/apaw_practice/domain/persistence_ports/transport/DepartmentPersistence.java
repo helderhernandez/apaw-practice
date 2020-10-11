@@ -12,4 +12,6 @@ public interface DepartmentPersistence {
     Department update(Department department);
 
     Department updateUbication(String name, String ubication);
+
+
 }
