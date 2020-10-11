@@ -1,5 +1,6 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.race.entities;
 
+import es.upm.miw.apaw_practice.domain.models.race.RunnerClub;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -74,5 +75,9 @@ public class RunnerClubEntity {
                 ", location='" + location + '\'' +
                 ", foundationDate=" + foundationDate +
                 '}';
+    }
+
+    public RunnerClub toRunnerClub() {
+        return new RunnerClub(this.id, this.name, this.location, this.foundationDate);
     }
 }

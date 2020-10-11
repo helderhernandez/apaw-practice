@@ -16,6 +16,9 @@ public class AccidentService {
     }
 
     public Accident read(String id) {
-        return this.accidentPersistence.read(id);
+        return this.accidentPersistence.readById(id);
+    }
+    public Accident updatePlace(Accident accident) {
+        return this.accidentPersistence.updatePlace(accident);
     }
 }

@@ -29,6 +29,27 @@ public class EmployeeEntityRepositoryIT {
         assertEquals(0, new BigDecimal("26000").compareTo(employee.getSalary()));
         assertEquals("Software", employee.getDepartment());
     }
+
+    @Test
+    void testFindByDniWithBuilder() {
+        EmployeeEntity employeeEntity = EmployeeEntity.builder()
+                .dni("xxxxxxxxY")
+                .name("Name")
+                .lastName("LastName")
+                .phone(656565656L)
+                .seniority(LocalDate.of(2000, 1, 1))
+                .salary(new BigDecimal("50000"))
+                .department("CEO")
+                .build();
+
+        assertEquals("xxxxxxxxY", employeeEntity.getDni());
+        assertEquals("Name", employeeEntity.getName());
+        assertEquals("LastName", employeeEntity.getLastName());
+        assertEquals(656565656L, employeeEntity.getPhone());
+        assertEquals(LocalDate.of(2000, 1, 1), employeeEntity.getSeniority());
+        assertEquals(new BigDecimal("50000"), employeeEntity.getSalary());
+        assertEquals("CEO", employeeEntity.getDepartment());
+    }
 }
 
 

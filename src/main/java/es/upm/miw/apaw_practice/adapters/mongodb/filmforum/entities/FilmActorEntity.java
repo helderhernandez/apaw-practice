@@ -1,5 +1,6 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.filmforum.entities;
 
+import es.upm.miw.apaw_practice.domain.models.filmforum.FilmActor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -52,6 +53,10 @@ public class FilmActorEntity {
 
     public void setAge(Integer age) {
         this.age = age;
+    }
+
+    public FilmActor toFilmActor() {
+        return new FilmActor(name, surname, age);
     }
 
     @Override

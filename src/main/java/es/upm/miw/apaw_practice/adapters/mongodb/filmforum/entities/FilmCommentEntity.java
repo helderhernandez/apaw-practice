@@ -1,5 +1,6 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.filmforum.entities;
 
+import es.upm.miw.apaw_practice.domain.models.filmforum.FilmComment;
 import nonapi.io.github.classgraph.json.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -66,6 +67,10 @@ public class FilmCommentEntity {
 
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public FilmComment toFilmComment() {
+        return new FilmComment(commentUser.toFilmUser(), content, punctuation, createdAt);
     }
 
     @Override

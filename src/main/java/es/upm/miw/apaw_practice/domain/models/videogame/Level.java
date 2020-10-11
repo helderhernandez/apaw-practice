@@ -1,8 +1,5 @@
 package es.upm.miw.apaw_practice.domain.models.videogame;
 
-import es.upm.miw.apaw_practice.adapters.mongodb.videogame.entities.GameDeveloperEntity;
-import es.upm.miw.apaw_practice.adapters.mongodb.videogame.entities.GamePlayerEntity;
-
 import java.util.List;
 
 public class Level {

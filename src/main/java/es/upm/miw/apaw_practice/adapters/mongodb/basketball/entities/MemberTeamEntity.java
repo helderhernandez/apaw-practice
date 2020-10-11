@@ -14,18 +14,18 @@ public class MemberTeamEntity {
     private String surname;
     @Indexed(unique = true)
     private String dni;
-    private Boolean isAvailable;
+    private Boolean available;
 
     public MemberTeamEntity() {
         //Empty constructor for the framework
     }
 
-    public MemberTeamEntity(String name, String surname, String dni, Boolean isAvailable) {
+    public MemberTeamEntity(String name, String surname, String dni, Boolean available) {
         this.id = UUID.randomUUID().toString();
         this.name = name;
         this.surname = surname;
         this.dni = dni;
-        this.isAvailable = isAvailable;
+        this.available = available;
     }
 
     public String getId() {
@@ -61,11 +61,11 @@ public class MemberTeamEntity {
     }
 
     public Boolean getAvailable() {
-        return isAvailable;
+        return available;
     }
 
     public void setAvailable(Boolean available) {
-        isAvailable = available;
+        this.available = available;
     }
 
     @Override
@@ -85,7 +85,7 @@ public class MemberTeamEntity {
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
                 ", dni='" + dni + '\'' +
-                ", isAvailable=" + isAvailable +
+                ", isAvailable=" + available +
                 '}';
     }
 }

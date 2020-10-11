@@ -26,11 +26,9 @@ public class CarPersistenceMongodb implements CarPersistence {
         carEntity.setBrand(brand);
         return carRepository.save(carEntity).toCar();
     }
-
     @Override
     public Stream<Car> readAll() {
         return this.carRepository.findAll().stream()
                 .map(CarEntity::toCar);
     }
-
 }

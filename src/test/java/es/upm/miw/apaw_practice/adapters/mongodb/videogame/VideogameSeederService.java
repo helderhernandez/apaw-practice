@@ -1,5 +1,6 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.videogame;
 
+import es.upm.miw.apaw_practice.adapters.mongodb.videogame.daos.ChallengeRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.videogame.daos.GameDeveloperRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.videogame.daos.GamePlayerRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.videogame.daos.LevelRepository;
@@ -22,6 +23,8 @@ public class VideogameSeederService {
     private GamePlayerRepository gamePlayerRepository;
     @Autowired
     private LevelRepository levelRepository;
+    @Autowired
+    private ChallengeRepository challengeRepository;
 
 
     public void seedDataBase() {
@@ -32,6 +35,8 @@ public class VideogameSeederService {
                 new ChallengeEntity("Kill all enemies", false),
                 new ChallengeEntity("take the flag from the top of the castle ", true)
         };
+
+        this.challengeRepository.saveAll((Arrays.asList(challengeEntities)));
 
         GameDeveloperEntity[] gameDeveloperEntities = {
                 new GameDeveloperEntity("Pedro", "pedrofernandez@hotmail.com", 667659345),
@@ -62,5 +67,6 @@ public class VideogameSeederService {
         this.levelRepository.deleteAll();
         this.gamePlayerRepository.deleteAll();
         this.gameDeveloperRepository.deleteAll();
+        this.challengeRepository.deleteAll();
     }
 }

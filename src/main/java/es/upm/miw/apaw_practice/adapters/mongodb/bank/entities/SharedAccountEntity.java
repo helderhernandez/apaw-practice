@@ -36,6 +36,49 @@ public class SharedAccountEntity {
     }
 
 
+    private SharedAccountEntity(Builder builder) {
+        this.id = builder.id;
+        this.IBAN = builder.IBAN;
+        this.type = builder.type;
+        this.amount = builder.amount;
+        this.customerEntities = builder.customerEntities;
+    }
+
+    public static class Builder {
+
+        private final String id;
+        private final String IBAN;
+        private BigDecimal amount;
+        private String type;
+        private List<CustomerEntity> customerEntities;
+
+        public Builder(String IBAN) {
+            this.id = UUID.randomUUID().toString();
+            this.IBAN = IBAN;
+        }
+
+        public Builder amount(BigDecimal amount) {
+            this.amount = amount;
+            return this;
+        }
+
+        public Builder type(String type) {
+            this.type = type;
+            return this;
+        }
+
+        public Builder customerEntities(List<CustomerEntity> customerEntities) {
+            this.customerEntities = customerEntities;
+            return this;
+        }
+
+        public SharedAccountEntity build() {
+            return new SharedAccountEntity(this);
+        }
+
+    }
+
+
     public String getId() {
         return id;
     }
@@ -105,4 +148,5 @@ public class SharedAccountEntity {
                 ", customerEntities=" + customerEntities +
                 '}';
     }
+
 }

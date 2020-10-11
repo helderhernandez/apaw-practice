@@ -1,6 +1,9 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.transittaxes.entities;
 
+import es.upm.miw.apaw_practice.domain.models.transittaxes.Owner;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Objects;
@@ -13,17 +16,23 @@ public class OwnerEntity {
     private String id;
     private String name;
     private String familyName;
+    @Indexed(unique = true)
     private String dni;
 
     public OwnerEntity() {
         //empty from framework
     }
 
-    public OwnerEntity(String name, String dni, String familyName) {
-        this.id = UUID.randomUUID().toString();
+    public OwnerEntity(String id, String name, String dni, String familyName) {
+        this.id = id;
         this.name = name;
         this.dni = dni;
         this.familyName = familyName;
+    }
+
+    public OwnerEntity(Owner owner) {
+        BeanUtils.copyProperties(owner, this);
+        this.id = UUID.randomUUID().toString();
     }
 
     public String getId() {
@@ -82,5 +91,12 @@ public class OwnerEntity {
                 ", familyName='" + familyName + '\'' +
                 ", dni='" + dni + '\'' +
                 '}';
+    }
+
+    public Owner toOwner() {
+        Owner owner = new Owner();
+        BeanUtils.copyProperties(this, owner);
+        return owner;
+
     }
 }

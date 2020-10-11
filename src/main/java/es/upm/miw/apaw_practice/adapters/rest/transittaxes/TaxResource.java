@@ -1,7 +1,6 @@
 package es.upm.miw.apaw_practice.adapters.rest.transittaxes;
 
 import es.upm.miw.apaw_practice.domain.models.transittaxes.Tax;
-import es.upm.miw.apaw_practice.domain.models.transittaxes.TaxCreation;
 import es.upm.miw.apaw_practice.domain.services.transittaxes.TaxService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -21,8 +20,8 @@ public class TaxResource {
     }
 
     @PostMapping
-    public Tax create(@RequestBody TaxCreation taxCreation){
-        return this.taxService.create(taxCreation);
+    public Tax create(@RequestBody Tax tax){
+        return this.taxService.create(tax);
     }
 
 }

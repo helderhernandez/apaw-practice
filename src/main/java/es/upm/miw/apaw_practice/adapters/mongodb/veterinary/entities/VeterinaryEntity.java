@@ -1,5 +1,7 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.veterinary.entities;
 
+import es.upm.miw.apaw_practice.domain.models.veterinary.Veterinary;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -12,6 +14,10 @@ public class VeterinaryEntity {
     private String id;
     private String name;
     private Integer age;
+
+    public VeterinaryEntity() {
+        //Empty for framework
+    }
 
     public VeterinaryEntity(String id, String name, Integer age) {
         this.id = id;
@@ -65,5 +71,11 @@ public class VeterinaryEntity {
                 ", name='" + name + '\'' +
                 ", age=" + age +
                 '}';
+    }
+
+    public Veterinary toVeterinary() {
+        Veterinary veterinary = new Veterinary();
+        BeanUtils.copyProperties(this, veterinary);
+        return veterinary;
     }
 }
