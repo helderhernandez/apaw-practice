@@ -12,8 +12,8 @@ import java.util.stream.Stream;
 @Service
 public class VehicleTransportService {
 
-    private VehicleTransportPersistence vehicleTransportPersistence;
-    private WorkerPersistence workerPersistence;
+    private final VehicleTransportPersistence vehicleTransportPersistence;
+    private final WorkerPersistence workerPersistence;
 
     @Autowired
     public VehicleTransportService(VehicleTransportPersistence vehicleTransportPersistence, WorkerPersistence workerPersistence) {

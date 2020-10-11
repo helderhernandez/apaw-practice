@@ -14,7 +14,7 @@ import java.util.stream.Stream;
 @Repository("vehicleTransportPersistence")
 public class VehicleTransportPersistenceMongodb implements VehicleTransportPersistence {
 
-    private VehicleTransportRepository vehicleTransportRepository;
+    private final VehicleTransportRepository vehicleTransportRepository;
 
     @Autowired
     public VehicleTransportPersistenceMongodb(VehicleTransportRepository vehicleTransportRepository) {
