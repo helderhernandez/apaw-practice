@@ -12,6 +12,10 @@ public class FilmForumPersistenceMongodb implements FilmForumPersistence {
 
     FilmForumRepository filmForumRepository;
 
+    public FilmForumPersistenceMongodb(FilmForumRepository filmForumRepository) {
+        this.filmForumRepository = filmForumRepository;
+    }
+
     @Override
     public FilmForum findByName(String name) {
         return filmForumRepository.findByName(name)
