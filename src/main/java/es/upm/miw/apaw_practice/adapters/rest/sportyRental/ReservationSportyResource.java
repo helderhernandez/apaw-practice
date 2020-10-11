@@ -1,12 +1,10 @@
 package es.upm.miw.apaw_practice.adapters.rest.sportyRental;
 
 import es.upm.miw.apaw_practice.domain.models.sportyRental.ReservationSporty;
+import es.upm.miw.apaw_practice.domain.models.sportyRental.ReservationCreationSporty;
 import es.upm.miw.apaw_practice.domain.services.sportyRental.ReservationSportyService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(ReservationSportyResource.RESERVATIONS_SPORTY)
@@ -26,4 +24,10 @@ public class ReservationSportyResource {
     public ReservationSporty readByRefReservation(@PathVariable String refReservation) {
         return this.reservationSportyService.readByRefReservation(refReservation);
     }
+
+    @PostMapping
+    public ReservationSporty create(@RequestBody ReservationCreationSporty reservationSportyCreation) {
+        return this.reservationSportyService.create(reservationSportyCreation);
+    }
+
 }

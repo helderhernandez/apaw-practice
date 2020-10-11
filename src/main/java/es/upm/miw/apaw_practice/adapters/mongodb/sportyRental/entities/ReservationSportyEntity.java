@@ -1,9 +1,8 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.sportyRental.entities;
 
-import es.upm.miw.apaw_practice.domain.models.sportyRental.CategorySporty;
-import es.upm.miw.apaw_practice.domain.models.sportyRental.CustomerSporty;
-import es.upm.miw.apaw_practice.domain.models.sportyRental.DiscountSporty;
-import es.upm.miw.apaw_practice.domain.models.sportyRental.ReservationSporty;
+import es.upm.miw.apaw_practice.adapters.mongodb.sportyRental.entities.utils.Constans;
+import es.upm.miw.apaw_practice.domain.models.sportyRental.*;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;
@@ -13,6 +12,7 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Document
 public class ReservationSportyEntity {
@@ -43,6 +43,13 @@ public class ReservationSportyEntity {
         this.customerSportyEntities = customerSportyEntities;
         this.categorySportyEntity = categorySportyEntity;
         this.discountSportyEntity = discountSportyEntity;
+    }
+
+    public ReservationSportyEntity(ReservationCreationSporty reservationCreationSporty) {
+        BeanUtils.copyProperties(reservationCreationSporty, this);
+        this.idReservation = UUID.randomUUID().toString();
+        this.dateReservation = LocalDateTime.now();
+        this.refReservation = Constans.START_REFERENCE+UUID.randomUUID().toString().substring(Constans.MAX_REFERENCE);
     }
 
     public String getIdReservation() {
