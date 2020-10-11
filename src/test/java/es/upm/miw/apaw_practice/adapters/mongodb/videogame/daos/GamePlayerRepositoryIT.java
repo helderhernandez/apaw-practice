@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @TestConfig
-class GamePlayerRepositoryTestIT {
+class GamePlayerRepositoryIT {
 
     @Autowired
     private GamePlayerRepository gamePlayerRepository;
