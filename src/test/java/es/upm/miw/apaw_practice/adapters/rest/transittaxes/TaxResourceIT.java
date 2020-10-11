@@ -37,7 +37,6 @@ public class TaxResourceIT {
 
     @Test
     void testCreateConflict() {
-
         Tax tax = new Tax();
         tax.setRefTax("TAX004");
         tax.setDescription("REPEAT");

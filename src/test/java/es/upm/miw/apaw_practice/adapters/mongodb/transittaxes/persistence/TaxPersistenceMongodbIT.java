@@ -16,7 +16,7 @@ public class TaxPersistenceMongodbIT {
     private TaxPersistenceMongodb taxPersistenceMongodb;
 
     @Test
-    void testCreateAndRead(){
+    void testCreateAndRead() {
         Tax tax = new Tax();
         tax.setRefTax("TAX008");
         tax.setDescription("Speeding");
@@ -24,9 +24,9 @@ public class TaxPersistenceMongodbIT {
         tax.setPaid(false);
         Tax taxCreated = taxPersistenceMongodb.create(tax);
         Tax taxBD = this.taxPersistenceMongodb.findByRefTax("TAX008");
-        assertEquals(taxCreated.getDescription(),taxBD.getDescription());
-        assertEquals(taxCreated.getPaid(),taxBD.getPaid());
-        assertEquals(taxCreated.getPrice(),taxBD.getPrice());
-        assertEquals(taxCreated.getRefTax(),tax.getRefTax());
+        assertEquals(taxCreated.getDescription(), taxBD.getDescription());
+        assertEquals(taxCreated.getPaid(), taxBD.getPaid());
+        assertEquals(taxCreated.getPrice(), taxBD.getPrice());
+        assertEquals(taxCreated.getRefTax(), tax.getRefTax());
     }
 }

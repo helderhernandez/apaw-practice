@@ -7,6 +7,8 @@ import java.util.stream.Stream;
 
 @Repository
 public interface CarPersistence {
+
     Car updateBrand(String id, String brand);
+
     Stream<Car> readAll();
 }
