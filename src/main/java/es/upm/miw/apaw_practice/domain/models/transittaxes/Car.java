@@ -5,23 +5,14 @@ import java.util.List;
 
 public class Car {
 
-    private String id;
     private String enrollment;
     private String brand;
-    private List<Accident> accidents;
-    private Owner owner;
-    private List<Tax> transitTaxes;
+    private List<String> refAccidents;
+    private String dniOwner;
+    private List<String> refTaxes;
 
     public Car() {
         //empty from framework
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public String getEnrollment() {
@@ -40,27 +31,27 @@ public class Car {
         this.brand = brand;
     }
 
-    public List<Accident> getAccidents() {
-        return accidents;
+    public List<String> getRefAccidents() {
+        return refAccidents;
     }
 
-    public void setAccidents(List<Accident> accidents) {
-        this.accidents = accidents;
+    public void setRefAccidents(List<String> refAccidents) {
+        this.refAccidents = refAccidents;
     }
 
-    public Owner getOwner() {
-        return owner;
+    public String getDniOwner() {
+        return dniOwner;
     }
 
-    public void setOwner(Owner owner) {
-        this.owner = owner;
+    public void setDniOwner(String dniOwner) {
+        this.dniOwner = dniOwner;
     }
 
-    public List<Tax> getTransitTaxes() {
-        return transitTaxes;
+    public List<String> getRefTaxes() {
+        return refTaxes;
     }
 
-    public void setTransitTaxes(List<Tax> transitTaxes) {
-        this.transitTaxes = transitTaxes;
+    public void setRefTaxes(List<String> refTaxes) {
+        this.refTaxes = refTaxes;
     }
 }

@@ -5,7 +5,6 @@ import java.time.LocalDateTime;
 
 public class Accident {
 
-    private String id;
     private String refAccident;
     private LocalDateTime date;
     private String place;
@@ -13,22 +12,6 @@ public class Accident {
     public Accident() {
         //empty from framework
     }
-
-    public Accident(String id, String refAccident, LocalDateTime date, String place) {
-        this.id = id;
-        this.refAccident = refAccident;
-        this.date = date;
-        this.place = place;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
     public String getRefAccident() {
         return refAccident;
     }

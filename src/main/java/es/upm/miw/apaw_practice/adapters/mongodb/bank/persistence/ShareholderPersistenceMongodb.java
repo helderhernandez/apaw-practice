@@ -7,6 +7,7 @@ import es.upm.miw.apaw_practice.domain.persistence_ports.bank.ShareholderPersist
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
@@ -31,5 +32,11 @@ public class ShareholderPersistenceMongodb implements ShareholderPersistence {
                 }).collect(Collectors.toList());
         this.shareholderRepository.saveAll(shareholders);
 
+    }
+
+    public List<ShareholderEntity> findValueGraterThan(BigDecimal value) {
+        return this.shareholderRepository.findAll().stream()
+                .filter(shareholder -> shareholder.getValue().compareTo(value) == 1)
+                .collect(Collectors.toList());
     }
 }
