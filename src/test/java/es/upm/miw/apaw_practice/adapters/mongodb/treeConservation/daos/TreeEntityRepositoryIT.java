@@ -21,7 +21,7 @@ public class TreeEntityRepositoryIT {
                                 "specie1".equals(tree.getSpecie()) &&
                                 tree.getRegistrationDate() != null &&
                                 tree.getRegistrationDate().isBefore(LocalDateTime.now()) &&
-                                !tree.isMonitored() &&
+                                !tree.getMonitored() &&
                                 2 == tree.getDiseaseEntities().size() &&
                                 "disease1".equals(tree.getDiseaseEntities().get(0).getName()) &&
                                 "This is the disease1".equals(tree.getDiseaseEntities().get(0).getDescription()) &&

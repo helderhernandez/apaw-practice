@@ -25,6 +25,7 @@ public class InspectionEntityRepositoryIT {
                                 "dni1".equals(inspection.getInspectorEntity().getDni()) &&
                                 "firstName1".equals(inspection.getInspectorEntity().getFirstName()) &&
                                 "lastName1".equals(inspection.getInspectorEntity().getLastName()) &&
+                                27 == inspection.getInspectorEntity().getAge() &&
                                 "email1".equals(inspection.getInspectorEntity().getEmail()) &&
                                 "phone1".equals(inspection.getInspectorEntity().getPhoneNumber())
                 ));

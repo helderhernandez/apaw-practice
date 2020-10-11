@@ -13,11 +13,11 @@ public class JourneyService {
     private JourneyPersistence journeyPersistence;
 
     @Autowired
-    public JourneyService(JourneyPersistence journeyPersistence){
+    public JourneyService(JourneyPersistence journeyPersistence) {
         this.journeyPersistence = journeyPersistence;
     }
 
-    public Stream<Journey> findAll(){
+    public Stream<Journey> findAll() {
         return this.journeyPersistence.findAll();
     }
 }

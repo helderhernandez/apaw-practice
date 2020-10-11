@@ -39,9 +39,9 @@ public class TreeConservationSeederService {
         this.diseaseRepository.saveAll(Arrays.asList(diseases));
 
         InspectorEntity[] inspectors = {
-                new InspectorEntity("dni1", "firstName1", "lastName1", "email1", "phone1"),
-                new InspectorEntity("dni2", "firstName2", "lastName2", "email2", "phone2"),
-                new InspectorEntity("dni3", "firstName3", "lastName3", "email3", "phone3")
+                new InspectorEntity("dni1", "firstName1", "lastName1", 27, "email1", "phone1"),
+                new InspectorEntity("dni2", "firstName2", "lastName2", 28, "email2", "phone2"),
+                new InspectorEntity("dni3", "firstName3", "lastName3", 29, "email3", "phone3")
         };
         this.inspectorRepository.saveAll(Arrays.asList(inspectors));
 

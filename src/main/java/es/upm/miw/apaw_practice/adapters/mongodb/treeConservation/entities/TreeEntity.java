@@ -15,7 +15,7 @@ public class TreeEntity {
     private LocalDateTime registrationDate;
     private String specie;
     private String age;
-    private boolean isMonitored;
+    private Boolean isMonitored;
     @DBRef
     private List<InspectionEntity> inspectionEntities;
     @DBRef
@@ -32,6 +32,7 @@ public class TreeEntity {
         this.age = age;
         this.inspectionEntities = inspectionEntities;
         this.diseaseEntities = diseaseEntities;
+        this.isMonitored = Boolean.FALSE;
     }
 
     public String getId() {
@@ -58,11 +59,11 @@ public class TreeEntity {
         this.age = age;
     }
 
-    public boolean isMonitored() {
+    public Boolean getMonitored() {
         return isMonitored;
     }
 
-    public void setMonitored(boolean monitored) {
+    public void setMonitored(Boolean monitored) {
         isMonitored = monitored;
     }
 

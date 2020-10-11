@@ -14,6 +14,7 @@ public class InspectorEntity {
     private String dni;
     private String firstName;
     private String lastName;
+    private Integer age;
     private String email;
     private String phoneNumber;
 
@@ -21,11 +22,12 @@ public class InspectorEntity {
         //empty from framework
     }
 
-    public InspectorEntity(String dni, String firstName, String lastName, String email, String phoneNumber) {
+    public InspectorEntity(String dni, String firstName, String lastName, Integer age, String email, String phoneNumber) {
         this.id = UUID.randomUUID().toString();
         this.dni = dni;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.age = age;
         this.email = email;
         this.phoneNumber = phoneNumber;
     }
@@ -36,6 +38,18 @@ public class InspectorEntity {
 
     public String getDni() {
         return dni;
+    }
+
+    public void setDni(String dni) {
+        this.dni = dni;
+    }
+
+    public Integer getAge() {
+        return age;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
     }
 
     public String getFirstName() {

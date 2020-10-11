@@ -4,8 +4,10 @@ import es.upm.miw.apaw_practice.adapters.mongodb.ticketbus.daos.BusRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.ticketbus.daos.TicketBusRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.ticketbus.entities.BusEntity;
 import es.upm.miw.apaw_practice.adapters.mongodb.ticketbus.entities.TicketBusEntity;
+import es.upm.miw.apaw_practice.domain.exceptions.NotFoundException;
 import es.upm.miw.apaw_practice.domain.models.ticketbus.Bus;
 import es.upm.miw.apaw_practice.domain.models.ticketbus.BusCreation;
+import es.upm.miw.apaw_practice.domain.models.ticketbus.BusTicketsDatesUpdate;
 import es.upm.miw.apaw_practice.domain.persistence_ports.ticketbus.BusPersistence;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -21,9 +23,21 @@ public class BusPersistenceMongodb implements BusPersistence {
 
     @Autowired
     public BusPersistenceMongodb(BusRepository busRepository,
-                                 TicketBusRepository ticketBusRepository){
+                                 TicketBusRepository ticketBusRepository) {
         this.busRepository = busRepository;
         this.ticketBusRepository = ticketBusRepository;
+    }
+
+    @Override
+    public List<Bus> findAll() {
+        return this.busRepository.findAll().stream().map(BusEntity::toBus).collect(Collectors.toList());
+    }
+
+    @Override
+    public Bus findByReference(String idReference) {
+        return this.busRepository.findByReference(idReference)
+                .orElseThrow(() -> new NotFoundException("Bus with reference: " + idReference + " not found"))
+                .toBus();
     }
 
     @Override
@@ -37,5 +51,23 @@ public class BusPersistenceMongodb implements BusPersistence {
         busEntity.setTickets(tickets);
 
         return this.busRepository.save(busEntity).toBus();
+    }
+
+    @Override
+    public Bus updateTicketsDates(BusTicketsDatesUpdate busTicketsDatesUpdate) {
+
+        String idReference = busTicketsDatesUpdate.getReference();
+        BusEntity bus = busRepository.findByReference(busTicketsDatesUpdate.getReference())
+                .orElseThrow(() -> new NotFoundException("Bus with reference: " + idReference + " not found"));
+
+        List<TicketBusEntity> ticketsUpdated = bus.getTickets().stream()
+                .map(ticketBusEntity -> {
+                    ticketBusEntity.setDates(busTicketsDatesUpdate.getDeparture(), busTicketsDatesUpdate.getArrive());
+                    return this.ticketBusRepository.save(ticketBusEntity);
+                }).collect(Collectors.toList());
+
+        bus.setTickets(ticketsUpdated);
+
+        return bus.toBus();
     }
 }
