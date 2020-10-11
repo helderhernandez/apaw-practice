@@ -1,6 +1,7 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.treeConservation.entities;
 
 import nonapi.io.github.classgraph.json.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
@@ -14,6 +15,7 @@ public class InspectionEntity {
     private LocalDateTime date;
     private String type;
     private String treeStatus;
+    @DBRef
     private InspectorEntity inspectorEntity;
 
     public InspectionEntity() {
