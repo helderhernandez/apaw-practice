@@ -1,5 +1,9 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.FurnitureFactory.entities;
+import es.upm.miw.apaw_practice.domain.models.FurnitureFactory.Warehouse;
+import es.upm.miw.apaw_practice.domain.models.shop.Article;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -10,9 +14,11 @@ import java.util.UUID;
 public class WarehouseEntity {
     @Id
     private String id;
+    private Boolean active;
+    @Indexed(unique = true)
     private String name;
     private String area;
-    private Boolean active;
+
     @DBRef
     private List<StaffEntity> staffEntities;
     @DBRef
@@ -103,7 +109,14 @@ public class WarehouseEntity {
     public int hashCode() {
         return Objects.hash(id);
     }
-
+    public Warehouse toWarehouse() {
+        Warehouse warehouse = new Warehouse();
+        BeanUtils.copyProperties(this, warehouse);
+        return warehouse;
+    }
+    public void fromWarehouse(Warehouse warehouse) {
+        BeanUtils.copyProperties(warehouse, this);
+    }
     @Override
     public String toString() {
         return "WarehouseEntity{" +
