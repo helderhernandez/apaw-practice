@@ -18,7 +18,7 @@ class ChallengeRepositoryIT {
     @Test
     void testFindAll(){
         List<ChallengeEntity> challengeEntityList = challengeRepository.findAll();
-        assertEquals("Get all red objects",challengeEntityList.get(0).getDescription());
+        assertEquals("Kill all enemies",challengeEntityList.get(1).getDescription());
         assertFalse(challengeEntityList.get(1).getCompleted());
         assertTrue(challengeEntityList.get(2).getCompleted());
     }
