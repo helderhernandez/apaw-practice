@@ -1,7 +1,9 @@
 package es.upm.miw.apaw_practice.adapters.rest.sportyRental;
 
+import es.upm.miw.apaw_practice.domain.models.sportyRental.ReservationSporty;
 import es.upm.miw.apaw_practice.domain.services.sportyRental.ReservationSportyService;
-import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -11,12 +13,17 @@ import org.springframework.web.bind.annotation.RestController;
 public class ReservationSportyResource {
 
     static final String RESERVATIONS_SPORTY = "/sportyRental/reservations";
-    static final String REF_RESERVATION = "{refReservation}";
+    static final String REF_RESERVATION = "/{refReservation}";
 
     private ReservationSportyService reservationSportyService;
 
-    @DeleteMapping(REF_RESERVATION)
-    public void readByRefReservation(@PathVariable String refReservation) {
-        this.reservationSportyService.readByRefReservation(refReservation);
+    @Autowired
+    public ReservationSportyResource(ReservationSportyService reservationSportyService) {
+        this.reservationSportyService = reservationSportyService;
+    }
+
+    @GetMapping(REF_RESERVATION)
+    public ReservationSporty readByRefReservation(@PathVariable String refReservation) {
+        return this.reservationSportyService.readByRefReservation(refReservation);
     }
 }
