@@ -12,7 +12,7 @@ public class DepartmentResource {
     static final String NAME_NAME = "/{name}";
     static final String UBICATION = "/ubication";
 
-    private DepartmentService departmentService;
+    private final DepartmentService departmentService;
 
     @Autowired
     public DepartmentResource(DepartmentService departmentService) {

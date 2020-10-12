@@ -3,7 +3,7 @@ package es.upm.miw.apaw_practice.domain.models.ticketbus;
 
 public class PassengerBus {
 
-    private String id;
+    private String reference;
     private String docIdentify;
     private String name;
     private String familyName;
@@ -15,12 +15,12 @@ public class PassengerBus {
         //empty from framework
     }
 
-    public String getId() {
-        return id;
+    public String getReference() {
+        return reference;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setReference(String reference) {
+        this.reference = reference;
     }
 
     public String getName() {
@@ -74,7 +74,7 @@ public class PassengerBus {
     @Override
     public String toString() {
         return "PassengerBus{" +
-                "id='" + id + '\'' +
+                "reference='" + reference + '\'' +
                 ", docIdentify='" + docIdentify + '\'' +
                 ", name='" + name + '\'' +
                 ", familyName='" + familyName + '\'' +

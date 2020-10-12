@@ -1,6 +1,5 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.transport.persistence;
 
-import es.upm.miw.apaw_practice.adapters.mongodb.shop.entities.ArticleEntity;
 import es.upm.miw.apaw_practice.adapters.mongodb.transport.daos.DepartmentRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.transport.entities.DepartmentEntity;
 import es.upm.miw.apaw_practice.domain.exceptions.NotFoundException;
@@ -14,7 +13,7 @@ import java.util.stream.Stream;
 @Repository("departmentPersistence")
 public class DepartmentPersistenceMongodb implements DepartmentPersistence {
 
-    private DepartmentRepository departmentRepository;
+    private final DepartmentRepository departmentRepository;
 
     @Autowired
     public DepartmentPersistenceMongodb(DepartmentRepository departmentRepository) {

@@ -1,7 +1,6 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.transittaxes.entities;
 
 import es.upm.miw.apaw_practice.domain.models.transittaxes.Car;
-import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;
@@ -9,6 +8,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 @Document
 public class CarEntity {
@@ -22,20 +22,20 @@ public class CarEntity {
     @DBRef
     private OwnerEntity owner;
     @DBRef
-    private List<TaxEntity> transitTaxes;
+    private List<TaxEntity> taxes;
 
     public CarEntity() {
         //empty from framework
     }
 
     public CarEntity(String id, String enrollment, String brand, List<AccidentEntity> accidents,
-                     OwnerEntity owner, List<TaxEntity> transitTaxes) {
+                     OwnerEntity owner, List<TaxEntity> taxes) {
         this.id = id;
         this.enrollment = enrollment;
         this.brand = brand;
         this.accidents = accidents;
         this.owner = owner;
-        this.transitTaxes = transitTaxes;
+        this.taxes = taxes;
     }
 
     public String getBrand() {
@@ -78,12 +78,12 @@ public class CarEntity {
         this.owner = owner;
     }
 
-    public List<TaxEntity> getTransitTaxes() {
-        return transitTaxes;
+    public List<TaxEntity> getTaxes() {
+        return taxes;
     }
 
-    public void setTransitTaxes(List<TaxEntity> transitTaxes) {
-        this.transitTaxes = transitTaxes;
+    public void setTaxes(List<TaxEntity> taxes) {
+        this.taxes = taxes;
     }
 
     @Override
@@ -96,12 +96,12 @@ public class CarEntity {
                 Objects.equals(brand, that.brand) &&
                 Objects.equals(accidents, that.accidents) &&
                 Objects.equals(owner, that.owner) &&
-                Objects.equals(transitTaxes, that.transitTaxes);
+                Objects.equals(taxes, that.taxes);
     }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id, enrollment, brand, accidents, owner, transitTaxes);
+        return Objects.hash(id, enrollment, brand, accidents, owner, taxes);
     }
 
     @Override
@@ -112,13 +112,23 @@ public class CarEntity {
                 ", brand='" + brand + '\'' +
                 ", accidents=" + accidents +
                 ", owner=" + owner +
-                ", transitTaxes=" + transitTaxes +
+                ", transitTaxes=" + taxes +
                 '}';
     }
 
     public Car toCar() {
+        List<String> listAccidents = this.accidents.stream()
+                .map(AccidentEntity::getRefAccident)
+                .collect(Collectors.toList());
+        List<String> listTaxes = this.taxes.stream()
+                .map(TaxEntity::getRefTax)
+                .collect(Collectors.toList());
         Car car = new Car();
-        BeanUtils.copyProperties(this, car);
+        car.setEnrollment(this.enrollment);
+        car.setRefAccidents(listAccidents);
+        car.setRefTaxes(listTaxes);
+        car.setBrand(this.brand);
+        car.setDniOwner(this.owner.getDni());
         return car;
     }
 }

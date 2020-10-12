@@ -1,5 +1,9 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.FurnitureFactory.entities;
+import es.upm.miw.apaw_practice.domain.models.FurnitureFactory.Warehouse;
+import es.upm.miw.apaw_practice.domain.models.shop.Article;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -10,9 +14,11 @@ import java.util.UUID;
 public class WarehouseEntity {
     @Id
     private String id;
+    private Boolean active;
+    @Indexed(unique = true)
     private String name;
     private String area;
-    private Boolean isActive;
+
     @DBRef
     private List<StaffEntity> staffEntities;
     @DBRef
@@ -33,11 +39,11 @@ public class WarehouseEntity {
         this.furnitureEntity = furnitureEntity;
     }
 
-    public WarehouseEntity(String name, String area, Boolean isActive, List<StaffEntity> staffEntities, List<AddressEntity> addressEntity, List<FurnitureEntity> furnitureEntity) {
+    public WarehouseEntity(String name, String area, Boolean active, List<StaffEntity> staffEntities, List<AddressEntity> addressEntity, List<FurnitureEntity> furnitureEntity) {
         this.id = UUID.randomUUID().toString();
         this.name=name;
         this.area = area;
-        this.isActive = isActive;
+        this.active = active;
         this.staffEntities = staffEntities;
         this.addressEntity=addressEntity;
         this.furnitureEntity=furnitureEntity;
@@ -68,11 +74,11 @@ public class WarehouseEntity {
     }
 
     public Boolean getActive() {
-        return isActive;
+        return active;
     }
 
     public void setActive(Boolean active) {
-        isActive = active;
+        this.active = active;
     }
 
     public List<StaffEntity> getEmployeeEntity() {
@@ -103,14 +109,21 @@ public class WarehouseEntity {
     public int hashCode() {
         return Objects.hash(id);
     }
-
+    public Warehouse toWarehouse() {
+        Warehouse warehouse = new Warehouse();
+        BeanUtils.copyProperties(this, warehouse);
+        return warehouse;
+    }
+    public void fromWarehouse(Warehouse warehouse) {
+        BeanUtils.copyProperties(warehouse, this);
+    }
     @Override
     public String toString() {
         return "WarehouseEntity{" +
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 ", area='" + area + '\'' +
-                ", isActive=" + isActive +
+                ", active=" + active +
                 ", employeeEntity=" + staffEntities +
                 ", addressEntity=" + addressEntity +
                 ", furnitureEntity=" + furnitureEntity +

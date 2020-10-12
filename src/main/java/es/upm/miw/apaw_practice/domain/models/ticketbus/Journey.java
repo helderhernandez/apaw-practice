@@ -5,14 +5,10 @@ import java.time.LocalDateTime;
 
 public class Journey {
 
-
-
     private String reference;
     private String departure;
     private String arrive;
     private Integer numStops;
-
-
     private LocalDateTime registrationDate;
 
     public Journey() {

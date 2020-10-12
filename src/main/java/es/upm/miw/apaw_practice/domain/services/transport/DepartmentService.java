@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class DepartmentService {
 
-    private DepartmentPersistence departmentPersistence;
+    private final DepartmentPersistence departmentPersistence;
 
     @Autowired
     public DepartmentService(DepartmentPersistence departmentPersistence) {

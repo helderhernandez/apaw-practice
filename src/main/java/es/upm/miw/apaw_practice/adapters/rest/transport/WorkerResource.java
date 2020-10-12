@@ -14,7 +14,7 @@ public class WorkerResource {
     static final String WORKERS = "/transport/workers";
     static final String DNI_DNI = "/{dni}";
 
-    private WorkerService workerService;
+    private final WorkerService workerService;
 
     @Autowired
     public WorkerResource(WorkerService workerService) {
