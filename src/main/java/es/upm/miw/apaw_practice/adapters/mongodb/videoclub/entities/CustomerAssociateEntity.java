@@ -18,9 +18,7 @@ public class CustomerAssociateEntity {
     @Indexed(unique = true)
     private String documentId;
     private String name;
-    private String familyName;
     private LocalDate birthday;
-    private String phone;
     private LocalDateTime registrationDate;
     @DBRef
     private List<RentalFilmEntity> films;
@@ -29,13 +27,11 @@ public class CustomerAssociateEntity {
         // empty from framework
     }
 
-    public CustomerAssociateEntity(String documentId, String name, String familyName, LocalDate birthday, String phone, List<RentalFilmEntity> films) {
+    public CustomerAssociateEntity(String documentId, String name, LocalDate birthday, List<RentalFilmEntity> films) {
         this.id = UUID.randomUUID().toString();
         this.documentId = documentId;
         this.name = name;
-        this.familyName = familyName;
         this.birthday = birthday;
-        this.phone = phone;
         this.registrationDate = LocalDateTime.now();
         this.films = films;
     }
@@ -56,28 +52,12 @@ public class CustomerAssociateEntity {
         this.name = name;
     }
 
-    public String getFamilyName() {
-        return familyName;
-    }
-
-    public void setFamilyName(String familyName) {
-        this.familyName = familyName;
-    }
-
     public LocalDate getBirthday() {
         return birthday;
     }
 
     public void setBirthday(LocalDate birthday) {
         this.birthday = birthday;
-    }
-
-    public String getPhone() {
-        return phone;
-    }
-
-    public void setPhone(String phone) {
-        this.phone = phone;
     }
 
     public LocalDateTime getRegistrationDate() {
@@ -106,9 +86,7 @@ public class CustomerAssociateEntity {
         return id.equals(customerAssociateEntity.id) &&
                 documentId.equals(customerAssociateEntity.documentId) &&
                 name.equals(customerAssociateEntity.name) &&
-                familyName.equals(customerAssociateEntity.familyName) &&
                 birthday.equals(customerAssociateEntity.birthday) &&
-                phone.equals(customerAssociateEntity.phone) &&
                 registrationDate.equals(customerAssociateEntity.registrationDate) &&
                 films.equals(customerAssociateEntity.films);
     }
@@ -124,9 +102,7 @@ public class CustomerAssociateEntity {
                 "id='" + id + '\'' +
                 ", documentId='" + documentId + '\'' +
                 ", name='" + name + '\'' +
-                ", familyName='" + familyName + '\'' +
                 ", birthday=" + birthday +
-                ", phone=" + phone +
                 ", registrationDate=" + registrationDate +
                 ", films=" + films +
                 '}';
