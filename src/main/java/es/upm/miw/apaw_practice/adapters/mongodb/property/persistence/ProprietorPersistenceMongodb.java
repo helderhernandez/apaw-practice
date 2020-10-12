@@ -10,7 +10,7 @@ import java.util.stream.Stream;
 
 @Repository("proprietorPersistence")
 public class ProprietorPersistenceMongodb implements ProprietorPersistence {
-    private ProprietorRepository proprietorRepository;
+    private final ProprietorRepository proprietorRepository;
 
     @Autowired
     public ProprietorPersistenceMongodb(ProprietorRepository proprietorRepository) {

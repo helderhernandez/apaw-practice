@@ -1,14 +1,19 @@
 package es.upm.miw.apaw_practice.domain.models.property;
 
-public class PropertyStaff {
-
+public class PropertyStaffCreation {
     private String id;
     private String name;
     private String dni;
     private String description;
 
-    public PropertyStaff() {
+    public PropertyStaffCreation() {
 
+    }
+
+    public PropertyStaffCreation(String name, String dni, String description) {
+        this.name = name;
+        this.dni = dni;
+        this.description = description;
     }
 
     public String getId() {
@@ -46,10 +51,10 @@ public class PropertyStaff {
     @Override
     public String toString() {
         return "PropertyStaff{" +
-                "id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 ", dni='" + dni + '\'' +
                 ", description='" + description + '\'' +
                 '}';
     }
+
 }
