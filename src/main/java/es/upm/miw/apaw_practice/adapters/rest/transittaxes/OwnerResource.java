@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RestController
 @RequestMapping(OwnerResource.OWNERS)
 public class OwnerResource {
+
     static final String OWNERS = "/transittaxes/owners";
     static final String ID_ID = "/{id}";
 

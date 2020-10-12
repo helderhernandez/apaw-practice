@@ -9,13 +9,13 @@ import es.upm.miw.apaw_practice.adapters.mongodb.music.entities.AlbumEntity;
 import es.upm.miw.apaw_practice.adapters.mongodb.music.entities.MusicEntity;
 import es.upm.miw.apaw_practice.adapters.mongodb.music.entities.SingerEntity;
 import es.upm.miw.apaw_practice.adapters.mongodb.music.entities.StyleEntity;
+import es.upm.miw.apaw_practice.domain.models.music.Style;
 import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.util.ArrayList;
 import java.util.Arrays;
 
 @Service
@@ -49,9 +49,9 @@ public class MusicSeederService {
         this.singerRepository.saveAll(Arrays.asList(singers));
 
         StyleEntity[] styles = {
-                new StyleEntity("POP","Pop is a genre of popular music that originated in its modern form during the mid-1950s in the United States and the United Kingdom."),
-                new StyleEntity("BLUES","Blues is a music genre and musical form which was originated in the Deep South of the United States around the 1860s by African-Americans from roots in African musical traditions."),
-                new StyleEntity("HIP HOP","Hip hop music, also known as rap music, is a genre of popular music developed in the United States by inner-city African Americans and Latino Americans in the Bronx borough of New York City in the 1970s.")
+                new StyleEntity(new Style("POP","Pop is a genre of popular music that originated in its modern form during the mid-1950s in the United States and the United Kingdom.")),
+                new StyleEntity(new Style("BLUES","Blues is a music genre and musical form which was originated in the Deep South of the United States around the 1860s by African-Americans from roots in African musical traditions.")),
+                new StyleEntity(new Style("HIP HOP","Hip hop music, also known as rap music, is a genre of popular music developed in the United States by inner-city African Americans and Latino Americans in the Bronx borough of New York City in the 1970s."))
 
         };
         this.styleRepository.saveAll(Arrays.asList(styles));

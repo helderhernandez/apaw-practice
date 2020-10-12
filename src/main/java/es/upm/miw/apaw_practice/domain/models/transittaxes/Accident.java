@@ -12,6 +12,7 @@ public class Accident {
     public Accident() {
         //empty from framework
     }
+
     public String getRefAccident() {
         return refAccident;
     }

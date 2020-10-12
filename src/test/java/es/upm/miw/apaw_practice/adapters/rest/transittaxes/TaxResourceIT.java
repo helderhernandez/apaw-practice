@@ -10,6 +10,7 @@ import org.springframework.web.reactive.function.BodyInserters;
 
 import java.math.BigDecimal;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @RestTestConfig
@@ -37,7 +38,6 @@ public class TaxResourceIT {
 
     @Test
     void testCreateConflict() {
-
         Tax tax = new Tax();
         tax.setRefTax("TAX004");
         tax.setDescription("REPEAT");
@@ -49,5 +49,19 @@ public class TaxResourceIT {
                 .body(BodyInserters.fromValue(tax))
                 .exchange()
                 .expectStatus().isEqualTo(HttpStatus.CONFLICT);
+    }
+
+    @Test
+    void testFindPriceTotalTaxesByIdCar() {
+        this.webTestClient
+                .get()
+                .uri(uriBuilder ->
+                        uriBuilder.path(TaxResource.TAXES + TaxResource.SEARCH)
+                                .queryParam("q", "idCar:02")
+                                .build())
+                .exchange()
+                .expectStatus().isOk()
+                .expectBodyList(Tax.class)
+                .value(tax -> assertEquals(new BigDecimal("650.0"), tax.get(0).getPrice()));
     }
 }
