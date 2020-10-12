@@ -6,8 +6,6 @@ import java.util.List;
 
 public class ReservationCreationSporty {
 
-    private LocalDateTime dateReservation;
-    private String refReservation;
     private BigDecimal amount;
     private Boolean paidOut;
     private List<CustomerCreationSporty> customersCreationSporty;
@@ -17,30 +15,12 @@ public class ReservationCreationSporty {
     public ReservationCreationSporty() {
     }
 
-    public ReservationCreationSporty(LocalDateTime dateReservation, String refReservation, BigDecimal amount, Boolean paidOut, List<CustomerCreationSporty> customersCreationSporty, CategoryCreationSporty categoryCreationSporty, List<DiscountCreationSporty> discountsCreationSporty) {
-        this.dateReservation = dateReservation;
-        this.refReservation = refReservation;
+    public ReservationCreationSporty(BigDecimal amount, Boolean paidOut, List<CustomerCreationSporty> customersCreationSporty, CategoryCreationSporty categoryCreationSporty, List<DiscountCreationSporty> discountsCreationSporty) {
         this.amount = amount;
         this.paidOut = paidOut;
         this.customersCreationSporty = customersCreationSporty;
         this.categoryCreationSporty = categoryCreationSporty;
         this.discountsCreationSporty = discountsCreationSporty;
-    }
-
-    public LocalDateTime getDateReservation() {
-        return dateReservation;
-    }
-
-    public void setDateReservation(LocalDateTime dateReservation) {
-        this.dateReservation = dateReservation;
-    }
-
-    public String getRefReservation() {
-        return refReservation;
-    }
-
-    public void setRefReservation(String refReservation) {
-        this.refReservation = refReservation;
     }
 
     public BigDecimal getAmount() {
@@ -86,9 +66,7 @@ public class ReservationCreationSporty {
     @Override
     public String toString() {
         return "ReservationCreationSporty{" +
-                ", dateReservation=" + dateReservation +
-                ", refReservation='" + refReservation + '\'' +
-                ", amount=" + amount +
+                "amount=" + amount +
                 ", paidOut=" + paidOut +
                 ", customersCreationSporty=" + customersCreationSporty +
                 ", categoryCreationSporty=" + categoryCreationSporty +

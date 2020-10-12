@@ -27,14 +27,10 @@ public class ReservationSportyPersistenceMongodb implements ReservationSportyPer
     private DiscountSportyRepository discountSportyRepository;
 
     @Autowired
-    public ReservationSportyPersistenceMongodb(ReservationSportyRepository reservationSportyRepository) {
-        this.reservationSportyRepository = reservationSportyRepository;
-    }
-
-    @Autowired
-    public ReservationSportyPersistenceMongodb(ReservationSportyRepository reservationSportyRepository, CategorySportyRepository categorySportyRepository,
+    public ReservationSportyPersistenceMongodb(ReservationSportyRepository reservationSportyRepository, CustomerSportyRepository customerSportyRepository, CategorySportyRepository categorySportyRepository,
                                                DiscountSportyRepository discountSportyRepository) {
         this.reservationSportyRepository = reservationSportyRepository;
+        this.customerSportyRepository = customerSportyRepository;
         this.categorySportyRepository = categorySportyRepository;
         this.discountSportyRepository = discountSportyRepository;
     }
