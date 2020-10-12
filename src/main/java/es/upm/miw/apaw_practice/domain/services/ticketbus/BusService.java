@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Stream;
 
 @Service
 public class BusService {
@@ -29,5 +30,9 @@ public class BusService {
 
     public List<Bus> findAll() {
         return this.busPersistence.findAll();
+    }
+
+    public Stream<String> findNamePassengersByReference(String reference) {
+        return this.busPersistence.findNamePassengersByReference(reference);
     }
 }
