@@ -40,7 +40,9 @@ public class FilmForumSeederService {
         FilmCommentEntity[] comments = {
                 new FilmCommentEntity("1", users[0], "content1", 10, LocalDateTime.of(2020, 10, 7, 19, 0)),
                 new FilmCommentEntity("2", users[0], "content2", 60, LocalDateTime.now()),
-                new FilmCommentEntity("3", users[1], "content3", 100, LocalDateTime.now())
+                new FilmCommentEntity("3", users[1], "content3", 100, LocalDateTime.now()),
+                new FilmCommentEntity("4", users[1], "content4", 50, LocalDateTime.now()),
+                new FilmCommentEntity("5", users[2], "content5", 100, LocalDateTime.now())
         };
         this.filmCommentRepository.saveAll(Arrays.asList(comments));
 
