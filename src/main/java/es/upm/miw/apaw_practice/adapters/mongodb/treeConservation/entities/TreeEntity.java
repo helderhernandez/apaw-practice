@@ -1,12 +1,16 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.treeConservation.entities;
 
+import es.upm.miw.apaw_practice.domain.models.treeConservation.Inspection;
+import es.upm.miw.apaw_practice.domain.models.treeConservation.Tree;
 import nonapi.io.github.classgraph.json.Id;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Document
 public class TreeEntity {
@@ -104,5 +108,17 @@ public class TreeEntity {
                 ", inspectionEntities=" + inspectionEntities +
                 ", diseaseEntities=" + diseaseEntities +
                 '}';
+    }
+
+    public Tree toTree() {
+        Tree tree = new Tree();
+        BeanUtils.copyProperties(this, tree, "inspectionEntities", "diseaseEntities");
+        List<Inspection> inspections = this.inspectionEntities.stream().
+                map(InspectionEntity::toInspection).collect(Collectors.toList());
+        tree.setInspections(inspections);
+        List<String> diseasesName = this.diseaseEntities.stream().
+                map(DiseaseEntity::getName).collect(Collectors.toList());
+        tree.setDiseasesName(diseasesName);
+        return tree;
     }
 }
