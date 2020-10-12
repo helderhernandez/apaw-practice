@@ -1,24 +1,18 @@
 package es.upm.miw.apaw_practice.domain.models.filmforum;
 
-public class FilmActor {
-    private String id;
+public class FilmActorAgeUpdating {
     private String name;
     private String surname;
     private Integer age;
 
-    public FilmActor(String id, String name, String surname, Integer age) {
-        this.id = id;
+    public FilmActorAgeUpdating() {
+        // Empty for Framework
+    }
+
+    public FilmActorAgeUpdating(String name, String surname, Integer age) {
         this.name = name;
         this.surname = surname;
         this.age = age;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -43,14 +37,5 @@ public class FilmActor {
 
     public void setAge(Integer age) {
         this.age = age;
-    }
-
-    @Override
-    public String toString() {
-        return "FilmActor{" +
-                "name='" + name + '\'' +
-                ", surname='" + surname + '\'' +
-                ", age=" + age +
-                '}';
     }
 }
