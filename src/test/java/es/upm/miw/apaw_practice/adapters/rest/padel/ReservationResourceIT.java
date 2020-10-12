@@ -13,7 +13,7 @@ public class ReservationResourceIT {
     private WebTestClient webTestClient;
 
     @Test
-    void testReadAll(){
+    void testReadAll() {
         this.webTestClient
                 .get()
                 .uri(ReservationResource.RESERVATIONS)

@@ -13,7 +13,7 @@ public class Bed {
     private LocalDateTime internedDate;
     private RoomEntity room;
 
-    public Bed(){
+    public Bed() {
         //empty for framework
     }
 

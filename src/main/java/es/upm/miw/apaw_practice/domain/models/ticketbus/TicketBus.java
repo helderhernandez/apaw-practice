@@ -6,26 +6,26 @@ import java.time.LocalDateTime;
 
 public class TicketBus {
 
-    private String id;
+    private String reference;
     private Integer seat;
     private LocalDateTime departureTime;
     private LocalDateTime arriveTime;
     private BigDecimal price;
-
-
     private LocalDateTime registrationDate;
+
+    private PassengerBus passenger;
 
 
     public TicketBus() {
         //empty from framework
     }
 
-    public String getId() {
-        return id;
+    public String getReference() {
+        return reference;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setReference(String reference) {
+        this.reference = reference;
     }
 
     public Integer getSeat() {
@@ -69,10 +69,18 @@ public class TicketBus {
         this.registrationDate = registrationDate;
     }
 
+    public PassengerBus getPassenger() {
+        return passenger;
+    }
+
+    public void setPassenger(PassengerBus passenger) {
+        this.passenger = passenger;
+    }
+
     @Override
     public String toString() {
         return "TicketBus{" +
-                "id='" + id + '\'' +
+                "reference='" + reference + '\'' +
                 ", seat=" + seat +
                 ", departureTime=" + departureTime +
                 ", arriveTime=" + arriveTime +

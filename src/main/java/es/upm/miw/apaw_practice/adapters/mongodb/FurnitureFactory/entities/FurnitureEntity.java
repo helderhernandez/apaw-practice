@@ -1,7 +1,6 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.FurnitureFactory.entities;
 
 import es.upm.miw.apaw_practice.domain.models.FurnitureFactory.Furniture;
-import es.upm.miw.apaw_practice.domain.models.school.Student;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 

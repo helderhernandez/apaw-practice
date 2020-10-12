@@ -1,28 +1,28 @@
 package es.upm.miw.apaw_practice.domain.models.factory;
 
 public class MachineItem {
-    private Boolean isActive;
+    private Boolean active;
 
     public MachineItem() {
         //empty for framework
     }
 
-    public MachineItem(Boolean isActive) {
-        this.isActive = isActive;
+    public MachineItem(Boolean active) {
+        this.active = active;
     }
 
     public Boolean getActive() {
-        return isActive;
+        return active;
     }
 
     public void setActive(Boolean active) {
-        isActive = active;
+        this.active = active;
     }
 
     @Override
     public String toString() {
         return "MachineItem{" +
-                "isActive=" + isActive +
+                "active=" + active +
                 '}';
     }
 }

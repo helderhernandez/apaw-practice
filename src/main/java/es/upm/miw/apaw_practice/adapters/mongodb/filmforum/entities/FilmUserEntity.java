@@ -1,11 +1,13 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.filmforum.entities;
 
+import es.upm.miw.apaw_practice.domain.models.filmforum.FilmUser;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document
 public class FilmUserEntity {
-    @Id private String id;
+    @Id
+    private String id;
     private String username;
     private String email;
 
@@ -41,6 +43,10 @@ public class FilmUserEntity {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public FilmUser toFilmUser() {
+        return new FilmUser(username, email);
     }
 
     @Override

@@ -5,8 +5,6 @@ import java.util.List;
 
 public class BusCreation {
 
-    private String id;
-    private String reference;
     private String company;
     private Integer capacity;
     private Boolean accesibility;
@@ -19,20 +17,11 @@ public class BusCreation {
         // empty from framework
     }
 
-    public BusCreation(String reference, String company, Integer capacity, Boolean accesibility, Boolean wifi) {
-        this.reference = reference;
+    public BusCreation(String company, Integer capacity, Boolean accesibility, Boolean wifi) {
         this.company = company;
         this.capacity = capacity;
         this.accesibility = accesibility;
         this.wifi = wifi;
-    }
-
-    public String getReference() {
-        return reference;
-    }
-
-    public void setReference(String reference) {
-        this.reference = reference;
     }
 
     public Boolean getAccesibility() {
@@ -67,14 +56,6 @@ public class BusCreation {
         this.registrationDate = registrationDate;
     }
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
     public Integer getCapacity() {
         return capacity;
     }
@@ -102,9 +83,7 @@ public class BusCreation {
     @Override
     public String toString() {
         return "BusCreation{" +
-                "id='" + id + '\'' +
-                ", reference='" + reference + '\'' +
-                ", company='" + company + '\'' +
+                "company='" + company + '\'' +
                 ", capacity=" + capacity +
                 ", accesibility=" + accesibility +
                 ", wifi=" + wifi +

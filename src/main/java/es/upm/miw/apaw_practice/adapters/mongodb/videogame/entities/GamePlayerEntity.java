@@ -1,11 +1,10 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.videogame.entities;
 
-import es.upm.miw.apaw_practice.domain.models.airport.Plane;
-import es.upm.miw.apaw_practice.domain.models.shop.Article;
 import es.upm.miw.apaw_practice.domain.models.videogame.Challenge;
 import es.upm.miw.apaw_practice.domain.models.videogame.GamePlayer;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
@@ -23,6 +22,7 @@ public class GamePlayerEntity {
     private LocalDateTime signUpDate;
     private Integer points;
     private Boolean isPremiumPlayer;
+    @DBRef
     private List<ChallengeEntity> challengeEntities;
 
     public GamePlayerEntity() {
@@ -79,7 +79,7 @@ public class GamePlayerEntity {
         this.challengeEntities = challengeEntities;
     }
 
-    public GamePlayer toGamePlayer(){
+    public GamePlayer toGamePlayer() {
         GamePlayer gamePlayer = new GamePlayer();
         BeanUtils.copyProperties(this, gamePlayer, "challengeEntities");
         List<Challenge> challengeList = this.challengeEntities.stream()
@@ -102,7 +102,6 @@ public class GamePlayerEntity {
     public int hashCode() {
         return Objects.hash(id, nickName);
     }
-
 
 
     @Override

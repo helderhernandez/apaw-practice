@@ -7,5 +7,7 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface GameDeveloperPersistence {
 
-    GameDeveloper create (GameDeveloperCreation gameDeveloperCreation);
+    GameDeveloper create(GameDeveloperCreation gameDeveloperCreation);
+
+    GameDeveloper updatePhone(String id, Integer phone);
 }

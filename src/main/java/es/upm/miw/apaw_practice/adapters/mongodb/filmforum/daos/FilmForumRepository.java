@@ -7,5 +7,7 @@ import java.util.List;
 import java.util.Optional;
 
 public interface FilmForumRepository extends MongoRepository<FilmForumEntity, String> {
-    Optional<List<FilmForumEntity>> findByYear(Integer year);
+    List<FilmForumEntity> findByYear(Integer year);
+
+    Optional<FilmForumEntity> findByName(String name);
 }

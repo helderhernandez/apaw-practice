@@ -5,7 +5,7 @@ public class IllnessContagiousUpdating {
     private Integer phase;
     private Boolean contagious;
 
-    public IllnessContagiousUpdating(){
+    public IllnessContagiousUpdating() {
         //empty for framework
     }
 

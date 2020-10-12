@@ -11,7 +11,7 @@ public class Room {
     private Integer floor;
     private List<PatientEntity> patientEntities;
 
-    public Room(){
+    public Room() {
         //empty for framework
     }
 

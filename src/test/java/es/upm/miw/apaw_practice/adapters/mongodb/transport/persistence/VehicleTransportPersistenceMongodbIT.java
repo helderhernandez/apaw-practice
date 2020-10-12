@@ -21,13 +21,23 @@ public class VehicleTransportPersistenceMongodbIT {
     @Test
     void testCreateAndRead() {
         ExtraEntity[] extras = {
-                new ExtraEntity("1",1, true),
-                new ExtraEntity("2",2, false)
+                ExtraEntity.builder("1")
+                        .workedHours(1)
+                        .paid(true)
+                        .build(),
+                ExtraEntity.builder("2")
+                        .workedHours(2)
+                        .paid(false)
+                        .build()
         };
-        WorkerEntity worker =
-                new WorkerEntity("nameTest", "telephoneTest", "dniTest", Arrays.asList(extras[0], extras[1]) );
+        WorkerEntity worker = WorkerEntity.builder()
+                .name("nameTest")
+                .telephone("telephoneTest")
+                .dni("dniTest")
+                .extraEntities(Arrays.asList(extras[0], extras[1]))
+                .build();
         VehicleTransport vehicleTransport =
-                new VehicleTransport("brandTest","modelTest","plateTest", LocalDate.now(), worker);
+                new VehicleTransport("brandTest", "modelTest", "plateTest", LocalDate.now(), worker);
         this.vehicleTransportPersistence.create(vehicleTransport);
         VehicleTransport vehicleBD = this.vehicleTransportPersistence.readByPlate("plateTest");
         assertEquals("brandTest", vehicleBD.getBrand());

@@ -1,16 +1,21 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.filmforum.entities;
 
+import es.upm.miw.apaw_practice.domain.models.filmforum.FilmForum;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Document
 public class FilmForumEntity {
-    @Id private String id;
-    @DBRef private List<FilmActorEntity> filmActors;
-    @DBRef private List<FilmCommentEntity> filmComments;
+    @Id
+    private String id;
+    @DBRef
+    private List<FilmActorEntity> filmActors;
+    @DBRef
+    private List<FilmCommentEntity> filmComments;
     private String name;
     private Integer year;
     private Boolean isForAllPublic;
@@ -94,6 +99,12 @@ public class FilmForumEntity {
 
     public void setGenre(String genre) {
         this.genre = genre;
+    }
+
+    public FilmForum toFilmForum() {
+        return new FilmForum(filmActors.stream().map(FilmActorEntity::toFilmActor).collect(Collectors.toList())
+                , filmComments.stream().map(FilmCommentEntity::toFilmComment).collect(Collectors.toList()),
+                name, year, isForAllPublic, duration, genre);
     }
 
     @Override

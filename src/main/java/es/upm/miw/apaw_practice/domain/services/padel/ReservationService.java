@@ -12,7 +12,7 @@ public class ReservationService {
     private ReservationPersistence reservationPersistence;
 
     @Autowired
-    public ReservationService(ReservationPersistence reservationPersistence){
+    public ReservationService(ReservationPersistence reservationPersistence) {
         this.reservationPersistence = reservationPersistence;
     }
 

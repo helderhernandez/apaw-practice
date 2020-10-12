@@ -1,6 +1,8 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.ticketbus.daos;
 
 import es.upm.miw.apaw_practice.TestConfig;
+import es.upm.miw.apaw_practice.adapters.mongodb.ticketbus.TicketBusSeederService;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -12,13 +14,24 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class TicketBusEntityRepositoryIT {
 
     @Autowired
+    private TicketBusSeederService ticketBusSeederService;
+
+    @Autowired
     private TicketBusRepository ticketBusRepository;
+
+
+    @AfterEach
+    void resetBD() {
+        ticketBusSeederService.deleteAll();
+        ticketBusSeederService.seedDatabase();
+    }
 
     @Test
     void testCreateAndRead() {
         assertTrue(this.ticketBusRepository.findAll().stream()
                 .anyMatch(ticket ->
-                        Integer.valueOf(11).equals(ticket.getSeat()) &&
+                        ticket.getId() != null &&
+                                Integer.valueOf(11).equals(ticket.getSeat()) &&
                                 ticket.getDepartureTime() == null &&
                                 ticket.getArriveTime() == null &&
                                 new BigDecimal("30.99").equals(ticket.getPrice()) &&

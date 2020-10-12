@@ -4,7 +4,6 @@ import es.upm.miw.apaw_practice.adapters.mongodb.hospital.daos.RoomRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.hospital.entities.RoomEntity;
 import es.upm.miw.apaw_practice.domain.models.hospital.Room;
 import es.upm.miw.apaw_practice.domain.persistence_ports.hospital.RoomPersistence;
-import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 

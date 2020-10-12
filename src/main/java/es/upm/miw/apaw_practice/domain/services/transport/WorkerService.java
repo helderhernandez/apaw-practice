@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class WorkerService {
 
-    private WorkerPersistence workerPersistence;
+    private final WorkerPersistence workerPersistence;
 
     @Autowired
     public WorkerService(WorkerPersistence workerPersistence) {

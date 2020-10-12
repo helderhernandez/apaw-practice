@@ -1,5 +1,6 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.videogame;
 
+import es.upm.miw.apaw_practice.adapters.mongodb.videogame.daos.ChallengeRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.videogame.daos.GameDeveloperRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.videogame.daos.GamePlayerRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.videogame.daos.LevelRepository;
@@ -22,6 +23,8 @@ public class VideogameSeederService {
     private GamePlayerRepository gamePlayerRepository;
     @Autowired
     private LevelRepository levelRepository;
+    @Autowired
+    private ChallengeRepository challengeRepository;
 
 
     public void seedDataBase() {
@@ -33,6 +36,8 @@ public class VideogameSeederService {
                 new ChallengeEntity("take the flag from the top of the castle ", true)
         };
 
+        this.challengeRepository.saveAll((Arrays.asList(challengeEntities)));
+
         GameDeveloperEntity[] gameDeveloperEntities = {
                 new GameDeveloperEntity("Pedro", "pedrofernandez@hotmail.com", 667659345),
                 new GameDeveloperEntity("Alicia", "aliciamartinez@gmail.com", 654331290)
@@ -43,7 +48,9 @@ public class VideogameSeederService {
         GamePlayerEntity[] gamePlayerEntities = {
                 new GamePlayerEntity("marta06", 10, false, Arrays.asList(challengeEntities[0], challengeEntities[1])),
                 new GamePlayerEntity("natcas", 300, true, Arrays.asList(challengeEntities[1], challengeEntities[2])),
-                new GamePlayerEntity("martin_db", 50, false, Arrays.asList(challengeEntities[0]))
+                new GamePlayerEntity("martin_db", 50, false, Arrays.asList(challengeEntities[0])),
+                new GamePlayerEntity("a89", 200,true,Arrays.asList(challengeEntities[2]))
+
         };
 
         this.gamePlayerRepository.saveAll(Arrays.asList(gamePlayerEntities));
@@ -62,5 +69,6 @@ public class VideogameSeederService {
         this.levelRepository.deleteAll();
         this.gamePlayerRepository.deleteAll();
         this.gameDeveloperRepository.deleteAll();
+        this.challengeRepository.deleteAll();
     }
 }

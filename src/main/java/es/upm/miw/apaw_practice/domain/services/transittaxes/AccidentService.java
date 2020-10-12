@@ -5,6 +5,8 @@ import es.upm.miw.apaw_practice.domain.persistence_ports.transittaxes.AccidentPe
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.stream.Stream;
+
 @Service
 public class AccidentService {
 
@@ -16,6 +18,14 @@ public class AccidentService {
     }
 
     public Accident read(String id) {
-        return this.accidentPersistence.read(id);
+        return this.accidentPersistence.readById(id);
+    }
+
+    public Accident updatePlace(Accident accident) {
+        return this.accidentPersistence.updatePlace(accident);
+    }
+
+    public Stream<Accident> findRefAccidentsByNameOwner(String nameOwnerCar) {
+        return this.accidentPersistence.findRefAccidentsByNameOwner(nameOwnerCar);
     }
 }

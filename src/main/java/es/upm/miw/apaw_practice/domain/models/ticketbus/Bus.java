@@ -6,7 +6,6 @@ import java.util.List;
 
 public class Bus {
 
-    private String id;
     private String reference;
     private String company;
     private Integer capacity;
@@ -20,11 +19,11 @@ public class Bus {
         // empty from framework
     }
 
-    public List<TicketBus> getTickets(){
+    public List<TicketBus> getTickets() {
         return this.tickets;
     }
 
-    public void setTickets(List<TicketBus> tickets){
+    public void setTickets(List<TicketBus> tickets) {
         this.tickets = tickets;
     }
 
@@ -68,14 +67,6 @@ public class Bus {
         this.registrationDate = registrationDate;
     }
 
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
-    }
-
     public Integer getCapacity() {
         return capacity;
     }
@@ -84,11 +75,14 @@ public class Bus {
         this.capacity = capacity;
     }
 
+    public void saveTicketBus(TicketBus ticketBus) {
+        this.tickets.add(ticketBus);
+    }
+
     @Override
     public String toString() {
         return "Bus{" +
-                "id='" + id + '\'' +
-                ", reference='" + reference + '\'' +
+                "reference='" + reference + '\'' +
                 ", company='" + company + '\'' +
                 ", capacity=" + capacity +
                 ", accesibility=" + accesibility +
