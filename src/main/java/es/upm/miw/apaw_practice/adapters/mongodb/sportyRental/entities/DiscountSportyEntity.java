@@ -1,6 +1,7 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.sportyRental.entities;
 
 import es.upm.miw.apaw_practice.domain.models.sportyRental.DiscountCreationSporty;
+import es.upm.miw.apaw_practice.domain.models.sportyRental.DiscountSporty;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -51,6 +52,10 @@ public class DiscountSportyEntity {
 
     public void setPercentage(Double percentage) {
         this.percentage = percentage;
+    }
+
+    public DiscountSporty convertToDiscountSporty() {
+        return new DiscountSporty(this.idDiscount, this.description, this.percentage);
     }
 
     @Override
