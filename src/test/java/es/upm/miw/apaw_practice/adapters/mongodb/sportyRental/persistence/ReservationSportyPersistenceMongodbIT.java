@@ -1,7 +1,7 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.sportyRental.persistence;
 
 import es.upm.miw.apaw_practice.TestConfig;
-import es.upm.miw.apaw_practice.adapters.mongodb.shop.ShopSeederService;
+import es.upm.miw.apaw_practice.adapters.mongodb.sportyRental.SportyRentalSeederService;
 import es.upm.miw.apaw_practice.domain.models.sportyRental.*;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,7 +19,7 @@ class ReservationSportyPersistenceMongodbIT {
     private ReservationSportyPersistenceMongodb reservationSportyPersistenceMongodb;
 
     @Autowired
-    private ShopSeederService shopSeederService;
+    private SportyRentalSeederService sportyRentalSeederService;
 
     @Test
     void testReadByRefReservation() {
