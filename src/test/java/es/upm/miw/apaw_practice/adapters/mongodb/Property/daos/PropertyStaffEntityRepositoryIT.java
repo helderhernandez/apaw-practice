@@ -2,9 +2,7 @@ package es.upm.miw.apaw_practice.adapters.mongodb.Property.daos;
 
 import es.upm.miw.apaw_practice.TestConfig;
 import es.upm.miw.apaw_practice.adapters.mongodb.property.daos.PropertyStaffRepository;
-import es.upm.miw.apaw_practice.adapters.mongodb.property.daos.ProprietorRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.property.entities.PropertyStaffEntity;
-import es.upm.miw.apaw_practice.adapters.mongodb.property.entities.ProprietorEntity;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 

@@ -1,9 +1,11 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.property.entities;
 
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import java.math.BigDecimal;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
+@Document
 public class MaintanenceItemEntity {
 
     private String item;
@@ -13,6 +15,10 @@ public class MaintanenceItemEntity {
     private Long invoice;
     private String equipment;
     private Boolean status;
+
+    public MaintanenceItemEntity(){
+
+    }
 
     public MaintanenceItemEntity(String item, String type, LocalDate time, BigDecimal fees, Long invoice, String equipment, Boolean status) {
         this.item = item;
