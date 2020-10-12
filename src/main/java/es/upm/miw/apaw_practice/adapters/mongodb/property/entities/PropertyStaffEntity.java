@@ -1,12 +1,19 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.property.entities;
 
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import java.util.Objects;
 
+@Document
 public class PropertyStaffEntity {
+    @Id
     private String id;
     private String name;
     private String dni;
     private String description;
+
+    public PropertyStaffEntity(){}
 
     public PropertyStaffEntity(String id, String name, String dni, String description) {
         this.id = id;
