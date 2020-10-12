@@ -27,6 +27,47 @@ public class ClientEntity {
         this.phone = phone;
     }
 
+    public static ClientBuilder.Id builder() {
+        return new Builder();
+    }
+
+    public static class Builder implements ClientBuilder.Id, ClientBuilder.Name,
+            ClientBuilder.Address, ClientBuilder.Phone, ClientBuilder.EndBuilder {
+
+        private ClientEntity clientEntity;
+
+        public Builder() {
+            this.clientEntity = new ClientEntity();
+        }
+
+
+        public ClientBuilder.Name id(String id) {
+            this.clientEntity.id = id;
+            return this;
+        }
+
+        @Override
+        public ClientBuilder.Address name(String name) {
+            this.clientEntity.name = name;
+            return this;
+        }
+
+        @Override
+        public ClientBuilder.Phone address(String address) {
+            this.clientEntity.address = address;
+            return this;
+        }
+
+        public ClientBuilder.EndBuilder phone(String phone) {
+            this.clientEntity.phone = phone;
+            return this;
+        }
+
+        public ClientEntity build() {
+            return this.clientEntity;
+        }
+    }
+
     public String getId() {
         return id;
     }
