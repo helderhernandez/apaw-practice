@@ -37,8 +37,8 @@ public class AirportSeederService {
 
         FlightEntity[] flightEntities = {
                 new FlightEntity(LocalDateTime.of(2020, 10, 10, 20, 20, 20), new BigDecimal("20.50"), planeEntities[0], "madrid"),
-                new FlightEntity(LocalDateTime.of(2020, 11, 10, 20, 20, 20), new BigDecimal("30.50"), planeEntities[1], "dublin"),
-                new FlightEntity(LocalDateTime.of(2020, 5, 10, 20, 20, 20), new BigDecimal("50.50"), planeEntities[2], "london"),
+                new FlightEntity(LocalDateTime.of(2020, 11, 10, 20, 20, 20), new BigDecimal("20.50"), planeEntities[1], "dublin"),
+                new FlightEntity(LocalDateTime.of(2020, 5, 10, 20, 20, 20), new BigDecimal("20.50"), planeEntities[2], "london"),
 
         };
         this.flightRepository.saveAll(Arrays.asList(flightEntities));

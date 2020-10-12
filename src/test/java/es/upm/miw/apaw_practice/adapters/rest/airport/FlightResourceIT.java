@@ -53,6 +53,19 @@ class FlightResourceIT {
                 .body(BodyInserters.fromValue(flightPriceUpdatingList))
                 .exchange()
                 .expectStatus().isOk();
+
+        flightPriceUpdatingList = flightRepository
+                .findAll()
+                .stream()
+                .map(flightEntity -> new FlightPriceUpdating(flightEntity.getId(), new BigDecimal("20.50")))
+                .collect(Collectors.toList());
+
+        this.webTestClient
+                .patch()
+                .uri(FlightResource.FLIGHTS)
+                .body(BodyInserters.fromValue(flightPriceUpdatingList))
+                .exchange()
+                .expectStatus().isOk();
     }
 
     @Test
@@ -67,5 +80,18 @@ class FlightResourceIT {
                 .body(BodyInserters.fromValue(flightPriceUpdatingList))
                 .exchange()
                 .expectStatus().isNotFound();
+    }
+
+    @Test
+    void testFindPriceBySuitcaseColor() {
+        this.webTestClient
+                .get()
+                .uri(uriBuilder -> uriBuilder.path(FlightResource.FLIGHTS + FlightResource.SEARCH)
+                        .queryParam("q", "color:red")
+                        .build())
+                .exchange()
+                .expectStatus().isOk()
+                .expectBody(PriceDto.class)
+                .value(priceDto -> assertEquals(new BigDecimal("41.00"), priceDto.getPrice()));
     }
 }

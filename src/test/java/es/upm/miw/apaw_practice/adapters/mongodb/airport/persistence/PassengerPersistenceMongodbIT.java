@@ -5,6 +5,7 @@ import es.upm.miw.apaw_practice.domain.models.airport.Passenger;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -25,5 +26,12 @@ public class PassengerPersistenceMongodbIT {
         assertEquals("sergio", passengerList.get(0).getName());
         assertEquals("red", passengerList.get(0).getSuitcaseList().get(0).getColor());
 
+    }
+
+    @Test
+    void testFindPriceBySuitcaseColorNotFound() {
+        BigDecimal price = passengerPersistenceMongodb
+                .findPriceBySuitcaseColor("aa");
+        assertEquals(BigDecimal.ZERO, price);
     }
 }
