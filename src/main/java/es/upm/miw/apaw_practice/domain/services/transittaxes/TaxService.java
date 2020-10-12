@@ -18,4 +18,8 @@ public class TaxService {
     public Tax create(Tax tax) {
         return taxPersistence.create(tax);
     }
+
+    public Tax findPriceTotalTaxesByIdCar(String idCar) {
+        return this.taxPersistence.findPriceTotalTaxesByIdCar(idCar);
+    }
 }
