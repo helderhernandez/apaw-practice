@@ -18,7 +18,7 @@ public class PropertyStaffEntity {
     private String description;
 
     public PropertyStaffEntity(){
-
+        //empty from framework
     }
     public PropertyStaffEntity(String name, String dni, String description) {
         this.name = name;

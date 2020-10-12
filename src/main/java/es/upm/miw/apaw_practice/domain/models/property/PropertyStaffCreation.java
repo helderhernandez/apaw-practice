@@ -7,7 +7,7 @@ public class PropertyStaffCreation {
     private String description;
 
     public PropertyStaffCreation() {
-
+        //empty from framework
     }
 
     public PropertyStaffCreation(String name, String dni, String description) {
