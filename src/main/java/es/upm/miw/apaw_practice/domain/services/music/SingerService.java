@@ -11,7 +11,7 @@ import java.util.stream.Stream;
 @Service
 public class SingerService {
 
-    private SingerPersistence singerPersistence;
+    private final SingerPersistence singerPersistence;
 
     @Autowired
     public SingerService(SingerPersistence singerPersistence){

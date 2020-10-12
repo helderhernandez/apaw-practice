@@ -1,14 +1,17 @@
-package es.upm.miw.apaw_practice.domain.models.property;
+package es.upm.miw.apaw_practice.domain.models.socialnetwork;
 
-public class PropertyStaff {
+import java.util.List;
+
+public class SocialList {
 
     private String id;
     private String name;
-    private String dni;
     private String description;
+    private Boolean personal;
+    private List<SocialUser> socialUsers;
 
-    public PropertyStaff() {
-
+    public SocialList() {
+        //empty for framework
     }
 
     public String getId() {
@@ -27,14 +30,6 @@ public class PropertyStaff {
         this.name = name;
     }
 
-    public String getDni() {
-        return dni;
-    }
-
-    public void setDni(String dni) {
-        this.dni = dni;
-    }
-
     public String getDescription() {
         return description;
     }
@@ -43,13 +38,31 @@ public class PropertyStaff {
         this.description = description;
     }
 
+    public Boolean isPersonal() {
+        return personal;
+    }
+
+    public void setPersonal(Boolean personal) {
+        this.personal = personal;
+    }
+
+    public List<SocialUser> getSocialUsers() {
+        return socialUsers;
+    }
+
+    public void setSocialUsers(List<SocialUser> socialUsers) {
+        this.socialUsers = socialUsers;
+    }
+
     @Override
     public String toString() {
-        return "PropertyStaff{" +
+        return "SocialList{" +
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
-                ", dni='" + dni + '\'' +
                 ", description='" + description + '\'' +
+                ", personal=" + personal +
+                ", socialUsers=" + socialUsers +
                 '}';
     }
+
 }
