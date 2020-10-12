@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(PieceResource.PIECES)
 public class PieceResource {
     static final String PIECES = "/garage/pieces";
-    static final String ID_ID = "/{id}";
+    static final String ID_BARCODE = "/{barcode}";
     static final String PRICE = "/price";
 
     private PieceService pieceService;
@@ -19,9 +19,9 @@ public class PieceResource {
         this.pieceService = pieceService;
     }
 
-    @PutMapping(ID_ID + PRICE)
-    public Piece updatePrice(@PathVariable String id, @RequestBody PieceDto pieceDto){
-        return this.pieceService.updatePrice(id, pieceDto.getPrice());
+    @PutMapping(ID_BARCODE + PRICE)
+    public Piece updatePrice(@PathVariable String barcode, @RequestBody PieceDto pieceDto){
+        return this.pieceService.updatePrice(barcode, pieceDto.getPrice());
     }
 
 }

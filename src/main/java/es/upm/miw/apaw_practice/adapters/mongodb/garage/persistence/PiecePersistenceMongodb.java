@@ -6,12 +6,14 @@ import es.upm.miw.apaw_practice.domain.exceptions.NotFoundException;
 import es.upm.miw.apaw_practice.domain.models.garage.Piece;
 import es.upm.miw.apaw_practice.domain.persistence_ports.garage.PiecePersistence;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import java.math.BigDecimal;
 
+@Repository("piecePersistence")
 public class PiecePersistenceMongodb implements PiecePersistence {
 
-    PieceRepository pieceRepository;
+    private PieceRepository pieceRepository;
 
     @Autowired
     public PiecePersistenceMongodb(PieceRepository pieceRepository) {
@@ -19,9 +21,9 @@ public class PiecePersistenceMongodb implements PiecePersistence {
     }
 
     @Override
-    public Piece updatePrice(String id, BigDecimal price) {
-        PieceEntity pieceEntity = this.pieceRepository.findById(id)
-                .orElseThrow(() -> new NotFoundException("Piece id: " + id));
+    public Piece updatePrice(String barcode, BigDecimal price) {
+        PieceEntity pieceEntity = this.pieceRepository.findByBarcode(barcode)
+                .orElseThrow(() -> new NotFoundException("Piece barcode: " + barcode));
         pieceEntity.setPrice(price);
         return this.pieceRepository.save(pieceEntity).toPiece();
     }

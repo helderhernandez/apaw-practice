@@ -7,5 +7,5 @@ import java.math.BigDecimal;
 
 @Repository
 public interface PiecePersistence {
-    Piece updatePrice(String id, BigDecimal price);
+    Piece updatePrice(String barcode, BigDecimal price);
 }

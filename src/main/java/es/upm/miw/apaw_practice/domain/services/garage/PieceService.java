@@ -17,8 +17,8 @@ public class PieceService {
         this.piecePersistence = piecePersistence;
     }
 
-    public Piece updatePrice(String id, BigDecimal price){
-        return piecePersistence.updatePrice(id, price);
+    public Piece updatePrice(String barcode, BigDecimal price){
+        return piecePersistence.updatePrice(barcode, price);
     }
 
 }
