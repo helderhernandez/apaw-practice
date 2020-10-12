@@ -1,5 +1,9 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.videoclub.entities;
 
+import es.upm.miw.apaw_practice.domain.models.videoclub.FilmCategory;
+import es.upm.miw.apaw_practice.domain.models.videoclub.FilmMaker;
+import es.upm.miw.apaw_practice.domain.models.videoclub.RentalFilm;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;
@@ -7,6 +11,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Document
 public class RentalFilmEntity {
@@ -15,9 +20,7 @@ public class RentalFilmEntity {
     @Indexed(unique = true)
     private String reference;
     private String title;
-    private String description;
     private Integer year;
-    private Integer duration;
     @DBRef
     private FilmMakerEntity filmMaker;
     @DBRef
@@ -27,13 +30,11 @@ public class RentalFilmEntity {
         // empty from framework
     }
 
-    public RentalFilmEntity(String reference, String title, String description, Integer year, Integer duration, FilmMakerEntity filmMaker, List<FilmCategoryEntity> categories) {
+    public RentalFilmEntity(String reference, String title, Integer year, FilmMakerEntity filmMaker, List<FilmCategoryEntity> categories) {
         this.id = UUID.randomUUID().toString();
         this.reference = reference;
         this.title = title;
-        this.description = description;
         this.year = year;
-        this.duration = duration;
         this.filmMaker = filmMaker;
         this.categories = categories;
     }
@@ -54,28 +55,12 @@ public class RentalFilmEntity {
         this.title = title;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
     public Integer getYear() {
         return year;
     }
 
     public void setYear(Integer year) {
         this.year = year;
-    }
-
-    public Integer getDuration() {
-        return duration;
-    }
-
-    public void setDuration(Integer duration) {
-        this.duration = duration;
     }
 
     public FilmMakerEntity getFilmMaker() {
@@ -94,6 +79,18 @@ public class RentalFilmEntity {
         this.categories = categories;
     }
 
+    public RentalFilm toRentalFilm() {
+        RentalFilm rentalFilm = new RentalFilm();
+        BeanUtils.copyProperties(this, rentalFilm);
+        FilmMaker filmMakerM = this.filmMaker.toFilmMaker();
+        List<FilmCategory> categoriesM = this.categories.stream()
+                .map(FilmCategoryEntity::toFilmCategory)
+                .collect(Collectors.toList());
+        rentalFilm.setFilmMaker(filmMakerM);
+        rentalFilm.setCategories(categoriesM);
+        return rentalFilm;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -102,9 +99,7 @@ public class RentalFilmEntity {
         return id.equals(rentalFilmEntity.id) &&
                 reference.equals(rentalFilmEntity.reference) &&
                 title.equals(rentalFilmEntity.title) &&
-                description.equals(rentalFilmEntity.description) &&
                 year.equals(rentalFilmEntity.year) &&
-                duration.equals(rentalFilmEntity.duration) &&
                 filmMaker.equals(rentalFilmEntity.filmMaker) &&
                 categories.equals(rentalFilmEntity.categories);
     }
@@ -120,9 +115,7 @@ public class RentalFilmEntity {
                 "id='" + id + '\'' +
                 ", reference='" + reference + '\'' +
                 ", title='" + title + '\'' +
-                ", description='" + description + '\'' +
                 ", year=" + year +
-                ", duration=" + duration +
                 ", filmMaker=" + filmMaker +
                 ", categories=" + categories +
                 '}';

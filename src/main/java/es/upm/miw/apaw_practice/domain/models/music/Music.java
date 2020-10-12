@@ -1,14 +1,16 @@
-package es.upm.miw.apaw_practice.domain.models.property;
+package es.upm.miw.apaw_practice.domain.models.music;
 
-public class PropertyStaff {
+import es.upm.miw.apaw_practice.adapters.mongodb.music.entities.StyleEntity;
+
+public class Music {
 
     private String id;
+    private StyleEntity styleEntity;
     private String name;
-    private String dni;
     private String description;
 
-    public PropertyStaff() {
-
+    public Music() {
+        //Empty for framework
     }
 
     public String getId() {
@@ -19,20 +21,16 @@ public class PropertyStaff {
         this.id = id;
     }
 
+    public StyleEntity getStyleEntity() { return styleEntity; }
+
+    public void setStyleEntity(StyleEntity styleEntity) { this.styleEntity = styleEntity; }
+
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getDni() {
-        return dni;
-    }
-
-    public void setDni(String dni) {
-        this.dni = dni;
     }
 
     public String getDescription() {
@@ -45,10 +43,10 @@ public class PropertyStaff {
 
     @Override
     public String toString() {
-        return "PropertyStaff{" +
+        return "Music{" +
                 "id='" + id + '\'' +
+                ", styleEntity=" + styleEntity +
                 ", name='" + name + '\'' +
-                ", dni='" + dni + '\'' +
                 ", description='" + description + '\'' +
                 '}';
     }
