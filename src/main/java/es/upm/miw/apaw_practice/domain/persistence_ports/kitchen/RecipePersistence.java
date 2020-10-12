@@ -9,5 +9,5 @@ import java.util.stream.Stream;
 @Repository
 public interface RecipePersistence {
     Recipe create(RecipeCreation recipeCreation);
-    Stream<String> search1(String dni);
+    Stream<Recipe> search1(String dni);
 }

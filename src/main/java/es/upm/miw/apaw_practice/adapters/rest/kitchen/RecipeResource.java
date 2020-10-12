@@ -28,7 +28,7 @@ public class RecipeResource {
     }
 
     @GetMapping(SEARCH)
-    public Stream<String> search1(@RequestParam String q) {
+    public Stream<Recipe> search1(@RequestParam String q) {
         String dni = new LexicalAnalyzer().extractWithAssure(q, "dni");
         return this.recipeService.search1(dni);
     }
