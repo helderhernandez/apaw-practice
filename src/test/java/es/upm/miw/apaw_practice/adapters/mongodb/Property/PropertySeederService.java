@@ -41,11 +41,11 @@ public class PropertySeederService {
         this.proprietorRepository.saveAll(Arrays.asList(proprietors));
 
         PropertyStaffEntity[] propertyStaffs = {
-                new PropertyStaffEntity("0","Luis","74603721B","Sunday and Monday on duty"),
-                new PropertyStaffEntity("1","Mario","59230573A","Tuesday on duty"),
-                new PropertyStaffEntity("2","Eli","95720562E","Wednesday on duty"),
-                new PropertyStaffEntity("3","Patricio","92744724F","Thursday on duty"),
-                new PropertyStaffEntity("4","Julio","55862635E","Friday and Saturday on duty"),
+                new PropertyStaffEntity("Luis","74603721B","Sunday and Monday on duty"),
+                new PropertyStaffEntity("Mario","59230573A","Tuesday on duty"),
+                new PropertyStaffEntity("Eli","95720562E","Wednesday on duty"),
+                new PropertyStaffEntity("Patricio","92744724F","Thursday on duty"),
+                new PropertyStaffEntity("Julio","55862635E","Friday and Saturday on duty"),
         };
         this.propertyStaffRepository.saveAll(Arrays.asList(propertyStaffs));
 

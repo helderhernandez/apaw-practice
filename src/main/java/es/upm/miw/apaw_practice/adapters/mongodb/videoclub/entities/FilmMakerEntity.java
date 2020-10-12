@@ -1,18 +1,18 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.videoclub.entities;
 
+import es.upm.miw.apaw_practice.domain.models.videoclub.FilmMaker;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDate;
 import java.time.Period;
-import java.util.UUID;
 
 @Document
 public class FilmMakerEntity {
     @Id
     private String id;
     private String name;
-    private String familyName;
     private LocalDate birthday;
     private String gender;
 
@@ -20,10 +20,9 @@ public class FilmMakerEntity {
         // empty from framework
     }
 
-    public FilmMakerEntity(String id, String name, String familyName, LocalDate birthday, String gender) {
+    public FilmMakerEntity(String id, String name, LocalDate birthday, String gender) {
         this.id = id;
         this.name = name;
-        this.familyName = familyName;
         this.birthday = birthday;
         this.gender = gender;
     }
@@ -32,20 +31,16 @@ public class FilmMakerEntity {
         return id;
     }
 
+    public void setId(String id) {
+        this.id = id;
+    }
+
     public String getName() {
         return name;
     }
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getFamilyName() {
-        return familyName;
-    }
-
-    public void setFamilyName(String familyName) {
-        this.familyName = familyName;
     }
 
     public LocalDate getBirthday() {
@@ -70,6 +65,12 @@ public class FilmMakerEntity {
         return p.getYears();
     }
 
+    public FilmMaker toFilmMaker() {
+        FilmMaker filmMaker = new FilmMaker();
+        BeanUtils.copyProperties(this, filmMaker);
+        return filmMaker;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -77,7 +78,6 @@ public class FilmMakerEntity {
         FilmMakerEntity filmMakerEntity = (FilmMakerEntity) o;
         return id.equals(filmMakerEntity.id) &&
                 name.equals(filmMakerEntity.name) &&
-                familyName.equals(filmMakerEntity.familyName) &&
                 birthday.equals(filmMakerEntity.birthday) &&
                 gender.equals(filmMakerEntity.gender);
     }
@@ -92,7 +92,6 @@ public class FilmMakerEntity {
         return "FilmMakerEntity{" +
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
-                ", familyName='" + familyName + '\'' +
                 ", birthday=" + birthday +
                 ", gender='" + gender + '\'' +
                 '}';
