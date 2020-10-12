@@ -1,5 +1,8 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.property.entities;
 
+import org.springframework.data.mongodb.core.mapping.Document;
+
+@Document
 public class PropertyCompanyEntity {
     private String name;
     private String address;

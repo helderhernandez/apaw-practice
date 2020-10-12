@@ -2,16 +2,17 @@ package es.upm.miw.apaw_practice.adapters.rest.filmforum;
 
 import es.upm.miw.apaw_practice.adapters.rest.LexicalAnalyzer;
 import es.upm.miw.apaw_practice.domain.models.filmforum.FilmForum;
+import es.upm.miw.apaw_practice.domain.models.filmforum.FilmForumUpdating;
 import es.upm.miw.apaw_practice.domain.services.filmforum.FilmForumService;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping(FilmForumResource.FILMFORUM_FILMS)
 public class FilmForumResource {
-    public static final String FILMFORUM_FILMS = "/filmforum/film";
+    public static final String FILMFORUM_FILMS = "/filmforum/films";
+    public static final String UPDATE_FILMS = "/audience-range";
 
     private final FilmForumService filmForumService;
 
@@ -23,5 +24,10 @@ public class FilmForumResource {
     public FilmForum findByName(@RequestParam String q) {
         String name = new LexicalAnalyzer().extractWithAssure(q, "name");
         return filmForumService.findByName(name);
+    }
+
+    @PatchMapping(UPDATE_FILMS)
+    public void updateAudienceRange(@RequestBody List<FilmForumUpdating> updatings) {
+        filmForumService.updateFilmAudienceRange(updatings);
     }
 }
