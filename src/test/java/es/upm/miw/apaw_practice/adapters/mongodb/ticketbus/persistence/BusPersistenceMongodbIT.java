@@ -10,9 +10,12 @@ import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -63,14 +66,14 @@ class BusPersistenceMongodbIT {
         testTicketBusFromBus(bus.getTickets().get(0));
     }
 
-    void resetTestUpdateDates(BusTicketsDatesUpdate busTicketsDatesUpdate){
+    void resetTestUpdateDates(BusTicketsDatesUpdate busTicketsDatesUpdate) {
         busTicketsDatesUpdate.setArrive(null);
         busTicketsDatesUpdate.setDeparture(null);
         busPersistenceMongodb.updateTicketsDates(busTicketsDatesUpdate);
     }
 
     @Test
-    void testPatchBusTicketsDates(){
+    void testPatchBusTicketsDates() {
         LocalDateTime departureTime = LocalDateTime.parse("16/10/2020 18:00", formatter);
         LocalDateTime arriveTime = LocalDateTime.parse("16/10/2020 22:00", formatter);
 
@@ -84,10 +87,25 @@ class BusPersistenceMongodbIT {
         assertNotNull(busAfter.getTickets());
         List<TicketBus> ticketsError = busAfter.getTickets().stream()
                 .filter(ticketBus -> !departureTime.equals(ticketBus.getDepartureTime()) &&
-                                    !arriveTime.equals(ticketBus.getArriveTime())
+                        !arriveTime.equals(ticketBus.getArriveTime())
                 ).collect(Collectors.toList());
         assertEquals(0, ticketsError.size());
 
         resetTestUpdateDates(busTicketsDatesUpdate);
+    }
+
+    @Test
+    void testFindNamePassengersByReference() {
+        List<Bus> buses = busPersistenceMongodb.findAll();
+        String reference = buses.get(0).getReference();
+
+        List<String> expectation = new ArrayList<>();
+        expectation.add("Juan");
+        expectation.add("Ana");
+
+        Stream<String> namesPassengers = busPersistenceMongodb.findNamePassengersByReference(reference);
+        assertNotNull(namesPassengers);
+
+        assertEquals(expectation, namesPassengers.collect(Collectors.toList()));
     }
 }
