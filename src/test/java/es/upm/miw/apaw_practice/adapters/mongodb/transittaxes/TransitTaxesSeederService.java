@@ -32,10 +32,10 @@ public class TransitTaxesSeederService {
         LogManager.getLogger(this.getClass()).warn("------- TransitTaxes Initial Load -----------");
 
         TaxEntity[] taxes = {
-                new TaxEntity("TAX001", "Driving without a driver's license", new BigDecimal("500.00"), false),
-                new TaxEntity("TAX002", "Driving with excess alcohol", new BigDecimal("400.00"), true),
-                new TaxEntity("TAX003", "Using the mobile at the wheel", new BigDecimal("200.00"), false),
-                new TaxEntity("TAX004", "Throw any object on the road", new BigDecimal("50.00"), true)
+                TaxEntity.builder().idTax().refTax("TAX001").price(new BigDecimal("500.00")).description("Driving without a driver's license").paid(false).build(),
+                TaxEntity.builder().idTax().refTax("TAX002").price(new BigDecimal("400.00")).description("Driving with excess alcohol").paid(true).build(),
+                TaxEntity.builder().idTax().refTax("TAX003").price(new BigDecimal("200.00")).description("Using the mobile at the wheel").paid(false).build(),
+                TaxEntity.builder().idTax().refTax("TAX004").price(new BigDecimal("50.00")).description("Throw any object on the road").paid(true).build()
         };
         taxRepository.saveAll(Arrays.asList(taxes));
         AccidentEntity[] accidents = {
