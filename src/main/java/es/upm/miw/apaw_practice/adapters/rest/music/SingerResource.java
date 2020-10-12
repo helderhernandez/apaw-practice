@@ -17,7 +17,7 @@ public class SingerResource {
 
     static final String SEARCH = "/search";
 
-    public SingerService singerService;
+    public final SingerService singerService;
 
     @Autowired
     public SingerResource(SingerService singerService) {

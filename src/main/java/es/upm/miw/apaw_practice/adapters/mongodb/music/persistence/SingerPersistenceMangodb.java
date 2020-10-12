@@ -11,7 +11,7 @@ import java.util.stream.Stream;
 
 @Repository("singerPersistence")
 public class SingerPersistenceMangodb implements SingerPersistence {
-    private SingerRepository singerRepository;
+    private final SingerRepository singerRepository;
 
     @Autowired
     public SingerPersistenceMangodb(SingerRepository singerRepository){
