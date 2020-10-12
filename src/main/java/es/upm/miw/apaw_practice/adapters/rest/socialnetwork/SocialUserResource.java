@@ -4,16 +4,15 @@ import es.upm.miw.apaw_practice.domain.models.socialnetwork.SocialUser;
 import es.upm.miw.apaw_practice.domain.models.socialnetwork.SocialUserCreation;
 import es.upm.miw.apaw_practice.domain.services.socialnetwork.SocialUserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping(SocialUserResource.USERS)
 public class SocialUserResource {
 
     static final String USERS = "/socialnetwork/users";
+    static final String ID = "/{id}";
+    static final String BIOGRAPHY = "/biography";
 
     private SocialUserService socialUserService;
 
@@ -25,6 +24,11 @@ public class SocialUserResource {
     @PostMapping
     public SocialUser create(@RequestBody SocialUserCreation socialUserCreation) {
         return this.socialUserService.create(socialUserCreation);
+    }
+
+    @PutMapping(ID + BIOGRAPHY)
+    public SocialUser updateBiography(@PathVariable String id, @RequestBody BiographyDto biographyDto) {
+        return this.socialUserService.updateBiography(id, biographyDto.getBiography());
     }
 
 }

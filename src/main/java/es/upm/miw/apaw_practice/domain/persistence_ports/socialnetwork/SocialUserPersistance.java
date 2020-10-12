@@ -9,4 +9,6 @@ public interface SocialUserPersistance {
 
     SocialUser create(SocialUserCreation socialUserCreation);
 
+    SocialUser updateBiography(String id, String biography);
+
 }

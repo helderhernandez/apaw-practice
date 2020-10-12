@@ -20,4 +20,8 @@ public class SocialUserService {
         return this.socialUserPersistance.create(socialUserCreation);
     }
 
+    public SocialUser updateBiography(String id, String biography) {
+        return this.socialUserPersistance.updateBiography(id, biography);
+    }
+
 }
