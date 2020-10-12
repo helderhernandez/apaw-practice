@@ -8,7 +8,7 @@ public class PropertyStaff {
     private String description;
 
     public PropertyStaff() {
-
+        //empty from framework
     }
 
     public String getId() {
