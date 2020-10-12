@@ -1,11 +1,12 @@
 package es.upm.miw.apaw_practice.domain.models.videoclub;
 
 import java.time.LocalDate;
-import java.time.Period;
+import java.util.UUID;
 
 public class FilmMaker {
 
     private String id;
+    private String reference;
     private String name;
     private LocalDate birthday;
     private String gender;
@@ -14,8 +15,17 @@ public class FilmMaker {
         // empty from framework
     }
 
-    public FilmMaker(String id, String name, LocalDate birthday, String gender) {
-        this.id = id;
+    public String getReference() {
+        return reference;
+    }
+
+    public void setReference(String reference) {
+        this.reference = reference;
+    }
+
+    public FilmMaker(String reference, String name, LocalDate birthday, String gender) {
+        this.id = UUID.randomUUID().toString();
+        this.reference = reference;
         this.name = name;
         this.birthday = birthday;
         this.gender = gender;
@@ -53,18 +63,13 @@ public class FilmMaker {
         this.gender = gender;
     }
 
-    public Integer getAge() {
-        LocalDate today = LocalDate.now();
-        Period p = Period.between(birthday, today);
-        return p.getYears();
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         FilmMaker filmMaker = (FilmMaker) o;
         return id.equals(filmMaker.id) &&
+                reference.equals(filmMaker.reference) &&
                 name.equals(filmMaker.name) &&
                 birthday.equals(filmMaker.birthday) &&
                 gender.equals(filmMaker.gender);
@@ -79,6 +84,7 @@ public class FilmMaker {
     public String toString() {
         return "FilmMaker{" +
                 "id='" + id + '\'' +
+                ", reference='" + reference + '\'' +
                 ", name='" + name + '\'' +
                 ", birthday=" + birthday +
                 ", gender='" + gender + '\'' +
