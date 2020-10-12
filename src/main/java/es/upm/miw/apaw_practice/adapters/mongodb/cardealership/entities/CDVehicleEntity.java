@@ -1,5 +1,8 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.cardealership.entities;
 
+import es.upm.miw.apaw_practice.domain.models.car_dealership.CDVehicle;
+import es.upm.miw.apaw_practice.domain.models.car_dealership.CDVehicleCreation;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -24,6 +27,11 @@ public class CDVehicleEntity {
         this.type = type;
         this.unused = unused;
         this.year = year;
+    }
+
+    public CDVehicleEntity(CDVehicleCreation vehicleCreation) {
+        BeanUtils.copyProperties(vehicleCreation, this);
+        this.id = UUID.randomUUID().toString();
     }
 
     public String getId() {
@@ -64,6 +72,12 @@ public class CDVehicleEntity {
 
     public void setYear(Integer year) {
         this.year = year;
+    }
+
+    public CDVehicle toVehicle() {
+        CDVehicle vehicle = new CDVehicle();
+        BeanUtils.copyProperties(this, vehicle);
+        return vehicle;
     }
 
     @Override
