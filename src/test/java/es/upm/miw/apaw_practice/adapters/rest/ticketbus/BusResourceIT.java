@@ -17,9 +17,12 @@ import org.springframework.web.reactive.function.BodyInserters;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.regex.Pattern;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -97,12 +100,38 @@ class BusResourceIT {
 
         this.webTestClient
                 .patch()
-                .uri(BusResource.BUSES + "/"+ bus.getReference() + BusResource.TICKETS_DATES)
+                .uri(BusResource.BUSES + "/" + bus.getReference() + BusResource.TICKETS_DATES)
                 .body(BodyInserters.fromValue(new BusTicketsDatesDto(departureTime, arriveTime)))
                 .exchange()
                 .expectStatus().isOk()
                 .expectBody(Bus.class)
                 .value(Assertions::assertNotNull)
                 .value(busData -> testDatesTicketsBus(busData.getTickets()));
+    }
+
+    void testNamesPassengers(List<String> namePassengers) {
+        List<String> expectation = new ArrayList<>();
+        expectation.add("Juan");
+        expectation.add("Ana");
+
+        assertEquals(expectation, namePassengers);
+    }
+
+    @Test
+    void testFindNamePassengersByReference() {
+        List<Bus> buses = busRepository.findAll().stream().map(BusEntity::toBus).collect(Collectors.toList());
+        Bus bus = buses.get(0);
+
+        this.webTestClient
+                .get()
+                .uri(uriBuilder -> uriBuilder.path(BusResource.BUSES + "/" + bus.getReference() + BusResource.PASSENGERS)
+                        .queryParam("fields", "name")
+                        .build()
+                )
+                .exchange()
+                .expectStatus().isOk()
+                .expectBodyList(String.class)
+                .value(Assertions::assertNotNull)
+                .value("['Juan', 'Ana']"::equals);
     }
 }
