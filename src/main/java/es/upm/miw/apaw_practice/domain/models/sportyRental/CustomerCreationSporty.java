@@ -1,48 +1,22 @@
-package es.upm.miw.apaw_practice.adapters.mongodb.sportyRental.entities;
+package es.upm.miw.apaw_practice.domain.models.sportyRental;
 
-import es.upm.miw.apaw_practice.domain.models.sportyRental.CustomerCreationSporty;
-import org.springframework.beans.BeanUtils;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.index.Indexed;
-import org.springframework.data.mongodb.core.mapping.Document;
+public class CustomerCreationSporty {
 
-import java.util.UUID;
-
-@Document
-public class CustomerSportyEntity {
-
-    @Id
-    private String idCustomer;
-    @Indexed(unique = true)
     private String dni;
     private String name;
     private String surnames;
     private String email;
     private String phone;
 
-    public CustomerSportyEntity() {
+    public CustomerCreationSporty() {
     }
 
-    public CustomerSportyEntity(String idCustomer, String dni, String name, String surnames, String email, String phone) {
-        this.idCustomer = idCustomer;
+    public CustomerCreationSporty(String dni, String name, String surnames, String email, String phone) {
         this.dni = dni;
         this.name = name;
         this.surnames = surnames;
         this.email = email;
         this.phone = phone;
-    }
-
-    public CustomerSportyEntity(CustomerCreationSporty customerCreationSporty) {
-        BeanUtils.copyProperties(customerCreationSporty, this);
-        this.idCustomer = UUID.randomUUID().toString();
-    }
-
-    public String getIdCustomer() {
-        return idCustomer;
-    }
-
-    public void setIdCustomer(String idCustomer) {
-        this.idCustomer = idCustomer;
     }
 
     public String getDni() {
@@ -87,8 +61,7 @@ public class CustomerSportyEntity {
 
     @Override
     public String toString() {
-        return "CustomerSportyEntity{" +
-                "idCustomer='" + idCustomer + '\'' +
+        return "CustomerCreationSporty{" +
                 ", dni='" + dni + '\'' +
                 ", name='" + name + '\'' +
                 ", surnames='" + surnames + '\'' +
