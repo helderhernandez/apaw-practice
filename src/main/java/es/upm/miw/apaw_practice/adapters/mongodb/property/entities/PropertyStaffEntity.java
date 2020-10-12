@@ -17,6 +17,10 @@ public class PropertyStaffEntity {
     private String dni;
     private String description;
 
+    public PropertyStaffEntity() {
+        // empty for framework
+    }
+
     public PropertyStaffEntity(String id, String name, String dni, String description) {
         this.id = id;
         this.name = name;
