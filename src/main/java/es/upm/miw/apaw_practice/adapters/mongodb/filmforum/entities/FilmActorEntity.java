@@ -66,7 +66,7 @@ public class FilmActorEntity {
     }
 
     public FilmActor toFilmActor() {
-        return new FilmActor(name, surname, age);
+        return new FilmActor(id, name, surname, age);
     }
 
     @Override
