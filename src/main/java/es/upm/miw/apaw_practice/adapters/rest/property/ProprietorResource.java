@@ -17,7 +17,7 @@ public class ProprietorResource {
 
     static final String SEARCH = "/search";
 
-    private ProprietorService proprietorService;
+    private final ProprietorService proprietorService;
 
     @Autowired
     public ProprietorResource(ProprietorService proprietorService) {
