@@ -1,6 +1,8 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.garage.entities;
 
+import es.upm.miw.apaw_practice.domain.models.garage.Vehicle;
 import es.upm.miw.apaw_practice.domain.models.garage.VehicleCreation;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;
@@ -111,6 +113,16 @@ public class VehicleEntity {
 
     public void setMechanicEntities(List<MechanicEntity> mechanicEntities) {
         this.mechanicEntities = mechanicEntities;
+    }
+
+    public Vehicle toVehicle() {
+        Vehicle vehicle = new Vehicle();
+        BeanUtils.copyProperties(this, vehicle);
+        return vehicle;
+    }
+
+    public void fromVehicle(Vehicle vehicle) {
+        BeanUtils.copyProperties(vehicle, this);
     }
 
 }
