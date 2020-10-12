@@ -17,12 +17,10 @@ public class PropertyStaffEntity {
     private String dni;
     private String description;
 
-    public PropertyStaffEntity() {
-        // empty for framework
-    }
+    public PropertyStaffEntity(){
 
-    public PropertyStaffEntity(String id, String name, String dni, String description) {
-        this.id = id;
+    }
+    public PropertyStaffEntity(String name, String dni, String description) {
         this.name = name;
         this.dni = dni;
         this.description = description;
