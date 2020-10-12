@@ -1,11 +1,15 @@
 package es.upm.miw.apaw_practice.domain.models.socialnetwork;
 
+import java.util.List;
+
 public class SocialUser {
 
     private String id;
     private String nickName;
     private String biography;
     private Boolean verified;
+    private List<SocialList> socialLists;
+    private List<SocialPost> socialPosts;
 
     public SocialUser() {
         //empty for framework
@@ -43,6 +47,22 @@ public class SocialUser {
         this.verified = verified;
     }
 
+    public List<SocialList> getSocialLists() {
+        return socialLists;
+    }
+
+    public void setSocialLists(List<SocialList> socialLists) {
+        this.socialLists = socialLists;
+    }
+
+    public List<SocialPost> getSocialPosts() {
+        return socialPosts;
+    }
+
+    public void setSocialPosts(List<SocialPost> socialPosts) {
+        this.socialPosts = socialPosts;
+    }
+
     @Override
     public String toString() {
         return "SocialUser{" +
@@ -50,6 +70,8 @@ public class SocialUser {
                 ", nickName='" + nickName + '\'' +
                 ", biography='" + biography + '\'' +
                 ", verified=" + verified +
+                ", socialLists=" + socialLists +
+                ", socialPosts=" + socialPosts +
                 '}';
     }
 

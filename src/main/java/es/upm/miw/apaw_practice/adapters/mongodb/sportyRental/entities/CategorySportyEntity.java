@@ -1,7 +1,11 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.sportyRental.entities;
 
+import es.upm.miw.apaw_practice.domain.models.sportyRental.CategoryCreationSporty;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+
+import java.util.UUID;
 
 @Document
 public class CategorySportyEntity {
@@ -18,6 +22,11 @@ public class CategorySportyEntity {
         this.idCategory = idCategory;
         this.description = description;
         this.numMaxPersons = numMaxPersons;
+    }
+
+    public CategorySportyEntity(CategoryCreationSporty categoryCreationSporty) {
+        BeanUtils.copyProperties(categoryCreationSporty, this);
+        this.idCategory = UUID.randomUUID().toString();
     }
 
     public String getIdCategory() {

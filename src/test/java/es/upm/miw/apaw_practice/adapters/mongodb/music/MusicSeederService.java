@@ -32,14 +32,6 @@ public class MusicSeederService {
 
     public void seedDatabase() {
         LogManager.getLogger(this.getClass()).warn("------- Music Initial Load -----------");
-        MusicEntity[] musics = {
-                new MusicEntity("Fly to moon","a song of pop"),
-                new MusicEntity("Despacito","a spanish song"),
-                new MusicEntity("Beautiful bird","a english song")
-
-        };
-        this.musicRepository.saveAll(Arrays.asList(musics));
-
         SingerEntity[] singers = {
 
                 new SingerEntity("Bruno","Mars","America"),
@@ -55,7 +47,13 @@ public class MusicSeederService {
 
         };
         this.styleRepository.saveAll(Arrays.asList(styles));
+        MusicEntity[] musics = {
+                new MusicEntity(styles[0],"Fly to moon","a song of pop"),
+                new MusicEntity(styles[1],"Despacito","a spanish song"),
+                new MusicEntity(styles[2],"Beautiful bird","a english song")
 
+        };
+        this.musicRepository.saveAll(Arrays.asList(musics));
         AlbumEntity[] albums = {
                 new AlbumEntity(Arrays.asList(singers),Arrays.asList(musics),"Fly to moon","42341251", LocalDate.of(2020,3,23),"an album of pop",new BigDecimal("19.99"),true),
                 new AlbumEntity(Arrays.asList(singers),Arrays.asList(musics),"Despacito","13423451", LocalDate.of(2019,6,9),"an spanish album",new BigDecimal("29.99"),true),
