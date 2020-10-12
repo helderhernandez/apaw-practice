@@ -18,7 +18,6 @@ public class FilmCategoryEntityRepositoryIT {
         FilmCategoryEntity filmCategory = this.filmCategoryRepository.findById("cat4").get();
         assertEquals("cat4", filmCategory.getId());
         assertEquals("Horror", filmCategory.getName());
-        assertEquals("Zombies", filmCategory.getSubName());
         assertTrue(filmCategory.getPlus18());
     }
 }

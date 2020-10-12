@@ -1,22 +1,16 @@
-package es.upm.miw.apaw_practice.adapters.mongodb.videoclub.entities;
+package es.upm.miw.apaw_practice.domain.models.videoclub;
 
-import es.upm.miw.apaw_practice.domain.models.videoclub.FilmCategory;
-import org.springframework.beans.BeanUtils;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+public class FilmCategory {
 
-@Document
-public class FilmCategoryEntity {
-    @Id
     private String id;
     private String name;
     private Boolean plus18;
 
-    public FilmCategoryEntity() {
+    public FilmCategory() {
         // empty from framework
     }
 
-    public FilmCategoryEntity(String id, String name, Boolean plus18) {
+    public FilmCategory(String id, String name, Boolean plus18) {
         this.id = id;
         this.name = name;
         this.plus18 = plus18;
@@ -46,20 +40,14 @@ public class FilmCategoryEntity {
         this.plus18 = plus18;
     }
 
-    public FilmCategory toFilmCategory() {
-        FilmCategory filmCategory = new FilmCategory();
-        BeanUtils.copyProperties(this, filmCategory);
-        return filmCategory;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        FilmCategoryEntity filmCategoryEntity = (FilmCategoryEntity) o;
-        return id.equals(filmCategoryEntity.id) &&
-                name.equals(filmCategoryEntity.name) &&
-                plus18.equals(filmCategoryEntity.plus18);
+        FilmCategory filmCategory = (FilmCategory) o;
+        return id.equals(filmCategory.id) &&
+                name.equals(filmCategory.name) &&
+                plus18.equals(filmCategory.plus18);
     }
 
     @Override
@@ -69,7 +57,7 @@ public class FilmCategoryEntity {
 
     @Override
     public String toString() {
-        return "FilmCategoryEntity{" +
+        return "FilmCategory{" +
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 ", plus18=" + plus18 +

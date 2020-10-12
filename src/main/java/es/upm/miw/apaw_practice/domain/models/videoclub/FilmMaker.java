@@ -1,26 +1,20 @@
-package es.upm.miw.apaw_practice.adapters.mongodb.videoclub.entities;
-
-import es.upm.miw.apaw_practice.domain.models.videoclub.FilmMaker;
-import org.springframework.beans.BeanUtils;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+package es.upm.miw.apaw_practice.domain.models.videoclub;
 
 import java.time.LocalDate;
 import java.time.Period;
 
-@Document
-public class FilmMakerEntity {
-    @Id
+public class FilmMaker {
+
     private String id;
     private String name;
     private LocalDate birthday;
     private String gender;
 
-    public FilmMakerEntity() {
+    public FilmMaker() {
         // empty from framework
     }
 
-    public FilmMakerEntity(String id, String name, LocalDate birthday, String gender) {
+    public FilmMaker(String id, String name, LocalDate birthday, String gender) {
         this.id = id;
         this.name = name;
         this.birthday = birthday;
@@ -65,21 +59,15 @@ public class FilmMakerEntity {
         return p.getYears();
     }
 
-    public FilmMaker toFilmMaker() {
-        FilmMaker filmMaker = new FilmMaker();
-        BeanUtils.copyProperties(this, filmMaker);
-        return filmMaker;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        FilmMakerEntity filmMakerEntity = (FilmMakerEntity) o;
-        return id.equals(filmMakerEntity.id) &&
-                name.equals(filmMakerEntity.name) &&
-                birthday.equals(filmMakerEntity.birthday) &&
-                gender.equals(filmMakerEntity.gender);
+        FilmMaker filmMaker = (FilmMaker) o;
+        return id.equals(filmMaker.id) &&
+                name.equals(filmMaker.name) &&
+                birthday.equals(filmMaker.birthday) &&
+                gender.equals(filmMaker.gender);
     }
 
     @Override
@@ -89,7 +77,7 @@ public class FilmMakerEntity {
 
     @Override
     public String toString() {
-        return "FilmMakerEntity{" +
+        return "FilmMaker{" +
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 ", birthday=" + birthday +
