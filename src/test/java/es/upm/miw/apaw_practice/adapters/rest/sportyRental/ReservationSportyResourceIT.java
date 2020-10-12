@@ -1,7 +1,9 @@
 package es.upm.miw.apaw_practice.adapters.rest.sportyRental;
 
+import es.upm.miw.apaw_practice.adapters.mongodb.sportyRental.SportyRentalSeederService;
 import es.upm.miw.apaw_practice.adapters.rest.RestTestConfig;
 import es.upm.miw.apaw_practice.domain.models.sportyRental.*;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,6 +23,15 @@ class ReservationSportyResourceIT {
 
     @Autowired
     private WebTestClient webTestClient;
+
+    @Autowired
+    private SportyRentalSeederService sportyRentalSeederService;
+
+    @AfterEach
+    void resetDatabase() {
+        sportyRentalSeederService.deleteAll();
+        sportyRentalSeederService.seedDatabase();
+    }
 
     @Test
     void testReadByRefReservation() {
