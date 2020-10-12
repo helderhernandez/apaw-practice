@@ -7,14 +7,24 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.math.BigDecimal;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 @TestConfig
 public class TaxEntityRepositoryIT {
 
     @Autowired
     private TaxRepository taxRepository;
+
+    @Test
+    void testTaxEntity() {
+        TaxEntity tax = TaxEntity.builder().idTax().refTax("TAX008").price(new BigDecimal("600.00")).description("Driving without a driver's license").paid(false).build();
+        tax.setDescription("Smoking while driving");
+        tax.setPaid(true);
+        tax.setPrice(new BigDecimal("20.00"));
+        tax.setRefTax("TAX000");
+        assertNotEquals("TAX008", tax.getRefTax());
+        assertNotEquals("Driving without a driver's license", tax.getDescription());
+    }
 
     @Test
     void testCreateAndRead() {

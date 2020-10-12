@@ -22,4 +22,13 @@ public class FilmForumPersistenceMongodb implements FilmForumPersistence {
                 .map(FilmForumEntity::toFilmForum)
                 .orElseThrow(() -> new NotFoundException("Film not found with name " + name));
     }
+
+    @Override
+    public FilmForum update(FilmForum updatedFilm) {
+        FilmForumEntity film = filmForumRepository
+                .findByName(updatedFilm.getName())
+                .orElseThrow(() -> new NotFoundException("Film with name " + updatedFilm.getName() + " not found."));
+        film.fromEntity(updatedFilm);
+        return filmForumRepository.save(film).toFilmForum();
+    }
 }

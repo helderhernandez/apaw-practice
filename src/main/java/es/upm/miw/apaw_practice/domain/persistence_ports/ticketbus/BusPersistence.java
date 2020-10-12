@@ -6,6 +6,7 @@ import es.upm.miw.apaw_practice.domain.models.ticketbus.BusTicketsDatesUpdate;
 import org.springframework.stereotype.Repository;
 
 import java.util.List;
+import java.util.stream.Stream;
 
 @Repository
 public interface BusPersistence {
@@ -17,4 +18,6 @@ public interface BusPersistence {
     Bus create(BusCreation busCreation);
 
     Bus updateTicketsDates(BusTicketsDatesUpdate busTicketsDatesUpdate);
+
+    Stream<String> findNamePassengersByReference(String reference);
 }
