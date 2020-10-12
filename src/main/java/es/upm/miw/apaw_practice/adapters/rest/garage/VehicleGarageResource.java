@@ -1,13 +1,12 @@
 package es.upm.miw.apaw_practice.adapters.rest.garage;
 
+import es.upm.miw.apaw_practice.domain.models.garage.Vehicle;
 import es.upm.miw.apaw_practice.domain.services.garage.VehicleService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PatchMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Stream;
 
 @RestController
 @RequestMapping(VehicleGarageResource.VEHICLES)
@@ -24,6 +23,11 @@ public class VehicleGarageResource {
     @PatchMapping
     public void updateEstimatedBudget(@RequestBody List<VehicleEstimatedBudgetUpdating> estimatedBudgetUpdatingList){
         this.vehicleService.updateEstimatedBudget(estimatedBudgetUpdatingList);
+    }
+
+    @GetMapping
+    public Stream<Vehicle> readAll(){
+        return this.vehicleService.getAllVehicles();
     }
 
 }

@@ -10,6 +10,11 @@ public class VehicleEstimatedBudgetUpdating {
         // empty for framework
     }
 
+    public VehicleEstimatedBudgetUpdating(String carRegistration, BigDecimal estimatedBudget) {
+        this.carRegistration = carRegistration;
+        this.estimatedBudget = estimatedBudget;
+    }
+
     public String getCarRegistration() {
         return carRegistration;
     }

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Stream;
 
 @Service
 public class VehicleService {
@@ -27,4 +28,9 @@ public class VehicleService {
                 })
                 .forEach(vehicle -> this.vehiclePersistence.update(vehicle));
     }
+
+    public Stream<Vehicle> getAllVehicles(){
+        return vehiclePersistence.readAll();
+    }
+
 }

@@ -8,6 +8,8 @@ import es.upm.miw.apaw_practice.domain.persistence_ports.garage.VehiclePersisten
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.stream.Stream;
+
 @Repository("vehiclePersistence")
 public class VehiclePersistenceMongodb implements VehiclePersistence {
 
@@ -35,5 +37,12 @@ public class VehiclePersistenceMongodb implements VehiclePersistence {
         return this.vehicleGarageRepository
                 .save(vehicleEntity)
                 .toVehicle();
+    }
+
+    @Override
+    public Stream<Vehicle> readAll() {
+        return this.vehicleGarageRepository.findAll()
+                .stream()
+                .map(VehicleEntity::toVehicle);
     }
 }
