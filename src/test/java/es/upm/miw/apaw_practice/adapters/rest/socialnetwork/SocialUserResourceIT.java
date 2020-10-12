@@ -6,6 +6,7 @@ import es.upm.miw.apaw_practice.domain.models.socialnetwork.SocialUserCreation;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.test.web.reactive.server.WebTestClient;
 import org.springframework.web.reactive.function.BodyInserters;
 
@@ -28,6 +29,27 @@ public class SocialUserResourceIT {
                 .expectBody(SocialUser.class)
                 .value(Assertions::assertNotNull)
                 .value(socialUser -> assertNotNull(socialUser.getId()));
+    }
+
+    @Test
+    void testCreateConflict() {
+        SocialUserCreation socialUserCreation = new SocialUserCreation("Juan13", "Bio", false);
+        this.webTestClient.post()
+                .uri(SocialUserResource.USERS)
+                .body(BodyInserters.fromValue(socialUserCreation))
+                .exchange()
+                .expectStatus().isEqualTo(HttpStatus.CONFLICT);
+    }
+
+    @Test
+    void testUpdateBiographyNotFound() {
+        BiographyDto biographyDto = new BiographyDto();
+        biographyDto.setBiography("This is the new biography");
+        this.webTestClient.put()
+                .uri(SocialUserResource.USERS + SocialUserResource.ID + SocialUserResource.BIOGRAPHY, "ko")
+                .body(BodyInserters.fromValue(biographyDto))
+                .exchange()
+                .expectStatus().isNotFound();
     }
 
 }
