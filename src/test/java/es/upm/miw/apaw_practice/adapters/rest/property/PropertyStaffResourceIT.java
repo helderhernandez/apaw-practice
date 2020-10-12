@@ -29,6 +29,6 @@ public class PropertyStaffResourceIT {
                 .expectStatus().isOk()
                 .expectBody(PropertyStaff.class)
                 .value(Assertions::assertNotNull)
-                .value(propertyStaffData -> assertNotNull(propertyStaffData.getId()));
+                .value(staff -> assertNotNull(staff.getId()));
     }
 }

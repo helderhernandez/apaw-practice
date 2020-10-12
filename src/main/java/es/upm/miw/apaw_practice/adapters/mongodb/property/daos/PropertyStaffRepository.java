@@ -6,6 +6,5 @@ import org.springframework.data.mongodb.repository.MongoRepository;
 import java.util.Optional;
 
 public interface PropertyStaffRepository extends MongoRepository<PropertyStaffEntity,String> {
-    Optional<PropertyStaffEntity> findById(String id);
     Optional<PropertyStaffEntity> findByDni(String dni);
 }
