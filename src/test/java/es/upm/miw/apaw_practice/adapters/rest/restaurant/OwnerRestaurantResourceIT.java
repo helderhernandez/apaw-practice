@@ -20,9 +20,7 @@ public class OwnerRestaurantResourceIT {
     void testReadName() {
         this.webTestClient
                 .get()
-                .uri(uriBuilder ->
-                        uriBuilder.path(OwnerRestaurantResource.OWNERS + OwnerRestaurantResource.OWNERNAME)
-                                .build())
+                .uri(OwnerRestaurantResource.OWNERS + OwnerRestaurantResource.OWNERNAME)
                 .exchange()
                 .expectStatus().isOk()
                 .expectBodyList(NameDto.class)

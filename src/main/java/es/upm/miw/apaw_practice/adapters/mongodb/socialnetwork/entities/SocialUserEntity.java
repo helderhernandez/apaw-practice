@@ -1,5 +1,8 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.socialnetwork.entities;
 
+import es.upm.miw.apaw_practice.domain.models.socialnetwork.SocialUser;
+import es.upm.miw.apaw_practice.domain.models.socialnetwork.SocialUserCreation;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;
@@ -24,6 +27,11 @@ public class SocialUserEntity {
 
     public SocialUserEntity() {
         //empty from framework
+    }
+
+    public SocialUserEntity(SocialUserCreation socialUserCreation) {
+        BeanUtils.copyProperties(socialUserCreation, this);
+        this.id = UUID.randomUUID().toString();
     }
 
     public SocialUserEntity(String nickName, String biography, Boolean verified, List<SocialPostEntity> socialPostEntities, List<SocialListEntity> socialListEntities) {
@@ -81,6 +89,12 @@ public class SocialUserEntity {
 
     public void setSocialListEntities(List<SocialListEntity> socialListEntities) {
         this.socialListEntities = socialListEntities;
+    }
+
+    public SocialUser toSocialUser() {
+        SocialUser socialUser = new SocialUser();
+        BeanUtils.copyProperties(this, socialUser);
+        return socialUser;
     }
 
     @Override

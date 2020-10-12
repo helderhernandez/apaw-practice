@@ -18,10 +18,8 @@ public class RentalFilmEntityRepositoryIT {
                 .anyMatch(rentalFilm ->
                         "2222".equals(rentalFilm.getReference()) &&
                                 "The Pink Panther".equals(rentalFilm.getTitle()) &&
-                                "description2".equals(rentalFilm.getDescription()) &&
                                 "1980".equals(rentalFilm.getYear().toString()) &&
-                                "140".equals(rentalFilm.getDuration().toString()) &&
-                                "William".equals(rentalFilm.getFilmMaker().getName()) &&
+                                "William Blake Crump".equals(rentalFilm.getFilmMaker().getName()) &&
                                 (rentalFilm.getCategories().size()) == 2)
         );
     }

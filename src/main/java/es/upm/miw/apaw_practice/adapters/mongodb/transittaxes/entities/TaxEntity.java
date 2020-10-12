@@ -1,14 +1,12 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.transittaxes.entities;
 
 import es.upm.miw.apaw_practice.domain.models.transittaxes.Tax;
-import es.upm.miw.apaw_practice.domain.models.transittaxes.TaxCreation;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.math.BigDecimal;
-import java.time.LocalDate;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -27,19 +25,14 @@ public class TaxEntity {
         //empty from framework
     }
 
-    public TaxEntity(String refTax, String description, BigDecimal price, Boolean paid) {
-        this.id = UUID.randomUUID().toString();
-        this.refTax = refTax;
-        this.description = description;
-        this.price = price;
-        this.paid = paid;
-    }
-
-    public TaxEntity(TaxCreation taxCreation) {
-        BeanUtils.copyProperties(taxCreation, this);
+    public TaxEntity(Tax tax) {
+        BeanUtils.copyProperties(tax, this);
         this.id = UUID.randomUUID().toString();
     }
 
+    public static TaxBuilders.IdTax builder() {
+        return new Builder();
+    }
 
     public String getId() {
         return id;
@@ -113,5 +106,49 @@ public class TaxEntity {
         Tax tax = new Tax();
         BeanUtils.copyProperties(this, tax);
         return tax;
+    }
+
+    public static class Builder implements TaxBuilders.IdTax, TaxBuilders.RefTax, TaxBuilders.Price, TaxBuilders.Optatives {
+
+        private TaxEntity taxEntity;
+
+        public Builder() {
+            this.taxEntity = new TaxEntity();
+        }
+
+        @Override
+        public TaxBuilders.RefTax idTax() {
+            this.taxEntity.id = UUID.randomUUID().toString();
+            return this;
+        }
+
+        @Override
+        public TaxBuilders.Price refTax(String refTax) {
+            this.taxEntity.refTax = refTax;
+            return this;
+        }
+
+        @Override
+        public TaxBuilders.Optatives price(BigDecimal price) {
+            this.taxEntity.price = price;
+            return this;
+        }
+
+        @Override
+        public TaxBuilders.Optatives description(String description) {
+            this.taxEntity.description = description;
+            return this;
+        }
+
+        @Override
+        public TaxBuilders.Optatives paid(Boolean paid) {
+            this.taxEntity.paid = paid;
+            return this;
+        }
+
+        @Override
+        public TaxEntity build() {
+            return taxEntity;
+        }
     }
 }

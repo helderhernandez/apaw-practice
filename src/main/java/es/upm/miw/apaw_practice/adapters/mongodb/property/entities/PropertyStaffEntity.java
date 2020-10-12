@@ -1,18 +1,40 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.property.entities;
 
-import java.util.Objects;
+import es.upm.miw.apaw_practice.domain.models.property.PropertyStaff;
+import es.upm.miw.apaw_practice.domain.models.property.PropertyStaffCreation;
+import org.springframework.beans.BeanUtils;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.Objects;
+import java.util.UUID;
+
+@Document
 public class PropertyStaffEntity {
+    @Id
     private String id;
     private String name;
     private String dni;
     private String description;
 
-    public PropertyStaffEntity(String id, String name, String dni, String description) {
-        this.id = id;
+    public PropertyStaffEntity(){
+
+    }
+    public PropertyStaffEntity(String name, String dni, String description) {
         this.name = name;
         this.dni = dni;
         this.description = description;
+    }
+
+    public PropertyStaffEntity(PropertyStaffCreation propertyStaffCreation) {
+        BeanUtils.copyProperties(propertyStaffCreation, this);
+        this.id = UUID.randomUUID().toString();
+    }
+
+    public PropertyStaff toPropertyStaff() {
+        PropertyStaff propertyStaff = new PropertyStaff();
+        BeanUtils.copyProperties(this,propertyStaff);
+        return propertyStaff;
     }
 
     public String getId() {

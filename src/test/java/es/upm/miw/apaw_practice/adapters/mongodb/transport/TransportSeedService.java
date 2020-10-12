@@ -31,18 +31,51 @@ public class TransportSeedService {
     public void seedDatabase() {
         LogManager.getLogger(this.getClass()).warn("------- Worker Initial Load -----------");
         ExtraEntity[] extras = {
-                new ExtraEntity("1",1, true),
-                new ExtraEntity("2",2, false),
-                new ExtraEntity("3",3, true),
-                new ExtraEntity("4",4, false),
-                new ExtraEntity("5",5, true),
-                new ExtraEntity("6",6, false)
+                ExtraEntity.builder("1")
+                        .workedHours(1)
+                        .paid(true)
+                        .build(),
+                ExtraEntity.builder("2")
+                        .workedHours(2)
+                        .paid(false)
+                        .build(),
+                ExtraEntity.builder("3")
+                        .workedHours(3)
+                        .paid(true)
+                        .build(),
+                ExtraEntity.builder("4")
+                        .workedHours(4)
+                        .paid(false)
+                        .build(),
+                ExtraEntity.builder("5")
+                        .workedHours(5)
+                        .paid(true)
+                        .build(),
+                ExtraEntity.builder("6")
+                        .workedHours(6)
+                        .paid(false)
+                        .build()
         };
         this.extraRepository.saveAll(Arrays.asList(extras));
         WorkerEntity[] workers = {
-                new WorkerEntity("name1", "telephone1", "dni1", Arrays.asList(extras[0], extras[1]) ),
-                new WorkerEntity("name2", "telephone2", "dni2", Arrays.asList(extras[2], extras[3]) ),
-                new WorkerEntity("name3", "telephone3", "dni3", Arrays.asList(extras[4], extras[5]) )
+                WorkerEntity.builder()
+                        .name("name1")
+                        .telephone("telephone1")
+                        .dni("dni1")
+                        .extraEntities(Arrays.asList(extras[0], extras[1]))
+                        .build(),
+                WorkerEntity.builder()
+                        .name("name2")
+                        .telephone("telephone2")
+                        .dni("dni2")
+                        .extraEntities(Arrays.asList(extras[2], extras[3]))
+                        .build(),
+                WorkerEntity.builder()
+                        .name("name3")
+                        .telephone("telephone3")
+                        .dni("dni3")
+                        .extraEntities(Arrays.asList(extras[4], extras[5]))
+                        .build(),
         };
         this.workerRepository.saveAll(Arrays.asList(workers));
         DepartmentEntity[] departments = {
@@ -51,9 +84,23 @@ public class TransportSeedService {
         };
         this.departmentRepository.saveAll(Arrays.asList(departments));
         VehicleTransportEntity[] vehicles = {
-                new VehicleTransportEntity("brand1", "model1", "plate1", LocalDate.now(), workers[0]),
-                new VehicleTransportEntity("brand2", "model2", "plate2", LocalDate.now(), workers[1]),
-                new VehicleTransportEntity("brand3", "model3", "plate3", LocalDate.now(), workers[2])
+                VehicleTransportEntity.builder("plate1")
+                        .brand("brand1")
+                        .model("model1")
+                        .boughtDate(LocalDate.now())
+                        .workerEntity(workers[0])
+                        .build(),
+                VehicleTransportEntity.builder("plate2")
+                        .brand("brand2").model("model2")
+                        .boughtDate(LocalDate.now())
+                        .workerEntity(workers[1])
+                        .build(),
+                VehicleTransportEntity.builder("plate3")
+                        .brand("brand3")
+                        .model("model3")
+                        .boughtDate(LocalDate.now())
+                        .workerEntity(workers[2])
+                        .build()
         };
         this.vehicleTransportRepository.saveAll(Arrays.asList(vehicles));
     }
