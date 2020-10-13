@@ -3,12 +3,14 @@ package es.upm.miw.apaw_practice.domain.models.filmforum;
 import java.time.LocalDateTime;
 
 public class FilmComment {
+    private String id;
     private FilmUser user;
     private String content;
     private Integer punctuation;
     private LocalDateTime createdAt;
 
-    public FilmComment(FilmUser user, String content, Integer punctuation, LocalDateTime createdAt) {
+    public FilmComment(String id, FilmUser user, String content, Integer punctuation, LocalDateTime createdAt) {
+        this.id = id;
         this.user = user;
         this.content = content;
         this.punctuation = punctuation;
@@ -45,6 +47,14 @@ public class FilmComment {
 
     public void setCreatedAt(LocalDateTime createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     @Override
