@@ -84,9 +84,13 @@ public class PlaneEntity {
     }
 
     public Plane toPlane() {
-        Plane plane = new Plane();
-        BeanUtils.copyProperties(this, plane);
-        return plane;
+        return Plane.builder()
+                .id(id)
+                .model(model)
+                .capacity(capacity)
+                .complete(complete)
+                .licensePlate(licensePlate)
+                .build();
     }
 
     @Override
