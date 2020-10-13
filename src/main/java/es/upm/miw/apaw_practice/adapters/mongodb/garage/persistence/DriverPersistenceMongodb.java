@@ -25,11 +25,29 @@ public class DriverPersistenceMongodb implements DriverPersistence {
                 });
     }
 
+    private void assertDniExist(String dni) {
+        this.driverRepository
+                .findByDni(dni)
+                .ifPresentOrElse(driver -> {
+                                    // do nothing
+                                },
+                                () -> {
+                                    throw new ConflictException("Driver not exist: " + dni);
+                                });
+
+    }
+
     @Override
     public Driver create(DriverCreation driverCreation) {
         this.assertDniNotExist(driverCreation.getDni());
         DriverEntity driverEntity = new DriverEntity(driverCreation);
         return this.driverRepository.save(driverEntity).toDriver();
+    }
+
+    @Override
+    public void delete(String dni) {
+        this.assertDniExist(dni);
+        this.driverRepository.deleteByDni(dni);
     }
 
 }
