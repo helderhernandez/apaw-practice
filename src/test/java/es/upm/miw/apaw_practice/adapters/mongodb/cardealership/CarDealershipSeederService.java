@@ -41,11 +41,11 @@ public class CarDealershipSeederService {
         this.vehicleRepository.saveAll(Arrays.asList(vehicles));
 
         CDEmployeeEntity[] employees = {
-                new CDEmployeeEntity("Pablo Coronado", "Comercial", LocalDateTime.of(2018, 10, 28, 16, 20, 10), new BigDecimal("26000.500")),
-                new CDEmployeeEntity("Jesús Pérez", "Comercial", LocalDateTime.of(2017, 12, 13, 17, 20, 40), new BigDecimal("23000.00")),
-                new CDEmployeeEntity("Pedro Ramirez", "Limpieza", LocalDateTime.of(2019, 3, 10, 12, 20, 10), new BigDecimal("22000.500")),
-                new CDEmployeeEntity("Miguel Ángel Muñoz", "Marketing", LocalDateTime.of(2010, 4, 30, 17, 30, 10), new BigDecimal("40000.00")),
-                new CDEmployeeEntity("Laura Jurado", "Marketing", LocalDateTime.of(2013, 4, 1, 13, 3, 20), new BigDecimal("40000.00")),
+                new CDEmployeeEntity("e2300", "Pablo Coronado", "Comercial", LocalDateTime.of(2018, 10, 28, 16, 20, 10), new BigDecimal("26000.500")),
+                new CDEmployeeEntity("e2301","Jesús Pérez", "Comercial", LocalDateTime.of(2017, 12, 13, 17, 20, 40), new BigDecimal("23000.00")),
+                new CDEmployeeEntity("e2302","Pedro Ramirez", "Limpieza", LocalDateTime.of(2019, 3, 10, 12, 20, 10), new BigDecimal("22000.500")),
+                new CDEmployeeEntity("e2303","Miguel Ángel Muñoz", "Marketing", LocalDateTime.of(2010, 4, 30, 17, 30, 10), new BigDecimal("40000.00")),
+                new CDEmployeeEntity("e2304","Laura Jurado", "Marketing", LocalDateTime.of(2013, 4, 1, 13, 3, 20), new BigDecimal("40000.00")),
         };
 
         this.employeeRepository.saveAll(Arrays.asList(employees));
