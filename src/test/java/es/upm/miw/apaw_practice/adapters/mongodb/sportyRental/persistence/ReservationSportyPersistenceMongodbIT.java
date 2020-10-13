@@ -3,6 +3,7 @@ package es.upm.miw.apaw_practice.adapters.mongodb.sportyRental.persistence;
 import es.upm.miw.apaw_practice.TestConfig;
 import es.upm.miw.apaw_practice.adapters.mongodb.sportyRental.SportyRentalSeederService;
 import es.upm.miw.apaw_practice.domain.models.sportyRental.*;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -20,6 +21,12 @@ class ReservationSportyPersistenceMongodbIT {
 
     @Autowired
     private SportyRentalSeederService sportyRentalSeederService;
+
+    @AfterEach
+    void resetDatabase() {
+        sportyRentalSeederService.deleteAll();
+        sportyRentalSeederService.seedDatabase();
+    }
 
     @Test
     void testReadByRefReservation() {

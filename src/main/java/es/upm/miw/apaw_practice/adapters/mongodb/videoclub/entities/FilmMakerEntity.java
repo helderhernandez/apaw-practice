@@ -3,15 +3,18 @@ package es.upm.miw.apaw_practice.adapters.mongodb.videoclub.entities;
 import es.upm.miw.apaw_practice.domain.models.videoclub.FilmMaker;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDate;
-import java.time.Period;
+import java.util.UUID;
 
 @Document
 public class FilmMakerEntity {
     @Id
     private String id;
+    @Indexed(unique = true)
+    private String reference;
     private String name;
     private LocalDate birthday;
     private String gender;
@@ -20,11 +23,17 @@ public class FilmMakerEntity {
         // empty from framework
     }
 
-    public FilmMakerEntity(String id, String name, LocalDate birthday, String gender) {
-        this.id = id;
+    public FilmMakerEntity(String reference, String name, LocalDate birthday, String gender) {
+        this.id = UUID.randomUUID().toString();
+        this.reference = reference;
         this.name = name;
         this.birthday = birthday;
         this.gender = gender;
+    }
+
+    public FilmMakerEntity(FilmMaker filmMaker) {
+        BeanUtils.copyProperties(filmMaker, this);
+        this.id = UUID.randomUUID().toString();
     }
 
     public String getId() {
@@ -33,6 +42,14 @@ public class FilmMakerEntity {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getReference() {
+        return reference;
+    }
+
+    public void setReference(String reference) {
+        this.reference = reference;
     }
 
     public String getName() {
@@ -59,12 +76,6 @@ public class FilmMakerEntity {
         this.gender = gender;
     }
 
-    public Integer getAge() {
-        LocalDate today = LocalDate.now();
-        Period p = Period.between(birthday, today);
-        return p.getYears();
-    }
-
     public FilmMaker toFilmMaker() {
         FilmMaker filmMaker = new FilmMaker();
         BeanUtils.copyProperties(this, filmMaker);
@@ -77,6 +88,7 @@ public class FilmMakerEntity {
         if (o == null || getClass() != o.getClass()) return false;
         FilmMakerEntity filmMakerEntity = (FilmMakerEntity) o;
         return id.equals(filmMakerEntity.id) &&
+                reference.equals(filmMakerEntity.reference) &&
                 name.equals(filmMakerEntity.name) &&
                 birthday.equals(filmMakerEntity.birthday) &&
                 gender.equals(filmMakerEntity.gender);
@@ -91,6 +103,7 @@ public class FilmMakerEntity {
     public String toString() {
         return "FilmMakerEntity{" +
                 "id='" + id + '\'' +
+                ", reference='" + reference + '\'' +
                 ", name='" + name + '\'' +
                 ", birthday=" + birthday +
                 ", gender='" + gender + '\'' +

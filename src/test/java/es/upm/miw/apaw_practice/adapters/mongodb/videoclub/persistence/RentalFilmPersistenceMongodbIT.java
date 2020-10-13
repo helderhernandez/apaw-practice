@@ -18,7 +18,7 @@ public class RentalFilmPersistenceMongodbIT {
         RentalFilm rentalFilm = rentalFilmPersistenceMongodb.read("4444");
         assertEquals("Generation Z", rentalFilm.getTitle());
         assertEquals("1998", rentalFilm.getYear().toString());
-        assertEquals("filmMaker4", rentalFilm.getFilmMaker().getId());
+        assertEquals("filmMaker4", rentalFilm.getFilmMaker().getReference());
         assertEquals("cat4", rentalFilm.getCategories().get(0).getId());
     }
 }
