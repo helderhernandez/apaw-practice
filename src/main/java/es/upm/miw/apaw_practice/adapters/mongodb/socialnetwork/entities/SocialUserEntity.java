@@ -8,8 +8,10 @@ import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Document
 public class SocialUserEntity {
@@ -92,9 +94,22 @@ public class SocialUserEntity {
     }
 
     public SocialUser toSocialUser() {
-        SocialUser socialUser = new SocialUser();
-        BeanUtils.copyProperties(this, socialUser);
-        return socialUser;
+        List<String> socialListIds, socialPostIds;
+        if (socialListEntities == null) {
+            socialListIds = new ArrayList<>();
+        } else {
+            socialListIds = this.socialListEntities.stream()
+                    .map(SocialListEntity::getId)
+                    .collect(Collectors.toList());
+        }
+        if (socialPostEntities == null) {
+            socialPostIds = new ArrayList<>();
+        } else {
+            socialPostIds = this.socialPostEntities.stream()
+                    .map(SocialPostEntity::getId)
+                    .collect(Collectors.toList());
+        }
+        return new SocialUser(id, nickName, biography, verified, socialListIds, socialPostIds);
     }
 
     @Override

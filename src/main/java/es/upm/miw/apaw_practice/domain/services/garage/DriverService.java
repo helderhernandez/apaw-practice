@@ -20,4 +20,8 @@ public class DriverService {
         return this.driverPersistence.create(driverCreation);
     }
 
+    public void delete(String dni) {
+        this.driverPersistence.delete(dni);
+    }
+
 }

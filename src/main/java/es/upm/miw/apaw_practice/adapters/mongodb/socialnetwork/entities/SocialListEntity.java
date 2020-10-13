@@ -1,5 +1,6 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.socialnetwork.entities;
 
+import es.upm.miw.apaw_practice.domain.models.socialnetwork.SocialList;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -7,6 +8,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Document
 public class SocialListEntity {
@@ -69,6 +71,13 @@ public class SocialListEntity {
 
     public void setSocialUserEntities(List<SocialUserEntity> socialUserEntities) {
         this.socialUserEntities = socialUserEntities;
+    }
+
+    public SocialList toSocialList() {
+        List<String> nickNames = this.socialUserEntities.stream()
+                .map(SocialUserEntity::getNickName)
+                .collect(Collectors.toList());
+        return new SocialList(id, name, description, personal, nickNames);
     }
 
     @Override

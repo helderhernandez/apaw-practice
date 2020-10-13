@@ -5,6 +5,7 @@ import java.time.LocalDate;
 
 public class MaintanenceItem {
 
+    private String id;
     private String item;
     private String type;
     private LocalDate time;
@@ -19,6 +20,14 @@ public class MaintanenceItem {
 
     public MaintanenceItem(String item) {
         this.item = item;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getItem() {
@@ -80,7 +89,8 @@ public class MaintanenceItem {
     @Override
     public String toString() {
         return "MaintanenceItem{" +
-                "item='" + item + '\'' +
+                "id='" + id + '\'' +
+                ", item='" + item + '\'' +
                 ", type='" + type + '\'' +
                 ", time=" + time +
                 ", fees=" + fees +

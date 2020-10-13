@@ -7,7 +7,7 @@ import java.time.LocalDate;
 
 @Document
 public class MaintanenceItemEntity {
-
+    private String id;
     private String item;
     private String type;
     private LocalDate time;
@@ -17,10 +17,11 @@ public class MaintanenceItemEntity {
     private Boolean status;
 
     public MaintanenceItemEntity(){
-
+        //empty from framework
     }
 
-    public MaintanenceItemEntity(String item, String type, LocalDate time, BigDecimal fees, Long invoice, String equipment, Boolean status) {
+    public MaintanenceItemEntity(String id, String item, String type, LocalDate time, BigDecimal fees, Long invoice, String equipment, Boolean status) {
+        this.id = id;
         this.item = item;
         this.type = type;
         this.time = time;
@@ -28,6 +29,14 @@ public class MaintanenceItemEntity {
         this.invoice = invoice;
         this.equipment = equipment;
         this.status = status;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getItem() {
@@ -89,7 +98,8 @@ public class MaintanenceItemEntity {
     @Override
     public String toString() {
         return "MaintanenceItemEntity{" +
-                "item='" + item + '\'' +
+                "id='" + id + '\'' +
+                ", item='" + item + '\'' +
                 ", type='" + type + '\'' +
                 ", time=" + time +
                 ", fees=" + fees +
