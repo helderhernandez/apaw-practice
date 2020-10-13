@@ -103,7 +103,7 @@ public class FilmForumEntity {
     }
 
     public FilmForum toFilmForum() {
-        return new FilmForum(filmActors.stream().map(FilmActorEntity::toFilmActor).collect(Collectors.toList())
+        return new FilmForum(this.id, filmActors.stream().map(FilmActorEntity::toFilmActor).collect(Collectors.toList())
                 , filmComments.stream().map(FilmCommentEntity::toFilmComment).collect(Collectors.toList()),
                 name, year, isForAllPublic, duration, genre);
     }
