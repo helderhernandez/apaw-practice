@@ -8,5 +8,7 @@ import java.util.stream.Stream;
 @Repository
 public interface ProprietorPersistence {
     Stream <Proprietor> readAll();
+    Proprietor update(Proprietor proprietor);
+    Proprietor readByDni(String dni);
 
 }

@@ -1,30 +1,19 @@
-package es.upm.miw.apaw_practice.adapters.mongodb.basketball.entities;
+package es.upm.miw.apaw_practice.domain.models.basketball;
 
-import com.fasterxml.jackson.databind.util.BeanUtil;
-import es.upm.miw.apaw_practice.domain.models.basketball.MemberTeam;
-import org.springframework.beans.BeanUtils;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.index.Indexed;
-import org.springframework.data.mongodb.core.mapping.Document;
+public class MemberTeam {
 
-import java.util.UUID;
-
-@Document
-public class MemberTeamEntity {
-    @Id
     private String id;
     private String name;
     private String surname;
-    @Indexed(unique = true)
     private String dni;
     private Boolean available;
 
-    public MemberTeamEntity() {
+    public MemberTeam() {
         //Empty constructor for the framework
     }
 
-    public MemberTeamEntity(String name, String surname, String dni, Boolean available) {
-        this.id = UUID.randomUUID().toString();
+    public MemberTeam(String id, String name, String surname, String dni, Boolean available) {
+        this.id = id;
         this.name = name;
         this.surname = surname;
         this.dni = dni;
@@ -72,29 +61,13 @@ public class MemberTeamEntity {
     }
 
     @Override
-    public boolean equals(Object o) {
-        return this == o || o != null && getClass() == o.getClass() && (dni.equals(((MemberTeamEntity) o).dni));
-    }
-
-    @Override
-    public int hashCode() {
-        return dni.hashCode();
-    }
-
-    @Override
     public String toString() {
-        return "MemberTeamEntity{" +
+        return "MemberTeam{" +
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
                 ", dni='" + dni + '\'' +
-                ", isAvailable=" + available +
+                ", available=" + available +
                 '}';
-    }
-
-    public MemberTeam toMemberTeam() {
-        MemberTeam memberTeam = new MemberTeam();
-        BeanUtils.copyProperties(this, memberTeam);
-        return memberTeam;
     }
 }
