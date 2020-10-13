@@ -32,8 +32,6 @@ public class LevelPersistenceMongodb implements LevelPersistence {
     @Override
     public Stream<Challenge> findCompletedChallengesByDescription(String description) {
 
-        System.out.println(description);
-
         return this.levelRepository.findAll()
                 .stream()
                 .filter(levelEntity -> levelEntity.getDescription().equals(description))
