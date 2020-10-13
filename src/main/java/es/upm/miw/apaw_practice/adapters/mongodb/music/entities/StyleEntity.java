@@ -47,6 +47,10 @@ public class StyleEntity {
         return style;
     }
 
+    public void fromStyle(Style style){
+        BeanUtils.copyProperties(style, this);
+    }
+
     @Override
     public int hashCode() {
         return name.hashCode();
