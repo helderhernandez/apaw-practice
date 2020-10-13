@@ -31,14 +31,15 @@ public class LevelPersistenceMongodb implements LevelPersistence {
 
     @Override
     public Stream<Challenge> findCompletedChallengesByDescription(String description) {
+
+        System.out.println(description);
+
         return this.levelRepository.findAll()
                 .stream()
                 .filter(levelEntity -> levelEntity.getDescription().equals(description))
                 .flatMap(levelEntity -> levelEntity.getGamePlayerEntities().stream())
-                .filter(gamePlayerEntity -> gamePlayerEntity.getChallengeEntities()
-                        .stream()
-                        .anyMatch(challengeEntity -> challengeEntity.getCompleted() == true))
-                .flatMap(challengeEntity -> challengeEntity.getChallengeEntities().stream())
+                .flatMap(gamePlayerEntity -> gamePlayerEntity.getChallengeEntities().stream())
+                .filter(ChallengeEntity::getCompleted)
                 .map(ChallengeEntity::toChallenge);
 
     }

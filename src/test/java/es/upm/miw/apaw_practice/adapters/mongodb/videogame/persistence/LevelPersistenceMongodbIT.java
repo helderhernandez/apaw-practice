@@ -33,7 +33,7 @@ class LevelPersistenceMongodbIT {
                 .findCompletedChallengesByDescription("level 1")
                 .collect(Collectors.toList());
 
-        assertEquals(3, challengeList.toString());
+        assertEquals("take the flag from the top of the castle ", challengeList.get(0).getDescription());
 
     }
 
