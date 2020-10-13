@@ -1,4 +1,4 @@
-package es.upm.miw.apaw_practice.adapters.mongodb.movie.entities.filmDirector_composite;
+package es.upm.miw.apaw_practice.adapters.mongodb.movie.entities.filmdirector_composite;
 
 import es.upm.miw.apaw_practice.adapters.mongodb.movie.entities.FilmDirectorEntity;
 

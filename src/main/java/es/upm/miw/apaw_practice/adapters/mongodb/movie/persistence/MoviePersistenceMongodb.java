@@ -2,6 +2,7 @@ package es.upm.miw.apaw_practice.adapters.mongodb.movie.persistence;
 
 import es.upm.miw.apaw_practice.adapters.mongodb.movie.daos.CinemaRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.movie.daos.MovieRepository;
+import es.upm.miw.apaw_practice.adapters.mongodb.movie.entities.CinemaEntity;
 import es.upm.miw.apaw_practice.adapters.mongodb.movie.entities.MovieEntity;
 import es.upm.miw.apaw_practice.domain.exceptions.ConflictException;
 import es.upm.miw.apaw_practice.domain.models.movie.Movie;
@@ -49,9 +50,9 @@ public class MoviePersistenceMongodb implements MoviePersistence {
         return this.cinemaRepository.findAll().stream()
                 .filter(cinema -> cinema.getFilmRooms().stream()
                             .anyMatch(filmRoomEntity -> filmRoomEntity.getNumberOfSeats() > numberOfSeats))
-                .map(cinemaEntity -> cinemaEntity.getMovies())
+                .map(CinemaEntity::getMovies)
                 .flatMap(movieEntities -> movieEntities.stream())
-                .map(movieEntity -> movieEntity.toMovie())
+                .map(MovieEntity::toMovie)
                 .distinct();
     }
 }
