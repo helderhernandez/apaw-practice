@@ -1,9 +1,9 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.transport.entities;
 
+import es.upm.miw.apaw_practice.domain.models.transport.Extra;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
-
-import java.util.UUID;
 
 @Document
 public class ExtraEntity {
@@ -16,10 +16,14 @@ public class ExtraEntity {
         //empty for framework
     }
 
-    public ExtraEntity(Integer workedHours, Boolean paid) {
-        this.id = UUID.randomUUID().toString();
-        this.workedHours = workedHours;
-        this.paid = paid;
+    public ExtraEntity(String id) {
+        this.id = id;
+        this.workedHours = 0;
+        this.paid = false;
+    }
+
+    public static ExtraBuilder builder(String id) {
+        return new ExtraBuilder(id);
     }
 
     public String getId() {
@@ -63,5 +67,37 @@ public class ExtraEntity {
                 ", workedHours=" + workedHours +
                 ", paid=" + paid +
                 '}';
+    }
+
+    public void fromStudent(Extra extra) {
+        BeanUtils.copyProperties(extra, this);
+    }
+
+    public Extra toExtra() {
+        Extra extra = new Extra();
+        BeanUtils.copyProperties(this, extra);
+        return extra;
+    }
+
+    public static class ExtraBuilder {
+        private final ExtraEntity extraEntity;
+
+        private ExtraBuilder(String id) {
+            this.extraEntity = new ExtraEntity(id);
+        }
+
+        public ExtraBuilder workedHours(Integer workedHours) {
+            this.extraEntity.workedHours = workedHours;
+            return this;
+        }
+
+        public ExtraBuilder paid(Boolean paid) {
+            this.extraEntity.paid = paid;
+            return this;
+        }
+
+        public ExtraEntity build() {
+            return this.extraEntity;
+        }
     }
 }

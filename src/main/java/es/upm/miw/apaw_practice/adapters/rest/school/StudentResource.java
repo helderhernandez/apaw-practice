@@ -1,5 +1,6 @@
 package es.upm.miw.apaw_practice.adapters.rest.school;
 
+import es.upm.miw.apaw_practice.adapters.rest.LexicalAnalyzer;
 import es.upm.miw.apaw_practice.domain.models.school.Student;
 import es.upm.miw.apaw_practice.domain.models.school.StudentEmailUpdating;
 import es.upm.miw.apaw_practice.domain.services.school.StudentService;
@@ -32,6 +33,12 @@ public class StudentResource {
     @PatchMapping
     public void updateGraduations(@RequestBody List<StudentEmailUpdating> studentEmailUpdatingList) {
         this.studentService.updateEmail(studentEmailUpdatingList);
+    }
+
+    @GetMapping(SEARCH)
+    public Stream<Student> findGraduateStudentsByKnowledgeArea(@RequestParam String q) {
+        String knowledgeArea = new LexicalAnalyzer().extractWithAssure(q, "knowledgeArea");
+        return this.studentService.findGraduateStudentsByKnowledgeArea(knowledgeArea);
     }
 
 }

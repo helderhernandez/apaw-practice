@@ -1,11 +1,12 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.veterinary.entities;
 
+import es.upm.miw.apaw_practice.domain.models.veterinary.Surgery;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.math.BigDecimal;
-import java.util.Arrays;
 import java.util.List;
 import java.util.Objects;
 
@@ -20,8 +21,12 @@ public class SurgeryEntity {
     @DBRef
     private List<AnimalEntity> animals;
 
+    public SurgeryEntity() {
+        //Empty for framework
+    }
+
     public SurgeryEntity(String id, String type, BigDecimal price, List<VeterinaryEntity> veterinarians,
-                         List<AnimalEntity> animals){
+                         List<AnimalEntity> animals) {
         this.id = id;
         this.type = type;
         this.price = price;
@@ -95,5 +100,11 @@ public class SurgeryEntity {
                 ", veterinarians=" + veterinarians +
                 ", animals=" + animals +
                 '}';
+    }
+
+    public Surgery toSurgery() {
+        Surgery surgery = new Surgery();
+        BeanUtils.copyProperties(this, surgery);
+        return surgery;
     }
 }

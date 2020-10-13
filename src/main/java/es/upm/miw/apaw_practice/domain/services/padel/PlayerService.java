@@ -1,6 +1,5 @@
 package es.upm.miw.apaw_practice.domain.services.padel;
 
-import es.upm.miw.apaw_practice.adapters.mongodb.padel.daos.PlayerRepository;
 import es.upm.miw.apaw_practice.domain.models.padel.Player;
 import es.upm.miw.apaw_practice.domain.models.padel.PlayerCreation;
 import es.upm.miw.apaw_practice.domain.persistence_ports.padel.PlayerPersistence;
@@ -15,7 +14,8 @@ public class PlayerService {
     public PlayerService(PlayerPersistence playerPersistence) {
         this.playerPersistence = playerPersistence;
     }
-    public Player create(PlayerCreation playerCreation){
+
+    public Player create(PlayerCreation playerCreation) {
         return this.playerPersistence.create(playerCreation);
     }
 }

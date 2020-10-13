@@ -15,7 +15,7 @@ public class PlayerCreation {
         this.federated = federated;
     }
 
-    public PlayerCreation(){
+    public PlayerCreation() {
         //Empty for Framework
     }
 

@@ -12,7 +12,7 @@ public class DepartmentEntityRepositoryIT {
     private DepartmentRepository departmentRepository;
 
     @Test
-    void testCreateAndRead() {
+    void testModifyAndRead() {
         assertTrue(this.departmentRepository.findAll().stream()
                 .anyMatch(department ->
                         "name1".equals(department.getName()) &&

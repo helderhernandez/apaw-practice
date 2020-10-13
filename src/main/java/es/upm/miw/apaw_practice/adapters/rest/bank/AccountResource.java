@@ -27,4 +27,8 @@ public class AccountResource {
         return this.accountService.updateAmount(id, amount.getAmount());
     }
 
+    @DeleteMapping(ID_ID)
+    public void delete(@PathVariable String id) {
+        this.accountService.delete(id);
+    }
 }

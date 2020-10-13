@@ -1,6 +1,9 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.transport.entities;
 
+import es.upm.miw.apaw_practice.domain.models.transport.Department;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
@@ -10,6 +13,7 @@ import java.util.UUID;
 public class DepartmentEntity {
     @Id
     private String id;
+    @Indexed(unique = true)
     private String name;
     private String ubication;
     private List<WorkerEntity> workerEntityList;
@@ -55,6 +59,16 @@ public class DepartmentEntity {
 
     public void setWorkerEntityList(List<WorkerEntity> workerEntityList) {
         this.workerEntityList = workerEntityList;
+    }
+
+    public void fromDepartment(Department department) {
+        BeanUtils.copyProperties(department, this);
+    }
+
+    public Department toDepartment() {
+        Department department = new Department();
+        BeanUtils.copyProperties(this, department);
+        return department;
     }
 
     @Override

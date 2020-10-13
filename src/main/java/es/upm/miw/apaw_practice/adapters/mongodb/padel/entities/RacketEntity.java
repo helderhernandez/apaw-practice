@@ -1,5 +1,7 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.padel.entities;
 
+import es.upm.miw.apaw_practice.domain.models.padel.Racket;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -109,4 +111,14 @@ public class RacketEntity {
                 '}';
     }
 
+    public void fromRacket(Racket racket) {
+        BeanUtils.copyProperties(racket, this);
+
+    }
+
+    public Racket toRacket() {
+        Racket racket = new Racket();
+        BeanUtils.copyProperties(this,racket);
+        return racket;
+    }
 }

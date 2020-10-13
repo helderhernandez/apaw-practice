@@ -8,4 +8,6 @@ import java.util.stream.Stream;
 @Repository
 public interface BedPersistence {
     Bed updateOccupied(String id, Boolean occupied);
+
+    Stream<Bed> findByNameWidthOfBeds(String name);
 }

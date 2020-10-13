@@ -1,12 +1,17 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.videogame.entities;
 
+import es.upm.miw.apaw_practice.domain.models.videogame.Challenge;
+import es.upm.miw.apaw_practice.domain.models.videogame.GamePlayer;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Document
 public class GamePlayerEntity {
@@ -17,6 +22,7 @@ public class GamePlayerEntity {
     private LocalDateTime signUpDate;
     private Integer points;
     private Boolean isPremiumPlayer;
+    @DBRef
     private List<ChallengeEntity> challengeEntities;
 
     public GamePlayerEntity() {
@@ -73,6 +79,16 @@ public class GamePlayerEntity {
         this.challengeEntities = challengeEntities;
     }
 
+    public GamePlayer toGamePlayer() {
+        GamePlayer gamePlayer = new GamePlayer();
+        BeanUtils.copyProperties(this, gamePlayer, "challengeEntities");
+        List<Challenge> challengeList = this.challengeEntities.stream()
+                .map(ChallengeEntity::toChallenge)
+                .collect(Collectors.toList());
+
+        return gamePlayer;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -86,6 +102,7 @@ public class GamePlayerEntity {
     public int hashCode() {
         return Objects.hash(id, nickName);
     }
+
 
     @Override
     public String toString() {

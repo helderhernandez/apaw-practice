@@ -1,6 +1,10 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.ticketbus.entities;
 
+import es.upm.miw.apaw_practice.domain.models.ticketbus.PassengerBus;
+import es.upm.miw.apaw_practice.domain.models.ticketbus.PassengerBusCreation;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.Objects;
@@ -8,8 +12,13 @@ import java.util.UUID;
 
 @Document
 public class PassengerBusEntity {
+
+    private static final String ENTITY_REF_NAME = "PSNG";
+
     @Id
     private String id;
+    @Indexed(unique = true)
+    private String reference;
     private String docIdentify;
     private String name;
     private String familyName;
@@ -23,12 +32,41 @@ public class PassengerBusEntity {
 
     public PassengerBusEntity(String docIdentify, String name, String familyName, String phone, String email, Boolean accesibility) {
         this.id = UUID.randomUUID().toString();
+        this.reference = GenRefEntity.getReferenceId(ENTITY_REF_NAME);
         this.docIdentify = docIdentify;
         this.name = name;
         this.familyName = familyName;
         this.phone = phone;
         this.email = email;
         this.accesibility = accesibility;
+    }
+
+    public PassengerBusEntity(PassengerBusCreation passenger) {
+        BeanUtils.copyProperties(passenger, this);
+        this.id = UUID.randomUUID().toString();
+        this.reference = GenRefEntity.getReferenceId(ENTITY_REF_NAME);
+    }
+
+    public PassengerBus toPassengerBus() {
+        PassengerBus passengerBus = new PassengerBus();
+        BeanUtils.copyProperties(this, passengerBus);
+        return passengerBus;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
+    public String getReference() {
+        return reference;
+    }
+
+    public void setReference(String reference) {
+        this.reference = reference;
     }
 
     public String getName() {
@@ -100,8 +138,9 @@ public class PassengerBusEntity {
 
     @Override
     public String toString() {
-        return "PassengerEntity{" +
+        return "PassengerBusEntity{" +
                 "id='" + id + '\'' +
+                ", reference='" + reference + '\'' +
                 ", docIdentify='" + docIdentify + '\'' +
                 ", name='" + name + '\'' +
                 ", familyName='" + familyName + '\'' +

@@ -10,6 +10,7 @@ import java.math.BigDecimal;
 import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
+import java.util.stream.Stream;
 
 @Document
 public class SharedAccountEntity {
@@ -32,6 +33,49 @@ public class SharedAccountEntity {
         this.type = type;
         this.IBAN = IBAN;
         this.customerEntities = customerEntities;
+    }
+
+
+    private SharedAccountEntity(Builder builder) {
+        this.id = builder.id;
+        this.IBAN = builder.IBAN;
+        this.type = builder.type;
+        this.amount = builder.amount;
+        this.customerEntities = builder.customerEntities;
+    }
+
+    public static class Builder {
+
+        private final String id;
+        private final String IBAN;
+        private BigDecimal amount;
+        private String type;
+        private List<CustomerEntity> customerEntities;
+
+        public Builder(String IBAN) {
+            this.id = UUID.randomUUID().toString();
+            this.IBAN = IBAN;
+        }
+
+        public Builder amount(BigDecimal amount) {
+            this.amount = amount;
+            return this;
+        }
+
+        public Builder type(String type) {
+            this.type = type;
+            return this;
+        }
+
+        public Builder customerEntities(List<CustomerEntity> customerEntities) {
+            this.customerEntities = customerEntities;
+            return this;
+        }
+
+        public SharedAccountEntity build() {
+            return new SharedAccountEntity(this);
+        }
+
     }
 
 
@@ -76,6 +120,11 @@ public class SharedAccountEntity {
         this.IBAN = IBAN;
     }
 
+    public Stream<String> getDNIs() {
+        return this.customerEntities.stream().
+                map(CustomerEntity::getDNI);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -99,4 +148,5 @@ public class SharedAccountEntity {
                 ", customerEntities=" + customerEntities +
                 '}';
     }
+
 }

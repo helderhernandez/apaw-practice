@@ -23,7 +23,7 @@ public class BankSeederService {
     @Autowired
     private MortgageRepository mortgageRepository;
     @Autowired
-    private SharedAccountsRepository sharedAccountsRepository;
+    private SharedAccountRepository sharedAccountRepository;
     @Autowired
     private ShareholderRepository shareholderRepository;
 
@@ -31,11 +31,11 @@ public class BankSeederService {
     public void seedDatabase() {
         LogManager.getLogger(this.getClass()).warn("------- Bank Initial Load -----------");
         CustomerEntity[] customers = {
-                new CustomerEntity("Ulises", "511511511L", "666777888", "ulises@email.com"),
-                new CustomerEntity("Manuel", "511511777L", "666777999", "manuel@email.com"),
-                new CustomerEntity("Jorge", "511511444M", "666777666", "mayoralcillo@email.com"),
-                new CustomerEntity("Anabel", "511333511A", "666333888", "anabelen@email.com"),
-                new CustomerEntity("Emma", "666511511J", "666777333", "emmatega@email.com"),
+                CustomerEntity.builder().dni("511511511L").name("Ulises").phone("666777888").email("ulises@email.com").build(),
+                CustomerEntity.builder().dni("511511777L").name("Manuel").phone("666777999").email("manuel@email.com").build(),
+                CustomerEntity.builder().dni("511511444M").name("Jorge").phone("666777666").email("mayoralcillo@email.com").build(),
+                CustomerEntity.builder().dni("511333511A").name("Anabel").phone("666333888").email("anabelen@email.com").build(),
+                CustomerEntity.builder().dni("666511511J").name("Emma").phone("666777333").email("emmatega@email.com").build()
         };
         this.customerRepository.saveAll(Arrays.asList(customers));
 
@@ -56,14 +56,22 @@ public class BankSeederService {
         this.mortgageRepository.saveAll(Arrays.asList(mortgages));
 
         SharedAccountEntity[] sharedAccounts = {
-                new SharedAccountEntity(new BigDecimal("4000.00"), "Family", "ES66 123123123",
-                        List.of(customers[0], customers[1])),
-                new SharedAccountEntity(new BigDecimal("20000.00"), "Enterprise", "ES66 321321321",
-                        List.of(customers[0], customers[2], customers[4])),
-                new SharedAccountEntity(new BigDecimal("100"), "Family", "ES66 256652256",
-                        List.of(customers[1], customers[3]))
+                new SharedAccountEntity.Builder("ES66 123123123")
+                        .amount(new BigDecimal("4000.00"))
+                        .type("Family")
+                        .customerEntities(List.of(customers[0], customers[1]))
+                        .build(),
+                new SharedAccountEntity.Builder("ES66 321321321")
+                        .amount(new BigDecimal("20000.00"))
+                        .type("Enterprise")
+                        .customerEntities(List.of(customers[0], customers[2], customers[4]))
+                        .build(),
+                new SharedAccountEntity.Builder("ES66 256652256")
+                        .amount((new BigDecimal("100")))
+                        .customerEntities(List.of(customers[1], customers[3]))
+                        .build()
         };
-        this.sharedAccountsRepository.saveAll(Arrays.asList(sharedAccounts));
+        this.sharedAccountRepository.saveAll(Arrays.asList(sharedAccounts));
 
         ShareholderEntity[] shareholders = {
                 new ShareholderEntity(new BigDecimal("20.25"), new BigDecimal("1.22"), LocalDateTime.of(2020, 11, 7, 13, 30), Boolean.TRUE,
@@ -77,7 +85,7 @@ public class BankSeederService {
 
     public void deleteAll() {
         this.shareholderRepository.deleteAll();
-        this.sharedAccountsRepository.deleteAll();
+        this.sharedAccountRepository.deleteAll();
         this.mortgageRepository.deleteAll();
         this.accountRepository.deleteAll();
         this.customerRepository.deleteAll();

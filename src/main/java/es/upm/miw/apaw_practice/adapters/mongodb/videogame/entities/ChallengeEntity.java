@@ -1,12 +1,17 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.videogame.entities;
 
+import es.upm.miw.apaw_practice.domain.models.videogame.Challenge;
+import org.springframework.beans.BeanUtils;
+import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import java.util.Objects;
 import java.util.UUID;
 
-
+@Document
 public class ChallengeEntity {
 
-
+    @Id
     private String id;
     private String description;
     private Boolean isCompleted;
@@ -58,6 +63,17 @@ public class ChallengeEntity {
     @Override
     public int hashCode() {
         return Objects.hash(id, description, isCompleted);
+    }
+
+    public Challenge toChallenge() {
+        Challenge challenge = new Challenge();
+        BeanUtils.copyProperties(this, challenge);
+        return challenge;
+
+    }
+
+    public void fromChallenge(Challenge challenge){
+        BeanUtils.copyProperties(challenge, this);
     }
 
     @Override

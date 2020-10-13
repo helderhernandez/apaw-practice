@@ -18,7 +18,6 @@ class FlightRepositoryIT {
     @Test
     void testFindAll() {
         List<FlightEntity> flightEntityList = this.flightRepository.findAll();
-        assertEquals(3, flightEntityList.size());
         assertEquals("11111", flightEntityList.get(0).getPlaneEntity().getLicensePlate());
         assertEquals("madrid", flightEntityList.get(0).getDestinationCity());
         assertEquals("dublin", flightEntityList.get(1).getDestinationCity());
