@@ -1,13 +1,16 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.sportyRental.persistence;
 
 import es.upm.miw.apaw_practice.adapters.mongodb.sportyRental.daos.DiscountSportyRepository;
+import es.upm.miw.apaw_practice.adapters.mongodb.sportyRental.daos.ReservationSportyRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.sportyRental.entities.DiscountSportyEntity;
+import es.upm.miw.apaw_practice.adapters.mongodb.sportyRental.entities.ReservationSportyEntity;
 import es.upm.miw.apaw_practice.domain.exceptions.NotFoundException;
 import es.upm.miw.apaw_practice.domain.models.sportyRental.DiscountSporty;
 import es.upm.miw.apaw_practice.domain.persistence_ports.sportyRental.DiscountSportyPersistence;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.Collection;
 import java.util.stream.Stream;
 
 @Repository("discountSportyPersistence")
@@ -15,10 +18,12 @@ public class DiscountSportyPersistenceMongodb implements DiscountSportyPersisten
 
 
     private DiscountSportyRepository discountSportyRepository;
+    private ReservationSportyRepository reservationSportyRepository;
 
     @Autowired
-    public DiscountSportyPersistenceMongodb(DiscountSportyRepository discountSportyRepository) {
+    public DiscountSportyPersistenceMongodb(DiscountSportyRepository discountSportyRepository, ReservationSportyRepository reservationSportyRepository) {
         this.discountSportyRepository = discountSportyRepository;
+        this.reservationSportyRepository = reservationSportyRepository;
     }
 
     @Override
@@ -33,5 +38,12 @@ public class DiscountSportyPersistenceMongodb implements DiscountSportyPersisten
         discountSportyEntity.setPercentage(percentage);
 
         return this.discountSportyRepository.save(discountSportyEntity).convertToDiscountSporty();
+    }
+
+    @Override
+    public Stream<String> readDescriptionsDiscountByNumMaxPersonGreaterThan(Integer numMaxPerson) {
+        return this.reservationSportyRepository.findAll().stream().filter(reservationSportyEntity -> reservationSportyEntity.getCategorySportyEntity() != null
+                && reservationSportyEntity.getCategorySportyEntity().getNumMaxPersons() > numMaxPerson).map(ReservationSportyEntity::getDiscountSportyEntity).
+                flatMap(Collection::stream).map(DiscountSportyEntity::getDescription).distinct().sorted();
     }
 }
