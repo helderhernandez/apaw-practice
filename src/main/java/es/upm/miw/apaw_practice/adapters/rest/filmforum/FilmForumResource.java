@@ -13,6 +13,7 @@ import java.util.List;
 public class FilmForumResource {
     public static final String FILMFORUM_FILMS = "/filmforum/films";
     public static final String UPDATE_FILMS = "/audience-range";
+    public static final String IDS_FROM_COMMENT = "/film-ids";
 
     private final FilmForumService filmForumService;
 
@@ -29,5 +30,11 @@ public class FilmForumResource {
     @PatchMapping(UPDATE_FILMS)
     public void updateAudienceRange(@RequestBody List<FilmForumUpdating> updatings) {
         filmForumService.updateFilmAudienceRange(updatings);
+    }
+
+    @GetMapping(IDS_FROM_COMMENT)
+    public List<String> findFilmIdsOfUserComments(@RequestParam String q) {
+        String username = new LexicalAnalyzer().extractWithAssure(q, "username");
+        return filmForumService.getFilmsIdCommentedByUser(username);
     }
 }

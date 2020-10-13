@@ -1,6 +1,7 @@
 package es.upm.miw.apaw_practice.adapters.rest.videogame;
 
 import es.upm.miw.apaw_practice.adapters.rest.RestTestConfig;
+import es.upm.miw.apaw_practice.domain.models.videogame.Challenge;
 import es.upm.miw.apaw_practice.domain.models.videogame.Level;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -16,7 +17,7 @@ class LevelResourceIT {
     private WebTestClient webTestClient;
 
     @Test
-    void testReadAll(){
+    void testReadAll() {
         this.webTestClient
                 .get()
                 .uri(LevelResource.LEVELS)
@@ -24,8 +25,24 @@ class LevelResourceIT {
                 .expectStatus().isOk()
                 .expectBodyList(Level.class)
                 .value(Assertions::assertNotNull)
-                .value(levels -> assertEquals("level 1", levels.get(0).getDescription()))
+                .value(levels -> assertEquals("level_1", levels.get(0).getDescription()))
                 .value(levels -> assertEquals("Pedro", levels.get(1).getGameDeveloper().getName()));
+
+    }
+
+    @Test
+    void testFindCompletedChallengesByDescription() {
+        this.webTestClient
+                .get()
+                .uri(uriBuilder -> uriBuilder.path(LevelResource.LEVELS + LevelResource.SEARCH)
+                        .queryParam("q", "description:level_1")
+                        .build())
+                .exchange()
+                .expectStatus()
+                .isOk()
+                .expectBodyList(Challenge.class)
+                .value(challengeList -> assertTrue(challengeList.get(0).getCompleted()));
+
 
     }
 }
