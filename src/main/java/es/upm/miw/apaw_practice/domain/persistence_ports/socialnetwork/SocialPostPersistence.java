@@ -6,7 +6,7 @@ import org.springframework.stereotype.Repository;
 import java.util.stream.Stream;
 
 @Repository
-public interface SocialPostPersistance {
+public interface SocialPostPersistence {
 
     Stream<SocialPost> readAll();
 

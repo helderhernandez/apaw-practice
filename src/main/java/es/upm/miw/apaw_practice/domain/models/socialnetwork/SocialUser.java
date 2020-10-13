@@ -8,11 +8,20 @@ public class SocialUser {
     private String nickName;
     private String biography;
     private Boolean verified;
-    private List<SocialList> socialLists;
-    private List<SocialPost> socialPosts;
+    private List<String> socialListIds;
+    private List<String> socialPostIds;
 
     public SocialUser() {
         //empty for framework
+    }
+
+    public SocialUser(String id, String nickName, String biography, Boolean verified, List<String> socialListIds, List<String> socialPostIds) {
+        this.id = id;
+        this.nickName = nickName;
+        this.biography = biography;
+        this.verified = verified;
+        this.socialListIds = socialListIds;
+        this.socialPostIds = socialPostIds;
     }
 
     public String getId() {
@@ -47,20 +56,20 @@ public class SocialUser {
         this.verified = verified;
     }
 
-    public List<SocialList> getSocialLists() {
-        return socialLists;
+    public List<String> getSocialListIds() {
+        return socialListIds;
     }
 
-    public void setSocialLists(List<SocialList> socialLists) {
-        this.socialLists = socialLists;
+    public void setSocialListIds(List<String> socialListIds) {
+        this.socialListIds = socialListIds;
     }
 
-    public List<SocialPost> getSocialPosts() {
-        return socialPosts;
+    public List<String> getSocialPostIds() {
+        return socialPostIds;
     }
 
-    public void setSocialPosts(List<SocialPost> socialPosts) {
-        this.socialPosts = socialPosts;
+    public void setSocialPostIds(List<String> socialPostIds) {
+        this.socialPostIds = socialPostIds;
     }
 
     @Override
@@ -70,8 +79,8 @@ public class SocialUser {
                 ", nickName='" + nickName + '\'' +
                 ", biography='" + biography + '\'' +
                 ", verified=" + verified +
-                ", socialLists=" + socialLists +
-                ", socialPosts=" + socialPosts +
+                ", socialListIds=" + socialListIds +
+                ", socialPostIds=" + socialPostIds +
                 '}';
     }
 
