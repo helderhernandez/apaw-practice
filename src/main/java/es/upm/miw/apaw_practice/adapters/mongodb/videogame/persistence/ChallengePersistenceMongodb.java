@@ -44,4 +44,6 @@ public class ChallengePersistenceMongodb implements ChallengePersistence {
                 .save(challengeEntity)
                 .toChallenge();
     }
+
+
 }
