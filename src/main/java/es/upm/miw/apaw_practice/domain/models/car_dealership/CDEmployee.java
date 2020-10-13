@@ -61,4 +61,15 @@ public class CDEmployee {
     public void setSalary(BigDecimal salary) {
         this.salary = salary;
     }
+
+    @Override
+    public String toString() {
+        return "CDEmployee{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", category='" + category + '\'' +
+                ", seniority=" + seniority +
+                ", salary=" + salary +
+                '}';
+    }
 }
