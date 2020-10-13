@@ -18,15 +18,29 @@ public class MaintanenceItemEntityRepositoryIT {
     private MaintanenceItemRepository maintanenceItemRepository;
 
     @Test
-    void testFindByInvoice() {
+    void testFindByInvoice(){
         assertTrue(this.maintanenceItemRepository.findByInvoice(60005L).isPresent());
         MaintanenceItemEntity maintanenceItem = this.maintanenceItemRepository.findByInvoice(60005L).get();
+        assertEquals("5", maintanenceItem.getId());
         assertEquals("Repair manhole cover", maintanenceItem.getItem());
         assertEquals("Road", maintanenceItem.getType());
         assertEquals(LocalDate.of(2020,11,30), maintanenceItem.getTime());
         assertEquals(new BigDecimal("800.00"), maintanenceItem.getFees());
         assertEquals("Barrier", maintanenceItem.getEquipment());
         assertEquals(false,maintanenceItem.getStatus());
+    }
+
+    @Test
+    void testFindById(){
+        assertTrue(this.maintanenceItemRepository.findById("1").isPresent());
+        MaintanenceItemEntity maintanenceItem = this.maintanenceItemRepository.findById("1").get();
+        assertEquals("Flowerbed", maintanenceItem.getItem());
+        assertEquals("Greenbelt", maintanenceItem.getType());
+        assertEquals(LocalDate.of(2020,5,30), maintanenceItem.getTime());
+        assertEquals(new BigDecimal("1000.00"), maintanenceItem.getFees());
+        assertEquals(60001L, maintanenceItem.getInvoice());
+        assertEquals("Weeder", maintanenceItem.getEquipment());
+        assertEquals(true,maintanenceItem.getStatus());
     }
 
     @Test
