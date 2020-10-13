@@ -4,6 +4,7 @@ import es.upm.miw.apaw_practice.domain.models.car_dealership.CDVehicle;
 import es.upm.miw.apaw_practice.domain.models.car_dealership.CDVehicleCreation;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.UUID;
@@ -12,6 +13,8 @@ import java.util.UUID;
 public class CDVehicleEntity {
     @Id
     private String id;
+    @Indexed(unique = true)
+    private String frameNumber;
     private String brand;
     private String type;
     private Boolean unused;
@@ -21,8 +24,9 @@ public class CDVehicleEntity {
         // Empty for framework
     }
 
-    public CDVehicleEntity(String brand, String type, Boolean unused, Integer year) {
+    public CDVehicleEntity(String frameNumber, String brand, String type, Boolean unused, Integer year) {
         this.id = UUID.randomUUID().toString();
+        this.frameNumber = frameNumber;
         this.brand = brand;
         this.type = type;
         this.unused = unused;
@@ -40,6 +44,14 @@ public class CDVehicleEntity {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getFrameNumber() {
+        return frameNumber;
+    }
+
+    public void setFrameNumber(String frameNumber) {
+        this.frameNumber = frameNumber;
     }
 
     public String getBrand() {
@@ -78,6 +90,10 @@ public class CDVehicleEntity {
         CDVehicle vehicle = new CDVehicle();
         BeanUtils.copyProperties(this, vehicle);
         return vehicle;
+    }
+
+    public void fromVehicle(CDVehicle vehicle) {
+        BeanUtils.copyProperties(vehicle, this);
     }
 
     @Override

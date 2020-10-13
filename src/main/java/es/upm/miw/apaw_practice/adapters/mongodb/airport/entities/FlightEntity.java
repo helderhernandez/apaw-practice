@@ -1,7 +1,6 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.airport.entities;
 
 import es.upm.miw.apaw_practice.domain.models.airport.Flight;
-import es.upm.miw.apaw_practice.domain.models.airport.Plane;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
@@ -76,11 +75,12 @@ public class FlightEntity {
     }
 
     public Flight toFlight() {
-        Flight flight = new Flight();
-        Plane plane = this.planeEntity.toPlane();
-        BeanUtils.copyProperties(this, flight, "planeEntity");
-        flight.setPlane(plane);
-        return flight;
+        return Flight.builder(id)
+                .price(price)
+                .date(date)
+                .destinationCity(destinationCity)
+                .Plane(planeEntity.toPlane())
+                .build();
     }
 
     public void fromFlight(Flight flight) {

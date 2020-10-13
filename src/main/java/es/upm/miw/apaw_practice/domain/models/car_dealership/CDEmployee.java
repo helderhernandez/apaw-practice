@@ -1,30 +1,20 @@
-package es.upm.miw.apaw_practice.adapters.mongodb.cardealership.entities;
-
-import es.upm.miw.apaw_practice.domain.models.car_dealership.CDEmployee;
-import es.upm.miw.apaw_practice.domain.models.factory.Employee;
-import es.upm.miw.apaw_practice.domain.models.shop.Article;
-import org.springframework.beans.BeanUtils;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+package es.upm.miw.apaw_practice.domain.models.car_dealership;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.UUID;
 
-@Document
-public class CDEmployeeEntity {
-    @Id
+public class CDEmployee {
     private String id;
     private String name;
     private String category;
     private LocalDateTime seniority;
     private BigDecimal salary;
 
-    public CDEmployeeEntity() {
+    public CDEmployee() {
         // Empty for framework
     }
 
-    public CDEmployeeEntity(String id, String name, String category, LocalDateTime seniority, BigDecimal salary) {
+    public CDEmployee(String id, String name, String category, LocalDateTime seniority, BigDecimal salary) {
         this.id = id;
         this.name = name;
         this.category = category;
@@ -72,32 +62,9 @@ public class CDEmployeeEntity {
         this.salary = salary;
     }
 
-    public CDEmployee toEmployee() {
-        CDEmployee employee = new CDEmployee();
-        BeanUtils.copyProperties(this, employee);
-        return employee;
-    }
-
-    public void fromEmployee(CDEmployee employee) {
-        BeanUtils.copyProperties(employee, this);
-    }
-
-    @Override
-    public int hashCode() {
-        return id.hashCode();
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        CDEmployeeEntity that = (CDEmployeeEntity) o;
-        return id.equals(that.id);
-    }
-
     @Override
     public String toString() {
-        return "CDEmployeeEntity{" +
+        return "CDEmployee{" +
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 ", category='" + category + '\'' +
