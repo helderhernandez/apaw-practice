@@ -7,4 +7,6 @@ import java.util.Optional;
 
 public interface DriverRepository extends MongoRepository<DriverEntity, String> {
     Optional<DriverEntity> findByDni(String dni);
+
+    void deleteByDni(String dni);
 }

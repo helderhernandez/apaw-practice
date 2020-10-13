@@ -8,10 +8,18 @@ public class SocialList {
     private String name;
     private String description;
     private Boolean personal;
-    private List<SocialUser> socialUsers;
+    private List<String> socialUserNickNames;
 
     public SocialList() {
         //empty for framework
+    }
+
+    public SocialList(String id, String name, String description, Boolean personal, List<String> socialUserNickNames) {
+        this.id = id;
+        this.name = name;
+        this.description = description;
+        this.personal = personal;
+        this.socialUserNickNames = socialUserNickNames;
     }
 
     public String getId() {
@@ -46,12 +54,12 @@ public class SocialList {
         this.personal = personal;
     }
 
-    public List<SocialUser> getSocialUsers() {
-        return socialUsers;
+    public List<String> getSocialUserNickNames() {
+        return socialUserNickNames;
     }
 
-    public void setSocialUsers(List<SocialUser> socialUsers) {
-        this.socialUsers = socialUsers;
+    public void setSocialUserNickNames(List<String> socialUserNickNames) {
+        this.socialUserNickNames = socialUserNickNames;
     }
 
     @Override
@@ -61,7 +69,7 @@ public class SocialList {
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 ", personal=" + personal +
-                ", socialUsers=" + socialUsers +
+                ", socialUserNickNames=" + socialUserNickNames +
                 '}';
     }
 

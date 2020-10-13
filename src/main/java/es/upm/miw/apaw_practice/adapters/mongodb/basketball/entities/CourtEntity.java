@@ -1,6 +1,8 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.basketball.entities;
 
+import es.upm.miw.apaw_practice.domain.models.basketball.Court;
 import nonapi.io.github.classgraph.json.Id;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDate;
@@ -76,5 +78,11 @@ public class CourtEntity {
                 ", name='" + name + '\'' +
                 ", capacity=" + capacity +
                 '}';
+    }
+
+    public Court toCourt() {
+        Court court = new Court();
+        BeanUtils.copyProperties(this, court);
+        return court;
     }
 }

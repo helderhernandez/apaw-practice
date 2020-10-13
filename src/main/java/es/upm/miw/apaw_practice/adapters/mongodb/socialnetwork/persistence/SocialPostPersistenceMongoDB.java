@@ -1,21 +1,21 @@
-package es.upm.miw.apaw_practice.adapters.mongodb.socialnetwork.persistance;
+package es.upm.miw.apaw_practice.adapters.mongodb.socialnetwork.persistence;
 
 import es.upm.miw.apaw_practice.adapters.mongodb.socialnetwork.daos.SocialPostRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.socialnetwork.entities.SocialPostEntity;
 import es.upm.miw.apaw_practice.domain.models.socialnetwork.SocialPost;
-import es.upm.miw.apaw_practice.domain.persistence_ports.socialnetwork.SocialPostPersistance;
+import es.upm.miw.apaw_practice.domain.persistence_ports.socialnetwork.SocialPostPersistence;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import java.util.stream.Stream;
 
-@Repository("socialPostPersistance")
-public class SocialPostPersistanceMongoDB implements SocialPostPersistance {
+@Repository("socialPostPersistence")
+public class SocialPostPersistenceMongoDB implements SocialPostPersistence {
 
     private SocialPostRepository socialPostRepository;
 
     @Autowired
-    public SocialPostPersistanceMongoDB(SocialPostRepository socialPostRepository) {
+    public SocialPostPersistenceMongoDB(SocialPostRepository socialPostRepository) {
         this.socialPostRepository = socialPostRepository;
     }
 

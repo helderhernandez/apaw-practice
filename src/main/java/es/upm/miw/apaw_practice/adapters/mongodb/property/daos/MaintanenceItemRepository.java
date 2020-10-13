@@ -7,4 +7,5 @@ import java.util.Optional;
 
 public interface MaintanenceItemRepository extends MongoRepository<MaintanenceItemEntity,String> {
     Optional<MaintanenceItemEntity> findByInvoice(Long invoice);
+    Optional<MaintanenceItemEntity> findById(String id);
 }
