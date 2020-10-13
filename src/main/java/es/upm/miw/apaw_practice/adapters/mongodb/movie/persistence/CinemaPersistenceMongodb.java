@@ -42,7 +42,7 @@ public class CinemaPersistenceMongodb implements CinemaPersistence {
     @Override
     public Stream<Cinema> findByNameAndFulNameDirector(String name, String fulName) {
         return this.cinemaRepository.findAll().stream()
-                .map(cinemaEntity -> cinemaEntity.toCinema())
+                .map(CinemaEntity::toCinema)
                 .filter(cinema -> cinema.getMovies().stream()
                     .anyMatch(movieEntity -> movieEntity.getFilmDirector().getName().equals(name) &&
                                                 movieEntity.getFilmDirector().getFullName().equals(fulName)))
