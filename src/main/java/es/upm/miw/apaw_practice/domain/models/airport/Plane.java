@@ -16,6 +16,10 @@ public class Plane {
         this.id = id;
     }
 
+    public static PlaneBuilders.Id builder() {
+        return new Builder();
+    }
+
     public String getModel() {
         return model;
     }
@@ -57,5 +61,48 @@ public class Plane {
                 ", complete=" + complete +
                 ", licensePlate='" + licensePlate + '\'' +
                 '}';
+    }
+
+    public static class Builder implements PlaneBuilders.Id, PlaneBuilders.Model, PlaneBuilders.Capacity, PlaneBuilders.Complete, PlaneBuilders.LicensePlate, PlaneBuilders.Build{
+
+        private Plane plane;
+
+        public Builder() {
+            plane = new Plane();
+        }
+        @Override
+        public PlaneBuilders.Model id(String id) {
+            plane.setId(id);
+            return this;
+        }
+
+        @Override
+        public PlaneBuilders.Capacity model(String model) {
+            plane.setModel(model);
+            return this;
+        }
+
+        @Override
+        public PlaneBuilders.Complete capacity(Integer capacity) {
+            plane.setCapacity(capacity);
+            return this;
+        }
+
+        @Override
+        public PlaneBuilders.LicensePlate complete(Boolean complete) {
+            plane.setComplete(complete);
+            return this;
+        }
+
+        @Override
+        public PlaneBuilders.Build licensePlate(String licensePlate) {
+            plane.setLicensePlate(licensePlate);
+            return this;
+        }
+
+        @Override
+        public Plane build() {
+            return plane;
+        }
     }
 }
