@@ -1,17 +1,17 @@
-package es.upm.miw.apaw_practice.adapters.mongodb.socialnetwork.persistance;
+package es.upm.miw.apaw_practice.adapters.mongodb.socialnetwork.persistence;
 
 import es.upm.miw.apaw_practice.adapters.mongodb.socialnetwork.daos.SocialListRepository;
-import es.upm.miw.apaw_practice.domain.persistence_ports.socialnetwork.SocialListPersistance;
+import es.upm.miw.apaw_practice.domain.persistence_ports.socialnetwork.SocialListPersistence;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-@Repository("socialListPersistance")
-public class SocialListPersistanceMongoDB implements SocialListPersistance {
+@Repository("socialListPersistence")
+public class SocialListPersistenceMongoDB implements SocialListPersistence {
 
     private SocialListRepository socialListRepository;
 
     @Autowired
-    public SocialListPersistanceMongoDB(SocialListRepository socialListRepository) {
+    public SocialListPersistenceMongoDB(SocialListRepository socialListRepository) {
         this.socialListRepository = socialListRepository;
     }
 

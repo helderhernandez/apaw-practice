@@ -3,6 +3,7 @@ package es.upm.miw.apaw_practice.adapters.rest.socialnetwork;
 import es.upm.miw.apaw_practice.adapters.rest.RestTestConfig;
 import es.upm.miw.apaw_practice.domain.models.socialnetwork.SocialUser;
 import es.upm.miw.apaw_practice.domain.models.socialnetwork.SocialUserCreation;
+import org.apache.logging.log4j.LogManager;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,7 +11,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.test.web.reactive.server.WebTestClient;
 import org.springframework.web.reactive.function.BodyInserters;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @RestTestConfig
 public class SocialUserResourceIT {
@@ -50,6 +54,22 @@ public class SocialUserResourceIT {
                 .body(BodyInserters.fromValue(biographyDto))
                 .exchange()
                 .expectStatus().isNotFound();
+    }
+
+    @Test
+    void testFindNickNamesByTrendName() {
+        this.webTestClient.get()
+                .uri(uriBuilder -> uriBuilder.path(SocialUserResource.USERS + SocialUserResource.SEARCH)
+                        .queryParam("q", "trendName:Europan")
+                        .build())
+                .exchange()
+                .expectStatus().isOk()
+                .expectBodyList(String.class)
+                .consumeWith(entitiesList -> {
+                    assertNotNull(entitiesList);
+                    assertNotNull(entitiesList.getResponseBody());
+                    assertTrue(entitiesList.getResponseBody().size() > 0 && entitiesList.getResponseBody().get(0).contains("Famoso_oficial"));
+                });
     }
 
 }
