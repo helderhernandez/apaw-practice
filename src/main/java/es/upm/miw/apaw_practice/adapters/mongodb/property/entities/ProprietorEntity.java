@@ -31,6 +31,11 @@ public class ProprietorEntity {
         BeanUtils.copyProperties(this, proprietor);
         return proprietor; }
 
+
+    public void fromProprietor(Proprietor proprietor) {
+        BeanUtils.copyProperties(proprietor, this);
+    }
+
     public String getName() {
         return name;
     }
