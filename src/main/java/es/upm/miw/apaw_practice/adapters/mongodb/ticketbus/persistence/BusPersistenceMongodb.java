@@ -14,9 +14,12 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Repository("busPersistence")
 public class BusPersistenceMongodb implements BusPersistence {
+    private static final String MSG_WITH_REFERENCE = "Bus with reference ";
+    private static final String MSG_NOT_FOUND = " not found";
 
     private BusRepository busRepository;
     private TicketBusRepository ticketBusRepository;
@@ -36,7 +39,7 @@ public class BusPersistenceMongodb implements BusPersistence {
     @Override
     public Bus findByReference(String idReference) {
         return this.busRepository.findByReference(idReference)
-                .orElseThrow(() -> new NotFoundException("Bus with reference: " + idReference + " not found"))
+                .orElseThrow(() -> new NotFoundException(MSG_WITH_REFERENCE + idReference + MSG_NOT_FOUND))
                 .toBus();
     }
 
@@ -58,7 +61,7 @@ public class BusPersistenceMongodb implements BusPersistence {
 
         String idReference = busTicketsDatesUpdate.getReference();
         BusEntity bus = busRepository.findByReference(busTicketsDatesUpdate.getReference())
-                .orElseThrow(() -> new NotFoundException("Bus with reference: " + idReference + " not found"));
+                .orElseThrow(() -> new NotFoundException(MSG_WITH_REFERENCE + idReference + MSG_NOT_FOUND));
 
         List<TicketBusEntity> ticketsUpdated = bus.getTickets().stream()
                 .map(ticketBusEntity -> {
@@ -69,5 +72,16 @@ public class BusPersistenceMongodb implements BusPersistence {
         bus.setTickets(ticketsUpdated);
 
         return bus.toBus();
+    }
+
+    @Override
+    public Stream<String> findNamePassengersByReference(String idReference) {
+
+        BusEntity bus = busRepository.findByReference(idReference)
+                .orElseThrow(() -> new NotFoundException(MSG_WITH_REFERENCE + idReference + MSG_NOT_FOUND));
+
+        return bus.getTickets().stream()
+                .map(ticketBusEntity -> ticketBusEntity.getPassenger().getName())
+                .distinct();
     }
 }

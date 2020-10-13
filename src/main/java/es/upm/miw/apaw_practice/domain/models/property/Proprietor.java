@@ -8,7 +8,7 @@ public class Proprietor {
     private String email;
 
     public Proprietor(){
-
+        //empty from framework
     }
 
     public Proprietor(String name, String dni, String age, String phone, String email) {

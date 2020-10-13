@@ -1,6 +1,8 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.treeConservation.entities;
 
+import es.upm.miw.apaw_practice.domain.models.treeConservation.Inspection;
 import nonapi.io.github.classgraph.json.Id;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -85,5 +87,11 @@ public class InspectionEntity {
                 ", treeStatus=" + treeStatus +
                 ", inspectorEntity=" + inspectorEntity +
                 '}';
+    }
+
+    public Inspection toInspection() {
+        Inspection inspection = new Inspection();
+        BeanUtils.copyProperties(this, inspection, "inspectorEntity");
+        return inspection;
     }
 }

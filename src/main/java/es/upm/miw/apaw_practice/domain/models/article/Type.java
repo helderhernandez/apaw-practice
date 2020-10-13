@@ -1,10 +1,13 @@
-package es.upm.miw.apaw_practice.adapters.mongodb.article;
+package es.upm.miw.apaw_practice.domain.models.article;
 
 public class Type {
-
     private String id;
     private String name;
     private String description;
+
+    public Type() {
+        //empty for framework
+    }
 
     public String getId() {
         return id;
