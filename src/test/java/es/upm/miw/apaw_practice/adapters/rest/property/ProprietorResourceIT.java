@@ -1,6 +1,5 @@
 package es.upm.miw.apaw_practice.adapters.rest.property;
 
-import es.upm.miw.apaw_practice.adapters.mongodb.property.entities.ProprietorEntity;
 import es.upm.miw.apaw_practice.adapters.rest.RestTestConfig;
 import es.upm.miw.apaw_practice.domain.models.property.Proprietor;
 import es.upm.miw.apaw_practice.domain.models.property.ProprietorEmailUpdating;
@@ -14,7 +13,6 @@ import java.util.Arrays;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertFalse;
 
 @RestTestConfig
 public class ProprietorResourceIT {

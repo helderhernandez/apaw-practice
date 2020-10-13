@@ -1,7 +1,6 @@
 package es.upm.miw.apaw_practice.adapters.rest.property;
 
 import es.upm.miw.apaw_practice.adapters.rest.RestTestConfig;
-import es.upm.miw.apaw_practice.domain.models.property.MaintanenceItem;
 import es.upm.miw.apaw_practice.domain.models.property.PropertyCompany;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
