@@ -41,7 +41,6 @@ class LevelResourceIT {
                 .expectStatus()
                 .isOk()
                 .expectBodyList(Challenge.class)
-                .value(challengeList -> assertEquals("take the flag from the top of the castle ",challengeList.get(0).getDescription()))
                 .value(challengeList -> assertTrue(challengeList.get(0).getCompleted()));
 
 

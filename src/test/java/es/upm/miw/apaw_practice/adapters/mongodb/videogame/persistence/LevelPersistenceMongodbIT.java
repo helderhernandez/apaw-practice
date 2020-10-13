@@ -23,14 +23,14 @@ class LevelPersistenceMongodbIT {
         List<Level> levelList = levelPersistence
                 .readAll().collect(Collectors.toList());
         assertEquals(3, levelList.size());
-        assertEquals("level 2", levelList.get(1).getDescription());
+        assertEquals("level_2", levelList.get(1).getDescription());
         assertEquals("martin_db", levelList.get(2).getGamePlayerList().get(1).getNickName());
     }
 
     @Test
     void testFindCompletedChallengesByDescription(){
         List<Challenge> challengeList = levelPersistence
-                .findCompletedChallengesByDescription("level 1")
+                .findCompletedChallengesByDescription("level_1")
                 .collect(Collectors.toList());
 
         assertEquals("take the flag from the top of the castle ", challengeList.get(0).getDescription());
