@@ -19,7 +19,7 @@ public class MemberTeamResourceIT {
                 .uri(MemberTeamResource.MEMBERSTEAMS)
                 .exchange()
                 .expectStatus().isOk()
-                .expectBody(MemberTeamDto.class)
+                .expectBodyList(MemberTeamDto.class)
                 .value(Assertions::assertNotNull);
     }
 }
