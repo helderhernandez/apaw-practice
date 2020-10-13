@@ -1,6 +1,10 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.restaurant.entities;
 
+import es.upm.miw.apaw_practice.domain.models.restaurant.FoodType;
+import es.upm.miw.apaw_practice.domain.models.restaurant.FoodTypeSpicyUpdating;
+import es.upm.miw.apaw_practice.domain.models.shop.Article;
 import nonapi.io.github.classgraph.json.Id;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.UUID;
@@ -33,6 +37,16 @@ public class FoodTypeEntity {
     public Boolean getSpicy() { return spicy; }
 
     public void setSpicy(Boolean spicy) { this.spicy = spicy; }
+
+    public void formFoodType(FoodType spicyUpdating) {
+        BeanUtils.copyProperties(spicyUpdating,this);
+    }
+
+    public FoodType toFoodType() {
+        FoodType foodType = new FoodType();
+        BeanUtils.copyProperties(this, foodType);
+        return foodType;
+    }
 
     @Override
     public int hashCode() {
