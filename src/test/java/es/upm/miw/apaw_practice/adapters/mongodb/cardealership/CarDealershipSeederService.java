@@ -31,11 +31,11 @@ public class CarDealershipSeederService {
     public void seedDatabase() {
         LogManager.getLogger(this.getClass()).warn("------- Car Dealership Initial Load -----------");
         CDVehicleEntity[] vehicles = {
-                new CDVehicleEntity("Ford", "Fiesta", true, 2014),
-                new CDVehicleEntity("Citroen", "C4", true, 2005),
-                new CDVehicleEntity("Seat", "Ateca", false, 2018),
-                new CDVehicleEntity("Opel", "Astra", true, 2020),
-                new CDVehicleEntity("Opel", "Corsa", true, 2013),
+                new CDVehicleEntity("AXSE34A", "Ford", "Fiesta", true, 2014),
+                new CDVehicleEntity("POSSD34", "Citroen", "C4", true, 2005),
+                new CDVehicleEntity("DDS223A", "Seat", "Ateca", false, 2018),
+                new CDVehicleEntity("ASFEE22", "Opel", "Astra", true, 2020),
+                new CDVehicleEntity("POEASA2", "Opel", "Corsa", true, 2013),
         };
 
         this.vehicleRepository.saveAll(Arrays.asList(vehicles));
