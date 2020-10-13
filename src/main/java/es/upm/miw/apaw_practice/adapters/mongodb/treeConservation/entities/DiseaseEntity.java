@@ -1,6 +1,9 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.treeConservation.entities;
 
+import es.upm.miw.apaw_practice.domain.models.treeConservation.Disease;
+import es.upm.miw.apaw_practice.domain.models.treeConservation.DiseaseCreation;
 import nonapi.io.github.classgraph.json.Id;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -18,10 +21,9 @@ public class DiseaseEntity {
         //empty from framework
     }
 
-    public DiseaseEntity(String name, String description) {
+    public DiseaseEntity(DiseaseCreation diseaseCreation) {
+        BeanUtils.copyProperties(diseaseCreation, this);
         this.id = UUID.randomUUID().toString();
-        this.name = name;
-        this.description = description;
     }
 
     public String getId() {
@@ -42,6 +44,12 @@ public class DiseaseEntity {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Disease toDisease() {
+        Disease disease = new Disease();
+        BeanUtils.copyProperties(this, disease);
+        return disease;
     }
 
     @Override
