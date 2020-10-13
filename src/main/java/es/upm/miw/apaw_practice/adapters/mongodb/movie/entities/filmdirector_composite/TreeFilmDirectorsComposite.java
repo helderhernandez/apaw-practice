@@ -1,4 +1,4 @@
-package es.upm.miw.apaw_practice.adapters.mongodb.movie.entities.filmDirector_composite;
+package es.upm.miw.apaw_practice.adapters.mongodb.movie.entities.filmdirector_composite;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,8 +14,6 @@ public class TreeFilmDirectorsComposite implements TreeFilmDirectors {
         this.filmDirectorsGroupName = filmDirectorsGroupName;
         this.treeFilmDirectorsList = new ArrayList<>();
     }
-
-    //TODO Make a method that returns the list of directors of the Composite
 
     @Override
     public boolean isComposite() {
@@ -41,7 +39,7 @@ public class TreeFilmDirectorsComposite implements TreeFilmDirectors {
     public List<String> getFilmDirectorsName() {
         return treeFilmDirectorsList.stream()
                 .filter(treeFilmDirectors -> !treeFilmDirectors.isComposite())
-                .map(treeFilmDirectors -> treeFilmDirectors.getName())
+                .map(TreeFilmDirectors::getName)
                 .collect(Collectors.toList());
     }
 }
