@@ -1,6 +1,7 @@
 package es.upm.miw.apaw_practice.domain.models.car_dealership;
 
 public class CDVehicleCreation {
+    private String frameNumber;
     private String brand;
     private String type;
     private Boolean unused;
@@ -10,11 +11,20 @@ public class CDVehicleCreation {
         // Empty for framework
     }
 
-    public CDVehicleCreation(String brand, String type, Boolean unused, Integer year) {
+    public CDVehicleCreation(String frameNumber, String brand, String type, Boolean unused, Integer year) {
+        this.frameNumber = frameNumber;
         this.brand = brand;
         this.type = type;
         this.unused = unused;
         this.year = year;
+    }
+
+    public String getFrameNumber() {
+        return frameNumber;
+    }
+
+    public void setFrameNumber(String frameNumber) {
+        this.frameNumber = frameNumber;
     }
 
     public String getBrand() {

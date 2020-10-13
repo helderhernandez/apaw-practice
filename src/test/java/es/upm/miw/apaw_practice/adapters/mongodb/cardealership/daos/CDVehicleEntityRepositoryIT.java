@@ -21,4 +21,10 @@ public class CDVehicleEntityRepositoryIT {
                                 vehicle.getYear() == 2014)
         );
     }
+
+    @Test
+    void testFindByFrameNumber() {
+        assertTrue(this.vehicleRepository.findByFrameNumber("ASFEE22").stream()
+        .anyMatch(vehicle -> vehicle.getFrameNumber().equals("ASFEE22")));
+    }
 }
