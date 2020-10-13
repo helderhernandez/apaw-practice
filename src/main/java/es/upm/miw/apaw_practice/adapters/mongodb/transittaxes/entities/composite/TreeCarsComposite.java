@@ -3,15 +3,16 @@ package es.upm.miw.apaw_practice.adapters.mongodb.transittaxes.entities.composit
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 public class TreeCarsComposite implements TreeCars {
 
     private String enrollment;
-    private List<TreeCars> treeArticlesList;
+    private List<TreeCars> treeCarsList;
 
     public TreeCarsComposite(String enrollment) {
         this.enrollment = enrollment;
-        this.treeArticlesList = new ArrayList<>();
+        this.treeCarsList = new ArrayList<>();
     }
 
     @Override
@@ -26,12 +27,11 @@ public class TreeCarsComposite implements TreeCars {
 
     @Override
     public void add(TreeCars treeCars) {
-        treeArticlesList.add(treeCars);
+        treeCarsList.add(treeCars);
     }
 
     @Override
     public void remove(TreeCars treeCars) {
-        treeArticlesList.remove(treeCars);
-
+        treeCarsList.remove(treeCars);
     }
 }

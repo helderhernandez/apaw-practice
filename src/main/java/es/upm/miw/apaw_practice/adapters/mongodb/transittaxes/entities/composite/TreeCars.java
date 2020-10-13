@@ -1,5 +1,7 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.transittaxes.entities.composite;
 
+import java.util.List;
+
 public interface TreeCars {
 
     String enrollment();
@@ -9,4 +11,5 @@ public interface TreeCars {
     void add(TreeCars treeCars);
 
     void remove(TreeCars treeCars);
+
 }

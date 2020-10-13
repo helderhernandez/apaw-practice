@@ -41,11 +41,10 @@ public class CarEntityRepositoryIT {
     }
 
     @Test
-    void testPatternComposite(){
-
+    void testPatternComposite() {
         TreeCars carComposite1 = new TreeCarsComposite("BRAND FORD");
         TreeCars carComposite2 = new TreeCarsComposite("ZERO TRANSIT TAXES");
-        TreeCars carComposite3= new TreeCarsComposite("BRAND SEAT");
+        TreeCars carComposite3 = new TreeCarsComposite("BRAND SEAT");
 
         TreeCars carLeaf1 = new TreeCarsLeaf(this.carRepository.findByEnrollment("BBBB").get());
         carComposite1.add(carLeaf1);
@@ -65,16 +64,12 @@ public class CarEntityRepositoryIT {
         assertTrue(carComposite2.isComposite());
         assertFalse(carLeaf1.isComposite());
 
-        assertEquals("BRAND FORD",carComposite1.enrollment());
-        assertEquals("BRAND FORD",carComposite1.enrollment());
+        assertEquals("BRAND FORD", carComposite1.enrollment());
+        assertEquals("BRAND FORD", carComposite1.enrollment());
 
-        assertEquals("ZERO TRANSIT TAXES",carComposite2.enrollment());
-        assertEquals("BBBB",carLeaf1.enrollment());
-        assertEquals("EEEE",carLeaf4.enrollment());
-        assertEquals("AAAA",carLeaf5.enrollment());
-
-
-
-
+        assertEquals("ZERO TRANSIT TAXES", carComposite2.enrollment());
+        assertEquals("BBBB", carLeaf1.enrollment());
+        assertEquals("EEEE", carLeaf4.enrollment());
+        assertEquals("AAAA", carLeaf5.enrollment());
     }
 }
