@@ -19,6 +19,10 @@ public class Flight {
         this.id = id;
     }
 
+    public static Builder builder(String id) {
+        return new Builder(id);
+    }
+
     public LocalDateTime getDate() {
         return date;
     }
@@ -60,5 +64,38 @@ public class Flight {
                 ", plane=" + plane +
                 ", destinationCity='" + destinationCity + '\'' +
                 '}';
+    }
+
+    public static class Builder {
+        private Flight flight;
+
+        public Builder(String id) {
+            flight = new Flight();
+            flight.setId(id);
+        }
+
+        public Builder date(LocalDateTime date) {
+            flight.setDate(date);
+            return this;
+        }
+
+        public Builder price(BigDecimal price) {
+            flight.setPrice(price);
+            return this;
+        }
+
+        public Builder Plane(Plane plane) {
+            flight.setPlane(plane);
+            return this;
+        }
+
+        public Builder destinationCity(String destinationCity) {
+            flight.setDestinationCity(destinationCity);
+            return this;
+        }
+
+        public Flight build() {
+            return flight;
+        }
     }
 }
