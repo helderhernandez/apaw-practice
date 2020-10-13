@@ -5,8 +5,6 @@ import es.upm.miw.apaw_practice.domain.services.car_dealership.CarDealershipServ
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
 @RequestMapping(CarDealershipResource.CAR_DEALERSHIPS)
 public class CarDealershipResource {
