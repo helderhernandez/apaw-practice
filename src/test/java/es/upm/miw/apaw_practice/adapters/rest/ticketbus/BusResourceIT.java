@@ -109,14 +109,6 @@ class BusResourceIT {
                 .value(busData -> testDatesTicketsBus(busData.getTickets()));
     }
 
-    void testNamesPassengers(List<String> namePassengers) {
-        List<String> expectation = new ArrayList<>();
-        expectation.add("Juan");
-        expectation.add("Ana");
-
-        assertEquals(expectation, namePassengers);
-    }
-
     @Test
     void testFindNamePassengersByReference() {
         List<Bus> buses = busRepository.findAll().stream().map(BusEntity::toBus).collect(Collectors.toList());
