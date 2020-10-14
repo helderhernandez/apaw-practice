@@ -71,8 +71,8 @@ public class InspectionEntity {
     public Inspection toInspection() {
         Inspection inspection = new Inspection();
         BeanUtils.copyProperties(this, inspection, "inspectorEntity");
-        String inspectorName = this.inspectorEntity.getFirstName() + ' ' + this.inspectorEntity.getLastName();
-        inspection.setInspectorName(inspectorName);
+        String dni = this.inspectorEntity.getDni();
+        inspection.setDni(dni);
         return inspection;
     }
 
