@@ -10,11 +10,15 @@ public class PhysicalStoreService {
     private PhysicalStorePersistence physicalStorePersistence;
 
     @Autowired
-    public PhysicalStoreService(PhysicalStorePersistence physicalStorePersistence){
+    public PhysicalStoreService(PhysicalStorePersistence physicalStorePersistence) {
         this.physicalStorePersistence = physicalStorePersistence;
     }
 
-    public PhysicalStore create(PhysicalStore physicalStore){
+    public PhysicalStore create(PhysicalStore physicalStore) {
         return this.physicalStorePersistence.create(physicalStore);
+    }
+
+    public void deletePhysicalStore(String address) {
+        this.physicalStorePersistence.deletePhysicalStore(address);
     }
 }
