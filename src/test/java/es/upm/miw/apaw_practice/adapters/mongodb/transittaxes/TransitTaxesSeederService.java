@@ -47,11 +47,11 @@ public class TransitTaxesSeederService {
         };
         accidentRepository.saveAll(Arrays.asList(accidents));
         OwnerEntity[] owners = {
-                new OwnerEntity("ow1", "Maria", "00000000A", "Perez"),
-                new OwnerEntity("ow2", "Jhon", "00000000C", "Smith"),
-                new OwnerEntity("ow3", "Celia", "00000000D", "Guerrero"),
-                new OwnerEntity("ow4", "Lucas", "00000000E", "Lopez"),
-                new OwnerEntity("ow5", "Delete", "00000000F", "Delete"),
+                OwnerEntity.builder().idOwner("ow1").dni("00000000A").name("Maria").familyName("Perez").build(),
+                OwnerEntity.builder().idOwner("ow2").dni("00000000C").name("Jhon").familyName("Smith").build(),
+                OwnerEntity.builder().idOwner("ow3").dni("00000000D").name("Celia").build(),
+                OwnerEntity.builder().idOwner("ow4").dni("00000000E").name("Lucas").familyName("Lopez").build(),
+                OwnerEntity.builder().idOwner("ow5").dni("00000000F").name("Delete").familyName("Delete").build(),
 
         };
         ownerRepository.saveAll(Arrays.asList(owners));
