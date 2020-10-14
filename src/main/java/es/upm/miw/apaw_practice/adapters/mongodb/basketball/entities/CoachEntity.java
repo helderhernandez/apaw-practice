@@ -1,6 +1,10 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.basketball.entities;
 
+import com.fasterxml.jackson.databind.util.BeanUtil;
+import es.upm.miw.apaw_practice.domain.models.basketball.Coach;
+import es.upm.miw.apaw_practice.domain.models.basketball.CoachCreation;
 import nonapi.io.github.classgraph.json.Id;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -19,10 +23,9 @@ public class CoachEntity {
         //Empty constructor for the framework
     }
 
-    public CoachEntity(String name, String dni) {
+    public CoachEntity(CoachCreation coachCreation) {
+        BeanUtils.copyProperties(coachCreation, this);
         this.id = UUID.randomUUID().toString();
-        this.name = name;
-        this.dni = dni;
     }
 
     public String getId() {
@@ -66,5 +69,11 @@ public class CoachEntity {
                 ", name='" + name + '\'' +
                 ", dni='" + dni + '\'' +
                 '}';
+    }
+
+    public Coach toCoach() {
+        Coach coach = new Coach();
+        BeanUtils.copyProperties(this, coach);
+        return coach;
     }
 }
