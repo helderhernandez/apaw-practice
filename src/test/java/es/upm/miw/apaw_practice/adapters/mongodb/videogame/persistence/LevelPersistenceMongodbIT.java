@@ -37,4 +37,14 @@ class LevelPersistenceMongodbIT {
 
     }
 
+    @Test
+    void testFindNickNameByGameDeveloper(){
+        List<String> nickNameList = levelPersistence
+                .findNickNameByGameDeveloper("Pedro")
+                .collect(Collectors.toList());
+
+        assertEquals("natcas", nickNameList.get(0));
+
+    }
+
 }

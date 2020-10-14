@@ -4,9 +4,12 @@ import es.upm.miw.apaw_practice.adapters.mongodb.videogame.daos.GameDeveloperRep
 import es.upm.miw.apaw_practice.adapters.mongodb.videogame.daos.GamePlayerRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.videogame.entities.GamePlayerEntity;
 import es.upm.miw.apaw_practice.adapters.rest.RestTestConfig;
+import es.upm.miw.apaw_practice.domain.services.videogame.GamePlayerService;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.web.reactive.server.WebTestClient;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @RestTestConfig
 public class GamePlayerResourceIT {
@@ -27,6 +30,33 @@ public class GamePlayerResourceIT {
                 .exchange()
                 .expectStatus().isOk();
     }
+
+    @Test
+    void testFindNickNameByGameDeveloper(){
+        this.webTestClient
+                .get()
+                .uri(uriBuilder -> uriBuilder.path(GamePlayerResource.GAMEPLAYERS + GamePlayerResource.SEARCH)
+                        .queryParam("q", "name:Pedro")
+                        .build())
+                .exchange()
+                .expectStatus()
+                .isOk()
+                .expectBodyList(NickNameDto.class)
+                .value(nickNameDtos -> assertEquals("natcas", nickNameDtos.get(0).getName()));
+    }
+
+    @Test
+    void testFindNickNamByGameDeveloperBadRequest(){
+        this.webTestClient
+                .get()
+                .uri(uriBuilder ->
+                        uriBuilder.path(GamePlayerResource.GAMEPLAYERS + GamePlayerResource.SEARCH)
+                        .queryParam("q","kk:Pedro")
+                        .build())
+                .exchange()
+                .expectStatus().isBadRequest();
+    }
+
 
 
 }

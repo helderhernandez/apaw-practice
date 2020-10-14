@@ -31,9 +31,9 @@ public class LevelResource {
         return this.levelService.readAll();
     }
 
-    @GetMapping(SEARCH)
-    public Stream <Challenge> findCompletedChallengesByDescription(@RequestParam String q){
-        String description = new LexicalAnalyzer().extractWithAssure(q,"description");
-        return this.levelService.findCompletedChallengesByDescription(description);
-    }
+
+
+
+
+
 }

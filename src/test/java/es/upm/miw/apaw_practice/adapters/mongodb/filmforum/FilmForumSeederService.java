@@ -50,6 +50,8 @@ public class FilmForumSeederService {
                 new FilmActorEntity("1", "actor1", "surname1", 10),
                 new FilmActorEntity("2", "actor2", "surname2", 20),
                 new FilmActorEntity("3", "actor3", "surname3", 30),
+                new FilmActorEntity("4", "actor4", "surname4", 40),
+                new FilmActorEntity("5", "actor4", "surname5", 50),
         };
         this.filmActorRepository.saveAll(Arrays.asList(actors));
 
@@ -57,7 +59,7 @@ public class FilmForumSeederService {
                 new FilmForumEntity("1", Collections.singletonList(actors[0]), Collections.singletonList(comments[0]), "film1", 2021, true, 110, "genre1"),
                 new FilmForumEntity("2", Arrays.asList(actors[1], actors[2]), Collections.emptyList(), "film2", 2021, false, 120, "genre2"),
                 new FilmForumEntity("3", Collections.singletonList(actors[0]), Arrays.asList(comments[1], comments[2]), "film3", 2023, true, 130, "genre3"),
-                new FilmForumEntity("4", Collections.singletonList(actors[0]), Collections.singletonList(comments[2]), "film4", 2024, true, 140, "genre4")
+                new FilmForumEntity("4", Collections.singletonList(actors[0]), Collections.emptyList(), "film4", 2024, true, 140, "genre4")
         };
         this.filmForumRepository.saveAll(Arrays.asList(films));
     }
