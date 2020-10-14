@@ -18,10 +18,11 @@ public class DiseasePersistenceMongodbIT {
     void testReadByNameNotFound() {
         assertThrows(NotFoundException.class, () -> this.diseasePersistenceMongodb.readByName("fakeDisease"));
     }
+
     @Test
     void testCreateAndRead() {
         DiseaseCreation diseaseCreation =
-                new DiseaseCreation("diseasePersistenceTest","This is a persistence test disease");
+                new DiseaseCreation("diseasePersistenceTest", "This is a persistence test disease");
         this.diseasePersistenceMongodb.create(diseaseCreation);
         Disease diseaseTest = this.diseasePersistenceMongodb.readByName("diseasePersistenceTest");
         assertEquals("This is a persistence test disease", diseaseTest.getDescription());
