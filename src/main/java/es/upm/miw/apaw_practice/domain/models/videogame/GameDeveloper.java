@@ -15,6 +15,10 @@ public class GameDeveloper {
         this.id = id;
     }
 
+    public static Builder builder(String id){
+        return new Builder(id);
+    }
+
     public String getName() {
         return name;
     }
@@ -48,4 +52,35 @@ public class GameDeveloper {
                 ", phone=" + phone +
                 '}';
     }
+
+    public static class Builder {
+        private GameDeveloper gameDeveloper;
+
+        public Builder(String id) {
+            gameDeveloper = new GameDeveloper();
+            gameDeveloper.setId(id);
+        }
+
+        public Builder name(String name) {
+            gameDeveloper.setName(name);
+            return this;
+        }
+
+        public Builder email(String email) {
+            gameDeveloper.setEmail(email);
+            return this;
+        }
+
+        public Builder phone(Integer phone) {
+            gameDeveloper.setPhone(phone);
+            return this;
+        }
+
+        public GameDeveloper build(){
+            return gameDeveloper;
+        }
+
+    }
+
 }
+
