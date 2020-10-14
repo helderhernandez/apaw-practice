@@ -31,4 +31,9 @@ public class DiseasePersistenceMongodb implements DiseasePersistence {
                 .orElseThrow(() -> new NotFoundException("Disease name: " + name))
                 .toDisease();
     }
+
+    @Override
+    public void deleteByName(String name) {
+        this.diseaseRepository.deleteByName(name);
+    }
 }
