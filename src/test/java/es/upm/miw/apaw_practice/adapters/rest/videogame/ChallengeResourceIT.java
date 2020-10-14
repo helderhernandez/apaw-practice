@@ -2,6 +2,7 @@ package es.upm.miw.apaw_practice.adapters.rest.videogame;
 
 import es.upm.miw.apaw_practice.adapters.mongodb.videogame.daos.ChallengeRepository;
 import es.upm.miw.apaw_practice.adapters.rest.RestTestConfig;
+import es.upm.miw.apaw_practice.domain.models.videogame.Challenge;
 import es.upm.miw.apaw_practice.domain.models.videogame.ChallengeDescriptionUpdating;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,5 +52,22 @@ class ChallengeResourceIT {
                 .body(BodyInserters.fromValue(challengeDescriptionUpdatingList))
                 .exchange()
                 .expectStatus().isNotFound();
+    }
+
+
+    @Test
+    void testFindCompletedChallengesByDescription() {
+        this.webTestClient
+                .get()
+                .uri(uriBuilder -> uriBuilder.path(ChallengeResource.CHALLENGES + ChallengeResource.SEARCH)
+                        .queryParam("q", "description:level_1")
+                        .build())
+                .exchange()
+                .expectStatus()
+                .isOk()
+                .expectBodyList(Challenge.class)
+                .value(challengeList -> assertTrue(challengeList.get(0).getCompleted()));
+
+
     }
 }
