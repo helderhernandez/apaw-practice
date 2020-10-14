@@ -31,18 +31,9 @@ public class LevelResource {
         return this.levelService.readAll();
     }
 
-    @GetMapping(SEARCH)
-    public Stream <Challenge> findCompletedChallengesByDescription(@RequestParam String q){
-        String description = new LexicalAnalyzer().extractWithAssure(q,"description");
-        return this.levelService.findCompletedChallengesByDescription(description);
-    }
 
-    @GetMapping(SEARCH)
-    public Stream<NickNameDto> findNickNameByGameDeveloper(@RequestParam String q){
-        String name = new LexicalAnalyzer().extractWithAssure(q,"name");
-        return this.levelService.findNickNameByGameDeveloper(name)
-                .map(NickNameDto::new);
-    }
+
+
 
 
 }

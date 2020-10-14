@@ -30,33 +30,7 @@ class LevelResourceIT {
 
     }
 
-    @Test
-    void testFindCompletedChallengesByDescription() {
-        this.webTestClient
-                .get()
-                .uri(uriBuilder -> uriBuilder.path(LevelResource.LEVELS + LevelResource.SEARCH)
-                        .queryParam("q", "description:level_1")
-                        .build())
-                .exchange()
-                .expectStatus()
-                .isOk()
-                .expectBodyList(Challenge.class)
-                .value(challengeList -> assertTrue(challengeList.get(0).getCompleted()));
 
 
-    }
 
-    @Test
-    void testFindNickNameByGameDeveloper(){
-        this.webTestClient
-                .get()
-                .uri(uriBuilder -> uriBuilder.path(LevelResource.LEVELS + LevelResource.SEARCH)
-                        .queryParam("q", "name:natcas")
-                        .build())
-                .exchange()
-                .expectStatus()
-                .isOk()
-                .expectBodyList(NickNameDto.class)
-                .value(nickNameDtos -> assertEquals("natcas", nickNameDtos.get(0)));
-    }
 }

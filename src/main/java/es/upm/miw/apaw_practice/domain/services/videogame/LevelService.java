@@ -18,13 +18,7 @@ public class LevelService {
 
     public Stream<Level> readAll() { return levelPersistence.readAll();}
 
-    public Stream<Challenge> findCompletedChallengesByDescription(String description){
-        return levelPersistence.findCompletedChallengesByDescription(description);
-    }
 
-    public Stream<String> findNickNameByGameDeveloper(String name){
-        return levelPersistence.findNickNameByGameDeveloper(name);
-    }
 
 
 }
