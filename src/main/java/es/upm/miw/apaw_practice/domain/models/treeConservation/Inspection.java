@@ -7,7 +7,7 @@ public class Inspection {
     private LocalDateTime date;
     private String type;
     private String treeStatus;
-    private String inspectorName;
+    private String dni;
 
     public Inspection() {
         //empty for framework
@@ -45,12 +45,12 @@ public class Inspection {
         this.treeStatus = treeStatus;
     }
 
-    public String getInspectorName() {
-        return inspectorName;
+    public String getDni() {
+        return dni;
     }
 
-    public void setInspectorName(String inspectorName) {
-        this.inspectorName = inspectorName;
+    public void setDni(String dni) {
+        this.dni = dni;
     }
 
     @Override
@@ -60,7 +60,7 @@ public class Inspection {
                 ", date=" + date +
                 ", type='" + type + '\'' +
                 ", treeStatus='" + treeStatus + '\'' +
-                ", inspectorName='" + inspectorName + '\'' +
+                ", dni='" + dni + '\'' +
                 '}';
     }
 }

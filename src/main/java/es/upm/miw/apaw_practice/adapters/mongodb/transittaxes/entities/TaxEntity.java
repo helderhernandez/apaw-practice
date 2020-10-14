@@ -74,34 +74,6 @@ public class TaxEntity {
         this.paid = paid;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        TaxEntity that = (TaxEntity) o;
-        return Objects.equals(id, that.id) &&
-                Objects.equals(refTax, that.refTax) &&
-                Objects.equals(description, that.description) &&
-                Objects.equals(price, that.price) &&
-                Objects.equals(paid, that.paid);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, refTax, description, price, paid);
-    }
-
-    @Override
-    public String toString() {
-        return "TransitTaxesEntity{" +
-                "id='" + id + '\'' +
-                ", refTaxes='" + refTax + '\'' +
-                ", description='" + description + '\'' +
-                ", price=" + price +
-                ", paid=" + paid +
-                '}';
-    }
-
     public Tax toTax() {
         Tax tax = new Tax();
         BeanUtils.copyProperties(this, tax);

@@ -14,6 +14,10 @@ public class SocialPost {
         //empty for framework
     }
 
+    public static SocialPostBuilders.Id builder() {
+        return new Builder();
+    }
+
     public String getId() {
         return id;
     }
@@ -63,6 +67,50 @@ public class SocialPost {
                 ", shared=" + shared +
                 ", likes=" + likes +
                 '}';
+    }
+
+    public static class Builder implements SocialPostBuilders.Id, SocialPostBuilders.PostingDate, SocialPostBuilders.Content, SocialPostBuilders.Shared, SocialPostBuilders.Likes, SocialPostBuilders.Optionals {
+
+        private SocialPost socialPost;
+
+        public Builder() {
+            this.socialPost = new SocialPost();
+        }
+
+        @Override
+        public SocialPostBuilders.PostingDate id(String id) {
+            this.socialPost.id = id;
+            return this;
+        }
+
+        @Override
+        public SocialPostBuilders.Content postingDate(LocalDateTime postingDate) {
+            this.socialPost.postingDate = postingDate;
+            return this;
+        }
+
+        @Override
+        public SocialPostBuilders.Shared content(String content) {
+            this.socialPost.content = content;
+            return this;
+        }
+
+        @Override
+        public SocialPostBuilders.Likes shared(Integer shared) {
+            this.socialPost.shared = shared;
+            return this;
+        }
+
+        @Override
+        public SocialPostBuilders.Optionals likes(Integer likes) {
+            this.socialPost.likes = likes;
+            return this;
+        }
+
+        @Override
+        public SocialPost build() {
+            return this.socialPost;
+        }
     }
 
 }

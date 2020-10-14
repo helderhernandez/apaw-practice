@@ -7,23 +7,42 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Optional;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 @TestConfig
 public class SocialTrendPersistenceMongoDBIT {
 
     @Autowired
-    private SocialTrendPersistenceMongoDB socialTrendPersistance;
+    private SocialTrendPersistenceMongoDB socialTrendPersistenceMongoDB;
 
     @Test
     void testReadByName() {
-        Optional<SocialTrend> socialTrend = this.socialTrendPersistance.readByName("Europan")
+        Optional<SocialTrend> socialTrend = this.socialTrendPersistenceMongoDB.readByName("Europan")
                 .filter(trend -> trend.getPosition() == 1)
                 .findFirst();
         assertTrue(socialTrend.isPresent());
         assertNotNull(socialTrend.get().getId());
         assertNotNull(socialTrend.get().getSocialPostId());
+    }
+
+    @Test
+    void testUpdate() {
+        Optional<SocialTrend> socialTrend = this.socialTrendPersistenceMongoDB.readByName("Europan")
+                .filter(trend -> trend.getPosition() == 1)
+                .findFirst();
+        assertTrue(socialTrend.isPresent());
+        socialTrend.get().setName("Europan Updated");
+        this.socialTrendPersistenceMongoDB.update(socialTrend.get());
+        Optional<SocialTrend> socialTrendUpdated = this.socialTrendPersistenceMongoDB.readByName("Europan Updated")
+                .filter(trend -> trend.getPosition() == 1)
+                .findFirst();
+        assertTrue(socialTrendUpdated.isPresent());
+        assertEquals(socialTrend.get().getName(), socialTrendUpdated.get().getName());
+        assertEquals(1, socialTrendUpdated.get().getPosition());
+        assertEquals(socialTrend.get().getSocialPostId(), socialTrendUpdated.get().getSocialPostId());
+        assertEquals(socialTrend.get().getId(), socialTrendUpdated.get().getId());
+        socialTrendUpdated.get().setName("Europan");
+        this.socialTrendPersistenceMongoDB.update(socialTrendUpdated.get());
     }
 
 }
