@@ -7,7 +7,7 @@ import es.upm.miw.apaw_practice.domain.services.garage.DriverService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.stream.Stream;
+import java.util.List;
 
 @RestController
 @RequestMapping(DriverResource.DRIVERS)
@@ -34,7 +34,7 @@ public class DriverResource {
     }
 
     @GetMapping(SEARCH)
-    public Stream<String> findMechanicNamesByDriverName(@RequestParam String q) {
+    public List<String> findMechanicNamesByDriverName(@RequestParam String q) {
         String driverName = new LexicalAnalyzer().extractWithAssure(q, "driver");
         return this.driverService.findMechanicNamesByDriverName(driverName);
     }

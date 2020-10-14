@@ -4,7 +4,7 @@ import es.upm.miw.apaw_practice.domain.models.garage.Driver;
 import es.upm.miw.apaw_practice.domain.models.garage.DriverCreation;
 import org.springframework.stereotype.Repository;
 
-import java.util.stream.Stream;
+import java.util.List;
 
 @Repository
 public interface DriverPersistence {
@@ -12,5 +12,5 @@ public interface DriverPersistence {
 
     void delete (String dni);
 
-    Stream<String> findMechanicNamesByDriverName(String driverName);
+    List<String> findMechanicNamesByDriverName(String driverName);
 }

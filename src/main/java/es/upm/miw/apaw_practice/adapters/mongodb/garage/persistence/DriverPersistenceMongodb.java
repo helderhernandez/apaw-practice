@@ -8,7 +8,8 @@ import es.upm.miw.apaw_practice.domain.models.garage.DriverCreation;
 import es.upm.miw.apaw_practice.domain.persistence_ports.garage.DriverPersistence;
 import org.springframework.stereotype.Repository;
 
-import java.util.stream.Stream;
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Repository("driverPersistence")
 public class DriverPersistenceMongodb implements DriverPersistence {
@@ -53,15 +54,19 @@ public class DriverPersistenceMongodb implements DriverPersistence {
     }
 
     @Override
-    public Stream<String> findMechanicNamesByDriverName(String driverName) {
+    public List<String> findMechanicNamesByDriverName(String driverName) {
         return this.driverRepository
                 .findAll()
                 .stream()
                 .filter(driver -> driver.getName().equals(driverName))
-                .flatMap(driver -> driver.getVehicleEntities().stream())
-                .flatMap(vehicleEntity -> vehicleEntity.getMechanicEntities().stream())
+                .flatMap(driver -> {
+                    return driver.getVehicleEntities()
+                            .stream()
+                            .flatMap(vehicleEntity -> vehicleEntity.getMechanicEntities().stream());
+                })
+                .map(mechanicEntity -> mechanicEntity.getName())
                 .distinct()
-                .map(mechanicEntity -> mechanicEntity.getName());
+                .collect(Collectors.toList());
     }
 
 }
