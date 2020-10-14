@@ -1,8 +1,8 @@
-package es.upm.miw.apaw_practice.adapters.rest.treeConservation;
+package es.upm.miw.apaw_practice.adapters.rest.basketball;
 
 import es.upm.miw.apaw_practice.adapters.rest.RestTestConfig;
-import es.upm.miw.apaw_practice.domain.models.treeConservation.Disease;
-import es.upm.miw.apaw_practice.domain.models.treeConservation.DiseaseCreation;
+import es.upm.miw.apaw_practice.domain.models.basketball.Coach;
+import es.upm.miw.apaw_practice.domain.models.basketball.CoachCreation;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,22 +12,22 @@ import org.springframework.web.reactive.function.BodyInserters;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @RestTestConfig
-public class DiseaseResourceIT {
+public class CoachResourceIT {
+
     @Autowired
     private WebTestClient webTestClient;
 
     @Test
     void testCreate() {
-        DiseaseCreation diseaseCreation =
-                new DiseaseCreation("diseaseResourceTest", "This is a resource test disease");
+        CoachCreation coachCreation = new CoachCreation("Jacinto", "44444444N");
         this.webTestClient
                 .post()
-                .uri(DiseaseResource.DISEASES)
-                .body(BodyInserters.fromValue(diseaseCreation))
+                .uri(CoachResource.COACHS)
+                .body(BodyInserters.fromValue(coachCreation))
                 .exchange()
                 .expectStatus().isOk()
-                .expectBody(Disease.class)
+                .expectBody(Coach.class)
                 .value(Assertions::assertNotNull)
-                .value(disease -> assertNotNull(disease.getId()));
+                .value(coach -> assertNotNull(coach.getId()));
     }
 }

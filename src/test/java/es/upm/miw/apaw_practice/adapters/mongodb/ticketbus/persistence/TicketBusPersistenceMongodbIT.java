@@ -13,6 +13,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -76,5 +78,26 @@ class TicketBusPersistenceMongodbIT {
         );
 
         ticketBusPersistenceMongodb.save(ticketBusCreation);
+    }
+
+    @Test
+    void testBuilder() {
+        LocalDateTime timeTest = LocalDateTime.now();
+        BigDecimal price = new BigDecimal("40.00");
+
+        TicketBusEntity ticketBusEntity = TicketBusEntity.builder()
+                .seat(33)
+                .departureTime(timeTest)
+                .arriveTime(timeTest)
+                .price(price)
+                .build();
+        assertNotNull(ticketBusEntity);
+        assertNotNull(ticketBusEntity.getId());
+        assertNotNull(ticketBusEntity.getReference());
+        assertEquals(33, ticketBusEntity.getSeat());
+        assertEquals(timeTest, ticketBusEntity.getDepartureTime());
+        assertEquals(timeTest, ticketBusEntity.getArriveTime());
+        assertEquals(price, ticketBusEntity.getPrice());
+        assertNull(ticketBusEntity.getPassenger());
     }
 }
