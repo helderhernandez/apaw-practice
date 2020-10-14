@@ -29,7 +29,8 @@ public class RestaurantSeederService {
 
         PhysicalStoreEntity[] physicalStore = {
                 new PhysicalStoreEntity("tag1", "address1", 500, true, LocalDateTime.of(2019, 12, 3,10,00)),
-                new PhysicalStoreEntity("tag2", "address2", 600, false, LocalDateTime.of(2016,03,14,14,30))
+                new PhysicalStoreEntity("tag2", "address2", 600, false, LocalDateTime.of(2016,03,14,14,30)),
+                new PhysicalStoreEntity("tag3", "address3", 700, false, LocalDateTime.of(2017,03,24,14,30))
         };
         this.physicalStoreRepository.saveAll(Arrays.asList(physicalStore));
         FoodTypeEntity[] foodType = {
