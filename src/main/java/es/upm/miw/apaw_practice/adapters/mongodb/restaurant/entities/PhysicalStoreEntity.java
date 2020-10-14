@@ -19,11 +19,11 @@ public class PhysicalStoreEntity {
     private Boolean terrace;
     private LocalDateTime opening;
 
-    public PhysicalStoreEntity(){
+    public PhysicalStoreEntity() {
         //empty for framework
     }
 
-    public PhysicalStoreEntity(String id, String address, Integer size, Boolean terrace, LocalDateTime opening){
+    public PhysicalStoreEntity(String id, String address, Integer size, Boolean terrace, LocalDateTime opening) {
         this.id = UUID.randomUUID().toString();
         this.address = address;
         this.size = size;
@@ -59,13 +59,21 @@ public class PhysicalStoreEntity {
         this.size = size;
     }
 
-    public Boolean getTerrace() { return terrace; }
+    public Boolean getTerrace() {
+        return terrace;
+    }
 
-    public void setTerrace(Boolean terrace) { this.terrace = terrace; }
+    public void setTerrace(Boolean terrace) {
+        this.terrace = terrace;
+    }
 
-    public LocalDateTime getOpening() { return opening; }
+    public LocalDateTime getOpening() {
+        return opening;
+    }
 
-    public void setOpening(LocalDateTime opening) { this.opening = opening; }
+    public void setOpening(LocalDateTime opening) {
+        this.opening = opening;
+    }
 
     public PhysicalStore toPhysicalStore() {
         PhysicalStore physicalStore = new PhysicalStore();
