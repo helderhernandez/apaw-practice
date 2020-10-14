@@ -21,4 +21,6 @@ public class LevelService {
     public Stream<Challenge> findCompletedChallengesByDescription(String description){
         return levelPersistence.findCompletedChallengesByDescription(description);
     }
+
+
 }
