@@ -23,16 +23,13 @@ public class OwnerEntity {
         //empty from framework
     }
 
-    public OwnerEntity(String id, String name, String dni, String familyName) {
-        this.id = id;
-        this.name = name;
-        this.dni = dni;
-        this.familyName = familyName;
-    }
-
     public OwnerEntity(Owner owner) {
         BeanUtils.copyProperties(owner, this);
         this.id = UUID.randomUUID().toString();
+    }
+
+    public static OwnerBuilders.Id builder() {
+        return new Builder();
     }
 
     public String getId() {
@@ -98,5 +95,43 @@ public class OwnerEntity {
         BeanUtils.copyProperties(this, owner);
         return owner;
 
+    }
+
+    public static class Builder implements OwnerBuilders.Dni, OwnerBuilders.Id, OwnerBuilders.Optatives {
+
+        private OwnerEntity ownerEntity;
+
+        public Builder() {
+            this.ownerEntity = new OwnerEntity();
+        }
+
+        @Override
+        public OwnerBuilders.Dni idOwner(String id) {
+            this.ownerEntity.id = id;
+            return this;
+        }
+
+        @Override
+        public OwnerBuilders.Optatives dni(String dni) {
+            this.ownerEntity.dni = dni;
+            return this;
+        }
+
+        @Override
+        public OwnerBuilders.Optatives name(String name) {
+            this.ownerEntity.name = name;
+            return this;
+        }
+
+        @Override
+        public OwnerBuilders.Optatives familyName(String familyName) {
+            this.ownerEntity.familyName = familyName;
+            return this;
+        }
+
+        @Override
+        public OwnerEntity build() {
+            return this.ownerEntity;
+        }
     }
 }
