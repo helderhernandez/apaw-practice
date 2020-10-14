@@ -22,5 +22,9 @@ public class LevelService {
         return levelPersistence.findCompletedChallengesByDescription(description);
     }
 
+    public Stream<String> findNickNameByGameDeveloper(String name){
+        return levelPersistence.findNickNameByGameDeveloper(name);
+    }
+
 
 }

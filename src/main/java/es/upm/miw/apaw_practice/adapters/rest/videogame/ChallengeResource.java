@@ -30,4 +30,6 @@ public class ChallengeResource {
         this.challengeService.updateDescription(challengeDescriptionUpdatingList);
     }
 
+
+
 }

@@ -45,4 +45,18 @@ class LevelResourceIT {
 
 
     }
+
+    @Test
+    void testFindNickNameByGameDeveloper(){
+        this.webTestClient
+                .get()
+                .uri(uriBuilder -> uriBuilder.path(LevelResource.LEVELS + LevelResource.SEARCH)
+                        .queryParam("q", "name:natcas")
+                        .build())
+                .exchange()
+                .expectStatus()
+                .isOk()
+                .expectBodyList(NickNameDto.class)
+                .value(nickNameDtos -> assertEquals("natcas", nickNameDtos.get(0)));
+    }
 }
