@@ -56,9 +56,9 @@ public class VideogameSeederService {
         this.gamePlayerRepository.saveAll(Arrays.asList(gamePlayerEntities));
 
         LevelEntity[] levelEntities = {
-                new LevelEntity("level 1", 600, 1500, Arrays.asList(gamePlayerEntities[1], gamePlayerEntities[2]), gameDeveloperEntities[0]),
-                new LevelEntity("level 2", 1200, 800, Arrays.asList(gamePlayerEntities[1]), gameDeveloperEntities[0]),
-                new LevelEntity("level 3", 1800, 500, Arrays.asList(gamePlayerEntities[0], gamePlayerEntities[2]), gameDeveloperEntities[1])
+                new LevelEntity("level_1", 600, 1500, Arrays.asList(gamePlayerEntities[1], gamePlayerEntities[2]), gameDeveloperEntities[0]),
+                new LevelEntity("level_2", 1200, 800, Arrays.asList(gamePlayerEntities[1]), gameDeveloperEntities[0]),
+                new LevelEntity("level_3", 1800, 500, Arrays.asList(gamePlayerEntities[0], gamePlayerEntities[2]), gameDeveloperEntities[1])
 
         };
 

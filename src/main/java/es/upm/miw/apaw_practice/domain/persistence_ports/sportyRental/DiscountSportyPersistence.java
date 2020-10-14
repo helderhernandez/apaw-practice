@@ -11,4 +11,6 @@ public interface DiscountSportyPersistence {
     Stream<DiscountSporty> readAll();
 
     DiscountSporty updateDescription(String idDiscountSporty, Double percentage);
+
+    Stream<String> readDescriptionsDiscountByNumMaxPersonGreaterThan(Integer numMaxPerson);
 }

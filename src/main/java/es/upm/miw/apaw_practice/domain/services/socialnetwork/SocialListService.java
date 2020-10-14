@@ -4,6 +4,8 @@ import es.upm.miw.apaw_practice.domain.persistence_ports.socialnetwork.SocialLis
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Set;
+
 @Service
 public class SocialListService {
 
@@ -16,6 +18,10 @@ public class SocialListService {
 
     public void delete(String id) {
         this.socialListPersistance.deleteById(id);
+    }
+
+    public Set<String> findVerifiedNickNamesByListName(String listName) {
+        return this.socialListPersistance.findVerifiedNickNamesByListName(listName);
     }
 
 }
