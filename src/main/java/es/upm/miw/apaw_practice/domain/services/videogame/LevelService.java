@@ -17,13 +17,8 @@ public class LevelService {
         this.levelPersistence = levelPersistence;
     }
 
-<<<<<<< HEAD
     public Stream<Level> readAll() {
         return levelPersistence.readAll();
     }
-=======
-
->>>>>>> develop
-
 
 }
