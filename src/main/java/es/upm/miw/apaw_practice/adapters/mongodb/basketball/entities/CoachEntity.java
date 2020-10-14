@@ -1,6 +1,5 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.basketball.entities;
 
-import com.fasterxml.jackson.databind.util.BeanUtil;
 import es.upm.miw.apaw_practice.domain.models.basketball.Coach;
 import es.upm.miw.apaw_practice.domain.models.basketball.CoachCreation;
 import nonapi.io.github.classgraph.json.Id;
@@ -8,7 +7,6 @@ import org.springframework.beans.BeanUtils;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.Objects;
 import java.util.UUID;
 
 @Document

@@ -1,6 +1,5 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.basketball.entities;
 
-import com.fasterxml.jackson.databind.util.BeanUtil;
 import es.upm.miw.apaw_practice.domain.models.basketball.MemberTeam;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
