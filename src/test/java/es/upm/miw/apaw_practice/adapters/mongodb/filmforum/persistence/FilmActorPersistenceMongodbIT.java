@@ -8,8 +8,9 @@ import es.upm.miw.apaw_practice.domain.models.filmforum.FilmActorCreation;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 @TestConfig
 public class FilmActorPersistenceMongodbIT {
@@ -40,5 +41,17 @@ public class FilmActorPersistenceMongodbIT {
     @Test
     void testCreateAndUpdateIdNotFound() {
         assertThrows(NotFoundException.class, () -> filmActorPersistence.updateAge(new FilmActorAgeUpdating("NOT", "FOUND", 0)));
+    }
+
+    @Test
+    void testFindActorByName() {
+        List<FilmActor> actors = filmActorPersistence.findByName("actor4");
+        assertEquals(actors.size(), 2);
+    }
+
+    @Test
+    void testFindActorByNameNoActorWithThatName() {
+        List<FilmActor> actors = filmActorPersistence.findByName("Somebody");
+        assertTrue(actors.isEmpty());
     }
 }
