@@ -89,7 +89,8 @@ public class GameDeveloperEntity {
     }
 
     public GameDeveloper toGameDeveloper() {
-        return GameDeveloper.builder(id)
+        return GameDeveloper.builder()
+                .id(id)
                 .name(name)
                 .email(email)
                 .phone(phone)

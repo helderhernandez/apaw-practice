@@ -15,8 +15,8 @@ public class GameDeveloper {
         this.id = id;
     }
 
-    public static Builder builder(String id){
-        return new Builder(id);
+    public static GameDeveloperBuilders.Id builder() {
+        return new Builder();
     }
 
     public String getName() {
@@ -53,34 +53,46 @@ public class GameDeveloper {
                 '}';
     }
 
-    public static class Builder {
-        private GameDeveloper gameDeveloper;
+    public static class Builder implements GameDeveloperBuilders.Id, GameDeveloperBuilders.Name,
+            GameDeveloperBuilders.EmailDeveloper, GameDeveloperBuilders.Phone, GameDeveloperBuilders.Build {
 
-        public Builder(String id) {
+
+            private GameDeveloper gameDeveloper;
+
+        public Builder() {
             gameDeveloper = new GameDeveloper();
-            gameDeveloper.setId(id);
         }
 
-        public Builder name(String name) {
+            @Override
+            public GameDeveloperBuilders.Name id (String id){
+            gameDeveloper.setId(id);
+            return this;
+        }
+
+            @Override
+            public GameDeveloperBuilders.EmailDeveloper name (String name){
             gameDeveloper.setName(name);
             return this;
         }
 
-        public Builder email(String email) {
+            @Override
+            public GameDeveloperBuilders.Phone email (String email){
             gameDeveloper.setEmail(email);
             return this;
         }
 
-        public Builder phone(Integer phone) {
+            @Override
+            public GameDeveloperBuilders.Build phone (Integer phone){
             gameDeveloper.setPhone(phone);
             return this;
         }
 
-        public GameDeveloper build(){
+            @Override
+            public GameDeveloper build () {
             return gameDeveloper;
         }
 
-    }
+        }
 
-}
+    }
 
