@@ -1,8 +1,13 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.sportyRental.entities;
 
+import es.upm.miw.apaw_practice.domain.models.sportyRental.CustomerCreationSporty;
+import es.upm.miw.apaw_practice.domain.models.sportyRental.CustomerSporty;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
+
+import java.util.UUID;
 
 @Document
 public class CustomerSportyEntity {
@@ -26,6 +31,11 @@ public class CustomerSportyEntity {
         this.surnames = surnames;
         this.email = email;
         this.phone = phone;
+    }
+
+    public CustomerSportyEntity(CustomerCreationSporty customerCreationSporty) {
+        BeanUtils.copyProperties(customerCreationSporty, this);
+        this.idCustomer = UUID.randomUUID().toString();
     }
 
     public String getIdCustomer() {
@@ -74,6 +84,10 @@ public class CustomerSportyEntity {
 
     public void setPhone(String phone) {
         this.phone = phone;
+    }
+
+    public CustomerSporty convertToCustomerSporty() {
+        return new CustomerSporty(this.idCustomer, this.dni, this.name, this.surnames, this.email, this.phone);
     }
 
     @Override

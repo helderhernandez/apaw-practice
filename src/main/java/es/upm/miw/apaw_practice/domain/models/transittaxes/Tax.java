@@ -1,6 +1,5 @@
 package es.upm.miw.apaw_practice.domain.models.transittaxes;
 
-
 import java.math.BigDecimal;
 
 public class Tax {

@@ -5,12 +5,10 @@ import es.upm.miw.apaw_practice.domain.persistence_ports.transport.WorkerPersist
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
 public class WorkerService {
 
-    private WorkerPersistence workerPersistence;
+    private final WorkerPersistence workerPersistence;
 
     @Autowired
     public WorkerService(WorkerPersistence workerPersistence) {

@@ -7,7 +7,5 @@ import java.util.stream.Stream;
 
 @Repository
 public interface MechanicPersistence {
-
     Stream<Mechanic> readAll();
-
 }

@@ -2,9 +2,9 @@ package es.upm.miw.apaw_practice.adapters.mongodb.movie.daos;
 
 import es.upm.miw.apaw_practice.TestConfig;
 import es.upm.miw.apaw_practice.adapters.mongodb.movie.entities.FilmDirectorEntity;
-import es.upm.miw.apaw_practice.adapters.mongodb.movie.entities.filmDirector_composite.TreeFilmDirectors;
-import es.upm.miw.apaw_practice.adapters.mongodb.movie.entities.filmDirector_composite.TreeFilmDirectorsComposite;
-import es.upm.miw.apaw_practice.adapters.mongodb.movie.entities.filmDirector_composite.TreeFilmDirectorsLeaf;
+import es.upm.miw.apaw_practice.adapters.mongodb.movie.entities.filmdirector_composite.TreeFilmDirectors;
+import es.upm.miw.apaw_practice.adapters.mongodb.movie.entities.filmdirector_composite.TreeFilmDirectorsComposite;
+import es.upm.miw.apaw_practice.adapters.mongodb.movie.entities.filmdirector_composite.TreeFilmDirectorsLeaf;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

@@ -2,6 +2,7 @@ package es.upm.miw.apaw_practice.adapters.rest.filmforum;
 
 import es.upm.miw.apaw_practice.adapters.rest.RestTestConfig;
 import es.upm.miw.apaw_practice.domain.models.filmforum.FilmActor;
+import es.upm.miw.apaw_practice.domain.models.filmforum.FilmActorAgeUpdating;
 import es.upm.miw.apaw_practice.domain.models.filmforum.FilmActorCreation;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
@@ -25,5 +26,15 @@ public class FilmActorResourceIT {
                 .expectStatus().isOk()
                 .expectBody(FilmActor.class)
                 .value(Assertions::assertNotNull);
+    }
+
+    @Test
+    void testUpdateActorNotFound() {
+        FilmActorAgeUpdating ageUpdating = new FilmActorAgeUpdating("NOT", "FOUND", -1);
+        webTestClient.put()
+                .uri(FilmActorResource.FILMACTOR + FilmActorResource.UPDATE_AGE)
+                .body(BodyInserters.fromValue(ageUpdating))
+                .exchange()
+                .expectStatus().isNotFound();
     }
 }

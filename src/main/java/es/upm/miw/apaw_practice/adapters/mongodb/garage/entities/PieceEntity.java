@@ -1,5 +1,7 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.garage.entities;
 
+import es.upm.miw.apaw_practice.domain.models.garage.Piece;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -68,6 +70,16 @@ public class PieceEntity {
 
     public void setPrice(BigDecimal price) {
         this.price = price;
+    }
+
+    public Piece toPiece() {
+        Piece piece = new Piece();
+        BeanUtils.copyProperties(this, piece);
+        return piece;
+    }
+
+    public void fromPiece(Piece piece) {
+        BeanUtils.copyProperties(piece,this);
     }
 
 }

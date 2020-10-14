@@ -15,8 +15,8 @@ import java.util.stream.Collectors;
 @Repository("workerPersistence")
 public class WokerPersistenceMongodb implements WorkerPersistence {
 
-    private WorkerRepository workerRepository;
-    private DepartmentRepository departmentRepository;
+    private final WorkerRepository workerRepository;
+    private final DepartmentRepository departmentRepository;
 
     @Autowired
     public WokerPersistenceMongodb(WorkerRepository workerRepository, DepartmentRepository departmentRepository) {

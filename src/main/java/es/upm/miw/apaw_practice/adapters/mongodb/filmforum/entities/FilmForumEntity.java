@@ -1,6 +1,7 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.filmforum.entities;
 
 import es.upm.miw.apaw_practice.domain.models.filmforum.FilmForum;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -102,7 +103,7 @@ public class FilmForumEntity {
     }
 
     public FilmForum toFilmForum() {
-        return new FilmForum(filmActors.stream().map(FilmActorEntity::toFilmActor).collect(Collectors.toList())
+        return new FilmForum(this.id, filmActors.stream().map(FilmActorEntity::toFilmActor).collect(Collectors.toList())
                 , filmComments.stream().map(FilmCommentEntity::toFilmComment).collect(Collectors.toList()),
                 name, year, isForAllPublic, duration, genre);
     }
@@ -115,6 +116,10 @@ public class FilmForumEntity {
     @Override
     public boolean equals(Object obj) {
         return this == obj || obj != null && getClass() == obj.getClass() && (id.equals(((FilmForumEntity) obj).id));
+    }
+
+    public void fromEntity(FilmForum film) {
+        BeanUtils.copyProperties(film, this);
     }
 
     @Override

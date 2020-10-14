@@ -1,7 +1,12 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.property.entities;
 
+import es.upm.miw.apaw_practice.domain.models.property.Proprietor;
+import org.springframework.beans.BeanUtils;
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import java.util.Objects;
 
+@Document
 public class ProprietorEntity {
     private String name;
     private String dni;
@@ -9,12 +14,26 @@ public class ProprietorEntity {
     private String phone;
     private String email;
 
+    public ProprietorEntity(){
+        //empty from framework
+    }
+
     public ProprietorEntity(String name, String dni, String age, String phone, String email) {
         this.name = name;
         this.dni = dni;
         this.age = age;
         this.phone = phone;
         this.email = email;
+    }
+
+    public Proprietor toProprietor() {
+        Proprietor proprietor = new Proprietor();
+        BeanUtils.copyProperties(this, proprietor);
+        return proprietor; }
+
+
+    public void fromProprietor(Proprietor proprietor) {
+        BeanUtils.copyProperties(proprietor, this);
     }
 
     public String getName() {
@@ -80,4 +99,5 @@ public class ProprietorEntity {
                 ", email='" + email + '\'' +
                 '}';
     }
+
 }

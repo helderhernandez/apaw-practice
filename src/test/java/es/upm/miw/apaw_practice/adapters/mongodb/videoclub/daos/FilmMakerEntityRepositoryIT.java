@@ -18,12 +18,10 @@ public class FilmMakerEntityRepositoryIT {
     void testCreateAndRead() {
         assertTrue(this.filmMakerRepository.findAll().stream()
                 .anyMatch(filmMaker ->
-                        "filmMaker4".equals(filmMaker.getId()) &&
-                                "Steven".equals(filmMaker.getName()) &&
-                                "Baker".equals(filmMaker.getFamilyName()) &&
+                        "filmMaker4".equals(filmMaker.getReference()) &&
+                                "Steven Baker".equals(filmMaker.getName()) &&
                                 LocalDate.of(1960, 4, 28).equals(filmMaker.getBirthday()) &&
-                                "M".equals(filmMaker.getGender()) &&
-                                "60".equals(filmMaker.getAge().toString()))
+                                "M".equals(filmMaker.getGender()))
         );
     }
 }

@@ -7,4 +7,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface DriverPersistence {
     Driver create (DriverCreation driverCreation);
+
+    void delete (String dni);
 }

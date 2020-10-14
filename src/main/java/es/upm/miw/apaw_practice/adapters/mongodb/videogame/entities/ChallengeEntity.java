@@ -72,6 +72,10 @@ public class ChallengeEntity {
 
     }
 
+    public void fromChallenge(Challenge challenge){
+        BeanUtils.copyProperties(challenge, this);
+    }
+
     @Override
     public String toString() {
         return "ChallengeEntity{" +

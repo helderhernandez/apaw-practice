@@ -1,6 +1,5 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.transport.persistence;
 
-import es.upm.miw.apaw_practice.adapters.mongodb.transport.daos.DepartmentRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.transport.daos.ExtraRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.transport.daos.WorkerRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.transport.entities.ExtraEntity;
@@ -18,8 +17,8 @@ import java.util.stream.Stream;
 @Repository("extraPersistence")
 public class ExtraPersistenceMongodb implements ExtraPersistence {
 
-    private ExtraRepository extraRepository;
-    private WorkerRepository workerRepository;
+    private final ExtraRepository extraRepository;
+    private final WorkerRepository workerRepository;
 
     @Autowired
     public ExtraPersistenceMongodb(ExtraRepository extraRepository, WorkerRepository workerRepository) {

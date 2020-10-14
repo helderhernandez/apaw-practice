@@ -16,7 +16,7 @@ public class OwnerResourceIT {
     void testDeleteById() {
         this.webTestClient
                 .delete()
-                .uri(OwnerResource.OWNERS + OwnerResource.ID_ID, "0w1")
+                .uri(OwnerResource.OWNERS + OwnerResource.ID_ID, "ow5")
                 .exchange()
                 .expectStatus().isOk();
     }

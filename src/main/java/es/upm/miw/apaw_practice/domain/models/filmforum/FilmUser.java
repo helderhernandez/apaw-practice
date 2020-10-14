@@ -1,12 +1,22 @@
 package es.upm.miw.apaw_practice.domain.models.filmforum;
 
 public class FilmUser {
+    private String id;
     private String username;
     private String email;
 
-    public FilmUser(String username, String email) {
+    public FilmUser(String id, String username, String email) {
+        this.id = id;
         this.username = username;
         this.email = email;
+    }
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     public String getUsername() {

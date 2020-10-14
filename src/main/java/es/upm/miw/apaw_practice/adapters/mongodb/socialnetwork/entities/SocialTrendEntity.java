@@ -1,5 +1,8 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.socialnetwork.entities;
 
+import es.upm.miw.apaw_practice.domain.models.socialnetwork.SocialPost;
+import es.upm.miw.apaw_practice.domain.models.socialnetwork.SocialTrend;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;
@@ -61,6 +64,15 @@ public class SocialTrendEntity {
         this.socialPostEntity = socialPostEntity;
     }
 
+    public SocialTrend toSocialTrend() {
+        return new SocialTrend(id, name, position, socialPostEntity.getId());
+    }
+
+    public void fromSocialTrend(SocialTrend socialTrend, SocialPostEntity socialPostEntity) {
+        BeanUtils.copyProperties(socialTrend, this);
+        setSocialPostEntity(socialPostEntity);
+    }
+
     @Override
     public int hashCode() {
         return this.id.hashCode();
@@ -76,7 +88,8 @@ public class SocialTrendEntity {
         return "SocialTrendEntity{" +
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
-                ", position='" + position + '\'' +
+                ", position=" + position +
+                ", socialPostEntity=" + socialPostEntity +
                 '}';
     }
 

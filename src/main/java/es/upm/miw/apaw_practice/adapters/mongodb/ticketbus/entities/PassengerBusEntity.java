@@ -47,7 +47,7 @@ public class PassengerBusEntity {
         this.reference = GenRefEntity.getReferenceId(ENTITY_REF_NAME);
     }
 
-    public PassengerBus toPassengerBus(){
+    public PassengerBus toPassengerBus() {
         PassengerBus passengerBus = new PassengerBus();
         BeanUtils.copyProperties(this, passengerBus);
         return passengerBus;
