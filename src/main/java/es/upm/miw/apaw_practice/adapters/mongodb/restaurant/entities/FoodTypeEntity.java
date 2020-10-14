@@ -1,8 +1,6 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.restaurant.entities;
 
 import es.upm.miw.apaw_practice.domain.models.restaurant.FoodType;
-import es.upm.miw.apaw_practice.domain.models.restaurant.FoodTypeSpicyUpdating;
-import es.upm.miw.apaw_practice.domain.models.shop.Article;
 import nonapi.io.github.classgraph.json.Id;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -21,7 +19,7 @@ public class FoodTypeEntity {
     }
 
     public FoodTypeEntity(String id, String type, Boolean spicy) {
-        this.id = UUID.randomUUID().toString();
+        this.id = id;
         this.type = type;
         this.spicy = spicy;
     }

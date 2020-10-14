@@ -7,5 +7,5 @@ import org.springframework.stereotype.Repository;
 public interface FoodTypePersistence {
     FoodType update(FoodType spicyUpdating);
 
-    FoodType readById(String id);
+    FoodType findById(String id);
 }

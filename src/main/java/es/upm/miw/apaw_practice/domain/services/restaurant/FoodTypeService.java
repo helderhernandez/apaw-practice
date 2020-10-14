@@ -16,7 +16,7 @@ public class FoodTypeService {
     }
 
     public void updateSpicy(FoodTypeSpicyUpdating spicyUpdating) {
-        FoodType foodType = this.foodTypePersistence.readById(spicyUpdating.getId());
+        FoodType foodType = this.foodTypePersistence.findById(spicyUpdating.getId());
         foodType.setSpicy(spicyUpdating.getSpicy());
         this.foodTypePersistence.update(foodType);
     }
