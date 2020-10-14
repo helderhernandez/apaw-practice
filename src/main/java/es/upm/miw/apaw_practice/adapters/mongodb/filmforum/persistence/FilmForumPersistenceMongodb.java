@@ -1,13 +1,18 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.filmforum.persistence;
 
 import es.upm.miw.apaw_practice.adapters.mongodb.filmforum.daos.FilmForumRepository;
+import es.upm.miw.apaw_practice.adapters.mongodb.filmforum.entities.FilmActorEntity;
 import es.upm.miw.apaw_practice.adapters.mongodb.filmforum.entities.FilmCommentEntity;
 import es.upm.miw.apaw_practice.adapters.mongodb.filmforum.entities.FilmForumEntity;
 import es.upm.miw.apaw_practice.domain.exceptions.NotFoundException;
+import es.upm.miw.apaw_practice.domain.models.filmforum.FilmActor;
 import es.upm.miw.apaw_practice.domain.models.filmforum.FilmComment;
 import es.upm.miw.apaw_practice.domain.models.filmforum.FilmForum;
 import es.upm.miw.apaw_practice.domain.persistence_ports.filmforum.FilmForumPersistence;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Repository("filmForumPersistence")
 public class FilmForumPersistenceMongodb implements FilmForumPersistence {
@@ -41,5 +46,14 @@ public class FilmForumPersistenceMongodb implements FilmForumPersistence {
         FilmForumEntity film = filmForumRepository.findByFilmCommentsContaining(commentEntity)
                 .orElseThrow(() -> new NotFoundException("Comment with id " + comment.getId() + " has no film related"));
         return film.toFilmForum();
+    }
+
+    @Override
+    public List<FilmForum> getFilmsFromActor(FilmActor actor) {
+        FilmActorEntity filmActorEntity = new FilmActorEntity();
+        filmActorEntity.fromFilmActor(actor);
+        return filmForumRepository.findFilmsByFilmActorsContaining(filmActorEntity).stream()
+                .map(FilmForumEntity::toFilmForum)
+                .collect(Collectors.toList());
     }
 }
