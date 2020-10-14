@@ -45,16 +45,16 @@ public class TicketBusSeederService {
         this.journeyRepository.saveAll(Arrays.asList(journeys));
 
         TicketBusEntity[] tickets = {
-                new TicketBusEntity(11, null, null, new BigDecimal("30.99"), passengers[0]),
-                new TicketBusEntity(12, null, null, new BigDecimal("30.99"), passengers[1]),
-                new TicketBusEntity(31, null, null, new BigDecimal("45.00"), passengers[0]),
-                new TicketBusEntity(32, null, null, new BigDecimal("45.00"), passengers[2])
+                TicketBusEntity.builder().seat(11).departureTime(null).arriveTime(null).price(new BigDecimal("30.99")).passengerBus(passengers[0]).build(),
+                TicketBusEntity.builder().seat(12).departureTime(null).arriveTime(null).price(new BigDecimal("30.99")).passengerBus(passengers[1]).build(),
+                TicketBusEntity.builder().seat(31).departureTime(null).arriveTime(null).price(new BigDecimal("45.00")).passengerBus(passengers[0]).build(),
+                TicketBusEntity.builder().seat(32).departureTime(null).arriveTime(null).price(new BigDecimal("45.00")).passengerBus(passengers[2]).build()
         };
         this.ticketBusRepository.saveAll(Arrays.asList(tickets));
 
         BusEntity[] autocars = {
-                new BusEntity( "Velocity Cars", 40, Boolean.TRUE, Boolean.TRUE, List.of(tickets[0], tickets[1]), List.of(journeys[0])),
-                new BusEntity( "Flotas Madrid", 30, Boolean.TRUE, Boolean.FALSE, List.of(tickets[2], tickets[3]), List.of(journeys[1]))
+                new BusEntity("Velocity Cars", 40, Boolean.TRUE, Boolean.TRUE, List.of(tickets[0], tickets[1]), List.of(journeys[0])),
+                new BusEntity("Flotas Madrid", 30, Boolean.TRUE, Boolean.FALSE, List.of(tickets[2], tickets[3]), List.of(journeys[1]))
         };
         this.busRepository.saveAll(Arrays.asList(autocars));
     }

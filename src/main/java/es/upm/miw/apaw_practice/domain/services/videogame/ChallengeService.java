@@ -36,8 +36,7 @@ public class ChallengeService {
                 }).forEach(challenge -> this.challengePersistence.update(challenge));
     }
 
-    public Stream<Challenge> findCompletedChallengesByDescription(String description){
+    public Stream<Challenge> findCompletedChallengesByDescription(String description) {
         return levelPersistence.findCompletedChallengesByDescription(description);
     }
-
 }

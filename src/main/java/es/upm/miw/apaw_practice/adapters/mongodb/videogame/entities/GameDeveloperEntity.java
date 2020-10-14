@@ -47,6 +47,7 @@ public class GameDeveloperEntity {
         this.id = id;
     }
 
+
     public String getName() {
         return name;
     }
@@ -88,9 +89,12 @@ public class GameDeveloperEntity {
     }
 
     public GameDeveloper toGameDeveloper() {
-        GameDeveloper gameDeveloper = new GameDeveloper();
-        BeanUtils.copyProperties(this, gameDeveloper);
-        return gameDeveloper;
+        return GameDeveloper.builder()
+                .id(id)
+                .name(name)
+                .email(email)
+                .phone(phone)
+                .build();
     }
 
     @Override

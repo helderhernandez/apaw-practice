@@ -9,4 +9,6 @@ public interface OwnerPersistence {
     void deleteById(String id);
 
     Owner create(Owner owner);
+
+    void assertDniNoExist(String dni);
 }
