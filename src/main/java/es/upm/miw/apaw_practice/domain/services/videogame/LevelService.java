@@ -1,6 +1,5 @@
 package es.upm.miw.apaw_practice.domain.services.videogame;
 
-import es.upm.miw.apaw_practice.domain.models.videogame.Challenge;
 import es.upm.miw.apaw_practice.domain.models.videogame.Level;
 import es.upm.miw.apaw_practice.domain.persistence_ports.videogame.LevelPersistence;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,11 +13,12 @@ public class LevelService {
     private LevelPersistence levelPersistence;
 
     @Autowired
-    public LevelService (LevelPersistence levelPersistence){ this.levelPersistence= levelPersistence; }
+    public LevelService(LevelPersistence levelPersistence) {
+        this.levelPersistence = levelPersistence;
+    }
 
-    public Stream<Level> readAll() { return levelPersistence.readAll();}
-
-
-
+    public Stream<Level> readAll() {
+        return levelPersistence.readAll();
+    }
 
 }

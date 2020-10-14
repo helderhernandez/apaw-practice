@@ -1,6 +1,8 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.treeConservation.entities;
 
+import es.upm.miw.apaw_practice.domain.models.treeConservation.Inspector;
 import nonapi.io.github.classgraph.json.Id;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -82,6 +84,12 @@ public class InspectorEntity {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public Inspector toInspector() {
+        Inspector inspector = new Inspector();
+        BeanUtils.copyProperties(this, inspector);
+        return inspector;
     }
 
     @Override

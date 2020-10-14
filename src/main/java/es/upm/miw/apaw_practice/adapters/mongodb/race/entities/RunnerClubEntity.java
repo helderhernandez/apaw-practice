@@ -1,10 +1,12 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.race.entities;
 
 import es.upm.miw.apaw_practice.domain.models.race.RunnerClub;
+import es.upm.miw.apaw_practice.domain.models.race.RunnerClubCreation;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
+import java.util.UUID;
 
 @Document
 public class RunnerClubEntity {
@@ -23,6 +25,13 @@ public class RunnerClubEntity {
         this.name = name;
         this.location = location;
         this.foundationDate = foundationDate;
+    }
+
+    public RunnerClubEntity(RunnerClubCreation runnerClubCreation) {
+        this.id = UUID.randomUUID().toString();
+        this.name = runnerClubCreation.getName();
+        this.location = runnerClubCreation.getLocation();
+        this.foundationDate = runnerClubCreation.getFoundationDate();
     }
 
     public String getId() {
