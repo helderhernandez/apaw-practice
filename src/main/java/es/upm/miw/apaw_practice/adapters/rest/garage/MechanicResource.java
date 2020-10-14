@@ -7,7 +7,6 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.stream.Stream;
 
-
 @RestController
 @RequestMapping(MechanicResource.MECHANICS)
 public class MechanicResource {

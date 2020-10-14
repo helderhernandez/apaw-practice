@@ -2,6 +2,7 @@ package es.upm.miw.apaw_practice.adapters.mongodb.filmforum.entities;
 
 import es.upm.miw.apaw_practice.domain.models.filmforum.FilmActor;
 import es.upm.miw.apaw_practice.domain.models.filmforum.FilmActorCreation;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -67,6 +68,10 @@ public class FilmActorEntity {
 
     public FilmActor toFilmActor() {
         return new FilmActor(id, name, surname, age);
+    }
+
+    public void fromFilmActor(FilmActor actor) {
+        BeanUtils.copyProperties(actor, this);
     }
 
     @Override

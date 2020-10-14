@@ -20,5 +20,14 @@ public class OwnerEntityRepositoryIT {
         OwnerEntity ownerEntity = ownerRepository.findByDni("00000000C").get();
         assertEquals("Jhon", ownerEntity.getName());
         assertEquals("Smith", ownerEntity.getFamilyName());
+        ownerEntity.setId("1");
+        ownerEntity.setName("Jose");
+        ownerEntity.setDni("00000000");
+        ownerEntity.setFamilyName("Garcia");
+        assertEquals("1", ownerEntity.getId());
+        assertEquals("Jose", ownerEntity.getName());
+        assertEquals("Garcia", ownerEntity.getFamilyName());
+
+
     }
 }

@@ -1,5 +1,6 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.filmforum.daos;
 
+import es.upm.miw.apaw_practice.adapters.mongodb.filmforum.entities.FilmActorEntity;
 import es.upm.miw.apaw_practice.adapters.mongodb.filmforum.entities.FilmCommentEntity;
 import es.upm.miw.apaw_practice.adapters.mongodb.filmforum.entities.FilmForumEntity;
 import org.springframework.data.mongodb.repository.MongoRepository;
@@ -13,4 +14,6 @@ public interface FilmForumRepository extends MongoRepository<FilmForumEntity, St
     Optional<FilmForumEntity> findByName(String name);
 
     Optional<FilmForumEntity> findByFilmCommentsContaining(FilmCommentEntity commentEntity);
+
+    List<FilmForumEntity> findFilmsByFilmActorsContaining(FilmActorEntity actor);
 }

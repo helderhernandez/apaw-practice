@@ -34,12 +34,14 @@ public class RestaurantSeederService {
         this.physicalStoreRepository.saveAll(Arrays.asList(physicalStore));
         FoodTypeEntity[] foodType = {
                 new FoodTypeEntity("tag1", "type1", false),
-                new FoodTypeEntity("tag2", "type2", true)
+                new FoodTypeEntity("tag2", "type2", true),
+                new FoodTypeEntity("tag3", "type3", true)
         };
         this.foodTypeRepository.saveAll(Arrays.asList(foodType));
         OwnerRestaurantEntity[] owner = {
                 new OwnerRestaurantEntity("tag1", "name1","familyName1"),
-                new OwnerRestaurantEntity("tag2", "name2","familyName2")
+                new OwnerRestaurantEntity("tag2", "name2","familyName2"),
+                new OwnerRestaurantEntity("tag3", "name3","familyName3")
         };
         this.ownerRepository.saveAll(Arrays.asList(owner));
         RestaurantEntity[] restaurant = {

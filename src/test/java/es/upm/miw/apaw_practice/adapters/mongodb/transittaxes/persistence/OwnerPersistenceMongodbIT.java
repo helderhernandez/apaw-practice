@@ -17,6 +17,7 @@ public class OwnerPersistenceMongodbIT {
     @Test
     void testDelete() {
         ownerPersistenceMongodb.deleteById("ow2");
+        ownerPersistenceMongodb.assertDniNoExist("00000000C");
         Owner owner = new Owner();
         owner.setDni("00000000C");
         owner.setFamilyName("Smith");

@@ -62,32 +62,6 @@ public class AccidentEntity {
         this.place = place;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        AccidentEntity that = (AccidentEntity) o;
-        return Objects.equals(id, that.id) &&
-                Objects.equals(refAccident, that.refAccident) &&
-                Objects.equals(date, that.date) &&
-                Objects.equals(place, that.place);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, refAccident, date, place);
-    }
-
-    @Override
-    public String toString() {
-        return "AccidentEntity{" +
-                "id='" + id + '\'' +
-                ", refAccident='" + refAccident + '\'' +
-                ", date=" + date +
-                ", place='" + place + '\'' +
-                '}';
-    }
-
     public Accident toAccident() {
         Accident accident = new Accident();
         BeanUtils.copyProperties(this, accident);

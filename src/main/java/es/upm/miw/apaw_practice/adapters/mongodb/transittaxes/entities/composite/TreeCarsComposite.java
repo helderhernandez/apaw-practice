@@ -3,7 +3,6 @@ package es.upm.miw.apaw_practice.adapters.mongodb.transittaxes.entities.composit
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class TreeCarsComposite implements TreeCars {
 
