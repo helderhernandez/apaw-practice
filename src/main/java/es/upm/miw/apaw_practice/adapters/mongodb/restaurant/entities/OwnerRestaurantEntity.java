@@ -1,6 +1,7 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.restaurant.entities;
 
 import es.upm.miw.apaw_practice.domain.models.restaurant.OwnerRestaurant;
+import es.upm.miw.apaw_practice.domain.models.restaurant.OwnerRestaurantUpdate;
 import nonapi.io.github.classgraph.json.Id;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.mongodb.core.mapping.Document;
