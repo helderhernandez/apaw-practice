@@ -2,30 +2,20 @@ package es.upm.miw.apaw_practice.domain.models.race;
 
 import java.time.LocalDateTime;
 
-public class RunnerClub {
+public class RunnerClubCreation {
 
-    private String id;
     private String name;
     private String location;
     private LocalDateTime foundationDate;
 
-    public RunnerClub() {
+    public RunnerClubCreation() {
         // empty for framework
     }
 
-    public RunnerClub(String id, String name, String location, LocalDateTime foundationDate) {
-        this.id = id;
+    public RunnerClubCreation(String name, String location, LocalDateTime foundationDate) {
         this.name = name;
         this.location = location;
         this.foundationDate = foundationDate;
-    }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public String getName() {
@@ -59,14 +49,13 @@ public class RunnerClub {
 
     @Override
     public boolean equals(Object obj) {
-        return this == obj || obj != null && getClass() == obj.getClass() && (name.equals(((RunnerClub) obj).name));
+        return this == obj || obj != null && getClass() == obj.getClass() && (name.equals(((RunnerClubCreation) obj).name));
     }
 
     @Override
     public String toString() {
-        return "RunnerClub{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
+        return "RunnerClubCreation{" +
+                "name='" + name + '\'' +
                 ", location='" + location + '\'' +
                 ", foundationDate=" + foundationDate +
                 '}';
