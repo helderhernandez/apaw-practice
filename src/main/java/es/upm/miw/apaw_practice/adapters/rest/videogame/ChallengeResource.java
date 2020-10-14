@@ -32,18 +32,9 @@ public class ChallengeResource {
     }
 
     @GetMapping(SEARCH)
-<<<<<<< HEAD
-    public Stream<Challenge> findCompletedChallengesByDescription(@RequestParam String q){
-=======
     public Stream <Challenge> findCompletedChallengesByDescription(@RequestParam String q){
->>>>>>> develop
+
         String description = new LexicalAnalyzer().extractWithAssure(q,"description");
         return this.challengeService.findCompletedChallengesByDescription(description);
     }
-
-
-<<<<<<< HEAD
-=======
-
->>>>>>> develop
 }
