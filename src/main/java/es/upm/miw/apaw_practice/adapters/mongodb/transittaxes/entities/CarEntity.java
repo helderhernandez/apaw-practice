@@ -86,36 +86,6 @@ public class CarEntity {
         this.taxes = taxes;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        CarEntity that = (CarEntity) o;
-        return Objects.equals(id, that.id) &&
-                Objects.equals(enrollment, that.enrollment) &&
-                Objects.equals(brand, that.brand) &&
-                Objects.equals(accidents, that.accidents) &&
-                Objects.equals(owner, that.owner) &&
-                Objects.equals(taxes, that.taxes);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, enrollment, brand, accidents, owner, taxes);
-    }
-
-    @Override
-    public String toString() {
-        return "CarEntity{" +
-                "id='" + id + '\'' +
-                ", enrollment='" + enrollment + '\'' +
-                ", brand='" + brand + '\'' +
-                ", accidents=" + accidents +
-                ", owner=" + owner +
-                ", transitTaxes=" + taxes +
-                '}';
-    }
-
     public Car toCar() {
         List<String> listAccidents = this.accidents.stream()
                 .map(AccidentEntity::getRefAccident)

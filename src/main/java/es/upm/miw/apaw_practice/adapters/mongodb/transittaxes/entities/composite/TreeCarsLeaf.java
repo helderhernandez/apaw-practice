@@ -2,7 +2,6 @@ package es.upm.miw.apaw_practice.adapters.mongodb.transittaxes.entities.composit
 
 import es.upm.miw.apaw_practice.adapters.mongodb.transittaxes.entities.CarEntity;
 
-import java.util.List;
 
 public class TreeCarsLeaf implements TreeCars {
 
