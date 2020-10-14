@@ -12,4 +12,6 @@ public interface LevelPersistence {
     Stream<Level> readAll();
 
     Stream<Challenge> findCompletedChallengesByDescription(String description);
+
+    Stream <String> findNickNameByGameDeveloper(String name);
 }
