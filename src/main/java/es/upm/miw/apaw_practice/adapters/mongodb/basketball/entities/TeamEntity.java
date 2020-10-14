@@ -1,12 +1,10 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.basketball.entities;
 
 import nonapi.io.github.classgraph.json.Id;
-import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.util.List;
-import java.util.Objects;
 import java.util.UUID;
 
 @Document
