@@ -64,32 +64,6 @@ public class OwnerEntity {
         this.familyName = familyName;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        OwnerEntity that = (OwnerEntity) o;
-        return Objects.equals(id, that.id) &&
-                Objects.equals(name, that.name) &&
-                Objects.equals(familyName, that.familyName) &&
-                Objects.equals(dni, that.dni);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, name, familyName, dni);
-    }
-
-    @Override
-    public String toString() {
-        return "OwnerEntity{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                ", familyName='" + familyName + '\'' +
-                ", dni='" + dni + '\'' +
-                '}';
-    }
-
     public Owner toOwner() {
         Owner owner = new Owner();
         BeanUtils.copyProperties(this, owner);

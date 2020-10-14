@@ -30,4 +30,13 @@ public class DiseaseResourceIT {
                 .value(Assertions::assertNotNull)
                 .value(disease -> assertNotNull(disease.getId()));
     }
+
+    @Test
+    void testDelete() {
+        this.webTestClient
+                .delete()
+                .uri(DiseaseResource.DISEASES + DiseaseResource.NAME_ID, "fakeDiseaseResourceTest")
+                .exchange()
+                .expectStatus().isOk();
+    }
 }

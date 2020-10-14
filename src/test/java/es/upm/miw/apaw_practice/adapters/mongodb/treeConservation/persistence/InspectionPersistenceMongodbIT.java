@@ -32,7 +32,7 @@ public class InspectionPersistenceMongodbIT {
                 .filter(inspection -> "statusTest".equals(inspection.getTreeStatus()))
                 .findFirst();
         assertTrue(newInspectionTest.isPresent());
-        assertEquals(newInspectionTest.get().getDate(), newInspectionTest.get().getDate());
+        assertEquals(inspectionTest.get().getDate(), newInspectionTest.get().getDate());
         assertEquals("type2", newInspectionTest.get().getType());
         assertEquals("statusTest", newInspectionTest.get().getTreeStatus());
         treeConservationSeederService.deleteAll();
