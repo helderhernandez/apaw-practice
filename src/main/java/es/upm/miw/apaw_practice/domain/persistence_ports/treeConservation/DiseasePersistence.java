@@ -10,4 +10,6 @@ public interface DiseasePersistence {
     Disease create(DiseaseCreation diseaseCreation);
 
     Disease readByName(String name);
+
+    void deleteByName(String name);
 }
