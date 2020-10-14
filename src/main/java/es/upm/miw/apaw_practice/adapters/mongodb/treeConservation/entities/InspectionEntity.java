@@ -68,6 +68,14 @@ public class InspectionEntity {
         this.inspectorEntity = inspectorEntity;
     }
 
+    public Inspection toInspection() {
+        Inspection inspection = new Inspection();
+        BeanUtils.copyProperties(this, inspection, "inspectorEntity");
+        String inspectorName = this.inspectorEntity.getFirstName() + ' ' + this.inspectorEntity.getLastName();
+        inspection.setInspectorName(inspectorName);
+        return inspection;
+    }
+
     @Override
     public boolean equals(Object o) {
         return this == o || o != null && getClass() == o.getClass() && (this.id.equals(((InspectionEntity) o).getId()));
@@ -87,11 +95,5 @@ public class InspectionEntity {
                 ", treeStatus=" + treeStatus +
                 ", inspectorEntity=" + inspectorEntity +
                 '}';
-    }
-
-    public Inspection toInspection() {
-        Inspection inspection = new Inspection();
-        BeanUtils.copyProperties(this, inspection, "inspectorEntity");
-        return inspection;
     }
 }
