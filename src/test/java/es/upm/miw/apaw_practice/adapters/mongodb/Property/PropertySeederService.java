@@ -60,15 +60,15 @@ public class PropertySeederService {
         this.propertyCompanyRepository.saveAll(Arrays.asList(propertyCompanys));
 
         MaintanenceItemEntity[] items = {
-                new MaintanenceItemEntity("Flowerbed","Greenbelt", LocalDate.of(2020,5,30),
+                new MaintanenceItemEntity("1","Flowerbed","Greenbelt", LocalDate.of(2020,5,30),
                         new BigDecimal("1000.00"), 60001L,"Weeder",true),
-                new MaintanenceItemEntity("Garden","Greenbelt", LocalDate.of(2020,8,13),
+                new MaintanenceItemEntity("2","Garden","Greenbelt", LocalDate.of(2020,8,13),
                         new BigDecimal("300.00"), 60002L,"Weeder",true),
-                new MaintanenceItemEntity("Roof leaks","Construction", LocalDate.of(2020,6,28),
+                new MaintanenceItemEntity("3","Roof leaks","Construction", LocalDate.of(2020,6,28),
                         new BigDecimal("600.00"), 60003L,"Crane",true),
-                new MaintanenceItemEntity("Cracked wall","Construction", LocalDate.of(2020,7,2),
+                new MaintanenceItemEntity("4","Cracked wall","Construction", LocalDate.of(2020,7,2),
                         new BigDecimal("100.00"), 60004L,"Ladder",true),
-                new MaintanenceItemEntity("Repair manhole cover","Road", LocalDate.of(2020,11,30),
+                new MaintanenceItemEntity("5","Repair manhole cover","Road", LocalDate.of(2020,11,30),
                         new BigDecimal("800.00"), 60005L,"Barrier",false),
         };
         this.maintanenceItemRepository.saveAll(Arrays.asList(items));

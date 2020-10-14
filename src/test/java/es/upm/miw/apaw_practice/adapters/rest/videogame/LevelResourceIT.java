@@ -28,5 +28,4 @@ class LevelResourceIT {
                 .value(levels -> assertEquals("Pedro", levels.get(1).getGameDeveloper().getName()));
 
     }
-
 }

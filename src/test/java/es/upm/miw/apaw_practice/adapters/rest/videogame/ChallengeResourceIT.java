@@ -53,8 +53,6 @@ class ChallengeResourceIT {
                 .exchange()
                 .expectStatus().isNotFound();
     }
-
-
     @Test
     void testFindCompletedChallengesByDescription() {
         this.webTestClient

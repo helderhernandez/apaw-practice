@@ -17,11 +17,18 @@ public class ChallengeService {
     private LevelPersistence levelPersistence;
 
     @Autowired
+<<<<<<< HEAD
     public ChallengeService(ChallengePersistence challengePersistence, LevelPersistence levelPersistence) {
         this.challengePersistence = challengePersistence;
         this.levelPersistence = levelPersistence;
 
 
+=======
+    public ChallengeService(ChallengePersistence challengePersistence,
+                            LevelPersistence levelPersistence) {
+        this.challengePersistence = challengePersistence;
+        this.levelPersistence = levelPersistence;
+>>>>>>> develop
     }
 
     public Stream<Challenge> readAll() {
@@ -40,4 +47,8 @@ public class ChallengeService {
     public Stream<Challenge> findCompletedChallengesByDescription(String description){
         return levelPersistence.findCompletedChallengesByDescription(description);
     }
+<<<<<<< HEAD
+=======
+
+>>>>>>> develop
 }

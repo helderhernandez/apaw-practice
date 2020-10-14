@@ -5,10 +5,17 @@ public class SocialTrend {
     private String id;
     private String name;
     private Integer position;
-    private SocialPost socialPost;
+    private String socialPostId;
 
     public SocialTrend() {
         //empty for framework
+    }
+
+    public SocialTrend(String id, String name, Integer position, String socialPostId) {
+        this.id = id;
+        this.name = name;
+        this.position = position;
+        this.socialPostId = socialPostId;
     }
 
     public String getId() {
@@ -35,12 +42,12 @@ public class SocialTrend {
         this.position = position;
     }
 
-    public SocialPost getSocialPost() {
-        return socialPost;
+    public String getSocialPostId() {
+        return socialPostId;
     }
 
-    public void setSocialPost(SocialPost socialPost) {
-        this.socialPost = socialPost;
+    public void setSocialPostId(String socialPostId) {
+        this.socialPostId = socialPostId;
     }
 
     @Override
@@ -49,7 +56,7 @@ public class SocialTrend {
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 ", position=" + position +
-                ", socialPost=" + socialPost +
+                ", socialPostId=" + socialPostId +
                 '}';
     }
 

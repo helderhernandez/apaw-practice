@@ -27,4 +27,12 @@ public class LevelResource {
         return this.levelService.readAll();
     }
 
+<<<<<<< HEAD
+=======
+
+
+
+
+
+>>>>>>> develop
 }

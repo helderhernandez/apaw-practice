@@ -11,6 +11,7 @@ import org.springframework.test.web.reactive.server.WebTestClient;
 import org.springframework.web.reactive.function.BodyInserters;
 
 import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @RestTestConfig
 public class SocialUserResourceIT {
@@ -50,6 +51,22 @@ public class SocialUserResourceIT {
                 .body(BodyInserters.fromValue(biographyDto))
                 .exchange()
                 .expectStatus().isNotFound();
+    }
+
+    @Test
+    void testFindNickNamesByTrendName() {
+        this.webTestClient.get()
+                .uri(uriBuilder -> uriBuilder.path(SocialUserResource.USERS + SocialUserResource.SEARCH)
+                        .queryParam("q", "trendName:Europan")
+                        .build())
+                .exchange()
+                .expectStatus().isOk()
+                .expectBodyList(String.class)
+                .consumeWith(entitiesList -> {
+                    assertNotNull(entitiesList);
+                    assertNotNull(entitiesList.getResponseBody());
+                    assertTrue(entitiesList.getResponseBody().size() > 0 && entitiesList.getResponseBody().get(0).contains("Famoso_oficial"));
+                });
     }
 
 }
