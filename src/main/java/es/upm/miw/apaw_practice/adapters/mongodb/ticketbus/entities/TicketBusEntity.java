@@ -133,6 +133,10 @@ public class TicketBusEntity {
         this.arriveTime = arriveTime;
     }
 
+    public static Builder builder() {
+        return new Builder();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -159,4 +163,46 @@ public class TicketBusEntity {
                 ", passenger=" + passenger +
                 '}';
     }
+
+    public static class Builder {
+        private TicketBusEntity ticketBusEntity;
+
+        public Builder() {
+            ticketBusEntity = new TicketBusEntity();
+            ticketBusEntity.setId(UUID.randomUUID().toString());
+            ticketBusEntity.setReference(GenRefEntity.getReferenceId(ENTITY_REF_NAME));
+            ticketBusEntity.setRegistrationDate(LocalDateTime.now());
+        }
+
+        public Builder seat(Integer seat) {
+            ticketBusEntity.setSeat(seat);
+            return this;
+        }
+
+        public Builder departureTime(LocalDateTime departureTime) {
+            ticketBusEntity.setDepartureTime(departureTime);
+            return this;
+        }
+
+        public Builder arriveTime(LocalDateTime arriveTime) {
+            ticketBusEntity.setArriveTime(arriveTime);
+            return this;
+        }
+
+        public Builder price(BigDecimal price) {
+            ticketBusEntity.setPrice(price);
+            return this;
+        }
+
+        public Builder passengerBus(PassengerBusEntity passengerBusEntity) {
+            ticketBusEntity.setPassenger(passengerBusEntity);
+            return this;
+        }
+
+        public TicketBusEntity build() {
+            return ticketBusEntity;
+        }
+
+    }
+
 }
