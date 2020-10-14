@@ -9,6 +9,9 @@ import es.upm.miw.apaw_practice.domain.models.filmforum.FilmActorCreation;
 import es.upm.miw.apaw_practice.domain.persistence_ports.filmforum.FilmActorPersistence;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Repository("filmActorPersistence")
 public class FilmActorPersistenceMongodb implements FilmActorPersistence {
 
@@ -33,5 +36,12 @@ public class FilmActorPersistenceMongodb implements FilmActorPersistence {
 
         actorFromDB.setAge(actorNameUpdating.getAge());
         return filmActorRepository.save(actorFromDB).toFilmActor();
+    }
+
+    @Override
+    public List<FilmActor> findByName(String name) {
+        return filmActorRepository.findByName(name).stream()
+                .map(FilmActorEntity::toFilmActor)
+                .collect(Collectors.toList());
     }
 }
