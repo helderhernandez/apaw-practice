@@ -19,7 +19,9 @@ public class MemberTeamEntityRepositoryIT {
         MemberTeamEntity memberTeam = this.memberTeamRepository.findByDni("20000000C").get();
         assertEquals("Leonor", memberTeam.getName());
         assertEquals("Rodriguez", memberTeam.getSurname());
+        assertFalse(memberTeam.getAvailable());
         assertNotNull(memberTeam.getId());
+        assertEquals("20000000C", memberTeam.getDni());
     }
 
 }
