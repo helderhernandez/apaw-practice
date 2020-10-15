@@ -27,7 +27,7 @@ class GameDeveloperRepositoryIT {
     }
 
     @Test
-    void testPatternComposite(){
+    void testCompositePattern(){
         TreeGameDevelopers gameDevelopersComposite1 = new TreeGameDevelopersComposite("Software");
         TreeGameDevelopersComposite gameDevelopersComposite2 = new TreeGameDevelopersComposite("Hardware");
         TreeGameDevelopersComposite gameDevelopersComposite3 = new TreeGameDevelopersComposite("Design");
