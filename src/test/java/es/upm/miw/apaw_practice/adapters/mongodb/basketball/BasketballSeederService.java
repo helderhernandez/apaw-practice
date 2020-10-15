@@ -9,6 +9,7 @@ import es.upm.miw.apaw_practice.adapters.mongodb.basketball.entities.CourtEntity
 import es.upm.miw.apaw_practice.adapters.mongodb.basketball.entities.MemberTeamEntity;
 import es.upm.miw.apaw_practice.adapters.mongodb.basketball.entities.TeamEntity;
 import es.upm.miw.apaw_practice.domain.models.basketball.CoachCreation;
+import es.upm.miw.apaw_practice.domain.models.basketball.CourtCreation;
 import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -47,10 +48,10 @@ public class BasketballSeederService {
         };
         this.coachRepository.saveAll(Arrays.asList(coachs));
         CourtEntity[] courts = {
-                new CourtEntity("Palacio de Deportes", 15500),
-                new CourtEntity("Fuente de San Luis", 9000),
-                new CourtEntity("Palau Blaugrana", 7500),
-                new CourtEntity("Bilbao Arena", 10000)
+                new CourtEntity(new CourtCreation("Palacio de Deportes", 15500)),
+                new CourtEntity(new CourtCreation("Fuente de San Luis", 9000)),
+                new CourtEntity(new CourtCreation("Palau Blaugrana", 7500)),
+                new CourtEntity(new CourtCreation("Bilbao Arena", 10000))
         };
         this.courtRepository.saveAll(Arrays.asList(courts));
         TeamEntity[] teams = {
