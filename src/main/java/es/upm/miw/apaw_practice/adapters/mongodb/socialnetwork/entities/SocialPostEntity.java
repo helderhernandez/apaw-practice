@@ -76,6 +76,10 @@ public class SocialPostEntity {
         return socialPost;
     }
 
+    public void fromSocialPost(SocialPost socialPost) {
+        BeanUtils.copyProperties(socialPost, this);
+    }
+
     @Override
     public int hashCode() {
         return this.id.hashCode();

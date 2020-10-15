@@ -24,4 +24,11 @@ public class SocialPostPersistenceMongoDB implements SocialPostPersistence {
         return this.socialPostRepository.findAll().stream().map(SocialPostEntity::toSocialPost);
     }
 
+    @Override
+    public void create(SocialPost socialPost) {
+        SocialPostEntity socialPostEntity = new SocialPostEntity();
+        socialPostEntity.fromSocialPost(socialPost);
+        this.socialPostRepository.save(socialPostEntity);
+    }
+
 }

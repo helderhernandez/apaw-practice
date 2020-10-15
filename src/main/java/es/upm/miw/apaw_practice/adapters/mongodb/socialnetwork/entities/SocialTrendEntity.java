@@ -1,6 +1,5 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.socialnetwork.entities;
 
-import es.upm.miw.apaw_practice.domain.models.socialnetwork.SocialPost;
 import es.upm.miw.apaw_practice.domain.models.socialnetwork.SocialTrend;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
