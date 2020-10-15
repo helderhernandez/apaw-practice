@@ -17,7 +17,6 @@ public class ReaderEntityRepositoryIT {
     void testFindByDni(){
         assertTrue(this.readerRepository.findByDNI("01648463T").isPresent());
         ReaderEntity reader=this.readerRepository.findByDNI("01648463T").get();
-        assertEquals("13",reader.getId());
         assertEquals("Ana",reader.getName());
         assertEquals("Woman",reader.getSex());
         assertEquals("695222111",reader.getPhone());
