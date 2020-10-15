@@ -1,7 +1,5 @@
 package es.upm.miw.apaw_practice.domain.models.garage;
 
-import es.upm.miw.apaw_practice.adapters.mongodb.garage.entities.VehicleEntity;
-
 import java.util.List;
 
 public class Driver {
@@ -12,10 +10,14 @@ public class Driver {
     private String telephone;
     private String email;
     private Boolean garageMember;
-    private List<VehicleEntity> vehicleEntities;
+    private List<Vehicle> vehicles;
 
     public Driver() {
         //empty for framework
+    }
+
+    public static DriverBuilder.Id builder() {
+        return new Builder();
     }
 
     public String getId() {
@@ -66,12 +68,64 @@ public class Driver {
         this.garageMember = garageMember;
     }
 
-    public List<VehicleEntity> getVehicleEntities() {
-        return vehicleEntities;
+    public List<Vehicle> getVehicles() { return vehicles; }
+
+    public void setVehicles(List<Vehicle> vehicles) {
+        this.vehicles = vehicles;
     }
 
-    public void setVehicleEntities(List<VehicleEntity> vehicleEntities) {
-        this.vehicleEntities = vehicleEntities;
-    }
+    public static class Builder implements DriverBuilder.Id, DriverBuilder.Dni, DriverBuilder.Name, DriverBuilder.Telephone, DriverBuilder.Email, DriverBuilder.GarageMember, DriverBuilder.Vehicles, DriverBuilder.Build {
+        private Driver driver;
 
+        private Builder() {
+            this.driver = new Driver();
+        }
+
+        @Override
+        public DriverBuilder.Dni id(String id) {
+            this.driver.setId(id);
+            return this;
+        }
+
+        @Override
+        public DriverBuilder.Name dni(String dni) {
+            this.driver.setDni(dni);
+            return this;
+        }
+
+        @Override
+        public DriverBuilder.Telephone name(String name) {
+            this.driver.setName(name);
+            return this;
+        }
+
+        @Override
+        public DriverBuilder.Email telephone(String telephone) {
+            this.driver.setTelephone(telephone);
+            return this;
+        }
+
+        @Override
+        public DriverBuilder.GarageMember email(String email) {
+            this.driver.setEmail(email);
+            return this;
+        }
+
+        @Override
+        public DriverBuilder.Vehicles garageMember(Boolean garageMember) {
+            this.driver.setGarageMember(garageMember);
+            return this;
+        }
+
+        @Override
+        public DriverBuilder.Build vehicles(List<Vehicle> vehicles) {
+            this.driver.setVehicles(vehicles);
+            return this;
+        }
+
+        @Override
+        public Driver build() {
+            return this.driver;
+        }
+    }
 }
