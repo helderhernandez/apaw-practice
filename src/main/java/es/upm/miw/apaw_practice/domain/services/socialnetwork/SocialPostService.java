@@ -21,4 +21,8 @@ public class SocialPostService {
         return this.socialPostPersistance.readAll();
     }
 
+    public void create(SocialPost socialPost) {
+        this.socialPostPersistance.create(socialPost);
+    }
+
 }

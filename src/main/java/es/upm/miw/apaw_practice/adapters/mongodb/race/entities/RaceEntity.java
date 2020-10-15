@@ -1,5 +1,8 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.race.entities;
 
+import es.upm.miw.apaw_practice.domain.models.race.Race;
+import es.upm.miw.apaw_practice.domain.models.race.Runner;
+import es.upm.miw.apaw_practice.domain.models.race.Section;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -7,6 +10,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Document
 public class RaceEntity {
@@ -92,12 +96,12 @@ public class RaceEntity {
 
     @Override
     public int hashCode() {
-        return this.name.hashCode();
+        return this.id.hashCode();
     }
 
     @Override
     public boolean equals(Object obj) {
-        return this == obj || obj != null && getClass() == obj.getClass() && (name.equals(((RaceEntity) obj).name));
+        return this == obj || obj != null && getClass() == obj.getClass() && (id.equals(((RaceEntity) obj).id));
     }
 
     @Override
@@ -108,7 +112,18 @@ public class RaceEntity {
                 ", location='" + location + '\'' +
                 ", date=" + date +
                 ", prize=" + prize +
+                ", sectionEntities=" + sectionEntities +
                 ", runnerEntities=" + runnerEntities +
                 '}';
+    }
+
+    public Race toRace() {
+        List<Section> sections = this.sectionEntities.stream()
+                .map(SectionEntity::toSection)
+                .collect(Collectors.toList());
+        List<Runner> runners = this.runnerEntities.stream()
+                .map(RunnerEntity::toRunner)
+                .collect(Collectors.toList());
+        return new Race(this.id, this.name, this.location, this.date, this.prize, sections, runners);
     }
 }

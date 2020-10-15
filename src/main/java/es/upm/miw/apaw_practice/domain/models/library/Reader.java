@@ -1,7 +1,5 @@
 package es.upm.miw.apaw_practice.domain.models.library;
 
-import java.util.Objects;
-
 public class Reader {
     private String id;
     private String name;
@@ -12,14 +10,6 @@ public class Reader {
 
     public  Reader(){
         //empty from framework
-    }
-    public Reader(String id, String name, String sex, String DNI, String phone, String email) {
-        this.id = id;
-        this.name = name;
-        this.sex = sex;
-        this.DNI = DNI;
-        this.phone = phone;
-        this.email = email;
     }
 
     public String getId() {
@@ -71,15 +61,14 @@ public class Reader {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Reader reader = (Reader) o;
-        return Objects.equals(id, reader.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return this.id.hashCode();
+    public String toString() {
+        return "Reader{" +
+                "id='" + id + '\'' +
+                ", name='" + name + '\'' +
+                ", sex='" + sex + '\'' +
+                ", DNI='" + DNI + '\'' +
+                ", phone='" + phone + '\'' +
+                ", email='" + email + '\'' +
+                '}';
     }
 }
