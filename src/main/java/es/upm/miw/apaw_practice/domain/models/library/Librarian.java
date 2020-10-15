@@ -51,19 +51,6 @@ public class Librarian {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Librarian librarian = (Librarian) o;
-        return id.equals(librarian.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return this.id.hashCode();
-    }
-
-    @Override
     public String toString() {
         return "Librarian{" +
                 "id='" + id + '\'' +
