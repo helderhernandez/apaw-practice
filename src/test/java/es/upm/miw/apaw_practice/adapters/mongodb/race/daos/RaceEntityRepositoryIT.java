@@ -16,9 +16,9 @@ public class RaceEntityRepositoryIT {
 
     @Test
     void testCreateAndRead() {
-        assertTrue(raceRepository.findById("2").isPresent());
-        RaceEntity race = raceRepository.findById("2").get();
-        assertEquals("Barcelona", race.getLocation());
+        assertTrue(raceRepository.findById("1").isPresent());
+        RaceEntity race = raceRepository.findById("1").get();
+        assertEquals("Madrid Running Race", race.getName());
     }
 
 }
