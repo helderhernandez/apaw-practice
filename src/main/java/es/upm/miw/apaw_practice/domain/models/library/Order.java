@@ -14,9 +14,10 @@ public class Order {
     private Book book;
     private Reader reader;
 
-    public Order(){
+    public Order() {
         //empty from framework
     }
+
     public Order(String id, BigDecimal rental, LocalDateTime creationTime, LocalDateTime paymentTime, LocalDateTime returnTime, Book book, Reader reader) {
         this.id = id;
         this.rental = rental;
@@ -81,19 +82,6 @@ public class Order {
 
     public void setReader(Reader reader) {
         this.reader = reader;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        Order order = (Order) o;
-        return id.equals(order.id);
-    }
-
-    @Override
-    public int hashCode() {
-        return this.id.hashCode();
     }
 
     @Override
