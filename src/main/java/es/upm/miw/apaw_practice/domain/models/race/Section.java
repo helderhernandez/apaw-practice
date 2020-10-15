@@ -1,16 +1,14 @@
-package es.upm.miw.apaw_practice.adapters.mongodb.race.entities;
+package es.upm.miw.apaw_practice.domain.models.race;
 
-import es.upm.miw.apaw_practice.domain.models.race.Section;
-
-public class SectionEntity {
+public class Section {
     private Integer order;
     private Integer lengthInMeters;
 
-    public SectionEntity() {
+    public Section() {
         // empty for framework
     }
 
-    public SectionEntity(Integer order, Integer lengthInMeters) {
+    public Section(Integer order, Integer lengthInMeters) {
         this.order = order;
         this.lengthInMeters = lengthInMeters;
     }
@@ -33,13 +31,9 @@ public class SectionEntity {
 
     @Override
     public String toString() {
-        return "SectionEntity{" +
+        return "Section{" +
                 "order=" + order +
                 ", lengthInMeters=" + lengthInMeters +
                 '}';
-    }
-
-    public Section toSection() {
-        return new Section(this.order, this.lengthInMeters);
     }
 }
