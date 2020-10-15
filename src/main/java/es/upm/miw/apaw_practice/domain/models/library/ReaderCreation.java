@@ -1,6 +1,6 @@
 package es.upm.miw.apaw_practice.domain.models.library;
 
-public class Reader {
+public class ReaderCreation {
     private String id;
     private String name;
     private String sex;
@@ -8,16 +8,15 @@ public class Reader {
     private String phone;
     private String email;
 
-    public  Reader(){
-        //empty from framework
+    public ReaderCreation(){
+        //empty for framework
     }
-
-    public String getId() {
-        return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
+    public ReaderCreation(String name, String sex, String DNI, String phone, String email) {
+        this.name = name;
+        this.sex = sex;
+        this.DNI = DNI;
+        this.phone = phone;
+        this.email = email;
     }
 
     public String getName() {
@@ -62,7 +61,7 @@ public class Reader {
 
     @Override
     public String toString() {
-        return "Reader{" +
+        return "ReaderCreation{" +
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 ", sex='" + sex + '\'' +
