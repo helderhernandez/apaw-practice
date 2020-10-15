@@ -19,5 +19,8 @@ public class DiseaseService {
         return this.diseasePersistence.create(diseaseCreation);
     }
 
+    public void delete(String name) {
+        this.diseasePersistence.deleteByName(name);
+    }
 
 }

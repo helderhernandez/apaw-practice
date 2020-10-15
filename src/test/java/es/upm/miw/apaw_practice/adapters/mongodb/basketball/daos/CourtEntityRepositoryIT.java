@@ -1,7 +1,6 @@
-package es.upm.miw.apaw_practice.adapters.mongodb.basketball.dao;
+package es.upm.miw.apaw_practice.adapters.mongodb.basketball.daos;
 
 import es.upm.miw.apaw_practice.TestConfig;
-import es.upm.miw.apaw_practice.adapters.mongodb.basketball.daos.CourtRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 

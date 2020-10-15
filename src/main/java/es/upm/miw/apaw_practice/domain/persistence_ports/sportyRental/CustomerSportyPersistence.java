@@ -11,4 +11,6 @@ public interface CustomerSportyPersistence {
     Stream<CustomerSporty> readAll();
 
     void deleteByDni(String dni);
+
+    Stream<String> readDescriptionsCategoryByCustomerName(String name);
 }

@@ -6,14 +6,16 @@ public class BookPriceUpdating {
     private String ISBN;
     private BigDecimal price;
 
+    public  BookPriceUpdating(){
+        //empty from framework
+    }
+
     public BookPriceUpdating(String ISBN, BigDecimal price) {
         this.ISBN = ISBN;
         this.price = price;
     }
 
-    public  BookPriceUpdating(){
-        //empty from framework
-    }
+
     public String getISBN() {
         return ISBN;
     }
