@@ -1,12 +1,13 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.library.entities;
 
 import es.upm.miw.apaw_practice.domain.models.library.Reader;
+import es.upm.miw.apaw_practice.domain.models.library.ReaderCreation;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.Objects;
+import java.util.UUID;
 
 @Document
 public class ReaderEntity {
@@ -19,16 +20,13 @@ public class ReaderEntity {
     private String DNI;
     private String phone;
     private String email;
+
     public  ReaderEntity(){
         //empty for framework
     }
-    public ReaderEntity(String id, String name, String sex, String DNI, String phone, String email) {
-        this.id = id;
-        this.name = name;
-        this.sex = sex;
-        this.DNI = DNI;
-        this.phone = phone;
-        this.email = email;
+    public ReaderEntity(ReaderCreation readerCreation){
+        BeanUtils.copyProperties(readerCreation,this);
+        this.id= UUID.randomUUID().toString();
     }
 
     public String getId() {

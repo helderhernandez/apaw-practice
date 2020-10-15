@@ -55,4 +55,22 @@ public class DriverResourceIT {
         assertTrue(this.driverRepository.findByDni("28903000J").isPresent());
     }
 
+    @Test
+    void testFindMechanicNamesByDriverName() {
+        String driverName = "Carlos Ruiz";
+
+        this.webTestClient
+                .get()
+                .uri(uriBuilder ->
+                        uriBuilder.path(DriverResource.DRIVERS + DriverResource.SEARCH)
+                                .queryParam("q", "driverName:" + driverName)
+                                .build())
+                .exchange()
+                .expectStatus().isOk()
+                .expectBodyList(String.class)
+                .value(mechanicNameList -> assertTrue(mechanicNameList.get(0).contains("Raúl García")))
+                .value(mechanicNameList -> assertTrue(mechanicNameList.get(0).contains("Laura Rodríguez")))
+                .value(mechanicNameList -> assertTrue(mechanicNameList.get(0).contains("Andrea Montaño")));
+    }
+
 }

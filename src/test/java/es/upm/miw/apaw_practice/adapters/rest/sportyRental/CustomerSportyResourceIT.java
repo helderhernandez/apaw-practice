@@ -3,12 +3,13 @@ package es.upm.miw.apaw_practice.adapters.rest.sportyRental;
 import es.upm.miw.apaw_practice.adapters.mongodb.sportyRental.SportyRentalSeederService;
 import es.upm.miw.apaw_practice.adapters.rest.RestTestConfig;
 import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.web.reactive.server.WebTestClient;
 
-import static es.upm.miw.apaw_practice.adapters.rest.sportyRental.CustomerSportyResource.CUSTOMERS_SPORTY;
-import static es.upm.miw.apaw_practice.adapters.rest.sportyRental.CustomerSportyResource.DNI_CUSTOMER;
+import static es.upm.miw.apaw_practice.adapters.rest.sportyRental.CustomerSportyResource.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @RestTestConfig
 class CustomerSportyResourceIT {
@@ -34,5 +35,20 @@ class CustomerSportyResourceIT {
                 .exchange()
                 .expectStatus().isOk();
 
+    }
+
+    @Test
+    void testDescriptionsCategoryByCustomerName() {
+        this.webTestClient
+                .get()
+                .uri(uriBuilder ->
+                        uriBuilder.path(CUSTOMERS_SPORTY + SEARCH_CATEGORY_DESCRIPTIONS)
+                                .queryParam("q", "name:Pedro")
+                                .build())
+                .exchange()
+                .expectStatus().isOk()
+                .expectBodyList(String.class)
+                .value(Assertions::assertNotNull)
+                .value(String -> assertEquals("[[\"Basket\",\"Football 7\"]]", String.toString()));
     }
 }

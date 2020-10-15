@@ -10,4 +10,6 @@ public interface SocialPostPersistence {
 
     Stream<SocialPost> readAll();
 
+    void create(SocialPost socialPost);
+    
 }

@@ -1,11 +1,9 @@
 package es.upm.miw.apaw_practice.domain.models.race;
 
-import org.springframework.data.annotation.Id;
-
 import java.time.LocalDateTime;
 
 public class RunnerClub {
-    @Id
+
     private String id;
     private String name;
     private String location;

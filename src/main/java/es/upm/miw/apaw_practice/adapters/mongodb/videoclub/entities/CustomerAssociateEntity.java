@@ -1,5 +1,8 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.videoclub.entities;
 
+import es.upm.miw.apaw_practice.domain.models.videoclub.CustomerAssociate;
+import es.upm.miw.apaw_practice.domain.models.videoclub.RentalFilm;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;
@@ -7,9 +10,9 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.time.Period;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Document
 public class CustomerAssociateEntity {
@@ -72,10 +75,14 @@ public class CustomerAssociateEntity {
         this.films = films;
     }
 
-    public Integer getAge() {
-        LocalDate today = LocalDate.now();
-        Period p = Period.between(birthday, today);
-        return p.getYears();
+    public CustomerAssociate toCustomerAssociate() {
+        CustomerAssociate customerAssociate = new CustomerAssociate();
+        BeanUtils.copyProperties(this, customerAssociate);
+        List<RentalFilm> films = this.films.stream()
+                .map(RentalFilmEntity::toRentalFilm)
+                .collect(Collectors.toList());
+        customerAssociate.setFilms(films);
+        return customerAssociate;
     }
 
     @Override

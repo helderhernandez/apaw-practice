@@ -1,9 +1,6 @@
 package es.upm.miw.apaw_practice.domain.models.race;
 
-import es.upm.miw.apaw_practice.adapters.mongodb.race.entities.RunnerEntity;
-
 public class Runner {
-
     private String id;
     private String name;
     private String dni;

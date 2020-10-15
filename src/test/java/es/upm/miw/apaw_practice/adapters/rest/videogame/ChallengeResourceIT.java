@@ -53,12 +53,11 @@ class ChallengeResourceIT {
                 .exchange()
                 .expectStatus().isNotFound();
     }
-
     @Test
     void testFindCompletedChallengesByDescription() {
         this.webTestClient
                 .get()
-                .uri(uriBuilder -> uriBuilder.path(ChallengeResource.CHALLENGES + LevelResource.SEARCH)
+                .uri(uriBuilder -> uriBuilder.path(ChallengeResource.CHALLENGES + ChallengeResource.SEARCH)
                         .queryParam("q", "description:level_1")
                         .build())
                 .exchange()
