@@ -5,19 +5,19 @@ public class Runner {
     private String name;
     private String dni;
     private Integer dorsal;
-    private Boolean isProfessional;
+    private Boolean professional;
     private RunnerClub runnerClub;
 
     public Runner() {
         // empty for framework
     }
 
-    public Runner(String id, String name, String dni, Integer dorsal, Boolean isProfessional, RunnerClub runnerClub) {
+    public Runner(String id, String name, String dni, Integer dorsal, Boolean professional, RunnerClub runnerClub) {
         this.id = id;
         this.name = name;
         this.dni = dni;
         this.dorsal = dorsal;
-        this.isProfessional = isProfessional;
+        this.professional = professional;
         this.runnerClub = runnerClub;
     }
 
@@ -54,11 +54,11 @@ public class Runner {
     }
 
     public Boolean getProfessional() {
-        return isProfessional;
+        return professional;
     }
 
     public void setProfessional(Boolean professional) {
-        isProfessional = professional;
+        this.professional = professional;
     }
 
     public RunnerClub getRunnerClub() {
@@ -86,7 +86,7 @@ public class Runner {
                 ", name='" + name + '\'' +
                 ", dni='" + dni + '\'' +
                 ", dorsal=" + dorsal +
-                ", isProfessional=" + isProfessional +
+                ", professional=" + professional +
                 ", runnerClub=" + runnerClub +
                 '}';
     }

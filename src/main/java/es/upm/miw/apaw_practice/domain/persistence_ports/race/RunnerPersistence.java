@@ -8,4 +8,8 @@ public interface RunnerPersistence {
 
     Runner readById(String id);
 
+    Runner readByDni(String dni);
+
+    Runner update(Runner runner);
+
 }
