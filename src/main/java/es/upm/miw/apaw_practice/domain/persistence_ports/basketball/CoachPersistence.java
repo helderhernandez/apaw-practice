@@ -6,6 +6,10 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface CoachPersistence {
+
     Coach create(CoachCreation coachCreation);
+
     Coach readByDni(String dni);
+
+    Coach update(Coach coach);
 }
