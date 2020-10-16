@@ -7,7 +7,6 @@ import java.util.UUID;
 
 public class CustomerAssociate {
 
-    private String id;
     private String documentId;
     private String name;
     private LocalDate birthday;
@@ -19,7 +18,6 @@ public class CustomerAssociate {
     }
 
     public CustomerAssociate(String documentId, String name, LocalDate birthday, LocalDateTime registrationDate, List<RentalFilm> films) {
-        this.id = UUID.randomUUID().toString();
         this.documentId = documentId;
         this.name = name;
         this.birthday = birthday;
@@ -64,28 +62,9 @@ public class CustomerAssociate {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        CustomerAssociate customerAssociate = (CustomerAssociate) o;
-        return id.equals(customerAssociate.id) &&
-                documentId.equals(customerAssociate.documentId) &&
-                name.equals(customerAssociate.name) &&
-                birthday.equals(customerAssociate.birthday) &&
-                registrationDate.equals(customerAssociate.registrationDate) &&
-                films.equals(customerAssociate.films);
-    }
-
-    @Override
-    public int hashCode() {
-        return this.id.hashCode();
-    }
-
-    @Override
     public String toString() {
         return "CustomerAssociate{" +
-                "id='" + id + '\'' +
-                ", documentId='" + documentId + '\'' +
+                "documentId='" + documentId + '\'' +
                 ", name='" + name + '\'' +
                 ", birthday=" + birthday +
                 ", registrationDate=" + registrationDate +

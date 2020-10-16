@@ -39,6 +39,19 @@ public class CustomerAssociatePersistenceMongodbIT {
         assertNotNull(customerAssociate.getDocumentId());
 
         assertEquals("Laura Jiménez Cambiado", customerAssociateUpdated.getName());
+    }
 
+    @Test
+    void testDelete() {
+        CustomerAssociate customerAssociate = this.customerAssociatePersistenceMongodb
+                .readByDocumentId("DNI2");
+        assertNotNull(customerAssociate);
+        assertNotNull(customerAssociate.getDocumentId());
+
+        this.customerAssociatePersistenceMongodb.deleteByDocumentId(customerAssociate.getDocumentId());
+
+        assertFalse(this.customerAssociatePersistenceMongodb.readAll()
+                .anyMatch(customerAssociate1
+                        -> customerAssociate1.getDocumentId().equals(customerAssociate.getDocumentId())));
     }
 }
