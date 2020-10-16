@@ -7,4 +7,5 @@ import org.springframework.stereotype.Repository;
 public interface BookPersistence {
     Book updateBookPrice(Book book);
     Book readByISBN(String ISBN);
+    void deleteByISBN(String ISBN);
 }
