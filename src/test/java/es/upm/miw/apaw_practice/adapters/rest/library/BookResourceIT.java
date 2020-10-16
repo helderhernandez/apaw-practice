@@ -40,4 +40,12 @@ public class BookResourceIT {
                 .exchange()
                 .expectStatus().isOk();
     }
+    @Test
+    void testDelete(){
+        this.webTestClient
+                .delete()
+                .uri(BookResource.BOOK+BookResource.ISBN_ISBN,"kk")
+                .exchange()
+                .expectStatus().isOk();
+    }
 }

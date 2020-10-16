@@ -35,4 +35,7 @@ public class BookPersistenceMongodb implements BookPersistence {
                 .toBook();
 
     }
+    public void deleteByISBN(String ISBN){
+        this.bookRepository.deleteById(ISBN);
+    }
 }
