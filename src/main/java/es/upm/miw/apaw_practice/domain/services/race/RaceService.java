@@ -19,4 +19,8 @@ public class RaceService {
     public Race updateLocation(String id, LocationDto locationDto) {
         return racePersistence.updateLocation(id, locationDto.getLocation());
     }
+
+    public void deleteSectionByOrder(String raceId, String sectionOrder) {
+        racePersistence.deleteSectionByOrder(raceId, sectionOrder);
+    }
 }

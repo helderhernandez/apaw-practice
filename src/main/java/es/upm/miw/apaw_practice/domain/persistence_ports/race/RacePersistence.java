@@ -10,4 +10,5 @@ public interface RacePersistence {
 
     Race updateLocation(String id, String location);
 
+    void deleteSectionByOrder(String raceId, String sectionOrder);
 }
