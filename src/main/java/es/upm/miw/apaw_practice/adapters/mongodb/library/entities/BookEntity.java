@@ -7,7 +7,7 @@ import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 @Document
-public class BookEntity {
+public class BookEntity{
     @Id
     private String id;
     @Indexed(unique = true)
@@ -16,9 +16,10 @@ public class BookEntity {
     private String author;
     private  Boolean state;
 
-    public  BookEntity(){
+    public BookEntity(){
         //empty for framework
     }
+
     public BookEntity(String id, String title, String author, Boolean state, String ISBN) {
         this.id = id;
         this.title = title;
@@ -26,6 +27,7 @@ public class BookEntity {
         this.state = state;
         this.ISBN = ISBN;
     }
+
 
     public String getId() {
         return id;
@@ -65,6 +67,10 @@ public class BookEntity {
 
     public void setISBN(String ISBN) {
         this.ISBN = ISBN;
+    }
+
+    public void fromBook(Book book){
+        BeanUtils.copyProperties(book,this);
     }
     public Book toBook(){
         Book book=new Book();
