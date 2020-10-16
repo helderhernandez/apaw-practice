@@ -31,4 +31,23 @@ public class RaceResourceIT {
                 .value(race -> assertEquals("2", race.getId()))
                 .value(race -> assertEquals("Bilbao", race.getLocation()));
     }
+
+    @Test
+    void testDeleteSection() {
+        webTestClient
+                .delete()
+                .uri(RaceResource.RACES + RaceResource.ID_ID + RaceResource.SECTIONS + RaceResource.ORDER, "2", "3")
+                .exchange()
+                .expectStatus().isOk();
+    }
+
+    @Test
+    void testDeleteSectionNotFound() {
+        webTestClient
+                .delete()
+                .uri(RaceResource.RACES + RaceResource.ID_ID + RaceResource.SECTIONS + RaceResource.ORDER, "-1", "3")
+                .exchange()
+                .expectStatus().isNotFound();
+    }
+
 }
