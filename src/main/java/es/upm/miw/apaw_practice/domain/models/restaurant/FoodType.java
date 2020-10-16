@@ -5,7 +5,7 @@ public class FoodType {
     private String type;
     private Boolean spicy;
 
-    public FoodType(){
+    public FoodType() {
         //Empty for framework
     }
 
