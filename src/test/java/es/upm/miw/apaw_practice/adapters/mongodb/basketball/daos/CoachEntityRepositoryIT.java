@@ -1,7 +1,6 @@
-package es.upm.miw.apaw_practice.adapters.mongodb.basketball.dao;
+package es.upm.miw.apaw_practice.adapters.mongodb.basketball.daos;
 
 import es.upm.miw.apaw_practice.TestConfig;
-import es.upm.miw.apaw_practice.adapters.mongodb.basketball.daos.CoachRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.basketball.entities.CoachEntity;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,5 +19,6 @@ public class CoachEntityRepositoryIT {
         CoachEntity coach = this.coachRepository.findByDni("32222222C").get();
         assertEquals("Pablo", coach.getName());
         assertNotNull(coach.getId());
+        assertEquals("32222222C", coach.getDni());
     }
 }

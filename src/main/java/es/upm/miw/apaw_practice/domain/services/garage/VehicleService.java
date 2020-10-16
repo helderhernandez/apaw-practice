@@ -19,7 +19,7 @@ public class VehicleService {
         this.vehiclePersistence = vehiclePersistence;
     }
 
-    public void updateEstimatedBudget(List<VehicleEstimatedBudgetUpdating> estimatedBudgetUpdatingList){
+    public void updateEstimatedBudget(List<VehicleEstimatedBudgetUpdating> estimatedBudgetUpdatingList) {
         estimatedBudgetUpdatingList.stream()
                 .map(vehicleNewBudget -> {
                     Vehicle vehicle = this.vehiclePersistence.readByCarRegistration(vehicleNewBudget.getCarRegistration());
@@ -29,8 +29,12 @@ public class VehicleService {
                 .forEach(vehicle -> this.vehiclePersistence.update(vehicle));
     }
 
-    public Stream<Vehicle> getAllVehicles(){
+    public Stream<Vehicle> getAllVehicles() {
         return vehiclePersistence.readAll();
+    }
+
+    public Stream<String> findPieceBarcodeByMechanicName(String mechanicName) {
+        return vehiclePersistence.findPieceBarcodeByMechanicName(mechanicName);
     }
 
 }
