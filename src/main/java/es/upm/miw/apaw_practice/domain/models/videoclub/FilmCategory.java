@@ -1,8 +1,11 @@
 package es.upm.miw.apaw_practice.domain.models.videoclub;
 
+import java.util.UUID;
+
 public class FilmCategory {
 
     private String id;
+    private String reference;
     private String name;
     private Boolean plus18;
 
@@ -10,8 +13,9 @@ public class FilmCategory {
         // empty from framework
     }
 
-    public FilmCategory(String id, String name, Boolean plus18) {
-        this.id = id;
+    public FilmCategory(String reference, String name, Boolean plus18) {
+        this.id = UUID.randomUUID().toString();
+        this.reference = reference;
         this.name = name;
         this.plus18 = plus18;
     }
@@ -22,6 +26,14 @@ public class FilmCategory {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getReference() {
+        return reference;
+    }
+
+    public void setReference(String reference) {
+        this.reference = reference;
     }
 
     public String getName() {

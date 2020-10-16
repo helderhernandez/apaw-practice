@@ -15,14 +15,6 @@ public class FilmMaker {
         // empty from framework
     }
 
-    public String getReference() {
-        return reference;
-    }
-
-    public void setReference(String reference) {
-        this.reference = reference;
-    }
-
     public FilmMaker(String reference, String name, LocalDate birthday, String gender) {
         this.id = UUID.randomUUID().toString();
         this.reference = reference;
@@ -37,6 +29,14 @@ public class FilmMaker {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getReference() {
+        return reference;
+    }
+
+    public void setReference(String reference) {
+        this.reference = reference;
     }
 
     public String getName() {
