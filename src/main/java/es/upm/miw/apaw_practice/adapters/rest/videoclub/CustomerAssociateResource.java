@@ -2,6 +2,7 @@ package es.upm.miw.apaw_practice.adapters.rest.videoclub;
 
 import es.upm.miw.apaw_practice.domain.models.videoclub.CustomerAssociate;
 import es.upm.miw.apaw_practice.domain.services.videoclub.CustomerAssociateService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 @RestController
@@ -14,6 +15,7 @@ public class CustomerAssociateResource {
 
     private CustomerAssociateService customerAssociateService;
 
+    @Autowired
     public CustomerAssociateResource(CustomerAssociateService customerAssociateService) {
         this.customerAssociateService = customerAssociateService;
     }

@@ -14,9 +14,9 @@ public class FilmCategoryEntityRepositoryIT {
 
     @Test
     void testCreateAndRead() {
-        assertTrue(this.filmCategoryRepository.findById("cat4").isPresent());
-        FilmCategoryEntity filmCategory = this.filmCategoryRepository.findById("cat4").get();
-        assertEquals("cat4", filmCategory.getId());
+        assertTrue(this.filmCategoryRepository.findByReference("cat4").isPresent());
+        FilmCategoryEntity filmCategory = this.filmCategoryRepository.findByReference("cat4").get();
+        assertEquals("cat4", filmCategory.getReference());
         assertEquals("Horror", filmCategory.getName());
         assertTrue(filmCategory.getPlus18());
     }
