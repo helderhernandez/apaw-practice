@@ -1,9 +1,14 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.basketball.persistence;
 
 import es.upm.miw.apaw_practice.adapters.mongodb.basketball.daos.TeamRepository;
+import es.upm.miw.apaw_practice.adapters.mongodb.basketball.entities.CourtEntity;
+import es.upm.miw.apaw_practice.adapters.mongodb.basketball.entities.TeamEntity;
 import es.upm.miw.apaw_practice.domain.persistence_ports.basketball.TeamPersistence;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import java.util.Collection;
+import java.util.stream.Stream;
 
 @Repository("teamPersistence")
 public class TeamPersistenceMongodb implements TeamPersistence {
@@ -19,4 +24,22 @@ public class TeamPersistenceMongodb implements TeamPersistence {
     public void deleteById(String id) {
         this.teamRepository.deleteById(id);
     }
+
+    @Override
+    public Stream<String> findNameCourtsByTeamName(String name) {
+        return this.teamRepository.findAll()
+                .stream()
+                .filter(team -> team.getName().equals(name))
+                .map(TeamEntity::getCourtsToPlay)
+                .flatMap(Collection::stream)
+                .map(CourtEntity::getName)
+                .distinct();
+                //.filter(team -> team.getCourtsToPlay().stream().anyMatch(court -> court.getName().equals(name)))
+                //.distinct()
+                //.map(TeamEntity::getCourtsToPlay)
+                //.flatMap(Collection::stream)
+                //.map(CourtEntity::getName);
+    }
+
+
 }
