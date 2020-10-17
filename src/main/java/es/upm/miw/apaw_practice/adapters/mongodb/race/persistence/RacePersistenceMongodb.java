@@ -58,4 +58,15 @@ public class RacePersistenceMongodb implements RacePersistence {
                 .collect(Collectors.toList());
     }
 
+    @Override
+    public List<Race> findAllByRunnerDni(String dni) {
+        return raceRepository.findAll()
+                .stream()
+                .filter(race -> race.getRunnerEntities()
+                        .stream()
+                        .anyMatch(runner -> runner.getDni().equals(dni)))
+                .map(RaceEntity::toRace)
+                .collect(Collectors.toList());
+    }
+
 }

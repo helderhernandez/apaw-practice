@@ -15,4 +15,6 @@ public interface RacePersistence {
     void deleteSectionByOrder(String raceId, String sectionOrder);
 
     List<Race> findByName(String raceName);
+
+    List<Race> findAllByRunnerDni(String dni);
 }

@@ -74,4 +74,32 @@ public class RunnerResourceIT {
                 .exchange()
                 .expectStatus().isNotFound();
     }
+
+    @Test
+    void testFindTotalDistanceByRunnerDni() {
+        this.webTestClient
+                .get()
+                .uri(uriBuilder -> uriBuilder
+                        .path(RunnerResource.RUNNERS + RunnerResource.SEARCH)
+                        .queryParam("q", "dni:00000001")
+                        .build())
+                .exchange()
+                .expectStatus().isOk()
+                .expectBody(Integer.class)
+                .value(distance -> assertEquals(18900, distance));
+    }
+
+    @Test
+    void testFindTotalDistanceByRunnerDniNotFound() {
+        this.webTestClient
+                .get()
+                .uri(uriBuilder -> uriBuilder
+                        .path(RunnerResource.RUNNERS + RunnerResource.SEARCH)
+                        .queryParam("q", "dni:XXXXXXX")
+                        .build())
+                .exchange()
+                .expectStatus().isOk()
+                .expectBody(Integer.class)
+                .value(distance -> assertEquals(0, distance));
+    }
 }
