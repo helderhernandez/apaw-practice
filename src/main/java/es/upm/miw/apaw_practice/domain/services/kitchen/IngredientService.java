@@ -1,5 +1,6 @@
 package es.upm.miw.apaw_practice.domain.services.kitchen;
 
+import es.upm.miw.apaw_practice.domain.exceptions.NotFoundException;
 import es.upm.miw.apaw_practice.domain.models.kitchen.Ingredient;
 import es.upm.miw.apaw_practice.domain.models.kitchen.IngredientPricePerKgUpdating;
 import es.upm.miw.apaw_practice.domain.persistence_ports.kitchen.IngredientPersistence;
@@ -36,7 +37,8 @@ public class IngredientService {
     private Ingredient findIngredientById(String id) {
         return this.ingredientPersistence.readAll()
                 .filter(ingredient -> ingredient.getId().equals(id))
-                .findFirst().get();
+                .findFirst()
+                .orElseThrow(() -> new NotFoundException("Ingredient ID: " + id));
     }
 
 }

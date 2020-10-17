@@ -24,4 +24,19 @@ public class MemberTeamEntityRepositoryIT {
         assertEquals("20000000C", memberTeam.getDni());
     }
 
+    @Test
+    void testFindMemberByDniBuilder() {
+        MemberTeamEntity memberTeamEntity = MemberTeamEntity.builder()
+                .name("Mark")
+                .surname("Gasol")
+                .dni("12345678V")
+                .available(true)
+                .build();
+
+        assertEquals("Mark", memberTeamEntity.getName());
+        assertEquals("Gasol", memberTeamEntity.getSurname());
+        assertEquals("12345678V", memberTeamEntity.getDni());
+        assertTrue(memberTeamEntity.getAvailable());
+    }
+
 }
