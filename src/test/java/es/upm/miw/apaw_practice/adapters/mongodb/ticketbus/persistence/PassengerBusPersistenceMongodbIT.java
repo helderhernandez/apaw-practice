@@ -1,6 +1,7 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.ticketbus.persistence;
 
 import es.upm.miw.apaw_practice.TestConfig;
+import es.upm.miw.apaw_practice.adapters.mongodb.ticketbus.entities.PassengerBusEntity;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -34,4 +35,33 @@ class PassengerBusPersistenceMongodbIT {
 
         assertEquals(0L, numResults);
     }
+
+    @Test
+    void testBuilderPassengeBus() {
+        String docIdentify = "07876787T";
+        String name = "Rochel";
+        String familyName = "Montilla";
+        String phone = "798112645";
+        String email = "rochel@mymail.com";
+        Boolean accesibility = Boolean.FALSE;
+
+        PassengerBusEntity passengerBusEntity = PassengerBusEntity.builder()
+                .docIdentify(docIdentify)
+                .name(name)
+                .familyName(familyName)
+                .phone(phone)
+                .email(email)
+                .accesibility(accesibility)
+                .build();
+
+        assertNotNull(passengerBusEntity);
+        assertNotNull(passengerBusEntity.getId());
+        assertNotNull(passengerBusEntity.getReference());
+        assertEquals(name, passengerBusEntity.getName());
+        assertEquals(familyName, passengerBusEntity.getFamilyName());
+        assertEquals(phone, passengerBusEntity.getPhone());
+        assertEquals(email, passengerBusEntity.getEmail());
+        assertEquals(accesibility, passengerBusEntity.getAccesibility());
+    }
+
 }

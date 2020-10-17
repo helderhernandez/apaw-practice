@@ -32,9 +32,9 @@ public class TicketBusSeederService {
         LogManager.getLogger(this.getClass()).warn("------- TicketBus Initial Load -----------");
 
         PassengerBusEntity[] passengers = {
-                new PassengerBusEntity("89386661J", "Juan", "Perez", "651112234", "jpz@upm.es", Boolean.FALSE),
-                new PassengerBusEntity("33909261Q", "Ana", "Suarez", "679998821", "asz@upm.es", Boolean.FALSE),
-                new PassengerBusEntity("07904440F", "Claudia", "Wang", "760349846", "cwang@upm.es", Boolean.FALSE)
+                PassengerBusEntity.builder().docIdentify("89386661J").name("Juan").familyName("Perez").phone("651112234").email("jpz@upm.es").accesibility(Boolean.FALSE).build(),
+                PassengerBusEntity.builder().docIdentify("33909261Q").name("Ana").familyName("Suarez").phone("679998821").email("asz@upm.es").accesibility(Boolean.FALSE).build(),
+                PassengerBusEntity.builder().docIdentify("07904440F").name("Claudia").familyName("Wang").phone("760349846").email("cwang@upm.es").accesibility(Boolean.FALSE).build()
         };
         this.passengerBusRepository.saveAll(Arrays.asList(passengers));
 
