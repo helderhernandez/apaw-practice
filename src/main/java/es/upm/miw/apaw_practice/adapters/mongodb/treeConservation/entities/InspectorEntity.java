@@ -1,6 +1,8 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.treeConservation.entities;
 
+import es.upm.miw.apaw_practice.domain.models.treeConservation.Inspector;
 import nonapi.io.github.classgraph.json.Id;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -14,6 +16,7 @@ public class InspectorEntity {
     private String dni;
     private String firstName;
     private String lastName;
+    private Integer age;
     private String email;
     private String phoneNumber;
 
@@ -21,11 +24,12 @@ public class InspectorEntity {
         //empty from framework
     }
 
-    public InspectorEntity(String dni, String firstName, String lastName, String email, String phoneNumber) {
+    public InspectorEntity(String dni, String firstName, String lastName, Integer age, String email, String phoneNumber) {
         this.id = UUID.randomUUID().toString();
         this.dni = dni;
         this.firstName = firstName;
         this.lastName = lastName;
+        this.age = age;
         this.email = email;
         this.phoneNumber = phoneNumber;
     }
@@ -36,6 +40,18 @@ public class InspectorEntity {
 
     public String getDni() {
         return dni;
+    }
+
+    public void setDni(String dni) {
+        this.dni = dni;
+    }
+
+    public Integer getAge() {
+        return age;
+    }
+
+    public void setAge(Integer age) {
+        this.age = age;
     }
 
     public String getFirstName() {
@@ -68,6 +84,12 @@ public class InspectorEntity {
 
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public Inspector toInspector() {
+        Inspector inspector = new Inspector();
+        BeanUtils.copyProperties(this, inspector);
+        return inspector;
     }
 
     @Override

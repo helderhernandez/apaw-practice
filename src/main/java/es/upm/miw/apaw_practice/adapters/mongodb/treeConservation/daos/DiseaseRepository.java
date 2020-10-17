@@ -7,4 +7,6 @@ import java.util.Optional;
 
 public interface DiseaseRepository extends MongoRepository<DiseaseEntity, String> {
     Optional<DiseaseEntity> findByName(String name);
+
+    void deleteByName(String name);
 }

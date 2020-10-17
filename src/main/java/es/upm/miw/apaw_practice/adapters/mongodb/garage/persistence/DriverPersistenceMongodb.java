@@ -8,6 +8,9 @@ import es.upm.miw.apaw_practice.domain.models.garage.DriverCreation;
 import es.upm.miw.apaw_practice.domain.persistence_ports.garage.DriverPersistence;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 @Repository("driverPersistence")
 public class DriverPersistenceMongodb implements DriverPersistence {
 
@@ -25,11 +28,45 @@ public class DriverPersistenceMongodb implements DriverPersistence {
                 });
     }
 
+    private void assertDniExist(String dni) {
+        this.driverRepository
+                .findByDni(dni)
+                .ifPresentOrElse(driver -> {
+                                    // do nothing
+                                },
+                                () -> {
+                                    throw new ConflictException("Driver not exist: " + dni);
+                                });
+
+    }
+
     @Override
     public Driver create(DriverCreation driverCreation) {
         this.assertDniNotExist(driverCreation.getDni());
         DriverEntity driverEntity = new DriverEntity(driverCreation);
         return this.driverRepository.save(driverEntity).toDriver();
+    }
+
+    @Override
+    public void delete(String dni) {
+        this.assertDniExist(dni);
+        this.driverRepository.deleteByDni(dni);
+    }
+
+    @Override
+    public List<String> findMechanicNamesByDriverName(String driverName) {
+        return this.driverRepository
+                .findAll()
+                .stream()
+                .filter(driver -> driver.getName().equals(driverName))
+                .flatMap(driver -> {
+                    return driver.getVehicleEntities()
+                            .stream()
+                            .flatMap(vehicleEntity -> vehicleEntity.getMechanicEntities().stream());
+                })
+                .map(mechanicEntity -> mechanicEntity.getName())
+                .distinct()
+                .collect(Collectors.toList());
     }
 
 }

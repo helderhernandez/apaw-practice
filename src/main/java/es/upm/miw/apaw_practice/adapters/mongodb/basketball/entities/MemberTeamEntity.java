@@ -1,5 +1,7 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.basketball.entities;
 
+import es.upm.miw.apaw_practice.domain.models.basketball.MemberTeam;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -87,5 +89,11 @@ public class MemberTeamEntity {
                 ", dni='" + dni + '\'' +
                 ", isAvailable=" + available +
                 '}';
+    }
+
+    public MemberTeam toMemberTeam() {
+        MemberTeam memberTeam = new MemberTeam();
+        BeanUtils.copyProperties(this, memberTeam);
+        return memberTeam;
     }
 }

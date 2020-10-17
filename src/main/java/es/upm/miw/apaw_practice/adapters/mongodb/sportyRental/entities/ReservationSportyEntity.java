@@ -1,5 +1,8 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.sportyRental.entities;
 
+import es.upm.miw.apaw_practice.adapters.mongodb.sportyRental.entities.utils.Constans;
+import es.upm.miw.apaw_practice.domain.models.sportyRental.*;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;
@@ -7,7 +10,9 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.UUID;
 
 @Document
 public class ReservationSportyEntity {
@@ -38,6 +43,13 @@ public class ReservationSportyEntity {
         this.customerSportyEntities = customerSportyEntities;
         this.categorySportyEntity = categorySportyEntity;
         this.discountSportyEntity = discountSportyEntity;
+    }
+
+    public ReservationSportyEntity(ReservationCreationSporty reservationCreationSporty) {
+        BeanUtils.copyProperties(reservationCreationSporty, this);
+        this.idReservation = UUID.randomUUID().toString();
+        this.dateReservation = LocalDateTime.now();
+        this.refReservation = Constans.START_REFERENCE+UUID.randomUUID().toString().substring(Constans.MAX_REFERENCE);
     }
 
     public String getIdReservation() {
@@ -102,6 +114,41 @@ public class ReservationSportyEntity {
 
     public void setDiscountSportyEntity(List<DiscountSportyEntity> discountSportyEntity) {
         this.discountSportyEntity = discountSportyEntity;
+    }
+
+    public ReservationSporty convertToReservationSporty() {
+        return new ReservationSporty(this.idReservation,
+                this.dateReservation,
+                this.refReservation,
+                this.amount,
+                this.paidOut,
+                this.convertToListCustomerSporty(),
+                new CategorySporty(this.categorySportyEntity.getIdCategory(), this.categorySportyEntity.getDescription(), this.categorySportyEntity.getNumMaxPersons()),
+                this.convertToListDiscountSporty());
+    }
+
+    private List<CustomerSporty> convertToListCustomerSporty() {
+        List<CustomerSporty> listCustomerSporty = new ArrayList<CustomerSporty>();
+
+        this.customerSportyEntities.stream().forEach(
+                customerSporty -> {
+                    listCustomerSporty.add(new CustomerSporty(customerSporty.getIdCustomer(), customerSporty.getDni(),
+                            customerSporty.getName(), customerSporty.getSurnames(), customerSporty.getEmail(), customerSporty.getPhone()));
+                }
+        );
+        return listCustomerSporty;
+    }
+
+    private List<DiscountSporty> convertToListDiscountSporty() {
+        List<DiscountSporty> listDiscountSporty = new ArrayList<DiscountSporty>();
+
+        this.discountSportyEntity.stream().forEach(
+                discountSporty -> {
+                    listDiscountSporty.add(new DiscountSporty(discountSporty.getIdDiscount(), discountSporty.getDescription(),
+                            discountSporty.getPercentage()));
+                }
+        );
+        return listDiscountSporty;
     }
 
     @Override

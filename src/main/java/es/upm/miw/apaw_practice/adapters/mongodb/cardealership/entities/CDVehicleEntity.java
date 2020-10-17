@@ -1,14 +1,21 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.cardealership.entities;
 
+import es.upm.miw.apaw_practice.domain.models.car_dealership.CDVehicle;
+import es.upm.miw.apaw_practice.domain.models.car_dealership.CDVehicleCreation;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.Objects;
 import java.util.UUID;
 
 @Document
 public class CDVehicleEntity {
     @Id
     private String id;
+    @Indexed(unique = true)
+    private String frameNumber;
     private String brand;
     private String type;
     private Boolean unused;
@@ -18,12 +25,18 @@ public class CDVehicleEntity {
         // Empty for framework
     }
 
-    public CDVehicleEntity(String brand, String type, Boolean unused, Integer year) {
+    public CDVehicleEntity(String frameNumber, String brand, String type, Boolean unused, Integer year) {
         this.id = UUID.randomUUID().toString();
+        this.frameNumber = frameNumber;
         this.brand = brand;
         this.type = type;
         this.unused = unused;
         this.year = year;
+    }
+
+    public CDVehicleEntity(CDVehicleCreation vehicleCreation) {
+        BeanUtils.copyProperties(vehicleCreation, this);
+        this.id = UUID.randomUUID().toString();
     }
 
     public String getId() {
@@ -32,6 +45,14 @@ public class CDVehicleEntity {
 
     public void setId(String id) {
         this.id = id;
+    }
+
+    public String getFrameNumber() {
+        return frameNumber;
+    }
+
+    public void setFrameNumber(String frameNumber) {
+        this.frameNumber = frameNumber;
     }
 
     public String getBrand() {
@@ -64,6 +85,24 @@ public class CDVehicleEntity {
 
     public void setYear(Integer year) {
         this.year = year;
+    }
+
+    public CDVehicle toVehicle() {
+        CDVehicle vehicle = new CDVehicle();
+        BeanUtils.copyProperties(this, vehicle);
+        return vehicle;
+    }
+
+    public void fromVehicle(CDVehicle vehicle) {
+        BeanUtils.copyProperties(vehicle, this);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        CDVehicleEntity that = (CDVehicleEntity) o;
+        return Objects.equals(id, that.id);
     }
 
     @Override

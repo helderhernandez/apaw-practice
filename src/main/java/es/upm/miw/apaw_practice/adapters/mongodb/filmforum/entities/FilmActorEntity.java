@@ -1,7 +1,12 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.filmforum.entities;
 
+import es.upm.miw.apaw_practice.domain.models.filmforum.FilmActor;
+import es.upm.miw.apaw_practice.domain.models.filmforum.FilmActorCreation;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
+
+import java.util.UUID;
 
 @Document
 public class FilmActorEntity {
@@ -20,6 +25,13 @@ public class FilmActorEntity {
         this.name = name;
         this.surname = surname;
         this.age = age;
+    }
+
+    public FilmActorEntity(FilmActorCreation actor) {
+        this.id = UUID.randomUUID().toString();
+        this.name = actor.getName();
+        this.surname = actor.getSurname();
+        this.age = actor.getAge();
     }
 
     public String getId() {
@@ -52,6 +64,14 @@ public class FilmActorEntity {
 
     public void setAge(Integer age) {
         this.age = age;
+    }
+
+    public FilmActor toFilmActor() {
+        return new FilmActor(id, name, surname, age);
+    }
+
+    public void fromFilmActor(FilmActor actor) {
+        BeanUtils.copyProperties(actor, this);
     }
 
     @Override

@@ -8,6 +8,7 @@ import es.upm.miw.apaw_practice.adapters.mongodb.treeConservation.entities.Disea
 import es.upm.miw.apaw_practice.adapters.mongodb.treeConservation.entities.InspectionEntity;
 import es.upm.miw.apaw_practice.adapters.mongodb.treeConservation.entities.InspectorEntity;
 import es.upm.miw.apaw_practice.adapters.mongodb.treeConservation.entities.TreeEntity;
+import es.upm.miw.apaw_practice.domain.models.treeConservation.DiseaseCreation;
 import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -30,18 +31,18 @@ public class TreeConservationSeederService {
     public void seedDatabase() {
         LogManager.getLogger(this.getClass()).warn("------- Worker Initial Load -----------");
         DiseaseEntity[] diseases = {
-                new DiseaseEntity("disease1", "This is the disease1"),
-                new DiseaseEntity("disease2", "This is the disease2"),
-                new DiseaseEntity("disease3", "This is the disease3"),
-                new DiseaseEntity("disease4", "This is the disease4"),
-                new DiseaseEntity("disease5", "This is the disease5")
+                new DiseaseEntity(new DiseaseCreation("disease1", "This is the disease1")),
+                new DiseaseEntity(new DiseaseCreation("disease2", "This is the disease2")),
+                new DiseaseEntity(new DiseaseCreation("disease3", "This is the disease3")),
+                new DiseaseEntity(new DiseaseCreation("disease4", "This is the disease4")),
+                new DiseaseEntity(new DiseaseCreation("disease5", "This is the disease5"))
         };
         this.diseaseRepository.saveAll(Arrays.asList(diseases));
 
         InspectorEntity[] inspectors = {
-                new InspectorEntity("dni1", "firstName1", "lastName1", "email1", "phone1"),
-                new InspectorEntity("dni2", "firstName2", "lastName2", "email2", "phone2"),
-                new InspectorEntity("dni3", "firstName3", "lastName3", "email3", "phone3")
+                new InspectorEntity("dni1", "firstName1", "lastName1", 27, "email1", "phone1"),
+                new InspectorEntity("dni2", "firstName2", "lastName2", 28, "email2", "phone2"),
+                new InspectorEntity("dni3", "firstName3", "lastName3", 29, "email3", "phone3")
         };
         this.inspectorRepository.saveAll(Arrays.asList(inspectors));
 

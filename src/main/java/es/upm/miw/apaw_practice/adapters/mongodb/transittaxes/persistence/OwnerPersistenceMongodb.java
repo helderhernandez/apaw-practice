@@ -28,8 +28,8 @@ public class OwnerPersistenceMongodb implements OwnerPersistence {
         this.assertDniNoExist(owner.getDni());
         return this.ownerRepository.save(new OwnerEntity(owner)).toOwner();
     }
-
-    private void assertDniNoExist(String dni) {
+    @Override
+    public void assertDniNoExist(String dni) {
         this.ownerRepository.findByDni(dni)
                 .ifPresent(ownerEntity -> {
                     throw new ConflictException("Dni exist: " + dni);

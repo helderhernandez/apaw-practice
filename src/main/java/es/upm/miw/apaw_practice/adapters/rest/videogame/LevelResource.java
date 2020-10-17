@@ -23,5 +23,8 @@ public class LevelResource {
     }
 
     @GetMapping
-    public Stream<Level> readAll() { return this.levelService.readAll();}
+    public Stream<Level> readAll() {
+        return this.levelService.readAll();
+    }
+
 }

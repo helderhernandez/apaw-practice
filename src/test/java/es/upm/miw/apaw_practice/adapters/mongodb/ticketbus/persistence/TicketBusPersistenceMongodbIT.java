@@ -2,6 +2,7 @@ package es.upm.miw.apaw_practice.adapters.mongodb.ticketbus.persistence;
 
 import es.upm.miw.apaw_practice.TestConfig;
 import es.upm.miw.apaw_practice.adapters.mongodb.ticketbus.TicketBusSeederService;
+import es.upm.miw.apaw_practice.adapters.mongodb.ticketbus.entities.PassengerBusEntity;
 import es.upm.miw.apaw_practice.adapters.mongodb.ticketbus.entities.TicketBusEntity;
 import es.upm.miw.apaw_practice.domain.models.ticketbus.PassengerBus;
 import es.upm.miw.apaw_practice.domain.models.ticketbus.PassengerBusCreation;
@@ -12,6 +13,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.math.BigDecimal;
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -59,7 +62,6 @@ class TicketBusPersistenceMongodbIT {
 
         ticketBus = ticketBusPersistenceMongodb.update(ticketBus.getReference(), passengerBusCreation);
         testTicketBusPassenger(ticketBus, passengerBusCreation);
-
     }
 
     @Test
@@ -76,5 +78,26 @@ class TicketBusPersistenceMongodbIT {
         );
 
         ticketBusPersistenceMongodb.save(ticketBusCreation);
+    }
+
+    @Test
+    void testBuilder() {
+        LocalDateTime timeTest = LocalDateTime.now();
+        BigDecimal price = new BigDecimal("40.00");
+
+        TicketBusEntity ticketBusEntity = TicketBusEntity.builder()
+                .seat(33)
+                .departureTime(timeTest)
+                .arriveTime(timeTest)
+                .price(price)
+                .build();
+        assertNotNull(ticketBusEntity);
+        assertNotNull(ticketBusEntity.getId());
+        assertNotNull(ticketBusEntity.getReference());
+        assertEquals(33, ticketBusEntity.getSeat());
+        assertEquals(timeTest, ticketBusEntity.getDepartureTime());
+        assertEquals(timeTest, ticketBusEntity.getArriveTime());
+        assertEquals(price, ticketBusEntity.getPrice());
+        assertNull(ticketBusEntity.getPassenger());
     }
 }

@@ -1,12 +1,17 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.socialnetwork.entities;
 
+import es.upm.miw.apaw_practice.domain.models.socialnetwork.SocialUser;
+import es.upm.miw.apaw_practice.domain.models.socialnetwork.SocialUserCreation;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Document
 public class SocialUserEntity {
@@ -24,6 +29,11 @@ public class SocialUserEntity {
 
     public SocialUserEntity() {
         //empty from framework
+    }
+
+    public SocialUserEntity(SocialUserCreation socialUserCreation) {
+        BeanUtils.copyProperties(socialUserCreation, this);
+        this.id = UUID.randomUUID().toString();
     }
 
     public SocialUserEntity(String nickName, String biography, Boolean verified, List<SocialPostEntity> socialPostEntities, List<SocialListEntity> socialListEntities) {
@@ -81,6 +91,25 @@ public class SocialUserEntity {
 
     public void setSocialListEntities(List<SocialListEntity> socialListEntities) {
         this.socialListEntities = socialListEntities;
+    }
+
+    public SocialUser toSocialUser() {
+        List<String> socialListIds, socialPostIds;
+        if (socialListEntities == null) {
+            socialListIds = new ArrayList<>();
+        } else {
+            socialListIds = this.socialListEntities.stream()
+                    .map(SocialListEntity::getId)
+                    .collect(Collectors.toList());
+        }
+        if (socialPostEntities == null) {
+            socialPostIds = new ArrayList<>();
+        } else {
+            socialPostIds = this.socialPostEntities.stream()
+                    .map(SocialPostEntity::getId)
+                    .collect(Collectors.toList());
+        }
+        return new SocialUser(id, nickName, biography, verified, socialListIds, socialPostIds);
     }
 
     @Override

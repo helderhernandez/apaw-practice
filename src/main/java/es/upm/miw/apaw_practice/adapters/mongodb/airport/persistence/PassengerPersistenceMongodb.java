@@ -1,12 +1,14 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.airport.persistence;
 
 import es.upm.miw.apaw_practice.adapters.mongodb.airport.daos.PassengerRepository;
+import es.upm.miw.apaw_practice.adapters.mongodb.airport.entities.FlightEntity;
 import es.upm.miw.apaw_practice.adapters.mongodb.airport.entities.PassengerEntity;
 import es.upm.miw.apaw_practice.domain.models.airport.Passenger;
 import es.upm.miw.apaw_practice.domain.persistence_ports.airport.PassengerPersistence;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.math.BigDecimal;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.function.Function;
@@ -37,6 +39,19 @@ public class PassengerPersistenceMongodb implements PassengerPersistence {
                     .anyMatch(flightEntity -> flightEntity.getPlaneEntity().getModel().equals(modelPlane)))
                 .filter(distinctByKey(PassengerEntity::getName))
                 .map(PassengerEntity::toPassenger);
+    }
+
+    @Override
+    public BigDecimal findPriceBySuitcaseColor(String color) {
+        return this.passengerRepository.findAll()
+                .stream()
+                .filter(passengerEntity -> passengerEntity.getSuitcaseEntities()
+                    .stream()
+                    .anyMatch(suitcaseEntity -> suitcaseEntity.getColor().equals(color)))
+                .flatMap(passengerEntity -> passengerEntity.getFlightEntities().stream())
+                .map(FlightEntity::getPrice)
+                .reduce(BigDecimal::add)
+                .orElse(BigDecimal.ZERO);
     }
 
     private static <T> Predicate<T> distinctByKey(

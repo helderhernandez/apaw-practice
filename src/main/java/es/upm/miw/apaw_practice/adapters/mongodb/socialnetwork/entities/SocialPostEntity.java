@@ -1,5 +1,7 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.socialnetwork.entities;
 
+import es.upm.miw.apaw_practice.domain.models.socialnetwork.SocialPost;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -66,6 +68,16 @@ public class SocialPostEntity {
 
     public void setLikes(Integer likes) {
         this.likes = likes;
+    }
+
+    public SocialPost toSocialPost() {
+        SocialPost socialPost = new SocialPost();
+        BeanUtils.copyProperties(this, socialPost);
+        return socialPost;
+    }
+
+    public void fromSocialPost(SocialPost socialPost) {
+        BeanUtils.copyProperties(socialPost, this);
     }
 
     @Override

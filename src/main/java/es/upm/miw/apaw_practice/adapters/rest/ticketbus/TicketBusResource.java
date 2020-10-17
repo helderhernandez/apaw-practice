@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 @RequestMapping(TicketBusResource.TICKETBUSES)
 public class TicketBusResource {
 
-    static final String TICKETBUSES = "/ticketbuses/";
+    static final String TICKETBUSES = "/ticketbus/tickets/";
     static final String ID = "/{id}";
     static final String PASSENGER = "/passenger";
 
@@ -22,12 +22,12 @@ public class TicketBusResource {
     }
 
     @PutMapping(path = ID + PASSENGER)
-    public TicketBus update(@PathVariable("id") String idTicket, @RequestBody PassengerBusCreation passenger){
+    public TicketBus update(@PathVariable("id") String idTicket, @RequestBody PassengerBusCreation passenger) {
         return ticketBusService.update(idTicket, passenger);
     }
 
     @DeleteMapping(path = ID)
-    public void delete(@PathVariable("id") String idTicket){
+    public void delete(@PathVariable("id") String idTicket) {
         this.ticketBusService.delete(idTicket);
     }
 

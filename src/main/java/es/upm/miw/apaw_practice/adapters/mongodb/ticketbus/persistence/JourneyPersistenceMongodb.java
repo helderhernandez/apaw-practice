@@ -2,6 +2,7 @@ package es.upm.miw.apaw_practice.adapters.mongodb.ticketbus.persistence;
 
 import es.upm.miw.apaw_practice.adapters.mongodb.ticketbus.daos.JourneyRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.ticketbus.entities.JourneyEntity;
+import es.upm.miw.apaw_practice.domain.exceptions.NotFoundException;
 import es.upm.miw.apaw_practice.domain.models.ticketbus.Journey;
 import es.upm.miw.apaw_practice.domain.persistence_ports.ticketbus.JourneyPersistence;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,7 @@ public class JourneyPersistenceMongodb implements JourneyPersistence {
     private JourneyRepository journeyRepository;
 
     @Autowired
-    public JourneyPersistenceMongodb(JourneyRepository journeyRepository){
+    public JourneyPersistenceMongodb(JourneyRepository journeyRepository) {
         this.journeyRepository = journeyRepository;
     }
 
@@ -23,5 +24,12 @@ public class JourneyPersistenceMongodb implements JourneyPersistence {
     public Stream<Journey> findAll() {
         return this.journeyRepository.findAll().stream()
                 .map(JourneyEntity::toJourney);
+    }
+
+    @Override
+    public String findIdByDepartureAndArrive(String departure, String arrive){
+        JourneyEntity journeyEntity = this.journeyRepository.findByDepartureAndArrive(departure, arrive)
+                .orElseThrow(() -> new NotFoundException("Journey with departure " + departure + "and arrive " + arrive + " not found"));
+        return journeyEntity.getId();
     }
 }

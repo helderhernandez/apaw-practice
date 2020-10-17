@@ -28,4 +28,26 @@ public class RunnerPersistenceMongodb implements RunnerPersistence {
         }
         return runnerEntityOptional.get().toRunner();
     }
+
+    @Override
+    public Runner readByDni(String dni) {
+        Optional<RunnerEntity> runnerEntityOptional = runnerRepository.findByDni(dni);
+        if (runnerEntityOptional.isEmpty()) {
+            throw new NotFoundException("Runner DNI: " + dni);
+        }
+        return runnerEntityOptional.get().toRunner();
+    }
+
+    @Override
+    public Runner update(Runner runner) {
+        Optional<RunnerEntity> runnerEntityOptional = runnerRepository.findById(runner.getId());
+        if (runnerEntityOptional.isEmpty()) {
+            throw new NotFoundException("Runner ID: " + runner.getId());
+        }
+        RunnerEntity runnerEntity = runnerEntityOptional.get();
+        runnerEntity.fromRunner(runner);
+        return runnerRepository
+                .save(runnerEntity)
+                .toRunner();
+    }
 }

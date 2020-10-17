@@ -1,12 +1,16 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.treeConservation.entities;
 
+import es.upm.miw.apaw_practice.domain.models.treeConservation.Inspection;
+import es.upm.miw.apaw_practice.domain.models.treeConservation.Tree;
 import nonapi.io.github.classgraph.json.Id;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Document
 public class TreeEntity {
@@ -15,7 +19,7 @@ public class TreeEntity {
     private LocalDateTime registrationDate;
     private String specie;
     private String age;
-    private boolean isMonitored;
+    private Boolean monitored;
     @DBRef
     private List<InspectionEntity> inspectionEntities;
     @DBRef
@@ -32,6 +36,7 @@ public class TreeEntity {
         this.age = age;
         this.inspectionEntities = inspectionEntities;
         this.diseaseEntities = diseaseEntities;
+        this.monitored = Boolean.FALSE;
     }
 
     public String getId() {
@@ -58,12 +63,12 @@ public class TreeEntity {
         this.age = age;
     }
 
-    public boolean isMonitored() {
-        return isMonitored;
+    public Boolean getMonitored() {
+        return monitored;
     }
 
-    public void setMonitored(boolean monitored) {
-        isMonitored = monitored;
+    public void setMonitored(Boolean monitored) {
+        this.monitored = monitored;
     }
 
     public List<InspectionEntity> getInspectionEntities() {
@@ -99,9 +104,21 @@ public class TreeEntity {
                 ", registrationDate=" + registrationDate +
                 ", specie='" + specie + '\'' +
                 ", age='" + age + '\'' +
-                ", isMonitored=" + isMonitored +
+                ", monitored=" + monitored +
                 ", inspectionEntities=" + inspectionEntities +
                 ", diseaseEntities=" + diseaseEntities +
                 '}';
+    }
+
+    public Tree toTree() {
+        Tree tree = new Tree();
+        BeanUtils.copyProperties(this, tree, "inspectionEntities", "diseaseEntities");
+        List<Inspection> inspections = this.inspectionEntities.stream().
+                map(InspectionEntity::toInspection).collect(Collectors.toList());
+        tree.setInspections(inspections);
+        List<String> diseasesName = this.diseaseEntities.stream().
+                map(DiseaseEntity::getName).collect(Collectors.toList());
+        tree.setDiseasesName(diseasesName);
+        return tree;
     }
 }

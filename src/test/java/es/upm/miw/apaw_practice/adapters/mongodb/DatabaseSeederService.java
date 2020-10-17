@@ -3,10 +3,11 @@ package es.upm.miw.apaw_practice.adapters.mongodb;
 import es.upm.miw.apaw_practice.adapters.mongodb.FurnitureFactory.FurnitureFactorySeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.adCampaign.AdCampaignSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.Property.PropertySeederService;
+import es.upm.miw.apaw_practice.adapters.mongodb.article.ArticleSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.airport.AirportSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.bank.BankSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.basketball.BasketballSeederService;
-import es.upm.miw.apaw_practice.adapters.mongodb.cardealership.CarDealershipSeederService;
+import es.upm.miw.apaw_practice.adapters.mongodb.car_dealership.CarDealershipSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.exercise.persistence.ExerciseSeedService;
 import es.upm.miw.apaw_practice.adapters.mongodb.factory.FactorySeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.filmforum.FilmForumSeederService;
@@ -42,6 +43,7 @@ public class DatabaseSeederService {
     private SchoolSeederService schoolSeederService;
     private FactorySeederService factorySeederService;
     private KitchenSeederService kitchenSeederService;
+    private ArticleSeederService articleSeederService;
     private BankSeederService bankSeederService;
     private MovieSeederService movieSeederService;
     private PadelSeederService padelSeederService;
@@ -75,7 +77,7 @@ public class DatabaseSeederService {
     public DatabaseSeederService(ShopSeederService shopSeederService, SchoolSeederService schoolSeederService,
                                  FactorySeederService factorySeederService, BankSeederService bankSeederService,
                                  MovieSeederService movieSeederService, PadelSeederService padelSeederService,
-                                 SportCentreSeederService sportCentreSeederService, KitchenSeederService kitchenSeederService,
+                                 SportCentreSeederService sportCentreSeederService, KitchenSeederService kitchenSeederService, ArticleSeederService articleSeederService,
                                  ProjectSeederService projectSeederService, HospitalSeederService hospitalSeederService,
                                  VeterinarySeederService veterinarySeederService, GarageSeederService garageSeederService,
                                  AirportSeederService airportSeederService, TicketBusSeederService ticketBusSeederService,
@@ -94,6 +96,7 @@ public class DatabaseSeederService {
         this.schoolSeederService = schoolSeederService;
         this.factorySeederService = factorySeederService;
         this.kitchenSeederService = kitchenSeederService;
+        this.articleSeederService = articleSeederService;
         this.bankSeederService = bankSeederService;
         this.movieSeederService = movieSeederService;
         this.padelSeederService = padelSeederService;
@@ -130,6 +133,7 @@ public class DatabaseSeederService {
         this.schoolSeederService.seedDatabase();
         this.factorySeederService.seedDatabase();
         this.kitchenSeederService.seedDatabase();
+        this.articleSeederService.seedDatabase();
         this.bankSeederService.seedDatabase();
         this.movieSeederService.seedDatabase();
         this.padelSeederService.seedDatabase();
@@ -165,6 +169,7 @@ public class DatabaseSeederService {
         this.schoolSeederService.deleteAll();
         this.factorySeederService.deleteAll();
         this.kitchenSeederService.deleteAll();
+        this.articleSeederService.deleteAll();
         this.bankSeederService.deleteAll();
         this.movieSeederService.deleteAll();
         this.padelSeederService.deleteAll();

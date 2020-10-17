@@ -5,6 +5,10 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface TaxPersistence {
+
     Tax create(Tax tax);
-    Tax findByRefTax (String refTax);
+
+    Tax findByRefTax(String refTax);
+
+    Tax findPriceTotalTaxesByIdCar(String idCar);
 }

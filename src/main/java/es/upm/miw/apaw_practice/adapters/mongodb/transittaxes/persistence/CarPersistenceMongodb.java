@@ -19,6 +19,7 @@ public class CarPersistenceMongodb implements CarPersistence {
     public CarPersistenceMongodb(CarRepository carRepository) {
         this.carRepository = carRepository;
     }
+
     @Override
     public Car updateBrand(String id, String brand) {
         CarEntity carEntity = carRepository.findById(id)
@@ -26,6 +27,7 @@ public class CarPersistenceMongodb implements CarPersistence {
         carEntity.setBrand(brand);
         return carRepository.save(carEntity).toCar();
     }
+
     @Override
     public Stream<Car> readAll() {
         return this.carRepository.findAll().stream()

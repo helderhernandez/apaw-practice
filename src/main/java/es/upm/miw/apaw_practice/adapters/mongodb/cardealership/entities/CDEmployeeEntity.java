@@ -1,11 +1,12 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.cardealership.entities;
 
+import es.upm.miw.apaw_practice.domain.models.car_dealership.CDEmployee;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 @Document
 public class CDEmployeeEntity {
@@ -20,8 +21,8 @@ public class CDEmployeeEntity {
         // Empty for framework
     }
 
-    public CDEmployeeEntity(String name, String category, LocalDateTime seniority, BigDecimal salary) {
-        this.id = UUID.randomUUID().toString();
+    public CDEmployeeEntity(String id, String name, String category, LocalDateTime seniority, BigDecimal salary) {
+        this.id = id;
         this.name = name;
         this.category = category;
         this.seniority = seniority;
@@ -66,6 +67,16 @@ public class CDEmployeeEntity {
 
     public void setSalary(BigDecimal salary) {
         this.salary = salary;
+    }
+
+    public CDEmployee toEmployee() {
+        CDEmployee employee = new CDEmployee();
+        BeanUtils.copyProperties(this, employee);
+        return employee;
+    }
+
+    public void fromEmployee(CDEmployee employee) {
+        BeanUtils.copyProperties(employee, this);
     }
 
     @Override

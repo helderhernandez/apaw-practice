@@ -83,7 +83,7 @@ public class PassengerEntity {
                 .map(SuitcaseEntity::toSuitCase)
                 .collect(Collectors.toList());
 
-        return new Passenger(id, name, surname, suitcaseList, flightList);
+        return new Passenger(name, surname, suitcaseList, flightList);
     }
     @Override
     public boolean equals(Object o) {

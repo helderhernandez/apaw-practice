@@ -1,6 +1,7 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.filmforum.daos;
 
 import es.upm.miw.apaw_practice.adapters.mongodb.filmforum.entities.FilmCommentEntity;
+import es.upm.miw.apaw_practice.adapters.mongodb.filmforum.entities.FilmUserEntity;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 import java.time.LocalDateTime;
@@ -10,4 +11,6 @@ public interface FilmCommentRepository extends MongoRepository<FilmCommentEntity
     List<FilmCommentEntity> findByPunctuation(Integer punctuation);
 
     List<FilmCommentEntity> findByCreatedAt(LocalDateTime createdAt);
+
+    List<FilmCommentEntity> findByCommentUser(FilmUserEntity userEntity);
 }
