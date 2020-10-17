@@ -31,4 +31,14 @@ public class CoachPersistenceMongodb implements CoachPersistence {
                 .orElseThrow(() -> new NotFoundException("Coach dni not found: " + dni))
                 .toCoach();
     }
+
+    @Override
+    public Coach update(Coach coach) {
+        CoachEntity coachEntity = this.coachRepository
+                .findByDni(coach.getDni())
+                .orElseThrow(() -> new NotFoundException("Coach dni: " + coach.getDni()));
+        return this.coachRepository
+                .save(coachEntity)
+                .toCoach();
+    }
 }

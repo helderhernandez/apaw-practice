@@ -26,4 +26,8 @@ public class BookResource {
         this.bookService.updateBookPrice(bookPriceUpdatingList);
     }
 
+    @DeleteMapping(ISBN_ISBN)
+    public void delete(@PathVariable String ISBN){
+        this.bookService.delete(ISBN);
+    }
 }

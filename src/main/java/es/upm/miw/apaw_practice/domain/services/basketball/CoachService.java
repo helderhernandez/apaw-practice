@@ -20,4 +20,10 @@ public class CoachService {
     public Coach create(CoachCreation coachCreation) {
         return this.coachPersistence.create(coachCreation);
     }
+
+    public void updateName(CoachCreation coachUpdate) {
+        Coach coach = this.coachPersistence.readByDni(coachUpdate.getDni());
+        coach.setName(coachUpdate.getName());
+        this.coachPersistence.update(coach);
+    }
 }

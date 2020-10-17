@@ -11,6 +11,8 @@ public class RaceResource {
 
     static final String RACES = "/race/races";
     static final String ID_ID = "/{id}";
+    static final String SECTIONS = "/sections";
+    static final String ORDER = "/{order}";
 
     private RaceService raceService;
 
@@ -22,6 +24,11 @@ public class RaceResource {
     @PutMapping(ID_ID)
     public Race updateLocation(@PathVariable String id, @RequestBody LocationDto locationDto) {
         return this.raceService.updateLocation(id, locationDto);
+    }
+
+    @DeleteMapping(ID_ID + SECTIONS + ORDER)
+    public void deleteSectionByOrder(@PathVariable("id") String raceId, @PathVariable("order") String sectionOrder) {
+        this.raceService.deleteSectionByOrder(raceId, sectionOrder);
     }
 
 }

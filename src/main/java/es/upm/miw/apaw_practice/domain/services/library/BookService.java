@@ -27,4 +27,7 @@ public class BookService {
                 })
                 .forEach(book -> this.bookPersistence.updateBookPrice(book));
     }
+    public void delete(String ISBN){
+        this.bookPersistence.deleteByISBN(ISBN);
+    }
 }
