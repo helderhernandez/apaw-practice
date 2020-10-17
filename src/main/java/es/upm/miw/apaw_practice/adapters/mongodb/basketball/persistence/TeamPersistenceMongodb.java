@@ -34,11 +34,6 @@ public class TeamPersistenceMongodb implements TeamPersistence {
                 .flatMap(Collection::stream)
                 .map(CourtEntity::getName)
                 .distinct();
-                //.filter(team -> team.getCourtsToPlay().stream().anyMatch(court -> court.getName().equals(name)))
-                //.distinct()
-                //.map(TeamEntity::getCourtsToPlay)
-                //.flatMap(Collection::stream)
-                //.map(CourtEntity::getName);
     }
 
 
