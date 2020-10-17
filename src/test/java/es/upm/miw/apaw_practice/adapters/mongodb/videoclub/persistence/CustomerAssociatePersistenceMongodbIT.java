@@ -7,6 +7,9 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.List;
+import java.util.stream.Collectors;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 @TestConfig
@@ -53,5 +56,16 @@ public class CustomerAssociatePersistenceMongodbIT {
         assertFalse(this.customerAssociatePersistenceMongodb.readAll()
                 .anyMatch(customerAssociate1
                         -> customerAssociate1.getDocumentId().equals(customerAssociate.getDocumentId())));
+    }
+
+    @Test
+    void testFindDistinctNameByRentalFilms() {
+        List<String> rentalFilmList = List.of("5555", "6666");
+        List<String> customerAssociateNames = this.customerAssociatePersistenceMongodb
+                .findDistinctNameByRentalFilms(rentalFilmList)
+                .collect(Collectors.toList());
+
+        assertEquals("Diego Hernández García", customerAssociateNames.get(0));
+        assertEquals("Laura Jiménez González", customerAssociateNames.get(1));
     }
 }

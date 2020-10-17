@@ -4,10 +4,12 @@ import es.upm.miw.apaw_practice.adapters.mongodb.videoclub.daos.CustomerAssociat
 import es.upm.miw.apaw_practice.adapters.mongodb.videoclub.entities.CustomerAssociateEntity;
 import es.upm.miw.apaw_practice.domain.exceptions.NotFoundException;
 import es.upm.miw.apaw_practice.domain.models.videoclub.CustomerAssociate;
+import es.upm.miw.apaw_practice.domain.models.videoclub.RentalFilm;
 import es.upm.miw.apaw_practice.domain.persistence_ports.videoclub.CustomerAssociatePersistence;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.stream.Stream;
 
 @Repository("customerAssociatePersistence")
@@ -53,5 +55,16 @@ public class CustomerAssociatePersistenceMongodb implements CustomerAssociatePer
         return this.customerAssociateRepository
                 .findAll().stream()
                 .map(CustomerAssociateEntity::toCustomerAssociate);
+    }
+
+    @Override
+    public Stream<String> findDistinctNameByRentalFilms(List<String> rentalFilmList) {
+        return this.customerAssociateRepository.findAll().stream()
+                .map(CustomerAssociateEntity::toCustomerAssociate)
+                .filter(customerAssociate -> customerAssociate.getFilms().stream()
+                        .map(RentalFilm::getReference)
+                        .anyMatch(rentalFilmList::contains))
+                .distinct()
+                .map(CustomerAssociate::getName);
     }
 }
