@@ -11,4 +11,5 @@ public interface TeamPersistence {
 
     Stream<String> findNameCourtsByTeamName(String name);
 
+    Stream<String> findDniCoachByDniMemberTeam(String dni);
 }
