@@ -13,11 +13,13 @@ public class Recipe {
         //Empty from framework
     }
 
+    /*
     public Recipe(String id, String name, List<String> ingredients){
         this.id = id;
         this.name = name;
         this.ingredientIds = ingredients;
     }
+    */
 
     public String getId() {
         return id;
@@ -69,7 +71,10 @@ public class Recipe {
         private Recipe recipe;
 
         private Builder(String id, String name, List<String> ingredientIds) {
-            this.recipe = new Recipe(id, name, ingredientIds);
+            this.recipe = new Recipe();
+            this.recipe.id = id;
+            this.recipe.name = name;
+            this.recipe.ingredientIds = ingredientIds;
         }
 
         public Builder lastUseDate(LocalDateTime lastUseTime) {
