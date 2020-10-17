@@ -56,6 +56,7 @@ public class CustomerAssociateResourceIT {
                 .value(Assertions::assertNotNull)
                 .value(customerAssociateUpd -> assertEquals("Diego Hernández Cambiado", customerAssociateUpd.getName()));
     }
+
     @Test
     void testDelete() {
         String documentIdToDelete = "DNI2";
@@ -67,4 +68,19 @@ public class CustomerAssociateResourceIT {
                 .expectStatus().isOk();
     }
 
+    @Test
+    void testFindDistinctNameByFilmMaker() {
+        this.webTestClient
+                .get()
+                .uri(uriBuilder ->
+                        uriBuilder.path(CustomerAssociateResource.CUSTOMERASSOCIATES + CustomerAssociateResource.SEARCH)
+                                .queryParam("q", "name:Kathryn Bigelow")
+                                .build())
+                .exchange()
+                .expectStatus().isOk()
+                .expectBodyList(NameDto.class)
+                .value(Assertions::assertNotNull)
+                .value(name -> assertEquals("Diego Hernández García", name.get(0).getName()))
+                .value(name -> assertEquals("Laura Jiménez González", name.get(1).getName()));
+    }
 }
