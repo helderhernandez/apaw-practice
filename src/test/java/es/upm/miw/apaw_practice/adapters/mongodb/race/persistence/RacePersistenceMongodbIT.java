@@ -6,8 +6,9 @@ import es.upm.miw.apaw_practice.domain.models.race.Race;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertThrows;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 @TestConfig
 public class RacePersistenceMongodbIT {
@@ -49,5 +50,19 @@ public class RacePersistenceMongodbIT {
     @Test
     void testDeleteSectionNotFound() {
         assertThrows(NotFoundException.class, () -> racePersistenceMongodb.deleteSectionByOrder("-1", "2"));
+    }
+
+    @Test
+    void testFindByName() {
+        List<Race> races = racePersistenceMongodb.findByName("Madrid Running Race");
+        assertFalse(races.isEmpty());
+        Race race = races.get(0);
+        assertEquals("Madrid Running Race", race.getName());
+    }
+
+    @Test
+    void testFindByNameNotFound() {
+        List<Race> races = racePersistenceMongodb.findByName("Tenerife Running Race");
+        assertTrue(races.isEmpty());
     }
 }

@@ -50,4 +50,12 @@ public class RacePersistenceMongodb implements RacePersistence {
         raceRepository.save(raceEntity);
     }
 
+    @Override
+    public List<Race> findByName(String raceName) {
+        List<RaceEntity> raceEntities = raceRepository.findByName(raceName);
+        return raceEntities.stream()
+                .map(RaceEntity::toRace)
+                .collect(Collectors.toList());
+    }
+
 }
