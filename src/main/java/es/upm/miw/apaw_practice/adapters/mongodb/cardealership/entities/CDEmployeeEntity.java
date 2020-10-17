@@ -1,15 +1,12 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.cardealership.entities;
 
 import es.upm.miw.apaw_practice.domain.models.car_dealership.CDEmployee;
-import es.upm.miw.apaw_practice.domain.models.factory.Employee;
-import es.upm.miw.apaw_practice.domain.models.shop.Article;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.UUID;
 
 @Document
 public class CDEmployeeEntity {
