@@ -68,9 +68,10 @@ public class RecipeEntity {
     }
 
     public Recipe toRecipe() {
-        return new Recipe(id, name, ingredients.stream()
+        return Recipe.builder(id, name, ingredients.stream()
                 .map(ingredient -> ingredient.getId())
-                .collect(Collectors.toList()));
+                .collect(Collectors.toList()))
+                .build();
     }
 
     @Override
