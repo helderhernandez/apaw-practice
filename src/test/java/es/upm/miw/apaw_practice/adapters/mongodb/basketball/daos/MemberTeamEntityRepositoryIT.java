@@ -25,7 +25,7 @@ public class MemberTeamEntityRepositoryIT {
     }
 
     @Test
-    void testFindMemberByDniBuilder() {
+    void testMemberTeamBuilder() {
         MemberTeamEntity memberTeamEntity = MemberTeamEntity.builder()
                 .name("Mark")
                 .surname("Gasol")

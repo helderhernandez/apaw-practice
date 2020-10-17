@@ -1,10 +1,13 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.basketball.daos;
 
 import es.upm.miw.apaw_practice.TestConfig;
+import es.upm.miw.apaw_practice.adapters.mongodb.basketball.entities.CoachEntity;
+import es.upm.miw.apaw_practice.adapters.mongodb.basketball.entities.TeamEntity;
+import es.upm.miw.apaw_practice.domain.models.basketball.CoachCreation;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 @TestConfig
 public class TeamEntityRepositoryIT {
@@ -23,4 +26,19 @@ public class TeamEntityRepositoryIT {
                         15500 == team.getCourtsToPlay().get(0).getCapacity()
         ));
     }
+
+    @Test
+    void testTeamBuilder() {
+        TeamEntity teamEntity = TeamEntity.builder()
+                .name("Junior Valencia")
+                .coachTeam(new CoachEntity(new CoachCreation("Juan", "45678912H")))
+                .build();
+
+        assertEquals("Junior Valencia", teamEntity.getName());
+        assertNotNull(teamEntity.getCoachTeam());
+        assertNull(teamEntity.getCourtsToPlay());
+        assertNull(teamEntity.getPlayers());
+        assertNotNull(teamEntity.getId());
+    }
+
 }
