@@ -4,6 +4,13 @@ public class NameDto {
 
     private String name;
 
+    public NameDto() {
+    }
+
+    public NameDto(String name) {
+        this.name = name;
+    }
+
     public String getName() {
         return name;
     }
