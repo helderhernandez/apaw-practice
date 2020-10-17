@@ -49,40 +49,20 @@ public class CarEntity {
         return enrollment;
     }
 
-    public void setEnrollment(String enrollment) {
-        this.enrollment = enrollment;
-    }
-
     public String getId() {
         return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public List<AccidentEntity> getAccidents() {
         return accidents;
     }
 
-    public void setAccidents(List<AccidentEntity> accidents) {
-        this.accidents = accidents;
-    }
-
     public OwnerEntity getOwner() {
         return owner;
     }
 
-    public void setOwner(OwnerEntity owner) {
-        this.owner = owner;
-    }
-
     public List<TaxEntity> getTaxes() {
         return taxes;
-    }
-
-    public void setTaxes(List<TaxEntity> taxes) {
-        this.taxes = taxes;
     }
 
     public Car toCar() {
