@@ -1,5 +1,6 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.ticketbus.entities;
 
+import es.upm.miw.apaw_practice.adapters.mongodb.ticketbus.entities.builders.PassengerBusBuilders;
 import es.upm.miw.apaw_practice.domain.models.ticketbus.PassengerBus;
 import es.upm.miw.apaw_practice.domain.models.ticketbus.PassengerBusCreation;
 import org.springframework.beans.BeanUtils;
@@ -117,6 +118,10 @@ public class PassengerBusEntity {
         this.docIdentify = docIdentify;
     }
 
+    public static PassengerBusBuilders.DocIdentify builder(){
+        return new Builder();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -149,4 +154,57 @@ public class PassengerBusEntity {
                 ", accesibility=" + accesibility +
                 '}';
     }
+
+    public static class Builder implements PassengerBusBuilders.DocIdentify, PassengerBusBuilders.Name, PassengerBusBuilders.FamilyName, PassengerBusBuilders.Phone, PassengerBusBuilders.Email, PassengerBusBuilders.Accesibility, PassengerBusBuilders.Optionals {
+
+        private PassengerBusEntity passengerBusEntity;
+
+        public Builder() {
+            this.passengerBusEntity = new PassengerBusEntity();
+            this.passengerBusEntity.id = UUID.randomUUID().toString();
+            this.passengerBusEntity.reference = GenRefEntity.getReferenceId(ENTITY_REF_NAME);
+        }
+
+        @Override
+        public PassengerBusBuilders.Name docIdentify(String docIdentify) {
+            this.passengerBusEntity.docIdentify = docIdentify;
+            return this;
+        }
+
+        @Override
+        public PassengerBusBuilders.FamilyName name(String name) {
+            this.passengerBusEntity.name = name;
+            return this;
+        }
+
+        @Override
+        public PassengerBusBuilders.Phone familyName(String familyName) {
+            this.passengerBusEntity.familyName = familyName;
+            return this;
+        }
+
+        @Override
+        public PassengerBusBuilders.Email phone(String phone) {
+            this.passengerBusEntity.phone = phone;
+            return this;
+        }
+
+        @Override
+        public PassengerBusBuilders.Accesibility email(String email) {
+            this.passengerBusEntity.email = email;
+            return this;
+        }
+
+        @Override
+        public PassengerBusBuilders.Optionals accesibility(Boolean accesibility) {
+            this.passengerBusEntity.accesibility = accesibility;
+            return this;
+        }
+
+        @Override
+        public PassengerBusEntity build() {
+            return this.passengerBusEntity;
+        }
+    }
+
 }
