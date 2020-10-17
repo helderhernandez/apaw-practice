@@ -1,5 +1,6 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.basketball.entities;
 
+import es.upm.miw.apaw_practice.adapters.mongodb.basketball.entities.builders.MemberTeamBuilder;
 import es.upm.miw.apaw_practice.domain.models.basketball.MemberTeam;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
@@ -20,6 +21,10 @@ public class MemberTeamEntity {
 
     public MemberTeamEntity() {
         //Empty constructor for the framework
+    }
+
+    public static MemberTeamBuilder.Name builder() {
+        return new Builder();
     }
 
     public MemberTeamEntity(String name, String surname, String dni, Boolean available) {
@@ -95,5 +100,45 @@ public class MemberTeamEntity {
         MemberTeam memberTeam = new MemberTeam();
         BeanUtils.copyProperties(this, memberTeam);
         return memberTeam;
+    }
+
+    public static class Builder implements MemberTeamBuilder.Name, MemberTeamBuilder.Surname, MemberTeamBuilder.Dni,
+            MemberTeamBuilder.Available, MemberTeamBuilder.BuildMember {
+
+        private MemberTeamEntity memberTeamEntity;
+
+        public Builder() {
+            this.memberTeamEntity = new MemberTeamEntity();
+            this.memberTeamEntity.id = UUID.randomUUID().toString();
+        }
+
+        @Override
+        public MemberTeamBuilder.Surname name(String name) {
+            this.memberTeamEntity.name = name;
+            return this;
+        }
+
+        @Override
+        public MemberTeamBuilder.Dni surname(String surname) {
+            this.memberTeamEntity.surname = surname;
+            return this;
+        }
+
+        @Override
+        public MemberTeamBuilder.Available dni(String dni) {
+            this.memberTeamEntity.dni = dni;
+            return this;
+        }
+
+        @Override
+        public MemberTeamBuilder.BuildMember available(Boolean available) {
+            this.memberTeamEntity.available = available;
+            return this;
+        }
+
+        @Override
+        public MemberTeamEntity build() {
+            return this.memberTeamEntity;
+        }
     }
 }

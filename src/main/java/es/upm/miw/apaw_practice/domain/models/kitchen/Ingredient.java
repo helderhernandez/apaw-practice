@@ -14,13 +14,20 @@ public class Ingredient {
         // Empty from framework
     }
 
-    public Ingredient(String id, String name, BigDecimal pricePerKg, Double weightKg){
+    /*
+    public Ingredient(String id, String name, BigDecimal pricePerKg, Double weightKg) {
         this.id = id;
         this.washed = false;
         this.elaborated = false;
         this.name = name;
         this.pricePerKg = pricePerKg;
         this.weightKg = weightKg;
+    }
+    */
+
+
+    public static IngredientBuilders.Id builder() {
+        return new Builder();
     }
 
     public String getId() {
@@ -69,6 +76,57 @@ public class Ingredient {
 
     public void setElaborated(Boolean elaborated) {
         this.elaborated = elaborated;
+    }
+
+    public static class Builder implements IngredientBuilders.Id, IngredientBuilders.Name, IngredientBuilders.PricePerKg, IngredientBuilders.WeightKg, IngredientBuilders.Optionals {
+
+        private Ingredient ingredient;
+
+        public Builder() {
+            this.ingredient = new Ingredient();
+        }
+
+
+        @Override
+        public IngredientBuilders.Name id(String id) {
+            this.ingredient.id = id;
+            return this;
+        }
+
+        @Override
+        public IngredientBuilders.PricePerKg name(String name) {
+            this.ingredient.name = name;
+            return this;
+        }
+
+        @Override
+        public IngredientBuilders.WeightKg pricePerKg(BigDecimal pricePerKg) {
+            this.ingredient.pricePerKg = pricePerKg;
+            return this;
+        }
+
+        @Override
+        public IngredientBuilders.Optionals weightKg(Double weightKg) {
+            this.ingredient.weightKg = weightKg;
+            return this;
+        }
+
+        @Override
+        public IngredientBuilders.Optionals washed(Boolean washed) {
+            this.ingredient.washed = washed;
+            return this;
+        }
+
+        @Override
+        public IngredientBuilders.Optionals elaborated(Boolean elaborated) {
+            this.ingredient.elaborated = elaborated;
+            return this;
+        }
+
+        @Override
+        public Ingredient build() {
+            return this.ingredient;
+        }
     }
 
     @Override

@@ -24,4 +24,5 @@ public class MemberTeamPersistenceMongodb implements MemberTeamPersistence {
         return this.memberTeamRepository.findAll().stream()
                 .map(MemberTeamEntity::toMemberTeam);
     }
+
 }

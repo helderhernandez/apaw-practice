@@ -7,7 +7,6 @@ import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
-import java.util.Objects;
 
 @Document
 public class AccidentEntity {
@@ -34,24 +33,12 @@ public class AccidentEntity {
         return id;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
     public String getRefAccident() {
         return refAccident;
     }
 
-    public void setRefAccident(String refAccident) {
-        this.refAccident = refAccident;
-    }
-
     public LocalDateTime getDate() {
         return date;
-    }
-
-    public void setDate(LocalDateTime date) {
-        this.date = date;
     }
 
     public String getPlace() {

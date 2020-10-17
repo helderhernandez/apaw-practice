@@ -1,5 +1,6 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.basketball.entities;
 
+import es.upm.miw.apaw_practice.adapters.mongodb.basketball.entities.builders.TeamBuilder;
 import nonapi.io.github.classgraph.json.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -29,6 +30,10 @@ public class TeamEntity {
         this.players = players;
         this.courtsToPlay = courtsToPlay;
         this.coachTeam = coachTeam;
+    }
+
+    public  static TeamBuilder.Name builder() {
+        return new Builder();
     }
 
     public String getId() {
@@ -90,5 +95,44 @@ public class TeamEntity {
                 ", courtsToPlay=" + courtsToPlay +
                 ", coachTeam=" + coachTeam +
                 '}';
+    }
+
+    public static class Builder implements TeamBuilder.Name, TeamBuilder.Optionals {
+
+        private TeamEntity teamEntity;
+
+        public Builder() {
+            this.teamEntity = new TeamEntity();
+            this.teamEntity.id = UUID.randomUUID().toString();
+        }
+
+        @Override
+        public TeamBuilder.Optionals name(String name) {
+            this.teamEntity.name = name;
+            return this;
+        }
+
+        @Override
+        public TeamBuilder.Optionals players(List<MemberTeamEntity> players) {
+            this.teamEntity.players = players;
+            return this;
+        }
+
+        @Override
+        public TeamBuilder.Optionals courtsToPlay(List<CourtEntity> courtsToPlay) {
+            this.teamEntity.courtsToPlay = courtsToPlay;
+            return this;
+        }
+
+        @Override
+        public TeamBuilder.Optionals coachTeam(CoachEntity coachTeam) {
+            this.teamEntity.coachTeam = coachTeam;
+            return this;
+        }
+
+        @Override
+        public TeamEntity build() {
+            return this.teamEntity;
+        }
     }
 }
