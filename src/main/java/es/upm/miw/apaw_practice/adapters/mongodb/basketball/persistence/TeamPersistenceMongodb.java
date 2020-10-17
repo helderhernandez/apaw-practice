@@ -1,6 +1,7 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.basketball.persistence;
 
 import es.upm.miw.apaw_practice.adapters.mongodb.basketball.daos.TeamRepository;
+import es.upm.miw.apaw_practice.adapters.mongodb.basketball.entities.CoachEntity;
 import es.upm.miw.apaw_practice.adapters.mongodb.basketball.entities.CourtEntity;
 import es.upm.miw.apaw_practice.adapters.mongodb.basketball.entities.TeamEntity;
 import es.upm.miw.apaw_practice.domain.persistence_ports.basketball.TeamPersistence;
@@ -36,5 +37,14 @@ public class TeamPersistenceMongodb implements TeamPersistence {
                 .distinct();
     }
 
+    @Override
+    public Stream<String> findDniCoachByDniMemberTeam(String dni) {
+        return this.teamRepository.findAll()
+                .stream()
+                .filter(team -> team.getPlayers().stream()
+                        .anyMatch(memberTeam -> memberTeam.getDni().equals(dni)))
+                .map(TeamEntity::getCoachTeam)
+                .map(CoachEntity::getDni);
+    }
 
 }
