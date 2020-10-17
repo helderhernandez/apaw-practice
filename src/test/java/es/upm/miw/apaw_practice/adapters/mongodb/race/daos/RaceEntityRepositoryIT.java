@@ -35,4 +35,10 @@ public class RaceEntityRepositoryIT {
         assertTrue(raceRepository.findByName("Tenerife Race").isEmpty());
     }
 
+    @Test
+    void testFindAll() {
+        List<RaceEntity> raceEntities = raceRepository.findAll();
+        assertEquals(3, raceEntities.size());
+    }
+
 }

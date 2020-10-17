@@ -65,4 +65,10 @@ public class RacePersistenceMongodbIT {
         List<Race> races = racePersistenceMongodb.findByName("Tenerife Running Race");
         assertTrue(races.isEmpty());
     }
+
+    @Test
+    void testFindAllByRunnerDni() {
+        List<Race> racesByRunnerDni = racePersistenceMongodb.findAllByRunnerDni("00000001");
+        assertEquals(2, racesByRunnerDni.size());
+    }
 }

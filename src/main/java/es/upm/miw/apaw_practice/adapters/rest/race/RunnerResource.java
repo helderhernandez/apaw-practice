@@ -1,5 +1,6 @@
 package es.upm.miw.apaw_practice.adapters.rest.race;
 
+import es.upm.miw.apaw_practice.adapters.rest.LexicalAnalyzer;
 import es.upm.miw.apaw_practice.domain.models.race.Runner;
 import es.upm.miw.apaw_practice.domain.models.race.RunnerProfessionalUpdating;
 import es.upm.miw.apaw_practice.domain.services.race.RunnerService;
@@ -14,6 +15,7 @@ public class RunnerResource {
 
     static final String RUNNERS = "/race/runners";
     static final String ID_ID = "/{id}";
+    static final String SEARCH = "/search";
 
     private RunnerService runnerService;
 
@@ -30,6 +32,12 @@ public class RunnerResource {
     @PatchMapping
     public void updateProfessional(@RequestBody List<RunnerProfessionalUpdating> runnerProfessionalUpdatingList) {
         this.runnerService.updateProfessional(runnerProfessionalUpdatingList);
+    }
+
+    @GetMapping(SEARCH)
+    public Integer findTotalDistanceByRunnerDni(@RequestParam String q) {
+        String dni = new LexicalAnalyzer().extractWithAssure(q, "dni");
+        return this.runnerService.findTotalDistanceByRunnerDni(dni);
     }
 
 }
