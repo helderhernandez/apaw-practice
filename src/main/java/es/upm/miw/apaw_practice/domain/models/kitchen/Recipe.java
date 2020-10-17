@@ -13,11 +13,13 @@ public class Recipe {
         //Empty from framework
     }
 
+    /*
     public Recipe(String id, String name, List<String> ingredients){
         this.id = id;
         this.name = name;
         this.ingredientIds = ingredients;
     }
+    */
 
     public String getId() {
         return id;
@@ -51,6 +53,10 @@ public class Recipe {
         this.ingredientIds = ingredientIds;
     }
 
+    public static Builder builder(String id, String name, List<String> ingredients) {
+        return new Builder(id, name, ingredients);
+    }
+
     @Override
     public String toString() {
         return "Recipe{" +
@@ -60,4 +66,26 @@ public class Recipe {
                 ", ingredientIds=" + ingredientIds + '\'' +
                 '}';
     }
+
+    public static class Builder {
+        private Recipe recipe;
+
+        private Builder(String id, String name, List<String> ingredientIds) {
+            this.recipe = new Recipe();
+            this.recipe.id = id;
+            this.recipe.name = name;
+            this.recipe.ingredientIds = ingredientIds;
+        }
+
+        public Builder lastUseDate(LocalDateTime lastUseTime) {
+            this.recipe.setLastUseDate(lastUseTime);
+            return this;
+        }
+
+        public Recipe build() {
+            return this.recipe;
+        }
+    }
+
 }
+
