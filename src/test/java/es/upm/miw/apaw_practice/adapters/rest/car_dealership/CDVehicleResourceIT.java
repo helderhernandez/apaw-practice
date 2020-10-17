@@ -53,4 +53,15 @@ public class CDVehicleResourceIT {
                 .exchange()
                 .expectStatus().isNotFound();
     }
+
+    @Test
+    void testFindBrandByEmployeeName() {
+        this.webTestClient
+                .get()
+                .uri(uriBuilder -> uriBuilder.path(VEHICLES + SEARCH)
+                        .queryParam("q", "name:Pablo Coronado")
+                        .build())
+                .exchange()
+                .expectStatus().isOk();
+    }
 }

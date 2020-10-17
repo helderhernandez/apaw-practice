@@ -1,11 +1,12 @@
 package es.upm.miw.apaw_practice.domain.services.car_dealership;
 
-import es.upm.miw.apaw_practice.adapters.rest.car_dealership.CDBrandDto;
 import es.upm.miw.apaw_practice.domain.models.car_dealership.CDVehicle;
 import es.upm.miw.apaw_practice.domain.models.car_dealership.CDVehicleCreation;
 import es.upm.miw.apaw_practice.domain.persistence_ports.car_dealership.CDVehiclePersistence;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.stream.Stream;
 
 @Service
 public class CDVehicleService {
@@ -27,5 +28,9 @@ public class CDVehicleService {
 
     public CDVehicle updateBrand(String frameNumber, String brand) {
         return this.vehiclePersistence.updateBrand(frameNumber, brand);
+    }
+
+    public Stream<String>  findBrandsByEmployeeName(String name) {
+        return this.vehiclePersistence.findBrandsByEmployeeName(name);
     }
 }
