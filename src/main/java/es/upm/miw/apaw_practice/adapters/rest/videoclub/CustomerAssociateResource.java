@@ -24,4 +24,9 @@ public class CustomerAssociateResource {
     public CustomerAssociate updateName(@PathVariable String document_id, @RequestBody NameDto nameDto) {
         return this.customerAssociateService.updateName(document_id, nameDto.getName());
     }
+
+    @DeleteMapping(DOCUMENT_DOCUMENT)
+    public void updateName(@PathVariable String document_id) {
+        this.customerAssociateService.delete(document_id);
+    }
 }

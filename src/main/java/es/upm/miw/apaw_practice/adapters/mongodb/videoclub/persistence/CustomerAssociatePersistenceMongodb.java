@@ -8,6 +8,8 @@ import es.upm.miw.apaw_practice.domain.persistence_ports.videoclub.CustomerAssoc
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.stream.Stream;
+
 @Repository("customerAssociatePersistence")
 public class CustomerAssociatePersistenceMongodb implements CustomerAssociatePersistence {
 
@@ -34,7 +36,22 @@ public class CustomerAssociatePersistenceMongodb implements CustomerAssociatePer
     public CustomerAssociate readByDocumentId(String documentId) {
         return this.customerAssociateRepository
                 .findByDocumentId(documentId)
-                .orElseThrow(() -> new NotFoundException("Document id: " + documentId))
+                .orElseThrow(() -> new NotFoundException("Customer document id: " + documentId))
                 .toCustomerAssociate();
+    }
+
+    @Override
+    public void deleteByDocumentId(String documentId) {
+        this.customerAssociateRepository
+                .findByDocumentId(documentId)
+                .orElseThrow(() -> new NotFoundException("Customer document id: " + documentId));
+        this.customerAssociateRepository.deleteByDocumentId(documentId);
+    }
+
+    @Override
+    public Stream<CustomerAssociate> readAll() {
+        return this.customerAssociateRepository
+                .findAll().stream()
+                .map(CustomerAssociateEntity::toCustomerAssociate);
     }
 }

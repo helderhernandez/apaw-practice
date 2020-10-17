@@ -1,10 +1,11 @@
 package es.upm.miw.apaw_practice.adapters.rest.basketball;
 
 import es.upm.miw.apaw_practice.domain.models.basketball.Court;
-import es.upm.miw.apaw_practice.domain.models.basketball.CourtCreation;
 import es.upm.miw.apaw_practice.domain.services.basketball.CourtService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.List;
 
 @RestController
 @RequestMapping(CourtResource.COURTS)
@@ -24,4 +25,5 @@ public class CourtResource {
     public Court updateCapacity(@RequestBody Court court) {
         return this.courtService.updateCapacity(court);
     }
+
 }

@@ -56,4 +56,15 @@ public class CustomerAssociateResourceIT {
                 .value(Assertions::assertNotNull)
                 .value(customerAssociateUpd -> assertEquals("Diego Hernández Cambiado", customerAssociateUpd.getName()));
     }
+    @Test
+    void testDelete() {
+        String documentIdToDelete = "DNI2";
+        this.webTestClient
+                .delete()
+                .uri(CustomerAssociateResource.CUSTOMERASSOCIATES +
+                        "/" + documentIdToDelete)
+                .exchange()
+                .expectStatus().isOk();
+    }
+
 }

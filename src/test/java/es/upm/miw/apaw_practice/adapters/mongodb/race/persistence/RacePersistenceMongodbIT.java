@@ -35,4 +35,19 @@ public class RacePersistenceMongodbIT {
         assertEquals("2", race.getId());
         assertEquals("Guadalajara", race.getLocation());
     }
+
+    @Test
+    void testDeleteSectionAndRead() {
+        Race race = racePersistenceMongodb.readById("1");
+        assertEquals(3, race.getSections().size());
+
+        racePersistenceMongodb.deleteSectionByOrder("1", "2");
+        race = racePersistenceMongodb.readById("1");
+        assertEquals(2, race.getSections().size());
+    }
+
+    @Test
+    void testDeleteSectionNotFound() {
+        assertThrows(NotFoundException.class, () -> racePersistenceMongodb.deleteSectionByOrder("-1", "2"));
+    }
 }

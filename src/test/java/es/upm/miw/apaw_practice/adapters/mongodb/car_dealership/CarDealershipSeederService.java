@@ -1,4 +1,4 @@
-package es.upm.miw.apaw_practice.adapters.mongodb.cardealership;
+package es.upm.miw.apaw_practice.adapters.mongodb.car_dealership;
 
 import es.upm.miw.apaw_practice.adapters.mongodb.cardealership.daos.CDEmployeeRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.cardealership.daos.CDOwnerRepository;
@@ -60,7 +60,7 @@ public class CarDealershipSeederService {
         this.ownerRepository.saveAll(Arrays.asList(owners));
 
         CarDealershipEntity[] carDealerships = {
-                new CarDealershipEntity("Concesionario Castro", "Calle Homero, 3", 666333111L, List.of(employees[0], employees[3]), List.of(vehicles[2], vehicles[1]), owners[0]),
+                new CarDealershipEntity("Concesionario Castro", "Calle Homero, 3", 666333111L, List.of(employees[0], employees[3]), List.of(vehicles[2], vehicles[1], vehicles[3]), owners[0]),
                 new CarDealershipEntity("Concesionario Zapata", "Calle Pelayo, 16", 669933111L, List.of(employees[1], employees[2]), List.of(vehicles[0], vehicles[4]), owners[2]),
         };
 

@@ -60,7 +60,7 @@ public class VideoclubSeederService {
                 new CustomerAssociateEntity("DNI2", "Irene Becerra Díaz", LocalDate.of(1980, 1, 1), Arrays.asList(films[2])),
                 new CustomerAssociateEntity("DNI3", "Diego Hernández García", LocalDate.of(1995, 1, 1), Arrays.asList(films[3], films[4])),
                 new CustomerAssociateEntity("DNI4", "Laura Jiménez González", LocalDate.of(1990, 1, 1), Arrays.asList(films[5])),
-                new CustomerAssociateEntity("DNI5", "Víctor Alarcón González", LocalDate.of(2000, 1, 1), null),
+                new CustomerAssociateEntity("DNI5", "Víctor Alarcón González", LocalDate.of(2000, 1, 1), Arrays.asList()),
         };
         this.customerAssociateRepository.saveAll(Arrays.asList(customers));
     }
