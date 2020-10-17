@@ -1,6 +1,7 @@
-package es.upm.miw.apaw_practice.adapters.mongodb.cardealership.persistence;
+package es.upm.miw.apaw_practice.adapters.mongodb.car_dealership.persistence;
 
 import es.upm.miw.apaw_practice.TestConfig;
+import es.upm.miw.apaw_practice.adapters.mongodb.cardealership.persistence.CDVehiclePersistenceMongodb;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -17,6 +18,6 @@ public class CDVehiclePersistenceMongodbIT {
 
     @Test
     void testFindBrandsByEmployeeName() {
-        assertEquals(Arrays.asList("Seat","Citroen"), vehiclePersistenceMongodb.findBrandsByEmployeeName("Pablo Coronado").collect(Collectors.toList()));
+        assertEquals(Arrays.asList("Seat","Citroen","Opel"), vehiclePersistenceMongodb.findBrandsByEmployeeName("Pablo Coronado").collect(Collectors.toList()));
     }
 }
