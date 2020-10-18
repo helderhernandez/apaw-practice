@@ -5,4 +5,6 @@ public class Constans {
     public static final String START_REFERENCE = "REF";
     public static final Integer MAX_REFERENCE = 10;
 
+    public Constans() {
+    }
 }

@@ -89,7 +89,7 @@ public class TreeReservationsSportyComposite implements TreeReservationsSporty {
     @Override
     public List<String> getListNameAssociationOfReservations() {
         return listTreeReservationsSporty.stream()
-                .filter(TreeReservationsSporty -> !TreeReservationsSporty.isComposite())
+                .filter(treeReservationsSporty -> !treeReservationsSporty.isComposite())
                 .map(TreeReservationsSporty::getRefReservation)
                 .collect(Collectors.toList());
     }

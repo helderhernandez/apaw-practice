@@ -1,7 +1,6 @@
 package es.upm.miw.apaw_practice.domain.models.sportyRental;
 
 import java.math.BigDecimal;
-import java.time.LocalDateTime;
 import java.util.List;
 
 public class ReservationCreationSporty {

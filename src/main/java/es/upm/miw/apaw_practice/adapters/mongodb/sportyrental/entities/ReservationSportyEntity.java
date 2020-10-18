@@ -10,9 +10,9 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.UUID;
+import java.util.stream.Collectors;
 
 @Document
 public class ReservationSportyEntity {
@@ -49,7 +49,7 @@ public class ReservationSportyEntity {
         BeanUtils.copyProperties(reservationCreationSporty, this);
         this.idReservation = UUID.randomUUID().toString();
         this.dateReservation = LocalDateTime.now();
-        this.refReservation = Constans.START_REFERENCE+UUID.randomUUID().toString().substring(Constans.MAX_REFERENCE);
+        this.refReservation = Constans.START_REFERENCE + UUID.randomUUID().toString().substring(Constans.MAX_REFERENCE);
     }
 
     public String getIdReservation() {
@@ -128,27 +128,13 @@ public class ReservationSportyEntity {
     }
 
     private List<CustomerSporty> convertToListCustomerSporty() {
-        List<CustomerSporty> listCustomerSporty = new ArrayList<CustomerSporty>();
-
-        this.customerSportyEntities.stream().forEach(
-                customerSporty -> {
-                    listCustomerSporty.add(new CustomerSporty(customerSporty.getIdCustomer(), customerSporty.getDni(),
-                            customerSporty.getName(), customerSporty.getSurnames(), customerSporty.getEmail(), customerSporty.getPhone()));
-                }
-        );
-        return listCustomerSporty;
+        return this.customerSportyEntities.stream().map(customerSporty -> new CustomerSporty(customerSporty.getIdCustomer(), customerSporty.getDni(),
+                customerSporty.getName(), customerSporty.getSurnames(), customerSporty.getEmail(), customerSporty.getPhone())).collect(Collectors.toList());
     }
 
     private List<DiscountSporty> convertToListDiscountSporty() {
-        List<DiscountSporty> listDiscountSporty = new ArrayList<DiscountSporty>();
-
-        this.discountSportyEntity.stream().forEach(
-                discountSporty -> {
-                    listDiscountSporty.add(new DiscountSporty(discountSporty.getIdDiscount(), discountSporty.getDescription(),
-                            discountSporty.getPercentage()));
-                }
-        );
-        return listDiscountSporty;
+        return this.discountSportyEntity.stream().map(discountSporty -> new DiscountSporty(discountSporty.getIdDiscount(), discountSporty.getDescription(),
+                discountSporty.getPercentage())).collect(Collectors.toList());
     }
 
     @Override

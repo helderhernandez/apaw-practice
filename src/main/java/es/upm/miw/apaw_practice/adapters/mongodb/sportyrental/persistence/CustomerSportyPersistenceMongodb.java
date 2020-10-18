@@ -39,8 +39,8 @@ public class CustomerSportyPersistenceMongodb implements CustomerSportyPersisten
 
     @Override
     public Stream<String> readDescriptionsCategoryByCustomerName(String name) {
-        return this.reservationSportyRepository.findAll().stream().filter(ReservationSportyEntity -> ReservationSportyEntity.getCustomerSportyEntities().stream().
-                anyMatch(CustomerSportyEntity -> CustomerSportyEntity.getName().equals(name)))
+        return this.reservationSportyRepository.findAll().stream().filter(reservationSportyEntity -> reservationSportyEntity.getCustomerSportyEntities().stream().
+                anyMatch(customerSportyEntity -> customerSportyEntity.getName().equals(name)))
                 .map(ReservationSportyEntity::getCategorySportyEntity).map(CategorySportyEntity::getDescription).distinct().sorted();
     }
 }

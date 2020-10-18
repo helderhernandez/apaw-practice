@@ -1,6 +1,5 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.sportyrental.persistence;
 
-import es.upm.miw.apaw_practice.adapters.mongodb.sportyrental.daos.CategorySportyRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.sportyrental.daos.CustomerSportyRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.sportyrental.daos.DiscountSportyRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.sportyrental.daos.ReservationSportyRepository;
@@ -23,15 +22,13 @@ public class ReservationSportyPersistenceMongodb implements ReservationSportyPer
 
     private ReservationSportyRepository reservationSportyRepository;
     private CustomerSportyRepository customerSportyRepository;
-    private CategorySportyRepository categorySportyRepository;
     private DiscountSportyRepository discountSportyRepository;
 
     @Autowired
-    public ReservationSportyPersistenceMongodb(ReservationSportyRepository reservationSportyRepository, CustomerSportyRepository customerSportyRepository, CategorySportyRepository categorySportyRepository,
+    public ReservationSportyPersistenceMongodb(ReservationSportyRepository reservationSportyRepository, CustomerSportyRepository customerSportyRepository,
                                                DiscountSportyRepository discountSportyRepository) {
         this.reservationSportyRepository = reservationSportyRepository;
         this.customerSportyRepository = customerSportyRepository;
-        this.categorySportyRepository = categorySportyRepository;
         this.discountSportyRepository = discountSportyRepository;
     }
 
