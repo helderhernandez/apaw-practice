@@ -9,6 +9,8 @@ import es.upm.miw.apaw_practice.domain.persistence_ports.restaurant.PhysicalStor
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.stream.Stream;
+
 @Repository("physicalStorePersistence")
 public class PhysicalStorePersistenceMongodb implements PhysicalStorePersistence {
 
@@ -38,5 +40,10 @@ public class PhysicalStorePersistenceMongodb implements PhysicalStorePersistence
         PhysicalStoreEntity physicalStoreEntity = this.physicalStoreRepository.findByAddress(address)
                 .orElseThrow(() -> new NotFoundException("Not find address: " + address));
         this.physicalStoreRepository.delete(physicalStoreEntity);
+    }
+
+    @Override
+    public Stream<PhysicalStore> findAddressPhysicalStoreWithAFoodTypeScore(String idFoodType, String score) {
+        return null;
     }
 }

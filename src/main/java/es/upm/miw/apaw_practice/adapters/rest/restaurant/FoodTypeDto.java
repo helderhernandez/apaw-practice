@@ -1,7 +1,5 @@
 package es.upm.miw.apaw_practice.adapters.rest.restaurant;
 
-import es.upm.miw.apaw_practice.domain.models.restaurant.FoodType;
-
 public class FoodTypeDto {
     String id;
 
