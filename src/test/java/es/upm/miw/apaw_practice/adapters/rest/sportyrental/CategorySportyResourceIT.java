@@ -1,7 +1,7 @@
 package es.upm.miw.apaw_practice.adapters.rest.sportyrental;
 
 import es.upm.miw.apaw_practice.adapters.rest.RestTestConfig;
-import es.upm.miw.apaw_practice.domain.models.sportyRental.CategoryCreationSporty;
+import es.upm.miw.apaw_practice.domain.models.sportyrental.CategoryCreationSporty;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.web.reactive.server.WebTestClient;

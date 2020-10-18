@@ -2,7 +2,7 @@ package es.upm.miw.apaw_practice.adapters.mongodb.sportyrental.persistence;
 
 import es.upm.miw.apaw_practice.TestConfig;
 import es.upm.miw.apaw_practice.adapters.mongodb.sportyrental.SportyRentalSeederService;
-import es.upm.miw.apaw_practice.domain.models.sportyRental.DiscountSporty;
+import es.upm.miw.apaw_practice.domain.models.sportyrental.DiscountSporty;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 

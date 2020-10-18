@@ -1,4 +1,4 @@
-package es.upm.miw.apaw_practice.domain.models.sportyRental;
+package es.upm.miw.apaw_practice.domain.models.sportyrental;
 
 import java.math.BigDecimal;
 import java.util.List;

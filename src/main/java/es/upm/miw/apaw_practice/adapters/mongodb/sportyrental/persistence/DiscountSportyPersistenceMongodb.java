@@ -5,8 +5,8 @@ import es.upm.miw.apaw_practice.adapters.mongodb.sportyrental.daos.ReservationSp
 import es.upm.miw.apaw_practice.adapters.mongodb.sportyrental.entities.DiscountSportyEntity;
 import es.upm.miw.apaw_practice.adapters.mongodb.sportyrental.entities.ReservationSportyEntity;
 import es.upm.miw.apaw_practice.domain.exceptions.NotFoundException;
-import es.upm.miw.apaw_practice.domain.models.sportyRental.DiscountSporty;
-import es.upm.miw.apaw_practice.domain.persistence_ports.sportyRental.DiscountSportyPersistence;
+import es.upm.miw.apaw_practice.domain.models.sportyrental.DiscountSporty;
+import es.upm.miw.apaw_practice.domain.persistence_ports.sportyrental.DiscountSportyPersistence;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 

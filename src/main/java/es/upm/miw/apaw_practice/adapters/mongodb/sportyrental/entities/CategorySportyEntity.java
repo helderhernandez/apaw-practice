@@ -1,7 +1,7 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.sportyrental.entities;
 
-import es.upm.miw.apaw_practice.domain.models.sportyRental.CategoryCreationSporty;
-import es.upm.miw.apaw_practice.domain.models.sportyRental.CategorySporty;
+import es.upm.miw.apaw_practice.domain.models.sportyrental.CategoryCreationSporty;
+import es.upm.miw.apaw_practice.domain.models.sportyrental.CategorySporty;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;

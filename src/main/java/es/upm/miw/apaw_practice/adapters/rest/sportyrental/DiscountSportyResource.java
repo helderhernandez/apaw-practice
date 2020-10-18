@@ -1,7 +1,7 @@
 package es.upm.miw.apaw_practice.adapters.rest.sportyrental;
 
 import es.upm.miw.apaw_practice.adapters.rest.LexicalAnalyzer;
-import es.upm.miw.apaw_practice.domain.models.sportyRental.DiscountSporty;
+import es.upm.miw.apaw_practice.domain.models.sportyrental.DiscountSporty;
 import es.upm.miw.apaw_practice.domain.services.sportyRental.DiscountSportyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

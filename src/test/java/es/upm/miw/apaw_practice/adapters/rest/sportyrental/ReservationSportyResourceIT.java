@@ -2,7 +2,7 @@ package es.upm.miw.apaw_practice.adapters.rest.sportyrental;
 
 import es.upm.miw.apaw_practice.adapters.mongodb.sportyrental.SportyRentalSeederService;
 import es.upm.miw.apaw_practice.adapters.rest.RestTestConfig;
-import es.upm.miw.apaw_practice.domain.models.sportyRental.*;
+import es.upm.miw.apaw_practice.domain.models.sportyrental.*;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;

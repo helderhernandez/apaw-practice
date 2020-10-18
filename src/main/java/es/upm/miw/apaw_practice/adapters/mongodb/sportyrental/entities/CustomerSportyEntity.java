@@ -1,7 +1,7 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.sportyrental.entities;
 
-import es.upm.miw.apaw_practice.domain.models.sportyRental.CustomerCreationSporty;
-import es.upm.miw.apaw_practice.domain.models.sportyRental.CustomerSporty;
+import es.upm.miw.apaw_practice.domain.models.sportyrental.CustomerCreationSporty;
+import es.upm.miw.apaw_practice.domain.models.sportyrental.CustomerSporty;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;

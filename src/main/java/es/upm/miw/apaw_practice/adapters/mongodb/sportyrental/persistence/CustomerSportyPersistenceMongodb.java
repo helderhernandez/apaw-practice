@@ -6,8 +6,8 @@ import es.upm.miw.apaw_practice.adapters.mongodb.sportyrental.entities.CategoryS
 import es.upm.miw.apaw_practice.adapters.mongodb.sportyrental.entities.CustomerSportyEntity;
 import es.upm.miw.apaw_practice.adapters.mongodb.sportyrental.entities.ReservationSportyEntity;
 import es.upm.miw.apaw_practice.domain.exceptions.NotFoundException;
-import es.upm.miw.apaw_practice.domain.models.sportyRental.CustomerSporty;
-import es.upm.miw.apaw_practice.domain.persistence_ports.sportyRental.CustomerSportyPersistence;
+import es.upm.miw.apaw_practice.domain.models.sportyrental.CustomerSporty;
+import es.upm.miw.apaw_practice.domain.persistence_ports.sportyrental.CustomerSportyPersistence;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 

@@ -1,8 +1,8 @@
-package es.upm.miw.apaw_practice.domain.persistence_ports.sportyRental;
+package es.upm.miw.apaw_practice.domain.persistence_ports.sportyrental;
 
 
-import es.upm.miw.apaw_practice.domain.models.sportyRental.ReservationSporty;
-import es.upm.miw.apaw_practice.domain.models.sportyRental.ReservationCreationSporty;
+import es.upm.miw.apaw_practice.domain.models.sportyrental.ReservationSporty;
+import es.upm.miw.apaw_practice.domain.models.sportyrental.ReservationCreationSporty;
 import org.springframework.stereotype.Repository;
 
 @Repository

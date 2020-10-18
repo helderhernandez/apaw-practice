@@ -1,4 +1,4 @@
-package es.upm.miw.apaw_practice.domain.models.sportyRental;
+package es.upm.miw.apaw_practice.domain.models.sportyrental;
 
 public class CategoryCreationSporty {
     private String description;

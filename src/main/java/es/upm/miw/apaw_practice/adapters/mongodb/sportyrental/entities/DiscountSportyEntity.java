@@ -1,7 +1,7 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.sportyrental.entities;
 
-import es.upm.miw.apaw_practice.domain.models.sportyRental.DiscountCreationSporty;
-import es.upm.miw.apaw_practice.domain.models.sportyRental.DiscountSporty;
+import es.upm.miw.apaw_practice.domain.models.sportyrental.DiscountCreationSporty;
+import es.upm.miw.apaw_practice.domain.models.sportyrental.DiscountSporty;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;

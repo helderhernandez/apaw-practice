@@ -2,8 +2,8 @@ package es.upm.miw.apaw_practice.adapters.mongodb.sportyrental.persistence;
 
 import es.upm.miw.apaw_practice.TestConfig;
 import es.upm.miw.apaw_practice.adapters.mongodb.sportyrental.SportyRentalSeederService;
-import es.upm.miw.apaw_practice.domain.models.sportyRental.CategoryCreationSporty;
-import es.upm.miw.apaw_practice.domain.models.sportyRental.CategorySporty;
+import es.upm.miw.apaw_practice.domain.models.sportyrental.CategoryCreationSporty;
+import es.upm.miw.apaw_practice.domain.models.sportyrental.CategorySporty;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 

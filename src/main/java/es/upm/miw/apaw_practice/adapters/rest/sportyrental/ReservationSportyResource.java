@@ -1,7 +1,7 @@
 package es.upm.miw.apaw_practice.adapters.rest.sportyrental;
 
-import es.upm.miw.apaw_practice.domain.models.sportyRental.ReservationCreationSporty;
-import es.upm.miw.apaw_practice.domain.models.sportyRental.ReservationSporty;
+import es.upm.miw.apaw_practice.domain.models.sportyrental.ReservationCreationSporty;
+import es.upm.miw.apaw_practice.domain.models.sportyrental.ReservationSporty;
 import es.upm.miw.apaw_practice.domain.services.sportyRental.ReservationSportyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

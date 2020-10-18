@@ -3,9 +3,9 @@ package es.upm.miw.apaw_practice.adapters.mongodb.sportyrental.persistence;
 import es.upm.miw.apaw_practice.adapters.mongodb.sportyrental.daos.CategorySportyRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.sportyrental.entities.CategorySportyEntity;
 import es.upm.miw.apaw_practice.domain.exceptions.NotFoundException;
-import es.upm.miw.apaw_practice.domain.models.sportyRental.CategoryCreationSporty;
-import es.upm.miw.apaw_practice.domain.models.sportyRental.CategorySporty;
-import es.upm.miw.apaw_practice.domain.persistence_ports.sportyRental.CategorySportyPersistence;
+import es.upm.miw.apaw_practice.domain.models.sportyrental.CategoryCreationSporty;
+import es.upm.miw.apaw_practice.domain.models.sportyrental.CategorySporty;
+import es.upm.miw.apaw_practice.domain.persistence_ports.sportyrental.CategorySportyPersistence;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
