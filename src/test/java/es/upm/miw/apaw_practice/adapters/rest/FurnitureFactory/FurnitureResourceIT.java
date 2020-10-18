@@ -48,7 +48,7 @@ public class FurnitureResourceIT {
                                 .build())
                 .exchange()
                 .expectStatus().isOk()
-                .expectBodyList(Furniture.class)
-                .value(furniture -> assertEquals(new BigDecimal("885.2"), furniture.get(0).getPrice()));
+                .expectBodyList(BigDecimal.class)
+                .value(furniture -> assertEquals(new BigDecimal("885.20"), furniture.get(0)));
     }
 }
