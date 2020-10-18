@@ -60,13 +60,15 @@ public class FilmForumPersistenceMongodbIT {
 
     @Test
     void testGetFilmFromActor() {
-        List<FilmForum> filmsFromActor = filmForumPersistence.getFilmsFromActor(new FilmActor("1", "name1", "surname1", 10));
+        List<FilmForum> filmsFromActor = filmForumPersistence.getFilmsFromActor(
+                FilmActor.builder().id("1").name("name1").surname("surname1").age(10).build());
         assertEquals(filmsFromActor.size(), 3);
     }
 
     @Test
     void testGetFilmsFromActorNotFound() {
-        List<FilmForum> filmsFromActor = filmForumPersistence.getFilmsFromActor(new FilmActor("NE", "NO_EXISTS", "NE", -1));
+        List<FilmForum> filmsFromActor = filmForumPersistence.getFilmsFromActor(
+                FilmActor.builder().id("NE").name("NO_EXISTS").surname("NE").age(-1).build());
         assertTrue(filmsFromActor.isEmpty());
     }
 }

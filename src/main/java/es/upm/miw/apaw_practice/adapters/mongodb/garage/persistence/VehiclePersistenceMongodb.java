@@ -1,6 +1,7 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.garage.persistence;
 
 import es.upm.miw.apaw_practice.adapters.mongodb.garage.daos.VehicleGarageRepository;
+import es.upm.miw.apaw_practice.adapters.mongodb.garage.entities.PieceEntity;
 import es.upm.miw.apaw_practice.adapters.mongodb.garage.entities.VehicleEntity;
 import es.upm.miw.apaw_practice.domain.exceptions.NotFoundException;
 import es.upm.miw.apaw_practice.domain.models.garage.Vehicle;
@@ -44,5 +45,17 @@ public class VehiclePersistenceMongodb implements VehiclePersistence {
         return this.vehicleGarageRepository.findAll()
                 .stream()
                 .map(VehicleEntity::toVehicle);
+    }
+
+    @Override
+    public Stream<String> findPieceBarcodeByMechanicName(String mechanicName) {
+        return vehicleGarageRepository.findAll()
+                .stream()
+                .filter(vehicleEntity -> vehicleEntity.getMechanicEntities()
+                                            .stream()
+                                            .anyMatch(mechanicEntity -> mechanicEntity.getName().equals(mechanicName)))
+                .flatMap(vehicleEntity -> vehicleEntity.getPieceEntities().stream())
+                .map(PieceEntity::getBarcode)
+                .distinct();
     }
 }

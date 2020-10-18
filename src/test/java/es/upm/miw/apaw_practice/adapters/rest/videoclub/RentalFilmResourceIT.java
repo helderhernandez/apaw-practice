@@ -31,7 +31,7 @@ public class RentalFilmResourceIT {
                     assertEquals("Generation Z", rentalFilmData.getTitle());
                     assertEquals(1998, rentalFilmData.getYear());
                     assertEquals("filmMaker4", rentalFilmData.getFilmMaker().getReference());
-                    assertEquals("cat4", rentalFilmData.getCategories().get(0).getId());
+                    assertEquals("cat4", rentalFilmData.getCategories().get(0).getReference());
                 });
     }
 }

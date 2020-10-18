@@ -5,11 +5,11 @@ import es.upm.miw.apaw_practice.domain.models.restaurant.OwnerRestaurant;
 public class NameDto {
     private String name;
 
-    public NameDto(){
+    public NameDto() {
         //Empty for framework
     }
 
-    NameDto(OwnerRestaurant ownerRestaurant){
+    NameDto(OwnerRestaurant ownerRestaurant) {
         this.name = ownerRestaurant.getName();
     }
 

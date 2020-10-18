@@ -45,8 +45,8 @@ public class PhysicalStoreResourceIT {
 
     @Test
     void testDeletePhysicalStore(){
-        PhysicalStoreEntity physicalStore = this.physicalStoreRepository.findByAddress("address3")
-                .orElseThrow(() -> new NotFoundException("Not find: address3"));
+        PhysicalStoreEntity physicalStore = this.physicalStoreRepository.findByAddress("address5")
+                .orElseThrow(() -> new NotFoundException("Not find: address5"));
         this.webTestClient
                 .delete()
                 .uri(PhysicalStoreResource.PHYSICALSTORES + PhysicalStoreResource.ADDRESS, physicalStore.getAddress())

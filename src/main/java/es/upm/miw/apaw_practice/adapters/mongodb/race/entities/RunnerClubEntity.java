@@ -2,6 +2,7 @@ package es.upm.miw.apaw_practice.adapters.mongodb.race.entities;
 
 import es.upm.miw.apaw_practice.domain.models.race.RunnerClub;
 import es.upm.miw.apaw_practice.domain.models.race.RunnerClubCreation;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -87,6 +88,54 @@ public class RunnerClubEntity {
     }
 
     public RunnerClub toRunnerClub() {
-        return new RunnerClub(this.id, this.name, this.location, this.foundationDate);
+        RunnerClub runnerClub = new RunnerClub();
+        BeanUtils.copyProperties(this, runnerClub);
+        return runnerClub;
+    }
+
+    public void fromRunnerClub(RunnerClub runnerClub) {
+        BeanUtils.copyProperties(runnerClub, this);
+    }
+
+    public static RunnerClubBuilders.Id builder() {
+        return new Builder();
+    }
+
+    static class Builder implements RunnerClubBuilders.Id, RunnerClubBuilders.Name, RunnerClubBuilders.Location, RunnerClubBuilders.FoundationDate, RunnerClubBuilders.RunnerClubBuilder {
+
+        private RunnerClubEntity runnerClubEntity;
+
+        public Builder() {
+            runnerClubEntity = new RunnerClubEntity();
+        }
+
+        @Override
+        public RunnerClubBuilders.Name id(String id) {
+            runnerClubEntity.setId(id);
+            return this;
+        }
+
+        @Override
+        public RunnerClubBuilders.Location name(String name) {
+            runnerClubEntity.setName(name);
+            return this;
+        }
+
+        @Override
+        public RunnerClubBuilders.FoundationDate location(String location) {
+            runnerClubEntity.setLocation(location);
+            return this;
+        }
+
+        @Override
+        public RunnerClubBuilders.RunnerClubBuilder foundationDate(LocalDateTime foundationDate) {
+            runnerClubEntity.setFoundationDate(foundationDate);
+            return this;
+        }
+
+        @Override
+        public RunnerClubEntity build() {
+            return runnerClubEntity;
+        }
     }
 }

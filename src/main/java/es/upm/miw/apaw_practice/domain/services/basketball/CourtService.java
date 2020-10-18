@@ -15,7 +15,8 @@ public class CourtService {
         this.courtPersistence = courtPersistence;
     }
 
-    public Court updateCapacity(String id, Integer capacity) {
-        return this.courtPersistence.updateCapacity(id, capacity);
+    public Court updateCapacity(Court court) {
+        return this.courtPersistence.updateCapacity(court);
     }
+
 }

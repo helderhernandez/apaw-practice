@@ -26,4 +26,34 @@ public class RunnerPersistenceMongodbIT {
     void testReadByIdNotFound() {
         assertThrows(NotFoundException.class, () -> runnerPersistenceMongodb.readById("-1"));
     }
+
+    @Test
+    void testReadByDni() {
+        Runner runner = runnerPersistenceMongodb.readByDni("00000002");
+        assertEquals("Maria", runner.getName());
+        assertTrue(runner.getProfessional());
+        assertEquals("Madrid", runner.getRunnerClub().getLocation());
+    }
+
+    @Test
+    void testReadByDniNotFound() {
+        assertThrows(NotFoundException.class, () -> runnerPersistenceMongodb.readByDni("-1"));
+    }
+
+    @Test
+    void testUpdateAndRead() {
+        Runner runner = runnerPersistenceMongodb.readById("3");
+        assertEquals("Jose", runner.getName());
+        runner.setName("Manuel");
+        runnerPersistenceMongodb.update(runner);
+        Runner runner2 = runnerPersistenceMongodb.readById("3");
+        assertEquals("Manuel", runner2.getName());
+    }
+
+    @Test
+    void testUpdateException() {
+        Runner runner = runnerPersistenceMongodb.readById("3");
+        runner.setId("-1");
+        assertThrows(NotFoundException.class, () -> runnerPersistenceMongodb.update(runner));
+    }
 }

@@ -10,9 +10,9 @@ import org.springframework.web.reactive.function.BodyInserters;
 import java.math.BigDecimal;
 import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 @RestTestConfig
 public class VehicleResourceIT {
@@ -49,6 +49,27 @@ public class VehicleResourceIT {
                     entityList.getResponseBody().stream()
                             .filter(vehicle -> vehicle.getCarRegistration().equals("1111PLO"))
                             .peek(vehicle -> assertTrue(vehicle.getEstimatedBudget().equals(BigDecimal.valueOf(200))));
+                });
+    }
+
+    @Test
+    public void testFindPieceBarcodeByMechanicName(){
+        this.webTestClient
+                .get()
+                .uri(uriBuilder ->
+                        uriBuilder.path(VehicleGarageResource.VEHICLES + VehicleGarageResource.SEARCH)
+                                .queryParam("q", "mechanicName:Álvaro Martín")
+                                .build())
+                .exchange()
+                .expectStatus().isOk()
+                .expectBodyList(String.class)
+                .consumeWith(entityList -> {
+                    assertNotNull(entityList.getResponseBody());
+
+                    List<String> barcodes = entityList.getResponseBody().stream().collect(Collectors.toList());
+
+                    assertTrue(barcodes.get(0).contains("98745"));
+                    assertTrue(barcodes.get(0).contains("2124565DF"));
                 });
     }
 }

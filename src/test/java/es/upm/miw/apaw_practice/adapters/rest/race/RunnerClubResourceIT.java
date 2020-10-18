@@ -11,8 +11,7 @@ import org.springframework.web.reactive.function.BodyInserters;
 
 import java.time.LocalDateTime;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 @RestTestConfig
 public class RunnerClubResourceIT {
@@ -38,4 +37,20 @@ public class RunnerClubResourceIT {
                 .value(runnerClub -> assertEquals(LocalDateTime.of(2018, 4, 3, 0, 0), runnerClub.getFoundationDate()));
     }
 
+    @Test
+    void testFindRunnerClubNameWithProfessionalRunnersByRaceName() {
+        webTestClient
+                .get()
+                .uri(uriBuilder -> uriBuilder
+                        .path(RunnerClubResource.RUNNER_CLUBS + RunnerClubResource.SEARCH)
+                        .queryParam("q", "race-name:Madrid Running Race")
+                        .build())
+                .exchange()
+                .expectStatus().isOk()
+                .expectBody(String.class)
+                .value(names -> {
+                    assertTrue(names.contains("Runners Club"));
+                    assertFalse(names.contains("Amateur Running Club"));
+                });
+    }
 }
