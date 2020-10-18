@@ -67,7 +67,12 @@ public class FilmActorEntity {
     }
 
     public FilmActor toFilmActor() {
-        return new FilmActor(id, name, surname, age);
+        return FilmActor.builder()
+                .id(id)
+                .name(name)
+                .surname(surname)
+                .age(age)
+                .build();
     }
 
     public void fromFilmActor(FilmActor actor) {
