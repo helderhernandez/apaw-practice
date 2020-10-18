@@ -35,7 +35,8 @@ public class RestaurantSeederService {
                 new PhysicalStoreEntity("tag2", "address2", 600, false, LocalDateTime.of(2016, 01, 14, 14, 30)),
                 new PhysicalStoreEntity("tag3", "address3", 700, false, LocalDateTime.of(2017, 07, 24, 14, 30)),
                 new PhysicalStoreEntity("tag4", "address4", 550, false, LocalDateTime.of(2015, 10, 17, 10, 30)),
-                new PhysicalStoreEntity("tag5", "address5", 810, true, LocalDateTime.of(2013, 05, 24, 11, 30))
+                new PhysicalStoreEntity("tag5", "address5", 810, true, LocalDateTime.of(2013, 05, 24, 11, 30)),
+                new PhysicalStoreEntity("tag6", "address6", 800, true, LocalDateTime.of(2013, 05, 24, 11, 30))
         };
         this.physicalStoreRepository.saveAll(Arrays.asList(physicalStore));
         FoodTypeEntity[] foodType = {
