@@ -96,4 +96,46 @@ public class RunnerClubEntity {
     public void fromRunnerClub(RunnerClub runnerClub) {
         BeanUtils.copyProperties(runnerClub, this);
     }
+
+    public static RunnerClubBuilders.Id builder() {
+        return new Builder();
+    }
+
+    static class Builder implements RunnerClubBuilders.Id, RunnerClubBuilders.Name, RunnerClubBuilders.Location, RunnerClubBuilders.FoundationDate, RunnerClubBuilders.RunnerClubBuilder {
+
+        private RunnerClubEntity runnerClubEntity;
+
+        public Builder() {
+            runnerClubEntity = new RunnerClubEntity();
+        }
+
+        @Override
+        public RunnerClubBuilders.Name id(String id) {
+            runnerClubEntity.setId(id);
+            return this;
+        }
+
+        @Override
+        public RunnerClubBuilders.Location name(String name) {
+            runnerClubEntity.setName(name);
+            return this;
+        }
+
+        @Override
+        public RunnerClubBuilders.FoundationDate location(String location) {
+            runnerClubEntity.setLocation(location);
+            return this;
+        }
+
+        @Override
+        public RunnerClubBuilders.RunnerClubBuilder foundationDate(LocalDateTime foundationDate) {
+            runnerClubEntity.setFoundationDate(foundationDate);
+            return this;
+        }
+
+        @Override
+        public RunnerClubEntity build() {
+            return runnerClubEntity;
+        }
+    }
 }
