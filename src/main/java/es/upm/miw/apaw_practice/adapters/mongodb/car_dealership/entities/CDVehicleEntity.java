@@ -1,4 +1,4 @@
-package es.upm.miw.apaw_practice.adapters.mongodb.cardealership.entities;
+package es.upm.miw.apaw_practice.adapters.mongodb.car_dealership.entities;
 
 import es.upm.miw.apaw_practice.domain.models.car_dealership.CDVehicle;
 import es.upm.miw.apaw_practice.domain.models.car_dealership.CDVehicleCreation;

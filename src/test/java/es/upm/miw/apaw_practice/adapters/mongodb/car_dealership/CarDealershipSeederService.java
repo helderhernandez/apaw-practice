@@ -1,13 +1,13 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.car_dealership;
 
-import es.upm.miw.apaw_practice.adapters.mongodb.cardealership.daos.CDEmployeeRepository;
-import es.upm.miw.apaw_practice.adapters.mongodb.cardealership.daos.CDOwnerRepository;
-import es.upm.miw.apaw_practice.adapters.mongodb.cardealership.daos.CDVehicleRepository;
-import es.upm.miw.apaw_practice.adapters.mongodb.cardealership.daos.CarDealershipRepository;
-import es.upm.miw.apaw_practice.adapters.mongodb.cardealership.entities.CDEmployeeEntity;
-import es.upm.miw.apaw_practice.adapters.mongodb.cardealership.entities.CDOwnerEntity;
-import es.upm.miw.apaw_practice.adapters.mongodb.cardealership.entities.CDVehicleEntity;
-import es.upm.miw.apaw_practice.adapters.mongodb.cardealership.entities.CarDealershipEntity;
+import es.upm.miw.apaw_practice.adapters.mongodb.car_dealership.daos.CDEmployeeRepository;
+import es.upm.miw.apaw_practice.adapters.mongodb.car_dealership.daos.CDOwnerRepository;
+import es.upm.miw.apaw_practice.adapters.mongodb.car_dealership.daos.CDVehicleRepository;
+import es.upm.miw.apaw_practice.adapters.mongodb.car_dealership.daos.CarDealershipRepository;
+import es.upm.miw.apaw_practice.adapters.mongodb.car_dealership.entities.CDEmployeeEntity;
+import es.upm.miw.apaw_practice.adapters.mongodb.car_dealership.entities.CDOwnerEntity;
+import es.upm.miw.apaw_practice.adapters.mongodb.car_dealership.entities.CDVehicleEntity;
+import es.upm.miw.apaw_practice.adapters.mongodb.car_dealership.entities.CarDealershipEntity;
 import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

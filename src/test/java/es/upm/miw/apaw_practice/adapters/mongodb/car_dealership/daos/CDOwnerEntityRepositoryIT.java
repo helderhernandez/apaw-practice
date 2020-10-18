@@ -1,7 +1,6 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.car_dealership.daos;
 
 import es.upm.miw.apaw_practice.TestConfig;
-import es.upm.miw.apaw_practice.adapters.mongodb.cardealership.daos.CDOwnerRepository;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
