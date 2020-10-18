@@ -40,7 +40,6 @@ class TreeReservationSportyRepositoryIT {
     @Test
     void testTreeReservationSportyComposite() {
         assertFalse(reservationSportyRepository.findAll().isEmpty());
-        assertEquals(4, reservationSportyRepository.findAll().size());
         List<ReservationSportyEntity> listReservationSportyEntity = reservationSportyRepository.findAll();
         TreeReservationsSporty treeReservationsSportyCompositeOne = new TreeReservationsSportyComposite("Association One");
         treeReservationsSportyCompositeOne.add(new TreeReservationsSportyLeaf(listReservationSportyEntity.get(0)));
