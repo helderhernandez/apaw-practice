@@ -1,7 +1,9 @@
 package es.upm.miw.apaw_practice.adapters.rest.FurnitureFactory;
 
 
+import es.upm.miw.apaw_practice.adapters.rest.LexicalAnalyzer;
 import es.upm.miw.apaw_practice.domain.models.FurnitureFactory.Furniture;
+import es.upm.miw.apaw_practice.domain.models.transittaxes.Tax;
 import es.upm.miw.apaw_practice.domain.services.FurnitureFactory.FurnitureService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -32,5 +34,9 @@ public class FurnitureResource {
     public Furniture updateName(@PathVariable String id, @RequestBody NameDto nameDto) {
         return this.furnitureService.updateName(id, nameDto.getName());
     }
-
+    @GetMapping(SEARCH)
+    public Furniture findTotalPriceFurnitureByStreet(@RequestParam String q) {
+        String street = new LexicalAnalyzer().extractWithAssure(q, "street");
+        return this.furnitureService.findTotalPriceFurnitureByStreet(street);
+    }
 }
