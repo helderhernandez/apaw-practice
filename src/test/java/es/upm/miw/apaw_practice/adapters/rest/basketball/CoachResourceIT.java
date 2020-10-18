@@ -30,4 +30,16 @@ public class CoachResourceIT {
                 .value(Assertions::assertNotNull)
                 .value(coach -> assertNotNull(coach.getId()));
     }
+
+    @Test
+    void testUpdateName() {
+        CoachCreation coachCreation = new CoachCreation("Coach Lucas", "2222222A");
+        this.webTestClient
+                .patch()
+                .uri(CoachResource.COACHS)
+                .body(BodyInserters.fromValue(coachCreation))
+                .exchange()
+                .expectStatus()
+                .isOk();
+    }
 }

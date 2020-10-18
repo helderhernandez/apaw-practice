@@ -20,6 +20,6 @@ public class AccidentEntityRepositoryIT {
                 .anyMatch(accidentEntity -> accidentEntity.getPlace().equals("Madrid")));
         assertTrue(this.accidentRepository.findAll().stream()
                 .anyMatch(accidentEntity -> accidentEntity.getDate()
-                        .isBefore(LocalDateTime.of(2018, 12, 30, 12, 00))));
+                        .isBefore(LocalDateTime.of(2018, 12, 30, 12, 0))));
     }
 }

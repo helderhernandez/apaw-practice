@@ -9,7 +9,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.web.reactive.server.WebTestClient;
 import org.springframework.web.reactive.function.BodyInserters;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
+
+import static es.upm.miw.apaw_practice.adapters.rest.treeConservation.DiseaseResource.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 @RestTestConfig
 public class DiseaseResourceIT {
@@ -22,7 +27,7 @@ public class DiseaseResourceIT {
                 new DiseaseCreation("diseaseResourceTest", "This is a resource test disease");
         this.webTestClient
                 .post()
-                .uri(DiseaseResource.DISEASES)
+                .uri(DISEASES)
                 .body(BodyInserters.fromValue(diseaseCreation))
                 .exchange()
                 .expectStatus().isOk()
@@ -35,8 +40,29 @@ public class DiseaseResourceIT {
     void testDelete() {
         this.webTestClient
                 .delete()
-                .uri(DiseaseResource.DISEASES + DiseaseResource.NAME_ID, "fakeDiseaseResourceTest")
+                .uri(DISEASES + NAME_ID, "fakeDiseaseResourceTest")
                 .exchange()
                 .expectStatus().isOk();
+    }
+
+    @Test
+    void testFindByInspectionType() {
+        this.webTestClient
+                .get()
+                .uri(uriBuilder -> uriBuilder
+                        .path(DISEASES + SEARCH)
+                        .queryParam("q", "type:type1")
+                        .build())
+                .exchange()
+                .expectStatus().isOk()
+                .expectBodyList(DiseaseNameDto.class)
+                .consumeWith(entityList -> {
+                    assertNotNull(entityList.getResponseBody());
+                    List<String> specieList = entityList.getResponseBody().stream()
+                            .map(DiseaseNameDto::getName)
+                            .collect(Collectors.toList());
+                    assertTrue(specieList.containsAll(Arrays.asList("disease1", "disease2", "disease3", "disease5")));
+                    assertFalse(specieList.contains("disease4"));
+                });
     }
 }

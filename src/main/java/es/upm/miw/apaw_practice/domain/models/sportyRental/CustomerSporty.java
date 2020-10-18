@@ -1,7 +1,5 @@
 package es.upm.miw.apaw_practice.domain.models.sportyRental;
 
-import org.springframework.data.mongodb.core.index.Indexed;
-
 public class CustomerSporty {
 
     private String idCustomer;
@@ -21,6 +19,10 @@ public class CustomerSporty {
         this.surnames = surnames;
         this.email = email;
         this.phone = phone;
+    }
+
+    public static CustomerSportyBuilders.IdCustomer builder() {
+        return new Builder();
     }
 
     public String getIdCustomer() {
@@ -81,5 +83,55 @@ public class CustomerSporty {
                 ", email='" + email + '\'' +
                 ", phone='" + phone + '\'' +
                 '}';
+    }
+
+    public static class Builder implements CustomerSportyBuilders.IdCustomer, CustomerSportyBuilders.Dni, CustomerSportyBuilders.Name, CustomerSportyBuilders.Optionals {
+
+        private CustomerSporty customerSporty;
+
+        public Builder() {
+            this.customerSporty = new CustomerSporty();
+        }
+
+        @Override
+        public CustomerSportyBuilders.Dni idCustomer(String idCustomer) {
+            this.customerSporty.idCustomer = idCustomer;
+            return this;
+        }
+
+        @Override
+        public CustomerSportyBuilders.Name dni(String dni) {
+            this.customerSporty.dni = dni;
+            return this;
+        }
+
+        @Override
+        public CustomerSportyBuilders.Optionals name(String name) {
+            this.customerSporty.name = name;
+            return this;
+        }
+
+        @Override
+        public CustomerSportyBuilders.Optionals surnames(String surnames) {
+            this.customerSporty.surnames = surnames;
+            return this;
+        }
+
+        @Override
+        public CustomerSportyBuilders.Optionals email(String email) {
+            this.customerSporty.email = email;
+            return this;
+        }
+
+        @Override
+        public CustomerSportyBuilders.Optionals phone(String phone) {
+            this.customerSporty.phone = phone;
+            return this;
+        }
+
+        @Override
+        public CustomerSporty build() {
+            return this.customerSporty;
+        }
     }
 }

@@ -2,10 +2,15 @@ package es.upm.miw.apaw_practice.adapters.rest.race;
 
 import es.upm.miw.apaw_practice.adapters.rest.RestTestConfig;
 import es.upm.miw.apaw_practice.domain.models.race.Runner;
+import es.upm.miw.apaw_practice.domain.models.race.RunnerProfessionalUpdating;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.web.reactive.server.WebTestClient;
+import org.springframework.web.reactive.function.BodyInserters;
+
+import java.util.Arrays;
+import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -39,5 +44,62 @@ public class RunnerResourceIT {
                 .uri(RunnerResource.RUNNERS + RunnerResource.ID_ID, "-1")
                 .exchange()
                 .expectStatus().isNotFound();
+    }
+
+    @Test
+    void testPatch() {
+        List<RunnerProfessionalUpdating> runnerProfessionalUpdatings = Arrays.asList(
+                new RunnerProfessionalUpdating("00000003", Boolean.TRUE),
+                new RunnerProfessionalUpdating("00000004", Boolean.TRUE)
+        );
+
+        this.webTestClient
+                .patch()
+                .uri(RunnerResource.RUNNERS)
+                .body(BodyInserters.fromValue(runnerProfessionalUpdatings))
+                .exchange()
+                .expectStatus().isOk();
+    }
+
+    @Test
+    void testPatchNotFound() {
+        List<RunnerProfessionalUpdating> runnerProfessionalUpdatings = Arrays.asList(
+                new RunnerProfessionalUpdating("-1", Boolean.TRUE)
+        );
+
+        this.webTestClient
+                .patch()
+                .uri(RunnerResource.RUNNERS)
+                .body(BodyInserters.fromValue(runnerProfessionalUpdatings))
+                .exchange()
+                .expectStatus().isNotFound();
+    }
+
+    @Test
+    void testFindTotalDistanceByRunnerDni() {
+        this.webTestClient
+                .get()
+                .uri(uriBuilder -> uriBuilder
+                        .path(RunnerResource.RUNNERS + RunnerResource.SEARCH)
+                        .queryParam("q", "dni:00000001")
+                        .build())
+                .exchange()
+                .expectStatus().isOk()
+                .expectBody(Integer.class)
+                .value(distance -> assertEquals(18900, distance));
+    }
+
+    @Test
+    void testFindTotalDistanceByRunnerDniNotFound() {
+        this.webTestClient
+                .get()
+                .uri(uriBuilder -> uriBuilder
+                        .path(RunnerResource.RUNNERS + RunnerResource.SEARCH)
+                        .queryParam("q", "dni:XXXXXXX")
+                        .build())
+                .exchange()
+                .expectStatus().isOk()
+                .expectBody(Integer.class)
+                .value(distance -> assertEquals(0, distance));
     }
 }

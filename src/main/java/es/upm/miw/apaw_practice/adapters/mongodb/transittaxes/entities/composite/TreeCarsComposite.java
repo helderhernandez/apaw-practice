@@ -26,11 +26,11 @@ public class TreeCarsComposite implements TreeCars {
 
     @Override
     public void add(TreeCars treeCars) {
-        treeCarsList.add(treeCars);
+        this.treeCarsList.add(treeCars);
     }
 
     @Override
     public void remove(TreeCars treeCars) {
-        treeCarsList.remove(treeCars);
+        this.treeCarsList.remove(treeCars);
     }
 }

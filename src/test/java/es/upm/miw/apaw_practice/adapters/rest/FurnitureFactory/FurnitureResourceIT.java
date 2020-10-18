@@ -9,6 +9,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.web.reactive.server.WebTestClient;
 import org.springframework.web.reactive.function.BodyInserters;
 
+import java.math.BigDecimal;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
 @RestTestConfig
 public class FurnitureResourceIT {
     @Autowired
@@ -34,5 +38,17 @@ public class FurnitureResourceIT {
                 .exchange()
                 .expectStatus().isNotFound();
     }
-
+    @Test
+    void testFindTotalPriceFurnitureByStreet() {
+        this.webTestClient
+                .get()
+                .uri(uriBuilder ->
+                        uriBuilder.path(FurnitureResource.FURNITURE + FurnitureResource.SEARCH)
+                                .queryParam("q", "street:Granvia")
+                                .build())
+                .exchange()
+                .expectStatus().isOk()
+                .expectBodyList(BigDecimal.class)
+                .value(furniture -> assertEquals(new BigDecimal("885.20"), furniture.get(0)));
+    }
 }

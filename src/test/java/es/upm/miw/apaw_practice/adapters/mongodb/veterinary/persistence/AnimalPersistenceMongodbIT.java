@@ -54,7 +54,7 @@ public class AnimalPersistenceMongodbIT {
         assertNotNull(animalEntity.getAge());
         this.animalPersistence.updateAge(animalEntity.getId(), 7);
         assertEquals(7, animalRepository.findById("key-1-a").get().getAge());
-        veterinarySeederService.deleteAll();
-        veterinarySeederService.seedDatabase();
+        this.animalPersistence.updateAge(animalEntity.getId(), animalEntity.getAge());
+        assertEquals(6, animalRepository.findById("key-1-a").get().getAge());
     }
 }

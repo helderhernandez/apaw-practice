@@ -7,10 +7,9 @@ import es.upm.miw.apaw_practice.adapters.mongodb.race.entities.RaceEntity;
 import es.upm.miw.apaw_practice.adapters.mongodb.race.entities.RunnerClubEntity;
 import es.upm.miw.apaw_practice.adapters.mongodb.race.entities.RunnerEntity;
 import es.upm.miw.apaw_practice.adapters.mongodb.race.entities.SectionEntity;
+import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
-import org.apache.logging.log4j.LogManager;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -30,7 +29,8 @@ public class RaceSeederService {
         LogManager.getLogger(this.getClass()).warn("------- Race Inital Load -----------");
         RunnerClubEntity[] runnerClubEntities = {
                 new RunnerClubEntity("1", "Runners Club", "Madrid", LocalDateTime.of(2008, 1, 10, 0, 0)),
-                new RunnerClubEntity("2", "BCN Runners Club", "Barcelona", LocalDateTime.of(2015, 4, 1, 0, 0))
+                new RunnerClubEntity("2", "BCN Runners Club", "Barcelona", LocalDateTime.of(2015, 4, 1, 0, 0)),
+                new RunnerClubEntity("3", "Amateur Running Club", "Zaragoza", LocalDateTime.of(2014, 3, 1, 0, 0))
         };
         runnerClubRepository.saveAll(List.of(runnerClubEntities));
         RunnerEntity[] runnerEntities = {
@@ -38,6 +38,8 @@ public class RaceSeederService {
                 new RunnerEntity("2", "Maria", "00000002", 2, Boolean.TRUE, runnerClubEntities[0]),
                 new RunnerEntity("3", "Jose", "00000003", 3, Boolean.FALSE, runnerClubEntities[1]),
                 new RunnerEntity("4", "Silvia", "00000004", 4, Boolean.FALSE, runnerClubEntities[1]),
+                new RunnerEntity("5", "Rodrigo", "00000005", 5, Boolean.FALSE, runnerClubEntities[2]),
+                new RunnerEntity("6", "Cristina", "00000006", 6, Boolean.FALSE, runnerClubEntities[2]),
 
         };
         runnerRepository.saveAll(List.of(runnerEntities));
@@ -45,13 +47,17 @@ public class RaceSeederService {
                 new SectionEntity(1, 2800),
                 new SectionEntity(2, 3200),
                 new SectionEntity(3, 4000),
-                new SectionEntity( 1, 3500),
-                new SectionEntity( 2, 4000),
-                new SectionEntity( 3, 2500),
+                new SectionEntity(1, 3500),
+                new SectionEntity(2, 4000),
+                new SectionEntity(3, 2500),
+                new SectionEntity(1, 1200),
+                new SectionEntity(2, 7400),
+                new SectionEntity(3, 300)
         };
         RaceEntity[] raceEntities = {
                 new RaceEntity("1", "Madrid Running Race", "Madrid", LocalDateTime.of(2019, 10, 1, 0, 0), new BigDecimal("3000"), List.of(sectionEntities[0], sectionEntities[1], sectionEntities[2]), List.of(runnerEntities[0], runnerEntities[1])),
-                new RaceEntity("2", "Barcelona Running Race", "Barcelona", LocalDateTime.of(2018, 5, 10, 0, 0), new BigDecimal("4000"), List.of(sectionEntities[3], sectionEntities[4], sectionEntities[5]), List.of(runnerEntities[2], runnerEntities[3]))
+                new RaceEntity("2", "Barcelona Running Race", "Barcelona", LocalDateTime.of(2018, 5, 10, 0, 0), new BigDecimal("4000"), List.of(sectionEntities[3], sectionEntities[4], sectionEntities[5]), List.of(runnerEntities[2], runnerEntities[3])),
+                new RaceEntity("3", "Madrid Running Race", "Madrid", LocalDateTime.of(2018, 10, 1, 0, 0), new BigDecimal("3000"), List.of(sectionEntities[6], sectionEntities[7], sectionEntities[8]), List.of(runnerEntities[0], runnerEntities[1], runnerEntities[4], runnerEntities[5]))
         };
         raceRepository.saveAll(List.of(raceEntities));
     }

@@ -27,7 +27,7 @@ public class StaffEntity {
         BeanUtils.copyProperties(staff, this);
         this.id = UUID.randomUUID().toString();
     }
-    public Staff toWorker() {
+    public Staff toStaff() {
         Staff staff = new Staff();
         BeanUtils.copyProperties(this, staff);
         return staff;
