@@ -81,12 +81,12 @@ public class WarehouseEntity {
         this.active = active;
     }
 
-    public List<StaffEntity> getEmployeeEntity() {
+    public List<StaffEntity> getStaffEntities() {
         return staffEntities;
     }
 
-    public void setEmployeeEntity(List<StaffEntity> workerEntity) {
-        this.staffEntities = workerEntity;
+    public void seStaffEntity(List<StaffEntity> staffEntities) {
+        this.staffEntities = staffEntities;
     }
 
     public List<AddressEntity> getAddressEntity() {
