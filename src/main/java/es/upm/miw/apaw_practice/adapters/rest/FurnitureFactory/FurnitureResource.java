@@ -8,6 +8,7 @@ import es.upm.miw.apaw_practice.domain.services.FurnitureFactory.FurnitureServic
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigDecimal;
 import java.util.stream.Stream;
 
 @RestController
@@ -35,7 +36,7 @@ public class FurnitureResource {
         return this.furnitureService.updateName(id, nameDto.getName());
     }
     @GetMapping(SEARCH)
-    public Furniture findTotalPriceFurnitureByStreet(@RequestParam String q) {
+    public BigDecimal findTotalPriceFurnitureByStreet(@RequestParam String q) {
         String street = new LexicalAnalyzer().extractWithAssure(q, "street");
         return this.furnitureService.findTotalPriceFurnitureByStreet(street);
     }
