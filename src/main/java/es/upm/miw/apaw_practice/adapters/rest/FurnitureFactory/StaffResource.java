@@ -1,12 +1,13 @@
 package es.upm.miw.apaw_practice.adapters.rest.FurnitureFactory;
 
+import es.upm.miw.apaw_practice.adapters.rest.LexicalAnalyzer;
 import es.upm.miw.apaw_practice.domain.models.FurnitureFactory.Staff;
+import es.upm.miw.apaw_practice.domain.models.school.Student;
 import es.upm.miw.apaw_practice.domain.services.FurnitureFactory.StaffService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.util.stream.Stream;
 
 @RestController
 @RequestMapping(StaffResource.STAFF)
@@ -25,5 +26,10 @@ public class StaffResource {
     @PostMapping
     public Staff create(@RequestBody Staff staff) {
         return this.staffService.create(staff);
+    }
+    @GetMapping(SEARCH)
+    public Stream<Staff> findFirstNameByWarehouseName(@RequestParam String q) {
+        String warehouseName = new LexicalAnalyzer().extractWithAssure(q, "name");
+        return this.staffService.findFirstNameByWarehouseName(warehouseName);
     }
 }

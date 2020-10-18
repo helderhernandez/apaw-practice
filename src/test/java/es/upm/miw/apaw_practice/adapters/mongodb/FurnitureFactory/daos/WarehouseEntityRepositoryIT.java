@@ -28,7 +28,7 @@ public class WarehouseEntityRepositoryIT {
                                 Boolean.TRUE.equals(warehouse.getActive())&&
                                 warehouse.getId()!=null&&
                                 "China".equals(warehouse.getAddressEntity().get(0).getCountry()) &&
-                                "Jose".equals(warehouse.getEmployeeEntity().get(0).getFirstName())&&
+                                "Jose".equals(warehouse.getStaffEntities().get(0).getFirstName())&&
                                 "Desk".equals(warehouse.getFurnitureEntity().get(0).getName())
                 ));
     }
