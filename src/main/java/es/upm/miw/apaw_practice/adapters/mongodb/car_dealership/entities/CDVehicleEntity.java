@@ -1,4 +1,4 @@
-package es.upm.miw.apaw_practice.adapters.mongodb.cardealership.entities;
+package es.upm.miw.apaw_practice.adapters.mongodb.car_dealership.entities;
 
 import es.upm.miw.apaw_practice.domain.models.car_dealership.CDVehicle;
 import es.upm.miw.apaw_practice.domain.models.car_dealership.CDVehicleCreation;
@@ -23,6 +23,10 @@ public class CDVehicleEntity {
 
     public CDVehicleEntity() {
         // Empty for framework
+    }
+
+    public static CDVehicleBuilder.Brand builder() {
+        return new Builder();
     }
 
     public CDVehicleEntity(String frameNumber, String brand, String type, Boolean unused, Integer year) {
@@ -119,5 +123,50 @@ public class CDVehicleEntity {
                 ", unused=" + unused +
                 ", year=" + year +
                 '}';
+    }
+
+    public static class Builder implements CDVehicleBuilder.Brand, CDVehicleBuilder.Type, CDVehicleBuilder.Optionals {
+
+        private CDVehicleEntity cdVehicleEntity;
+
+        public Builder() {
+            this.cdVehicleEntity = new CDVehicleEntity();
+            this.cdVehicleEntity.id = UUID.randomUUID().toString();
+        }
+
+        @Override
+        public CDVehicleBuilder.Type brand(String brand) {
+            this.cdVehicleEntity.brand = brand;
+            return this;
+        }
+
+        @Override
+        public CDVehicleBuilder.Optionals type(String type) {
+            this.cdVehicleEntity.type = type;
+            return this;
+        }
+
+        @Override
+        public CDVehicleBuilder.Optionals frameNumber(String frameNumber) {
+            this.cdVehicleEntity.frameNumber = frameNumber;
+            return this;
+        }
+
+        @Override
+        public CDVehicleBuilder.Optionals unused(Boolean unused) {
+            this.cdVehicleEntity.unused = unused;
+            return this;
+        }
+
+        @Override
+        public CDVehicleBuilder.Optionals year(Integer year) {
+            this.cdVehicleEntity.year = year;
+            return this;
+        }
+
+        @Override
+        public CDVehicleEntity build() {
+            return this.cdVehicleEntity;
+        }
     }
 }

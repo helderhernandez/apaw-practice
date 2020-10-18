@@ -1,4 +1,4 @@
-package es.upm.miw.apaw_practice.adapters.mongodb.cardealership.entities;
+package es.upm.miw.apaw_practice.adapters.mongodb.car_dealership.entities;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
