@@ -1,6 +1,7 @@
 package es.upm.miw.apaw_practice.domain.services.FurnitureFactory;
 
 import es.upm.miw.apaw_practice.domain.models.FurnitureFactory.Furniture;
+import es.upm.miw.apaw_practice.domain.models.transittaxes.Tax;
 import es.upm.miw.apaw_practice.domain.persistence_ports.FurnitureFactory.FurniturePersistence;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,4 +24,7 @@ public class FurnitureService {
         return this.furniturePersistence.updateName(id, name);
     }
 
+    public Furniture findTotalPriceFurnitureByStreet(String street) {
+        return this.furniturePersistence.findTotalPriceFurnitureByStreet(street);
+    }
 }
