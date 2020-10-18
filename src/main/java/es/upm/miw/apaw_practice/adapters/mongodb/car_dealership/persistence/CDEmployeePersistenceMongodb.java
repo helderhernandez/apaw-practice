@@ -1,7 +1,7 @@
-package es.upm.miw.apaw_practice.adapters.mongodb.cardealership.persistence;
+package es.upm.miw.apaw_practice.adapters.mongodb.car_dealership.persistence;
 
-import es.upm.miw.apaw_practice.adapters.mongodb.cardealership.daos.CDEmployeeRepository;
-import es.upm.miw.apaw_practice.adapters.mongodb.cardealership.entities.CDEmployeeEntity;
+import es.upm.miw.apaw_practice.adapters.mongodb.car_dealership.daos.CDEmployeeRepository;
+import es.upm.miw.apaw_practice.adapters.mongodb.car_dealership.entities.CDEmployeeEntity;
 import es.upm.miw.apaw_practice.domain.exceptions.NotFoundException;
 import es.upm.miw.apaw_practice.domain.models.car_dealership.CDEmployee;
 import es.upm.miw.apaw_practice.domain.persistence_ports.car_dealership.CDEmployeePersistence;
