@@ -1,6 +1,6 @@
-package es.upm.miw.apaw_practice.adapters.mongodb.cardealership.daos;
+package es.upm.miw.apaw_practice.adapters.mongodb.car_dealership.daos;
 
-import es.upm.miw.apaw_practice.adapters.mongodb.cardealership.entities.CarDealershipEntity;
+import es.upm.miw.apaw_practice.adapters.mongodb.car_dealership.entities.CarDealershipEntity;
 import org.springframework.data.mongodb.repository.MongoRepository;
 
 import java.util.Optional;
