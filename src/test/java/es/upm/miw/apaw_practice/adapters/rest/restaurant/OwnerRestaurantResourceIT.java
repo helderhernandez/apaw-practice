@@ -34,8 +34,8 @@ public class OwnerRestaurantResourceIT {
                 .expectStatus().isOk()
                 .expectBodyList(NameDto.class)
                 .value(Assertions::assertNotNull)
-                .value(owner -> assertEquals("name1", owner.get(0).getName()))
-                .value(owner -> assertEquals("name2", owner.get(1).getName()));
+                .value(owner -> assertEquals("Lara", owner.get(0).getName()))
+                .value(owner -> assertEquals("Pepa", owner.get(1).getName()));
     }
 
     @Test
@@ -44,7 +44,7 @@ public class OwnerRestaurantResourceIT {
         OwnerRestaurantUpdate ownerRestaurantUpdate = new OwnerRestaurantUpdate("Laura", "Garcia");
         this.webTestClient
                 .put()
-                .uri(OwnerRestaurantResource.OWNERS + OwnerRestaurantResource.ID_ID, ownerRestaurantEntity.get(2).getId())
+                .uri(OwnerRestaurantResource.OWNERS + OwnerRestaurantResource.ID_ID, ownerRestaurantEntity.get(3).getId())
                 .body(BodyInserters.fromValue(ownerRestaurantUpdate))
                 .exchange()
                 .expectStatus().isOk()

@@ -23,7 +23,7 @@ public class FoodTypeResourceIT {
 
     @Test
     void testUpdateSpicy() {
-        FoodTypeSpicyUpdating foodTypeSpicyUpdating = new FoodTypeSpicyUpdating("tag3", false);
+        FoodTypeSpicyUpdating foodTypeSpicyUpdating = new FoodTypeSpicyUpdating("foodType3", false);
         this.webTestClient
                 .patch()
                 .uri(FoodTypeResource.FOODTYPES)

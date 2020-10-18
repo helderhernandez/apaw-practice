@@ -49,7 +49,8 @@ public class RestaurantSeederService {
         OwnerRestaurantEntity[] owner = {
                 new OwnerRestaurantEntity("tag1", "Lara", "Martinez"),
                 new OwnerRestaurantEntity("tag2", "Pepa", "Felix"),
-                new OwnerRestaurantEntity("tag3", "Miriam", "Pez")
+                new OwnerRestaurantEntity("tag3", "Miriam", "Pez"),
+                new OwnerRestaurantEntity("tag4", "Mar", "Lopez")
         };
         this.ownerRepository.saveAll(Arrays.asList(owner));
         RestaurantEntity[] restaurant = {

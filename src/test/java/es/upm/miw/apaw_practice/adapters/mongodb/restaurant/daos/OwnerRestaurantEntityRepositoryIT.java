@@ -18,7 +18,7 @@ public class OwnerRestaurantEntityRepositoryIT {
     @Test
     void testCreateAndRead(){
         assertTrue(this.ownerRepository.findAll().stream()
-                .anyMatch(owner -> "name1".equals(owner.getName()) &&
-                        "familyName1".equals(owner.getFamilyName())));
+                .anyMatch(owner -> "Lara".equals(owner.getName()) &&
+                        "Martinez".equals(owner.getFamilyName())));
     }
 }

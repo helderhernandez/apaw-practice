@@ -32,7 +32,7 @@ public class FoodTypePersistenceMongodbIT {
 
     @Test
     void testReadById() {
-        assertEquals("tag1", this.foodTypePersistenceMongodb.findById("tag1").getId());
+        assertEquals("foodType1", this.foodTypePersistenceMongodb.findById("foodType1").getId());
     }
 
     @Test
