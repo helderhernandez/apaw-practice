@@ -18,4 +18,16 @@ public class FilmCommentResourceIT {
                 .exchange()
                 .expectStatus().isOk();
     }
+
+    @Test
+    void testFindContentsOfCommentFromFilmsOfActor() {
+        webTestClient.get()
+                .uri(uriBuilder -> uriBuilder.path(FilmCommentResource.COMMENT + FilmCommentResource.ACTOR)
+                        .queryParam("q", "name:actor1")
+                        .build())
+                .exchange()
+                .expectStatus().isOk()
+                .expectBodyList(String.class);
+    }
+
 }

@@ -19,6 +19,6 @@ public class RentalFilmPersistenceMongodbIT {
         assertEquals("Generation Z", rentalFilm.getTitle());
         assertEquals("1998", rentalFilm.getYear().toString());
         assertEquals("filmMaker4", rentalFilm.getFilmMaker().getReference());
-        assertEquals("cat4", rentalFilm.getCategories().get(0).getId());
+        assertEquals("cat4", rentalFilm.getCategories().get(0).getReference());
     }
 }

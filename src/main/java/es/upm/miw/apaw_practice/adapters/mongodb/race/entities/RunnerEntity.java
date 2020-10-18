@@ -15,7 +15,7 @@ public class RunnerEntity {
     @Indexed(unique = true)
     private String dni;
     private Integer dorsal;
-    private Boolean isProfessional;
+    private Boolean professional;
     @DBRef
     private RunnerClubEntity runnerClubEntity;
 
@@ -23,12 +23,12 @@ public class RunnerEntity {
         // empty for framework
     }
 
-    public RunnerEntity(String id, String name, String dni, Integer dorsal, Boolean isProfessional, RunnerClubEntity runnerClubEntity) {
+    public RunnerEntity(String id, String name, String dni, Integer dorsal, Boolean professional, RunnerClubEntity runnerClubEntity) {
         this.id = id;
         this.name = name;
         this.dni = dni;
         this.dorsal = dorsal;
-        this.isProfessional = isProfessional;
+        this.professional = professional;
         this.runnerClubEntity = runnerClubEntity;
     }
 
@@ -65,11 +65,11 @@ public class RunnerEntity {
     }
 
     public Boolean getProfessional() {
-        return isProfessional;
+        return professional;
     }
 
     public void setProfessional(Boolean professional) {
-        isProfessional = professional;
+        this.professional = professional;
     }
 
     public RunnerClubEntity getRunnerClubEntity() {
@@ -97,12 +97,23 @@ public class RunnerEntity {
                 ", name='" + name + '\'' +
                 ", dni='" + dni + '\'' +
                 ", dorsal=" + dorsal +
-                ", isProfessional=" + isProfessional +
+                ", professional=" + professional +
                 ", runnerClubEntity=" + runnerClubEntity +
                 '}';
     }
 
     public Runner toRunner() {
-        return new Runner(this.id, this.name, this.dni, this.dorsal, this.isProfessional, this.runnerClubEntity.toRunnerClub());
+        return new Runner(this.id, this.name, this.dni, this.dorsal, this.professional, this.runnerClubEntity.toRunnerClub());
+    }
+
+    public void fromRunner(Runner runner) {
+        this.id = runner.getId();
+        this.name = runner.getName();
+        this.dni = runner.getDni();
+        this.dorsal = runner.getDorsal();
+        this.professional = runner.getProfessional();
+        RunnerClubEntity runnerClubEntity = new RunnerClubEntity();
+        runnerClubEntity.fromRunnerClub(runner.getRunnerClub());
+        this.runnerClubEntity = runnerClubEntity;
     }
 }

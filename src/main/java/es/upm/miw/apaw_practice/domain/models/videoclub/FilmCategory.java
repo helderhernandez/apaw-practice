@@ -1,8 +1,10 @@
 package es.upm.miw.apaw_practice.domain.models.videoclub;
 
+import java.util.UUID;
+
 public class FilmCategory {
 
-    private String id;
+    private String reference;
     private String name;
     private Boolean plus18;
 
@@ -10,18 +12,18 @@ public class FilmCategory {
         // empty from framework
     }
 
-    public FilmCategory(String id, String name, Boolean plus18) {
-        this.id = id;
+    public FilmCategory(String reference, String name, Boolean plus18) {
+        this.reference = reference;
         this.name = name;
         this.plus18 = plus18;
     }
 
-    public String getId() {
-        return id;
+    public String getReference() {
+        return reference;
     }
 
-    public void setId(String id) {
-        this.id = id;
+    public void setReference(String reference) {
+        this.reference = reference;
     }
 
     public String getName() {
@@ -41,24 +43,9 @@ public class FilmCategory {
     }
 
     @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        FilmCategory filmCategory = (FilmCategory) o;
-        return id.equals(filmCategory.id) &&
-                name.equals(filmCategory.name) &&
-                plus18.equals(filmCategory.plus18);
-    }
-
-    @Override
-    public int hashCode() {
-        return this.id.hashCode();
-    }
-
-    @Override
     public String toString() {
         return "FilmCategory{" +
-                "id='" + id + '\'' +
+                "reference='" + reference + '\'' +
                 ", name='" + name + '\'' +
                 ", plus18=" + plus18 +
                 '}';

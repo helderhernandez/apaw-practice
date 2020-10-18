@@ -1,12 +1,19 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.kitchen.persistence;
 
 import es.upm.miw.apaw_practice.adapters.mongodb.kitchen.daos.ChefRepository;
+import es.upm.miw.apaw_practice.adapters.mongodb.kitchen.daos.KitchenBoyRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.kitchen.entities.ChefEntity;
+import es.upm.miw.apaw_practice.adapters.mongodb.kitchen.entities.IngredientEntity;
+import es.upm.miw.apaw_practice.adapters.mongodb.kitchen.entities.KitchenBoyEntity;
 import es.upm.miw.apaw_practice.domain.exceptions.NotFoundException;
 import es.upm.miw.apaw_practice.domain.models.kitchen.Chef;
 import es.upm.miw.apaw_practice.domain.persistence_ports.kitchen.ChefPersistence;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Repository("chefPersistence")
 public class ChefPersistenceMongodb implements ChefPersistence {
@@ -25,5 +32,14 @@ public class ChefPersistenceMongodb implements ChefPersistence {
 
         chefEntity.setRecipesFinished(recipesFinished);
         return this.chefRepository.save(chefEntity).toChef();
+    }
+
+    @Override
+    public Stream<String> search2(String ingredientID) {
+        return this.chefRepository.findAll().stream()
+                .filter(chef -> chef.getKitchenBoys().stream()
+                        .anyMatch(kitchenBoy -> kitchenBoy.getIngredientToWorkOn().getId().equals(ingredientID)))
+                .peek(chef -> System.out.println("----------" + chef.getDni()))
+                .map(chef -> chef.getDni());
     }
 }

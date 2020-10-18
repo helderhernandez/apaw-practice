@@ -15,9 +15,18 @@ public class RunnerEntityRepositoryIT {
     private RunnerRepository runnerRepository;
 
     @Test
-    void testCreateAndRead() {
-        assertTrue(runnerRepository.findById("3").isPresent());
-        RunnerEntity runner = runnerRepository.findById("3").get();
-        assertEquals("00000003", runner.getDni());
+    void testCreateAndReadById() {
+        assertTrue(runnerRepository.findById("1").isPresent());
+        RunnerEntity runner = runnerRepository.findById("1").get();
+        assertEquals("00000001", runner.getDni());
+        assertEquals("Juan", runner.getName());
+    }
+
+    @Test
+    void testCreateAndReadByDni() {
+        assertTrue(runnerRepository.findByDni("00000001").isPresent());
+        RunnerEntity runner = runnerRepository.findByDni("00000001").get();
+        assertEquals("1", runner.getId());
+        assertEquals("Juan", runner.getName());
     }
 }

@@ -13,4 +13,6 @@ public interface VehiclePersistence {
     Vehicle update(Vehicle vehicle);
 
     Stream<Vehicle> readAll();
+
+    Stream<String> findPieceBarcodeByMechanicName(String mechanicName);
 }

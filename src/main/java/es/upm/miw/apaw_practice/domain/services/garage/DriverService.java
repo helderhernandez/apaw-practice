@@ -6,6 +6,8 @@ import es.upm.miw.apaw_practice.domain.persistence_ports.garage.DriverPersistenc
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class DriverService {
 
@@ -22,6 +24,10 @@ public class DriverService {
 
     public void delete(String dni) {
         this.driverPersistence.delete(dni);
+    }
+
+    public List<String> findMechanicNamesByDriverName(String driverName) {
+        return this.driverPersistence.findMechanicNamesByDriverName(driverName);
     }
 
 }

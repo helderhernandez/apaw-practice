@@ -6,7 +6,6 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.Objects;
 import java.util.UUID;
 
 @Document
@@ -23,16 +22,13 @@ public class OwnerEntity {
         //empty from framework
     }
 
-    public OwnerEntity(String id, String name, String dni, String familyName) {
-        this.id = id;
-        this.name = name;
-        this.dni = dni;
-        this.familyName = familyName;
-    }
-
     public OwnerEntity(Owner owner) {
         BeanUtils.copyProperties(owner, this);
         this.id = UUID.randomUUID().toString();
+    }
+
+    public static OwnerBuilders.Id builder() {
+        return new Builder();
     }
 
     public String getId() {
@@ -67,36 +63,48 @@ public class OwnerEntity {
         this.familyName = familyName;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        OwnerEntity that = (OwnerEntity) o;
-        return Objects.equals(id, that.id) &&
-                Objects.equals(name, that.name) &&
-                Objects.equals(familyName, that.familyName) &&
-                Objects.equals(dni, that.dni);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, name, familyName, dni);
-    }
-
-    @Override
-    public String toString() {
-        return "OwnerEntity{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                ", familyName='" + familyName + '\'' +
-                ", dni='" + dni + '\'' +
-                '}';
-    }
-
     public Owner toOwner() {
         Owner owner = new Owner();
         BeanUtils.copyProperties(this, owner);
         return owner;
 
+    }
+
+    public static class Builder implements OwnerBuilders.Dni, OwnerBuilders.Id, OwnerBuilders.Optatives {
+
+        private OwnerEntity ownerEntity;
+
+        public Builder() {
+            this.ownerEntity = new OwnerEntity();
+        }
+
+        @Override
+        public OwnerBuilders.Dni idOwner(String id) {
+            this.ownerEntity.id = id;
+            return this;
+        }
+
+        @Override
+        public OwnerBuilders.Optatives dni(String dni) {
+            this.ownerEntity.dni = dni;
+            return this;
+        }
+
+        @Override
+        public OwnerBuilders.Optatives name(String name) {
+            this.ownerEntity.name = name;
+            return this;
+        }
+
+        @Override
+        public OwnerBuilders.Optatives familyName(String familyName) {
+            this.ownerEntity.familyName = familyName;
+            return this;
+        }
+
+        @Override
+        public OwnerEntity build() {
+            return this.ownerEntity;
+        }
     }
 }

@@ -5,7 +5,6 @@ import java.util.UUID;
 
 public class RentalFilm {
 
-    private String id;
     private String reference;
     private String title;
     private Integer year;
@@ -17,7 +16,6 @@ public class RentalFilm {
     }
 
     public RentalFilm(String reference, String title, Integer year, FilmMaker filmMaker, List<FilmCategory> categories) {
-        this.id = UUID.randomUUID().toString();
         this.reference = reference;
         this.title = title;
         this.year = year;
@@ -66,28 +64,9 @@ public class RentalFilm {
     }
 
     @Override
-    public int hashCode() {
-        return this.id.hashCode();
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        RentalFilm rentalFilm = (RentalFilm) o;
-        return id.equals(rentalFilm.id) &&
-                reference.equals(rentalFilm.reference) &&
-                title.equals(rentalFilm.title) &&
-                year.equals(rentalFilm.year) &&
-                filmMaker.equals(rentalFilm.filmMaker) &&
-                categories.equals(rentalFilm.categories);
-    }
-
-    @Override
     public String toString() {
         return "RentalFilm{" +
-                "id='" + id + '\'' +
-                ", reference='" + reference + '\'' +
+                "reference='" + reference + '\'' +
                 ", title='" + title + '\'' +
                 ", year=" + year +
                 ", filmMaker=" + filmMaker +

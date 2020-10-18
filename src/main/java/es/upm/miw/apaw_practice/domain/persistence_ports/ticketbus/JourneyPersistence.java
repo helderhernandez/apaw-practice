@@ -9,4 +9,6 @@ import java.util.stream.Stream;
 public interface JourneyPersistence {
 
     Stream<Journey> findAll();
+
+    String findIdByDepartureAndArrive(String departure, String arrive);
 }

@@ -5,8 +5,9 @@ import es.upm.miw.apaw_practice.adapters.mongodb.race.entities.RaceEntity;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import java.util.List;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 @TestConfig
 public class RaceEntityRepositoryIT {
@@ -16,9 +17,28 @@ public class RaceEntityRepositoryIT {
 
     @Test
     void testCreateAndRead() {
-        assertTrue(raceRepository.findById("2").isPresent());
-        RaceEntity race = raceRepository.findById("2").get();
-        assertEquals("Barcelona", race.getLocation());
+        assertTrue(raceRepository.findById("1").isPresent());
+        RaceEntity race = raceRepository.findById("1").get();
+        assertEquals("Madrid Running Race", race.getName());
+    }
+
+    @Test
+    void testFindByName() {
+        assertFalse(raceRepository.findByName("Madrid Running Race").isEmpty());
+        List<RaceEntity> raceEntities = raceRepository.findByName("Madrid Running Race");
+        RaceEntity raceEntity = raceEntities.get(0);
+        assertEquals("Madrid Running Race", raceEntity.getName());
+    }
+
+    @Test
+    void testFindByNameEmptyResult() {
+        assertTrue(raceRepository.findByName("Tenerife Race").isEmpty());
+    }
+
+    @Test
+    void testFindAll() {
+        List<RaceEntity> raceEntities = raceRepository.findAll();
+        assertEquals(3, raceEntities.size());
     }
 
 }

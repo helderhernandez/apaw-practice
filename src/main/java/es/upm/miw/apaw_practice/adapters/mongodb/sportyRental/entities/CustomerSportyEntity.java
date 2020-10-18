@@ -87,7 +87,7 @@ public class CustomerSportyEntity {
     }
 
     public CustomerSporty convertToCustomerSporty() {
-        return new CustomerSporty(this.idCustomer, this.dni, this.name, this.surnames, this.email, this.phone);
+        return CustomerSporty.builder().idCustomer(this.idCustomer).dni(this.dni).name(this.name).surnames(this.surnames).email(this.email).phone(this.phone).build();
     }
 
     @Override

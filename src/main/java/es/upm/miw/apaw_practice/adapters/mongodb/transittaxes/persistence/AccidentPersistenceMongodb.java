@@ -52,7 +52,6 @@ public class AccidentPersistenceMongodb implements AccidentPersistence {
     public Stream<String> refAccidentsByNameOwner(String nameOwnerCar) {
         return carRepository.findAll()
                 .stream()
-                .peek(carEntity -> LogManager.getLogger(this.getClass()).info("carEntity owner: " + carEntity.getOwner()))
                 .filter(carEntity -> nameOwnerCar.equalsIgnoreCase(carEntity.getOwner().getName()))
                 .flatMap(carEntity -> carEntity.getAccidents().stream())
                 .map(accidentEntity -> accidentEntity.toAccident().getRefAccident());

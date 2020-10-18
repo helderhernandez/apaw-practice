@@ -32,9 +32,9 @@ public class TicketBusSeederService {
         LogManager.getLogger(this.getClass()).warn("------- TicketBus Initial Load -----------");
 
         PassengerBusEntity[] passengers = {
-                new PassengerBusEntity("89386661J", "Juan", "Perez", "651112234", "jpz@upm.es", Boolean.FALSE),
-                new PassengerBusEntity("33909261Q", "Ana", "Suarez", "679998821", "asz@upm.es", Boolean.FALSE),
-                new PassengerBusEntity("07904440F", "Claudia", "Wang", "760349846", "cwang@upm.es", Boolean.FALSE)
+                PassengerBusEntity.builder().docIdentify("89386661J").name("Juan").familyName("Perez").phone("651112234").email("jpz@upm.es").accesibility(Boolean.FALSE).build(),
+                PassengerBusEntity.builder().docIdentify("33909261Q").name("Ana").familyName("Suarez").phone("679998821").email("asz@upm.es").accesibility(Boolean.FALSE).build(),
+                PassengerBusEntity.builder().docIdentify("07904440F").name("Claudia").familyName("Wang").phone("760349846").email("cwang@upm.es").accesibility(Boolean.FALSE).build()
         };
         this.passengerBusRepository.saveAll(Arrays.asList(passengers));
 
@@ -45,16 +45,16 @@ public class TicketBusSeederService {
         this.journeyRepository.saveAll(Arrays.asList(journeys));
 
         TicketBusEntity[] tickets = {
-                new TicketBusEntity(11, null, null, new BigDecimal("30.99"), passengers[0]),
-                new TicketBusEntity(12, null, null, new BigDecimal("30.99"), passengers[1]),
-                new TicketBusEntity(31, null, null, new BigDecimal("45.00"), passengers[0]),
-                new TicketBusEntity(32, null, null, new BigDecimal("45.00"), passengers[2])
+                TicketBusEntity.builder().seat(11).departureTime(null).arriveTime(null).price(new BigDecimal("30.99")).passengerBus(passengers[0]).build(),
+                TicketBusEntity.builder().seat(12).departureTime(null).arriveTime(null).price(new BigDecimal("30.99")).passengerBus(passengers[1]).build(),
+                TicketBusEntity.builder().seat(31).departureTime(null).arriveTime(null).price(new BigDecimal("45.00")).passengerBus(passengers[0]).build(),
+                TicketBusEntity.builder().seat(32).departureTime(null).arriveTime(null).price(new BigDecimal("45.00")).passengerBus(passengers[2]).build()
         };
         this.ticketBusRepository.saveAll(Arrays.asList(tickets));
 
         BusEntity[] autocars = {
-                new BusEntity( "Velocity Cars", 40, Boolean.TRUE, Boolean.TRUE, List.of(tickets[0], tickets[1]), List.of(journeys[0])),
-                new BusEntity( "Flotas Madrid", 30, Boolean.TRUE, Boolean.FALSE, List.of(tickets[2], tickets[3]), List.of(journeys[1]))
+                new BusEntity("Velocity Cars", 40, Boolean.TRUE, Boolean.TRUE, List.of(tickets[0], tickets[1]), List.of(journeys[0])),
+                new BusEntity("Flotas Madrid", 30, Boolean.TRUE, Boolean.FALSE, List.of(tickets[2], tickets[3]), List.of(journeys[1]))
         };
         this.busRepository.saveAll(Arrays.asList(autocars));
     }

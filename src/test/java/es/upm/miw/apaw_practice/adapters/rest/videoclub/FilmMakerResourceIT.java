@@ -31,6 +31,6 @@ public class FilmMakerResourceIT {
                 .expectStatus().isOk()
                 .expectBody(FilmMaker.class)
                 .value(Assertions::assertNotNull)
-                .value(filmMakerData -> assertNotNull(filmMakerData.getId()));
+                .value(filmMakerData -> assertNotNull(filmMakerData.getReference()));
     }
 }

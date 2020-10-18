@@ -70,6 +70,16 @@ public class SocialPostEntity {
         this.likes = likes;
     }
 
+    public SocialPost toSocialPost() {
+        SocialPost socialPost = new SocialPost();
+        BeanUtils.copyProperties(this, socialPost);
+        return socialPost;
+    }
+
+    public void fromSocialPost(SocialPost socialPost) {
+        BeanUtils.copyProperties(socialPost, this);
+    }
+
     @Override
     public int hashCode() {
         return this.id.hashCode();
@@ -89,12 +99,6 @@ public class SocialPostEntity {
                 ", shared='" + shared + '\'' +
                 ", likes='" + likes + '\'' +
                 '}';
-    }
-
-    public SocialPost toSocialPost() {
-        SocialPost socialPost = new SocialPost();
-        BeanUtils.copyProperties(this, socialPost);
-        return socialPost;
     }
 
 }

@@ -7,6 +7,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.Objects;
 import java.util.UUID;
 
 @Document
@@ -94,6 +95,14 @@ public class CDVehicleEntity {
 
     public void fromVehicle(CDVehicle vehicle) {
         BeanUtils.copyProperties(vehicle, this);
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        CDVehicleEntity that = (CDVehicleEntity) o;
+        return Objects.equals(id, that.id);
     }
 
     @Override

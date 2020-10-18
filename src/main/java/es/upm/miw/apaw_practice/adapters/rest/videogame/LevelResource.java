@@ -26,4 +26,5 @@ public class LevelResource {
     public Stream<Level> readAll() {
         return this.levelService.readAll();
     }
+
 }

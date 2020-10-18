@@ -3,6 +3,7 @@ package es.upm.miw.apaw_practice.domain.models.filmforum;
 import java.util.List;
 
 public class FilmForum {
+    private String id;
     private List<FilmActor> actors;
     private List<FilmComment> comments;
     private String name;
@@ -11,7 +12,8 @@ public class FilmForum {
     private Integer duration;
     private String genre;
 
-    public FilmForum(List<FilmActor> actors, List<FilmComment> comments, String name, Integer year, Boolean isForAllPublic, Integer duration, String genre) {
+    public FilmForum(String id, List<FilmActor> actors, List<FilmComment> comments, String name, Integer year, Boolean isForAllPublic, Integer duration, String genre) {
+        this.id = id;
         this.actors = actors;
         this.comments = comments;
         this.name = name;
@@ -75,6 +77,15 @@ public class FilmForum {
 
     public void setGenre(String genre) {
         this.genre = genre;
+    }
+
+
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
     }
 
     @Override

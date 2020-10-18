@@ -7,7 +7,6 @@ import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.math.BigDecimal;
-import java.util.Objects;
 import java.util.UUID;
 
 @Document
@@ -36,10 +35,6 @@ public class TaxEntity {
 
     public String getId() {
         return id;
-    }
-
-    public void setId(String id) {
-        this.id = id;
     }
 
     public String getRefTax() {
@@ -72,34 +67,6 @@ public class TaxEntity {
 
     public void setPaid(Boolean paid) {
         this.paid = paid;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        TaxEntity that = (TaxEntity) o;
-        return Objects.equals(id, that.id) &&
-                Objects.equals(refTax, that.refTax) &&
-                Objects.equals(description, that.description) &&
-                Objects.equals(price, that.price) &&
-                Objects.equals(paid, that.paid);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, refTax, description, price, paid);
-    }
-
-    @Override
-    public String toString() {
-        return "TransitTaxesEntity{" +
-                "id='" + id + '\'' +
-                ", refTaxes='" + refTax + '\'' +
-                ", description='" + description + '\'' +
-                ", price=" + price +
-                ", paid=" + paid +
-                '}';
     }
 
     public Tax toTax() {

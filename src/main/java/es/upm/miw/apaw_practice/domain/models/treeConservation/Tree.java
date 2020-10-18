@@ -9,7 +9,7 @@ public class Tree {
     private LocalDateTime registrationDate;
     private String specie;
     private String age;
-    private Boolean isMonitored;
+    private Boolean monitored;
     private List<Inspection> inspections;
     private List<String> diseasesName;
 
@@ -50,11 +50,11 @@ public class Tree {
     }
 
     public Boolean getMonitored() {
-        return isMonitored;
+        return monitored;
     }
 
     public void setMonitored(Boolean monitored) {
-        isMonitored = monitored;
+        this.monitored = monitored;
     }
 
     public List<Inspection> getInspections() {
@@ -80,7 +80,7 @@ public class Tree {
                 ", registrationDate=" + registrationDate +
                 ", specie='" + specie + '\'' +
                 ", age='" + age + '\'' +
-                ", isMonitored=" + isMonitored +
+                ", monitored=" + monitored +
                 ", inspections=" + inspections +
                 ", diseasesName=" + diseasesName +
                 '}';

@@ -13,7 +13,12 @@ public class LevelService {
     private LevelPersistence levelPersistence;
 
     @Autowired
-    public LevelService (LevelPersistence levelPersistence){ this.levelPersistence= levelPersistence; }
+    public LevelService(LevelPersistence levelPersistence) {
+        this.levelPersistence = levelPersistence;
+    }
 
-    public Stream<Level> readAll() { return levelPersistence.readAll();}
+    public Stream<Level> readAll() {
+        return levelPersistence.readAll();
+    }
+
 }

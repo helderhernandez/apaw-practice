@@ -16,7 +16,7 @@ public class PhysicalStoreEntityRepositoryIT {
     private PhysicalStoreRepository physicalStoreRepository;
 
     @Test
-    void findByAddress(){
+    void testFindByAddress(){
         assertTrue(this.physicalStoreRepository.findByAddress("address2").isPresent());
         PhysicalStoreEntity physicalStore = this.physicalStoreRepository.findByAddress("address2").get();
         assertEquals(600, physicalStore.getSize());

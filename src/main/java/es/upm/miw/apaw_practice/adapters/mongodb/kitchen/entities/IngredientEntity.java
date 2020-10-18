@@ -80,9 +80,13 @@ public class IngredientEntity {
     }
 
     public Ingredient toIngredient() {
-        Ingredient ingredient = new Ingredient(id, name, pricePerKg, weightKg);
-        ingredient.setElaborated(elaborated);
-        ingredient.setWashed(washed);
+        Ingredient ingredient = Ingredient.builder()
+                .id(id)
+                .name(name)
+                .pricePerKg(pricePerKg)
+                .weightKg(weightKg)
+                .elaborated(elaborated).washed(washed)
+                .build();
         return ingredient;
     }
 

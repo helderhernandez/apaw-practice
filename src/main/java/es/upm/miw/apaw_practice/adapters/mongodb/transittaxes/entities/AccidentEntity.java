@@ -7,7 +7,6 @@ import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
-import java.util.Objects;
 
 @Document
 public class AccidentEntity {
@@ -34,24 +33,12 @@ public class AccidentEntity {
         return id;
     }
 
-    public void setId(String id) {
-        this.id = id;
-    }
-
     public String getRefAccident() {
         return refAccident;
     }
 
-    public void setRefAccident(String refAccident) {
-        this.refAccident = refAccident;
-    }
-
     public LocalDateTime getDate() {
         return date;
-    }
-
-    public void setDate(LocalDateTime date) {
-        this.date = date;
     }
 
     public String getPlace() {
@@ -60,32 +47,6 @@ public class AccidentEntity {
 
     public void setPlace(String place) {
         this.place = place;
-    }
-
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        AccidentEntity that = (AccidentEntity) o;
-        return Objects.equals(id, that.id) &&
-                Objects.equals(refAccident, that.refAccident) &&
-                Objects.equals(date, that.date) &&
-                Objects.equals(place, that.place);
-    }
-
-    @Override
-    public int hashCode() {
-        return Objects.hash(id, refAccident, date, place);
-    }
-
-    @Override
-    public String toString() {
-        return "AccidentEntity{" +
-                "id='" + id + '\'' +
-                ", refAccident='" + refAccident + '\'' +
-                ", date=" + date +
-                ", place='" + place + '\'' +
-                '}';
     }
 
     public Accident toAccident() {

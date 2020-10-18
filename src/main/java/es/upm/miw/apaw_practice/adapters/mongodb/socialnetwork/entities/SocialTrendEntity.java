@@ -64,13 +64,12 @@ public class SocialTrendEntity {
     }
 
     public SocialTrend toSocialTrend() {
-        SocialTrend socialTrend = new SocialTrend();
-        BeanUtils.copyProperties(this, socialTrend);
-        return socialTrend;
+        return new SocialTrend(id, name, position, socialPostEntity.getId());
     }
 
-    public void fromSocialTrend(SocialTrend socialTrend) {
+    public void fromSocialTrend(SocialTrend socialTrend, SocialPostEntity socialPostEntity) {
         BeanUtils.copyProperties(socialTrend, this);
+        setSocialPostEntity(socialPostEntity);
     }
 
     @Override
@@ -88,7 +87,8 @@ public class SocialTrendEntity {
         return "SocialTrendEntity{" +
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
-                ", position='" + position + '\'' +
+                ", position=" + position +
+                ", socialPostEntity=" + socialPostEntity +
                 '}';
     }
 
