@@ -58,6 +58,20 @@ public class FilmCategoryResourceIT {
                     assertEquals("Action", filmCategoryData.getName());
                     assertTrue(filmCategoryData.getPlus18());
                 });
+    }
 
+    @Test
+    void testFindDistinctPlus18NameByFilmMaker() {
+        this.webTestClient
+                .get()
+                .uri(uriBuilder ->
+                        uriBuilder.path(FilmCategoryResource.FILMS_CATEGORIES + FilmCategoryResource.SEARCH)
+                                .queryParam("q", "gender:F")
+                                .build())
+                .exchange()
+                .expectStatus().isOk()
+                .expectBodyList(NameDto.class)
+                .value(Assertions::assertNotNull)
+                .value(name -> assertEquals("War", name.get(0).getName()));
     }
 }
