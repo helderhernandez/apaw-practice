@@ -9,6 +9,8 @@ import es.upm.miw.apaw_practice.domain.persistence_ports.treeConservation.Diseas
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.stream.Stream;
+
 @Repository("diseasePersistence")
 public class DiseasePersistenceMongodb implements DiseasePersistence {
     private final DiseaseRepository diseaseRepository;
@@ -30,6 +32,11 @@ public class DiseasePersistenceMongodb implements DiseasePersistence {
                 .findByName(name)
                 .orElseThrow(() -> new NotFoundException("Disease name: " + name))
                 .toDisease();
+    }
+
+    @Override
+    public Stream<Disease> readAll() {
+        return this.diseaseRepository.findAll().stream().map(DiseaseEntity::toDisease);
     }
 
     @Override

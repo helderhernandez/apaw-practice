@@ -1,15 +1,19 @@
 package es.upm.miw.apaw_practice.adapters.rest.treeConservation;
 
+import es.upm.miw.apaw_practice.adapters.rest.LexicalAnalyzer;
 import es.upm.miw.apaw_practice.domain.models.treeConservation.Disease;
 import es.upm.miw.apaw_practice.domain.models.treeConservation.DiseaseCreation;
 import es.upm.miw.apaw_practice.domain.services.treeConservation.DiseaseService;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.stream.Stream;
 
 @RestController
 @RequestMapping(DiseaseResource.DISEASES)
 public class DiseaseResource {
     static final String DISEASES = "/tree-conservation/diseases";
     static final String NAME_ID = "/{name}";
+    static final String SEARCH = "/search";
 
     private final DiseaseService diseaseService;
 
@@ -25,5 +29,11 @@ public class DiseaseResource {
     @DeleteMapping(NAME_ID)
     public void delete(@PathVariable String name) {
         this.diseaseService.delete(name);
+    }
+
+    @GetMapping(SEARCH)
+    public Stream<DiseaseNameDto> findByInspectionType(@RequestParam String q) {
+        String type = new LexicalAnalyzer().extractWithAssure(q, "type", String::new);
+        return this.diseaseService.findByInspectionType(type).map(DiseaseNameDto::new).distinct();
     }
 }
