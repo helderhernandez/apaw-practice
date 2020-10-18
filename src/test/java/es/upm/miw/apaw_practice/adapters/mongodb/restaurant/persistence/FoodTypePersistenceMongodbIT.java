@@ -39,8 +39,7 @@ public class FoodTypePersistenceMongodbIT {
     void testFindFoodTypesAssociateToOwner() {
         Stream<FoodType> typeList = this.foodTypePersistenceMongodb.findFoodTypesAssociateToOwner("Lara");
         assertEquals(List.of("foodType1", "foodType2", "foodType5"),
-                typeList.map(FoodTypeDto::new)
-                        .map(FoodTypeDto::getId)
+                typeList.map(FoodType::getId)
                         .distinct()
                         .collect(Collectors.toList()));
     }
