@@ -39,11 +39,11 @@ public class RestaurantSeederService {
         };
         this.physicalStoreRepository.saveAll(Arrays.asList(physicalStore));
         FoodTypeEntity[] foodType = {
-                new FoodTypeEntity("tag1", "type1", false),
-                new FoodTypeEntity("tag2", "type2", true),
-                new FoodTypeEntity("tag3", "type3", true),
-                new FoodTypeEntity("tag4", "type4", false),
-                new FoodTypeEntity("tag5", "type5", false)
+                new FoodTypeEntity("foodType1", "type1", false),
+                new FoodTypeEntity("foodType2", "type2", true),
+                new FoodTypeEntity("foodType3", "type3", true),
+                new FoodTypeEntity("foodType4", "type4", false),
+                new FoodTypeEntity("foodType5", "type5", false)
         };
         this.foodTypeRepository.saveAll(Arrays.asList(foodType));
         OwnerRestaurantEntity[] owner = {
