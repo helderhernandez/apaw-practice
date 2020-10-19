@@ -24,14 +24,17 @@ public class InspectorEntity {
         //empty from framework
     }
 
-    public InspectorEntity(String dni, String firstName, String lastName, Integer age, String email, String phoneNumber) {
-        this.id = UUID.randomUUID().toString();
-        this.dni = dni;
-        this.firstName = firstName;
-        this.lastName = lastName;
-        this.age = age;
-        this.email = email;
-        this.phoneNumber = phoneNumber;
+    //    public InspectorEntity(String dni, String firstName, String lastName, Integer age, String email, String phoneNumber) {
+//        this.id = UUID.randomUUID().toString();
+//        this.dni = dni;
+//        this.firstName = firstName;
+//        this.lastName = lastName;
+//        this.age = age;
+//        this.email = email;
+//        this.phoneNumber = phoneNumber;
+//    }
+    public static InspectorBuilders.Dni builder() {
+        return new Builder();
     }
 
     public String getId() {
@@ -111,5 +114,62 @@ public class InspectorEntity {
                 ", email='" + email + '\'' +
                 ", phoneNumber='" + phoneNumber + '\'' +
                 '}';
+    }
+
+    public static class Builder implements InspectorBuilders.Dni,
+            InspectorBuilders.FirstName, InspectorBuilders.LastName,
+            InspectorBuilders.Age, InspectorBuilders.Optionals {
+
+
+        private final InspectorEntity inspector;
+
+        public Builder() {
+            this.inspector = new InspectorEntity();
+            BeanUtils.copyProperties(inspector, this);
+            this.inspector.id = UUID.randomUUID().toString();
+
+        }
+
+        @Override
+        public InspectorBuilders.FirstName dni(String dni) {
+            this.inspector.dni = dni;
+            return this;
+        }
+
+        @Override
+        public InspectorBuilders.LastName firstName(String firstName) {
+            this.inspector.firstName = firstName;
+            return this;
+        }
+
+        @Override
+        public InspectorBuilders.Age lastName(String lastName) {
+            this.inspector.lastName = lastName;
+            return this;
+        }
+
+        @Override
+        public InspectorBuilders.Optionals age(Integer age) {
+            this.inspector.age = age;
+            return this;
+        }
+
+        @Override
+        public InspectorBuilders.Optionals email(String email) {
+            this.inspector.email = email;
+            return this;
+        }
+
+        @Override
+        public InspectorBuilders.Optionals phoneNumber(String phoneNumber) {
+            this.inspector.phoneNumber = phoneNumber;
+            return this;
+        }
+
+        @Override
+        public InspectorEntity build() {
+            return this.inspector;
+        }
+
     }
 }
