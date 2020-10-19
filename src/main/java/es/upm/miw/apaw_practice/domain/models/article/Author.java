@@ -4,10 +4,7 @@ public class Author {
     private String id;
     private String name;
     private String surname;
-
-    public Author() {
-        //empty for framework
-    }
+    private String nationality;
 
     public String getId() {
         return id;
@@ -33,12 +30,21 @@ public class Author {
         this.surname = surname;
     }
 
+    public String getNationality() {
+        return nationality;
+    }
+
+    public void setNationality(String nationality) {
+        this.nationality = nationality;
+    }
+
     @Override
     public String toString() {
         return "Author{" +
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 ", surname='" + surname + '\'' +
+                ", nationality='" + nationality + '\'' +
                 '}';
     }
 }

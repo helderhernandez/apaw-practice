@@ -1,14 +1,18 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.article.entities;
 
+import es.upm.miw.apaw_practice.domain.models.article.Type;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.util.Objects;
+import java.util.UUID;
 
 @Document
 public class TypeEntity {
     @Id
     private String id;
+    @Indexed(unique = true)
     private String name;
     private String description;
 
@@ -20,6 +24,11 @@ public class TypeEntity {
         this.id = id;
         this.name = name;
         this.description = description;
+    }
+
+    public TypeEntity(Type type) {
+        BeanUtils.copyProperties(type, this);
+        this.id = UUID.randomUUID().toString();
     }
 
     public String getId() {
@@ -46,18 +55,26 @@ public class TypeEntity {
         this.description = description;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-        TypeEntity that = (TypeEntity) o;
-        return Objects.equals(id, that.id);
+
+    public Type toType1(){
+        Type type = new Type();
+        BeanUtils.copyProperties(this, type);
+        return type;
+
     }
+
+    public void fromType(Type type) { BeanUtils.copyProperties(type, this); }
 
     @Override
     public int hashCode() {
-        return Objects.hash(id);
+        return name.hashCode();
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        return this == obj || obj != null && getClass() == obj.getClass() && (name.equals(((es.upm.miw.apaw_practice.adapters.mongodb.article.entities.TypeEntity)obj).name));
+    }
+
 
     @Override
     public String toString() {
