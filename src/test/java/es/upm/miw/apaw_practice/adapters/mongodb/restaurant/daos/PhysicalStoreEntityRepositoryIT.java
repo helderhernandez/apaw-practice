@@ -16,22 +16,33 @@ public class PhysicalStoreEntityRepositoryIT {
     private PhysicalStoreRepository physicalStoreRepository;
 
     @Test
-    void testFindByAddress(){
+    void testFindByAddress() {
         assertTrue(this.physicalStoreRepository.findByAddress("address2").isPresent());
         PhysicalStoreEntity physicalStore = this.physicalStoreRepository.findByAddress("address2").get();
         assertEquals(600, physicalStore.getSize());
         assertFalse(physicalStore.getTerrace());
-        assertEquals(LocalDateTime.of(2016,01,14,14,30), physicalStore.getOpening());
+        assertEquals(LocalDateTime.of(2016, 01, 14, 14, 30), physicalStore.getOpening());
     }
 
     @Test
-    void testCreateAndRead(){
+    void testCreateAndRead() {
         assertTrue(this.physicalStoreRepository.findAll().stream()
                 .anyMatch(physicalStore -> "address1".equals(physicalStore.getAddress()) &&
                         Integer.valueOf(500).equals(physicalStore.getSize()) &&
                         Boolean.TRUE.equals(physicalStore.getTerrace()) &&
                         physicalStore.getOpening().isBefore(LocalDateTime.now()) &&
-                        LocalDateTime.of(2019, 12, 3,10,00).equals(physicalStore.getOpening())));
+                        LocalDateTime.of(2019, 12, 3, 10, 00).equals(physicalStore.getOpening())));
     }
 
+    @Test
+    void testPhysicalStoreBuilder() {
+        PhysicalStoreEntity physicalStoreEntity = new PhysicalStoreEntity.Builder()
+                .address("Calle Juarez")
+                .size(600)
+                .terrace(true)
+                .opening(LocalDateTime.now())
+                .build();
+        assertEquals("Calle Juarez", physicalStoreEntity.getAddress());
+        assertTrue(physicalStoreEntity.getTerrace());
+    }
 }

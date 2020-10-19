@@ -23,6 +23,10 @@ public class PhysicalStoreEntity {
         //empty for framework
     }
 
+    public static PhysicalStoreBuilder.address builder() {
+        return new Builder();
+    }
+
     public PhysicalStoreEntity(String id, String address, Integer size, Boolean terrace, LocalDateTime opening) {
         this.id = UUID.randomUUID().toString();
         this.address = address;
@@ -79,6 +83,43 @@ public class PhysicalStoreEntity {
         PhysicalStore physicalStore = new PhysicalStore();
         BeanUtils.copyProperties(this, physicalStore);
         return physicalStore;
+    }
+
+    public static class Builder implements PhysicalStoreBuilder.address, PhysicalStoreBuilder.Optionals {
+
+        private PhysicalStoreEntity physicalStoreEntity;
+
+        public Builder() {
+            this.physicalStoreEntity = new PhysicalStoreEntity();
+            this.physicalStoreEntity.id = UUID.randomUUID().toString();
+        }
+
+        @Override
+        public PhysicalStoreBuilder.Optionals address(String address) {
+            this.physicalStoreEntity.address = address;
+            return this;
+        }
+
+        @Override
+        public PhysicalStoreBuilder.Optionals size(Integer size) {
+            this.physicalStoreEntity.size = size;
+            return this;
+        }
+
+        @Override
+        public PhysicalStoreBuilder.Optionals terrace(Boolean terrace) {
+            this.physicalStoreEntity.terrace = terrace;
+            return this;
+        }
+
+        @Override
+        public PhysicalStoreBuilder.Optionals opening(LocalDateTime opening) {
+            this.physicalStoreEntity.opening = opening;
+            return this;
+        }
+
+        @Override
+        public PhysicalStoreEntity build() { return this.physicalStoreEntity; }
     }
 
     @Override
