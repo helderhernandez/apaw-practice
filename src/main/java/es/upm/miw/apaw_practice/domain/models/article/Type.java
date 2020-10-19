@@ -1,5 +1,8 @@
 package es.upm.miw.apaw_practice.domain.models.article;
 
+
+import java.util.Objects;
+
 public class Type {
     private String id;
     private String name;
@@ -7,6 +10,11 @@ public class Type {
 
     public Type() {
         //empty for framework
+    }
+
+    public Type( String name, String description) {
+        this.name = name;
+        this.description = description;
     }
 
     public String getId() {
@@ -40,5 +48,18 @@ public class Type {
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Type type = (Type) o;
+        return Objects.equals(id, type.id);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id);
     }
 }

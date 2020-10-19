@@ -1,5 +1,7 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.article.entities;
 
+import es.upm.miw.apaw_practice.domain.models.article.Author;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -11,15 +13,16 @@ public class AuthorEntity {
     private String id;
     private String name;
     private String surname;
+    private String nationality;
 
     public AuthorEntity() {
         //empty from framework
     }
 
-    public AuthorEntity(String id, String name, String surname) {
-        this.id = id;
+    public AuthorEntity(String name, String surname, String nationality) {
         this.name = name;
         this.surname = surname;
+        this.nationality = nationality;
     }
 
     public String getId() {
@@ -46,6 +49,10 @@ public class AuthorEntity {
         this.surname = surname;
     }
 
+    public String getNationality() { return nationality; }
+
+    public void setNationality(String nationality) { this.nationality = nationality; }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -57,6 +64,12 @@ public class AuthorEntity {
     @Override
     public int hashCode() {
         return Objects.hash(id);
+    }
+
+    public Author toAuthor(){
+        Author author = new Author();
+        BeanUtils.copyProperties(this,author);
+        return author;
     }
 
     @Override
