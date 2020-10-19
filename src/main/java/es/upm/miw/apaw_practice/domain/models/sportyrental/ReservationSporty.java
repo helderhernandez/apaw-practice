@@ -1,5 +1,7 @@
 package es.upm.miw.apaw_practice.domain.models.sportyrental;
 
+import es.upm.miw.apaw_practice.domain.models.sportyrental.reservationsportybuilders.ReservationSportyBuilders;
+
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.List;
@@ -18,15 +20,8 @@ public class ReservationSporty {
     public ReservationSporty() {
     }
 
-    public ReservationSporty(String idReservation, LocalDateTime dateReservation, String refReservation, BigDecimal amount, Boolean paidOut, List<CustomerSporty> customersSporty, CategorySporty categorySporty, List<DiscountSporty> discountsSporty) {
-        this.idReservation = idReservation;
-        this.dateReservation = dateReservation;
-        this.refReservation = refReservation;
-        this.amount = amount;
-        this.paidOut = paidOut;
-        this.customersSporty = customersSporty;
-        this.categorySporty = categorySporty;
-        this.discountsSporty = discountsSporty;
+    public static ReservationSportyBuilders.IdReservation builder() {
+        return new Builder();
     }
 
     public String getIdReservation() {
@@ -105,5 +100,67 @@ public class ReservationSporty {
                 ", categorySporty=" + categorySporty +
                 ", discountsSporty=" + discountsSporty +
                 '}';
+    }
+
+    public static class Builder implements ReservationSportyBuilders.IdReservation, ReservationSportyBuilders.DateReservation, ReservationSportyBuilders.RefReservation, ReservationSportyBuilders.Optionals {
+
+        private ReservationSporty reservationSporty;
+
+        public Builder() {
+            this.reservationSporty = new ReservationSporty();
+        }
+
+        @Override
+        public ReservationSportyBuilders.DateReservation idReservation(String idReservation) {
+            this.reservationSporty.idReservation = idReservation;
+            return this;
+        }
+
+        @Override
+        public ReservationSportyBuilders.RefReservation dateReservation(LocalDateTime dateReservation) {
+            this.reservationSporty.dateReservation = dateReservation;
+            return this;
+        }
+
+        @Override
+        public ReservationSportyBuilders.Optionals refReservation(String refReservation) {
+            this.reservationSporty.refReservation = refReservation;
+            return this;
+        }
+
+        @Override
+        public ReservationSportyBuilders.Optionals amount(BigDecimal amount) {
+            this.reservationSporty.amount = amount;
+            return this;
+        }
+
+        @Override
+        public ReservationSportyBuilders.Optionals paidOut(Boolean paidOut) {
+            this.reservationSporty.paidOut = paidOut;
+            return this;
+        }
+
+        @Override
+        public ReservationSportyBuilders.Optionals listCustomersSporty(List<CustomerSporty> customersSporty) {
+            this.reservationSporty.customersSporty = customersSporty;
+            return this;
+        }
+
+        @Override
+        public ReservationSportyBuilders.Optionals categorySporty(CategorySporty categorySporty) {
+            this.reservationSporty.categorySporty = categorySporty;
+            return this;
+        }
+
+        @Override
+        public ReservationSportyBuilders.Optionals listDiscountsSporty(List<DiscountSporty> discountsSporty) {
+            this.reservationSporty.discountsSporty = discountsSporty;
+            return this;
+        }
+
+        @Override
+        public ReservationSporty build() {
+            return this.reservationSporty;
+        }
     }
 }
