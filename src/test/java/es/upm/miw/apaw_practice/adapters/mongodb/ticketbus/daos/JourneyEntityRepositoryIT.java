@@ -21,9 +21,27 @@ class JourneyEntityRepositoryIT {
                         journey.getReference() != null &&
                                 "Madrid".equals(journey.getDeparture()) &&
                                 "Barcelona".equals(journey.getArrive()) &&
-                                Integer.valueOf(5).equals(journey.getNumStops())
+                                Integer.valueOf(5).equals(journey.getNumStops()) &&
+                                !"".equals(journey.toString())
                 )
         );
+    }
+
+    @Test
+    void testEquals(){
+        JourneyEntity journeyEntity = journeyRepository.findAll().stream()
+                .findFirst()
+                .get();
+
+        JourneyEntity journeyTest= new JourneyEntity();
+        journeyTest.setDeparture(journeyEntity.getDeparture());
+        journeyTest.setArrive(journeyEntity.getArrive());
+        journeyTest.setNumStops(journeyEntity.getNumStops());
+        journeyTest.setId(journeyEntity.getId());
+        journeyTest.setReference(journeyEntity.getReference());
+        journeyTest.setRegistrationDate(journeyEntity.getRegistrationDate());
+
+        assertEquals(journeyEntity, journeyTest);
     }
 
 }
