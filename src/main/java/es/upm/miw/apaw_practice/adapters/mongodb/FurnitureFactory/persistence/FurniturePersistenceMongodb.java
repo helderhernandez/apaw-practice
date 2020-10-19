@@ -37,14 +37,12 @@ public class FurniturePersistenceMongodb implements FurniturePersistence {
     }
 
     @Override
-    public Furniture findTotalPriceFurnitureByStreet(String street) {
+    public BigDecimal findTotalPriceFurnitureByStreet(String street) {
         BigDecimal total = findPriceFurnitureByStreet(street)
                 .map(Furniture::getPrice)
                 .reduce(BigDecimal::add)
                 .orElse(new BigDecimal("0.00"));
-        Furniture totalFurniture = new Furniture();
-        totalFurniture.setPrice(total);
-        return totalFurniture;
+        return total;
     }
 
     public Stream<Furniture> findPriceFurnitureByStreet(String street) {

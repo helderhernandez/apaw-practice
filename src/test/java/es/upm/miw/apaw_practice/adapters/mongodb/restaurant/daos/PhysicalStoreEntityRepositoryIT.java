@@ -21,7 +21,7 @@ public class PhysicalStoreEntityRepositoryIT {
         PhysicalStoreEntity physicalStore = this.physicalStoreRepository.findByAddress("address2").get();
         assertEquals(600, physicalStore.getSize());
         assertFalse(physicalStore.getTerrace());
-        assertEquals(LocalDateTime.of(2016,03,14,14,30), physicalStore.getOpening());
+        assertEquals(LocalDateTime.of(2016,01,14,14,30), physicalStore.getOpening());
     }
 
     @Test

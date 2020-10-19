@@ -1,10 +1,15 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.restaurant.persistence;
 
 import es.upm.miw.apaw_practice.TestConfig;
+import es.upm.miw.apaw_practice.adapters.rest.restaurant.FoodTypeDto;
 import es.upm.miw.apaw_practice.domain.exceptions.NotFoundException;
 import es.upm.miw.apaw_practice.domain.models.restaurant.FoodType;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
+
+import java.util.List;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -27,6 +32,15 @@ public class FoodTypePersistenceMongodbIT {
 
     @Test
     void testReadById() {
-        assertEquals("tag1", this.foodTypePersistenceMongodb.findById("tag1").getId());
+        assertEquals("foodType1", this.foodTypePersistenceMongodb.findById("foodType1").getId());
+    }
+
+    @Test
+    void testFindFoodTypesAssociateToOwner() {
+        Stream<FoodType> typeList = this.foodTypePersistenceMongodb.findFoodTypesAssociateToOwner("Lara");
+        assertEquals(List.of("foodType1", "foodType2", "foodType5"),
+                typeList.map(FoodType::getId)
+                        .distinct()
+                        .collect(Collectors.toList()));
     }
 }

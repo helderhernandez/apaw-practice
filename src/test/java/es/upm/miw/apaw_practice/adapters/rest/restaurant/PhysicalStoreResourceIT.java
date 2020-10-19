@@ -1,10 +1,12 @@
 package es.upm.miw.apaw_practice.adapters.rest.restaurant;
 
+import es.upm.miw.apaw_practice.adapters.mongodb.restaurant.RestaurantSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.restaurant.daos.PhysicalStoreRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.restaurant.entities.PhysicalStoreEntity;
 import es.upm.miw.apaw_practice.adapters.rest.RestTestConfig;
 import es.upm.miw.apaw_practice.domain.exceptions.NotFoundException;
 import es.upm.miw.apaw_practice.domain.models.restaurant.PhysicalStore;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +29,9 @@ public class PhysicalStoreResourceIT {
     @Autowired
     private PhysicalStoreRepository physicalStoreRepository;
 
+    @Autowired
+    private RestaurantSeederService restaurantSeederService;
+
     @Test
     void testCreate(){
         PhysicalStore physicalStore =
@@ -45,8 +50,8 @@ public class PhysicalStoreResourceIT {
 
     @Test
     void testDeletePhysicalStore(){
-        PhysicalStoreEntity physicalStore = this.physicalStoreRepository.findByAddress("address3")
-                .orElseThrow(() -> new NotFoundException("Not find: address3"));
+        PhysicalStoreEntity physicalStore = this.physicalStoreRepository.findByAddress("address6")
+                .orElseThrow(() -> new NotFoundException("Not find: address6"));
         this.webTestClient
                 .delete()
                 .uri(PhysicalStoreResource.PHYSICALSTORES + PhysicalStoreResource.ADDRESS, physicalStore.getAddress())

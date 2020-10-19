@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -24,5 +25,4 @@ class TagPersistenceMongodbIT {
         assertEquals(2, tag.getArticlesBarcode().size());
         assertTrue(tag.getArticlesBarcode().containsAll(List.of(84001L, 84004L)));
     }
-
 }

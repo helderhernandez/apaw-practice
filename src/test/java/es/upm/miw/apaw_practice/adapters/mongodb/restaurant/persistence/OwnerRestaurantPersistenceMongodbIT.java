@@ -35,6 +35,6 @@ public class OwnerRestaurantPersistenceMongodbIT {
         List<OwnerRestaurantEntity> ownerRestaurantList = ownerRestaurantRepository.findAll();
         OwnerRestaurantUpdate ownerRestaurantUpdate = new OwnerRestaurantUpdate("name8", "familyName8");
         assertEquals("name8", this.ownerRestaurantPersistenceMongodb
-                .updateOwner(ownerRestaurantList.get(2).getId(), ownerRestaurantUpdate).getName());
+                .updateOwner(ownerRestaurantList.get(3).getId(), ownerRestaurantUpdate).getName());
     }
 }

@@ -1,11 +1,13 @@
 package es.upm.miw.apaw_practice.domain.models.restaurant;
 
+import java.util.stream.Stream;
+
 public class FoodType {
     private String id;
     private String type;
     private Boolean spicy;
 
-    public FoodType(){
+    public FoodType() {
         //Empty for framework
     }
 
