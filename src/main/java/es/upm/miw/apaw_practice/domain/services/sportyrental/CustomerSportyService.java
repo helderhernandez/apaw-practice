@@ -1,4 +1,4 @@
-package es.upm.miw.apaw_practice.domain.services.sportyRental;
+package es.upm.miw.apaw_practice.domain.services.sportyrental;
 
 import es.upm.miw.apaw_practice.domain.persistence_ports.sportyrental.CustomerSportyPersistence;
 import org.springframework.beans.factory.annotation.Autowired;
