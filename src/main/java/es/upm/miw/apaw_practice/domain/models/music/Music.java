@@ -2,10 +2,12 @@ package es.upm.miw.apaw_practice.domain.models.music;
 
 import es.upm.miw.apaw_practice.adapters.mongodb.music.entities.StyleEntity;
 
+import java.util.List;
+
 public class Music {
 
     private String id;
-    private StyleEntity styleEntity;
+    private List<StyleEntity> styleEntity;
     private String name;
     private String description;
 
@@ -21,9 +23,9 @@ public class Music {
         this.id = id;
     }
 
-    public StyleEntity getStyleEntity() { return styleEntity; }
+    public List<StyleEntity> getStyleEntity() { return styleEntity; }
 
-    public void setStyleEntity(StyleEntity styleEntity) { this.styleEntity = styleEntity; }
+    public void setStyleEntity(List<StyleEntity> styleEntity) { this.styleEntity = styleEntity; }
 
     public String getName() {
         return name;

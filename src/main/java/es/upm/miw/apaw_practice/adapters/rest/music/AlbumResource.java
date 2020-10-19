@@ -2,12 +2,13 @@
 package es.upm.miw.apaw_practice.adapters.rest.music;
 
 
+import es.upm.miw.apaw_practice.adapters.rest.LexicalAnalyzer;
+import es.upm.miw.apaw_practice.domain.models.music.Album;
 import es.upm.miw.apaw_practice.domain.services.music.AlbumService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
+
+import java.math.BigDecimal;
 
 @RestController
 @RequestMapping(AlbumResource.ALBUMS)
@@ -28,4 +29,9 @@ public class AlbumResource {
         this.albumService.delete(id);
     }
 
+    @GetMapping(SEARCH)
+    public BigDecimal findTotalPriceAlbumByStyleName(@RequestParam String q){
+        String name = new LexicalAnalyzer().extractWithAssure(q,"name");
+        return this.albumService.findTotalPriceAlbumByStyleName(name);
+    }
 }
