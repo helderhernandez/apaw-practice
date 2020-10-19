@@ -117,14 +117,10 @@ public class ReservationSportyEntity {
     }
 
     public ReservationSporty convertToReservationSporty() {
-        return new ReservationSporty(this.idReservation,
-                this.dateReservation,
-                this.refReservation,
-                this.amount,
-                this.paidOut,
-                this.convertToListCustomerSporty(),
-                new CategorySporty(this.categorySportyEntity.getIdCategory(), this.categorySportyEntity.getDescription(), this.categorySportyEntity.getNumMaxPersons()),
-                this.convertToListDiscountSporty());
+        return ReservationSporty.builder().idReservation(this.idReservation).dateReservation(this.dateReservation)
+                .refReservation(this.refReservation).amount(this.amount).paidOut(this.paidOut).listCustomersSporty(this.convertToListCustomerSporty())
+                .categorySporty(new CategorySporty(this.categorySportyEntity.getIdCategory(), this.categorySportyEntity.getDescription(), this.categorySportyEntity.getNumMaxPersons()))
+                .listDiscountsSporty(this.convertToListDiscountSporty()).build();
     }
 
     private List<CustomerSporty> convertToListCustomerSporty() {
