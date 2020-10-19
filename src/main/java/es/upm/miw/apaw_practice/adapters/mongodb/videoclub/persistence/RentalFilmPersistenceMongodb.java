@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Repository("rentalFilmPersistence")
 public class RentalFilmPersistenceMongodb implements RentalFilmPersistence {
@@ -35,5 +36,13 @@ public class RentalFilmPersistenceMongodb implements RentalFilmPersistence {
                 .filter(film -> film.getFilmMaker().getName().equals(filmMakerName))
                 .map(RentalFilmEntity::getReference)
                 .collect(Collectors.toList());
+    }
+
+    @Override
+    public Stream<RentalFilm> findByFilmMakerGender(String filmMakerGender) {
+        return this.rentalFilmRepository.findAll()
+                .stream()
+                .filter(film -> film.getFilmMaker().getGender().equals(filmMakerGender))
+                .map(RentalFilmEntity::toRentalFilm);
     }
 }

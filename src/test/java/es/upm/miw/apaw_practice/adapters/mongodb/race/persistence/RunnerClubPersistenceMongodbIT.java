@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
 @TestConfig
-public class RunnerClubPersistenceMongodbIT {
+class RunnerClubPersistenceMongodbIT {
 
     @Autowired
     RunnerClubPersistenceMongodb runnerClubPersistenceMongodb;

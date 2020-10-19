@@ -112,8 +112,8 @@ public class RunnerEntity {
         this.dni = runner.getDni();
         this.dorsal = runner.getDorsal();
         this.professional = runner.getProfessional();
-        RunnerClubEntity runnerClubEntity = new RunnerClubEntity();
-        runnerClubEntity.fromRunnerClub(runner.getRunnerClub());
-        this.runnerClubEntity = runnerClubEntity;
+        RunnerClubEntity runnerClubEnt = new RunnerClubEntity();
+        runnerClubEnt.fromRunnerClub(runner.getRunnerClub());
+        this.runnerClubEntity = runnerClubEnt;
     }
 }

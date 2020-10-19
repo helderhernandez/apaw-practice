@@ -14,7 +14,7 @@ import java.time.LocalDateTime;
 import static org.junit.jupiter.api.Assertions.*;
 
 @RestTestConfig
-public class RunnerClubResourceIT {
+class RunnerClubResourceIT {
 
     @Autowired
     private WebTestClient webTestClient;
