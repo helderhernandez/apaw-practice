@@ -22,7 +22,6 @@ public class TreeVehicleComposite implements TreeVehicle{
     @Override
     public List<String> getVehiclesModel() {
         return this.treeVehicles.stream()
-                .filter(treeVehicle -> !treeVehicle.isComposite())
                 .map(TreeVehicle::getModel)
                 .collect(Collectors.toList());
     }

@@ -5,13 +5,11 @@ import es.upm.miw.apaw_practice.adapters.mongodb.garage.entities.VehicleEntity;
 import es.upm.miw.apaw_practice.domain.models.garage.composite.TreeVehicle;
 import es.upm.miw.apaw_practice.domain.models.garage.composite.TreeVehicleComposite;
 import es.upm.miw.apaw_practice.domain.models.garage.composite.TreeVehicleLeaf;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.*;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.Collection;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -19,6 +17,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @TestConfig
+@TestInstance(TestInstance.Lifecycle.PER_CLASS)
 public class VehicleEntityRepositoryIT {
 
     @Autowired
@@ -33,7 +32,7 @@ public class VehicleEntityRepositoryIT {
         TreeVehicle truck = new TreeVehicleComposite("truck");
 
         TreeVehicle seat = new TreeVehicleComposite("Seat");
-        TreeVehicle nissan = new TreeVehicleComposite("Renault");
+        TreeVehicle nissan = new TreeVehicleComposite("Nissan");
 
         TreeVehicle car1 = new TreeVehicleLeaf(this.vehicleRepository.findByCarRegistration("4585LHS").get().toVehicle());
         TreeVehicle car2 = new TreeVehicleLeaf(this.vehicleRepository.findByCarRegistration("7777MKL").get().toVehicle());
@@ -55,7 +54,6 @@ public class VehicleEntityRepositoryIT {
         assertTrue(this.vehicle.isComposite());
         assertEquals("vehicle", this.vehicle.getModel());
         assertEquals(2, this.vehicle.numberOfDescendants());
-        System.out.println(this.vehicle.getVehiclesModel() + " -- Size: " + this.vehicle.getVehiclesModel().size());
         assertTrue(this.vehicle.getVehiclesModel().containsAll(List.of("car", "truck")));
 
         this.vehicle.getVehicles().stream()
@@ -88,6 +86,32 @@ public class VehicleEntityRepositoryIT {
                     .collect(Collectors.toList())
                     .containsAll(List.of("Seat Ibiza", "Nissan Qashqai", "Nissan Juke"))
         );
+    }
+
+    @AfterAll
+    void testDeletingCompositePattern() {
+        TreeVehicle nissan = this.vehicle.getVehicles().stream()
+                .filter(vehicle -> vehicle.getModel().equals("car"))
+                .collect(Collectors.toList())
+                .get(0)
+                .getVehicles()
+                .stream()
+                .filter(vehicle -> vehicle.getModel().equals("Nissan"))
+                .collect(Collectors.toList())
+                .get(0);
+
+        this.vehicle.getVehicles().stream()
+                .filter(vehicle -> vehicle.getModel().equals("car"))
+                .collect(Collectors.toList())
+                .get(0)
+                .remove(nissan);
+
+        assertEquals(1,
+                this.vehicle.getVehicles().stream()
+                        .filter(vehicle -> vehicle.getModel().equals("car"))
+                        .collect(Collectors.toList())
+                        .get(0).numberOfDescendants()
+                );
     }
 
     @Test
