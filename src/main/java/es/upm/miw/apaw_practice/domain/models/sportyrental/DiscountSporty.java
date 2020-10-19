@@ -7,6 +7,7 @@ public class DiscountSporty {
     private Double percentage;
 
     public DiscountSporty() {
+        //empty for framework
     }
 
     public DiscountSporty(String idDiscount, String description, Double percentage) {

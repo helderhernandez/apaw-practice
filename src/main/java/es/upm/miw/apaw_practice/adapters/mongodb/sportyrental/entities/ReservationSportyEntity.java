@@ -32,6 +32,7 @@ public class ReservationSportyEntity {
     private List<DiscountSportyEntity> discountSportyEntity;
 
     public ReservationSportyEntity() {
+        //empty for framework
     }
 
     public ReservationSportyEntity(String idReservation, LocalDateTime dateReservation, String refReservation, BigDecimal amount, Boolean paidOut, List<CustomerSportyEntity> customerSportyEntities, CategorySportyEntity categorySportyEntity, List<DiscountSportyEntity> discountSportyEntity) {

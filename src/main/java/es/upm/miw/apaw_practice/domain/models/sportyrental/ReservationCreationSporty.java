@@ -12,6 +12,7 @@ public class ReservationCreationSporty {
     private List<DiscountCreationSporty> discountsCreationSporty;
 
     public ReservationCreationSporty() {
+        //empty for framework
     }
 
     public ReservationCreationSporty(BigDecimal amount, Boolean paidOut, List<CustomerCreationSporty> customersCreationSporty, CategoryCreationSporty categoryCreationSporty, List<DiscountCreationSporty> discountsCreationSporty) {
