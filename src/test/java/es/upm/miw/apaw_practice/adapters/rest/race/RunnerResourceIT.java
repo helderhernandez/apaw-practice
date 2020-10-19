@@ -16,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @RestTestConfig
-public class RunnerResourceIT {
+class RunnerResourceIT {
 
     @Autowired
     private WebTestClient webTestClient;
