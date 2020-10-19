@@ -8,4 +8,5 @@ import java.util.stream.Stream;
 @Repository
 public interface MusicPersistence {
     Music updateName(String id,String name);
+    Stream<Music> findMusicBySingerName(String name);
 }
