@@ -10,7 +10,6 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.http.HttpStatus;
 import org.springframework.test.web.reactive.server.WebTestClient;
 import org.springframework.web.reactive.function.BodyInserters;
@@ -33,7 +32,7 @@ public class PhysicalStoreResourceIT {
     private RestaurantSeederService restaurantSeederService;
 
     @Test
-    void testCreate(){
+    void testCreate() {
         PhysicalStore physicalStore =
                 new PhysicalStore("Calle4", 500, true, LocalDateTime.now());
         this.webTestClient
@@ -60,7 +59,7 @@ public class PhysicalStoreResourceIT {
     }
 
     @Test
-    void testCreateConflict(){
+    void testCreateConflict() {
         PhysicalStore physicalStore =
                 new PhysicalStore("address1", 500, true, LocalDateTime.now());
         this.webTestClient
@@ -69,5 +68,19 @@ public class PhysicalStoreResourceIT {
                 .body(BodyInserters.fromValue(physicalStore))
                 .exchange()
                 .expectStatus().isEqualTo(HttpStatus.CONFLICT);
+    }
+
+    @Test
+    void testFindAddressPhysicalStoreWithAFoodTypeScoreHigherThan() {
+        this.webTestClient
+                .get()
+                .uri(uriBuilder -> uriBuilder
+                        .path(PhysicalStoreResource.PHYSICALSTORES + PhysicalStoreResource.SEARCH)
+                        .queryParam("q", "id:foodType3;score:5.0")
+                        .build())
+                .exchange()
+                .expectStatus().isOk()
+                .expectBodyList(AddressStoreDto.class)
+                .value(address -> assertEquals("address5", address.get(0).getAddress()));
     }
 }

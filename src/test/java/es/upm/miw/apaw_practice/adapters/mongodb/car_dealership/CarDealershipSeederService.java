@@ -55,6 +55,9 @@ public class CarDealershipSeederService {
                 new CDOwnerEntity("Pablo", "Aguza", 663276372L),
                 new CDOwnerEntity("Manuel", "Zapata", 717383928L),
                 new CDOwnerEntity("Felix", "Montaño", 666233676L),
+                new CDOwnerEntity("Jesús", "Pérez", 666222676L),
+                new CDOwnerEntity("Patricia", "Díaz", 662233676L),
+
         };
 
         this.ownerRepository.saveAll(Arrays.asList(owners));

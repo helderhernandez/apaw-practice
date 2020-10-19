@@ -5,6 +5,8 @@ import es.upm.miw.apaw_practice.domain.persistence_ports.restaurant.PhysicalStor
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.stream.Stream;
+
 @Service
 public class PhysicalStoreService {
     private PhysicalStorePersistence physicalStorePersistence;
@@ -20,5 +22,9 @@ public class PhysicalStoreService {
 
     public void deletePhysicalStore(String address) {
         this.physicalStorePersistence.deletePhysicalStore(address);
+    }
+
+    public Stream<PhysicalStore> findAddressPhysicalStoreWithAFoodTypeScoreHigherThan(String idFoodType, Double score) {
+        return this.physicalStorePersistence.findAddressPhysicalStoreWithAFoodTypeScoreHigherThan(idFoodType, score);
     }
 }

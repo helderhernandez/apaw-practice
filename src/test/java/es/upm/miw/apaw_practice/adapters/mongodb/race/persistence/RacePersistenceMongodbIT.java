@@ -11,7 +11,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.*;
 
 @TestConfig
-public class RacePersistenceMongodbIT {
+class RacePersistenceMongodbIT {
 
     @Autowired
     private RacePersistenceMongodb racePersistenceMongodb;
