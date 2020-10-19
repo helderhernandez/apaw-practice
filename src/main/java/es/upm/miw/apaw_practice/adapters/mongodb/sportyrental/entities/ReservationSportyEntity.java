@@ -1,6 +1,6 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.sportyrental.entities;
 
-import es.upm.miw.apaw_practice.adapters.mongodb.sportyrental.entities.utils.Constans;
+import es.upm.miw.apaw_practice.adapters.mongodb.sportyrental.entities.utils.ConsUtils;
 import es.upm.miw.apaw_practice.domain.models.sportyrental.*;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
@@ -49,7 +49,7 @@ public class ReservationSportyEntity {
         BeanUtils.copyProperties(reservationCreationSporty, this);
         this.idReservation = UUID.randomUUID().toString();
         this.dateReservation = LocalDateTime.now();
-        this.refReservation = Constans.START_REFERENCE + UUID.randomUUID().toString().substring(Constans.MAX_REFERENCE);
+        this.refReservation = ConsUtils.START_REFERENCE + UUID.randomUUID().toString().substring(ConsUtils.MAX_REFERENCE);
     }
 
     public String getIdReservation() {
