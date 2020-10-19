@@ -1,9 +1,11 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.ticketbus.daos;
 
 import es.upm.miw.apaw_practice.TestConfig;
+import es.upm.miw.apaw_practice.adapters.mongodb.ticketbus.entities.PassengerBusEntity;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @TestConfig
@@ -27,4 +29,23 @@ class PassengerBusEntityRepositoryIT {
         );
 
     }
+
+    @Test
+    void testEquals(){
+        PassengerBusEntity passengerBusEntity = this.passengerBusRepository.findAll().stream().findFirst().get();
+        PassengerBusEntity passengerBusTest = PassengerBusEntity.builder()
+                .docIdentify(passengerBusEntity.getDocIdentify())
+                .name(passengerBusEntity.getName())
+                .familyName(passengerBusEntity.getFamilyName())
+                .phone(passengerBusEntity.getPhone())
+                .email(passengerBusEntity.getEmail())
+                .accesibility(passengerBusEntity.getAccesibility())
+                .build();
+
+        passengerBusTest.setId(passengerBusEntity.getId());
+        passengerBusTest.setReference(passengerBusEntity.getReference());
+
+        assertEquals(passengerBusEntity, passengerBusTest);
+    }
+
 }

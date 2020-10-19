@@ -1,7 +1,6 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.ticketbus.entities;
 
 import es.upm.miw.apaw_practice.domain.models.ticketbus.Journey;
-import es.upm.miw.apaw_practice.domain.models.ticketbus.JourneyCreation;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
@@ -34,13 +33,6 @@ public class JourneyEntity {
         this.departure = departure;
         this.arrive = arrive;
         this.numStops = numStops;
-    }
-
-    public JourneyEntity(JourneyCreation journeyCreation) {
-        BeanUtils.copyProperties(journeyCreation, this);
-        this.id = UUID.randomUUID().toString();
-        this.reference = GenRefEntity.getReferenceId(ENTITY_REF_NAME);
-        this.registrationDate = LocalDateTime.now();
     }
 
     public Journey toJourney() {
