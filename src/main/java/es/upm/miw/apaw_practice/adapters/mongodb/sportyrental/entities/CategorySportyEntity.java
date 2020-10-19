@@ -17,6 +17,7 @@ public class CategorySportyEntity {
     private Integer numMaxPersons;
 
     public CategorySportyEntity() {
+        //empty for framework
     }
 
     public CategorySportyEntity(String idCategory, String description, Integer numMaxPersons) {

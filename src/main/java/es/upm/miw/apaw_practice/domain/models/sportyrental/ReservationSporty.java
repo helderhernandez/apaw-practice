@@ -18,6 +18,7 @@ public class ReservationSporty {
     private List<DiscountSporty> discountsSporty;
 
     public ReservationSporty() {
+        //empty for framework
     }
 
     public static ReservationSportyBuilders.IdReservation builder() {
