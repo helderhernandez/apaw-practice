@@ -1,11 +1,11 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.FurnitureFactory.entities;
 
 
+import es.upm.miw.apaw_practice.adapters.mongodb.school.entities.TeacherEntity;
 import es.upm.miw.apaw_practice.domain.models.FurnitureFactory.Staff;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.annotation.Id;
-
 import java.util.Objects;
 import java.util.UUID;
 
@@ -27,6 +27,11 @@ public class StaffEntity {
         BeanUtils.copyProperties(staff, this);
         this.id = UUID.randomUUID().toString();
     }
+
+    public static StaffBuilders.FirstName builder() {
+        return new Builder();
+    }
+
     public Staff toStaff() {
         Staff staff = new Staff();
         BeanUtils.copyProperties(this, staff);
@@ -110,6 +115,54 @@ public class StaffEntity {
 
     public void setPost(String post) {
         this.post = post;
+    }
+
+    public static class Builder implements StaffBuilders.FirstName, StaffBuilders.LastName, StaffBuilders.Dni, StaffBuilders.Optionals{
+
+        private final StaffEntity staff;
+
+        public Builder(){
+            this.staff = new StaffEntity();
+            BeanUtils.copyProperties(staff, this);
+            this.staff.id = UUID.randomUUID().toString();
+        }
+
+        @Override
+        public StaffBuilders.LastName firstName(String firstName) {
+            this.staff.firstName=firstName;
+            return this;
+        }
+        @Override
+        public StaffBuilders.Dni lastName(String lastName) {
+            this.staff.lastName=lastName;
+            return this;
+        }
+        @Override
+        public StaffBuilders.Optionals dni(String dni) {
+            this.staff.dni=dni;
+            return this;
+        }
+        @Override
+        public StaffBuilders.Optionals age(Integer age) {
+            this.staff.age = age;
+            return this;
+        }
+
+        @Override
+        public StaffBuilders.Optionals phone(Integer phone) {
+            this.staff.phone = phone;
+            return this;
+        }
+        @Override
+        public StaffBuilders.Optionals post(String post) {
+            this.staff.post = post;
+            return this;
+        }
+
+        @Override
+        public StaffEntity build() {
+            return this.staff;
+        }
     }
 
     @Override

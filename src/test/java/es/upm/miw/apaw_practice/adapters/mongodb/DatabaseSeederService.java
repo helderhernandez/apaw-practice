@@ -24,7 +24,7 @@ import es.upm.miw.apaw_practice.adapters.mongodb.school.SchoolSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.shop.ShopSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.socialnetwork.SocialNetworkSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.sportcentre.SportCentreSeederService;
-import es.upm.miw.apaw_practice.adapters.mongodb.sportyRental.SportyRentalSeederService;
+import es.upm.miw.apaw_practice.adapters.mongodb.sportyrental.SportyRentalSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.ticketbus.TicketBusSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.transport.TransportSeedService;
 import es.upm.miw.apaw_practice.adapters.mongodb.transittaxes.TransitTaxesSeederService;
