@@ -1,9 +1,16 @@
 package es.upm.miw.apaw_practice.domain.models.article;
 
+import es.upm.miw.apaw_practice.adapters.mongodb.article.entities.AuthorEntity;
+import es.upm.miw.apaw_practice.adapters.mongodb.article.entities.EssayEntity;
+
 import java.math.BigDecimal;
 import java.time.LocalDate;
+import java.util.List;
 
 public class Works {
+
+    private List<AuthorEntity> authorEntityList;
+    private List<EssayEntity> essayEntityList;
     private String id;
     private String name;
     private String ismn;
@@ -14,6 +21,22 @@ public class Works {
 
     public Works() {
         //empty for framework
+    }
+
+    public List<AuthorEntity> getAuthorEntityList() {
+        return authorEntityList;
+    }
+
+    public void setAuthorEntityList(List<AuthorEntity> authorEntityList) {
+        this.authorEntityList = authorEntityList;
+    }
+
+    public List<EssayEntity> getEssayEntityList() {
+        return essayEntityList;
+    }
+
+    public void setEssayEntityList(List<EssayEntity> essayEntityList) {
+        this.essayEntityList = essayEntityList;
     }
 
     public String getId() {
@@ -75,9 +98,11 @@ public class Works {
     @Override
     public String toString() {
         return "Works{" +
-                "id='" + id + '\'' +
+                "authorEntityList=" + authorEntityList +
+                ", essayEntityList=" + essayEntityList +
+                ", id='" + id + '\'' +
                 ", name='" + name + '\'' +
-                ", ismn=" + ismn +
+                ", ismn='" + ismn + '\'' +
                 ", publicationdate=" + publicationdate +
                 ", description='" + description + '\'' +
                 ", price=" + price +
