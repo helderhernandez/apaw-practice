@@ -34,11 +34,11 @@ public class PhysicalStoreResource {
     }
 
     @GetMapping(SEARCH)
-    public Stream<AddressStoreDto> findAddressPhysicalStoreWithAFoodTypeScore(@RequestParam String q) {
+    public Stream<AddressStoreDto> findAddressPhysicalStoreWithAFoodTypeScoreHigherThan(@RequestParam String q) {
         String idFoodType = new LexicalAnalyzer().extractWithAssure(q, "id");
-        String score = new LexicalAnalyzer().extractWithAssure(q, "score");
+        Double score = new LexicalAnalyzer().extractWithAssure(q, "score", Double::new);
         return this.physicalStoreService
-                .findAddressPhysicalStoreWithAFoodTypeScore(idFoodType, score)
+                .findAddressPhysicalStoreWithAFoodTypeScoreHigherThan(idFoodType, score)
                 .map(AddressStoreDto::new);
     }
 }

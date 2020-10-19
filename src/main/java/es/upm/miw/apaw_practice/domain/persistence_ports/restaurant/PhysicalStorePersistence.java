@@ -11,5 +11,5 @@ public interface PhysicalStorePersistence {
 
     void deletePhysicalStore(String address);
 
-    Stream<PhysicalStore> findAddressPhysicalStoreWithAFoodTypeScore(String idFoodType, String score);
+    Stream<PhysicalStore> findAddressPhysicalStoreWithAFoodTypeScoreHigherThan(String idFoodType, Double score);
 }

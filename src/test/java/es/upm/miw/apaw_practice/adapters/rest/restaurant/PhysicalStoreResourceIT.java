@@ -8,7 +8,6 @@ import es.upm.miw.apaw_practice.domain.models.restaurant.PhysicalStore;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.crossstore.ChangeSetPersister;
 import org.springframework.http.HttpStatus;
 import org.springframework.test.web.reactive.server.WebTestClient;
 import org.springframework.web.reactive.function.BodyInserters;
@@ -28,7 +27,7 @@ public class PhysicalStoreResourceIT {
     private PhysicalStoreRepository physicalStoreRepository;
 
     @Test
-    void testCreate(){
+    void testCreate() {
         PhysicalStore physicalStore =
                 new PhysicalStore("Calle4", 500, true, LocalDateTime.now());
         this.webTestClient
@@ -44,7 +43,7 @@ public class PhysicalStoreResourceIT {
     }
 
     @Test
-    void testDeletePhysicalStore(){
+    void testDeletePhysicalStore() {
         PhysicalStoreEntity physicalStore = this.physicalStoreRepository.findByAddress("address5")
                 .orElseThrow(() -> new NotFoundException("Not find: address5"));
         this.webTestClient
@@ -55,7 +54,7 @@ public class PhysicalStoreResourceIT {
     }
 
     @Test
-    void testCreateConflict(){
+    void testCreateConflict() {
         PhysicalStore physicalStore =
                 new PhysicalStore("address1", 500, true, LocalDateTime.now());
         this.webTestClient
@@ -64,5 +63,19 @@ public class PhysicalStoreResourceIT {
                 .body(BodyInserters.fromValue(physicalStore))
                 .exchange()
                 .expectStatus().isEqualTo(HttpStatus.CONFLICT);
+    }
+
+    @Test
+    void testFindAddressPhysicalStoreWithAFoodTypeScoreHigherThan() {
+        this.webTestClient
+                .get()
+                .uri(uriBuilder -> uriBuilder
+                        .path(PhysicalStoreResource.PHYSICALSTORES + PhysicalStoreResource.SEARCH)
+                        .queryParam("q", "id:foodType3;score:5.0")
+                        .build())
+                .exchange()
+                .expectStatus().isOk()
+                .expectBodyList(AddressStoreDto.class)
+                .value(address -> assertEquals("address5", address.get(0).getAddress()));
     }
 }

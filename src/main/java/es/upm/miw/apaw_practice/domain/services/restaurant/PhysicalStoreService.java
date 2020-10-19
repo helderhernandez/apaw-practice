@@ -1,6 +1,5 @@
 package es.upm.miw.apaw_practice.domain.services.restaurant;
 
-import es.upm.miw.apaw_practice.adapters.rest.restaurant.AddressStoreDto;
 import es.upm.miw.apaw_practice.domain.models.restaurant.PhysicalStore;
 import es.upm.miw.apaw_practice.domain.persistence_ports.restaurant.PhysicalStorePersistence;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +24,7 @@ public class PhysicalStoreService {
         this.physicalStorePersistence.deletePhysicalStore(address);
     }
 
-    public Stream<PhysicalStore> findAddressPhysicalStoreWithAFoodTypeScore(String idFoodType, String score) {
-        return this.physicalStorePersistence.findAddressPhysicalStoreWithAFoodTypeScore(idFoodType, score);
+    public Stream<PhysicalStore> findAddressPhysicalStoreWithAFoodTypeScoreHigherThan(String idFoodType, Double score) {
+        return this.physicalStorePersistence.findAddressPhysicalStoreWithAFoodTypeScoreHigherThan(idFoodType, score);
     }
 }
