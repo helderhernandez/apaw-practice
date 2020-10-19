@@ -49,10 +49,10 @@ public class FurnitureFactorySeederService {
         };
         this.addressRepository.saveAll(Arrays.asList(address));
         StaffEntity[] staff = {
-                new StaffEntity("Jose", "Luis", 23, 688010527, "hamal","Y6687008C"),
-                new StaffEntity("German", "Dolado", 19, 657011258, "director","Y6577008A"),
-                new StaffEntity("Pablo", "David", 36, 688236589, "cleaner","Y6897008X"),
-                new StaffEntity("Sebastian", "jose", 45, 641258963, "security","Y6147008N"),
+                StaffEntity.builder().firstName("Jose").lastName("Luis").dni("Y6687008C").age(23).phone(688010527).post("hamal").build(),
+                StaffEntity.builder().firstName("German").lastName("Dolado").dni("Y6577008A").age(19).phone(657011258).post("director").build(),
+                StaffEntity.builder().firstName("Pablo").lastName("David").dni("Y6897008X").age(36).phone(688236589).post("cleaner").build(),
+                StaffEntity.builder().firstName("Sebastian").lastName("jose").dni("Y6147008N").age(45).phone(641258963).post("security").build(),
 
         };
         this.staffRepository.saveAll(Arrays.asList(staff));

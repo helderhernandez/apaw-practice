@@ -3,6 +3,7 @@ package es.upm.miw.apaw_practice.adapters.mongodb.FurnitureFactory.persistence;
 import es.upm.miw.apaw_practice.adapters.mongodb.FurnitureFactory.daos.StaffRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.FurnitureFactory.daos.WarehouseRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.FurnitureFactory.entities.StaffEntity;
+import es.upm.miw.apaw_practice.adapters.mongodb.school.entities.TeacherEntity;
 import es.upm.miw.apaw_practice.domain.exceptions.ConflictException;
 import es.upm.miw.apaw_practice.domain.models.FurnitureFactory.Staff;
 import es.upm.miw.apaw_practice.domain.models.transittaxes.Accident;
@@ -34,7 +35,7 @@ public class StaffPersistenceMongodb implements StaffPersistence {
     public Staff create(Staff staff) {
         this.assertDniNotExist(staff.getDni());
         return this.staffRepository
-                .save(new StaffEntity(staff))
+                .save(StaffEntity.builder().firstName(staff.getFirstName()).lastName(staff.getLastName()).dni(staff.getDni()).age(staff.getAge()).phone(staff.getPhone()).post(staff.getPost()).build())
                 .toStaff();
     }
     @Override
