@@ -24,4 +24,22 @@ public class InspectorEntityRepositoryIT {
         assertEquals("email1", inspector.getEmail());
         assertEquals("phone1", inspector.getPhoneNumber());
     }
+
+    @Test
+    void testInspectorBuilder() {
+        InspectorEntity inspector = InspectorEntity.builder()
+                .dni("dniTestBuilder")
+                .firstName("firstNameTestBuilder")
+                .lastName("lastNameTestBuilder")
+                .age(20)
+                .email("emailTestBuilder")
+                .phoneNumber("phoneTestBuilder")
+                .build();
+        assertEquals("dniTestBuilder", inspector.getDni());
+        assertEquals("firstNameTestBuilder", inspector.getFirstName());
+        assertEquals("lastNameTestBuilder", inspector.getLastName());
+        assertEquals(20, inspector.getAge());
+        assertEquals("emailTestBuilder", inspector.getEmail());
+        assertEquals("phoneTestBuilder", inspector.getPhoneNumber());
+    }
 }

@@ -17,6 +17,7 @@ public class DiscountSportyEntity {
     private Double percentage;
 
     public DiscountSportyEntity() {
+        //empty for framework
     }
 
     public DiscountSportyEntity(String idDiscount, String description, Double percentage) {

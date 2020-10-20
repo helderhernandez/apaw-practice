@@ -20,4 +20,8 @@ public class MusicService {
         return this.musicPersistence.updateName(id, name);
     }
 
+    public Stream<Music>findMusicBySingerName(String name){
+        return this.musicPersistence.findMusicBySingerName(name);
+    }
+
 }

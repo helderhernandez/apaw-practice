@@ -1,9 +1,12 @@
 package es.upm.miw.apaw_practice.adapters.rest.music;
 
+import es.upm.miw.apaw_practice.adapters.rest.LexicalAnalyzer;
 import es.upm.miw.apaw_practice.domain.models.music.Music;
 import es.upm.miw.apaw_practice.domain.services.music.MusicService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.stream.Stream;
 
 @RestController
 @RequestMapping(MusicResource.MUSICS)
@@ -23,5 +26,10 @@ public class MusicResource {
     @PutMapping(ID_ID + NAME)
     public Music updateName(@PathVariable String id, @RequestBody NameDto nameDto) {
         return this.musicService.updateName(id, nameDto.getName());
+    }
+    @GetMapping(SEARCH)
+    public Stream<Music> findMusicBySingerName(@RequestParam String q){
+        String name = new LexicalAnalyzer().extractWithAssure(q,"name");
+        return this.musicService.findMusicBySingerName(name);
     }
 }

@@ -5,6 +5,7 @@ public class CategoryCreationSporty {
     private Integer numMaxPersons;
 
     public CategoryCreationSporty() {
+        //empty for framework
     }
 
     public CategoryCreationSporty(String description, Integer numMaxPersons) {
