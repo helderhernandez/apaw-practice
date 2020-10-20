@@ -9,6 +9,14 @@ public class TreeCDOwnerLeaf implements TreeCDOwner {
         this.ownerEntity = ownerEntity;
     }
 
+    public CDOwnerEntity getOwnerEntity() {
+        return ownerEntity;
+    }
+
+    public void setOwnerEntity(CDOwnerEntity ownerEntity) {
+        this.ownerEntity = ownerEntity;
+    }
+
     @Override
     public void add(TreeCDOwner treeCDOwner) {
         throw new UnsupportedOperationException("Unsupported action. This is a leaf");
