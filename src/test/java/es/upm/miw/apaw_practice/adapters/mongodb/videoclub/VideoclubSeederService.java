@@ -30,20 +30,58 @@ public class VideoclubSeederService {
     public void seedDatabase() {
         LogManager.getLogger(this.getClass()).warn("------- Videoclub Initial Load -----------");
         FilmCategoryEntity[] filmCategories = {
-                new FilmCategoryEntity("cat1", "Action", false),
-                new FilmCategoryEntity("cat2", "Commedy", false),
-                new FilmCategoryEntity("cat3", "Thriller", false),
-                new FilmCategoryEntity("cat4", "Horror", true),
-                new FilmCategoryEntity("cat5", "Children", false),
-                new FilmCategoryEntity("cat6", "War", true)
+                FilmCategoryEntity.builder("cat1")
+                        .name("Action")
+                        .plus18(false)
+                        .build(),
+                FilmCategoryEntity.builder("cat2")
+                        .name("Commedy")
+                        .plus18(false)
+                        .build(),
+                FilmCategoryEntity.builder("cat3")
+                        .name("Thriller")
+                        .plus18(false)
+                        .build(),
+                FilmCategoryEntity.builder("cat4")
+                        .name("Horror")
+                        .plus18(true)
+                        .build(),
+                FilmCategoryEntity.builder("cat5")
+                        .name("Children")
+                        .plus18(false)
+                        .build(),
+                FilmCategoryEntity.builder("cat6")
+                        .name("War")
+                        .plus18(true)
+                        .build()
         };
         this.filmCategoryRepository.saveAll(Arrays.asList(filmCategories));
         FilmMakerEntity[] filmMakers = {
-                new FilmMakerEntity("filmMaker1", "John Singleton", LocalDate.of(1970, 1, 25), "M"),
-                new FilmMakerEntity("filmMaker2", "William Blake Crump", LocalDate.of(1922, 2, 26), "M"),
-                new FilmMakerEntity("filmMaker3", "Jonathan Demme", LocalDate.of(1950, 3, 27), "M"),
-                new FilmMakerEntity("filmMaker4", "Steven Baker", LocalDate.of(1960, 4, 28), "M"),
-                new FilmMakerEntity("filmMaker5", "Kathryn Bigelow", LocalDate.of(1970, 5, 29), "F")
+                FilmMakerEntity.builder("filmMaker1")
+                        .name("John Singleton")
+                        .birthday(LocalDate.of(1970, 1, 25))
+                        .gender("M")
+                        .build(),
+                FilmMakerEntity.builder("filmMaker2")
+                        .name("William Blake Crump")
+                        .birthday(LocalDate.of(1922, 2, 26))
+                        .gender("M")
+                        .build(),
+                FilmMakerEntity.builder("filmMaker3")
+                        .name("Jonathan Demme")
+                        .birthday(LocalDate.of(1950, 3, 27))
+                        .gender("M")
+                        .build(),
+                FilmMakerEntity.builder("filmMaker4")
+                        .name("Steven Baker")
+                        .birthday(LocalDate.of(1960, 4, 28))
+                        .gender("M")
+                        .build(),
+                FilmMakerEntity.builder("filmMaker5")
+                        .name("Kathryn Bigelow")
+                        .birthday(LocalDate.of(1970, 5, 29))
+                        .gender("F")
+                        .build()
         };
         this.filmMakerRepository.saveAll(Arrays.asList(filmMakers));
         RentalFilmEntity[] films = {
