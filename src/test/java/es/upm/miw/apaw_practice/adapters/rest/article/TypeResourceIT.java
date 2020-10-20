@@ -16,7 +16,7 @@ import java.util.List;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @RestTestConfig
-public class TyprResourceIT {
+public class TypeResourceIT {
 
     @Autowired
     private WebTestClient webTestClient;
