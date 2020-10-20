@@ -8,7 +8,7 @@ import org.springframework.web.reactive.function.BodyInserter;
 import org.springframework.web.reactive.function.BodyInserters;
 
 @RestTestConfig
-public class CourtResourceIT {
+class CourtResourceIT {
 
     @Autowired
     private WebTestClient webTestClient;
