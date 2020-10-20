@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.web.reactive.server.WebTestClient;
 import org.springframework.web.reactive.function.BodyInserters;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @RestTestConfig
@@ -28,5 +29,19 @@ public class ReaderResourceIT {
                 .expectBody(Reader.class)
                 .value(Assertions::assertNotNull)
                 .value(readerData->assertNotNull(readerData.getId()));
+    }
+
+    @Test
+    void findNameByBookISBN(){
+        this.webTestClient
+                .get()
+                .uri(uriBuilder -> uriBuilder
+                        .path(ReaderResource.READER+ReaderResource.SEARCH)
+                        .queryParam("q","ISBN:9787111636623")
+                        .build())
+                .exchange()
+                .expectStatus().isOk()
+                .expectBodyList(Reader.class)
+                .value(readers -> assertEquals("Maria",readers.get(0).getName()));
     }
 }
