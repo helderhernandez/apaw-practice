@@ -82,6 +82,10 @@ public class FilmMakerEntity {
         return filmMaker;
     }
 
+    public static Builder builder(String reference) {
+        return new Builder(reference);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -108,5 +112,34 @@ public class FilmMakerEntity {
                 ", birthday=" + birthday +
                 ", gender='" + gender + '\'' +
                 '}';
+    }
+
+    public static class Builder {
+        private FilmMakerEntity filmMakerEntity;
+
+        private Builder(String reference) {
+            filmMakerEntity = new FilmMakerEntity();
+            filmMakerEntity.setId(UUID.randomUUID().toString());
+            filmMakerEntity.setReference(reference);
+        }
+
+        public Builder name(String name) {
+            filmMakerEntity.setName(name);
+            return this;
+        }
+
+        public Builder birthday(LocalDate birthday) {
+            filmMakerEntity.setBirthday(birthday);
+            return this;
+        }
+
+        public Builder gender(String gender) {
+            filmMakerEntity.setGender(gender);
+            return this;
+        }
+
+        public FilmMakerEntity build() {
+            return filmMakerEntity;
+        }
     }
 }
