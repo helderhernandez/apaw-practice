@@ -1,7 +1,5 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.car_dealership.entities.composite;
 
-import es.upm.miw.apaw_practice.domain.models.treeConservation.Tree;
-
 import java.util.ArrayList;
 import java.util.List;
 
@@ -9,7 +7,7 @@ public class TreeCDOwnerComposite implements TreeCDOwner{
     List<TreeCDOwner> treeCDOwnerList;
 
     public TreeCDOwnerComposite() {
-        this.treeCDOwnerList = new ArrayList<TreeCDOwner>();
+        this.treeCDOwnerList = new ArrayList<>();
     }
 
     public TreeCDOwnerComposite(List<TreeCDOwner> treeCDOwnerList) {

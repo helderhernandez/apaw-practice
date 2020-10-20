@@ -1,6 +1,5 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.car_dealership.persistence;
 
-import es.upm.miw.apaw_practice.adapters.mongodb.car_dealership.daos.CDOwnerRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.car_dealership.daos.CarDealershipRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.car_dealership.entities.CDOwnerEntity;
 import es.upm.miw.apaw_practice.adapters.mongodb.car_dealership.entities.CarDealershipEntity;
@@ -12,11 +11,9 @@ import java.util.stream.Stream;
 @Repository("cDOwnerPersistence")
 public class CDOwnerPersistenceMongodb implements CDOwnerPersistence {
 
-    private CDOwnerRepository cdOwnerRepository;
-    private CarDealershipRepository carDealershipRepository;
+    private final CarDealershipRepository carDealershipRepository;
 
-    public CDOwnerPersistenceMongodb(CDOwnerRepository cdOwnerRepository, CarDealershipRepository carDealershipRepository) {
-        this.cdOwnerRepository = cdOwnerRepository;
+    public CDOwnerPersistenceMongodb(CarDealershipRepository carDealershipRepository) {
         this.carDealershipRepository = carDealershipRepository;
     }
 

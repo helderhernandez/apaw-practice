@@ -1,7 +1,6 @@
 package es.upm.miw.apaw_practice.adapters.rest.car_dealership;
 
 import es.upm.miw.apaw_practice.domain.models.car_dealership.CDEmployeeSalaryUpdate;
-import es.upm.miw.apaw_practice.domain.models.shop.ArticlePriceUpdating;
 import es.upm.miw.apaw_practice.domain.services.car_dealership.CDEmployeeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
