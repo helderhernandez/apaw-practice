@@ -69,7 +69,7 @@ public class RecipeEntity {
 
     public Recipe toRecipe() {
         return Recipe.builder(id, name, ingredients.stream()
-                .map(ingredient -> ingredient.getId())
+                .map(IngredientEntity::getId)
                 .collect(Collectors.toList()))
                 .build();
     }
