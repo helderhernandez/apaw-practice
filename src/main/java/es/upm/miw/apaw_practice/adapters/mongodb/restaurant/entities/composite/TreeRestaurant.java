@@ -1,5 +1,7 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.restaurant.entities.composite;
 
+import java.util.List;
+
 public interface TreeRestaurant {
 
     String getName();
@@ -9,4 +11,6 @@ public interface TreeRestaurant {
     void remove(TreeRestaurant treeRestaurant);
 
     boolean isComposite();
+
+    List<String> getListName();
 }

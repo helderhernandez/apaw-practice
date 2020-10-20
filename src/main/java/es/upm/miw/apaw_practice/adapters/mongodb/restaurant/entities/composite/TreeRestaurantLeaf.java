@@ -2,7 +2,9 @@ package es.upm.miw.apaw_practice.adapters.mongodb.restaurant.entities.composite;
 
 import es.upm.miw.apaw_practice.adapters.mongodb.restaurant.entities.RestaurantEntity;
 
-public class TreeRestaurantLeaf implements TreeRestaurant{
+import java.util.List;
+
+public class TreeRestaurantLeaf implements TreeRestaurant {
     private RestaurantEntity restaurantEntity;
 
     public TreeRestaurantLeaf(RestaurantEntity restaurantEntity) {
@@ -25,5 +27,12 @@ public class TreeRestaurantLeaf implements TreeRestaurant{
     }
 
     @Override
-    public boolean isComposite() { return false; }
+    public boolean isComposite() {
+        return false;
+    }
+
+    @Override
+    public List<String> getListName() {
+        return List.of(restaurantEntity.getName());
+    }
 }
