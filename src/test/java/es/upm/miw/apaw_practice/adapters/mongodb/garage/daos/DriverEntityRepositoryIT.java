@@ -7,6 +7,7 @@ import es.upm.miw.apaw_practice.domain.models.garage.Vehicle;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -26,6 +27,26 @@ public class DriverEntityRepositoryIT {
         assertEquals("frcgon@example.com", driver.getEmail());
         assertEquals(Boolean.FALSE, driver.getGarageMember());
         assertFalse(driver.getVehicleEntities().isEmpty());
+    }
+
+    @Test
+    void testDriverEntity() {
+        DriverEntity driver = new DriverEntity();
+        driver.setId("31415");
+        driver.setDni("123456789F");
+        driver.setName("Carlos");
+        driver.setEmail("carlos@exmaple.com");
+        driver.setGarageMember(Boolean.FALSE);
+        driver.setTelephone("985666325");
+        driver.setVehicleEntities(new ArrayList<>());
+
+        assertEquals("31415", driver.getId());
+        assertEquals("123456789F", driver.getDni());
+        assertEquals("Carlos", driver.getName());
+        assertEquals("carlos@exmaple.com", driver.getEmail());
+        assertEquals(Boolean.FALSE, driver.getGarageMember());
+        assertEquals("985666325", driver.getTelephone());
+        assertEquals(0, driver.getVehicleEntities().size());
     }
 
     @Test

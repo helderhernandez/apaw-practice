@@ -2,6 +2,7 @@ package es.upm.miw.apaw_practice.adapters.mongodb.garage.daos;
 
 import es.upm.miw.apaw_practice.TestConfig;
 import es.upm.miw.apaw_practice.adapters.mongodb.garage.entities.VehicleEntity;
+import es.upm.miw.apaw_practice.domain.models.garage.Vehicle;
 import es.upm.miw.apaw_practice.domain.models.garage.composite.TreeVehicle;
 import es.upm.miw.apaw_practice.domain.models.garage.composite.TreeVehicleComposite;
 import es.upm.miw.apaw_practice.domain.models.garage.composite.TreeVehicleLeaf;
@@ -86,6 +87,24 @@ public class VehicleEntityRepositoryIT {
                     .collect(Collectors.toList())
                     .containsAll(List.of("Seat Ibiza", "Nissan Qashqai", "Nissan Juke"))
         );
+
+        car.getVehicles().stream()
+                .flatMap(treeVehicle -> treeVehicle.getVehicles().stream())
+                .forEach(treeVehicle -> {
+                    assertThrows(UnsupportedOperationException.class, () -> {
+                        treeVehicle.getVehicles();
+                    });
+                    assertThrows(UnsupportedOperationException.class, () -> {
+                        treeVehicle.add(new TreeVehicleLeaf(new Vehicle()));
+                    });
+                    assertThrows(UnsupportedOperationException.class, () -> {
+                        treeVehicle.remove(new TreeVehicleLeaf(new Vehicle()));
+                    });
+
+                    assertFalse(treeVehicle.getVehiclesModel().isEmpty());
+                    assertFalse(treeVehicle.isComposite());
+                    assertEquals(0, treeVehicle.numberOfDescendants());
+                });
     }
 
     @AfterAll
