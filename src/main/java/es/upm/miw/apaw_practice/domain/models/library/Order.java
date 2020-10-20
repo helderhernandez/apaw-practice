@@ -1,9 +1,11 @@
 package es.upm.miw.apaw_practice.domain.models.library;
 
 
+import es.upm.miw.apaw_practice.adapters.mongodb.library.entities.BookEntity;
+import es.upm.miw.apaw_practice.adapters.mongodb.library.entities.ReaderEntity;
+
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.Objects;
 
 public class Order {
     private String id;
@@ -11,14 +13,14 @@ public class Order {
     private LocalDateTime creationTime;
     private LocalDateTime paymentTime;
     private LocalDateTime returnTime;
-    private Book book;
-    private Reader reader;
+    private BookEntity book;
+    private ReaderEntity reader;
 
     public Order() {
         //empty from framework
     }
 
-    public Order(String id, BigDecimal rental, LocalDateTime creationTime, LocalDateTime paymentTime, LocalDateTime returnTime, Book book, Reader reader) {
+    public Order(String id, BigDecimal rental, LocalDateTime creationTime, LocalDateTime paymentTime, LocalDateTime returnTime, BookEntity book, ReaderEntity reader) {
         this.id = id;
         this.rental = rental;
         this.creationTime = creationTime;
@@ -68,19 +70,19 @@ public class Order {
         this.returnTime = returnTime;
     }
 
-    public Book getBook() {
+    public BookEntity getBook() {
         return book;
     }
 
-    public void setBook(Book book) {
+    public void setBook(BookEntity book) {
         this.book = book;
     }
 
-    public Reader getReader() {
+    public ReaderEntity getReader() {
         return reader;
     }
 
-    public void setReader(Reader reader) {
+    public void setReader(ReaderEntity reader) {
         this.reader = reader;
     }
 

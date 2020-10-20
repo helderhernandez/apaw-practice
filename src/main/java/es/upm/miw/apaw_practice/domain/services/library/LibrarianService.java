@@ -5,6 +5,8 @@ import es.upm.miw.apaw_practice.domain.persistence_ports.library.LibrarianPersis
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.stream.Stream;
+
 @Service
 public class LibrarianService {
     private  final LibrarianPersistence librarianPersistence;
@@ -15,5 +17,9 @@ public class LibrarianService {
     }
     public Librarian updateName(String id, String name){
         return this.librarianPersistence.updateName(id,name);
+    }
+
+    public Stream<Librarian> findPhoneByReaderDni(String dni) {
+        return this.librarianPersistence.findPhoneByReaderDni(dni);
     }
 }
