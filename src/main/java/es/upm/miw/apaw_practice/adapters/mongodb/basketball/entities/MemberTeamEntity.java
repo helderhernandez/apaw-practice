@@ -75,27 +75,6 @@ public class MemberTeamEntity {
         this.available = available;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        return this == o || o != null && getClass() == o.getClass() && (dni.equals(((MemberTeamEntity) o).dni));
-    }
-
-    @Override
-    public int hashCode() {
-        return dni.hashCode();
-    }
-
-    @Override
-    public String toString() {
-        return "MemberTeamEntity{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                ", surname='" + surname + '\'' +
-                ", dni='" + dni + '\'' +
-                ", isAvailable=" + available +
-                '}';
-    }
-
     public MemberTeam toMemberTeam() {
         MemberTeam memberTeam = new MemberTeam();
         BeanUtils.copyProperties(this, memberTeam);
