@@ -2,9 +2,6 @@ package es.upm.miw.apaw_practice.domain.models.garage;
 
 import es.upm.miw.apaw_practice.adapters.mongodb.garage.entities.MechanicEntity;
 import es.upm.miw.apaw_practice.adapters.mongodb.garage.entities.PieceEntity;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.index.Indexed;
-import org.springframework.data.mongodb.core.mapping.DBRef;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
@@ -88,4 +85,5 @@ public class Vehicle {
     public void setMechanicEntities(List<MechanicEntity> mechanicEntities) {
         this.mechanicEntities = mechanicEntities;
     }
+
 }
