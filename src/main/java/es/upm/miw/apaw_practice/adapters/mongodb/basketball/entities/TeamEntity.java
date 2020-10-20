@@ -76,27 +76,6 @@ public class TeamEntity {
         this.coachTeam = coachTeam;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        return this == o || o != null && getClass() == o.getClass() && (id.equals(((TeamEntity) o).id));
-    }
-
-    @Override
-    public int hashCode() {
-        return id.hashCode();
-    }
-
-    @Override
-    public String toString() {
-        return "TeamEntity{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                ", players=" + players +
-                ", courtsToPlay=" + courtsToPlay +
-                ", coachTeam=" + coachTeam +
-                '}';
-    }
-
     public static class Builder implements TeamBuilder.Name, TeamBuilder.Optionals {
 
         private TeamEntity teamEntity;

@@ -10,7 +10,7 @@ import org.springframework.web.reactive.function.BodyInserters;
 import static org.hamcrest.core.IsEqual.equalTo;
 
 @RestTestConfig
-public class ChefResourceIT {
+class ChefResourceIT {
     @Autowired
     private WebTestClient webTestClient;
 

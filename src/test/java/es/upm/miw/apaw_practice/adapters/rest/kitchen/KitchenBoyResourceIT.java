@@ -10,7 +10,7 @@ import static es.upm.miw.apaw_practice.adapters.rest.kitchen.KitchenBoyResource.
 import static es.upm.miw.apaw_practice.adapters.rest.kitchen.KitchenBoyResource.KITCHEN_BOY;
 
 @RestTestConfig
-public class KitchenBoyResourceIT {
+class KitchenBoyResourceIT {
 
     @Autowired
     private WebTestClient webTestClient;

@@ -59,26 +59,6 @@ public class CourtEntity {
         this.capacity = capacity;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        return this == o || o != null && getClass() == o.getClass() && (id.equals(((CourtEntity) o).id));
-    }
-
-    @Override
-    public int hashCode() {
-        return id.hashCode();
-    }
-
-    @Override
-    public String toString() {
-        return "CourtEntity{" +
-                "id='" + id + '\'' +
-                ", dateMatch=" + dateMatch +
-                ", name='" + name + '\'' +
-                ", capacity=" + capacity +
-                '}';
-    }
-
     public Court toCourt() {
         Court court = new Court();
         BeanUtils.copyProperties(this, court);

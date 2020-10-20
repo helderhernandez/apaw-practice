@@ -3,17 +3,17 @@ package es.upm.miw.apaw_practice.adapters.mongodb.kitchen.daos;
 import es.upm.miw.apaw_practice.TestConfig;
 import es.upm.miw.apaw_practice.adapters.mongodb.kitchen.entities.IngredientEntity;
 import es.upm.miw.apaw_practice.adapters.mongodb.kitchen.entities.KitchenBoyEntity;
+import es.upm.miw.apaw_practice.domain.exceptions.NotFoundException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.math.BigDecimal;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 @TestConfig
-public class KitchenBoyEntityRepositoryIT {
+class KitchenBoyEntityRepositoryIT {
     @Autowired
     private KitchenBoyRepository kitchenBoyRepository;
 
@@ -42,7 +42,8 @@ public class KitchenBoyEntityRepositoryIT {
     @Test
     void testEquals(){
         KitchenBoyEntity equalKitchenBoy = new KitchenBoyEntity("12345678A", 3, kitchenBoy.getIngredientToWorkOn());
-        assertTrue(kitchenBoy.equals(equalKitchenBoy));
-        assertTrue(!kitchenBoy.equals(kitchenBoyRepository.findByDni("50129911B")));
+        assertEquals(kitchenBoy, equalKitchenBoy);
+        assertNotEquals(kitchenBoy, kitchenBoyRepository.findByDni("50129911B")
+                .orElseThrow(() -> new NotFoundException("KitchenBoy DNI 50129911B")));
     }
 }
