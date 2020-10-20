@@ -3,6 +3,7 @@ package es.upm.miw.apaw_practice.adapters.mongodb.kitchen.daos;
 import es.upm.miw.apaw_practice.TestConfig;
 import es.upm.miw.apaw_practice.adapters.mongodb.kitchen.entities.IngredientEntity;
 import es.upm.miw.apaw_practice.adapters.mongodb.kitchen.entities.RecipeEntity;
+import es.upm.miw.apaw_practice.domain.exceptions.NotFoundException;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,11 +14,10 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 @TestConfig
-public class RecipesEntityRepositoryIT {
+class RecipesEntityRepositoryIT {
     @Autowired
     private RecipeRepository recipeRepository;
 
@@ -52,8 +52,9 @@ public class RecipesEntityRepositoryIT {
     @Test
     void testEquals(){
         RecipeEntity equalRecipe = new RecipeEntity("Cupcakes", recipe.getIngredients());
-        assertTrue(recipe.equals(equalRecipe));
-        assertTrue(!recipe.equals(recipeRepository.findByName("Puré de calabaza")));
+        assertEquals(recipe, equalRecipe);
+        assertNotEquals(recipe, recipeRepository.findByName("Puré de calabaza")
+                .orElseThrow(() -> new NotFoundException("RecipeEntity name: Puré de calabaza")));
     }
 
 }
