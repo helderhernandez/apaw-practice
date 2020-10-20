@@ -13,14 +13,6 @@ public class Recipe {
         //Empty from framework
     }
 
-    /*
-    public Recipe(String id, String name, List<String> ingredients){
-        this.id = id;
-        this.name = name;
-        this.ingredientIds = ingredients;
-    }
-    */
-
     public String getId() {
         return id;
     }

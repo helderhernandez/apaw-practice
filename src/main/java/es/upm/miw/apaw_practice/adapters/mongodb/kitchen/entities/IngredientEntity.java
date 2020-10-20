@@ -80,14 +80,13 @@ public class IngredientEntity {
     }
 
     public Ingredient toIngredient() {
-        Ingredient ingredient = Ingredient.builder()
+        return Ingredient.builder()
                 .id(id)
                 .name(name)
                 .pricePerKg(pricePerKg)
                 .weightKg(weightKg)
                 .elaborated(elaborated).washed(washed)
                 .build();
-        return ingredient;
     }
 
     public void fromIngredient(Ingredient ingredient) {

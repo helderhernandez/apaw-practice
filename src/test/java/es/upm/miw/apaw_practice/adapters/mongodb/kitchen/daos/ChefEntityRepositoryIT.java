@@ -17,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @TestConfig
-public class ChefEntityRepositoryIT {
+class ChefEntityRepositoryIT {
     @Autowired
     private ChefRepository chefRepository;
 
@@ -51,6 +51,6 @@ public class ChefEntityRepositoryIT {
     @Test
     void testEquals() {
         ChefEntity equalChef = new ChefEntity("44411122F", chef.getKitchenBoys());
-        assertTrue(chef.equals(equalChef));
+        assertEquals(chef, equalChef);
     }
 }
