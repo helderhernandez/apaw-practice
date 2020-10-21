@@ -24,4 +24,18 @@ public class IssueResourceIT {
                 .value(Assertions::assertNotNull);
     }
 
+    @Test
+    void testFindDevelopersEmailByLabelName() {
+        this.webTestClient
+                .get()
+                .uri(uriBuilder ->
+                        uriBuilder.path(IssueResource.ISSUE + IssueResource.SEARCH)
+                                .queryParam("q", "labelName:documentation")
+                                .build())
+                .exchange()
+                .expectStatus().isOk()
+                .expectBodyList(String.class)
+                .value(Assertions::assertNotNull);
+    }
+
 }
