@@ -1,8 +1,5 @@
 package es.upm.miw.apaw_practice.domain.models.project;
 
-import es.upm.miw.apaw_practice.adapters.mongodb.project.entities.DeveloperEntity;
-import es.upm.miw.apaw_practice.adapters.mongodb.project.entities.LabelEntity;
-
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -13,8 +10,8 @@ public class Issue {
     private Integer estimatedHours;
     private LocalDateTime dueDate;
     private Boolean done;
-    private DeveloperEntity developer;
-    private List<LabelEntity> labels;
+    private Developer developer;
+    private List<Label> labels;
 
     public Issue() {
         //empty for framework
@@ -60,20 +57,29 @@ public class Issue {
         this.done = done;
     }
 
-    public DeveloperEntity getDeveloper() {
+    public Developer getDeveloper() {
         return developer;
     }
 
-    public void setDeveloper(DeveloperEntity developer) {
+    public void setDeveloper(Developer developer) {
         this.developer = developer;
     }
 
-    public List<LabelEntity> getLabels() {
+    public List<Label> getLabels() {
         return labels;
     }
 
-    public void setLabels(List<LabelEntity> labels) {
+    public void setLabels(List<Label> labels) {
         this.labels = labels;
+    }
+
+    public boolean hasLabel(String labelName) {
+        for (Label label : labels) {
+            if (label.getName().equals(labelName)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     @Override
