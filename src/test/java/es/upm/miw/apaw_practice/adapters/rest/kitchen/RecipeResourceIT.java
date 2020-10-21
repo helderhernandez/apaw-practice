@@ -2,7 +2,6 @@ package es.upm.miw.apaw_practice.adapters.rest.kitchen;
 
 import es.upm.miw.apaw_practice.adapters.mongodb.kitchen.persistence.IngredientPersistenceMongodb;
 import es.upm.miw.apaw_practice.adapters.rest.RestTestConfig;
-import es.upm.miw.apaw_practice.adapters.rest.shop.ArticleResource;
 import es.upm.miw.apaw_practice.domain.models.kitchen.Recipe;
 import es.upm.miw.apaw_practice.domain.models.kitchen.RecipeCreation;
 import org.junit.jupiter.api.Assertions;
@@ -64,7 +63,7 @@ class RecipeResourceIT {
     }
 
     @Test
-    void testSearch1() {
+    void testFindRecipeNameByIngredientFromKitchenBoyDni() {
         this.webTestClient
                 .get()
                 .uri(uriBuilder ->
@@ -73,15 +72,9 @@ class RecipeResourceIT {
                         .build())
                 .exchange()
                 .expectStatus().isOk()
-                .expectBodyList(Recipe.class)
-                .value(recipes -> assertTrue(recipes.size() > 0))
-                .value(recipes -> assertTrue(recipes.stream()
-                        .map(recipe -> recipe.getName())
-                        .collect(Collectors.toList())
-                        .contains("Cupcakes")));
-
-        //TODO Search pide directamente los nombres, pero al poner un expectBodyList de
-        // String.class crea una lista de un elemento con todo el JSON
+                .expectBody(String.class)
+                .value(recipesName -> assertFalse(recipesName.isEmpty()))
+                .value(recipesName -> assertTrue(recipesName.contains("Cupcakes")));
     }
 
     @Test
