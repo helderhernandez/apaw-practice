@@ -30,10 +30,10 @@ public class UserStoryResourceIT {
                         uriBuilder.path(UserStoryResource.USER_STORY + UserStoryResource.SEARCH)
                                 .queryParam("q", "labelName:documentation")
                                 .build())
-        .exchange()
-        .expectStatus().isOk()
-        .expectBodyList(String.class)
-        .value(strings -> strings.get(0), equalTo("[\"login\"]"));
+                .exchange()
+                .expectStatus().isOk()
+                .expectBodyList(String.class)
+                .value(strings -> strings.get(0), equalTo("[\"login\"]"));
     }
 
 }

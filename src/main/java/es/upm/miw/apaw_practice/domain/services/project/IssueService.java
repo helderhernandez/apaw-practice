@@ -32,4 +32,10 @@ public class IssueService {
                 })
                 .forEach(issue -> this.issuePersistence.update(issue));
     }
+
+    public Stream<String> findDevelopersEmailByLabelName(String labelName) {
+        return this.readAll()
+                .filter(issue -> issue.hasLabel(labelName))
+                .map(issue -> issue.getDeveloper().getEmail());
+    }
 }
