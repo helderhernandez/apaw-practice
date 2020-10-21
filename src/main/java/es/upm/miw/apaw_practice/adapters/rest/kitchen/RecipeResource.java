@@ -28,8 +28,8 @@ public class RecipeResource {
     }
 
     @GetMapping(SEARCH)
-    public Stream<Recipe> search1(@RequestParam String q) {
+    public Stream<String> findRecipeNameByIngredientFromKitchenBoyDni(@RequestParam String q) {
         String dni = new LexicalAnalyzer().extractWithAssure(q, "dni");
-        return this.recipeService.search1(dni);
+        return this.recipeService.findRecipeNameByIngredientFromKitchenBoyDni(dni);
     }
 }
