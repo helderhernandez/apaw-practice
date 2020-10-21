@@ -7,7 +7,6 @@ import es.upm.miw.apaw_practice.adapters.mongodb.kitchen.entities.IngredientEnti
 import es.upm.miw.apaw_practice.adapters.mongodb.kitchen.entities.RecipeEntity;
 import es.upm.miw.apaw_practice.domain.exceptions.ConflictException;
 import es.upm.miw.apaw_practice.domain.exceptions.NotFoundException;
-import es.upm.miw.apaw_practice.domain.models.kitchen.Ingredient;
 import es.upm.miw.apaw_practice.domain.models.kitchen.Recipe;
 import es.upm.miw.apaw_practice.domain.models.kitchen.RecipeCreation;
 import es.upm.miw.apaw_practice.domain.persistence_ports.kitchen.RecipePersistence;
@@ -53,14 +52,12 @@ public class RecipePersistenceMongodb implements RecipePersistence {
     }
 
     @Override
-    public Stream<Recipe> search1(String dni) {
+    public Stream<String> findRecipeNameByIngredientFromKitchenBoyDni(String dni) {
         IngredientEntity kitchenBoyIngredient = this.kitchenBoyRepository.findByDni(dni)
                 .orElseThrow(() -> new NotFoundException("KitchenBoy DNI: " + dni))
                 .getIngredientToWorkOn();
-        System.out.println("----------" + kitchenBoyIngredient.getName());
         return this.recipeRepository.findAll().stream()
                 .filter(recipe -> recipe.getIngredients().contains(kitchenBoyIngredient))
-                .peek(recipe -> System.out.println("----------" + recipe.getName()))
-                .map(recipe -> recipe.toRecipe());
+                .map(RecipeEntity::getName);
     }
 }

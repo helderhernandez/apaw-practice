@@ -32,17 +32,4 @@ class ChefPersistenceMongodbIT {
         assertEquals(4, chefBD.getRecipesFinished());
     }
 
-    @Test
-    void testSearch2() {
-        ChefEntity chef = this.chefRepository.findByDni("44411122F")
-                .orElseThrow(() -> new NotFoundException("Chef dni: 44411122F"));
-
-        String ingredientID = chef.getKitchenBoys().get(0)
-                .getIngredientToWorkOn().getId();
-
-        assertTrue(this.chefPersistence.search2(ingredientID)
-                .collect(Collectors.toList())
-                .contains(chef.getDni()));
-
-    }
 }

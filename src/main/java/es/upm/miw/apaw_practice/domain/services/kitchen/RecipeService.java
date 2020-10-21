@@ -21,7 +21,7 @@ public class RecipeService {
         return this.recipePersistence.create(recipeCreation);
     }
 
-    public Stream<Recipe> search1(String dni) {
-        return this.recipePersistence.search1(dni);
+    public Stream<String> findRecipeNameByIngredientFromKitchenBoyDni(String dni) {
+        return this.recipePersistence.findRecipeNameByIngredientFromKitchenBoyDni(dni);
     }
 }
