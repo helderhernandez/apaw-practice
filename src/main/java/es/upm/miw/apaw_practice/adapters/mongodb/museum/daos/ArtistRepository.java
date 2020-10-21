@@ -1,7 +1,7 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.museum.daos;
 
+import es.upm.miw.apaw_practice.adapters.mongodb.museum.entities.ArtistEntity;
 import org.springframework.data.mongodb.repository.MongoRepository;
-import es.upm.miw.apaw_practice.adapters.mongodb.shop.entities.ArticleEntity;
 
-public interface ArtistRepository extends MongoRepository<ArticleEntity, String> {
+public interface ArtistRepository extends MongoRepository<ArtistEntity, String> {
 }
