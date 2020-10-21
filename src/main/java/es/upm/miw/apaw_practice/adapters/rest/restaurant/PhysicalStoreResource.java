@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.stream.Stream;
 
+import static java.lang.Double.parseDouble;
+
 @RestController
 @RequestMapping(PhysicalStoreResource.PHYSICALSTORES)
 public class PhysicalStoreResource {
@@ -36,7 +38,7 @@ public class PhysicalStoreResource {
     @GetMapping(SEARCH)
     public Stream<AddressStoreDto> findAddressPhysicalStoreWithAFoodTypeScoreHigherThan(@RequestParam String q) {
         String idFoodType = new LexicalAnalyzer().extractWithAssure(q, "id");
-        Double score = new LexicalAnalyzer().extractWithAssure(q, "score", Double::new);
+        Double score = parseDouble(new LexicalAnalyzer().extractWithAssure(q, "score"));
         return this.physicalStoreService
                 .findAddressPhysicalStoreWithAFoodTypeScoreHigherThan(idFoodType, score)
                 .map(AddressStoreDto::new);
