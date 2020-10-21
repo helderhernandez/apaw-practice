@@ -30,7 +30,8 @@ public class ChefPersistenceMongodb implements ChefPersistence {
     }
 
     @Override
-    public Stream<String> search2(String ingredientName) {
+    public Stream<String> findChefsDniThatHaveAKitchenBoyUsingIngredient(String ingredientName) {
+        System.out.println("------- INGREDIENT_NAME: " + ingredientName);
         return this.chefRepository.findAll().stream()
                 .filter(chef -> chef.getKitchenBoys().stream()
                         .anyMatch(kitchenBoy -> kitchenBoy.getIngredientToWorkOn().getName().equals(ingredientName)))

@@ -45,16 +45,28 @@ class ChefResourceIT {
     }
 
     @Test
-    void testSearch2() {
+    void testBadRequestSearch2() {
         this.webTestClient
                 .get()
                 .uri(uriBuilder ->
                         uriBuilder.path(ChefResource.CHEF + ChefResource.SEARCH)
-                                .queryParam("q", "name:Calabacín")
+                                .queryParam("q", "kk:calabaza")
+                                .build())
+                .exchange()
+                .expectStatus().isBadRequest();
+    }
+
+    @Test
+    void testFindChefsDniThatHaveAKitchenBoyUsingIngredient() {
+        this.webTestClient
+                .get()
+                .uri(uriBuilder ->
+                        uriBuilder.path(ChefResource.CHEF + ChefResource.SEARCH)
+                                .queryParam("q", "ingredientName:Calabacín")
                                 .build())
                 .exchange()
                 .expectStatus().isOk()
-                .expectBodyList(String.class)
+                .expectBody(String.class)
                 .value(chefsDNI -> assertTrue(chefsDNI.contains("44411122F")));
 
     }

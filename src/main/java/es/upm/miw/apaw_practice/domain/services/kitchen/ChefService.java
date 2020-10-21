@@ -21,7 +21,7 @@ public class ChefService {
         return this.chefPersistence.updateRecipesFinished(dni, recipesFinished);
     }
 
-    public Stream<String> search2(String ingredientName) {
-        return this.chefPersistence.search2(ingredientName);
+    public Stream<String> findChefsDniThatHaveAKitchenBoyUsingIngredient(String ingredientName) {
+        return this.chefPersistence.findChefsDniThatHaveAKitchenBoyUsingIngredient(ingredientName);
     }
 }
