@@ -18,11 +18,19 @@ public class InspectorEntityRepositoryIT {
         assertTrue(this.inspectorRepository.findByDni("dni4").isEmpty());
         assertTrue(this.inspectorRepository.findByDni("dni1").isPresent());
         InspectorEntity inspector = this.inspectorRepository.findByDni("dni1").get();
-        assertEquals("firstName1", inspector.getFirstName());
-        assertEquals("lastName1", inspector.getLastName());
-        assertEquals(27, inspector.getAge());
-        assertEquals("email1", inspector.getEmail());
-        assertEquals("phone1", inspector.getPhoneNumber());
+        InspectorEntity inspector1 = this.inspectorRepository.findAll().stream()
+                .filter(inspectorEntity -> "dni1".equals(inspectorEntity.getDni()))
+                .findFirst().get();
+        assertEquals(inspector1.getFirstName(), inspector.getFirstName());
+        assertEquals(inspector1.getLastName(), inspector.getLastName());
+        assertEquals(inspector1.getAge(), inspector.getAge());
+        assertEquals(inspector1.getEmail(), inspector.getEmail());
+        assertEquals(inspector1.getPhoneNumber(), inspector.getPhoneNumber());
+        assertEquals(inspector1.getId(), inspector.getId());
+        assertEquals(inspector1.getDni(), inspector.getDni());
+        assertEquals(inspector1.hashCode(), inspector.hashCode());
+        assertEquals(inspector1.toString(), inspector.toString());
+        assertTrue(inspector.equals(inspector1));
     }
 
     @Test

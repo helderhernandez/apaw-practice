@@ -20,7 +20,13 @@ public class DiseaseEntityRepositoryIT {
         assertTrue(this.diseaseRepository.findByName("disease6").isEmpty());
         assertTrue(this.diseaseRepository.findByName("disease1").isPresent());
         DiseaseEntity disease = this.diseaseRepository.findByName("disease1").get();
+        DiseaseEntity disease1 = this.diseaseRepository.findAll().stream()
+                .filter(diseaseEntity -> "disease1".equals(diseaseEntity.getName()))
+                .findFirst().get();
         assertEquals("This is the disease1", disease.getDescription());
+        assertEquals(disease1.hashCode(), disease.hashCode());
+        assertEquals(disease1.toString(), disease.toString());
+        assertTrue(disease.equals(disease1));
     }
 
     @Test
