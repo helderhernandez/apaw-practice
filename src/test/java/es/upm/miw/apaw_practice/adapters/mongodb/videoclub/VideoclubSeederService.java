@@ -85,12 +85,48 @@ public class VideoclubSeederService {
         };
         this.filmMakerRepository.saveAll(Arrays.asList(filmMakers));
         RentalFilmEntity[] films = {
-                new RentalFilmEntity("1111", "2 Fast 2 Furious", 1998, filmMakers[0], Arrays.asList(filmCategories[0], filmCategories[2])),
-                new RentalFilmEntity("2222", "The Pink Panther", 1980, filmMakers[1], Arrays.asList(filmCategories[1], filmCategories[4])),
-                new RentalFilmEntity("3333", "The Silence of the Lambs", 1992, filmMakers[2], Arrays.asList(filmCategories[2])),
-                new RentalFilmEntity("4444", "Generation Z", 1998, filmMakers[3], Arrays.asList(filmCategories[3])),
-                new RentalFilmEntity("5555", "Zero Dark Thirty", 2012, filmMakers[4], Arrays.asList(filmCategories[2])),
-                new RentalFilmEntity("6666", "The Hurt Locker", 2015, filmMakers[4], Arrays.asList(filmCategories[5])),
+                RentalFilmEntity.builder()
+                        .reference("1111")
+                        .title("2 Fast 2 Furious")
+                        .year(1998)
+                        .filmMaker(filmMakers[0])
+                        .filmCategories(Arrays.asList(filmCategories[0], filmCategories[2]))
+                        .build(),
+                RentalFilmEntity.builder()
+                        .reference("2222")
+                        .title("The Pink Panther")
+                        .year(1980)
+                        .filmMaker(filmMakers[1])
+                        .filmCategories(Arrays.asList(filmCategories[1], filmCategories[4]))
+                        .build(),
+                RentalFilmEntity.builder()
+                        .reference("3333")
+                        .title("The Silence of the Lambs")
+                        .year(1992)
+                        .filmMaker(filmMakers[2])
+                        .filmCategories(Arrays.asList(filmCategories[2]))
+                        .build(),
+                RentalFilmEntity.builder()
+                        .reference("4444")
+                        .title("Generation Z")
+                        .year(1998)
+                        .filmMaker(filmMakers[3])
+                        .filmCategories(Arrays.asList(filmCategories[3]))
+                        .build(),
+                RentalFilmEntity.builder()
+                        .reference("5555")
+                        .title("Zero Dark Thirty")
+                        .year(2012)
+                        .filmMaker(filmMakers[4])
+                        .filmCategories(Arrays.asList(filmCategories[2]))
+                        .build(),
+                RentalFilmEntity.builder()
+                        .reference("6666")
+                        .title("The Hurt Locker")
+                        .year(2015)
+                        .filmMaker(filmMakers[4])
+                        .filmCategories(Arrays.asList(filmCategories[5]))
+                        .build()
         };
         this.rentalFilmRepository.saveAll(Arrays.asList(films));
         CustomerAssociateEntity[] customers = {
