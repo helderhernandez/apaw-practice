@@ -1,5 +1,6 @@
 package es.upm.miw.apaw_practice.adapters.rest.project;
 
+import es.upm.miw.apaw_practice.adapters.rest.LexicalAnalyzer;
 import es.upm.miw.apaw_practice.domain.models.project.Issue;
 import es.upm.miw.apaw_practice.domain.models.project.IssueDoneStatusUpdating;
 import es.upm.miw.apaw_practice.domain.services.project.IssueService;
@@ -14,6 +15,7 @@ import java.util.stream.Stream;
 public class IssueResource {
 
     static final String ISSUE = "/project/issues";
+    static final String SEARCH = "/search";
 
     private IssueService issueService;
 
@@ -32,4 +34,10 @@ public class IssueResource {
         this.issueService.updateDoneStatus(issueDoneStatusUpdatingList);
     }
 
+    @GetMapping(SEARCH)
+    public Stream<String> findDevelopersEmailByLabelName(@RequestParam String q) {
+        String labelName = new LexicalAnalyzer().extractWithAssure(q, "labelName");
+        return this.issueService.findDevelopersEmailByLabelName(labelName);
+
+    }
 }
