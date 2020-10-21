@@ -11,7 +11,7 @@ import java.util.stream.Stream;
 @RequestMapping(UserStoryResource.USER_STORY)
 public class UserStoryResource {
 
-    static final String USER_STORY = "user-stories";
+    static final String USER_STORY = "/project/user-stories";
     static final String ID_ID = "/{id}";
     static final String SEARCH = "/search";
 

@@ -1,12 +1,14 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.project.entities;
 
 import es.upm.miw.apaw_practice.domain.models.project.Issue;
+import es.upm.miw.apaw_practice.domain.models.project.Label;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
@@ -98,6 +100,12 @@ public class IssueEntity {
     public Issue toIssue() {
         Issue issue = new Issue();
         BeanUtils.copyProperties(this, issue);
+        issue.setDeveloper(developer.toDeveloper());
+        List<Label> labels = new ArrayList<>();
+        for (LabelEntity labelEntity : this.labels) {
+            labels.add(labelEntity.toLabel());
+        }
+        issue.setLabels(labels);
         return issue;
     }
 

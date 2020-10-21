@@ -1,11 +1,13 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.project.entities;
 
+import es.upm.miw.apaw_practice.domain.models.project.Issue;
 import es.upm.miw.apaw_practice.domain.models.project.UserStory;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
@@ -76,6 +78,11 @@ public class UserStoryEntity {
     public UserStory toUserStory() {
         UserStory userStory = new UserStory();
         BeanUtils.copyProperties(this, userStory);
+        List<Issue> issues = new ArrayList<>();
+        for (IssueEntity issueEntity : this.issues) {
+            issues.add(issueEntity.toIssue());
+        }
+        userStory.setIssues(issues);
         return userStory;
     }
 
