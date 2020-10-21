@@ -6,6 +6,8 @@ import java.util.List;
 
 public class TreeVehicleLeaf implements TreeVehicle {
 
+    private static final String UNSUPPORTED_OPERATION_MESSAGE = "Unsupported action. This is a leaf";
+
     private Vehicle vehicle;
 
     public TreeVehicleLeaf(Vehicle vehicle) {
@@ -24,17 +26,17 @@ public class TreeVehicleLeaf implements TreeVehicle {
 
     @Override
     public List<TreeVehicle> getVehicles() {
-        throw new UnsupportedOperationException("Unsupported action. This is a leaf");
+        throw new UnsupportedOperationException(UNSUPPORTED_OPERATION_MESSAGE);
     }
 
     @Override
     public void add(TreeVehicle treeVehicle) {
-        throw new UnsupportedOperationException("Unsupported action. This is a leaf");
+        throw new UnsupportedOperationException(UNSUPPORTED_OPERATION_MESSAGE);
     }
 
     @Override
     public void remove(TreeVehicle treeVehicle) {
-        throw new UnsupportedOperationException("Unsupported action. This is a leaf");
+        throw new UnsupportedOperationException(UNSUPPORTED_OPERATION_MESSAGE);
     }
 
     @Override
@@ -46,4 +48,5 @@ public class TreeVehicleLeaf implements TreeVehicle {
     public int numberOfDescendants() {
         return 0;
     }
+
 }

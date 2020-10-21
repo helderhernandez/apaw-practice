@@ -60,14 +60,4 @@ public class MemberTeam {
         this.available = available;
     }
 
-    @Override
-    public String toString() {
-        return "MemberTeam{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                ", surname='" + surname + '\'' +
-                ", dni='" + dni + '\'' +
-                ", available=" + available +
-                '}';
-    }
 }

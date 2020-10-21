@@ -20,7 +20,7 @@ import static es.upm.miw.apaw_practice.adapters.rest.kitchen.IngredientResource.
 import static org.junit.jupiter.api.Assertions.*;
 
 @RestTestConfig
-public class IngredientResourceIT {
+class IngredientResourceIT {
 
     @Autowired
     private IngredientRepository ingredientRepository;

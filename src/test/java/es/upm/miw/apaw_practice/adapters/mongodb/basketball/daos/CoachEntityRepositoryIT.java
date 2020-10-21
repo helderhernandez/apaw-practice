@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import static org.junit.jupiter.api.Assertions.*;
 
 @TestConfig
-public class CoachEntityRepositoryIT {
+class CoachEntityRepositoryIT {
 
     @Autowired
     private CoachRepository coachRepository;

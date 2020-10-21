@@ -5,8 +5,6 @@ import es.upm.miw.apaw_practice.domain.services.basketball.CourtService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-
 @RestController
 @RequestMapping(CourtResource.COURTS)
 public class CourtResource {

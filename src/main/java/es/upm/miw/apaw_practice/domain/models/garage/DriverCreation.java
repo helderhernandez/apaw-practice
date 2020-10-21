@@ -1,7 +1,5 @@
 package es.upm.miw.apaw_practice.domain.models.garage;
 
-import es.upm.miw.apaw_practice.adapters.mongodb.garage.entities.VehicleEntity;
-
 import java.util.List;
 
 public class DriverCreation {

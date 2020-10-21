@@ -14,18 +14,6 @@ public class Ingredient {
         // Empty from framework
     }
 
-    /*
-    public Ingredient(String id, String name, BigDecimal pricePerKg, Double weightKg) {
-        this.id = id;
-        this.washed = false;
-        this.elaborated = false;
-        this.name = name;
-        this.pricePerKg = pricePerKg;
-        this.weightKg = weightKg;
-    }
-    */
-
-
     public static IngredientBuilders.Id builder() {
         return new Builder();
     }

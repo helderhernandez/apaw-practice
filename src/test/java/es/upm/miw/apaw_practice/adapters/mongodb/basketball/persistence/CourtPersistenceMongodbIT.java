@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @TestConfig
-public class CourtPersistenceMongodbIT {
+class CourtPersistenceMongodbIT {
 
     @Autowired
     private CourtPersistenceMongodb courtPersistenceMongodb;

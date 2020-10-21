@@ -33,12 +33,4 @@ public class Coach {
         this.dni = dni;
     }
 
-    @Override
-    public String toString() {
-        return "Coach{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                ", dni='" + dni + '\'' +
-                '}';
-    }
 }

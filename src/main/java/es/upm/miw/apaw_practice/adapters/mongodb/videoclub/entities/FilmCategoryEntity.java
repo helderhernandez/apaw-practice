@@ -70,6 +70,10 @@ public class FilmCategoryEntity {
         BeanUtils.copyProperties(filmCategory, this);
     }
 
+    public static Builder builder(String reference) {
+        return new Builder(reference);
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -94,5 +98,29 @@ public class FilmCategoryEntity {
                 ", name='" + name + '\'' +
                 ", plus18=" + plus18 +
                 '}';
+    }
+
+    public static class Builder {
+        private FilmCategoryEntity filmCategoryEntity;
+
+        private Builder(String reference) {
+            filmCategoryEntity = new FilmCategoryEntity();
+            filmCategoryEntity.setId(UUID.randomUUID().toString());
+            filmCategoryEntity.setReference(reference);
+        }
+
+        public Builder name(String name) {
+            filmCategoryEntity.setName(name);
+            return this;
+        }
+
+        public Builder plus18(Boolean plus18) {
+            filmCategoryEntity.setPlus18(plus18);
+            return this;
+        }
+
+        public FilmCategoryEntity build() {
+            return filmCategoryEntity;
+        }
     }
 }

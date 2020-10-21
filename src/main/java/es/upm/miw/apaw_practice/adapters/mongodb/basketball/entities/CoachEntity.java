@@ -50,25 +50,6 @@ public class CoachEntity {
         this.dni = dni;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        return this == o || o != null && getClass() == o.getClass() && (dni.equals(((CoachEntity) o).dni));
-    }
-
-    @Override
-    public int hashCode() {
-        return dni.hashCode();
-    }
-
-    @Override
-    public String toString() {
-        return "CoachEntity{" +
-                "id='" + id + '\'' +
-                ", name='" + name + '\'' +
-                ", dni='" + dni + '\'' +
-                '}';
-    }
-
     public Coach toCoach() {
         Coach coach = new Coach();
         BeanUtils.copyProperties(this, coach);

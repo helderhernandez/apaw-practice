@@ -1,21 +1,25 @@
 package es.upm.miw.apaw_practice.domain.models.library;
 
+import es.upm.miw.apaw_practice.adapters.mongodb.library.entities.OrderEntity;
+
+import java.util.List;
 import java.util.Objects;
 
 public class Librarian {
     private String id;
     private String name;
     private String phone;
-    private Order order;
+    private List<OrderEntity> orderEntities;
 
     public Librarian(){
         //empty from framework
     }
-    public Librarian(String id, String name, String phone, Order order) {
+
+    public Librarian(String id, String name, String phone, List<OrderEntity> orderEntities) {
         this.id = id;
         this.name = name;
         this.phone = phone;
-        this.order = order;
+        this.orderEntities = orderEntities;
     }
 
     public String getId() {
@@ -42,12 +46,12 @@ public class Librarian {
         this.phone = phone;
     }
 
-    public Order getOrder() {
-        return order;
+    public List<OrderEntity> getOrderEntities() {
+        return orderEntities;
     }
 
-    public void setOrder(Order order) {
-        this.order = order;
+    public void setOrderEntities(List<OrderEntity> orderEntities) {
+        this.orderEntities = orderEntities;
     }
 
     @Override
@@ -56,7 +60,7 @@ public class Librarian {
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 ", phone='" + phone + '\'' +
-                ", order=" + order +
+                ", orderEntities=" + orderEntities +
                 '}';
     }
 }

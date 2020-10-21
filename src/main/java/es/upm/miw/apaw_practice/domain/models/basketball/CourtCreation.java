@@ -29,11 +29,4 @@ public class CourtCreation {
         this.capacity = capacity;
     }
 
-    @Override
-    public String toString() {
-        return "CourtCreation{" +
-                "name='" + name + '\'' +
-                ", capacity=" + capacity +
-                '}';
-    }
 }
