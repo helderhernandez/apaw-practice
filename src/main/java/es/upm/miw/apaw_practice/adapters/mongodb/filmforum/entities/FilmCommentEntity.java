@@ -1,6 +1,5 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.filmforum.entities;
 
-import com.fasterxml.jackson.databind.util.BeanUtil;
 import es.upm.miw.apaw_practice.domain.models.filmforum.FilmComment;
 import nonapi.io.github.classgraph.json.Id;
 import org.springframework.beans.BeanUtils;
