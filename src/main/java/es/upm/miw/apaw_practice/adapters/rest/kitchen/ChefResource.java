@@ -30,8 +30,8 @@ public class ChefResource {
 
     @GetMapping(SEARCH)
     public Stream<String> search2(@PathVariable String q) {
-        String ingredientId = new LexicalAnalyzer().extractWithAssure(q, "id");
-        return this.chefService.search2(ingredientId);
+        String ingredientName = new LexicalAnalyzer().extractWithAssure(q, "name");
+        return this.chefService.search2(ingredientName);
     }
 
 }
