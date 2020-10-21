@@ -2,7 +2,7 @@ package es.upm.miw.apaw_practice.domain.models.filmforum.composite;
 
 import es.upm.miw.apaw_practice.domain.models.filmforum.FilmComment;
 
-public class FilmCommentLeaf extends FilmCommentComponentTree {
+public class FilmCommentLeaf implements FilmCommentComponentTree {
     FilmComment comment;
 
     public FilmCommentLeaf(FilmComment comment) {

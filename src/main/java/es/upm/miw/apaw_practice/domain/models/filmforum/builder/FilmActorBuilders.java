@@ -2,26 +2,26 @@ package es.upm.miw.apaw_practice.domain.models.filmforum.builder;
 
 import es.upm.miw.apaw_practice.domain.models.filmforum.FilmActor;
 
-public class FilmActorBuilders {
-    public interface Id {
+public interface FilmActorBuilders {
+    interface Id {
         Name randomId();
 
         Name id(String id);
     }
 
-    public interface Name {
+    interface Name {
         Surname name(String name);
     }
 
-    public interface Surname {
+    interface Surname {
         Age surname(String surname);
     }
 
-    public interface Age {
+    interface Age {
         Optional age(Integer age);
     }
 
-    public interface Optional {
+    interface Optional {
         FilmActor build();
     }
 }

@@ -4,11 +4,9 @@ import es.upm.miw.apaw_practice.adapters.rest.RestTestConfig;
 import es.upm.miw.apaw_practice.domain.models.filmforum.FilmForum;
 import es.upm.miw.apaw_practice.domain.models.filmforum.FilmForumUpdating;
 import org.junit.jupiter.api.Test;
-import org.junit.platform.commons.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.web.reactive.server.WebTestClient;
 import org.springframework.web.reactive.function.BodyInserters;
-import org.springframework.web.util.UriBuilder;
 
 import java.util.List;
 
@@ -40,6 +38,16 @@ public class FilmForumResourceIT {
                 .body(BodyInserters.fromValue(filmToUpdate))
                 .exchange()
                 .expectStatus().isNotFound();
+    }
+
+    @Test
+    void updateFilmsAudienceRange() {
+        List<FilmForumUpdating> filmToUpdate = List.of(new FilmForumUpdating("film5", false));
+        webClient.patch()
+                .uri(FilmForumResource.FILMFORUM_FILMS + FilmForumResource.UPDATE_FILMS)
+                .body(BodyInserters.fromValue(filmToUpdate))
+                .exchange()
+                .expectStatus().isOk();
     }
 
     @Test
