@@ -34,6 +34,13 @@ class InspectionEntityRepositoryIT {
     }
 
     @Test
+    void testEquals() {
+        InspectionEntity inspection = this.inspectionRepository.findAll().get(0);
+        assertTrue(this.inspectionRepository.findAll().stream()
+                .anyMatch(inspection::equals));
+    }
+
+    @Test
     void testCreateAndRead() {
         assertTrue(this.inspectionRepository.findAll().stream()
                 .anyMatch(inspection ->

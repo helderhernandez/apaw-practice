@@ -34,6 +34,13 @@ class InspectorEntityRepositoryIT {
     }
 
     @Test
+    void testEquals() {
+        InspectorEntity inspector = this.inspectorRepository.findAll().get(0);
+        assertTrue(this.inspectorRepository.findAll().stream()
+                .anyMatch(inspector::equals));
+    }
+
+    @Test
     void testInspectorBuilder() {
         InspectorEntity inspector = InspectorEntity.builder()
                 .dni("dniTestBuilder")

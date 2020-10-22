@@ -30,6 +30,13 @@ class DiseaseEntityRepositoryIT {
     }
 
     @Test
+    void testEquals() {
+        DiseaseEntity disease = this.diseaseRepository.findAll().get(0);
+        assertTrue(this.diseaseRepository.findAll().stream()
+                .anyMatch(disease::equals));
+    }
+
+    @Test
     void testComposite() {
         TreeDiseases treeDiseasesComposite = new TreeDiseasesComposite("diseaseTet");
         TreeDiseases treeDiseasesComposite3 = new TreeDiseasesComposite("diseaseTet3");
