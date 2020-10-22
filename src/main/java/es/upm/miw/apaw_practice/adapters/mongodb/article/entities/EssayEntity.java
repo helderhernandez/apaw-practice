@@ -24,6 +24,7 @@ public class EssayEntity {
         this.name = name;
     }
 
+
     public TypeEntity getTypeEntity() {
         return typeEntity;
     }

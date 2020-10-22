@@ -2,20 +2,22 @@ package es.upm.miw.apaw_practice.domain.models.article;
 
 import es.upm.miw.apaw_practice.adapters.mongodb.article.entities.TypeEntity;
 
+import java.util.List;
+
 public class Essay {
     private String id;
-    private TypeEntity typeEntity;
+    private List<TypeEntity> typeEntity;
     private String name;
 
     public Essay() {
         //empty for framework
     }
 
-    public TypeEntity getTypeEntity() {
+    public List<TypeEntity> getTypeEntity() {
         return typeEntity;
     }
 
-    public void setTypeEntity(TypeEntity typeEntity) {
+    public void setTypeEntity(List<TypeEntity> typeEntity) {
         this.typeEntity = typeEntity;
     }
 
