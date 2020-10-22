@@ -1,7 +1,6 @@
 package es.upm.miw.apaw_practice.domain.services.library;
 
 import es.upm.miw.apaw_practice.domain.models.library.Reader;
-import es.upm.miw.apaw_practice.domain.models.library.ReaderCreation;
 import es.upm.miw.apaw_practice.domain.persistence_ports.library.ReaderPersistence;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,8 +15,8 @@ public class ReaderService {
     public ReaderService(ReaderPersistence readerPersistence) {
         this.readerPersistence = readerPersistence;
     }
-    public Reader create(ReaderCreation readerCreation){
-        return this.readerPersistence.create(readerCreation);
+    public Reader create(Reader reader){
+        return this.readerPersistence.create(reader);
     }
     public Stream<Reader> findNameByBookISBN(String ISBN){
         return this.readerPersistence.findNameByISBN(ISBN);

@@ -2,7 +2,6 @@ package es.upm.miw.apaw_practice.adapters.rest.library;
 
 import es.upm.miw.apaw_practice.adapters.rest.RestTestConfig;
 import es.upm.miw.apaw_practice.domain.models.library.Reader;
-import es.upm.miw.apaw_practice.domain.models.library.ReaderCreation;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,11 +18,11 @@ public class ReaderResourceIT {
 
     @Test
     void testCreate(){
-        ReaderCreation readerCreation=new ReaderCreation("Ana3","Woman","0164846d33T","695222111","waldujocnj@gmail.com");
+        Reader reader=new Reader("Ana3","Woman","0164846d33T","695222111","waldujocnj@gmail.com");
         this.webTestClient
                 .post()
                 .uri(ReaderResource.READER)
-                .body(BodyInserters.fromValue(readerCreation))
+                .body(BodyInserters.fromValue(reader))
                 .exchange()
                 .expectStatus().isOk()
                 .expectBody(Reader.class)

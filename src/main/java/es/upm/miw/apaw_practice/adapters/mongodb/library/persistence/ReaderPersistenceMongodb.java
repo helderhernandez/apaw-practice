@@ -5,7 +5,6 @@ import es.upm.miw.apaw_practice.adapters.mongodb.library.daos.ReaderRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.library.entities.ReaderEntity;
 import es.upm.miw.apaw_practice.domain.exceptions.ConflictException;
 import es.upm.miw.apaw_practice.domain.models.library.Reader;
-import es.upm.miw.apaw_practice.domain.models.library.ReaderCreation;
 import es.upm.miw.apaw_practice.domain.persistence_ports.library.ReaderPersistence;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -33,10 +32,10 @@ public class ReaderPersistenceMongodb implements ReaderPersistence {
     }
 
     @Override
-    public Reader create(ReaderCreation readerCreation) {
-        this.assertDNI(readerCreation.getDNI());
+    public Reader create(Reader reader) {
+        this.assertDNI(reader.getDNI());
         return this.readerRepository
-                .save(new ReaderEntity(readerCreation))
+                .save(new ReaderEntity(reader))
                 .toReader();
     }
 

@@ -8,7 +8,7 @@ import es.upm.miw.apaw_practice.adapters.mongodb.library.entities.BookEntity;
 import es.upm.miw.apaw_practice.adapters.mongodb.library.entities.LibrarianEntity;
 import es.upm.miw.apaw_practice.adapters.mongodb.library.entities.OrderEntity;
 import es.upm.miw.apaw_practice.adapters.mongodb.library.entities.ReaderEntity;
-import es.upm.miw.apaw_practice.domain.models.library.ReaderCreation;
+import es.upm.miw.apaw_practice.domain.models.library.Reader;
 import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -40,11 +40,11 @@ public class LibrarySeederService {
         this.bookRepository.saveAll(Arrays.asList(book));
 
         ReaderEntity[] reader={
-                new ReaderEntity(new ReaderCreation("Ana","Woman","01648463T","695222111","waldujocnj@gmail.com")),
-                new ReaderEntity(new ReaderCreation("Maria","Woman","64986134T","695223211","iouchaib@gmail.com")),
-                new ReaderEntity(new ReaderCreation("Jesus","Man","68746351T","695226951","poeufjncg@mail.com")),
-                new ReaderEntity(new ReaderCreation("Luis","Man","97416346T","695236711","rigbcaihg@mail.com")),
-                new ReaderEntity(new ReaderCreation("Hector","Man","69741329T","695294811","iuvhaiwkbgy@gmail.com"))
+                new ReaderEntity(new Reader("Ana","Woman","01648463T","695222111","waldujocnj@gmail.com")),
+                new ReaderEntity(new Reader("Maria","Woman","64986134T","695223211","iouchaib@gmail.com")),
+                new ReaderEntity(new Reader("Jesus","Man","68746351T","695226951","poeufjncg@mail.com")),
+                new ReaderEntity(new Reader("Luis","Man","97416346T","695236711","rigbcaihg@mail.com")),
+                new ReaderEntity(new Reader("Hector","Man","69741329T","695294811","iuvhaiwkbgy@gmail.com"))
         };
         this.readerRepository.saveAll(Arrays.asList(reader));
 
