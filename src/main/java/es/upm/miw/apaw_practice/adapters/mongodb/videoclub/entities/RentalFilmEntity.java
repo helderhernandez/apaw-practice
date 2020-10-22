@@ -39,6 +39,14 @@ public class RentalFilmEntity {
         this.categories = categories;
     }
 
+    public String getId() {
+        return id;
+    }
+
+    public void setId(String id) {
+        this.id = id;
+    }
+
     public String getReference() {
         return reference;
     }
@@ -91,6 +99,10 @@ public class RentalFilmEntity {
         return rentalFilm;
     }
 
+    public static RentalFilmBuilders.Reference builder() {
+        return new Builder();
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -120,4 +132,51 @@ public class RentalFilmEntity {
                 ", categories=" + categories +
                 '}';
     }
+
+    public static class Builder implements RentalFilmBuilders.Reference, RentalFilmBuilders.Title, RentalFilmBuilders.Year,
+            RentalFilmBuilders.FilmMaker, RentalFilmBuilders.FilmCategories, RentalFilmBuilders.Optionals {
+
+        private RentalFilmEntity rentalFilmEntity;
+
+        public Builder() {
+            rentalFilmEntity = new RentalFilmEntity();
+            rentalFilmEntity.setId(UUID.randomUUID().toString());
+        }
+
+        @Override
+        public RentalFilmBuilders.Title reference(String reference) {
+            rentalFilmEntity.setReference(reference);
+            return this;
+        }
+
+        @Override
+        public RentalFilmBuilders.Year title(String title) {
+            rentalFilmEntity.setTitle(title);
+            return this;
+        }
+
+        @Override
+        public RentalFilmBuilders.FilmMaker year(Integer year) {
+            rentalFilmEntity.setYear(year);
+            return this;
+        }
+
+        @Override
+        public RentalFilmBuilders.FilmCategories filmMaker(FilmMakerEntity filmMaker) {
+            rentalFilmEntity.setFilmMaker(filmMaker);
+            return this;
+        }
+
+        @Override
+        public RentalFilmBuilders.Optionals filmCategories(List<FilmCategoryEntity> filmCategories) {
+            rentalFilmEntity.setCategories(filmCategories);
+            return this;
+        }
+
+        @Override
+        public RentalFilmEntity build() {
+            return this.rentalFilmEntity;
+        }
+    }
+
 }

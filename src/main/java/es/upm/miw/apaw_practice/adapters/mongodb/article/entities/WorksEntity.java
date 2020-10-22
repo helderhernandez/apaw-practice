@@ -1,5 +1,7 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.article.entities;
 
+import es.upm.miw.apaw_practice.domain.models.article.Works;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;
@@ -20,7 +22,7 @@ public class WorksEntity {
     private String id;
     private String name;
     @Indexed(unique = true)
-    private String ismn;
+    private Long ismn;
     private LocalDate publicationDate;
     private String description;
     private BigDecimal price;
@@ -30,7 +32,7 @@ public class WorksEntity {
         //Empty for framework
     }
 
-    public WorksEntity(List<AuthorEntity> authorEntityList, List<EssayEntity> essayEntityList, String name, String ismn, LocalDate publicationDate, String description, BigDecimal price, Byte grade) {
+    public WorksEntity(List<AuthorEntity> authorEntityList, List<EssayEntity> essayEntityList, String name, Long ismn, LocalDate publicationDate, String description, BigDecimal price, Byte grade) {
         this.authorEntityList = authorEntityList;
         this.essayEntityList = essayEntityList;
         this.name = name;
@@ -73,11 +75,11 @@ public class WorksEntity {
         this.name = name;
     }
 
-    public String getIsmn() {
+    public Long getIsmn() {
         return ismn;
     }
 
-    public void setIsmn(String ismn) {
+    public void setIsmn(Long ismn) {
         this.ismn = ismn;
     }
 
@@ -121,6 +123,12 @@ public class WorksEntity {
     @Override
     public boolean equals(Object obj) {
         return this == obj || obj != null && getClass() == obj.getClass() && (ismn.equals(((es.upm.miw.apaw_practice.adapters.mongodb.article.entities.WorksEntity) obj).ismn));
+    }
+
+    public Works toWorks(){
+        Works works = new Works();
+        BeanUtils.copyProperties(this, works);
+        return works;
     }
 
     @Override
