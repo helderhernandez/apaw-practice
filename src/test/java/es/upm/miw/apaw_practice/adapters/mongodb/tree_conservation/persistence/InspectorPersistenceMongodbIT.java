@@ -13,7 +13,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @TestConfig
-public class InspectorPersistenceMongodbIT {
+class InspectorPersistenceMongodbIT {
 
     @Autowired
     private InspectorPersistenceMongodb inspectorPersistenceMongodb;

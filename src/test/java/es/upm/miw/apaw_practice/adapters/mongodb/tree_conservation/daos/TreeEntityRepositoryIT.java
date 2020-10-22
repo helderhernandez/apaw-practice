@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @TestConfig
-public class TreeEntityRepositoryIT {
+class TreeEntityRepositoryIT {
     @Autowired
     private TreeRepository treeRepository;
 
@@ -31,7 +31,7 @@ public class TreeEntityRepositoryIT {
         assertEquals(treeTest1.getInspectionEntities(), treeTest.getInspectionEntities());
         assertEquals(treeTest1.hashCode(), treeTest.hashCode());
         assertEquals(treeTest1.toString(), treeTest.toString());
-        assertTrue(treeTest.equals(treeTest1));
+        assertEquals(treeTest1, treeTest);
     }
 
     @Test

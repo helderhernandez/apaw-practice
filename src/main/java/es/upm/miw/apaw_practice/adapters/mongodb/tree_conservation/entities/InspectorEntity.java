@@ -24,15 +24,16 @@ public class InspectorEntity {
         //empty from framework
     }
 
-    //    public InspectorEntity(String dni, String firstName, String lastName, Integer age, String email, String phoneNumber) {
-//        this.id = UUID.randomUUID().toString();
-//        this.dni = dni;
-//        this.firstName = firstName;
-//        this.lastName = lastName;
-//        this.age = age;
-//        this.email = email;
-//        this.phoneNumber = phoneNumber;
-//    }
+    public InspectorEntity(String dni, String firstName, String lastName, Integer age, String email, String phoneNumber) {
+        this.id = UUID.randomUUID().toString();
+        this.dni = dni;
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.age = age;
+        this.email = email;
+        this.phoneNumber = phoneNumber;
+    }
+
     public static InspectorBuilders.Dni builder() {
         return new Builder();
     }

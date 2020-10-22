@@ -11,7 +11,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import static org.junit.jupiter.api.Assertions.*;
 
 @TestConfig
-public class DiseaseEntityRepositoryIT {
+class DiseaseEntityRepositoryIT {
     @Autowired
     private DiseaseRepository diseaseRepository;
 
@@ -26,7 +26,7 @@ public class DiseaseEntityRepositoryIT {
         assertEquals("This is the disease1", disease.getDescription());
         assertEquals(disease1.hashCode(), disease.hashCode());
         assertEquals(disease1.toString(), disease.toString());
-        assertTrue(disease.equals(disease1));
+        assertEquals(disease1, disease);
     }
 
     @Test
