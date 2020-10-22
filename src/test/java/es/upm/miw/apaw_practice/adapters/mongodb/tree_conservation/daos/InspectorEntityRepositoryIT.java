@@ -9,7 +9,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @TestConfig
-public class InspectorEntityRepositoryIT {
+class InspectorEntityRepositoryIT {
     @Autowired
     private InspectorRepository inspectorRepository;
 
@@ -30,7 +30,7 @@ public class InspectorEntityRepositoryIT {
         assertEquals(inspector1.getDni(), inspector.getDni());
         assertEquals(inspector1.hashCode(), inspector.hashCode());
         assertEquals(inspector1.toString(), inspector.toString());
-        assertTrue(inspector.equals(inspector1));
+        assertEquals(inspector1, inspector);
     }
 
     @Test

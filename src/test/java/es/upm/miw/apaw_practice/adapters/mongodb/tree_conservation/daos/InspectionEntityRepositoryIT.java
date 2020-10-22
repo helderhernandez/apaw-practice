@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @TestConfig
-public class InspectionEntityRepositoryIT {
+class InspectionEntityRepositoryIT {
 
     @Autowired
     private InspectionRepository inspectionRepository;
@@ -30,7 +30,7 @@ public class InspectionEntityRepositoryIT {
         assertEquals(inspectionTest1.getInspectorEntity(), inspectionTest.getInspectorEntity());
         assertEquals(inspectionTest1.hashCode(), inspectionTest.hashCode());
         assertEquals(inspectionTest1.toString(), inspectionTest.toString());
-        assertTrue(inspectionTest.equals(inspectionTest1));
+        assertEquals(inspectionTest1, inspectionTest);
     }
 
     @Test

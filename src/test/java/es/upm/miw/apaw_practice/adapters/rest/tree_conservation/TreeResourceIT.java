@@ -17,7 +17,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 
 @RestTestConfig
-public class TreeResourceIT {
+class TreeResourceIT {
 
     @Autowired
     private WebTestClient webTestClient;

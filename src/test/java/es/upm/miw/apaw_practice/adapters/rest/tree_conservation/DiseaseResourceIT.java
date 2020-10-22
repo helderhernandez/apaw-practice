@@ -17,7 +17,7 @@ import static es.upm.miw.apaw_practice.adapters.rest.tree_conservation.DiseaseRe
 import static org.junit.jupiter.api.Assertions.*;
 
 @RestTestConfig
-public class DiseaseResourceIT {
+class DiseaseResourceIT {
     @Autowired
     private WebTestClient webTestClient;
 

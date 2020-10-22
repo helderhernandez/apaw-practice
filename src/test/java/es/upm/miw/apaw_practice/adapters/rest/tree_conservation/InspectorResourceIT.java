@@ -8,7 +8,7 @@ import org.springframework.test.web.reactive.server.WebTestClient;
 import org.springframework.web.reactive.function.BodyInserters;
 
 @RestTestConfig
-public class InspectorResourceIT {
+class InspectorResourceIT {
 
     @Autowired
     private WebTestClient webTestClient;

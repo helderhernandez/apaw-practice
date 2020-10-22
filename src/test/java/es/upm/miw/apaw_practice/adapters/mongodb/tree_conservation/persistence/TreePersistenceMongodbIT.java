@@ -11,7 +11,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @TestConfig
-public class TreePersistenceMongodbIT {
+class TreePersistenceMongodbIT {
     @Autowired
     private TreePersistenceMongodb treePersistenceMongodb;
 
