@@ -25,6 +25,10 @@ public class LabelEntity {
         this.id = UUID.randomUUID().toString();
     }
 
+    public static Builder builder() {
+        return new Builder();
+    }
+
     public String getId() {
         return id;
     }
@@ -72,6 +76,31 @@ public class LabelEntity {
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 '}';
+    }
+
+    public static class Builder {
+
+        private LabelEntity labelEntity;
+
+        public Builder() {
+            this.labelEntity = new LabelEntity();
+            this.labelEntity.setId(UUID.randomUUID().toString());
+        }
+
+        public Builder name(String name) {
+            this.labelEntity.setName(name);
+            return this;
+        }
+
+        public Builder description(String description) {
+            this.labelEntity.setDescription(description);
+            return this;
+        }
+
+        public LabelEntity build() {
+            return this.labelEntity;
+        }
+
     }
 
 }
