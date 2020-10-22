@@ -35,6 +35,13 @@ class TreeEntityRepositoryIT {
     }
 
     @Test
+    void testEquals() {
+        TreeEntity tree = this.treeRepository.findAll().get(0);
+        assertTrue(this.treeRepository.findAll().stream()
+                .anyMatch(tree::equals));
+    }
+
+    @Test
     void testCreateAndRead() {
         assertTrue(this.treeRepository.findAll().stream()
                 .anyMatch(tree ->
