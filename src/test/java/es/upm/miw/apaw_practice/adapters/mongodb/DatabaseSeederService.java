@@ -29,7 +29,7 @@ import es.upm.miw.apaw_practice.adapters.mongodb.sportyrental.SportyRentalSeeder
 import es.upm.miw.apaw_practice.adapters.mongodb.ticketbus.TicketBusSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.transport.TransportSeedService;
 import es.upm.miw.apaw_practice.adapters.mongodb.transittaxes.TransitTaxesSeederService;
-import es.upm.miw.apaw_practice.adapters.mongodb.treeConservation.TreeConservationSeederService;
+import es.upm.miw.apaw_practice.adapters.mongodb.tree_conservation.TreeConservationSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.veterinary.VeterinarySeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.videoclub.VideoclubSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.videogame.VideogameSeederService;

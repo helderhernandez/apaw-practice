@@ -12,7 +12,7 @@ import org.springframework.web.reactive.function.BodyInserters;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @RestTestConfig
-public class CoachResourceIT {
+class CoachResourceIT {
 
     @Autowired
     private WebTestClient webTestClient;

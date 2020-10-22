@@ -1,5 +1,7 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.music.entities;
 
+import es.upm.miw.apaw_practice.domain.models.music.Album;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;
@@ -121,6 +123,12 @@ public class AlbumEntity {
     @Override
     public boolean equals(Object obj) {
         return this == obj || obj != null && getClass() == obj.getClass() && (ismn.equals(((es.upm.miw.apaw_practice.adapters.mongodb.music.entities.AlbumEntity) obj).ismn));
+    }
+
+    public Album toAlbum(){
+            Album album = new Album();
+        BeanUtils.copyProperties(this, album);
+        return album;
     }
 
     @Override

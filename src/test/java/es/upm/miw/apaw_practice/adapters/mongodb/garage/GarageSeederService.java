@@ -52,7 +52,7 @@ public class GarageSeederService {
 
         VehicleEntity[] vehicles = {
                 new VehicleEntity("4585LHS", "Seat Ibiza", BigDecimal.valueOf(250.25), LocalDateTime.of(2020, 8, 2, 10, 0), LocalDateTime.of(2020, 8, 20, 17, 30)),
-                new VehicleEntity("7777MKL", "Ford Focus", BigDecimal.valueOf(60.75), LocalDateTime.of(2020, 9, 15, 10, 0), LocalDateTime.of(2020, 10, 2, 10, 0)),
+                new VehicleEntity("7777MKL", "Nissan Qashqai", BigDecimal.valueOf(60.75), LocalDateTime.of(2020, 9, 15, 10, 0), LocalDateTime.of(2020, 10, 2, 10, 0)),
                 new VehicleEntity("1111PLO", "Nissan Juke", BigDecimal.valueOf(125.00), LocalDateTime.of(2020, 10, 2, 12, 0), LocalDateTime.of(2020, 10, 3, 13, 0)),
                 new VehicleEntity("1808MGS", "Citroen C3", BigDecimal.valueOf(100.15), LocalDateTime.of(2020, 9, 16, 10, 0), LocalDateTime.of(2020, 9, 17, 10, 0))
         };

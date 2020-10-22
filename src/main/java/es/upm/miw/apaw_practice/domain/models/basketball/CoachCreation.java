@@ -29,11 +29,4 @@ public class CoachCreation {
         this.dni = dni;
     }
 
-    @Override
-    public String toString() {
-        return "CoachCreation{" +
-                "name='" + name + '\'' +
-                ", dni='" + dni + '\'' +
-                '}';
-    }
 }

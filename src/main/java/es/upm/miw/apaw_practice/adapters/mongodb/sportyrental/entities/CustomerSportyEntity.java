@@ -22,6 +22,7 @@ public class CustomerSportyEntity {
     private String phone;
 
     public CustomerSportyEntity() {
+        //empty for framework
     }
 
     public CustomerSportyEntity(String idCustomer, String dni, String name, String surnames, String email, String phone) {

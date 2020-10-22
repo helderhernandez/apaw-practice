@@ -5,12 +5,10 @@ import es.upm.miw.apaw_practice.domain.persistence_ports.car_dealership.CarDeale
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
 public class CarDealershipService {
 
-    private CarDealershipPersistence carDealershipPersistence;
+    private final CarDealershipPersistence carDealershipPersistence;
 
     @Autowired
     public CarDealershipService(CarDealershipPersistence carDealershipPersistence) {

@@ -1,6 +1,6 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.sportyrental.entities;
 
-import es.upm.miw.apaw_practice.adapters.mongodb.sportyrental.entities.utils.Constans;
+import es.upm.miw.apaw_practice.adapters.mongodb.sportyrental.entities.utils.ConsUtils;
 import es.upm.miw.apaw_practice.domain.models.sportyrental.*;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
@@ -32,6 +32,7 @@ public class ReservationSportyEntity {
     private List<DiscountSportyEntity> discountSportyEntity;
 
     public ReservationSportyEntity() {
+        //empty for framework
     }
 
     public ReservationSportyEntity(String idReservation, LocalDateTime dateReservation, String refReservation, BigDecimal amount, Boolean paidOut, List<CustomerSportyEntity> customerSportyEntities, CategorySportyEntity categorySportyEntity, List<DiscountSportyEntity> discountSportyEntity) {
@@ -49,7 +50,7 @@ public class ReservationSportyEntity {
         BeanUtils.copyProperties(reservationCreationSporty, this);
         this.idReservation = UUID.randomUUID().toString();
         this.dateReservation = LocalDateTime.now();
-        this.refReservation = Constans.START_REFERENCE + UUID.randomUUID().toString().substring(Constans.MAX_REFERENCE);
+        this.refReservation = ConsUtils.START_REFERENCE + UUID.randomUUID().toString().substring(ConsUtils.MAX_REFERENCE);
     }
 
     public String getIdReservation() {
@@ -117,14 +118,10 @@ public class ReservationSportyEntity {
     }
 
     public ReservationSporty convertToReservationSporty() {
-        return new ReservationSporty(this.idReservation,
-                this.dateReservation,
-                this.refReservation,
-                this.amount,
-                this.paidOut,
-                this.convertToListCustomerSporty(),
-                new CategorySporty(this.categorySportyEntity.getIdCategory(), this.categorySportyEntity.getDescription(), this.categorySportyEntity.getNumMaxPersons()),
-                this.convertToListDiscountSporty());
+        return ReservationSporty.builder().idReservation(this.idReservation).dateReservation(this.dateReservation)
+                .refReservation(this.refReservation).amount(this.amount).paidOut(this.paidOut).listCustomersSporty(this.convertToListCustomerSporty())
+                .categorySporty(new CategorySporty(this.categorySportyEntity.getIdCategory(), this.categorySportyEntity.getDescription(), this.categorySportyEntity.getNumMaxPersons()))
+                .listDiscountsSporty(this.convertToListDiscountSporty()).build();
     }
 
     private List<CustomerSporty> convertToListCustomerSporty() {

@@ -1,5 +1,7 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.article.entities;
 
+import es.upm.miw.apaw_practice.domain.models.article.Works;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.DBRef;
@@ -20,22 +22,22 @@ public class WorksEntity {
     private String id;
     private String name;
     @Indexed(unique = true)
-    private String ismn;
-    private LocalDate publicationdate;
+    private Long ismn;
+    private LocalDate publicationDate;
     private String description;
     private BigDecimal price;
     private Byte grade;
 
-    public WorksEntity() {
-        //empty from framework
+    public WorksEntity(){
+        //Empty for framework
     }
 
-    public WorksEntity(List<AuthorEntity> authorEntyList, List<EssayEntity> essayEntyList, String name, String ismn, LocalDate publicationdate, String description, BigDecimal price, Byte grade) {
+    public WorksEntity(List<AuthorEntity> authorEntityList, List<EssayEntity> essayEntityList, String name, Long ismn, LocalDate publicationDate, String description, BigDecimal price, Byte grade) {
         this.authorEntityList = authorEntityList;
         this.essayEntityList = essayEntityList;
         this.name = name;
         this.ismn = ismn;
-        this.publicationdate = publicationdate;
+        this.publicationDate = publicationDate;
         this.description = description;
         this.price = price;
         this.grade = grade;
@@ -73,20 +75,20 @@ public class WorksEntity {
         this.name = name;
     }
 
-    public String getIsmn() {
+    public Long getIsmn() {
         return ismn;
     }
 
-    public void setIsmn(String ismn) {
+    public void setIsmn(Long ismn) {
         this.ismn = ismn;
     }
 
-    public LocalDate getPublicationdate() {
-        return publicationdate;
+    public LocalDate getPublicationDate() {
+        return publicationDate;
     }
 
-    public void setPublicationdate(LocalDate publicationdate) {
-        this.publicationdate = publicationdate;
+    public void setPublicationDate(LocalDate publicationDate) {
+        this.publicationDate = publicationDate;
     }
 
     public String getDescription() {
@@ -123,6 +125,12 @@ public class WorksEntity {
         return this == obj || obj != null && getClass() == obj.getClass() && (ismn.equals(((es.upm.miw.apaw_practice.adapters.mongodb.article.entities.WorksEntity) obj).ismn));
     }
 
+    public Works toWorks(){
+        Works works = new Works();
+        BeanUtils.copyProperties(this, works);
+        return works;
+    }
+
     @Override
     public String toString() {
         return "WorksEntity{" +
@@ -131,7 +139,7 @@ public class WorksEntity {
                 ", id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 ", ismn='" + ismn + '\'' +
-                ", publicationdate=" + publicationdate +
+                ", publicationDate=" + publicationDate +
                 ", description='" + description + '\'' +
                 ", price=" + price +
                 ", grade=" + grade +

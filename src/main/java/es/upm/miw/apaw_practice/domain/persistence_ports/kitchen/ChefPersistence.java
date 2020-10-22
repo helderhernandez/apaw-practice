@@ -8,5 +8,5 @@ import java.util.stream.Stream;
 @Repository
 public interface ChefPersistence {
     Chef updateRecipesFinished(String dni, Integer recipesFinished);
-    Stream<String> search2(String ingredientID);
+    Stream<String> findChefsDniThatHaveAKitchenBoyUsingIngredient(String ingredientName);
 }

@@ -15,11 +15,20 @@ public class TypeEntityRepositoryIT {
     private TypeRepository typeRepository;
 
     @Test
-    void testFindById() {
-        assertTrue(this.typeRepository.findById("02").isPresent());
-        TypeEntity type = this.typeRepository.findById("02").get();
+    void testCreateAndRead() {
+        assertTrue(this.typeRepository.findAll().stream()
+                .anyMatch(type ->
+                        type.getId() != null &&
+                                "Tragedy".equals(type.getName())&&
+                                "Make people sad".equals(type.getDescription())
+                ));
+    }
+
+    @Test
+    void testFindByName() {
+        assertTrue(this.typeRepository.findByName("Tragedy").isPresent());
+        TypeEntity type = this.typeRepository.findByName("Tragedy").get();
         assertEquals("Make people sad", type.getDescription());
-        assertEquals("Tragedy", type.getName());
     }
 
 }

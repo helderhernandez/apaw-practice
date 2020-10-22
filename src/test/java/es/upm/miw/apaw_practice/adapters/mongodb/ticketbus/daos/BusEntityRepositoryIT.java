@@ -8,8 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import java.math.BigDecimal;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.*;
 
 @TestConfig
 class BusEntityRepositoryIT {
@@ -36,5 +35,22 @@ class BusEntityRepositoryIT {
                                 Integer.valueOf(5).equals(bus.getJourneys().get(0).getNumStops())
                 )
         );
+    }
+
+    @Test
+    void testEquals(){
+        BusEntity busEntity = this.busRepository.findAll().stream().findFirst().get();
+
+        BusEntity busEntityTest = new BusEntity();
+        busEntityTest.setId(busEntity.getId());
+        busEntityTest.setReference(busEntity.getReference());
+        busEntityTest.setRegistrationDate(busEntity.getRegistrationDate());
+        busEntityTest.setCompany(busEntity.getCompany());
+        busEntityTest.setCapacity(busEntity.getCapacity());
+        busEntityTest.setAccesibility(busEntity.getAccesibility());
+        busEntityTest.setWifi(busEntity.getWifi());
+        busEntityTest.setJourneys(busEntity.getJourneys());
+
+        assertEquals(busEntity, busEntityTest);
     }
 }

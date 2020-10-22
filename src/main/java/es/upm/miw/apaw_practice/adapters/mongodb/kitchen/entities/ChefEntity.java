@@ -61,7 +61,7 @@ public class ChefEntity {
 
     public Chef toChef() {
         List<String> kitchenBoyDnis = this.kitchenBoys.stream()
-                .map(kitchenBoy -> kitchenBoy.getDni())
+                .map(KitchenBoyEntity::getDni)
                 .collect(Collectors.toList());
         return new Chef(this.id, this.dni, this.recipesFinished, kitchenBoyDnis);
     }

@@ -2,6 +2,7 @@ package es.upm.miw.apaw_practice.adapters.mongodb.garage.persistence;
 
 import es.upm.miw.apaw_practice.adapters.mongodb.garage.daos.DriverRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.garage.entities.DriverEntity;
+import es.upm.miw.apaw_practice.adapters.mongodb.garage.entities.MechanicEntity;
 import es.upm.miw.apaw_practice.domain.exceptions.ConflictException;
 import es.upm.miw.apaw_practice.domain.models.garage.Driver;
 import es.upm.miw.apaw_practice.domain.models.garage.DriverCreation;
@@ -59,12 +60,10 @@ public class DriverPersistenceMongodb implements DriverPersistence {
                 .findAll()
                 .stream()
                 .filter(driver -> driver.getName().equals(driverName))
-                .flatMap(driver -> {
-                    return driver.getVehicleEntities()
-                            .stream()
-                            .flatMap(vehicleEntity -> vehicleEntity.getMechanicEntities().stream());
-                })
-                .map(mechanicEntity -> mechanicEntity.getName())
+                .flatMap(driver -> driver.getVehicleEntities()
+                                        .stream()
+                                        .flatMap(vehicleEntity -> vehicleEntity.getMechanicEntities().stream()))
+                .map(MechanicEntity::getName)
                 .distinct()
                 .collect(Collectors.toList());
     }

@@ -10,6 +10,7 @@ public class CustomerSporty {
     private String phone;
 
     public CustomerSporty() {
+        //empty for framework
     }
 
     public CustomerSporty(String idCustomer, String dni, String name, String surnames, String email, String phone) {
