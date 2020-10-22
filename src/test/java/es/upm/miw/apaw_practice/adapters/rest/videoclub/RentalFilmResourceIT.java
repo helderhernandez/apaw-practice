@@ -12,7 +12,7 @@ import static es.upm.miw.apaw_practice.adapters.rest.videoclub.RentalFilmResourc
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @RestTestConfig
-public class RentalFilmResourceIT {
+class RentalFilmResourceIT {
 
     @Autowired
     private WebTestClient webTestClient;

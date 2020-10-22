@@ -18,7 +18,7 @@ import java.util.stream.Stream;
 import static org.junit.jupiter.api.Assertions.*;
 
 @TestConfig
-public class FilmCategoryPersistenceMongodbIT {
+class FilmCategoryPersistenceMongodbIT {
 
     @Autowired
     private VideoclubSeederService videoclubSeederService;

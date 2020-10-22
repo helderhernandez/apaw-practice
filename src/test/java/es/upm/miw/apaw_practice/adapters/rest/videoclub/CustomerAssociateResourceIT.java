@@ -14,7 +14,7 @@ import org.springframework.web.reactive.function.BodyInserters;
 import static org.junit.jupiter.api.Assertions.*;
 
 @RestTestConfig
-public class CustomerAssociateResourceIT {
+class CustomerAssociateResourceIT {
 
     @Autowired
     private VideoclubSeederService videoclubSeederService;

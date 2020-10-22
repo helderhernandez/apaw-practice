@@ -14,7 +14,7 @@ import static es.upm.miw.apaw_practice.adapters.rest.videoclub.FilmMakerResource
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @RestTestConfig
-public class FilmMakerResourceIT {
+class FilmMakerResourceIT {
 
     @Autowired
     private WebTestClient webTestClient;

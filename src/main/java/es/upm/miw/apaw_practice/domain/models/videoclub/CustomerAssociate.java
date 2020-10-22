@@ -3,7 +3,6 @@ package es.upm.miw.apaw_practice.domain.models.videoclub;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.List;
-import java.util.UUID;
 
 public class CustomerAssociate {
 
@@ -17,7 +16,7 @@ public class CustomerAssociate {
         // empty from framework
     }
 
-    public CustomerAssociate(String documentId, String name, LocalDate birthday, LocalDateTime registrationDate, List<RentalFilm> films) {
+    public CustomerAssociate(String documentId, String name, LocalDate birthday, List<RentalFilm> films) {
         this.documentId = documentId;
         this.name = name;
         this.birthday = birthday;

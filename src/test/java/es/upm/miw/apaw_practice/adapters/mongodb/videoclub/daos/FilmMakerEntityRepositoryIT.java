@@ -9,7 +9,7 @@ import java.time.LocalDate;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @TestConfig
-public class FilmMakerEntityRepositoryIT {
+class FilmMakerEntityRepositoryIT {
 
     @Autowired
     private FilmMakerRepository filmMakerRepository;

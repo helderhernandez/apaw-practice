@@ -18,7 +18,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @RestTestConfig
-public class FilmCategoryResourceIT {
+class FilmCategoryResourceIT {
 
     @Autowired
     private VideoclubSeederService videoclubSeederService;

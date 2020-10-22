@@ -13,7 +13,7 @@ import java.util.stream.Stream;
 public class CustomerAssociateResource {
 
     static final String CUSTOMERASSOCIATES = "/videoclub/customers";
-    static final String DOCUMENT_DOCUMENT = "/{document_id}";
+    static final String DOCUMENT_DOCUMENT = "/{documentId}";
     static final String NAME_NAME = "/name";
     static final String SEARCH = "/search";
 
@@ -25,13 +25,13 @@ public class CustomerAssociateResource {
     }
 
     @PutMapping(DOCUMENT_DOCUMENT + NAME_NAME)
-    public CustomerAssociate updateName(@PathVariable String document_id, @RequestBody NameDto nameDto) {
-        return this.customerAssociateService.updateName(document_id, nameDto.getName());
+    public CustomerAssociate updateName(@PathVariable String documentId, @RequestBody NameDto nameDto) {
+        return this.customerAssociateService.updateName(documentId, nameDto.getName());
     }
 
     @DeleteMapping(DOCUMENT_DOCUMENT)
-    public void updateName(@PathVariable String document_id) {
-        this.customerAssociateService.delete(document_id);
+    public void updateName(@PathVariable String documentId) {
+        this.customerAssociateService.delete(documentId);
     }
 
     @GetMapping(SEARCH)
