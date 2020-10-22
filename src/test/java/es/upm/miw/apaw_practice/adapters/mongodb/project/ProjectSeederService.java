@@ -48,9 +48,21 @@ public class ProjectSeederService {
         };
         this.labelRepository.saveAll(Arrays.asList(labels));
         DeveloperEntity[] developers = {
-                new DeveloperEntity("Jaime", "jaime@developer.com", 7),
-                new DeveloperEntity("Alberto", "alberto@developer.com", 3),
-                new DeveloperEntity("Marta", "marta@developer.com", 12)
+                DeveloperEntity.builder()
+                        .name("Jaime")
+                        .email("jaime@developer.com")
+                        .yearsOfExperience(7)
+                        .build(),
+                DeveloperEntity.builder()
+                        .name("Alberto")
+                        .email("alberto@developer.com")
+                        .yearsOfExperience(3)
+                        .build(),
+                DeveloperEntity.builder()
+                        .name("Marta")
+                        .email("marta@developer.com")
+                        .yearsOfExperience(12)
+                        .build()
         };
         this.developerRepository.saveAll(Arrays.asList(developers));
         IssueEntity[] issues = {
