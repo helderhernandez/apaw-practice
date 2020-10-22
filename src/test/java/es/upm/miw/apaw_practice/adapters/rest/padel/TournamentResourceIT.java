@@ -12,7 +12,7 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 
 @RestTestConfig
-public class TournamentResourceIT {
+class TournamentResourceIT {
     @Autowired
     private WebTestClient webTestClient;
 

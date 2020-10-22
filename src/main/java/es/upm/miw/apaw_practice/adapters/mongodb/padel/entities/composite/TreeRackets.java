@@ -26,5 +26,5 @@ public interface TreeRackets {
 
     void remove(TreeRackets treeRackets);
 
-    List getRacketsName();
+    List<String> getRacketsName();
 }
