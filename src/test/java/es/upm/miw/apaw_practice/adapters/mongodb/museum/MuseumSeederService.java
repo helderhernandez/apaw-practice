@@ -52,13 +52,13 @@ public class MuseumSeederService {
 
         PatronEntity[] patrons = {
                 new PatronEntity("PAT1", paints[0], "Patron_1", "Patron_Surname1",new BigDecimal("1000.00")),
-                new PatronEntity("PAT2", paints[4], "Patron_2", "Patron_Surname2",new BigDecimal("2000.00")),
+                new PatronEntity("PAT2", paints[2], "Patron_2", "Patron_Surname2",new BigDecimal("2000.00")),
         };
         this.patronRepository.saveAll(Arrays.asList(patrons));
 
         CollectionEntity[] collections = {
                 new CollectionEntity("CCC1", "Collection_1", LocalDate.now(), 5, List.of(paints[0],paints[1])),
-                new CollectionEntity("CCC2", "Collection_2", LocalDate.now(), 365, List.of(paints[2],paints[3]))
+                new CollectionEntity("CCC2", "Collection_2", LocalDate.now(), 365, List.of(paints[2],paints[1]))
         };
         this.collectionRepository.saveAll(Arrays.asList(collections));
     }
