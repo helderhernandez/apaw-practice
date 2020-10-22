@@ -23,11 +23,56 @@ public class ReaderEntity {
     public  ReaderEntity(){
         //empty for framework
     }
-    public ReaderEntity(Reader reader){
-        BeanUtils.copyProperties(reader,this);
-        this.id= UUID.randomUUID().toString();
+    
+    public static ReaderBuilders.Name builder(){
+        return new Builder();
     }
 
+    public static class Builder implements ReaderBuilders.Name,ReaderBuilders.Sex,ReaderBuilders.DNI,ReaderBuilders.Phone,ReaderBuilders.Optionals{
+
+        private final ReaderEntity reader;
+
+        public Builder() {
+            this.reader=new ReaderEntity();
+            BeanUtils.copyProperties(reader,this);
+            this.reader.id=UUID.randomUUID().toString();
+        }
+
+        @Override
+        public ReaderBuilders.Sex name(String name) {
+            this.reader.name=name;
+            return this;
+        }
+
+        @Override
+        public ReaderBuilders.DNI sex(String sex) {
+            this.reader.sex=sex;
+            return this;
+        }
+
+        @Override
+        public ReaderBuilders.Phone dni(String dni) {
+            this.reader.DNI=dni;
+            return this;
+        }
+
+        @Override
+        public ReaderBuilders.Optionals phone(String phone) {
+            this.reader.phone=phone;
+            return this;
+        }
+
+        @Override
+        public ReaderBuilders.Optionals email(String email) {
+            this.reader.email=email;
+            return this;
+        }
+
+        @Override
+        public ReaderEntity build() {
+            return this.reader;
+        }
+    }
     public String getId() {
         return id;
     }

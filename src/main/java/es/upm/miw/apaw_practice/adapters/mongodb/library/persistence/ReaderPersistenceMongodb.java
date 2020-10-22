@@ -35,7 +35,7 @@ public class ReaderPersistenceMongodb implements ReaderPersistence {
     public Reader create(Reader reader) {
         this.assertDNI(reader.getDNI());
         return this.readerRepository
-                .save(new ReaderEntity(reader))
+                .save(ReaderEntity.builder().name(reader.getName()).sex(reader.getSex()).dni(reader.getDNI()).phone(reader.getPhone()).email(reader.getEmail()).build())
                 .toReader();
     }
 
