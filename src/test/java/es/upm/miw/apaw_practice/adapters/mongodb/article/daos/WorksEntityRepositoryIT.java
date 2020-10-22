@@ -20,10 +20,10 @@ public class WorksEntityRepositoryIT {
     @Test
     void testFindByIsm() {
 
-        assertTrue(this.worksRepository.findByIsmn("45848798").isPresent());
-        WorksEntity works = this.worksRepository.findByIsmn("45848798").get();
+        assertTrue(this.worksRepository.findByIsmn((long)45848798).isPresent());
+        WorksEntity works = this.worksRepository.findByIsmn((long)45848798).get();
         assertEquals("Journey to the West", works.getName());
-        assertEquals("45848798", works.getIsmn());
+        assertEquals((long)45848798, works.getIsmn());
         assertEquals(LocalDate.of(2013,7,26), works.getPublicationDate());
         assertEquals("masterpiece", works.getDescription());
         assertEquals(new BigDecimal("15.99"), works.getPrice());
