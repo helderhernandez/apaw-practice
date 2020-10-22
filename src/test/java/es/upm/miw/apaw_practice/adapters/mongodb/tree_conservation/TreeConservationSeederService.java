@@ -42,7 +42,7 @@ public class TreeConservationSeederService {
         InspectorEntity[] inspectors = {
                 InspectorEntity.builder().dni("dni1").firstName("firstName1").lastName("lastName1").age(27).email("email1").phoneNumber("phone1").build(),
                 InspectorEntity.builder().dni("dni2").firstName("firstName2").lastName("lastName2").age(28).email("email2").phoneNumber("phone2").build(),
-                InspectorEntity.builder().dni("dni3").firstName("firstName3").lastName("lastName3").age(29).email("email3").phoneNumber("phone3").build()
+                new InspectorEntity("dni3", "firstName3", "lastName3", 29, "email3", "phone3")
         };
         this.inspectorRepository.saveAll(Arrays.asList(inspectors));
 
