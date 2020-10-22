@@ -12,6 +12,14 @@ public class Reader {
         //empty from framework
     }
 
+    public Reader(String name, String sex, String DNI, String phone, String email) {
+        this.name = name;
+        this.sex = sex;
+        this.DNI = DNI;
+        this.phone = phone;
+        this.email = email;
+    }
+
     public String getId() {
         return id;
     }
