@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.math.BigDecimal;
+import java.util.stream.Stream;
 
 @Service
 public class WorksService {
@@ -17,5 +18,9 @@ public class WorksService {
 
     public BigDecimal findAllIsmPriceMoreThanTen(String name){
         return this.worksPersistence.findAllIsmPriceMoreThanTen(name);
+    }
+
+    public Stream<String> findAllIsmPriceMoreThanTen1(String name) {
+        return this.worksPersistence.findAllIsmPriceMoreThanTen1(name);
     }
 }

@@ -2,7 +2,6 @@ package es.upm.miw.apaw_practice.adapters.mongodb.article.persistence;
 
 import es.upm.miw.apaw_practice.adapters.mongodb.article.daos.EssayRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.article.daos.WorksRepository;
-import es.upm.miw.apaw_practice.adapters.mongodb.article.entities.WorksEntity;
 import es.upm.miw.apaw_practice.domain.models.article.Works;
 import es.upm.miw.apaw_practice.domain.persistence_ports.article.WorksPersistence;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -23,6 +22,19 @@ public class WorksPersistenceMangodb implements WorksPersistence {
     @Override
     public void deleteById(String id) { this.worksRepository.deleteById(id); }
 
+
+    @Override
+    public Stream<String> findAllIsmPriceMoreThanTen1(String name) {
+        return this.worksRepository.findAll().stream()
+                .filter(worksEntity -> worksEntity.getPrice().compareTo(new BigDecimal("10.00")) > 0 )
+                .map(worksEntity -> worksEntity.toWorks())
+                .filter(works -> works.getEssayEntityList().stream()
+                        .map(essayEntity -> essayEntity.getTypeEntity()
+                                .getName()).anyMatch(nameWorks -> nameWorks.equals(name)))
+                .map(Works::getIsmn).distinct().sorted();
+
+    }
+
     @Override
     public BigDecimal findAllIsmPriceMoreThanTen(String name){
         BigDecimal price = testFindAllIsmWorksByTypeName(name)
@@ -41,4 +53,5 @@ public class WorksPersistenceMangodb implements WorksPersistence {
                                     .getName()).anyMatch(nameWorks -> nameWorks.equals(name)));
 
         }
+
     }
