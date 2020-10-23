@@ -22,10 +22,8 @@ public class StyleEntity {
         //Empty for framework
     }
 
-
-    public StyleEntity(Style style) {
-        BeanUtils.copyProperties(style, this);
-        this.id = UUID.randomUUID().toString();
+    public  static Builder builder(String name){
+        return new Builder(name);
     }
 
     public String getId() { return id; }
@@ -68,5 +66,23 @@ public class StyleEntity {
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 '}';
+    }
+
+    public static class Builder {
+        private final StyleEntity style;
+
+        public Builder(String name){
+            this.style = new StyleEntity();
+            this.style.name = name;
+        }
+
+        public Builder description(String description){
+            this.style.description = description;
+            return this;
+        }
+
+        public StyleEntity build() {
+            return this.style;
+        }
     }
 }

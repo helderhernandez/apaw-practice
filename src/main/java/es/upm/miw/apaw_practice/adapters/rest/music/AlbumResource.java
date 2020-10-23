@@ -3,7 +3,6 @@ package es.upm.miw.apaw_practice.adapters.rest.music;
 
 
 import es.upm.miw.apaw_practice.adapters.rest.LexicalAnalyzer;
-import es.upm.miw.apaw_practice.domain.models.music.Album;
 import es.upm.miw.apaw_practice.domain.services.music.AlbumService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;

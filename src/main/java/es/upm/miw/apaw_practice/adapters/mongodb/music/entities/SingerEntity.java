@@ -6,6 +6,7 @@ import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 
+
 @Document
 
 public class SingerEntity {
@@ -20,10 +21,8 @@ public class SingerEntity {
         //Empty for framework
     }
 
-    public SingerEntity( String name, String surname, String nationality) {
-        this.name = name;
-        this.surname = surname;
-        this.nationality = nationality;
+    public static Builder builder(String name){
+        return new Builder(name);
     }
 
     public String getId() { return id; }
@@ -42,15 +41,11 @@ public class SingerEntity {
 
     public void setNationality(String nationality) { this.nationality = nationality; }
 
-
-
     public Singer toSinger(){
         Singer singer = new Singer();
         BeanUtils.copyProperties(this,singer);
         return singer;
     }
-
-
 
     @Override
     public String toString() {
@@ -61,4 +56,28 @@ public class SingerEntity {
                 ", nationality='" + nationality + '\'' +
                 '}';
     }
+    public static class Builder {
+
+        private final SingerEntity singer;
+
+        public Builder(String name){
+            this.singer = new SingerEntity();
+            this.singer.name = name;
+        }
+
+        public Builder surname(String surname){
+            this.singer.surname = surname;
+            return this;
+        }
+
+        public Builder nationality(String nationality){
+            this.singer.nationality = nationality;
+            return this;
+        }
+
+        public SingerEntity build(){
+            return this.singer;
+        }
+    }
+
 }

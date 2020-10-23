@@ -20,12 +20,15 @@ public class MusicEntity {
         //Empty for framework
     }
 
-    public MusicEntity(StyleEntity styleEntity, String name, String description) {
-        this.styleEntity = styleEntity;
-        this.name = name;
-        this.description = description;
-    }
+//    public MusicEntity(StyleEntity styleEntity, String name, String description) {
+//        this.styleEntity = styleEntity;
+//        this.name = name;
+//        this.description = description;
+//    }
 
+    public static Builder builder(StyleEntity styleEntity,String name){
+        return new Builder(styleEntity, name);
+    }
 
     public StyleEntity getStyleEntity() { return styleEntity; }
 
@@ -57,5 +60,24 @@ public class MusicEntity {
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
                 '}';
+    }
+    public static class Builder{
+
+        private final MusicEntity music;
+
+        private Builder(StyleEntity styleEntity, String name){
+            this.music = new MusicEntity();
+            this.music.styleEntity = styleEntity;
+            this.music.name = name;
+        }
+
+        public Builder description(String description){
+            this.music.description = description;
+            return this;
+        }
+
+        public MusicEntity build(){
+            return this.music;
+        }
     }
 }
