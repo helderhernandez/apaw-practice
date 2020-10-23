@@ -32,15 +32,8 @@ public class AlbumEntity {
             //Empty for framework
         }
 
-    public AlbumEntity(List<SingerEntity> singerEntityList, List<MusicEntity> musicEntityList, String name, String ismn, LocalDate publicationDate, String description, BigDecimal price, Boolean recommendation) {
-        this.singerEntityList = singerEntityList;
-        this.musicEntityList = musicEntityList;
-        this.name = name;
-        this.ismn = ismn;
-        this.publicationDate = publicationDate;
-        this.description = description;
-        this.price = price;
-        this.recommendation = recommendation;
+    public static Builder builder(List<SingerEntity> singerEntityList, List<MusicEntity> musicEntityList, String name, String ismn, LocalDate publicationDate, BigDecimal price, Boolean recommendation){
+            return new Builder(singerEntityList, musicEntityList, name, ismn, publicationDate, price, recommendation);
     }
 
     public List<SingerEntity> getSingerEntityList() {
@@ -144,5 +137,27 @@ public class AlbumEntity {
                 ", price=" + price +
                 ", recommendation=" + recommendation +
                 '}';
+    }
+    public static class Builder{
+            private final AlbumEntity album;
+            private Builder(List<SingerEntity> singerEntityList, List<MusicEntity> musicEntityList, String name, String ismn, LocalDate publicationDate, BigDecimal price, Boolean recommendation){
+                this.album = new AlbumEntity();
+                this.album.singerEntityList = singerEntityList;
+                this.album.musicEntityList = musicEntityList;
+                this.album.name = name;
+                this.album.ismn = ismn;
+                this.album.publicationDate = publicationDate;
+                this.album.price = price;
+                this.album.recommendation = recommendation;
+            }
+
+            public Builder description(String description){
+                this.album.description = description;
+                return this;
+            }
+
+            public AlbumEntity build(){
+                return this.album;
+            }
     }
 }

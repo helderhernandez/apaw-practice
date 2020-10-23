@@ -2,7 +2,6 @@ package es.upm.miw.apaw_practice.adapters.mongodb.music.persistence;
 
 
 import es.upm.miw.apaw_practice.adapters.mongodb.music.daos.AlbumRepository;
-import es.upm.miw.apaw_practice.adapters.mongodb.music.daos.MusicRepository;
 import es.upm.miw.apaw_practice.domain.models.music.Album;
 import es.upm.miw.apaw_practice.domain.persistence_ports.music.AlbumPersistence;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,12 +13,11 @@ import java.util.stream.Stream;
 @Repository("albumPersistence")
 public class AlbumPersistenceMangodb implements AlbumPersistence {
     private final AlbumRepository albumRepository;
-    private final MusicRepository musicRepository;
+
 
     @Autowired
-    public AlbumPersistenceMangodb(AlbumRepository albumRepository,MusicRepository musicRepository){
+    public AlbumPersistenceMangodb(AlbumRepository albumRepository){
         this.albumRepository = albumRepository;
-        this.musicRepository = musicRepository;
     }
 
     @Override
