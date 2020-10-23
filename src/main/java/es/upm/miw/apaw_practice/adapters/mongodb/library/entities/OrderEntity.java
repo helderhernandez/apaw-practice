@@ -8,7 +8,6 @@ import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
-import java.util.Objects;
 
 @Document
 public class OrderEntity {
@@ -26,6 +25,15 @@ public class OrderEntity {
     public  OrderEntity(){
         //empty for framework
     }
+
+    public OrderEntity(String id, BigDecimal rental, LocalDateTime creationTime, LocalDateTime paymentTime, LocalDateTime returnTime) {
+        this.id = id;
+        this.rental = rental;
+        this.creationTime = creationTime;
+        this.paymentTime = paymentTime;
+        this.returnTime = returnTime;
+    }
+
     public OrderEntity(String id, BigDecimal rental, LocalDateTime creationTime, LocalDateTime paymentTime, LocalDateTime returnTime, BookEntity bookEntity, ReaderEntity readerEntity) {
         this.id = id;
         this.rental = rental;
