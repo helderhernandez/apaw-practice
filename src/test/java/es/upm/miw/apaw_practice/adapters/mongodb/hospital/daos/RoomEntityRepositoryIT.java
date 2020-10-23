@@ -29,7 +29,7 @@ class RoomEntityRepositoryIT {
                 ", patientEntitys=" + roomEntity.getPatientEntities() +
                 '}';
         assertEquals(roomEntity.hashCode(), roomEntity2.hashCode());
-        assertTrue(roomEntity.equals(roomEntity2));
+        assertEquals(roomEntity, roomEntity2);
         assertEquals(temp, roomEntity.toString());
         assertTrue(this.roomRepository.findByFloor(8).orElse(null).isEmpty());
         assertEquals(2, this.roomRepository.findByFloor(1).orElse(null).get(0).getPatientEntities().size());

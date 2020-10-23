@@ -24,8 +24,8 @@ public class BedResource {
     }
 
     @PutMapping(ID_ID + OCCUPIED)
-    public Bed updateOccupied(@PathVariable String id, @RequestBody Boolean occupied) {
-        return this.bedService.updateOccupied(id, occupied);
+    public Bed updateOccupied(@PathVariable String id, @RequestBody OccupiedDto occupiedDto) {
+        return this.bedService.updateOccupied(id, occupiedDto.isOccupied());
     }
 
     @GetMapping(SEARCH)
