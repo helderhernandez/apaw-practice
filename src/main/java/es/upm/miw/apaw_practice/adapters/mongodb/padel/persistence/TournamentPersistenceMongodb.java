@@ -1,7 +1,6 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.padel.persistence;
 
 import es.upm.miw.apaw_practice.adapters.mongodb.padel.daos.TournamentRepository;
-import es.upm.miw.apaw_practice.adapters.mongodb.padel.entities.PlayerEntity;
 import es.upm.miw.apaw_practice.adapters.mongodb.padel.entities.TournamentEntity;
 import es.upm.miw.apaw_practice.domain.exceptions.NotFoundException;
 import es.upm.miw.apaw_practice.domain.models.padel.Tournament;
