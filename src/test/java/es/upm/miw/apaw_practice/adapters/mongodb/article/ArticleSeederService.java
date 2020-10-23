@@ -26,11 +26,11 @@ public class ArticleSeederService {
     public void seedDatabase() {
         LogManager.getLogger(this.getClass()).warn("------- Article Initial Load -----------");
         AuthorEntity[] authors = {
-                new AuthorEntity("Mario","Weeb","China"),
-                new AuthorEntity("Juan", "Vidal","America"),
-                new AuthorEntity("Luis", "Peral","Spain"),
-                new AuthorEntity("Joaquín", "Arcángel","Canada"),
-                new AuthorEntity("Doraemon", "Lucasio","Spain")
+                AuthorEntity.builder().name("Mario").surname("Weeb").nationality("China").build(),
+                AuthorEntity.builder().name("Juan").surname("Vidal").nationality("America").build(),
+                AuthorEntity.builder().name("Luis").surname("Peral").nationality("Spain").build(),
+                AuthorEntity.builder().name("Joaquín").surname("Arcángel").nationality("Canada").build(),
+                AuthorEntity.builder().name("Doraemon").surname("Lucasio").nationality("Spain").build()
         };
         this.authorRepository.saveAll(Arrays.asList(authors));
 
