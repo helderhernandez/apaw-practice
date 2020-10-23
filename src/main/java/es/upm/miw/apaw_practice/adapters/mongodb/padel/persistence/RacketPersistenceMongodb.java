@@ -5,14 +5,11 @@ import es.upm.miw.apaw_practice.adapters.mongodb.padel.daos.TournamentRepository
 import es.upm.miw.apaw_practice.adapters.mongodb.padel.entities.PlayerEntity;
 import es.upm.miw.apaw_practice.adapters.mongodb.padel.entities.RacketEntity;
 import es.upm.miw.apaw_practice.domain.exceptions.NotFoundException;
-import es.upm.miw.apaw_practice.domain.models.padel.Player;
 import es.upm.miw.apaw_practice.domain.models.padel.Racket;
 import es.upm.miw.apaw_practice.domain.persistence_ports.padel.RacketPersistence;
 import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;

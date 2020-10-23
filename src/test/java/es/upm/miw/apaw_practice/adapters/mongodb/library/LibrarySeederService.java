@@ -40,11 +40,11 @@ public class LibrarySeederService {
         this.bookRepository.saveAll(Arrays.asList(book));
 
         ReaderEntity[] reader={
-                new ReaderEntity(new Reader("Ana","Woman","01648463T","695222111","waldujocnj@gmail.com")),
-                new ReaderEntity(new Reader("Maria","Woman","64986134T","695223211","iouchaib@gmail.com")),
-                new ReaderEntity(new Reader("Jesus","Man","68746351T","695226951","poeufjncg@mail.com")),
-                new ReaderEntity(new Reader("Luis","Man","97416346T","695236711","rigbcaihg@mail.com")),
-                new ReaderEntity(new Reader("Hector","Man","69741329T","695294811","iuvhaiwkbgy@gmail.com"))
+                ReaderEntity.builder().name("Ana").sex("Woman").dni("01648463T").phone("695222111").email("waldujocnj@gmail.com").build(),
+                ReaderEntity.builder().name("Maria").sex("Woman").dni("64986134T").phone("695223211").email("iouchaib@gmail.com").build(),
+                ReaderEntity.builder().name("Jesus").sex("Man").dni("68746351T").phone("695226951").email("poeufjncg@mail.com").build(),
+                ReaderEntity.builder().name("Luis").sex("Man").dni("97416346T").phone("695236711").email("rigbcaihg@mail.com").build(),
+                ReaderEntity.builder().name("Hector").sex("Man").dni("69741329T").phone("695294811").email("iuvhaiwkbgy@gmail.com").build()
         };
         this.readerRepository.saveAll(Arrays.asList(reader));
 

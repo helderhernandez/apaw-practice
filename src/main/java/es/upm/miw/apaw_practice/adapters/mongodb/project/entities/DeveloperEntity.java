@@ -23,11 +23,8 @@ public class DeveloperEntity {
         //empty for framework
     }
 
-    public DeveloperEntity(String name, String email, Integer yearsOfExperience) {
-        this.id = UUID.randomUUID().toString();
-        this.name = name;
-        this.email = email;
-        this.yearsOfExperience = yearsOfExperience;
+    public static DeveloperEntityBuilder.Name builder() {
+        return new Builder();
     }
 
     public String getId() {
@@ -86,6 +83,39 @@ public class DeveloperEntity {
                 ", email='" + email + '\'' +
                 ", yearsOfExperience=" + yearsOfExperience +
                 '}';
+    }
+
+    public static class Builder implements DeveloperEntityBuilder.Name, DeveloperEntityBuilder.Email, DeveloperEntityBuilder.Optionals {
+
+        private DeveloperEntity developerEntity;
+
+        public Builder() {
+            this.developerEntity = new DeveloperEntity();
+            this.developerEntity.setId(UUID.randomUUID().toString());
+        }
+
+        @Override
+        public DeveloperEntityBuilder.Email name(String name) {
+            this.developerEntity.setName(name);
+            return this;
+        }
+
+        @Override
+        public DeveloperEntityBuilder.Optionals email(String email) {
+            this.developerEntity.setEmail(email);
+            return this;
+        }
+
+        @Override
+        public DeveloperEntityBuilder.Optionals yearsOfExperience(int yearsOfExperience) {
+            this.developerEntity.setYearsOfExperience(yearsOfExperience);
+            return this;
+        }
+
+        @Override
+        public DeveloperEntity build() {
+            return this.developerEntity;
+        }
     }
 
 }
