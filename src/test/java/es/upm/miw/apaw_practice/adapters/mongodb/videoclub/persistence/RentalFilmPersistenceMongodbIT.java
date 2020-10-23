@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @TestConfig
-public class RentalFilmPersistenceMongodbIT {
+class RentalFilmPersistenceMongodbIT {
 
     @Autowired
     private RentalFilmPersistenceMongodb rentalFilmPersistenceMongodb;

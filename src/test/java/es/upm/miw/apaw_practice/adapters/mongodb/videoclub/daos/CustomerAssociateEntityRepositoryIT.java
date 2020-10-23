@@ -10,7 +10,7 @@ import java.time.LocalDate;
 import static org.junit.jupiter.api.Assertions.*;
 
 @TestConfig
-public class CustomerAssociateEntityRepositoryIT {
+class CustomerAssociateEntityRepositoryIT {
     @Autowired
     private CustomerAssociateRepository customerAssociateRepository;
 

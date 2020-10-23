@@ -1,7 +1,6 @@
 package es.upm.miw.apaw_practice.domain.models.videoclub;
 
 import java.time.LocalDate;
-import java.util.UUID;
 
 public class FilmMaker {
 

@@ -13,7 +13,7 @@ import java.util.stream.Collectors;
 import static org.junit.jupiter.api.Assertions.*;
 
 @TestConfig
-public class CustomerAssociatePersistenceMongodbIT {
+class CustomerAssociatePersistenceMongodbIT {
     @Autowired
     private VideoclubSeederService videoclubSeederService;
 

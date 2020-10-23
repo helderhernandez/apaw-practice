@@ -78,10 +78,10 @@ public class CustomerAssociateEntity {
     public CustomerAssociate toCustomerAssociate() {
         CustomerAssociate customerAssociate = new CustomerAssociate();
         BeanUtils.copyProperties(this, customerAssociate);
-        List<RentalFilm> films = this.films.stream()
+        List<RentalFilm> rentalFilms = this.films.stream()
                 .map(RentalFilmEntity::toRentalFilm)
                 .collect(Collectors.toList());
-        customerAssociate.setFilms(films);
+        customerAssociate.setFilms(rentalFilms);
         return customerAssociate;
     }
 
