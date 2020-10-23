@@ -10,6 +10,7 @@ import org.springframework.data.mongodb.core.mapping.Document;
 import java.math.BigDecimal;
 import java.time.LocalDate;
 import java.util.List;
+import java.util.UUID;
 
 
 @Document
@@ -33,6 +34,7 @@ public class WorksEntity {
     }
 
     public WorksEntity(List<AuthorEntity> authorEntityList, List<EssayEntity> essayEntityList, String name, Long ismn, LocalDate publicationDate, String description, BigDecimal price, Byte grade) {
+        this.id = UUID.randomUUID().toString();
         this.authorEntityList = authorEntityList;
         this.essayEntityList = essayEntityList;
         this.name = name;
