@@ -1,7 +1,5 @@
 package es.upm.miw.apaw_practice.domain.models.videoclub;
 
-import java.util.UUID;
-
 public class FilmCategory {
 
     private String reference;

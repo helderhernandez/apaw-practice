@@ -7,7 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @TestConfig
-public class RentalFilmEntityRepositoryIT {
+class RentalFilmEntityRepositoryIT {
 
     @Autowired
     private RentalFilmRepository rentalFilmRepository;

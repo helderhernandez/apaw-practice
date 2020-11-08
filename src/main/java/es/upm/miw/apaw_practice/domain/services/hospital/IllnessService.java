@@ -23,7 +23,6 @@ public class IllnessService {
 
     public void updateContagious(IllnessContagiousUpdating illnessContagiousUpdating) {
         this.illnessPersistence.readByPhase(illnessContagiousUpdating.getPhase())
-                .peek(illness -> illness.setContagious(illnessContagiousUpdating.getContagious()))
                 .forEach(illness -> this.illnessPersistence.update(illness));
     }
 }

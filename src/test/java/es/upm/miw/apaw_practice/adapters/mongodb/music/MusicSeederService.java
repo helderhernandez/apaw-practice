@@ -34,30 +34,29 @@ public class MusicSeederService {
         LogManager.getLogger(this.getClass()).warn("------- Music Initial Load -----------");
         SingerEntity[] singers = {
 
-                new SingerEntity("Bruno","Mars","America"),
-                new SingerEntity("Luis","Fonis","Spain"),
-                new SingerEntity("John","Legend","America")
+                SingerEntity.builder("Bruno").surname("Mars").nationality("America").build(),
+                SingerEntity.builder("Luis").surname("Fonis").nationality("Spain").build(),
+                SingerEntity.builder("John").surname("Legend").nationality("America").build()
         };
         this.singerRepository.saveAll(Arrays.asList(singers));
 
         StyleEntity[] styles = {
-                new StyleEntity(new Style("POP","Pop is a genre of popular music that originated in its modern form during the mid-1950s in the United States and the United Kingdom.")),
-                new StyleEntity(new Style("BLUES","Blues is a music genre and musical form which was originated in the Deep South of the United States around the 1860s by African-Americans from roots in African musical traditions.")),
-                new StyleEntity(new Style("HIP HOP","Hip hop music, also known as rap music, is a genre of popular music developed in the United States by inner-city African Americans and Latino Americans in the Bronx borough of New York City in the 1970s."))
-
+                StyleEntity.builder("POP").description("Pop is a genre of popular music that originated in its modern form during the mid-1950s in the United States and the United Kingdom.").build(),
+                StyleEntity.builder("BLUES").description("Blues is a music genre and musical form which was originated in the Deep South of the United States around the 1860s by African-Americans from roots in African musical traditions.").build(),
+                StyleEntity.builder("HIP HOP").description("Hip hop music, also known as rap music, is a genre of popular music developed in the United States by inner-city African Americans and Latino Americans in the Bronx borough of New York City in the 1970s.").build()
         };
         this.styleRepository.saveAll(Arrays.asList(styles));
         MusicEntity[] musics = {
-                new MusicEntity(styles[0],"Fly to moon","a song of pop"),
-                new MusicEntity(styles[1],"Despacito","a spanish song"),
-                new MusicEntity(styles[2],"Beautiful bird","a english song")
+                MusicEntity.builder(styles[0],"Fly to moon").description("a song of pop").build(),
+                MusicEntity.builder(styles[1],"Despacito").description("a spanish song").build(),
+                MusicEntity.builder(styles[2],"Beautiful bird").description("a english song").build()
 
         };
         this.musicRepository.saveAll(Arrays.asList(musics));
         AlbumEntity[] albums = {
-                new AlbumEntity(Arrays.asList(singers),Arrays.asList(musics),"Fly to moon","42341251", LocalDate.of(2020,3,23),"an album of pop",new BigDecimal("19.99"),true),
-                new AlbumEntity(Arrays.asList(singers),Arrays.asList(musics),"Despacito","13423451", LocalDate.of(2019,6,9),"an spanish album",new BigDecimal("29.99"),true),
-                new AlbumEntity(Arrays.asList(singers),Arrays.asList(musics),"Beautiful bird","43241242", LocalDate.of(2009,6,13),"an american album",new BigDecimal("9.99"),false),
+                AlbumEntity.builder(Arrays.asList(singers),Arrays.asList(musics),"Fly to moon","42341251", LocalDate.of(2020,3,23), new BigDecimal("19.99"),true).description("an album of pop").build(),
+                AlbumEntity.builder(Arrays.asList(singers),Arrays.asList(musics),"Despacito","13423451", LocalDate.of(2019,12,9),new BigDecimal("29.99"),true).description("an spanish album").build(),
+                AlbumEntity.builder(Arrays.asList(singers),Arrays.asList(musics),"Beautiful bird","43241242", LocalDate.of(2009,11,13),new BigDecimal("9.99"),false).description("an american album").build()
         };
         this.albumRepository.saveAll(Arrays.asList(albums));
     }

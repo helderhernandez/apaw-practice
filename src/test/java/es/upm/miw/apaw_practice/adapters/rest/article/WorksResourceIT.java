@@ -29,11 +29,11 @@ public class WorksResourceIT {
                 .get()
                 .uri(uriBuilder ->
                         uriBuilder.path(WorksResource.WORKSES + WorksResource.SEARCH)
-                        .queryParam("q","name:Comedy")
-                        .build())
+                                .queryParam("q","name:Comedy")
+                                .build())
                 .exchange()
                 .expectStatus().isOk()
                 .expectBodyList(BigDecimal.class)
-                .value(works -> assertEquals(new BigDecimal("77.95"),works.get(0)));
+                .value(works -> assertEquals(new BigDecimal("55.95"),works.get(0)));
     }
 }

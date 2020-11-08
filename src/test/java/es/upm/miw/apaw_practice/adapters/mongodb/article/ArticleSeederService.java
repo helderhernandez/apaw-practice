@@ -26,11 +26,11 @@ public class ArticleSeederService {
     public void seedDatabase() {
         LogManager.getLogger(this.getClass()).warn("------- Article Initial Load -----------");
         AuthorEntity[] authors = {
-                new AuthorEntity("Mario","Weeb","China"),
-                new AuthorEntity("Juan", "Vidal","America"),
-                new AuthorEntity("Luis", "Peral","Spain"),
-                new AuthorEntity("Joaquín", "Arcángel","Canada"),
-                new AuthorEntity("Doraemon", "Lucasio","Spain")
+                AuthorEntity.builder().name("Mario").surname("Weeb").nationality("China").build(),
+                AuthorEntity.builder().name("Juan").surname("Vidal").nationality("America").build(),
+                AuthorEntity.builder().name("Luis").surname("Peral").nationality("Spain").build(),
+                AuthorEntity.builder().name("Joaquín").surname("Arcángel").nationality("Canada").build(),
+                AuthorEntity.builder().name("Doraemon").surname("Lucasio").nationality("Spain").build()
         };
         this.authorRepository.saveAll(Arrays.asList(authors));
 
@@ -53,11 +53,11 @@ public class ArticleSeederService {
         this.essayRepository.saveAll(Arrays.asList(essaies));
 
         WorksEntity[] works = {
-                new WorksEntity(Arrays.asList(authors),Arrays.asList(essaies),"Cnn",(long)87465412,LocalDate.of(2008,10,20),"International News",new BigDecimal("10.99"), (byte) 3),
-                new WorksEntity(Arrays.asList(authors),Arrays.asList(essaies),"Dream of the Red Chamber",(long)87945465,LocalDate.of(2010,8,18),"masterpiece",new BigDecimal("10.99"), (byte) 4),
+                new WorksEntity(Arrays.asList(authors),Arrays.asList(essaies),"Cnn",(long)87465412,LocalDate.of(2008,10,20),"International News",new BigDecimal("9.99"), (byte) 3),
+                new WorksEntity(Arrays.asList(authors),Arrays.asList(essaies),"Dream of the Red Chamber",(long)87945465,LocalDate.of(2010,8,18),"masterpiece",new BigDecimal("9.99"), (byte) 4),
                 new WorksEntity(Arrays.asList(authors),Arrays.asList(essaies),"Journey to the West",(long)45848798,LocalDate.of(2013,7,26),"masterpiece",new BigDecimal("15.99"), (byte) 5),
-                new WorksEntity(Arrays.asList(authors),Arrays.asList(essaies),"Three Kingdoms",(long)874585,LocalDate.of(2003,1,30),"history",new BigDecimal("19.99"), (byte) 4),
-                new WorksEntity(Arrays.asList(authors),Arrays.asList(essaies),"Water Margin",(long)84531564,LocalDate.of(2020,2,10),"masterpiece",new BigDecimal("19.99"), (byte) 4)
+                new WorksEntity(Arrays.asList(authors),Arrays.asList(essaies),"Three Kingdoms",(long)874585,LocalDate.of(2003,1,30),"history",new BigDecimal("9.99"), (byte) 4),
+                new WorksEntity(Arrays.asList(authors),Arrays.asList(essaies),"Water Margin",(long)84531564,LocalDate.of(2020,2,10),"masterpiece",new BigDecimal("9.99"), (byte) 4)
         };
         this.worksRepository.saveAll(Arrays.asList(works));
     }

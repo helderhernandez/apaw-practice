@@ -35,7 +35,7 @@ class BedEntityRepositoryIT {
                 '}';
         assertEquals(temp, bedEntity.toString());
         assertEquals(bedEntity.hashCode(), bedEntity2.hashCode());
-        assertTrue(bedEntity.equals(bedEntity2));
+        assertEquals(bedEntity, bedEntity2);
         assertTrue(this.bedRepository.findByInternedDate(LocalDateTime.of(2020, 1, 1, 9, 0)).get().isEmpty());
         bedEntity.setWidth(105);
         bedEntity.setHeight(180);

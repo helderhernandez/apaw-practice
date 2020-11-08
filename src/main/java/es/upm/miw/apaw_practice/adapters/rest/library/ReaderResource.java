@@ -2,7 +2,6 @@ package es.upm.miw.apaw_practice.adapters.rest.library;
 
 import es.upm.miw.apaw_practice.adapters.rest.LexicalAnalyzer;
 import es.upm.miw.apaw_practice.domain.models.library.Reader;
-import es.upm.miw.apaw_practice.domain.models.library.ReaderCreation;
 import es.upm.miw.apaw_practice.domain.services.library.ReaderService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -23,8 +22,8 @@ public class ReaderResource {
     }
 
     @PostMapping
-    public Reader create(@RequestBody ReaderCreation readerCreation){
-        return this.readerService.create(readerCreation);
+    public Reader create(@RequestBody Reader reader){
+        return this.readerService.create(reader);
     }
 
     @GetMapping(SEARCH)

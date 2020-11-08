@@ -31,7 +31,7 @@ public class StylePersistenceMangodb implements StylePersistence {
     public Style create(Style style){
         this.assertNameNotExist(style.getName());
         return this.styleRepository
-                .save(new StyleEntity(style))
+                .save(StyleEntity.builder(style.getName()).description(style.getDescription()).build())
                 .toStyle();
     }
 

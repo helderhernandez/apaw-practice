@@ -18,7 +18,6 @@ public class RacketService {
 
     public void uptadePrices(RacketPriceUpdating racketPriceUpdating) {
         this.racketPersistence.readByBrand(racketPriceUpdating.getBrand())
-                .peek(racket -> racket.setPrice(racket.getPrice().add(racketPriceUpdating.getPrice())))
                 .forEach(racket -> this.racketPersistence.update(racket));
 
     }
