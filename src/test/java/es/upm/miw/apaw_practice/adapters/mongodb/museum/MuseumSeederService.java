@@ -19,8 +19,6 @@ public class MuseumSeederService {
     @Autowired
     private ArtRestorerRepository artRestorerRepository;
     @Autowired
-    private CollectionRepository collectionRepository;
-    @Autowired
     private PaintRepository paintRepository;
     @Autowired
     private PatronRepository patronRepository;
@@ -55,12 +53,6 @@ public class MuseumSeederService {
                 new PatronEntity("PAT2", paints[2], "Patron_2", "Patron_Surname2",new BigDecimal("2000.00")),
         };
         this.patronRepository.saveAll(Arrays.asList(patrons));
-
-        CollectionEntity[] collections = {
-                new CollectionEntity("CCC1", "Collection_1", LocalDate.now(), 5, List.of(paints[0],paints[1])),
-                new CollectionEntity("CCC2", "Collection_2", LocalDate.now(), 365, List.of(paints[2],paints[1]))
-        };
-        this.collectionRepository.saveAll(Arrays.asList(collections));
     }
 
     public void deleteAll() {
@@ -68,7 +60,6 @@ public class MuseumSeederService {
         this.artRestorerRepository.deleteAll();
         this.paintRepository.deleteAll();
         this.patronRepository.deleteAll();
-        this.collectionRepository.deleteAll();
     }
 
 
