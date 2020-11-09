@@ -1,4 +1,4 @@
-package es.upm.miw.apaw_practice.domain.models;
+package es.upm.miw.apaw_practice.domain.models.museum;
 
 
 public class Artist {

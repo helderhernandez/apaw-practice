@@ -1,7 +1,6 @@
 package es.upm.miw.apaw_practice.adapters.rest.museum;
 
-import es.upm.miw.apaw_practice.adapters.rest.shop.ArticleResource;
-import es.upm.miw.apaw_practice.domain.models.Artist;
+import es.upm.miw.apaw_practice.domain.models.museum.Artist;
 import es.upm.miw.apaw_practice.domain.services.museum.ArtistService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
