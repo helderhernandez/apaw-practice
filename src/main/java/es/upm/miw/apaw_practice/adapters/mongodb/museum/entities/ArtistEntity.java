@@ -1,6 +1,6 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.museum.entities;
 
-import es.upm.miw.apaw_practice.domain.models.Artist;
+import es.upm.miw.apaw_practice.domain.models.museum.Artist;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
