@@ -1,22 +1,15 @@
-package es.upm.miw.apaw_practice.adapters.mongodb.museum.entities;
-
-import es.upm.miw.apaw_practice.domain.models.Artist;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+package es.upm.miw.apaw_practice.domain.models;
 
 
-@Document
-public class ArtistEntity {
-    @Id
+public class Artist {
     private String id;
     private String name;
     private String surname;
     private String county;
 
-    public ArtistEntity() {
-    }
+    public Artist() { }
 
-    public ArtistEntity(String id, String name, String surname, String county) {
+    public Artist(String id, String name, String surname, String county) {
         this.id = id;
         this.name = name;
         this.surname = surname;
@@ -57,24 +50,9 @@ public class ArtistEntity {
         this.county = county;
     }
 
-    public Artist toArtist() {
-        return new Artist(id,name,surname,county);
-    }
-
     //#endregion
 
     //#region Override methods
-
-    @Override
-    public int hashCode() {
-        return id.hashCode();
-    }
-
-    @Override
-    public boolean equals(Object obj) {
-        return this == obj || obj != null && getClass() == obj.getClass()
-                && (id.equals(((ArtistEntity) obj).id));
-    }
 
     @Override
     public String toString() {
@@ -93,6 +71,4 @@ public class ArtistEntity {
     }
 
     //#endregion
-
-
 }
