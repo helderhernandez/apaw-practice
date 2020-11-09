@@ -1,7 +1,7 @@
 package es.upm.miw.apaw_practice.adapters.rest.museum;
 
 import es.upm.miw.apaw_practice.adapters.rest.RestTestConfig;
-import es.upm.miw.apaw_practice.domain.models.Artist;
+import es.upm.miw.apaw_practice.domain.models.museum.Artist;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
