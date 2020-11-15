@@ -1,10 +1,13 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.museum.entities;
 
+import es.upm.miw.apaw_practice.domain.models.museum.Paint;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 
 import java.util.List;
 import java.time.LocalDate;
+import java.util.UUID;
 
 
 public class PaintEntity {
@@ -22,6 +25,11 @@ public class PaintEntity {
 
     public PaintEntity() {
         //empty from framework
+    }
+
+    public PaintEntity(Paint paint){
+        BeanUtils.copyProperties(paint, this);
+        this.id = UUID.randomUUID().toString();
     }
 
     public PaintEntity(String id,
@@ -99,6 +107,12 @@ public class PaintEntity {
     }
 
     //#endregion
+
+    public Paint toPaint() {
+        Paint paint = new Paint();
+        BeanUtils.copyProperties(this, paint);
+        return paint;
+    }
 
     //#region Override methods
 
