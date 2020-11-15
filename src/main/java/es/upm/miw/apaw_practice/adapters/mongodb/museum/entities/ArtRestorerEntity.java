@@ -1,5 +1,7 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.museum.entities;
 
+import es.upm.miw.apaw_practice.domain.models.museum.ArtRestorer;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -56,6 +58,12 @@ public class ArtRestorerEntity {
 
     //#endregion
 
+    public ArtRestorer toArtRestorer(){
+        ArtRestorer artRestorer = new ArtRestorer();
+        BeanUtils.copyProperties(this, artRestorer);
+        return artRestorer;
+
+    }
     //#region Override methods
 
     @Override
