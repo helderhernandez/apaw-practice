@@ -1,13 +1,14 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.adCampaign.entities;
 
-import es.upm.miw.apaw_practice.adapters.mongodb.adCampaign.entities.LikesEntity;
-import es.upm.miw.apaw_practice.adapters.mongodb.adCampaign.entities.PromotionEntity;
+import es.upm.miw.apaw_practice.domain.models.adCampaign.AdCampaign;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import java.time.LocalDateTime;
 import java.util.List;
+
 @Document
 public class AdCampaignEntity {
     @Id
@@ -85,6 +86,12 @@ public class AdCampaignEntity {
 
     public void setPromotionEntities(List<PromotionEntity> promotionEntities) {
         this.promotionEntities = promotionEntities;
+    }
+
+    public AdCampaign toAdCampaign() {
+        AdCampaign adCampaign = new AdCampaign();
+        BeanUtils.copyProperties(this, adCampaign);
+        return adCampaign;
     }
 
     @Override
