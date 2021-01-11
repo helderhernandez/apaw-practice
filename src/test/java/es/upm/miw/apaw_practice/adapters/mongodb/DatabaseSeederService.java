@@ -26,6 +26,7 @@ import es.upm.miw.apaw_practice.adapters.mongodb.shop.ShopSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.socialnetwork.SocialNetworkSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.sportcentre.SportCentreSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.sportyrental.SportyRentalSeederService;
+import es.upm.miw.apaw_practice.adapters.mongodb.studio.StudioSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.ticketbus.TicketBusSeederService;
 import es.upm.miw.apaw_practice.adapters.mongodb.transport.TransportSeedService;
 import es.upm.miw.apaw_practice.adapters.mongodb.transittaxes.TransitTaxesSeederService;
@@ -74,6 +75,7 @@ public class DatabaseSeederService {
     private SportyRentalSeederService sportyRentalSeederService;
     private TreeConservationSeederService treeConservationSeederService;
     private MuseumSeederService museumSeederService;
+    private StudioSeederService studioSeederService;
 
     @Autowired
     public DatabaseSeederService(ShopSeederService shopSeederService, SchoolSeederService schoolSeederService,
@@ -91,7 +93,7 @@ public class DatabaseSeederService {
                                  LibrarySeederService librarySeederService, VideoclubSeederService videoclubSeederService,
                                  BasketballSeederService basketballSeederService, CarDealershipSeederService carDealershipSeederService, RaceSeederService raceSeederService,
                                  MusicSeederService musicSeederService,ExerciseSeedService exerciseSeedService, SportyRentalSeederService sportyRentalSeederService,
-                                 TreeConservationSeederService treeConservationSeederService, MuseumSeederService museumSeederService) {
+                                 TreeConservationSeederService treeConservationSeederService, MuseumSeederService museumSeederService, StudioSeederService studioSeederService) {
 
 
         this.shopSeederService = shopSeederService;
@@ -128,6 +130,7 @@ public class DatabaseSeederService {
         this.sportyRentalSeederService = sportyRentalSeederService;
         this.treeConservationSeederService = treeConservationSeederService;
         this.museumSeederService = museumSeederService;
+        this.studioSeederService = studioSeederService;
         this.seedDatabase();
     }
 
@@ -166,6 +169,7 @@ public class DatabaseSeederService {
         this.sportyRentalSeederService.seedDatabase();
         this.treeConservationSeederService.seedDatabase();
         this.museumSeederService.seedDatabase();
+        this.studioSeederService.seedDatabase();
     }
 
     public void deleteAll() {
@@ -203,6 +207,7 @@ public class DatabaseSeederService {
         this.sportyRentalSeederService.deleteAll();
         this.treeConservationSeederService.deleteAll();
         this.museumSeederService.deleteAll();
+        this.studioSeederService.deleteAll();
     }
 
     public void reSeedDatabase() {
