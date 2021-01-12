@@ -1,6 +1,5 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.adCampaign.entities;
 
-import es.upm.miw.apaw_practice.domain.models.adCampaign.AdCampaign;
 import es.upm.miw.apaw_practice.domain.models.adCampaign.Likes;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;

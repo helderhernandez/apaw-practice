@@ -1,5 +1,7 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.adCampaign.entities;
 
+import es.upm.miw.apaw_practice.domain.models.adCampaign.CustomerTarget;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -75,6 +77,12 @@ public class CustomerTargetEntity {
 
     public void setLikes(List<LikesEntity> likes) {
         this.likes = likes;
+    }
+
+    public CustomerTarget toCustomerTarget() {
+        CustomerTarget customerTarget = new CustomerTarget();
+        BeanUtils.copyProperties(this, customerTarget);
+        return customerTarget;
     }
 
     @Override
