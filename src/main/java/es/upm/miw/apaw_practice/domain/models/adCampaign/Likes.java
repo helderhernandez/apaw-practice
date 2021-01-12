@@ -1,22 +1,15 @@
-package es.upm.miw.apaw_practice.adapters.mongodb.adCampaign.entities;
+package es.upm.miw.apaw_practice.domain.models.adCampaign;
 
-import es.upm.miw.apaw_practice.domain.models.adCampaign.AdCampaign;
-import es.upm.miw.apaw_practice.domain.models.adCampaign.Likes;
-import org.springframework.beans.BeanUtils;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
-
-@Document
-public class LikesEntity {
-    @Id
+public class Likes {
     private String id;
     private String name;
     private String description;
 
-    public LikesEntity() {
+    public Likes() {
+        // empty by framework
     }
 
-    public LikesEntity(String id, String name, String description) {
+    public Likes(String id, String name, String description) {
         this.id = id;
         this.name = name;
         this.description = description;
@@ -46,16 +39,9 @@ public class LikesEntity {
         this.description = description;
     }
 
-    public Likes toLikes() {
-        Likes likes = new Likes();
-        BeanUtils.copyProperties(this, likes);
-        return likes;
-    }
-
-
     @Override
     public String toString() {
-        return "LikesEntity{" +
+        return "Likes{" +
                 "id='" + id + '\'' +
                 ", name='" + name + '\'' +
                 ", description='" + description + '\'' +
