@@ -1,27 +1,11 @@
-package es.upm.miw.apaw_practice.adapters.mongodb.adCampaign.entities;
+package es.upm.miw.apaw_practice.domain.models.adCampaign;
 
-import es.upm.miw.apaw_practice.domain.models.adCampaign.Promotion;
-import org.springframework.beans.BeanUtils;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
+public class Promotion {
 
-@Document
-public class PromotionEntity {
-    @Id
     private String id;
     private String title;
     private String header;
     private String description;
-
-    public PromotionEntity() {
-    }
-
-    public PromotionEntity(String id, String title, String header, String description) {
-        this.id = id;
-        this.title = title;
-        this.header = header;
-        this.description = description;
-    }
 
     public String getId() {
         return id;
@@ -53,16 +37,6 @@ public class PromotionEntity {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public Promotion toPromotion() {
-        Promotion promotion = new Promotion();
-        BeanUtils.copyProperties(this, promotion);
-        return promotion;
-    }
-
-    public void fromArticle(Promotion promotion) {
-        BeanUtils.copyProperties(promotion, this);
     }
 
     @Override
