@@ -3,7 +3,6 @@ package es.upm.miw.apaw_practice.adapters.mongodb.adCampaign.entities;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import java.time.LocalDateTime;
 @Document
 public class PromotionEntity {
     @Id

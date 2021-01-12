@@ -1,13 +1,12 @@
 package es.upm.miw.apaw_practice.adapters.rest.adCampaign;
 
 import es.upm.miw.apaw_practice.domain.models.adCampaign.Likes;
-import es.upm.miw.apaw_practice.domain.models.school.Teacher;
-import es.upm.miw.apaw_practice.domain.services.adCampaign.AdCampaignService;
 import es.upm.miw.apaw_practice.domain.services.adCampaign.LikesService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.*;
-
-import java.util.stream.Stream;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping(LikesResource.LIKES)
