@@ -21,4 +21,7 @@ public class TattoistService {
         return this.tattoistPersistence.readAll();
     }
 
+    public Tattoist updateNickname(String id, String nickname) {
+        return this.tattoistPersistence.updateNickname(id, nickname);
+    }
 }
