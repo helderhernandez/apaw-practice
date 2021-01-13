@@ -18,4 +18,8 @@ public class CustomerTargetService {
     public CustomerTarget updateName(String id, String name) {
         return customerTargetPersistence.updateName(id, name);
     }
+
+    public void delete(String id) {
+        customerTargetPersistence.deleteById(id);
+    }
 }

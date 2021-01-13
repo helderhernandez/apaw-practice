@@ -44,4 +44,13 @@ public class CustomerTargetIT {
                 .exchange()
                 .expectStatus().isNotFound();
     }
+
+    @Test
+    void testDeleteById() {
+        this.webTestClient
+                .delete()
+                .uri(CustomerTargetResource.CUSTOMER_TARGET + CustomerTargetResource.ID_ID, "customer-not01")
+                .exchange()
+                .expectStatus().isOk();
+    }
 }
