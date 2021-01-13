@@ -1,5 +1,8 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.studio.entities;
 
+import es.upm.miw.apaw_practice.domain.models.studio.Design;
+import es.upm.miw.apaw_practice.domain.models.studio.DesignCreation;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.annotation.Id;
 
@@ -29,6 +32,11 @@ public class DesignEntity {
         this.cost = cost;
         this.style = style;
         this.tattoistEntities = tattoistEntities;
+    }
+
+    public DesignEntity(DesignCreation designCreation) {
+        BeanUtils.copyProperties(designCreation, this);
+        this.id = UUID.randomUUID().toString();
     }
 
     public void setId(String id) {
@@ -102,6 +110,12 @@ public class DesignEntity {
                 ", style='" + style + '\'' +
                 ", tattoistEntities=" + tattoistEntities +
                 '}';
+    }
+
+    public Design toDesign() {
+        Design design = new Design();
+        BeanUtils.copyProperties(this, design);
+        return design;
     }
 }
 
