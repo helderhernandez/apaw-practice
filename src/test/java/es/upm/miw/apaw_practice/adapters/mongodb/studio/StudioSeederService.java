@@ -43,8 +43,8 @@ public class StudioSeederService {
         this.tattoistRepository.saveAll(Arrays.asList(tattoists));
 
         ConsumerEntity[] consumers = {
-                new ConsumerEntity("consumer1@test.com", "Wilma York", "123456789", "Japanese Traditiona", tattoists[1]),
-                new ConsumerEntity("consumer2@test.com", "Adem Gonzales", "123456788", "Neo-Traditiona", tattoists[0]),
+                new ConsumerEntity("consumer1@test.com", "Wilma York", "123456789", "Japanese Traditional", tattoists[1]),
+                new ConsumerEntity("consumer2@test.com", "Adem Gonzales", "123456788", "Neo-Traditional", tattoists[0]),
                 new ConsumerEntity("consumer3@test.com", "Bronwyn Coulson", "123456787", "Japanese Traditional", tattoists[2]),
                 new ConsumerEntity("consumer4@test.com", "Zayna Crosby", "123456786", "American Traditional", tattoists[1]),
                 new ConsumerEntity("consumer5@test.com", "Shakeel Worthington", "123456785", "Blackwork", tattoists[4]),
@@ -52,9 +52,9 @@ public class StudioSeederService {
         this.consumerRepository.saveAll(Arrays.asList(consumers));
 
         DesignEntity[] designs = {
-                new DesignEntity("collaborative", Boolean.FALSE, new BigDecimal("300.00"), "Blackwork", List.of(tattoists[0], tattoists[1])),
+                new DesignEntity("collaborative", Boolean.FALSE, new BigDecimal("250.00"), "American Traditional", List.of(tattoists[0], tattoists[1])),
                 new DesignEntity("single", Boolean.FALSE, new BigDecimal("300.00"), "Blackwork", List.of(tattoists[2])),
-                new DesignEntity("available", Boolean.FALSE, new BigDecimal("300.00"), "Blackwork", List.of(tattoists[3], tattoists[4])),
+                new DesignEntity("available", Boolean.FALSE, new BigDecimal("400.00"), "Japanese Traditional", List.of(tattoists[3], tattoists[4])),
         };
         this.designRepository.saveAll(Arrays.asList(designs));
 

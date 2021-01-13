@@ -1,5 +1,6 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.studio.entities;
 
+import es.upm.miw.apaw_practice.domain.models.studio.Tattoist;
 import es.upm.miw.apaw_practice.domain.models.studio.TattoistCreation;
 import org.springframework.beans.BeanUtils;
 import org.springframework.data.mongodb.core.index.Indexed;
@@ -110,5 +111,11 @@ public class TattoistEntity {
                 ", ranking=" + ranking +
                 ", mainStyle='" + mainStyle + '\'' +
                 '}';
+    }
+
+    public Tattoist toTattoist() {
+        Tattoist tattoist = new Tattoist();
+        BeanUtils.copyProperties(this, tattoist);
+        return tattoist;
     }
 }
