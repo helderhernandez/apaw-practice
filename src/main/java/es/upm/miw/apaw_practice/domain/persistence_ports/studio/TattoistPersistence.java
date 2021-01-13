@@ -10,4 +10,5 @@ public interface TattoistPersistence {
 
     Stream<Tattoist> readAll();
 
+    Tattoist updateNickname(String id, String nickname);
 }

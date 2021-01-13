@@ -1,10 +1,9 @@
 package es.upm.miw.apaw_practice.adapters.rest.studio;
 
+import es.upm.miw.apaw_practice.domain.models.studio.Tattoist;
 import es.upm.miw.apaw_practice.domain.services.studio.TattoistService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.stream.Stream;
 
@@ -13,6 +12,8 @@ import java.util.stream.Stream;
 public class TattoistResource {
 
     static final String TATTOIST = "/studio/tattoists";
+    static final String ID = "/{id}";
+    static final String NICKNAME = "/nickname";
 
     private TattoistService tattoistService;
 
@@ -26,5 +27,10 @@ public class TattoistResource {
         return this.tattoistService
                 .readAll()
                 .map(BasicTattoistDto::new);
+    }
+
+    @PutMapping(ID + NICKNAME)
+    public Tattoist updateNickname(@PathVariable String id, @RequestBody String nickname) {
+       return this.tattoistService.updateNickname(id, nickname);
     }
 }
