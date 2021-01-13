@@ -1,9 +1,13 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.studio.persistence;
 
 import es.upm.miw.apaw_practice.adapters.mongodb.studio.daos.AppointmentRepository;
+import es.upm.miw.apaw_practice.adapters.mongodb.studio.entities.AppointmentEntity;
 import es.upm.miw.apaw_practice.domain.persistence_ports.studio.AppointmentPersistence;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Repository("appointmentPersistence")
 public class AppointmentPersistenceMongodb implements AppointmentPersistence {
@@ -18,5 +22,17 @@ public class AppointmentPersistenceMongodb implements AppointmentPersistence {
     @Override
     public void deleteById(String id) {
         this.appointmentRepository.deleteById(id);
+    }
+
+    @Override
+    public void updateIsActiveFlags(Boolean isActive) {
+        List<AppointmentEntity> appointments = this.appointmentRepository
+                .findAll()
+                .stream()
+                .map(appointment -> {
+                   appointment.setActive(isActive);
+                   return appointment;
+                }).collect(Collectors.toList());
+        this.appointmentRepository.saveAll(appointments);
     }
 }

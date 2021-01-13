@@ -17,4 +17,8 @@ public class AppointmentService {
     public void delete(String id) {
         this.appointmentPersistence.deleteById(id);
     }
+
+    public void updateIsActiveFlags(Boolean isActive) {
+        this.appointmentPersistence.updateIsActiveFlags(isActive);
+    }
 }
