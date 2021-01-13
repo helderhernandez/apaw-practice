@@ -25,4 +25,9 @@ public class CustomerTargetPersistenceMongodb implements CustomerTargetPersisten
         customerTargetEntity.setName(name);
         return this.customerTargetRepository.save(customerTargetEntity).toCustomerTarget();
     }
+
+    @Override
+    public void deleteById(String id) {
+        customerTargetRepository.deleteById(id);
+    }
 }

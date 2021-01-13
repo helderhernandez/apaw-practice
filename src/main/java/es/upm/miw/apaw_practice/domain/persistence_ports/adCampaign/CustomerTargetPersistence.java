@@ -6,4 +6,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface CustomerTargetPersistence {
     CustomerTarget updateName(String id, String name);
+
+    void deleteById(String id);
 }

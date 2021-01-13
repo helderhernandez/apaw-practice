@@ -24,4 +24,9 @@ public class CustomerTargetResource {
     public CustomerTarget updateDescription(@PathVariable String id, @RequestBody NameDto nameDto) {
         return this.customerTargetService.updateName(id, nameDto.getName());
     }
+
+    @DeleteMapping(ID_ID)
+    public void delete(@PathVariable String id) {
+        this.customerTargetService.delete(id);
+    }
 }
