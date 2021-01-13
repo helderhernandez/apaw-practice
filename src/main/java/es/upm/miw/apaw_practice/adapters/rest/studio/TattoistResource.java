@@ -9,12 +9,12 @@ import org.springframework.web.bind.annotation.RestController;
 import java.util.stream.Stream;
 
 @RestController
-@RequestMapping
+@RequestMapping(TattoistResource.TATTOIST)
 public class TattoistResource {
 
     static final String TATTOIST = "/studio/tattoists";
 
-    private final TattoistService tattoistService;
+    private TattoistService tattoistService;
 
     @Autowired
     public TattoistResource(TattoistService tattoistService) {

@@ -10,7 +10,7 @@ import java.util.stream.Stream;
 @Service
 public class TattoistService {
 
-    private final TattoistPersistence tattoistPersistence;
+    private TattoistPersistence tattoistPersistence;
 
     @Autowired
     public TattoistService(TattoistPersistence tattoistPersistence) {

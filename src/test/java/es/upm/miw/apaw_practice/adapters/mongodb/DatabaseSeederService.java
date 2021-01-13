@@ -41,7 +41,7 @@ import org.springframework.stereotype.Service;
 @Service
 public class DatabaseSeederService {
 
-    /*private ShopSeederService shopSeederService;
+    private ShopSeederService shopSeederService;
     private SchoolSeederService schoolSeederService;
     private FactorySeederService factorySeederService;
     private KitchenSeederService kitchenSeederService;
@@ -74,11 +74,11 @@ public class DatabaseSeederService {
     private ExerciseSeedService exerciseSeedService;
     private SportyRentalSeederService sportyRentalSeederService;
     private TreeConservationSeederService treeConservationSeederService;
-    private MuseumSeederService museumSeederService;*/
+    private MuseumSeederService museumSeederService;
     private StudioSeederService studioSeederService;
 
     @Autowired
-    public DatabaseSeederService(/*ShopSeederService shopSeederService, SchoolSeederService schoolSeederService,
+    public DatabaseSeederService(ShopSeederService shopSeederService, SchoolSeederService schoolSeederService,
                                  FactorySeederService factorySeederService, BankSeederService bankSeederService,
                                  MovieSeederService movieSeederService, PadelSeederService padelSeederService,
                                  SportCentreSeederService sportCentreSeederService, KitchenSeederService kitchenSeederService, ArticleSeederService articleSeederService,
@@ -93,10 +93,10 @@ public class DatabaseSeederService {
                                  LibrarySeederService librarySeederService, VideoclubSeederService videoclubSeederService,
                                  BasketballSeederService basketballSeederService, CarDealershipSeederService carDealershipSeederService, RaceSeederService raceSeederService,
                                  MusicSeederService musicSeederService,ExerciseSeedService exerciseSeedService, SportyRentalSeederService sportyRentalSeederService,
-                                 TreeConservationSeederService treeConservationSeederService, MuseumSeederService museumSeederService, */StudioSeederService studioSeederService) {
+                                 TreeConservationSeederService treeConservationSeederService, MuseumSeederService museumSeederService, StudioSeederService studioSeederService) {
 
 
-        /*this.shopSeederService = shopSeederService;
+        this.shopSeederService = shopSeederService;
         this.schoolSeederService = schoolSeederService;
         this.factorySeederService = factorySeederService;
         this.kitchenSeederService = kitchenSeederService;
@@ -129,13 +129,13 @@ public class DatabaseSeederService {
         this.exerciseSeedService = exerciseSeedService;
         this.sportyRentalSeederService = sportyRentalSeederService;
         this.treeConservationSeederService = treeConservationSeederService;
-        this.museumSeederService = museumSeederService;*/
+        this.museumSeederService = museumSeederService;
         this.studioSeederService = studioSeederService;
         this.seedDatabase();
     }
 
     public void seedDatabase() {
-        /*this.shopSeederService.seedDatabase();
+        this.shopSeederService.seedDatabase();
         this.schoolSeederService.seedDatabase();
         this.factorySeederService.seedDatabase();
         this.kitchenSeederService.seedDatabase();
@@ -168,12 +168,12 @@ public class DatabaseSeederService {
         this.exerciseSeedService.seedDatabase();
         this.sportyRentalSeederService.seedDatabase();
         this.treeConservationSeederService.seedDatabase();
-        this.museumSeederService.seedDatabase();*/
+        this.museumSeederService.seedDatabase();
         this.studioSeederService.seedDatabase();
     }
 
     public void deleteAll() {
-        /*this.shopSeederService.deleteAll();
+        this.shopSeederService.deleteAll();
         this.schoolSeederService.deleteAll();
         this.factorySeederService.deleteAll();
         this.kitchenSeederService.deleteAll();
@@ -206,7 +206,7 @@ public class DatabaseSeederService {
         this.exerciseSeedService.deleteAll();
         this.sportyRentalSeederService.deleteAll();
         this.treeConservationSeederService.deleteAll();
-        this.museumSeederService.deleteAll();*/
+        this.museumSeederService.deleteAll();
         this.studioSeederService.deleteAll();
     }
 
