@@ -1,5 +1,8 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.studio.entities;
 
+import es.upm.miw.apaw_practice.domain.models.studio.Consumer;
+import es.upm.miw.apaw_practice.domain.models.studio.Tattoist;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
@@ -17,19 +20,16 @@ public class ConsumerEntity {
     private String phone;
     private String favoriteStyle;
 
-    private TattoistEntity tattoistEntity;
-
     public ConsumerEntity() {
         // Empty for framework
     }
 
-    public ConsumerEntity(String email, String name, String phone, String favoriteStyle, TattoistEntity tattoistEntity) {
+    public ConsumerEntity(String email, String name, String phone, String favoriteStyle) {
         this.id = UUID.randomUUID().toString();
         this.email = email;
         this.name = name;
         this.phone = phone;
         this.favoriteStyle = favoriteStyle;
-        this.tattoistEntity = tattoistEntity;
     }
 
     public String getId() {
@@ -72,14 +72,6 @@ public class ConsumerEntity {
         this.favoriteStyle = favoriteStyle;
     }
 
-    public TattoistEntity getTattoistEntity() {
-        return tattoistEntity;
-    }
-
-    public void setTattoistEntity(TattoistEntity tattoistEntity) {
-        this.tattoistEntity = tattoistEntity;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -101,7 +93,12 @@ public class ConsumerEntity {
                 ", name='" + name + '\'' +
                 ", phone='" + phone + '\'' +
                 ", favoriteStyle='" + favoriteStyle + '\'' +
-                ", tattoistEntity=" + tattoistEntity +
                 '}';
+    }
+
+    public Consumer toConsumer() {
+        Consumer consumer = new Consumer();
+        BeanUtils.copyProperties(this, consumer);
+        return consumer;
     }
 }

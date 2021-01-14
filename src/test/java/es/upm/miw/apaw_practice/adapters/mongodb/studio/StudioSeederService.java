@@ -33,23 +33,23 @@ public class StudioSeederService {
 
     public void seedDatabase() {
         LogManager.getLogger(this.getClass()).warn("------- Studio Initial Load -----------");
-        TattoistEntity[] tattoists = {
-                new TattoistEntity(new TattoistCreation("email@test.com",  "Joseph Company", "JC", "2221026541", "Japanese Traditional", (float) 0.0)),
-                new TattoistEntity(new TattoistCreation("email1@test.com",  "Maneki Neko", "Ghinko", "2221026542", "Blackwork", (float) 0.0)),
-                new TattoistEntity(new TattoistCreation("email2@test.com",  "Joan Mora", "JM", "2221026543", "Neo-Traditional", (float) 0.0)),
-                new TattoistEntity(new TattoistCreation("email3@test.com",  "Doru Ma", "Chem", "2221026544", "Blackwork", (float) 0.0)),
-                new TattoistEntity(new TattoistCreation("email4@test.com",  "Tengu Neko", "Neko", "2221026545", "American Traditional", (float) 0.0)),
-        };
-        this.tattoistRepository.saveAll(Arrays.asList(tattoists));
-
         ConsumerEntity[] consumers = {
-                new ConsumerEntity("consumer1@test.com", "Wilma York", "123456789", "Japanese Traditional", tattoists[1]),
-                new ConsumerEntity("consumer2@test.com", "Adem Gonzales", "123456788", "Neo-Traditional", tattoists[0]),
-                new ConsumerEntity("consumer3@test.com", "Bronwyn Coulson", "123456787", "Japanese Traditional", tattoists[2]),
-                new ConsumerEntity("consumer4@test.com", "Zayna Crosby", "123456786", "American Traditional", tattoists[1]),
-                new ConsumerEntity("consumer5@test.com", "Shakeel Worthington", "123456785", "Blackwork", tattoists[4]),
+                new ConsumerEntity("consumer1@test.com", "Wilma York", "123456789", "Japanese Traditional"),
+                new ConsumerEntity("consumer2@test.com", "Adem Gonzales", "123456788", "Neo-Traditional"),
+                new ConsumerEntity("consumer3@test.com", "Bronwyn Coulson", "123456787", "Japanese Traditional"),
+                new ConsumerEntity("consumer4@test.com", "Zayna Crosby", "123456786", "American Traditional"),
+                new ConsumerEntity("consumer5@test.com", "Shakeel Worthington", "123456785", "Blackwork"),
         };
         this.consumerRepository.saveAll(Arrays.asList(consumers));
+
+        TattoistEntity[] tattoists = {
+                new TattoistEntity("email@test.com",  "Joseph Company", "JC", "2221026541", "Japanese Traditional", (float) 0.0, List.of(consumers[0], consumers[1])),
+                new TattoistEntity("email1@test.com",  "Maneki Neko", "Ghinko", "2221026542", "Blackwork", (float) 0.0, List.of(consumers[0])),
+                new TattoistEntity("email2@test.com",  "Joan Mora", "JM", "2221026543", "Neo-Traditional", (float) 0.0, List.of(consumers[0], consumers[1], consumers[2])),
+                new TattoistEntity("email3@test.com",  "Doru Ma", "Chem", "2221026544", "Blackwork", (float) 0.0,  List.of(consumers[0], consumers[4])),
+                new TattoistEntity("email4@test.com",  "Tengu Neko", "Neko", "2221026545", "American Traditional", (float) 0.0,  List.of(consumers[4])),
+        };
+        this.tattoistRepository.saveAll(Arrays.asList(tattoists));
 
         DesignEntity[] designs = {
                 new DesignEntity("collaborative", Boolean.FALSE, new BigDecimal("250.00"), "American Traditional", List.of(tattoists[0], tattoists[1])),

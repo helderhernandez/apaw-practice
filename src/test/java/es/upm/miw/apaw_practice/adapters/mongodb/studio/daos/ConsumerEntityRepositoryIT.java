@@ -20,7 +20,6 @@ public class ConsumerEntityRepositoryIT {
         assertEquals("Wilma York", consumerEntity.getName());
         assertEquals("123456789", consumerEntity.getPhone());
         assertEquals("Japanese Traditional", consumerEntity.getFavoriteStyle());
-        assertEquals("Maneki Neko", consumerEntity.getTattoistEntity().getName());
     }
 
 }
