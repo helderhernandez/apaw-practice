@@ -18,4 +18,8 @@ public class PaintService {
     public Paint create (Paint paint){
         return this.paintPersistence.create(paint);
     }
+
+    public void delete(String id) {
+        this.paintPersistence.deleteById(id);
+    }
 }

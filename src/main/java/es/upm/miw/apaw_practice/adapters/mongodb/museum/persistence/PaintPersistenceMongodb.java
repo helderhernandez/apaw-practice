@@ -24,4 +24,9 @@ public class PaintPersistenceMongodb implements PaintPersistence {
                 .save(new PaintEntity(paint))
                 .toPaint();
     }
+
+    @Override
+    public void deleteById(String id) {
+        this.paintRepository.deleteById(id);
+    }
 }
