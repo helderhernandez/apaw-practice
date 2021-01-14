@@ -8,4 +8,6 @@ public interface PaintPersistence {
 
     Paint create(Paint paint);
 
+    void deleteById(String id);
+
 }

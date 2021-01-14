@@ -15,6 +15,7 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import static es.upm.miw.apaw_practice.adapters.rest.museum.PaintResource.PAINTS;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @RestTestConfig
@@ -34,12 +35,21 @@ public class PaintResourceIT {
                 artRestorers);
         this.webTestClient
                 .post()
-                .uri(PaintResource.PAINTS)
+                .uri(PAINTS)
                 .body(BodyInserters.fromValue(paint))
                 .exchange()
                 .expectStatus().isOk()
                 .expectBody(Article.class)
                 .value(Assertions::assertNotNull)
                 .value(paintData -> assertNotNull(paintData.getId()));
+    }
+
+    @Test
+    void testDelete() {
+        this.webTestClient
+                .delete()
+                .uri(PAINTS + PaintResource.ID_ID, "PPP2")
+                .exchange()
+                .expectStatus().isOk();
     }
 }
