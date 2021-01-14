@@ -31,4 +31,15 @@ public class AppointmentResourceIT {
                 .expectStatus().isOk();
     }
 
+    @Test
+    void testGetIdsAppointmentByTattoistName() {
+        this.webTestClient
+                .get()
+                .uri(uriBuilder -> uriBuilder.path(AppointmentResource.APPOINTMENT + AppointmentResource.SEARCH)
+                        .queryParam("q","name:Doru Ma")
+                        .build())
+                .exchange()
+                .expectStatus().isOk();
+    }
+
 }
