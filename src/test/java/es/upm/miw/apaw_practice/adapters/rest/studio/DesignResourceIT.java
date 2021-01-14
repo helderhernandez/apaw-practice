@@ -38,4 +38,15 @@ public class DesignResourceIT {
                 .value(design -> assertNotNull(design.getId()));
     }
 
+    @Test
+    void testFindCustomersByType() {
+        this.webTestClient
+                .get()
+                .uri(uriBuilder -> uriBuilder.path(DesignResource.DESIGN + DesignResource.SEARCH)
+                        .queryParam("q","type:collaborative")
+                        .build())
+                .exchange()
+                .expectStatus().isOk();
+    }
+
 }
