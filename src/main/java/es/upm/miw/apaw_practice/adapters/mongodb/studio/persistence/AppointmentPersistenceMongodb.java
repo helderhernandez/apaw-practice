@@ -8,6 +8,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.List;
 import java.util.stream.Collectors;
+import java.util.stream.Stream;
 
 @Repository("appointmentPersistence")
 public class AppointmentPersistenceMongodb implements AppointmentPersistence {
@@ -34,5 +35,18 @@ public class AppointmentPersistenceMongodb implements AppointmentPersistence {
                    return appointment;
                 }).collect(Collectors.toList());
         this.appointmentRepository.saveAll(appointments);
+    }
+
+    @Override
+    public Stream<String> getIdsAppointmentByTattoistName(String name) {
+        return appointmentRepository
+                .findAll()
+                .stream()
+                .filter(appointmentEntity -> appointmentEntity
+                        .getDesignEntity()
+                        .getTattoistEntities()
+                        .stream()
+                        .anyMatch(tattoistEntity -> tattoistEntity.getName().equals(name))
+                ).map(AppointmentEntity::getId);
     }
 }

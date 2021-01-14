@@ -21,4 +21,8 @@ public class AppointmentService {
     public void updateIsActiveFlags(Boolean isActive) {
         this.appointmentPersistence.updateIsActiveFlags(isActive);
     }
+
+    public void getIdsAppointmentByTattoistName(String name) {
+        this.appointmentPersistence.getIdsAppointmentByTattoistName(name);
+    }
 }
