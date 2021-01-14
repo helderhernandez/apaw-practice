@@ -7,6 +7,7 @@ import org.springframework.data.mongodb.core.index.Indexed;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.annotation.Id;
 
+import java.util.List;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -22,6 +23,8 @@ public class TattoistEntity {
     private String mainStyle;
     private float ranking;
 
+    private List<ConsumerEntity> consumerEntities;
+
     public TattoistEntity() {
         // Empty for framework
     }
@@ -29,6 +32,16 @@ public class TattoistEntity {
     public TattoistEntity(TattoistCreation tattoistCreation) {
         BeanUtils.copyProperties(tattoistCreation, this);
         this.id = UUID.randomUUID().toString();
+    }
+
+    public TattoistEntity(String email, String name, String nickname, String phone, String mainStyle, float ranking, List<ConsumerEntity> consumerEntities) {
+        this.email = email;
+        this.name = name;
+        this.nickname = nickname;
+        this.phone = phone;
+        this.mainStyle = mainStyle;
+        this.ranking = ranking;
+        this.consumerEntities = consumerEntities;
     }
 
     public String getId() {
@@ -79,12 +92,20 @@ public class TattoistEntity {
         this.mainStyle = mainStyle;
     }
 
-    public Float getRanking() {
+    public float getRanking() {
         return ranking;
     }
 
-    public void setRanking(Float ranking) {
+    public void setRanking(float ranking) {
         this.ranking = ranking;
+    }
+
+    public List<ConsumerEntity> getConsumerEntities() {
+        return consumerEntities;
+    }
+
+    public void setConsumerEntities(List<ConsumerEntity> consumerEntities) {
+        this.consumerEntities = consumerEntities;
     }
 
     @Override
@@ -106,10 +127,11 @@ public class TattoistEntity {
                 "id='" + id + '\'' +
                 ", email='" + email + '\'' +
                 ", name='" + name + '\'' +
-                ", nickname=" + nickname +
-                ", phone=" + phone +
-                ", ranking=" + ranking +
+                ", nickname='" + nickname + '\'' +
+                ", phone='" + phone + '\'' +
                 ", mainStyle='" + mainStyle + '\'' +
+                ", ranking=" + ranking +
+                ", consumerEntities=" + consumerEntities +
                 '}';
     }
 
