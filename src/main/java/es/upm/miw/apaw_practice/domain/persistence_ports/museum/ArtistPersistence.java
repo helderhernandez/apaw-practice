@@ -9,4 +9,6 @@ import java.util.stream.Stream;
 public interface ArtistPersistence {
 
     Stream<Artist> readAll();
+    Artist readById(String id);
+    Artist update(Artist artist);
 }

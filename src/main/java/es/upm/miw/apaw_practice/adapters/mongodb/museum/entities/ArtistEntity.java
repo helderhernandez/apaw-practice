@@ -1,6 +1,7 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.museum.entities;
 
 import es.upm.miw.apaw_practice.domain.models.museum.Artist;
+import org.springframework.beans.BeanUtils;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
@@ -57,9 +58,15 @@ public class ArtistEntity {
         this.county = county;
     }
 
+    public void fromArtist(Artist artist){
+        BeanUtils.copyProperties(artist, this);
+    }
+
     public Artist toArtist() {
         return new Artist(id,name,surname,county);
     }
+
+
 
     //#endregion
 

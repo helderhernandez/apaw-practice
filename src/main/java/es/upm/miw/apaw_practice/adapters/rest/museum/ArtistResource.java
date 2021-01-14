@@ -1,11 +1,10 @@
 package es.upm.miw.apaw_practice.adapters.rest.museum;
 
 import es.upm.miw.apaw_practice.domain.models.museum.Artist;
+import es.upm.miw.apaw_practice.domain.models.museum.ArtistCountryUpdating;
 import es.upm.miw.apaw_practice.domain.services.museum.ArtistService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.stream.Stream;
 
@@ -24,6 +23,11 @@ public class ArtistResource {
     public Stream<Artist> readAll()
     {
         return this.artistService.readAll();
+    }
+
+    @PatchMapping
+    public void updateCountry(@RequestBody ArtistCountryUpdating artistCountryUpdating){
+        this.artistService.updateCounrty(artistCountryUpdating);
     }
 
 }
