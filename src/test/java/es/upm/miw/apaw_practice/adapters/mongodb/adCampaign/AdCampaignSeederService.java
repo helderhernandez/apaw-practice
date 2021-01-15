@@ -69,7 +69,7 @@ public class AdCampaignSeederService {
                 new AdCampaignEntity("adCampaign-01", LocalDateTime.of(2020,9,1,13,0,0),
                         likes[0], List.of(promotions[0])),
                 new AdCampaignEntity("adCampaign-02", LocalDateTime.of(2020,12,1,13,0,0),
-                        likes[0], List.of(promotions[1],promotions[2])),
+                        likes[0], List.of(promotions[0],promotions[2])),
                 new AdCampaignEntity("adCampaign-03", LocalDateTime.of(2021,1,1,13,0,0),
                         likes[2], List.of(promotions[2],promotions[0]))
         };

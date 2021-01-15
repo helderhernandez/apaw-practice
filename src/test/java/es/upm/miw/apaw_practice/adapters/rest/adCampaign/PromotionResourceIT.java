@@ -9,6 +9,7 @@ import org.springframework.test.web.reactive.server.WebTestClient;
 import org.springframework.web.reactive.function.BodyInserters;
 
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
@@ -36,7 +37,7 @@ public class PromotionResourceIT {
 
     @Test
     void testUpdateHeaders() {
-        List<PromotionHeaderUpdating> promotionHeaderUpdatingList = Arrays.asList(
+        List<PromotionHeaderUpdating> promotionHeaderUpdatingList = Collections.singletonList(
                 new PromotionHeaderUpdating("promotion-01", "header1")
         );
         this.webTestClient
@@ -54,6 +55,32 @@ public class PromotionResourceIT {
                 .returnResult()
                 .getResponseBody()
                 .getHeader());
+    }
+
+    @Test
+    void testFindByAdCampaignWithLikeName() {
+        this.webTestClient
+                .get()
+                .uri(uriBuilder -> uriBuilder
+                        .path(PromotionResource.PROMOTIONS + PromotionResource.SEARCH)
+                        .queryParam("q", "like-name:Artes")
+                        .build())
+                .exchange()
+                .expectStatus().isOk()
+                .expectBodyList(Promotion.class)
+                .value(promotions -> Arrays.asList("promotion-01", "promotion-03").containsAll(promotions));
+    }
+
+    @Test
+    void testFindByAdCampaignWithLikeNameBadRequest() {
+        this.webTestClient
+                .get()
+                .uri(uriBuilder -> uriBuilder
+                        .path(PromotionResource.PROMOTIONS + PromotionResource.SEARCH)
+                        .queryParam("q", "otro-param:Artes")
+                        .build())
+                .exchange()
+                .expectStatus().isBadRequest();
     }
 
 }

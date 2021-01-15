@@ -13,7 +13,6 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @TestConfig
 public class AdCampaignEntityRepositoryIT {
@@ -68,6 +67,6 @@ public class AdCampaignEntityRepositoryIT {
         assertTrue(adCampaign.getPromotionEntities().stream()
                 .map(PromotionEntity::getId)
                 .collect(Collectors.toList())
-                .containsAll(List.of("promotion-02", "promotion-03")));
+                .containsAll(List.of("promotion-01", "promotion-03")));
     }
 }
