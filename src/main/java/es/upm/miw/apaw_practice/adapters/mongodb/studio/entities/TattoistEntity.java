@@ -25,13 +25,79 @@ public class TattoistEntity {
 
     private List<ConsumerEntity> consumerEntities;
 
+    public TattoistEntity(TattoistCreation tattoistCreation) {
+        BeanUtils.copyProperties(tattoistCreation, this);
+        this.id = UUID.randomUUID().toString();
+    }
+
     public TattoistEntity() {
         // Empty for framework
     }
 
-    public TattoistEntity(TattoistCreation tattoistCreation) {
-        BeanUtils.copyProperties(tattoistCreation, this);
-        this.id = UUID.randomUUID().toString();
+    public static TattoistBuilder.id builder() {
+        return new Builder();
+    }
+
+    public static class Builder implements TattoistBuilder.id, TattoistBuilder.Name, TattoistBuilder.Optionals {
+
+        private TattoistEntity tattoistEntity;
+
+        public Builder() {
+            this.tattoistEntity = new TattoistEntity();
+        }
+
+        @Override
+        public TattoistBuilder.Name id(String id) {
+            this.tattoistEntity.id = id;
+            return this;
+        }
+
+        @Override
+        public TattoistBuilder.Optionals name(String name) {
+            this.tattoistEntity.name = name;
+            return this;
+        }
+
+        @Override
+        public TattoistBuilder.Optionals email(String email) {
+            this.tattoistEntity.email = email;
+            return this;
+        }
+
+        @Override
+        public TattoistBuilder.Optionals nickname(String nickname) {
+            this.tattoistEntity.nickname = nickname;
+            return this;
+        }
+
+        @Override
+        public TattoistBuilder.Optionals phone(String phone) {
+            this.tattoistEntity.phone = phone;
+            return this;
+        }
+
+        @Override
+        public TattoistBuilder.Optionals mainStyle(String mainStyle) {
+            this.tattoistEntity.mainStyle = mainStyle;
+            return this;
+        }
+
+        @Override
+        public TattoistBuilder.Optionals ranking(float ranking) {
+            this.tattoistEntity.ranking = ranking;
+            return this;
+        }
+
+        @Override
+        public TattoistBuilder.Optionals consumers(List<ConsumerEntity> consumerEntities) {
+            this.tattoistEntity.consumerEntities = consumerEntities;
+            return this;
+        }
+
+        @Override
+        public TattoistEntity build() {
+            return this.tattoistEntity;
+        }
     }
 
     public TattoistEntity(String email, String name, String nickname, String phone, String mainStyle, float ranking, List<ConsumerEntity> consumerEntities) {
