@@ -8,15 +8,11 @@ import es.upm.miw.apaw_practice.adapters.mongodb.adCampaign.entities.AdCampaignE
 import es.upm.miw.apaw_practice.adapters.mongodb.adCampaign.entities.CustomerTargetEntity;
 import es.upm.miw.apaw_practice.adapters.mongodb.adCampaign.entities.LikesEntity;
 import es.upm.miw.apaw_practice.adapters.mongodb.adCampaign.entities.PromotionEntity;
-import es.upm.miw.apaw_practice.adapters.mongodb.bank.entities.CustomerEntity;
-import es.upm.miw.apaw_practice.domain.models.bank.Customer;
 import org.apache.logging.log4j.LogManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
-import java.time.LocalTime;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -45,13 +41,14 @@ public class AdCampaignSeederService {
         this.likesRepository.saveAll(Arrays.asList(likes));
 
         PromotionEntity[] promotions = {
-                new PromotionEntity("promotion-01", "agosto2020", "Descuento por el mes del arte",
-                        "Descuento de 30% en pinceles y lienzos"),
-                new PromotionEntity("promotion-02", "diciembre2020", "Renueva la navidad",
-                        "Descuento 5* en figurillas navideñas"),
-                new PromotionEntity("promotion-03", "enero2020", "Inicia con el pie derecho",
-                        "Hasta el 20% de descuento en laptops")
+                PromotionEntity.builder().id("promotion-01").title("agosto2020").header("Descuento por el mes del arte")
+                        .description("Descuento de 30% en pinceles y lienzos").build(),
 
+                PromotionEntity.builder().id("promotion-02").title("diciembre2020").header("Renueva la navidad")
+                        .description("Descuento 5% en figurillas navideñas").build(),
+
+                PromotionEntity.builder().id("promotion-03").title("enero2020").header("Inicia con el pie derecho")
+                        .description("Hasta el 20% de descuento en laptops").build()
         };
         this.promotionRepository.saveAll(Arrays.asList(promotions));
 
@@ -66,12 +63,12 @@ public class AdCampaignSeederService {
         this.customerTargetRepository.saveAll(Arrays.asList(customerTargets));
 
         AdCampaignEntity[] adCampaigns = {
-                new AdCampaignEntity("adCampaign-01", LocalDateTime.of(2020,9,1,13,0,0),
+                new AdCampaignEntity("adCampaign-01", LocalDateTime.of(2020, 9, 1, 13, 0, 0),
                         likes[0], List.of(promotions[0])),
-                new AdCampaignEntity("adCampaign-02", LocalDateTime.of(2020,12,1,13,0,0),
-                        likes[0], List.of(promotions[0],promotions[2])),
-                new AdCampaignEntity("adCampaign-03", LocalDateTime.of(2021,1,1,13,0,0),
-                        likes[2], List.of(promotions[2],promotions[0]))
+                new AdCampaignEntity("adCampaign-02", LocalDateTime.of(2020, 12, 1, 13, 0, 0),
+                        likes[0], List.of(promotions[0], promotions[2])),
+                new AdCampaignEntity("adCampaign-03", LocalDateTime.of(2021, 1, 1, 13, 0, 0),
+                        likes[2], List.of(promotions[2], promotions[0]))
         };
         this.adCampaignRepository.saveAll(Arrays.asList(adCampaigns));
     }

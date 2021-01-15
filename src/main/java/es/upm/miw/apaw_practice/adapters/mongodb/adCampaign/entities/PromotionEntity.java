@@ -16,11 +16,8 @@ public class PromotionEntity {
     public PromotionEntity() {
     }
 
-    public PromotionEntity(String id, String title, String header, String description) {
-        this.id = id;
-        this.title = title;
-        this.header = header;
-        this.description = description;
+    public static PromotionEntityBuilder.Id builder() {
+        return new Builder();
     }
 
     public String getId() {
@@ -73,5 +70,42 @@ public class PromotionEntity {
                 ", header='" + header + '\'' +
                 ", description='" + description + '\'' +
                 '}';
+    }
+
+    public static class Builder implements PromotionEntityBuilder.Id, PromotionEntityBuilder.Title, PromotionEntityBuilder.Header, PromotionEntityBuilder.Description, PromotionEntityBuilder.Build {
+        public PromotionEntity promotionEntity;
+
+        public Builder() {
+            this.promotionEntity = new PromotionEntity();
+        }
+
+        @Override
+        public PromotionEntityBuilder.Title id(String id) {
+            this.promotionEntity.id = id;
+            return this;
+        }
+
+        @Override
+        public PromotionEntityBuilder.Header title(String title) {
+            this.promotionEntity.title = title;
+            return this;
+        }
+
+        @Override
+        public PromotionEntityBuilder.Description header(String header) {
+            this.promotionEntity.header = header;
+            return this;
+        }
+
+        @Override
+        public PromotionEntityBuilder.Build description(String description) {
+            this.promotionEntity.description = description;
+            return this;
+        }
+
+        @Override
+        public PromotionEntity build() {
+            return this.promotionEntity;
+        }
     }
 }
