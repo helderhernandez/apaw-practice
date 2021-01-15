@@ -20,4 +20,8 @@ public class AdCampaignService {
     public Stream<AdCampaign> readAll() {
         return adCampaignPersistence.readAll();
     }
+
+    public Stream<String> findIdByLikesFromCustomerName(String name) {
+        return adCampaignPersistence.findIdByLikesFromCustomerName(name);
+    }
 }
