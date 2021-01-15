@@ -21,6 +21,6 @@ public class TattoistEntityRepositoryIT {
         assertEquals("Blackwork", tattoistEntity.getMainStyle());
         assertEquals("Ghinko", tattoistEntity.getNickname());
         assertEquals("Maneki Neko", tattoistEntity.getName());
-        assertEquals("2221026542", tattoistEntity.getPhone());
+        assertEquals("2221026543", tattoistEntity.getPhone());
     }
 }

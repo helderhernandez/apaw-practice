@@ -8,6 +8,7 @@ import es.upm.miw.apaw_practice.adapters.mongodb.studio.entities.AppointmentEnti
 import es.upm.miw.apaw_practice.adapters.mongodb.studio.entities.ConsumerEntity;
 import es.upm.miw.apaw_practice.adapters.mongodb.studio.entities.DesignEntity;
 import es.upm.miw.apaw_practice.adapters.mongodb.studio.entities.TattoistEntity;
+import es.upm.miw.apaw_practice.domain.models.studio.Tattoist;
 import es.upm.miw.apaw_practice.domain.models.studio.TattoistCreation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,6 +19,7 @@ import java.math.BigDecimal;
 import java.time.LocalDateTime;
 import java.util.Arrays;
 import java.util.List;
+import java.util.UUID;
 
 @Service
 public class StudioSeederService {
@@ -43,11 +45,11 @@ public class StudioSeederService {
         this.consumerRepository.saveAll(Arrays.asList(consumers));
 
         TattoistEntity[] tattoists = {
-                new TattoistEntity("email@test.com",  "Joseph Company", "JC", "2221026541", "Japanese Traditional", (float) 0.0, List.of(consumers[0], consumers[1])),
-                new TattoistEntity("email1@test.com",  "Maneki Neko", "Ghinko", "2221026542", "Blackwork", (float) 0.0, List.of(consumers[0])),
-                new TattoistEntity("email2@test.com",  "Joan Mora", "JM", "2221026543", "Neo-Traditional", (float) 0.0, List.of(consumers[0], consumers[1], consumers[2])),
-                new TattoistEntity("email3@test.com",  "Doru Ma", "Chem", "2221026544", "Blackwork", (float) 0.0,  List.of(consumers[0], consumers[4])),
-                new TattoistEntity("email4@test.com",  "Tengu Neko", "Neko", "2221026545", "American Traditional", (float) 0.0,  List.of(consumers[4])),
+                TattoistEntity.builder().id(UUID.randomUUID().toString()).name("Joseph Company").mainStyle("Japanese Traditional").nickname("JC").phone("2221026541").ranking((float) 0.0).consumers(List.of(consumers[0], consumers[1])).email("email@test.com").build(),
+                TattoistEntity.builder().id(UUID.randomUUID().toString()).name("Maneki Neko").mainStyle("Blackwork").nickname("Ghinko").phone("2221026543").ranking((float) 0.0).consumers(List.of(consumers[0])).email("email1@test.com").build(),
+                TattoistEntity.builder().id(UUID.randomUUID().toString()).name("Joan Mora").mainStyle("Neo-Traditional").nickname("JM").phone("2221026542").ranking((float) 0.0).consumers(List.of(consumers[0], consumers[1], consumers[2])).email("email2@test.com").build(),
+                TattoistEntity.builder().id(UUID.randomUUID().toString()).name("Chem").mainStyle("Blackwork").nickname("Chem").phone("2221026544").ranking((float) 0.0).consumers(List.of(consumers[0], consumers[4])).email("email3@test.com").build(),
+                TattoistEntity.builder().id(UUID.randomUUID().toString()).name("Tengu Neko").mainStyle("American Traditional").nickname("Neko").phone("2221026545").ranking((float) 0.0).consumers(List.of(consumers[4])).email("email4@test.com").build(),
         };
         this.tattoistRepository.saveAll(Arrays.asList(tattoists));
 
