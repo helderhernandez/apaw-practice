@@ -8,4 +8,6 @@ import java.util.stream.Stream;
 @Repository
 public interface AdCampaignPersistence {
     Stream<AdCampaign> readAll();
+
+    Stream<String> findIdByLikesFromCustomerName(String name);
 }
