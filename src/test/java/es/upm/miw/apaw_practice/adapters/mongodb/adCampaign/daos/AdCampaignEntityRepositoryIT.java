@@ -52,6 +52,11 @@ public class AdCampaignEntityRepositoryIT {
         assertEquals(250, adCampaign.getSuccess());
         adCampaign.setStatus("run");
         assertEquals("run", adCampaign.getStatus());
+        adCampaign.setId("id391");
+        assertEquals("id391", adCampaign.getId());
+        LocalDateTime rightNow = LocalDateTime.now();
+        adCampaign.setScheduleDate(rightNow);
+        assertEquals(rightNow, adCampaign.getScheduleDate());
     }
 
     @Test
