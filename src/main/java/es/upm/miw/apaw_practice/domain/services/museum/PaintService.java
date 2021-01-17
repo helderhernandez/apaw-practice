@@ -5,6 +5,8 @@ import es.upm.miw.apaw_practice.domain.persistence_ports.museum.PaintPersistence
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.stream.Stream;
+
 @Service
 public class PaintService {
 
@@ -22,4 +24,9 @@ public class PaintService {
     public void delete(String id) {
         this.paintPersistence.deleteById(id);
     }
+
+    public Stream<Paint> findPaintCollectionByArtRestorerSurname(String artRestorerSurname) {
+        return this.paintPersistence.findPaintCollectionByArtRestorerSurname(artRestorerSurname);
+    }
+
 }
