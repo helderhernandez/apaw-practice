@@ -4,9 +4,6 @@ import es.upm.miw.apaw_practice.adapters.rest.RestTestConfig;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.web.reactive.server.WebTestClient;
-
-import static org.hamcrest.CoreMatchers.equalTo;
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @RestTestConfig
@@ -18,7 +15,7 @@ public class PatronResourceIT {
     @Test
     void testFindPatronsIDByArtistName() {
         String artistName = "Artist1";
-        var a = this.webTestClient
+        this.webTestClient
                 .get()
                 .uri(uriBuilder ->
                         uriBuilder.path(PatronResource.PATRONS + PatronResource.SEARCH)
