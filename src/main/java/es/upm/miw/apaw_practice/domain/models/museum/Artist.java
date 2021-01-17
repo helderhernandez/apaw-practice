@@ -16,6 +16,7 @@ public class Artist {
         this.county = county;
     }
 
+
     //#region Getters and Setters
 
     public String getId() {
@@ -68,6 +69,45 @@ public class Artist {
                 surname,
                 county
         );
+    }
+    //#endregion
+
+    //#region Builder pattern
+    public static ArtistsBuilder.Id builder(){
+        return new Builder();
+    }
+
+    public static class Builder implements ArtistsBuilder.Id, ArtistsBuilder.Name, ArtistsBuilder.Surname, ArtistsBuilder.Country
+    {
+        private Artist artist;
+
+        public Builder() {
+            this.artist = new Artist();
+        }
+
+        @Override
+        public ArtistsBuilder.Name id(String id) {
+            this.artist.id = id;
+            return this;
+        }
+
+        @Override
+        public ArtistsBuilder.Surname name(String name) {
+            this.artist.name = name;
+            return this;
+        }
+
+        @Override
+        public ArtistsBuilder.Country surname(String surname) {
+            this.artist.surname = surname;
+            return this;
+        }
+
+        @Override
+        public Artist build(String country) {
+            this.artist.county = country;
+            return artist;
+        }
     }
 
     //#endregion
