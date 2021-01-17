@@ -16,7 +16,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static es.upm.miw.apaw_practice.adapters.rest.museum.PaintResource.PAINTS;
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 @RestTestConfig
 public class PaintResourceIT {
@@ -30,7 +30,7 @@ public class PaintResourceIT {
         List<ArtRestorer> artRestorers = new ArrayList<>();
         artRestorers.add(new ArtRestorer("1", "ArtRestorer", "ARSurname1", "JobTitle1"));
 
-        Paint paint = new Paint("Paint1", LocalDate.now(),"Technique1", true,
+        Paint paint = new Paint("Paint1", LocalDate.now(), "Technique1", true,
                 new Artist("1", "Artist1", "ASurname1", "Artist Country"),
                 artRestorers);
         this.webTestClient
@@ -51,5 +51,20 @@ public class PaintResourceIT {
                 .uri(PAINTS + PaintResource.ID_ID, "PPP2")
                 .exchange()
                 .expectStatus().isOk();
+    }
+
+    @Test
+    void testFindPaintCollectionByArtRestorerSurname() {
+        String artRestorerSurname = "ArtRestorer_Surname1";
+        this.webTestClient
+                .get()
+                .uri(uriBuilder ->
+                        uriBuilder.path(PAINTS + PaintResource.SEARCH)
+                                .queryParam("q", "surname:" + artRestorerSurname + ";")
+                                .build())
+                .exchange()
+                .expectStatus().isOk()
+                .expectBodyList(Paint.class)
+                .value(paints -> assertTrue(paints.size()>0));
     }
 }

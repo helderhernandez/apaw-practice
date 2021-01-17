@@ -43,8 +43,8 @@ public class MuseumSeederService {
 
         PaintEntity[] paints = {
                 new PaintEntity("PPP1", "Paint1", LocalDate.now(), "Technique1", true, artists[0], List.of(artRestorers[0], artRestorers[1])),
-                new PaintEntity("PPP2", "Paint2", LocalDate.now(), "Technique1", false, artists[2], null),
-                new PaintEntity("PPP3", "Paint3", LocalDate.now(), "Technique2", true, artists[3], List.of(artRestorers[2]))
+                new PaintEntity("PPP2", "Paint2", LocalDate.now(), "Technique1", false, artists[2], List.of(artRestorers[2])),
+                new PaintEntity("PPP3", "Paint3", LocalDate.now(), "Technique2", true, artists[3], List.of(artRestorers[2], artRestorers[0]))
         };
         this.paintRepository.saveAll(Arrays.asList(paints));
 
