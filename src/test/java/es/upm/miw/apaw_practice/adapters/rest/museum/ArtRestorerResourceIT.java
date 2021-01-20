@@ -43,7 +43,7 @@ public class ArtRestorerResourceIT {
 
     @Test
     void testFindArtRestorerJobTitlesByArtistCountry(){
-        String artistCountry = "Country1";
+        String artistCountry = "Country3";
         this.webTestClient
                 .get()
                 .uri(uriBuilder ->
@@ -54,7 +54,7 @@ public class ArtRestorerResourceIT {
                 .expectStatus().isOk()
                 .expectBodyList(ArtRestorerJobTitleDto.class)
                 .value(artRestorerJobTitleDtoList -> assertTrue(artRestorerJobTitleDtoList.size() > 0))
-                .value(artRestorerJobTitleDtoList -> artRestorerJobTitleDtoList.get(0).getArtRestorerJobTitle(), equalTo("Title1"));
+                .value(artRestorerJobTitleDtoList -> artRestorerJobTitleDtoList.get(0).getArtRestorerJobTitle(), equalTo("Title3"));
     }
 
     @Test
