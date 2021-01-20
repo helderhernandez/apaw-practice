@@ -6,6 +6,7 @@ import es.upm.miw.apaw_practice.adapters.mongodb.museum.daos.PaintRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.museum.entities.ArtRestorerEntity;
 import es.upm.miw.apaw_practice.adapters.mongodb.museum.entities.ArtistEntity;
 import es.upm.miw.apaw_practice.adapters.mongodb.museum.entities.PatronEntity;
+import es.upm.miw.apaw_practice.adapters.rest.museum.ArtRestorerJobTitleDto;
 import es.upm.miw.apaw_practice.domain.exceptions.NotFoundException;
 import es.upm.miw.apaw_practice.domain.models.museum.ArtRestorer;
 import es.upm.miw.apaw_practice.domain.persistence_ports.museum.ArtRestorerPersistence;
@@ -51,14 +52,15 @@ public class ArtRestorerPersistenceMongodb implements ArtRestorerPersistence {
     }
 
     @Override
-    public Stream<String> findArtRestorerJobTitlesByArtistCountry(String artistCountry) {
+    public Stream<ArtRestorerJobTitleDto> findArtRestorerJobTitlesByArtistCountry(String artistCountry) {
 
         return paintRepository.findAll()
                 .stream()
                 .filter(paintEntity -> paintEntity.getArtistEntity().getCounty().equals(artistCountry))
                 .flatMap(paintEntity -> paintEntity.getArtRestorerEntities()
                         .stream())
-                .map(artRestorerEntity -> artRestorerEntity.getJobTitle());
+                .map(artRestorerEntity -> artRestorerEntity.getJobTitle())
+                .map(ArtRestorerJobTitleDto::new);
 
     }
 }

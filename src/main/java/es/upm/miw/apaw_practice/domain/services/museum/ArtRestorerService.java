@@ -1,5 +1,6 @@
 package es.upm.miw.apaw_practice.domain.services.museum;
 
+import es.upm.miw.apaw_practice.adapters.rest.museum.ArtRestorerJobTitleDto;
 import es.upm.miw.apaw_practice.domain.models.museum.ArtRestorer;
 import es.upm.miw.apaw_practice.domain.persistence_ports.museum.ArtRestorerPersistence;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -25,7 +26,7 @@ public class ArtRestorerService {
         return this.artRestorerPersistence.update(artRestorer);
     }
 
-    public Stream<String> findArtRestorerJobTitlesByArtistCountry(String artistCountry) {
+    public Stream<ArtRestorerJobTitleDto> findArtRestorerJobTitlesByArtistCountry(String artistCountry) {
         return this.artRestorerPersistence.findArtRestorerJobTitlesByArtistCountry(artistCountry);
     }
 }

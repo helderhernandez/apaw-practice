@@ -29,7 +29,7 @@ public class ArtRestorerResource {
     }
 
     @GetMapping(SEARCH)
-    public Stream<String> findArtRestorerJobTitlesByArtistCountry(@RequestParam String q) {
+    public Stream<ArtRestorerJobTitleDto> findArtRestorerJobTitlesByArtistCountry(@RequestParam String q) {
         String artistCountry = new LexicalAnalyzer().extractWithAssure(q, "country");
         return this.artRestorerService.findArtRestorerJobTitlesByArtistCountry(artistCountry);
     }

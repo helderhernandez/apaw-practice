@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.web.reactive.server.WebTestClient;
 import org.springframework.web.reactive.function.BodyInserters;
 
+import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
 @RestTestConfig
@@ -51,12 +52,14 @@ public class ArtRestorerResourceIT {
                                 .build())
                 .exchange()
                 .expectStatus().isOk()
-                .expectBodyList(String.class)
-                .value(strings -> assertTrue(strings.size() > 0));
+                .expectBodyList(ArtRestorerJobTitleDto.class)
+                .value(artRestorerJobTitleDtoList -> assertTrue(artRestorerJobTitleDtoList.size() > 0))
+                .value(artRestorerJobTitleDtoList -> artRestorerJobTitleDtoList.get(0).getArtRestorerJobTitle(), equalTo("Title1"));
     }
+
     @Test
     void testFindArtRestorerJobTitlesByArtistCountryNotFound(){
-        String artistCountry = "Country1";
+        String artistCountry = "Country2";
         this.webTestClient
                 .get()
                 .uri(uriBuilder ->
@@ -65,9 +68,7 @@ public class ArtRestorerResourceIT {
                                 .build())
                 .exchange()
                 .expectStatus().isOk()
-                .expectBodyList(String.class)
-                .value(strings -> assertTrue(strings.size() > 0));
+                .expectBodyList(ArtRestorerJobTitleDto.class)
+                .value(artRestorerJobTitleDtoList -> assertTrue(artRestorerJobTitleDtoList.size() == 0));
     }
-
-
 }
