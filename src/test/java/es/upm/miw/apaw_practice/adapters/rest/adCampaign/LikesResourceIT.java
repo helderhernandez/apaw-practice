@@ -10,8 +10,10 @@ import org.springframework.test.web.reactive.server.WebTestClient;
 import org.springframework.web.reactive.function.BodyInserters;
 
 import java.util.Arrays;
+import java.util.List;
+import java.util.stream.Collectors;
 
-import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.*;
 
 @RestTestConfig
 public class LikesResourceIT {
@@ -56,6 +58,12 @@ public class LikesResourceIT {
                 .exchange()
                 .expectStatus().isOk()
                 .expectBodyList(Likes.class)
-                .value(likes -> Arrays.asList("likes-02", "likes-03").containsAll(likes));;
+                .consumeWith(listEntityExchangeResult -> {
+                    List<String> list = listEntityExchangeResult.getResponseBody().stream()
+                            .map(Likes::getId)
+                            .collect(Collectors.toList());
+                    assertTrue(list.containsAll(Arrays.asList("likes-01", "likes-03")));
+                    assertFalse(list.containsAll(Arrays.asList("likes-02")));
+                });
     }
 }
