@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.web.reactive.server.WebTestClient;
 import org.springframework.web.reactive.function.BodyInserters;
 
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 @RestTestConfig
 public class ArtRestorerResourceIT {
 
@@ -36,6 +38,35 @@ public class ArtRestorerResourceIT {
                 .body(BodyInserters.fromValue(artRestorer))
                 .exchange()
                 .expectStatus().isNotFound();
+    }
+
+    @Test
+    void testFindArtRestorerJobTitlesByArtistCountry(){
+        String artistCountry = "Country1";
+        this.webTestClient
+                .get()
+                .uri(uriBuilder ->
+                        uriBuilder.path(ArtRestorerResource.ART_RESTORERS + ArtRestorerResource.SEARCH)
+                                .queryParam("q", "country:" + artistCountry + ";")
+                                .build())
+                .exchange()
+                .expectStatus().isOk()
+                .expectBodyList(String.class)
+                .value(strings -> assertTrue(strings.size() > 0));
+    }
+    @Test
+    void testFindArtRestorerJobTitlesByArtistCountryNotFound(){
+        String artistCountry = "Country1";
+        this.webTestClient
+                .get()
+                .uri(uriBuilder ->
+                        uriBuilder.path(ArtRestorerResource.ART_RESTORERS + ArtRestorerResource.SEARCH)
+                                .queryParam("q", "country:" + artistCountry + ";")
+                                .build())
+                .exchange()
+                .expectStatus().isOk()
+                .expectBodyList(String.class)
+                .value(strings -> assertTrue(strings.size() > 0));
     }
 
 
