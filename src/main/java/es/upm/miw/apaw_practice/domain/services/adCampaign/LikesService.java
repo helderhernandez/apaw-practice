@@ -5,6 +5,8 @@ import es.upm.miw.apaw_practice.domain.persistence_ports.adCampaign.LikesPersist
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.stream.Stream;
+
 @Service
 public class LikesService {
 
@@ -17,5 +19,9 @@ public class LikesService {
 
     public Likes create(Likes likes) {
         return this.likesPersistence.create(likes);
+    }
+
+    public Stream<Likes> findByPromotionTitle(String title) {
+        return this.likesPersistence.findByPromotionTitle(title);
     }
 }
