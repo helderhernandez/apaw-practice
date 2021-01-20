@@ -28,4 +28,8 @@ public class DesignService {
     public Stream<Consumer> findCustomersByType(String type) {
         return this.designPersistence.findConsumersByTypeDesign(type);
     }
+
+    public Stream<String> findDesignStylesByUserPhone(String phone) {
+        return this.designPersistence.findDesignStylesByUserPhone(phone);
+    }
 }

@@ -16,6 +16,7 @@ public class DesignResource {
 
     static final String DESIGN = "/studio/designs";
     static final String SEARCH = "/search";
+    static final String PHONE = "/phone";
 
     private DesignService designService;
 
@@ -34,5 +35,12 @@ public class DesignResource {
         String type = new LexicalAnalyzer()
                 .extractWithAssure(q, "type");
         return this.designService.findCustomersByType(type);
+    }
+
+    @GetMapping(PHONE)
+    public Stream<String> findDesignStylesByUserPhone(@RequestParam String q) {
+        String phone = new LexicalAnalyzer()
+                .extractWithAssure(q, "phone");
+        return this.designService.findDesignStylesByUserPhone(phone);
     }
 }

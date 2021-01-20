@@ -49,4 +49,16 @@ public class DesignResourceIT {
                 .expectStatus().isOk();
     }
 
+    @Test
+    void findDesignStylesByUserPhone() {
+        this.webTestClient
+                .get()
+                .uri(uriBuilder -> uriBuilder.path(DesignResource.DESIGN + DesignResource.PHONE)
+                        .queryParam("q","phone:123456789")
+                        .build())
+                .exchange()
+                .expectStatus().isOk()
+                .expectBodyList(String.class);
+    }
+
 }
