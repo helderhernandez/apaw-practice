@@ -13,4 +13,6 @@ public interface DesignPersistence {
     Design create(DesignCreation designCreation);
 
     Stream<Consumer> findConsumersByTypeDesign(String type);
+
+    Stream<String> findDesignStylesByUserPhone(String phone);
 }

@@ -1,6 +1,7 @@
 package es.upm.miw.apaw_practice.adapters.mongodb.studio.persistence;
 
 import es.upm.miw.apaw_practice.adapters.mongodb.studio.daos.DesignRepository;
+import es.upm.miw.apaw_practice.adapters.mongodb.studio.daos.TattoistRepository;
 import es.upm.miw.apaw_practice.adapters.mongodb.studio.entities.ConsumerEntity;
 import es.upm.miw.apaw_practice.adapters.mongodb.studio.entities.DesignEntity;
 import es.upm.miw.apaw_practice.adapters.mongodb.studio.entities.TattoistEntity;
@@ -18,10 +19,12 @@ import java.util.stream.Stream;
 public class DesignPersistenceMongodb implements DesignPersistence {
 
     private final DesignRepository designRepository;
+    private final TattoistRepository tattoistRepository;
 
     @Autowired
-    public DesignPersistenceMongodb(DesignRepository designRepository) {
+    public DesignPersistenceMongodb(DesignRepository designRepository, TattoistRepository tattoistRepository) {
         this.designRepository = designRepository;
+        this.tattoistRepository = tattoistRepository;
     }
 
     @Override
@@ -44,5 +47,32 @@ public class DesignPersistenceMongodb implements DesignPersistence {
                 .map(ConsumerEntity::toConsumer);
     }
 
+    @Override
+    public Stream<String> findDesignStylesByUserPhone(String phone) {
+        /*return this.tattoistRepository
+                .findAll()
+                .stream()
+                .filter(tattoistEntity -> tattoistEntity
+                        .getConsumerEntities()
+                        .stream()
+                        .anyMatch(consumerEntity -> consumerEntity.getPhone().equals(phone))
+                )
+                .map(TattoistEntity::getConsumerEntities)
+                ;*/
+
+        return this.designRepository
+                .findAll()
+                .stream()
+                .map(designEntity -> designEntity
+                    .getTattoistEntities()
+                    .stream()
+                    .map(TattoistEntity::getConsumerEntities)
+                    .flatMap(Collection::stream)
+                    .filter(consumerEntities -> consumerEntities.getPhone().equals(phone))
+                ).map();
+
+
+
+    }
 
 }
