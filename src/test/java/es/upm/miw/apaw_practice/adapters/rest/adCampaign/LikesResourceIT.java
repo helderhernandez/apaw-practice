@@ -9,6 +9,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.test.web.reactive.server.WebTestClient;
 import org.springframework.web.reactive.function.BodyInserters;
 
+import java.util.Arrays;
+
 import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 @RestTestConfig
@@ -41,5 +43,19 @@ public class LikesResourceIT {
                 .body(BodyInserters.fromValue(likes))
                 .exchange()
                 .expectStatus().isEqualTo(HttpStatus.CONFLICT);
+    }
+
+    @Test
+    void testFindByPromotionTitle() {
+        this.webTestClient
+                .get()
+                .uri(uriBuilder -> uriBuilder
+                        .path(LikesResource.LIKES + LikesResource.SEARCH)
+                        .queryParam("q", "title:enero2020")
+                        .build())
+                .exchange()
+                .expectStatus().isOk()
+                .expectBodyList(Likes.class)
+                .value(likes -> Arrays.asList("likes-02", "likes-03").containsAll(likes));;
     }
 }
