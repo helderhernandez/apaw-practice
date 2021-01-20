@@ -49,30 +49,16 @@ public class DesignPersistenceMongodb implements DesignPersistence {
 
     @Override
     public Stream<String> findDesignStylesByUserPhone(String phone) {
-        /*return this.tattoistRepository
-                .findAll()
-                .stream()
-                .filter(tattoistEntity -> tattoistEntity
-                        .getConsumerEntities()
-                        .stream()
-                        .anyMatch(consumerEntity -> consumerEntity.getPhone().equals(phone))
-                )
-                .map(TattoistEntity::getConsumerEntities)
-                ;*/
-
         return this.designRepository
                 .findAll()
                 .stream()
-                .map(designEntity -> designEntity
+                .filter(designEntity -> designEntity
                     .getTattoistEntities()
                     .stream()
                     .map(TattoistEntity::getConsumerEntities)
                     .flatMap(Collection::stream)
-                    .filter(consumerEntities -> consumerEntities.getPhone().equals(phone))
-                ).map();
-
-
-
+                    .anyMatch(consumerEntities -> consumerEntities.getPhone().equals(phone))
+                ).map(DesignEntity::getStyle);
     }
 
 }
