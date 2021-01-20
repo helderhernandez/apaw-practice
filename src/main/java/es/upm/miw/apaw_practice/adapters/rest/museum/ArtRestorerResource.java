@@ -1,9 +1,12 @@
 package es.upm.miw.apaw_practice.adapters.rest.museum;
 
+import es.upm.miw.apaw_practice.adapters.rest.LexicalAnalyzer;
 import es.upm.miw.apaw_practice.domain.models.museum.ArtRestorer;
 import es.upm.miw.apaw_practice.domain.services.museum.ArtRestorerService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+
+import java.util.stream.Stream;
 
 @RestController
 @RequestMapping(ArtRestorerResource.ART_RESTORERS)
@@ -11,6 +14,7 @@ public class ArtRestorerResource {
 
     static final String ART_RESTORERS = "/museum/art-restorers";
     static final String ID_ID = "/{id}";
+    static final String SEARCH = "/search";
 
     private ArtRestorerService artRestorerService;
 
@@ -22,5 +26,11 @@ public class ArtRestorerResource {
     @PutMapping(ID_ID)
     public ArtRestorer update(@PathVariable String id, @RequestBody ArtRestorer artRestorer){
         return this.artRestorerService.update(id, artRestorer);
+    }
+
+    @GetMapping(SEARCH)
+    public Stream<ArtRestorerJobTitleDto> findArtRestorerJobTitlesByArtistCountry(@RequestParam String q) {
+        String artistCountry = new LexicalAnalyzer().extractWithAssure(q, "country");
+        return this.artRestorerService.findArtRestorerJobTitlesByArtistCountry(artistCountry);
     }
 }
