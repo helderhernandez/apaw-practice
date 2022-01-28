@@ -1,0 +1,8 @@
+Explicación de dependencias de mongo y archivos de propiedades
+
+- https://www.youtube.com/watch?v=I1yrzYoUL04 (desde minuto 16:40)
+- https://www.youtube.com/watch?v=_x3u30K4u9g (desde minuto 9:00)
+- https://github.com/miw-upm/betca-spring/blob/develop/betca-mongodb/src/main/resources/application.properties
+
+otros:
+- https://www.youtube.com/watch?v=qzxKw1Sn6OU
